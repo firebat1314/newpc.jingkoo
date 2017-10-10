@@ -1,0 +1,32 @@
+<div class="erweima-main" style="background: #000;">
+    <div class="erweima-img">
+        <div class="title">微信支付</div>
+        <div class="waiting panelContent">
+            <img ng-src=http://newpc.jingkoo.net/Flow/get_weixin_img/url/{{wxurl}}/token/{{res}} alt="">
+            <div class="info">
+                <div class="status status_browser js_status normal" id="wx_default_tip">
+                    <p>请使用微信扫描二维码付款</p>
+                    <!--<p>“镜库网”</p>-->
+                </div>
+                <!--<div class="status status_succ js_status normal" style="display:none" id="wx_after_scan">-->
+                <!--<i class="status_icon icon38_msg succ"></i>-->
+                <!--<div class="status_txt">-->
+                <!--<h4>扫描成功</h4>-->
+                <!--<p>请在微信中点击确认即可登录</p>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="status status_fail js_status normal" style="display:none" id="wx_after_cancel">-->
+                <!--<i class="status_icon icon38_msg warn"></i>-->
+                <!--<div class="status_txt">-->
+                <!--<h4>您已取消此次登录</h4>-->
+                <!--<p>您可再次扫描登录，或关闭窗口</p>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.erweima-main').height($(window).height());
+</script>

@@ -1,0 +1,100 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="track gird mb10">
+	<div class="track-bt">订单跟踪</div>
+	<div class="track-nr cle">
+		<div class="track-left">
+			<div class="img"><img src="img/3.jpg"/></div>
+			<div class="txt">
+				<p>物流单号：{{WlMsg.data[0].invoice_no}}</p>
+				本订单由第三方卖家为您发货<br/>
+				配送方式：{{IntegralDT.list.shipping_name}}
+			</div>
+		</div>
+		<div class="licttv ">
+			<i class="x"></i>
+			<div class="noogkci">
+				<p class="p-pt" style="overflow: hidden;" ng-repeat="wl in WlMsg.data[0].arr"><em class="ydn"><i></i></em><span class="sj" style="float: left;">{{wl.AcceptTime}}</span> <span class="dz" style="float: left;">{{wl.AcceptStation}}</span></p>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="track gird mb20">
+	<div class="track-bt">订单信息</div>
+	<div class="wrap-nr">
+		<div class="info cle">
+			<div class="info-xx">
+				<b class="bt">收货人信息</b>
+				<p class="p">收<em>货</em>人：  {{IntegralDT.list.consignee}}</p>
+				<p class="p">地<em></em><em></em>址：  {{IntegralDT.list.address}}</p>
+				<p class="p">手机号码：  {{IntegralDT.list.mobile}}</p>
+				<p class="p">电子邮件：  {{IntegralDT.list.email}}</p>
+			</div>
+			<div class="info-xx">
+				<b class="bt">支付及配送方式</b>
+				<p class="p">支付方式：  {{IntegralDT.list.pay_name}}</p>
+				<p class="p">配送方式：  {{IntegralDT.list.shipping_name}}</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="spend">商品清单</div>
+		<div class="sen-table">
+			<table class="s-t">
+				<tr>
+					<th width="179" class="lef" style="text-align: center;">商品编号</th>
+					<th width="179"><div class="c">商品图片</div></th>
+					<th width="409"><div class="c">商品名称</div></th>
+					<th width="119"><div class="c">价格</div></th>
+					<th width="119"><div class="c">商品数量</div></th>
+					<th><div class="c">提示</div></th>
+				</tr>
+				<tr ng-repeat="orde in IntegralDT.list.goods">
+					<td style="text-align: center;">{{orde.goods_sn}}</td>
+					<td><div class="sr-img"><img ng-src="{{orde.thumb}}" /></div></td>
+					<td>
+						<div class="sr-txt">
+							<p class="srt-p1">{{orde.goods_name}}</p>
+							<p class="srt-p2"><span>{{orde.goods_attr}}</span></p>
+						</div>
+					</td>
+					<td><div class="c hsez">￥{{orde.goods_price}}</div></td>
+					<td><div class="c hsez">{{orde.goods_number}}</div></td>
+					<td>
+						<div class="c aneni">
+							<a class="icon ico-1">
+								<div class="lingt">0天无理由退货</div>
+							</a>
+							<a class="icon ico-2">
+								<div class="lingt">0天免费换货</div>
+							</a>
+							<a class="icon ico-3">
+								<div class="lingt">0天免费维修</div>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
+
+<div class="total gird mb40">
+	<div class="totg-wrp">
+		<span class="total-sp">消耗积分：<em>{{IntegralDT.list.integral}}</em></span>
+	</div>
+</div>
+
+<script>
+	$(".sgye").click(function(){
+		$(this).parent().find(".syincy").toggleClass("hidden");
+	})
+	$(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
+</script>
+

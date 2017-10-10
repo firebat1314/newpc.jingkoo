@@ -1,0 +1,157 @@
+<!--采购-->
+
+<div class="procurement_box">
+    <div class="procurement_box_top gird">
+        <div class="box_top_l">
+            <div class="top_l_img">
+                <img ng-src={{shopLogo}}>
+            </div>
+            <div class="top_l_p">
+                <p class="pro_p1">{{name}}</p>
+                <span class="attention_sp" ng-click="shopGz()"><span class="sp_ico"></span>关注我</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <!--<div class="box_top_r">-->
+            <!--<div class="pro_yhq">-->
+                <!--<div class="pro_yhq_l">-->
+                    <!--<span class="yhq_sp1"><i>￥</i>20</span>-->
+                    <!--<p class="yhq_p1">【满200元可用】</p>-->
+                <!--</div>-->
+                <!--<div class="pro_yhq_r">-->
+                    <!--立即<br/>领取-->
+                <!--</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+
+            <!--<div class="pro_yhq">-->
+                <!--<div class="pro_yhq_l">-->
+                    <!--<span class="yhq_sp1"><i>￥</i>20</span>-->
+                    <!--<p class="yhq_p1">【满200元可用】</p>-->
+                <!--</div>-->
+                <!--<div class="pro_yhq_r">-->
+                    <!--立即<br/>领取-->
+                <!--</div>-->
+                <!--<div class="clear"></div>-->
+            <!--</div>-->
+
+            <!--<div class="clear"></div>-->
+        <!--</div>-->
+        <div class="clear"></div>
+    </div>
+    <!--导航-->
+    <div class="procurement_nav">
+        <ul class="procurement_nav_ul gird">
+            <li><a href="">首页</a></li>
+            <!--<li class="spa_l">-->
+                <!--<a href="javascript:0;">全部分类<span class="arr_ow"></span></a>-->
+                <!--<ul class="spa_lu">-->
+                    <!--<li><a href="">隐形眼镜</a></li>-->
+                    <!--<li><a href="">美瞳</a></li>-->
+                    <!--<li><a href="">护理液</a></li>-->
+                    <!--<li><a href="">太阳镜</a></li>-->
+                <!--</ul>-->
+            <!--</li>-->
+            <li ng-repeat="nav in shopHotGoods.suppliers_cat_list"><a href="">{{nav.cat_name}}</a></li>
+            <!--<li class="spa_li">-->
+                <!--<input type="text" class="inp"/><span class="btn"></span>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div class="lb_procurement">
+        <div id="slideBox" class="slideBox">
+            <a href="" class="prev"></a>
+            <a href="" class="next"></a>
+            <!--<div class="hd">-->
+                <!--<ul>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                    <!--<li></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <div class="bd">
+                <ul>
+                    <li ng-repeat="ad in shopHotGoods.banner" repeat-done="adFn()">
+                        <div class="ad_img_box">
+                            <img ng-src={{ad.ad_img}}>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--内容-->
+    <div class="procurement_cont gird">
+        <ul class="procurement_cont_top">
+            <li>
+                <div class="cont_top_div">
+                    <img src="img/caig_ico6.png"/>
+                    <em></em>
+                </div>
+            </li>
+            <li ng-repeat="coup in shopHotGoods.suppliers_bonus">
+                <div class="cont_top_div">
+                    <p class="top_p1"><i>￥</i>{{coup.type_money}}</p>
+                    <p class="top_p2">无门槛使用</p>
+                    <input type="button" ng-if="coup.is_get==0" ng-click="lqYhq(coup.type_id)" value="点击领取" class="top_btn"/>
+                    <input type="button" ng-if="coup.is_get==1" value="已领取" class="top_btn" ng-class="{'top_btn on':coup.is_get==1}">
+                    <em></em>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!--热销-->
+    <div class="hot_sell_box gird">
+        <p>HOT BRANDS<span class="sell_sp">【热销品牌】</span></p>
+        <ul class="hot_sell_u1">
+            <li ng-repeat="list in shopHomeData.data.brand_list">
+                <a href="#/shop-list/{{list.brand_id}}//" target="_blank">
+                    <div class="hot_sell_div">
+                        <img ng-src={{list.brand_logo}}>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="hot_sell_box1 gird">
+        <p>HOT EXPLOSION<span class="sell_sp">【 热销爆款】</span></p>
+        <ul class="hot_sell_u2">
+            <li ng-repeat="cat in shopHotGoods.suppliers_cat_list" repeat-done="catLiFn()" ng-click="getHotGoods(cat.cat_id)">{{cat.cat_name}}</li>
+            <!--<li>彩色隐形眼镜</li>-->
+            <!--<li>护理用品</li>-->
+            <!--<li>太阳镜</li>-->
+        </ul>
+        <div class="hot_sell_hide">
+            <div class="sell_hide show">
+                <ul class="sell_hide_ul">
+                    <li ng-repeat="hot in hotGoodsData.goods">
+                        <div class="sell_hide_div">
+                            <img ng-src={{hot.goods_img}} class="sell_hide_img">
+                            <p class="sell_hide_p1">{{hot.name}}</p>
+                            <p class="sell_hide_p2">
+                                <span class="hide_sp1">RMB</span><span class="hide_sp2">{{hot.shop_price}}</span>
+                                <a href="#/shop-detail/{{hot.id}}" class="sell_hide_a">BUY &gt;</a>
+                            </p>
+                        </div>
+                    </li>
+                    <div class="clear"></div>
+                </ul>
+                <div class="change_btn">
+                    <a href="" class="change_btn_a1" ng-click="prev()"></a>
+                    <a href="" class="change_btn_a2" ng-click="next()"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--采购-->
+<script>
+    $('.procurement_nav_ul li.spa_l').hover(function () {
+        $(this).find('.arr_ow').toggleClass('arr_op');
+    });
+</script>

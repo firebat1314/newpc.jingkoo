@@ -1,0 +1,101 @@
+<div class="pay-main gird ">
+    <div class="zfgb" ng-if="type=='order'">
+        <div class="fl gx-cg">
+            <h2>申请已提交！请尽快支付</h2>
+            <p>您的申请将在提交后<span class="orange">72小时内有效</span>未支付的申请将自动取消。</p>
+        </div>
+        <div class="fr gx-r">应付金额：<span class="orange">¥{{payPrice}}</span></div>
+    </div>
+    <div class="zfgb" ng-if="type=='user_log'">
+        <div class="fl gx-cg">
+            <h2>申请已提交！请尽快支付</h2>
+            <p>您的申请将在提交后<span class="orange">72小时内有效</span>未支付的申请将自动取消。</p>
+        </div>
+        <div class="fr gx-r">应付金额：<span class="orange">¥{{payPrice}}</span></div>
+    </div>
+    <div class="zfgb" ng-if="type=='log'">
+        <div class="fl gx-cg">
+            <h2>恭喜您，订单提交成功！</h2>
+            <p>您的订单将在支付后安排发货，<span class="orange">24小时内</span>未支付的订单将自动取消。</p>
+        </div>
+        <div class="fr gx-r">应付金额：<span class="orange">¥{{payPrice}}</span></div>
+    </div>
+    <div class="clear mb20"></div>
+
+    <div class="jk-zfsk" ng-show="!isPay">
+        <div class="fl jks-zf">请选择支付方式：</div>
+
+        <div class="fl jks-zfs">
+            <div class="zfs-pic mr20 on">
+                <label for="zfb">
+                    <img src="img/j-01.jpg">
+                    <input style="display:none;" type="radio" ng-model="aliPayCode" name="code" ng-value="{{aliPayCode}}" checked="checked" id="zfb" class="hide">
+                    </label>
+                <em class="xzong"></em>
+            </div>
+
+            <div class="zfs-pic mr20">
+                <label for="yl">
+                    <img src="img/j-02.jpg">
+                    <input style="display:none;" type="radio" name="code" value="" id="yl" class="hide" checked="checked">
+                </label>
+                <em class="xzong"></em>
+            </div>
+
+            <div class="zfs-pic">
+                <label for="wx">
+                    <img src="img/j-03.jpg">
+                    <em class="xzong">
+                        <input style="display:none;" type="radio" name="code" value="" id="wx" class="hide" checked="checked">
+                    </em>
+                </label>
+            </div>
+        </div>
+        <input type="hidden" name="act" value="go_pay">
+        <div class="fr jks-anniu"><input type="submit" ng-click="pay()" class="jks-btn" value=""></div>
+
+    </div>
+    <div class="allow mb40"><img src="img/footer-bo.png"></div>
+    <div id="masks" class="masks"></div>
+    <div class="payToLj">
+        <div class="pay-tit">
+            <h2>镜库科技</h2>
+            <img id="cha" src="img/cha.png" alt="">
+        </div>
+        <div class="zhif-tca">
+            <h3 class="ztca-h3">请您在新打开的页面完成支付</h3>
+            <div class="ztca-list">
+                <ul>
+                    <li>完成支付前请不要关闭此窗口</li>
+                    <li>支付完成后，请根据结果选择</li>
+                    <li>支付失败时，您可拨打400-080-5118，会员专线竭诚为您服务</li>
+                </ul>
+            </div>
+            <div class="ztca-btn">
+                <a style="cursor:pointer;" ng-click="checkList()" class="zbtn-btn on mr20 check_ok">支付完成</a><a style="cursor:pointer;" ng-if="is_glass" ng-click="goMachining()" class="zbtn-btn new_select">来镜加工</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+//        $("label").live("click",function(){
+//            var type=$(this).attr("for");
+//            $(this).find("input[type=radio]").attr("checked",true);
+//        });
+        //遮罩层
+        function showMask(){
+            $("#masks").css("height",$(document).height());
+            $("#masks").css("width",$(document).width());
+        }
+        showMask();
+
+
+        $(".zfs-pic").click(function (){
+            $(this).addClass("on").siblings().removeClass("on");
+        });
+
+        $('#cha').click(function(){
+            $('#masks').hide();
+            $('.payToLj').hide();
+        });
+</script>

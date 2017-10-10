@@ -1,0 +1,207 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>来镜加工</a>
+	</div>
+</div>
+
+<div class="main main_process" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+		<div class="panel-left">
+				<div class="control-bt" ng-click="goControlMb()"  style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p class="onp"><a href="#/person-process">来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()"  style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-hd cle">
+    				<div class="cbt-left">
+    					<span ng-click="getAllOrderHs(null)"><a style="cursor: pointer;" class="cbt-wz on">来镜加工</a></span>
+    					<!-- <span ng-click="getAllOrderHs('unpay')"><a href="javascript:0;" class="cbt-wz">待付款<em>{{orderpay}}</em></a></span>
+    					<span ng-click="getAllOrderHs('collect')"><a href="javascript:0;" class="cbt-wz">待收货<em>{{orderDsh}}</em></a></span>
+    					<span ng-click=""><a href="javascript:0;" class="cbt-wz">积分兑换<em>10</em></a></span> -->
+    				</div>
+    				<!-- <div class="shur-wrp ">
+						<input type="button" class="btna" ng-click="serchGoods()"/>
+						<input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" ng-model="order_number" value=" "/>
+					</div> -->
+    			</div>
+    			<div class="cont-bd">
+    				<div class="contacts-wrap ddan integral">
+    					<div class="sydd">
+							<div class="sydd-head">
+								<div class="syd s-1" style="width:457px;">
+									<div class="yxl">
+										<div class="sgye " style="position: relative;">加工单</div>
+										<!-- <div class="syincy hidden">
+											<div class="swrpp swrpp3">
+												<em></em>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs(null)">全部订单</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('one_month')">近一个月订单</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('there_month')">近三个月订单</a></p>
+											</div>
+										</div> -->
+									</div>
+								</div>
+								<!--<div class="syd s-2">订单详情</div>-->
+								<div class="syd s-3">收货人</div>
+								<div class="syd s-4">金额</div>
+								<div class="syd s-5">
+									<div class="yxl">
+										<div class="sgye " style="position: relative;">状态</div>
+										<!-- <div class="syincy hidden">
+											<div class="swrpp swrpp4">
+												<em></em>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs(null)">全部状态</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('unpay')">等待付款</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('collect')">等待收货</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('ok')">已完成</a></p>
+												<p><a href="javascript:0;" ng-click="getAllOrderHs('cancel')">已取消</a></p>
+											</div>
+										</div> -->
+									</div>
+								</div>
+								<div class="syd s-6">操作</div>
+							</div>
+							<div class="sydd-body">
+								<div class="sydd-ittem" ng-repeat="order in data.list">
+									<div class="nony-bt">
+										<span class="nony-sp1">提交时间：{{order.dateline}}</span>
+										<span class="nony-sp2">加工单号：{{order.sn}}</span>
+										<!--<span class="nony-sp2" ng-click="goShop()">{{order.suppliers_name}}<img src="img/dd-2.png"></span>-->
+									</div>
+									<div class="neiro">
+										<div class="nero n-1">
+											<div class="noot-sp">
+												<div class="le-dd">
+													<div class="imsldd" ng-repeat="goods in order.pian_goods">
+														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.goods_img}}"/></div>
+														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
+															<p class="gp-1">{{goods.goods_name}}</p>
+															<p class="gp-2">x{{goods.goods_number}}</p>
+														</div>
+														<div class="clear"></div>
+													</div>
+												</div>
+												<div style="width:200px;height:98px;" ng-if="order.pian_goods.length==0" class="le-dd">
+
+												</div>
+												<div class="cgend" ng-show="order.pian_goods.length>3" ng-click='lookMore($index,$event)'><a style="cursor: pointer;">查看更多商品 ></a></div>
+											</div>
+										</div>
+										<div class="nero n-2 c">
+											<div class="dd-name need_tk"><em></em> <span class="user_name">{{order.consignee}}</span>
+												<div class="need_tkk">
+													<p class="need_tkk_p1">{{order.consignee}}</p>
+													<p class="need_tkk_p2">{{order.region}}{{order.address}}</p>
+													<p class="need_tkk_p2">{{order.mobile}}</p>
+												</div>
+											</div>
+										</div>
+										<div class="nero n-3 c">
+											<div class="n3-hk" style="margin-top: 34px;">
+												<p class="hk-p1" style="border: 0;color: #808080;">总额 : {{order.amount}}</p>
+												<!--<p class="hk-p1" style="color: #4c4c4c;border: none;" ng-if="order.pay_status==0 && order.gq==0">应付 : {{order.total_fee}}</p>-->
+												<!--<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><a style="cursor: pointer;">{{order.pay_name}}</a></p>-->
+											</div>
+										</div>
+										<div class="nero n-4 c">
+											<div class="n4-dsh" style="margin-top: 38px;">
+												<p><span class="red">{{order.status}}</span></p>
+											</div>
+										</div>
+										<div class="nero n-5 c">
+											<div class="n4-dsh" style="margin-top: 38px;">
+												<p ng-if="!((order.order_status == 2 && order.pay_status == 0 && order.shipping_status == 0) || (order.order_status == 3 && order.pay_status == 0 && order.shipping_status == 0))">
+													<a style="cursor: pointer;" class="hse" ng-click="goOrderDetail(order.mid)">订单详情</a>
+												</p>
+												<p ng-if="(order.order_status == 2 && order.pay_status == 0 && order.shipping_status == 0) || (order.order_status == 3 && order.pay_status == 0 && order.shipping_status == 0)">
+													<a style="cursor: pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
+												</p>
+											</div>
+											<div class="n5-opon" ng-if="order.mach_status==4" style="margin-top: 0">
+												<a class="ako1" ng-click="QrGet(order.mid)">确认收货</a>
+											</div>
+											<div class="n5-opon" style="margin: 0;" ng-if="order.is_pay==0">
+												<a style="cursor: pointer;" class="ako4" style="margin-top: 10px;" ng-click="buyAgain(order.log_id)">付款</a>
+											</div>
+											<div class="n5-opon" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)">
+												<a style="cursor: pointer;" class="ako4" ng-click="delOrder(order.order_id)">删除订单</a>
+											</div>
+											<div class="n5-opon" ng-if="order.order_status==1 && order.pay_status==0 && order.gq==0">
+												<p><em></em>剩余23时59分</p>
+												<a style="cursor: pointer;" class="ako3">付款</a>
+												<a style="cursor: pointer;" class="ako2" ng-click="cancelDd(order.order_id)" style="cursor: pointer;">取消订单</a>
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>
+								<p ng-if="data.count==0" style="font-size: 20px;text-align: center;padding: 200px 0;">暂时没有订单哦~</p>
+							</div>
+							
+						</div>
+    					
+    					
+    					<div class="pages" ng-if="data.count!=0">
+			                <div id="Pagination"></div>
+			                <div class="searchPage">
+			                    <span class="page-sum">共<strong class="allPage">{{data.pages}}</strong>页</span>
+			                    <span class="page-go">到第<input type="text" value="1">页</span>
+								<a href="javascript:;" class="page-btn">确定</a>
+			                </div>
+			            </div>
+    					
+    					
+    				</div>
+    			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.cbt-left>span>a').click(function () {
+		$(this).addClass('on').parent().siblings().find('a').removeClass('on');
+	})
+	$('.syincy .swrpp.swrpp3>p').click(function () {
+		var ptext = $(this).text();
+		$('.yxl .sgye3').text(ptext);
+	})
+	$('.syincy .swrpp.swrpp4>p').click(function () {
+		var ptext1 = $(this).text();
+		$('.yxl .sgye4').text(ptext1);
+	})
+</script>

@@ -1,0 +1,181 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>收藏的商品</a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p class="onp"><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-process">来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div class="panel-right">
+            <div class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span><a href="#/myCollect" class="cbt-wz on">收藏的商品</a></span>
+                        <span><a href="#/myCollectShop" class="cbt-wz ">收藏的店铺</a></span>
+                    </div>
+                    <!--<div class="shur-wrp ">
+                        <input type="button" class="btna" />
+                        <input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" />
+                    </div>-->
+                </div>
+                <div class="cont-bd ">
+                    <div class="qxc cle">
+                        <div class="qxc-left">
+                            <span class="q-up"><input class="ceck" ng-change="checkAll(selectAll)" ng-model="selectAll" type="checkbox" id="d-1" /><label for="d-1"></label>全选</span>
+                            <span class="q-jgc">
+                                <!--<a href="" ng-click="addAllToCart()">加入购物车</a>|<a href="" ng-click="delSelectedCollectionGoods()">取消收藏</a>-->
+                                <a style="cursor:pointer;" ng-click="delSelectedCollectionGoods()">取消收藏</a>
+                            </span>
+                        </div>
+                        <div class="qxc-right">
+                            <span class="yeshu">共<em>{{collectGoods.count||0}}</em>件相关商品 <em>{{collectGoods.page||0  }}</em> / {{collectGoods.pages||0}}页</span>
+                            <span class="ypage"><a href="" class="syige"></a><a href="" class="xiycg"></a></span>
+                        </div>
+                    </div>
+
+                    <div class="d-shop">
+                        <ul class="cle ">
+                            <li class="all" ng-repeat="item in collectGoods.data"  repeat-done="renderJs()">
+                                <div class="wrp ">
+                                    <div class="img">
+                                        <div class="zhid">
+                                            <span> <a href="#/shopHomeNew/{{item.suppliers_id}}" style="width:100%;display:inline-block;color:#fff;">店铺</a></span>
+                                            <span ng-click="delCollectionGoods([item.rec_id])">取消收藏</span>
+                                        </div>
+                                        <div class="ner-img">
+                                            <a href="#/shop-detail/{{item.goods_id}}">
+                                                <img ng-src="{{item.img}}">
+                                            </a>
+                                            <!--<div class="no-huo">已无货</div>-->
+                                        </div>
+
+                                    </div>
+                                    <div class="wenbook">
+                                        <p class="wbk-1"><a href="#/shop-detail/{{item.goods_id}}">{{item.goods_name}}</a></p>
+                                        <p class="wbk-2">{{item.shop_price||'暂无报价'}}</p>
+                                    </div>
+                                    <div class="Coupon cle">
+                                        <div class="coupon-item onsi">
+                                            <div class="xtb">券</div>
+                                            <div class="yhweb">
+                                                <div class="txt-wr"><span>{{item.bonus.length}}张可领优惠券</span> <em ng-hide="item.bonus.length==0"></em></div>
+                                                <div ng-hide="item.bonus.length==0" class="tchuk">
+                                                    <div class="tck-wrp">
+                                                        <em class="s-sanj"></em>
+                                                        <div class="lq-coupon">
+                                                            <h4 class="lqc-bt"><em>{{item.bonus.length}}</em> 张可领优惠券</h4>
+                                                            <div class="lqc-list">
+                                                                <div class="c-li cle" ng-repeat="bonus in item.bonus" >
+                                                                    <div class="yhq-c">¥{{bonus.type_money}}</div>
+                                                                    <div class="yhq-b">
+                                                                        <p class="yq-p1">满{{bonus.min_goods_amount}}减¥{{bonus.type_money}}</p>
+                                                                        <p class="yq-p2">{{bonus.use_start_date+'-'+bonus.use_end_date}}</p>
+                                                                    </div>
+                                                                    <div class="yhq-a">
+                                                                        <a ng-click="sendByUser(bonus.type_id)" ng-if="!bonus.is_get">领取</a>
+                                                                        <a href="#/shopHomeNew/{{item.suppliers_id}}" ng-if="bonus.is_get">去使用</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="coupon-item reduce " ng-if="item.promotion.length">
+                                            <div class="xtb">减</div>
+                                            <div class="yhweb">
+                                                <div class="txt-wr"><span>{{item.promotion[0].title}}</span> <em></em></div>
+                                                <div class="tchuk">
+                                                    <div class="tck-wrp">
+                                                        <em class="s-sanj"></em>
+                                                        <div class="lq-manj">
+                                                            <div class="m-li cle" ng-repeat="promotion in item.promotion" repeat-done="renderJs()">
+                                                                <div class="ml-img"><img src="{{item.img}}" /></div>
+                                                                <div class="ml-txt">
+                                                                    <p class="ml-tp1">{{promotion.title}}</p>
+                                                                    <!-- <p class="ml-tp2">× 1</p> -->
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="gwc-jr cle">
+                                        <div class="up-ho"><input class="ceck" ng-model="item.selected" ng-checked="selectAll" type="checkbox" id="{{item.goods_id}}" /><label for="{{item.goods_id}}"></label></div>
+                                        <div class="gwc-c"><a href="#/shop-detail/{{item.goods_id}}"><em></em>加入购物车</a></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div ng-hide="collectGoods.data.length==0" class="pages" style="float:left">
+                        <div id="Pagination"></div>
+                        <div class="searchPage">
+                            <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                            <span class="page-go">到第<input type="text" value="1">页</span>
+                            <a href="javascript:;" class="page-btn">确定</a>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div ng-if="collectGoods&&!collectGoods.data.length" class="cont-bd ">
+                    <div class="souc-none">
+                        <div class="icon" style="background-image:url(img/souc-sp.png);"></div>
+                        <div class="txte">您还没有收藏任何商品哦</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+
+    }
+
+</script>

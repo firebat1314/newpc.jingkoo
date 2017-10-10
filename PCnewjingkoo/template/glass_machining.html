@@ -1,0 +1,460 @@
+<div class="glass-machining-main" ng-bind-html="data">
+    <!--框完-->
+
+
+
+    <!--<div class="lj_process_box">-->
+        <!--<div class="process_box">-->
+            <!--<div class="process_top">-->
+                <!--<h2>来镜加工</h2>-->
+                <!--<img src="img/ljjw_ico1.png">-->
+            <!--</div>-->
+            <!--<div class="process_cont">-->
+                <!--<div class="process_cont_t">-->
+                    <!--<div class="picScroll-left">-->
+                        <!--<a ng-if="liArr.length>5" class="next"></a>-->
+                        <!--<a ng-hide="liArr.length==1" class="prev"></a>-->
+                        <!--<div class="bd">-->
+                            <!--<ul>-->
+                                <!--<li style="margin-top: 10px;" ng-repeat="li in liArr" ng-class="{'one':liArr.length==1}" repeat-done="tableScroll()">加工处方单{{$index+1}}</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash;<ul class="cont_t_u1">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li ng-repeat="li in liArr">加工处方单{{$index+1}}</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;&lt;!&ndash;<li>加工处方单2</li>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                    <!--<div class="cont_t_abox">-->
+                        <!--<a href="" class="cont_t_a1" ng-click="delList()">删除</a>-->
+                        <!--<a href="" ng-click="addList($event)" class="cont_t_a2">新增一张加工单</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div ng-repeat="li in liArr" repeat-done="tableLi()" class="process_cont_c">-->
+
+                    <!--<div class="process_cont_u2">-->
+                        <!--<div class="u2">-->
+                            <!--<a href="" ng-click="showLeft($event)">-->
+                                <!--<div class="u2_d1">-->
+                                    <!--<span style="background: url(img/Left.png) no-repeat center"></span>-->
+                                    <!--<p>镜片-左眼（L）</p>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="u2">-->
+                            <!--<a href="" ng-click="showRight()">-->
+                                <!--<div class="u2_d1">-->
+                                    <!--<span style="background: url(img/Right.png) no-repeat center"></span>-->
+                                    <!--<p>镜片-右眼（R）</p>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="u2">-->
+                            <!--<a href="" ng-click="showJia()">-->
+                                <!--<div class="u2_d1">-->
+                                    <!--<span></span>-->
+                                    <!--<p>镜架</p>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<table class="process_cont_tb1">-->
+                        <!--<tr ng-if="li.left.spec_info.qiujing">-->
+                            <!--<th></th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>球镜</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>柱镜</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>轴位</th>-->
+                            <!--&lt;!&ndash;<th ng-repeat="leftAttr in li.left.spec_info.goods_attr" ng-model="li[leftAttr.attr_name]">{{leftAttr.attr_name}}</th>&ndash;&gt;-->
+                            <!--<th>ADD</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>瞳距</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>瞳高</th>-->
+                            <!--<th>近用瞳距</th>-->
+                        <!--</tr>-->
+                        <!--<tr ng-if="li.left.spec_info.qiujing">-->
+                            <!--<td><input type="button" class="cont_tb1_ip" value="左眼"/></td>-->
+                            <!--<td>{{li.left.spec_info.qiujing}}</td>-->
+                            <!--<td>{{li.left.spec_info.zhujing}}</td>-->
+                            <!--<td>{{li.left.spec_info.zhouwei}}</td>-->
+                            <!--&lt;!&ndash;<td ng-repeat="value in li.left.spec_info.goods_attr">{{value.attr_value}}</td>&ndash;&gt;-->
+                            <!--<td><input type="text" ng-model="li.left.spec_info.ADD" ng-change="addChange($index,li.left.spec_info.ADD)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.left.spec_info.tongju" ng-change="tjChange($index,li.left.spec_info.tongju)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.left.spec_info.tonggao" ng-change="tgChange($index,li.left.spec_info.tonggao)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.left.spec_info.jytj" ng-change="jytjChange($index,li.left.spec_info.jytj)" placeholder="请输入"></td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                    <!--<div class="process_cover leftBox">-->
+                        <!--<div class="process_cover_box">-->
+                            <!--<h2 class="cover_box_h2">选择镜片 —— 左眼<span ng-click="hideCover()" class="box_h2_dh"></span></h2>-->
+                            <!--<div class="cover_box_c">-->
+                                <!--<ul class="box_c_u1">-->
+                                    <!--<li class="con">订单选择</li>-->
+                                    <!--&lt;!&ndash;<li>客户自备</li>&ndash;&gt;-->
+                                <!--</ul>-->
+                                <!--<div class="need_showdiv">-->
+                                    <!--<div class="neShow show">-->
+                                        <!--<div class="showdiv" ng-repeat="leftPian in pianList.pian_goods_list">-->
+                                            <!--<div class="showdiv_l" style="z-index: -1;"><input style="z-index: 999;" ng-model="$parent.pianList.pian_goods_list[$index].selected" type="radio" ng-change="leftSelect($parent.pianList.pian_goods_list[$index].rec_id)" ng-value="$parent.pianList.pian_goods_list[$index].rec_id" name="leftPian" class="showdiv_linp" ng-class="{'check':$parent.pianList.pian_goods_list[$index].selected==1}"></div>-->
+                                            <!--<div class="showdiv_c"><img ng-src={{leftPian.original_img}}></div>-->
+                                            <!--<div class="showdiv_r">-->
+                                                <!--<p class="showdiv_rp1">{{leftPian.goods_name}}</p>-->
+                                                <!--<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：{{leftPian.qiujing}}</span><span class="showdiv_rsp1">柱镜：{{leftPian.zhujing}}</span><span class="showdiv_rsp1">轴位：{{leftPian.zhouwei}}</span></p>-->
+                                                <!--<p class="showdiv_rp2"><em ng-repeat="attr in leftPian.goods_attrs">{{attr}}</em></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash;<div class="neShow">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<ul class="choose_u1">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="1" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">全框</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="2" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">半框</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="3" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">无框切边</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="4" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">无框打孔</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--<div class="showdiv_btn">-->
+                                    <!--<input type="button" class="qd_btn1" ng-click="getLeftEyeData($index,$parent.$index)" value="确定"/>-->
+                                    <!--<input type="button" class="qd_btn2" ng-click="hideCover()" value="取消"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<table class="process_cont_tb1">-->
+                        <!--<tr ng-if="li.right.spec_info.qiujing">-->
+                            <!--<th></th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>球镜</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>柱镜</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>轴位</th>-->
+                            <!--&lt;!&ndash;<th ng-repeat="rightAttr in li.right.spec_info.goods_attr">{{rightAttr.attr_name}}</th>&ndash;&gt;-->
+                            <!--<th>ADD</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>瞳距</th>-->
+                            <!--<th><i style="color: #ff3333;">*</i>瞳高</th>-->
+                            <!--<th>近用瞳距</th>-->
+                        <!--</tr>-->
+                        <!--<tr ng-if="li.right.spec_info.qiujing">-->
+                            <!--<td><input type="button" class="cont_tb1_ip" value="右眼"/></td>-->
+                            <!--<td>{{li.right.spec_info.qiujing}}</td>-->
+                            <!--<td>{{li.right.spec_info.zhujing}}</td>-->
+                            <!--<td>{{li.right.spec_info.zhouwei}}</td>-->
+                            <!--&lt;!&ndash;<td ng-repeat="value in li.right.spec_info.goods_attr">{{value.attr_value}}</td>&ndash;&gt;-->
+                            <!--<td><input type="text" ng-model="li.right.spec_info.ADD" ng-change="raddChange($index,li.right.spec_info.ADD)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.right.spec_info.tongju" ng-change="rtjChange($index,li.right.spec_info.tongju)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.right.spec_info.tonggao" ng-change="rtgChange($index,li.right.spec_info.tonggao)" placeholder="请输入"></td>-->
+                            <!--<td><input type="text" ng-model="li.right.spec_info.jytj" ng-change="rjytjChange($index,li.right.spec_info.jytj)" placeholder="请输入"></td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+
+                    <!--<div class="process_cover rightBox">-->
+                        <!--<div class="process_cover_box">-->
+                            <!--<h2 class="cover_box_h2">选择镜片 —— 右眼<span ng-click="hideCover()" class="box_h2_dh"></span></h2>-->
+                            <!--<div class="cover_box_c">-->
+                                <!--<ul class="box_c_u1">-->
+                                    <!--<li class="con">订单选择</li>-->
+                                    <!--&lt;!&ndash;<li>客户自备</li>&ndash;&gt;-->
+                                <!--</ul>-->
+                                <!--<div class="need_showdiv">-->
+                                    <!--<div class="neShow show">-->
+                                        <!--<div class="showdiv" ng-repeat="rightPian in pianList.pian_goods_list">-->
+                                            <!--<div class="showdiv_l" style="z-index: -1;"><input style="z-index: 999;" ng-model="rightPian.selected" ng-change="rightSelect(rightPian.rec_id)" type="radio" ng-value="rightPian.rec_id" name="rightPian" class="showdiv_linp" ng-class="{'check':rightPian.selected==1}"/></div>-->
+                                            <!--<div class="showdiv_c"><img ng-src={{rightPian.original_img}}></div>-->
+                                            <!--<div class="showdiv_r">-->
+                                                <!--<p class="showdiv_rp1">{{rightPian.goods_name}}</p>-->
+                                                <!--<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：{{rightPian.qiujing}}</span><span class="showdiv_rsp1">柱镜：{{rightPian.zhujing}}</span><span class="showdiv_rsp1">轴位：{{rightPian.zhouwei}}</span></p>-->
+                                                <!--<p class="showdiv_rp2"><em ng-repeat="attr in rightPian.goods_attrs">{{attr}}</em></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash;<div class="neShow">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<ul class="choose_u1">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="1" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">全框</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="2" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">半框</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="3" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">无框切边</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<input name="type" ng-value="4" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<label for="">无框打孔</label>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--<div class="showdiv_btn">-->
+                                    <!--<input type="button" class="qd_btn1" ng-click="getRightEyeData($index,$parent.$index)" value="确定"/>-->
+                                    <!--<input type="button" class="qd_btn2" ng-click="hideCover()" value="取消"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<table class="process_cont_tb2" ng-if="li.jia.spec_info.goods_name">-->
+                        <!--<tr>-->
+                            <!--<th width="12.5%"></th>-->
+                            <!--<th width="24%">名称</th>-->
+                            <!--<th width="12%">型号</th>-->
+                            <!--<th width="21%">加工类型</th>-->
+                            <!--<th width="21.5%">备注</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td><input type="button" class="cont_tb2_ip" value="镜架"/></td>-->
+                            <!--<td><p class="tb2_p1">{{li.jia.spec_info.goods_name}}</p></td>-->
+                            <!--<td><input type="text" placeholder="请输入"></td>-->
+                            <!--<td>{{matchType}}</td>-->
+                            <!--<td><input type="text" placeholder="请输入"></td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+
+                    <!--<div class="process_cover jiaBox">-->
+                        <!--<div class="process_cover_box">-->
+                            <!--<h2 class="cover_box_h2">选择镜架<span ng-click="hideCover()" class="box_h2_dh"></span></h2>-->
+                            <!--<div class="cover_box_c">-->
+                                <!--<ul class="box_c_u1">-->
+                                    <!--<li class="con" ng-class="{'con':show,'':shows}" ng-click="dingdan()">订单选择</li>-->
+                                    <!--<li ng-class="{'con':!show,'':!shows}" ng-click="kehu()">客户自备</li>-->
+                                <!--</ul>-->
+                                <!--<div class="need_showdiv">-->
+                                    <!--<div class="neShow show" ng-show="show">-->
+                                        <!--<div class="showdiv" ng-repeat="jia in pianList.jia_goods_list" repeat-done="tableJia()">-->
+                                            <!--<div class="showdiv_l"><input ng-model="jia.selected" name="jia" ng-change="jiaSelect(jia.rec_id)" type="radio" ng-value="jia.rec_id" class="showdiv_linp" ng-class="{'check':jia.selected==1}"/></div>-->
+                                            <!--<div class="showdiv_c"><img ng-src={{jia.original_img}}></div>-->
+                                            <!--<div class="showdiv_r">-->
+                                                <!--<p class="showdiv_rp1">{{jia.goods_name}}</p>-->
+                                                <!--<p class="showdiv_rp2"><em ng-repeat="attr in jia.goods_attrs">{{attr}}</em></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_l"><input type="checkbox" class="showdiv_linp"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_c"><img src="img/ljjw_ico4.png"/></div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<div class="showdiv_r">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp1">蔡司1.6A系列球面（库存镜片）</p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<p class="showdiv_rp2"><span class="showdiv_rsp1">球镜：-5.25</span><span class="showdiv_rsp1">柱镜：-0.75</span><span class="showdiv_rsp1">柱镜：-0.75 轴位：1.0</span></p>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--<div class="neShow show" ng-show="shows">-->
+                                        <!--<ul class="choose_u1">-->
+                                            <!--<li>-->
+                                                <!--<input name="type" ng-value="1" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>-->
+                                                <!--<label for="">全框</label>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<input name="type" ng-value="2" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>-->
+                                                <!--<label for="">半框</label>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<input name="type" ng-value="3" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>-->
+                                                <!--<label for="">无框切边</label>-->
+                                            <!--</li>-->
+                                            <!--<li>-->
+                                                <!--<input name="type" ng-value="4" ng-model="liArrParams.mach_type" type="radio" class="choose_u1_inp"/>-->
+                                                <!--<label for="">无框打孔</label>-->
+                                            <!--</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="showdiv_btn">-->
+                                    <!--<input type="button" class="qd_btn1" ng-click="getJiaData($index)" value="确定"/>-->
+                                    <!--<input type="button" class="qd_btn2" ng-click="hideCover()" value="取消"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+                <!--&lt;!&ndash;<div class="process_cont_c">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<ul class="process_cont_u2">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="u2_d1">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span></span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<p>镜片-左眼（L）</p>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<a href="">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<div class="u2_d1">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<span></span>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<p>镜片-右眼（R）</p>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div class="u2_d1">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<span></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<p>镜架</p>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</li>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<table class="process_cont_tb1">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr ng-if="leftEyeData">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>球镜</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>柱镜</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>轴位</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th ng-repeat="leftAttr in leftEyeData.spec_info.goods_attr">{{leftAttr.attr_name}}</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th>ADD</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th><i style="color: #ff3333;">*</i>瞳距</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th><i style="color: #ff3333;">*</i>瞳高</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th>近用瞳距</th>&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr ng-if="leftEyeData">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td><input type="button" class="cont_tb1_ip" ng-if="leftEyeData" value="左眼"/></td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{leftqiujing}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{leftzhujing}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{leftzhouwei}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td ng-repeat="value in leftEyeData.spec_info.goods_attr">{{value.attr_value}}</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</table>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<table class="process_cont_tb1">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr ng-if="rightEyeData">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>球镜</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>柱镜</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th><i style="color: #ff3333;">*</i>轴位</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th ng-repeat="rightAttr in rightEyeData.spec_info.goods_attr">{{rightAttr.attr_name}}</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th>ADD</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th><i style="color: #ff3333;">*</i>瞳距</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th><i style="color: #ff3333;">*</i>瞳高</th>&ndash;&gt;&ndash;&gt;-->
+                            <!--&lt;!&ndash;&lt;!&ndash;<th>近用瞳距</th>&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr ng-if="rightEyeData">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td><input type="button" class="cont_tb1_ip" ng-if="rightEyeData" value="右眼"/></td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{rightqiujing}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{rightzhujing}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>{{rightzhouwei}}</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td ng-repeat="value in rightEyeData.spec_info.goods_attr">{{value.attr_value}}</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</table>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<table class="process_cont_tb2">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="12.5%"></th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="24%">名称</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="12%">折射率</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="21%">膜层</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="10%">染色描述</th>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<th width="21.5%">备注</th>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td><input type="button" class="cont_tb2_ip" value="镜架"/></td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td><p class="tb2_p1">夏利豪PC7762（满10副起订夏利豪PC7762（满10副起订夏利豪PC7762（满10副起订夏利豪PC7762（满10副起订</p></td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>33.5</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>33.5</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>33.5</td>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<td>33.5</td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</table>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div style="height:70px;line-height: 70px;padding-left: 70%;">-->
+                    <!--<span class="cont_t_sp1">加工费：<em style="color:#FF3333;">15元每付（全自动进口磨边机切割）</em></span>-->
+                    <!--<button style="width:100px;height:35px;border: 1px solid #FF3333;background: #fff;color:#FF3333;">暂存</button>-->
+                <!--</div>-->
+                <!--<div class="process_cont_b">-->
+                    <!--<div class="cont_b_box">-->
+                        <!--<p class="cont_b_p1">共 <span class="cont_b_sp1">{{lengths}}</span> 个来镜加工处方单，处方单货品金额总计（不包含运费)： <span class="cont_b_sp1">￥0.00</span><p></p>-->
+                        <!--<input type="button" class="cont_b_ip" ng-click="submit()" value="提交订单"/>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<input type="button" style="display: none;" class="enterMessage" ng-click="enterMessage()">
+
+
+<script type="text/javascript">
+
+
+</script>

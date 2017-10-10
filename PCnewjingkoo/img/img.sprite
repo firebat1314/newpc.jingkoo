@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SpriteFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CssFileName="../images" ImageName="img" IsPhone="false" xmlns="CssSprite">
+  <SpriteList>
+    <Sprite Path="xiaohuyanye_.png" LocationX="91" LocationY="70" />
+    <Sprite Path="whuyanye.png" LocationX="91" LocationY="35" />
+    <Sprite Path="xiaohuyanye.png" LocationX="91" LocationY="0" />
+    <Sprite Path="yushou_.png" LocationX="0" LocationY="70" />
+    <Sprite Path="yushou.png" LocationX="0" LocationY="1" />
+    <Sprite Path="wyushou.png" LocationX="0" LocationY="35" />
+    <Sprite Path="xiaogongju.png" LocationX="208" LocationY="2" />
+    <Sprite Path="xiaogongju_.png" LocationX="208" LocationY="70" />
+    <Sprite Path="wshangou.png" LocationX="16" LocationY="35" />
+    <Sprite Path="shangou.png" LocationX="16" LocationY="0" />
+    <Sprite Path="shangou_.png" LocationX="16" LocationY="70" />
+    <Sprite Path="wgongju.png" LocationX="208" LocationY="35" />
+    <Sprite Path="xiaojingpian_.png" LocationX="105" LocationY="70" />
+    <Sprite Path="xiaojingpian.png" LocationX="105" LocationY="0" />
+    <Sprite Path="pinpai.png" LocationX="33" LocationY="3" />
+    <Sprite Path="pinpai_.png" LocationX="33" LocationY="70" />
+    <Sprite Path="wjingpian.png" LocationX="105" LocationY="35" />
+    <Sprite Path="wpinpai.png" LocationX="33" LocationY="35" />
+    <Sprite Path="xiaopeijian.png" LocationX="189" LocationY="0" />
+    <Sprite Path="sheji.png" LocationX="225" LocationY="2" />
+    <Sprite Path="xiaomeitong.png" LocationX="72" LocationY="0" />
+    <Sprite Path="xiaomeitong_.png" LocationX="72" LocationY="70" />
+    <Sprite Path="sheji_.png" LocationX="225" LocationY="70" />
+    <Sprite Path="wpeijian.png" LocationX="189" LocationY="35" />
+    <Sprite Path="xiaopeijian_.png" LocationX="189" LocationY="70" />
+    <Sprite Path="wsheji.png" LocationX="225" LocationY="35" />
+    <Sprite Path="wmeitong.png" LocationX="72" LocationY="35" />
+    <Sprite Path="xiaoeye.png" LocationX="51" LocationY="6" />
+    <Sprite Path="xiaojingjia_.png" LocationX="123" LocationY="70" />
+    <Sprite Path="xiaoeye_.png" LocationX="51" LocationY="70" />
+    <Sprite Path="wjingjia.png" LocationX="123" LocationY="35" />
+    <Sprite Path="xiaojingjia.png" LocationX="123" LocationY="4" />
+    <Sprite Path="weye.png" LocationX="51" LocationY="35" />
+    <Sprite Path="xiaosunglass_.png" LocationX="144" LocationY="70" />
+    <Sprite Path="xiaosunglass.png" LocationX="144" LocationY="8" />
+    <Sprite Path="wsunglass.png" LocationX="144" LocationY="35" />
+    <Sprite Path="xiaogongnengglass.png" LocationX="166" LocationY="7" />
+    <Sprite Path="wgongnengglass.png" LocationX="166" LocationY="35" />
+    <Sprite Path="xiaogongnengglass_.png" LocationX="166" LocationY="70" />
+  </SpriteList>
+</SpriteFile>

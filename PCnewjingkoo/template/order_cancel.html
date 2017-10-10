@@ -1,0 +1,180 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="main" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+		<div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+			<div class="control-list aotms">
+				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<div class="control-nr">
+					<p class="onp"><a href="#/order-all/">我的订单</a></p>
+					<p><a href="#/myCollect">我的收藏</a></p>
+					<p><a href="#/person-integral">积分管理</a></p>
+					<p><a href="#/person-yhq">优惠券管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<div class="control-nr">
+					<p><a href="#/person-process" >来镜加工</a></p>
+					<p><a href="#/person-return-repair">返修退换货</a></p>
+					<p><a href="#/parson-msg-center">消息中心</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<div class="control-nr">
+					<p><a href="#/zijin-mana">资金管理</a></p>
+					<p><a href="#/person-invoices">发票管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<div class="control-nr">
+					<p><a href="#/user-logo-center">个人信息</a></p>
+					<p><a href="#/person-save-center">安全中心</a></p>
+					<p><a href="#/person-mana-addr">管理收货地址</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+			</div>
+        </div>
+		<div class="panel-right">
+			<div class="yqx-a mb20">
+				<h2>已取消订单</h2>
+				<table class="yqx-a-tab">
+					<tr>
+						<th width="130" style="text-align: center;">商品编号</th>
+						<th width="270" style="text-align: center;">商品名称</th>
+						<th width="145" style="text-align: center;">价格</th>
+						<th width="145" style="text-align: center;">商品数量</th>
+						<th style="text-align: center;">操作</th>
+					</tr>
+					<tr ng-repeat="qxOr in orderDetailQx.goods_list">
+						<td>{{qxOr.goods_sn}}</td>
+						<td class="c-598eca">{{qxOr.goods_name}}</td>
+						<td>¥{{qxOr.goods_price}}</td>
+						<td>{{qxOr.goods_number}}</td>
+						<td><a style="cursor:pointer;" class="jgc" ng-click="joinBuyCar(orderid)">加入购物车</a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="yqx-b mb20">
+				<table class="ddxx-tab">
+					<tr>
+						<th colspan="2">订单信息</th>
+					</tr>
+					<tr>
+						<td width="150">订单编号</td>
+						<td><span class="c-808080">{{orderDetailQx.order.order_sn}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">支付方式</td>
+						<td><span class="c-808080">{{orderDetailQx.order.pay_name}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">配送方式</td>
+						<td><span class="c-808080">{{orderDetailQx.order.shipping_name}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">下单时间</td>
+						<td><span class="c-808080">{{orderDetailQx.order.formated_add_time}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">取消时间</td>
+						<td><span class="c-808080">{{orderDetailQx.order.best_time}}</span></td>
+					</tr>
+					<!--<tr>
+						<td width="150">取消原因</td>
+						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
+					</tr>-->
+				</table>
+			</div>
+			
+			<div class="yqx-b mb20">
+				<table class="ddxx-tab">
+					<tr>
+						<th colspan="2">收货人信息</th>
+					</tr>
+					<tr>
+						<td width="150">收货人姓名</td>
+						<td><span class="c-808080">{{orderDetailQx.order.consignee}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">地址</td>
+						<td><span class="c-808080">{{orderDetailQx.order.address}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">固定电话</td>
+						<td><span class="c-808080">{{orderDetailQx.order.mobile}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">电子邮件</td>
+						<td><span class="c-808080">{{orderDetailQx.order.email}}</span></td>
+					</tr>
+				</table>
+			</div>
+			
+			<!--<div class="yqx-b mb20">
+				<table class="ddxx-tab">
+					<tr>
+						<th colspan="2">发票信息</th>
+					</tr>
+					<tr>
+						<td width="150">发票类型</td>
+						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">发票抬头</td>
+						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
+					</tr>
+					<tr>
+						<td width="150">发票内容</td>
+						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
+					</tr>
+				</table>
+			</div>-->
+			
+			<div class="yqx-b mb20">
+				<table class="ddxx-tab">
+					<tr>
+						<th colspan="2">订单备注</th>
+					</tr>
+					<tr>
+						<td width="150" colspan="2">{{orderDetailQx.order.postscript}}</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="yqx-b">
+				<table class="ddxx-tab">
+					<tr>
+						<th colspan="2">结算信息</th>
+					</tr>
+					<tr>
+						<td width="150" >商品金额</td>
+						<td>
+							<span class="c-808080">
+								商品总价：{{orderDetailQx.order.formated_goods_amount}}元  + 配送费用：{{orderDetailQx.order.formated_shipping_fee}}元 - 使用余额：{{orderDetailQx.order.surplus}}元 - 优惠券：{{orderDetailQx.order.bonus}}元 = 订单总金额：
+								<span class="c-ff3333">{{orderDetailQx.order.formated_order_amount}}</span>元
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script>
+	$(".sgye").click(function(){
+		$(this).parent().find(".syincy").toggleClass("hidden");
+	})
+	$(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
+</script>

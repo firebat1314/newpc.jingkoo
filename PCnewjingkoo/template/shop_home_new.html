@@ -1,0 +1,101 @@
+<style type="text/css">
+	.top_conbox .shop_top_sp2 .join_gz{display: inline-block;width: 17px;height: 17px;background: url(img/join_gz.png) center no-repeat;background-size: 100%;margin-right: 5px;position: relative;top: 3px;}    
+	.top_conbox .shop_top_sp1 .join_dp{display: inline-block;width: 19px;height:19px;background: url(img/join_shop.png) center no-repeat;background-size: 100% auto;position: relative;top: 4px;margin-right: 5px;}    
+</style>
+<div class="shopHomeNew">
+    <div class="procurement_box">
+        <div class="dianpu_top">
+            <div class="shop_top_con gird">
+                <div class="top_conbox">
+                    <span class="shop_top_sp1"><span class="join_dp"></span>{{name}}</span>
+                    <span style="cursor: pointer;" ng-if="shopHomeData.data.is_select==0" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
+                    <span style="cursor: pointer;" ng-if="shopHomeData.data.is_select==1" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>已关注店铺</span>
+                    <span onclick="qimoChatClick();" style="cursor: pointer;" class="shop_top_sp3"><i class="lx_saler"></i>联系卖家</span> 
+                </div>
+            </div>
+        </div>
+        <div class="dianpu_cen" style="height:auto;padding-top: 0;">
+            <img ng-src = "{{shopLogo}}" style="width:200px;height:150px;display:block;margin:0 auto;" class="dianpu_cenimg">
+        </div>
+        <div class="new_shop_div_box">
+            <div class="new_shop_div gird">
+                <ul class="new_shop_l">
+                    <li ng-click="shop_homeCat()">首页</li>
+                    <!--<li class="shop_li">全部分类<span class="arr_up"></span><span class="arr_down"></span>-->
+                        <!--<ul class="new_shop_ul1">-->
+                            <!--<li class="on">隐形眼镜</li>-->
+                            <!--<li>美瞳</li>-->
+                            <!--<li>护理液</li>-->
+                            <!--<li>太阳镜</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li>2017春季新品</li>-->
+                    <!--<li>隐形眼镜</li>-->
+                    <!--<li>美瞳</li>-->
+                    <li ng-repeat="li in hotGoodsData.suppliers_cat_list" ng-click="shop_cat(li.cat_id)" ng-if="$index<4">{{li.cat_name}}</li>
+                    <!--<li>促销专区</li>-->
+                    <!--<li>优惠券</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="goods_detail_new gird">
+        <div class="shopList-sort-titnew" style="position: relative;">
+            <div class="shopList-sort-itemnew"><p ng-click="allOrder()">综合排序</p></div>
+            <div class="shopList-sort-itemnew"><p ng-click="tuijianOrder()" style="position: relative;left:-10px;" >销量</p><div ng-click="tuijianAsOrder()()" class="xiaoyuhaonew"></div><div ng-click="tuijianDsOrder()" class="dayuhaonew"></div></div>
+            <div class="shopList-sort-itemnew"><p style="position: relative;left:-10px;" ng-click="timeOrder()">时间</p><div ng-click="timeAsOrder()" class="xiaoyuhaonew"></div><div ng-click="timeDsOrder()" class="dayuhaonew"></div></div>
+            <div class="shopList-sort-itemnew"><p style="position: relative;left:-10px;" ng-click="priceOrder()">价格</p><div ng-click="PriceAsOrder()" class="xiaoyuhaonew"></div><div ng-click="PriceDsOrder()" class="dayuhaonew"></div></div>
+            <div style="position: absolute;right: 90px;top: 10px;font-size: 14px;color: #666;">
+                共<span style="color:#FF3333;" class="ng-binding">{{count}}</span>件商品 <span style="color:#FF3333;" class="ng-binding">{{ye}}</span>/<span class="ng-binding">{{totalSize}}</span>页
+            </div>
+            <div class="sort-togglenew">
+                <div class="arrow-leftnew" ng-click="prevList()"></div>
+                <div class="arrow-rightnew" ng-click="nextList()"></div>
+            </div>
+        </div>
+    </div>
+    <div class="shopList-goodsnew gird">
+        <div class="big-shopList-goods-itemsnew" ng-repeat="listGoods in hotGoodsData.goods" repeat-done="listControl(listGoods.gallery.length)">
+            <div class="shopList-goods-itemsnew" style="position: relative;">
+                <div class="picFocus">
+                    <div class="goods-items-imgnew">
+                        <ul>
+                            <li ng-repeat="bigList in listGoods.gallery">
+                                <a href="#/shop-detail/{{bigList.goods_id}}" target="_blank">
+                                    <img ng-src={{bigList.img_url}} alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="hd">
+                        <ul>
+                            <li ng-repeat="bigs in listGoods.gallery"><img ng-src={{bigs.thumb_url}}></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="goods-items-namenew" ng-attr-title='{{listGoods.name}}'>{{listGoods.name}}</p>
+                <p class="goods-items-pricenew">{{listGoods.shop_price}}</p>
+                <p class="goods-items-storenew">{{listGoods.suppliers_name}}</p>   
+                <div class="shop_btn_box">
+                    <a href="#/shop-detail/{{listGoods.id}}" class="shop_btn_a1">立即购买</a>
+                    <a style="cursor:pointer;" class="shop_btn_a2" ng-click="goodsCollect(listGoods.is_collect,listGoods.id,$index)">关注<span class="sc" ng-class="{'scsc':listGoods.is_collect}"></span></a>
+                </div>
+            </div>
+        </div>
+        <div class="pages" style="float:left">
+            <div id="Pagination"></div>
+            <div class="searchPage">
+                <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                <span class="page-go">到第<input type="text" value="1">页</span>
+                <a href="javascript:;" class="page-btn">确定</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $('.procurement_nav_ul li.spa_l').hover(function () {
+        $(this).find('.arr_ow').toggleClass('arr_op');
+    });
+</script>

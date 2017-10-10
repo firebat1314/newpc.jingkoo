@@ -1,0 +1,175 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="add-apply-main" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+		<div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+			<div class="control-list aotms">
+				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<div class="control-nr">
+					<p><a href="#/order-all/">我的订单</a></p>
+					<p><a href="#/myCollect">我的收藏</a></p>
+					<p><a href="#/person-integral">积分管理</a></p>
+					<p><a href="#/person-yhq">优惠券管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<div class="control-nr">
+					<p><a href="#/person-process" >来镜加工</a></p>
+					<p><a href="#/person-return-repair">返修退换货</a></p>
+					<p><a href="#/parson-msg-center">消息中心</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<div class="control-nr">
+					<p><a href="#/zijin-mana">资金管理</a></p>
+					<p><a href="#/person-invoices">发票管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<div class="control-nr">
+					<p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+					<p><a href="#/person-save-center">安全中心</a></p>
+					<p class="onp"><a href="#/person-mana-addr">管理收货地址</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+			</div>
+        </div>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-hd cle">
+    				<div class="cbt-left"> 
+    					<span><a href="#/person-mana-addr" class="cbt-wz">配送地址</a></span>
+    					<span><a href="#/person-addr-apply" class="cbt-wz on">地区申请</a></span>
+    				</div>
+    			</div>
+    			<div class="cont-bd">
+    				<div class="contacts-wrap apply">
+    					<table class="apply-tab">
+    						<tr>
+    							<td width="100"><div class="app-le">已开通城市： </div></td>
+    							<td>
+    								<div class="app-neir">
+    									<span class="dq" ng-repeat="city in cityData.user_citys">{{city.region_name}}</span>
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td width="100"><div class="app-le">未开通城市： </div></td>
+    							<td ng-if="no_city==0" style="line-height: 35px;font-size: 14px;">
+    								暂无未开通的城市~
+    							</td>
+    							<td ng-if="no_city!=0">
+    								<div class="app-neir">
+    									<div class="dux cle"><!-- ng-init="checkall=false"    ng-checked="checkall" --> 
+    										<span ng-repeat="city in cityData.no_user_citys" ng-click="changeId(city.region_id)" ><input class="need_check" type="radio" id="{{city.region_id}}" name="sss" /><label for="{{city.region_id}}">{{city.region_name}}</label></span>
+    										<div class="clear"></div>
+    									</div>
+    									<!--<div class="dux-btn cle">
+    										<input class="btn" type="button" value="全选" ng-click="addressCheckall()"  />
+    										<input class="btn btn1" type="button" value="重置"  ng-click="addressReset()"/>
+    									</div>-->
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td width="100"><div class="app-le">申请原因： </div></td>
+    							<td>
+    								<div class="app-neir">
+    									<input class="app-txt" ng-model="reason" type="text" />
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td width="100"><div class="app-le">联系方式： </div></td>
+    							<td>
+    								<div class="app-neir">
+    									<input class="app-txt app-person" type="text" placeholder="请填写您的联系方式" ng-model="phone" style="width: 418px;" />
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td width="100"><div class="app-le">营业执照： </div></td>
+    							<td>
+    								<div class="jjp cle">
+    									<div class="License ">
+    										<div class="ret-up fl "><img src="img/up.jpg" id="dimg22"/><input id="dimg2" class="up-file cursor" type="file" ng-model="dqYyzz" ng-change="dqYyzzPhoto($event)" style="cursor: pointer;"/></div>
+											<div class="ret-sli fl"><img src="img/zz.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
+											<div class="muke hidden"></div>
+    										<div class="zzc"><img src="img/zz.jpg"/></div>
+    									</div>
+    								</div>
+    							</td>
+    						</tr>
+    						<!--<tr>
+    							<td width="100"><div class="app-le">身份证正面： </div></td>
+    							<td>
+    								<div class="jjp cle">
+    									<div class="License ">
+    										<div class="ret-up fl "><img src="../img/up-2.jpg" /><input class="up-file cursor" type="file"/></div>
+											<div class="ret-sli fl"><img src="../img/sfz-z.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
+    										<div class="zzc "><img src="../img/sfz-z.jpg"/></div>
+    									</div>
+    								</div>
+    							</td>
+    						</tr>
+    						<tr>
+    							<td width="100"><div class="app-le">身份证反面： </div></td>
+    							<td>
+    								<div class="jjp cle">
+    									<div class="License ">
+    										<div class="ret-up fl "><img src="images/up-2.jpg" /><input class="up-file cursor" type="file"/></div>
+											<div class="ret-sli fl"><img src="images/sfz-f.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
+    										<div class="zzc "><img src="images/sfz-f.jpg"/></div>
+    									</div>
+    								</div>
+    							</td>
+    						</tr>-->
+    						<tr>
+    							<td width="100"><div class="app-le"></div></td>
+    							<td>
+    								<div class="dux-btn cle">
+										<input class="btn" type="button" value="提交" ng-click="onSubmit()" />
+										<!--<input class="btn btn1" type="button" value="重置" ng-click="onReset()" style="margin-left: 12px;"/>-->
+									</div>
+    							</td>
+    						</tr>
+    					</table>
+    					
+    					
+    					
+    				</div>
+    			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script>
+	
+	$(".ret-sli").click(function(){
+		$(this).parent().find(".muke").removeClass("hidden")
+		$(this).parent().find(".zzc").addClass("open");
+		$("body").addClass("over-hide");
+	})
+	$(".muke").click(function(){
+		$(".muke").addClass("hidden")
+		$(".zzc").removeClass("open");
+		$("body").removeClass("over-hide");
+	})
+	$(".zzc").click(function(){
+		$(".muke").addClass("hidden")
+		$(".zzc").removeClass("open");
+		$("body").removeClass("over-hide");
+	})
+	
+</script>

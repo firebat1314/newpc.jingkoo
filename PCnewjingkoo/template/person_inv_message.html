@@ -1,0 +1,245 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>发票管理</a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-process" >来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p class="onp"><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div class="panel-right">
+            <div class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span><a href="#/person-inv-select" class="cbt-wz">发票索取</a></span>
+                        <span><a href="#/person-invoices" class="cbt-wz">发票列表</a></span>
+                        <span><a href="#/person-inv-message" class="cbt-wz on">发票信息管理</a></span>
+                    </div>
+                </div>
+                <div class="cont-bd">
+                    <div class="contacts-wrap czhi">
+                        <div class="location mb20">
+                            <div class="addc"><a href="" ng-click="addNew()" class="ad-btn js_adbtn">添加新资质</a><span>发票资质审核后将不可更改或删除！</span></div>
+                            <div class="invoice_detail_box js_adbr" style="display: none;">
+                                <div class="invoice_detail">
+                                    <div class="invoice_detail_div">
+                                        <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>开具类型 : </span>
+                                        <div class="detail_div_d1">
+                                            <input type="radio" ng-value="1" ng-model="zizhiArr.type" ng-change="changeType()" name="zz" class="detail_div_ip1" id="a1"><label for="a1">个人</label>
+                                            <input type="radio" ng-value="2" ng-model="zizhiArr.type" name="zz" ng-change="changeType()" class="detail_div_ip1" id="a2"><label for="a2">企业</label>
+                                        </div>
+                                    </div>
+                                        <div ng-show="zizhiArr.type==2&&zizhiArr.inv_type==1" class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>发票抬头 : </span>
+                                            <div class="detail_div_d1">
+                                                <input ng-model="zizhiArr.payee" type="text" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                    <div class="invoice_detail_div">
+                                        <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>发票类型 : </span>
+                                        <div class="detail_div_d1">
+                                            <input type="radio" name="invType" ng-value="1"   ng-model="zizhiArr.inv_type" ng-change="changeType()" class="detail_div_ip1" id="a3"><label for="a3">普通发票</label>
+                                            <input ng-if="zzType" type="radio" name="invType" ng-value="2" ng-model="zizhiArr.inv_type" ng-change="changeType()" class="detail_div_ip1" id="a4"><label ng-if="zzType" for="a4">增值税专用发票</label>
+                                        </div>
+                                    </div>
+                                    <div ng-show="nashui">
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>纳税人识别号 : </span>
+                                            <div class="detail_div_d1">
+                                                <input ng-model="zizhiArr.taxpayer_num" type="text" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="type">
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>税务登记单位名称 : </span>
+                                            <div class="detail_div_d1">
+                                                <input type="text" ng-model="zizhiArr.company" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                        <!--<div class="invoice_detail_div">-->
+                                            <!--<span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>税务登记证号 : </span>-->
+                                            <!--<div class="detail_div_d1">-->
+                                                <!--<input type="text" ng-model="zizhiArr.sw_sn" class="detail_div_ip2">-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>基本户开户银行名称 : </span>
+                                            <div class="detail_div_d1">
+                                                <input type="text" ng-model="zizhiArr.bank_name" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>基本户开户账号 : </span>
+                                            <div class="detail_div_d1">
+                                                <input type="text" ng-model="zizhiArr.bank_sn" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>注册场所地址 : </span>
+                                            <div class="detail_div_d1">
+                                                <input type="text" ng-model="zizhiArr.address" class="detail_div_ip2">
+                                            </div>
+                                        </div>
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>注册固定电话 : </span>
+                                            <div class="detail_div_d1">
+                                                <input type="text" ng-model="zizhiArr.tel" class="detail_div_ip2">  
+                                            </div>
+                                        </div>
+                                        <div class="invoice_detail_div">
+                                            <span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>营业执照复印件 : </span>
+                                            <div class="detail_div_d1">
+                                                <div class="jjp cle">
+                                                    <div class="License ">
+                                                        <div class="ret-up fl "><img id="preview" src="img/up.jpg"><input ng-change="imgPreview($event)" id="file" ng-model="zizhiArr.yyzz" class="up-file cursor" type="file"></div>
+                                                        <div class="ret-sli fl"><img src="img/zz.jpg"><div class="sli-fdj "><span></span>示例</div></div>
+                                                        <div class="muke hidden"></div>
+                                                        <div class="zzc "><img src="img/zz.jpg"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>  
+                                        <!--<div class="invoice_detail_div">-->
+                                            <!--<span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>税务登记复印件 : </span>-->
+                                            <!--<div class="detail_div_d1">-->
+                                                <!--<div class="jjp cle">-->
+                                                    <!--<div class="License ">-->
+                                                        <!--<div class="ret-up fl "><img id="swdjPreview" src="img/up.jpg"><input ng-change="swdjPreview($event)" id="swdjfile" ng-model="zizhiArr.swdj" class="up-file cursor" type="file"></div>-->
+                                                        <!--<div class="ret-sli fl"><img src="img/zz.jpg"><div class="sli-fdj "><span></span>示例</div></div>-->
+                                                        <!--<div class="muke hidden"></div>-->
+                                                        <!--<div class="zzc "><img src="img/zz.jpg"></div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="invoice_detail_div">--> 
+                                            <!--<span class="detail_div_sp1"><i style="color: #ff3333;margin-right: 5px;">*</i>一般纳税人资格认证复印件 : </span>-->
+                                            <!--<div class="detail_div_d1">-->
+                                                <!--<div class="jjp cle">-->
+                                                    <!--<div class="License ">-->
+                                                        <!--<div class="ret-up fl "><img id="zgezPreview" src="img/up.jpg"><input ng-change="zgezPreview($event)" id="zgezfile" ng-model="zizhiArr.zgez" class="up-file cursor" type="file"></div>-->
+                                                        <!--<div class="ret-sli fl"><img src="img/zz.jpg"><div class="sli-fdj "><span></span>示例</div></div>-->
+                                                        <!--<div class="muke hidden"></div>-->
+                                                        <!--<div class="zzc "><img src="img/zz.jpg"></div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="detail_div_btn">
+                                        <input type="button" ng-click="submitZz()" value="确认资质" class="div_btn1">
+                                        <input type="button" value="取消" class="div_btn2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--列表样式-->
+                        <div class="invoice_detail_tb">
+                            <table class="detail_tb">
+                                <tbody><tr>
+                                    <th>开具类型</th>
+                                    <th>发票抬头</th>
+                                    <th>发票类型</th>
+                                    <th>资质审核</th>
+                                    <th>操作</th>
+                                </tr>
+                                <tr ng-repeat="fp in invMessageData.data">
+                                    <td><em ng-if="fp.type==1">个人</em><em ng-if="fp.type==2">企业</em></td>
+                                    <td>{{fp.payee}}</td>
+                                    <td><em ng-if="fp.inv_type==1">普通发票</em><em ng-if="fp.inv_type==2">增值税专用发票</em></td>
+                                    <td><em ng-if="fp.if_check==1">已审核</em><em ng-if="fp.if_check==0">未审核</em></td>
+                                    <td><a ng-if="fp.if_check==0" href="" ng-click="fpbianji(fp.user_id,fp)">编辑</a></td>
+                                </tr>
+                                <tr ng-if="invMessageData.count==0">
+                                    <td colspan="5">
+                                        <p style="text-align: center;">暂时没有发票信息！</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="pages" style="float:left">
+                                <div id="Pagination"></div>
+                                <div class="searchPage">
+                                    <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                                    <span class="page-go">到第<input type="text" value="1">页</span>
+                                    <a href="javascript:;" class="page-btn">确定</a>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+
+//    $(".oen-no").click(function(){
+//        $(this).parent().parent().removeClass("show");
+//        $(this).parents().parent().parent().find(".jjp").removeClass("hide");
+//    })
+//    $(".location .js_adbtn").click(function(){
+//        $(".js_adbr").slideDown();
+//    });
+    $(".detail_div_btn .div_btn2").click(function(){
+        $(".js_adbr").slideUp();
+    });
+    $(".ret-sli").click(function(){
+        $(this).parent().find(".muke").removeClass("hidden")
+        $(this).parent().find(".zzc").addClass("open");
+        $("body").addClass("over-hide");
+    })
+    $(".muke").click(function(){
+        $(".muke").addClass("hidden")
+        $(".zzc").removeClass("open");
+        $("body").removeClass("over-hide");
+    })
+    $(".zzc").click(function(){
+        $(".muke").addClass("hidden")
+        $(".zzc").removeClass("open");
+        $("body").removeClass("over-hide");
+    })
+
+</script>

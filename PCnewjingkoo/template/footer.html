@@ -1,0 +1,45 @@
+<div ng-controller="index_footer_parentControl">
+    <div class="footer-main">
+        <div class="footer-content">
+            <ul ng-repeat="ul in helpData.data">
+                <li>{{ul.cat_name}}</li>
+                <li ng-repeat="li in ul.article" >
+                    <span style="cursor:pointer;display: inline-block;" ng-click="goHelp(li.article_id)">{{li.title}}</span>
+                </li>
+                <!--<li>诚聘英才</li>-->
+                <!--<li>媒体报道</li>-->
+            </ul>
+            <!--<ul>-->
+            <!--<li>- 行业资讯 -</li>-->
+            <!--<li>合作伙伴</li>-->
+            <!--<li>眼镜展会</li>-->
+            <!--<li>广告联盟</li>-->
+            <!--</ul>-->
+            <!--<ul>-->
+            <!--<li>- 新手指南 -</li>-->
+            <!--<li>积分规则</li>-->
+            <!--<li>会员制度</li>-->
+            <!--<li>热点问题</li>-->
+            <!--</ul>-->
+            <!--<ul>-->
+            <!--<li>- 支付配送 -</li>-->
+            <!--<li>支付方式</li>-->
+            <!--<li>货到付款</li>-->
+            <!--<li>款到发货</li>-->
+            <!--</ul>-->
+            <!--<ul>-->
+            <!--<li>- 售后服务 -</li>-->
+            <!--<li>订单查询</li>-->
+            <!--<li>退换货政策</li>-->
+            <!--<li>退款申请</li>-->
+            <!--</ul>-->
+            <!--<ul>-->
+            <!--<li>- 帮助中心 -</li>-->
+            <!--<li>免责声明</li>-->
+            <!--<li>联系我们</li>-->
+            <!--<li>投诉建议</li>-->
+            <!--</ul>-->
+            <p>Copyright (c) 2014 - 2016 镜库网 All Rights Reserved 京ICP备16016885号-2</p>
+        </div>
+    </div>
+</div>

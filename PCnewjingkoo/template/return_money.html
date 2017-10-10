@@ -1,0 +1,288 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>返修退换货</a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()" style="cursor: pointer"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-process" >来镜加工</a></p>
+                    <p class="onp"><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div ng-show="isSubmit" class="panel-right">
+            <div ng-show="islook" class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left fx_cbt">
+                        <span><a href="#/person-return-repair" class="cbt-wz">返修/退换货</a></span>
+                        <span><a href="#/person-return-repair-history" class="cbt-wz">返修/退换货记录</a></span>
+                        <span><a href="#/person-repair-refund" class="cbt-wz">退款明细</a></span>
+                        <span><a href="#/person-return-money" class="cbt-wz on">返修明细</a></span>
+                        <div class="sp_r">
+                            <i class="sp_r_i" ng-click="repairRefundFn()"></i>
+                            <input type="text" ng-model="repairRefundList.order_sn" placeholder="输入商品名称或订单编号进行搜索" class="sp_r_ip"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="fx_detail">
+                    <table class="fx_tb1">
+                        <tr>
+                            <th width="290px" style="text-align: left;"><span style="display: inline-block;padding-left: 20px;">服务单信息</span></th>
+                            <th width="200px">返修明细</th>
+                            <th width="130px">差额原因</th>
+                            <th width="130px">退款信息</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+
+                    <table class="fx_tb2" ng-if="repairRefundData.list.length<=0">
+                        <tr>
+                            <td colspan="6">
+                                <p style="font-size: 16px;color: #4c4c4c;text-align: center;padding: 40px 0;">暂无返修记录</p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="fx_tb2" ng-repeat="fx in repairRefundData.list" ng-if="repairRefundData.list.length>0">
+                        <tr>
+                            <th colspan="5">
+                                <span class="fx_detail_sp">服务单号：5465564564</span>
+                                <span class="fx_detail_sp">服务单号：5465564564</span>
+                                <span class="fx_detail_sp">服务单号：5465564564</span>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td width="290px">
+                                <div class="fx_detail_div" ng-repeat="fxs in fx.goods">
+                                    <img ng-src={{fxs.goods_thumb}} class="detail_img">
+                                    <span class="detail_sp">{{fxs.goods_name}}</span>
+                                </div>
+                            </td>
+                            <td width="200px">
+                                <div class="detail_pbox">
+                                    <p class="detail_p2">退款金额：<span style="color: #ff3333;">{{fx.return_amount}}</span></p>
+                                    <p class="detail_p3">退回原支付卡：<span style="color: #4c4c4c;">{{fx.return_amount}}</span></p>
+                                </div>
+                            </td>
+                            <td width="130px">{{fx.return_desc}}</td>
+                            <td width="130px"><span style="color: #ff3333;">{{fx.money_status}}</span></td>
+                            <td class="span_box1">
+    							<!--<span class="fx1_sp1 fx1_sp" ng-click="look(fx.return_id)">-->
+    								<!--<span class="fx_show_box1">查看</span>-->
+    							<!--</span>-->
+                                <span style="cursor: pointer;color:#3f69a5;" ng-click="look(fx.return_id)">查看</span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="pages">
+                        <div id="Pagination"></div>
+                        <div class="searchPage">
+                            <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                            <span class="page-go">到第<input type="text" value="1">页</span>
+                            <a href="javascript:;" class="page-btn">确定</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!--<div ng-show="!islook" class="control-wrp">-->
+                <!--<div class="cont-hd cle">-->
+                    <!--<div class="cbt-left fx_cbt">-->
+                        <!--<span><a class="cbt-wz on">申请服务单详情</a></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="ask_order_box">-->
+                    <!--<ul class="ask_order_t">-->
+                        <!--<li>本次售后服务由 <span style="color: #ff3333;"> 北京镜库科技有限公司</span>为您提供</li>-->
+                        <!--<li>-->
+                            <!--<img src="img/lloogo.png"/>-->
+                            <!--<span class="ask_sp1">售后服务单号 : 4546545646645</span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+
+                    <!--<div class="ask_order_d1">-->
+                        <!--<h2>售后信息</h2>-->
+                        <!--<div class="ask_order_dd1">-->
+                            <!--<div class="gdt_img" ng-if="status!=-1">-->
+                                <!--<span class="gdt_wc" ng-class="{'gdt_wc step_one':status==0,'gdt_wc step_three':status==1,'gdt_wc step_two':status==8,'gdt_wc step_five':status==5}">已完成</span>-->
+                                <!--<div class="gdt_img_child" ng-class="{'gdt_img_child gdt_img_child0':status==0,'gdt_img_child gdt_img_child2':status==1,'gdt_img_child gdt_img_child1':status==8,'gdt_img_child gdt_img_child4':status==5}"></div>-->
+                                <!--<span class="gdt_sp1" ng-class="{'gdt_sp1 sp_co':status==0||status==8||status==5||status==4||status==1}">提交申请</span>-->
+                                <!--<span class="gdt_sp2" ng-class="{'gdt_sp1 sp_co':status==8||status==5||status==1}">第三方卖家审核</span>-->
+                                <!--<span class="gdt_sp3" ng-class="{'gdt_sp1 sp_co':status==5||status==1}">第三方卖家收货</span>-->
+                                <!--<span class="gdt_sp4" ng-class="{'gdt_sp1 sp_co':status==5}">退款</span>-->
+                                <!--<span class="gdt_sp5" ng-class="{'gdt_sp1 sp_co':status==5}">完成</span>-->
+                            <!--</div>-->
+                            <!--<div class="gdt_img1" ng-if="status==-1">-->
+                                <!--<span class="gdt_wc" style="text-align: center;left:130px;">已完成</span>-->
+                            <!--</div>-->
+                            <!--<p>重要提醒 : 镜库平台不会以<span style="color: #ff3333;margin: 0 3px;">订单异常、系统升级</span>为由,要求您点击任何网址链接进行退款操作。</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="ask_order_d1">-->
+                        <!--<h2>商品信息</h2>-->
+                        <!--<div class="fx_table1">-->
+                            <!--<table>-->
+                                <!--<tr>-->
+                                    <!--<th width="60%" style="text-align: left;padding-left: 120px;">商品名</th>-->
+                                    <!--<th width="20%">数量</th>-->
+                                    <!--<th width="20%">单价</th>-->
+                                <!--</tr>-->
+                                <!--<tr ng-repeat="look in lookContentData.goods_list">-->
+                                    <!--<td style="text-align: left;">-->
+                                        <!--<div class="fx_good_box">-->
+                                            <!--<div class="fx_good_boxl">-->
+                                                <!--<img ng-src={{look.goods_thumb}}>-->
+                                            <!--</div>-->
+                                            <!--<div class="fx_good_boxr">-->
+                                                <!--<p class="good_p1">{{look.goods_name}}</p>-->
+                                                <!--<p class="good_p2">-->
+                                                    <!--<span>球镜 : {{look.qiujing}}</span>-->
+                                                    <!--<span>柱镜 : {{look.zhujing}}</span>-->
+                                                    <!--<span>轴位 : {{look.zhouwei}}</span>-->
+                                                <!--</p>-->
+                                                <!--&lt;!&ndash;<p class="good_p3">&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<span>镜片颜色 : 渐近茶</span>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<span>镜片颜色 : 渐近茶</span>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                    <!--<td>{{look.return_goods}}</td>-->
+                                    <!--<td>{{look.goods_price}}</td>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="ask_order_d1" ng-if="status==8">-->
+                        <!--<h2>服务单信息</h2>-->
+                        <!--<div class="fast_send">-->
+                            <!--<div class="fast_d">-->
+                                <!--<span class="fast_sp"><i>*</i>快递公司 : </span>-->
+                                <!--<input type="text" ng-model="returnArr.company" class="fast_ip"/>-->
+                            <!--</div>-->
+                            <!--<div class="fast_d">-->
+                                <!--<span class="fast_sp"><i>*</i>快递单号 : </span>-->
+                                <!--<input type="text" ng-model="returnArr.kdsn" class="fast_ip"/>-->
+                            <!--</div>-->
+                            <!--<div class="fast_d">-->
+                                <!--<span class="fast_sp">发货时间 : </span>-->
+                                <!--<input type="text" class="fast_ip"/>-->
+                            <!--</div>-->
+                            <!--<div class="fast_d">-->
+                                <!--<span class="fast_sp"></span>-->
+                                <!--<div class="tx_btn">-->
+                                    <!--<input type="button" ng-click="listSubmit()" value="提交" class="tj"/>-->
+                                    <!--<input type="button" value="取消" class="qx"/>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="ask_order_d1">-->
+                        <!--<h2>服务单信息</h2>-->
+                        <!--<div class="fw_msg_box">-->
+                            <!--<ul class="fw_u1">-->
+                                <!--<li>-->
+                                    <!--<span class="fw_sp">商品返回方式 : </span>-->
+                                    <!--<div class="fw_d">{{return_way}}</div>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="fw_sp">商品处理方式 : </span>-->
+                                    <!--<div class="fw_d"><i>客户期望处理方式为</i><i ng-if="returnType==1">“退货”</i><i ng-if="returnType==2">“换货”</i><i ng-if="returnType==3">“维修”</i></div>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="fw_sp">问题描述 : </span>-->
+                                    <!--<div class="fw_d">-->
+                                        <!--<span>{{return_desc}}</span>-->
+                                        <!--<img style="margin-right: 10px;" ng-repeat="img in lookContentData.repair_info.imgs" ng-src={{img}} alt="" /></div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                            <!--<ul class="fw_u2">-->
+                                <!--<li>-->
+                                    <!--<span class="fw_sp">联系信息 : </span>-->
+                                    <!--<div class="fw_d">-->
+                                        <!--联系人 : {{user}}<br/>手机 : {{mobile}}-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li ng-if="company&&kdsn">-->
+                                    <!--<span class="fw_sp">发货单信息 : <br/>({{time}})</span>-->
+                                    <!--<div class="fw_d">-->
+                                        <!--快递公司 : {{company}}<br/>运单号 : {{kdsn}}-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<span class="fw_sp">退货地址 : </span>-->
+                                    <!--<div class="fw_d">-->
+                                        <!--{{address}}-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <!--</div>-->
+
+            <!--</div>-->
+        </div>
+        <!--<div ng-show="!isSubmit" class="panel-right">-->
+            <!--<div class="control-wrp">-->
+                <!--<div class="cont-hd cle">-->
+                    <!--<div class="cbt-left">-->
+                        <!--<span><a class="cbt-wz on">申请服务详情</a></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="cont-bd">-->
+                    <!--<div class="contacts-wrap czhi">-->
+                        <!--<div class="wsh_box">-->
+                            <!--<i class="wsh_ico wsh_ico1"></i>-->
+                            <!--<p class="wsh_p1">恭喜您,订单提交成功</p>-->
+                            <!--<p class="wsh_p2" style="color: #808080;">服务人员将在24小时内进行审核,审核结果将会以短信形式告知您,</p>-->
+                            <!--<p class="wsh_p2" style="color: #808080;">您也可以在查看 返修/退换货记录中进行查询</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="clear"></div>
+    </div>
+</div>

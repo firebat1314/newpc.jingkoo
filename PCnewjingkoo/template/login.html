@@ -1,0 +1,126 @@
+<div class="login-main">
+        <img class="jingkoo-logo" src="img/jingkooLogo.png" alt="">
+        <h2>登录</h2>
+        <form name="signUpForm" ng-show="!isPhone" method="post"
+              ng-submit="login($event)" novalidate>
+            <div class="login-box">
+                <div class="login-table">
+                    <div class="login-table-password" ng-click="phoneLogin()">手机验证码登陆</div>
+                    <div class="login-table-password selected" ng-click="userLogin()">用户密码登录</div>
+                </div>
+                <div class="login-area login-table-box">
+                    <div class="username-box user">
+                        <div class="user-touxiang fl"></div>
+                        <input maxlength="20" type="text" class="user" ng-model="user.username" placeholder="请输入用户名" autocomplete="off">
+                    </div>
+
+                    <div class="username-box password">
+                        <div class="password-touxiang fl"></div>
+                        <input maxlength="20" type="password" id="pwd" ng-model="user.password" placeholder="请输入密码" autocomplete="password">
+                    </div>
+                    <!--<div class="code-box">-->
+                        <!--<div class="code-input fl">-->
+                            <!--<input type="text" ng-model="user.str_verify" placeholder="请输入验证码">-->
+                        <!--</div>-->
+                        <!--<div class="code-ma fl">-->
+                            <!--<img ng-click="codeAgain()" ng-src={{codeMa}} alt="">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div style="height:40px;" class="GeetestCaptchaView1"></div>
+                    <div class="remeber-user" style="margin-top:10px;">
+                        <label>
+                            <input type="checkbox" name="user" ng-model="user.remember" ng-change="remeberUser(user.remember)" style="display: none;">
+                            <div class="all-check" ng-class="{'checked':isCheck}"></div>
+                        </label>
+                        <p>记住用户名</p>
+                    </div>
+                    <button ng-click="loginClick()">登录</button>
+                    <div class="free-register">
+                        <a class="free" href="#/register">免费注册</a>
+                        <a href="#/forgotPassword">忘记密码？</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form name="signUpForm" ng-show="isPhone" method="post"
+          ng-submit="anoLogin($event)" novalidate>
+        <div class="login-box">
+            <div class="login-table">
+                <div class="login-table-password selected" ng-click="phoneLogin()">手机验证码登陆</div>
+                <div class="login-table-password" ng-click="userLogin()">用户密码登录</div>
+            </div>
+            <div class="login-code-area login-table-box">
+                <div class="code-area-user">
+                    <input id="codeUser" class="user" maxlength="11" ng-model="userPhone.userphone" type="number" placeholder="请输入手机号" autocomplete="off">
+                </div>
+                <!--<div class="code-box">-->
+                    <!--<div class="code-input fl">-->
+                        <!--<input type="text" ng-model="userPhone.str_verify" placeholder="请输入验证码">-->
+                    <!--</div>-->
+                    <!--<div class="code-ma fl">-->
+                        <!--<img ng-click="codeAgain()" ng-src={{codeMa}} alt="">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div style="height:40px;" class="GeetestCaptchaView2"></div>
+                <div class="code-area-message" style="margin-top: 15px;">
+                    <input id="codeMessage" ng-model="userPhone.mobile_code" type="text" placeholder="请输入短信验证码">
+                    <a style="cursor:pointer;" ng-class="{'buKeDian':vm.kedian}" ng-click="anoinfo()" class="get-message">{{vm.data}}</a>
+                </div>
+                <div class="remeber-user">
+                    <label>
+                        <label>
+                            <input type="checkbox" name="userPhone" ng-model="userPhone.remember" ng-change="remeberUserPhone(userPhone.remember)" style="display: none;">
+                            <div class="all-check" ng-class="{'checked':isChecked}"></div>
+                        </label>
+                    </label>
+                    <p>记住手机号</p>
+                </div>
+                <button ng-click="anoLoginClick()">登录</button>
+                <div class="free-register">
+                    <a class="free" href="#/register">免费注册</a>
+                    <a href="#/forgotPassword">忘记密码？</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $('.login-main').height($(window).height());
+//    $('.login-table-password').click(function(){
+//        var i = $(this).index();
+//        $('.login-table-password').removeClass('selected');
+//        $('.login-table-password').eq(i).addClass('selected');
+//        $('.login-table-box').hide();
+//        $('.login-table-box').eq(i).show();
+//    });
+    $('.user').focus(function(){
+      $(this).parent().addClass('focu');
+    });
+    $('.user').blur(function(){
+        $(this).parent().removeClass('focu');
+    });
+    $('#pwd').focus(function(){
+        $(this).parent().addClass('focu');
+    });
+    $('#pwd').blur(function(){
+        $(this).parent().removeClass('focu');
+    });
+    $('.code-input input').focus(function(){
+        $(this).parent().addClass('focu');
+    });
+    $('.code-input input').blur(function(){
+        $(this).parent().removeClass('focu');
+    });
+    $('#codeUser').focus(function(){
+        $(this).parent().addClass('focu');
+    });
+    $('.codeUser').blur(function(){
+        $(this).parent().removeClass('focu');
+    });
+    $('#codeMessage').focus(function(){
+        $(this).parent().addClass('focu');
+    });
+    $('#codeMessage').blur(function(){
+        $(this).parent().removeClass('focu');
+    });
+</script>

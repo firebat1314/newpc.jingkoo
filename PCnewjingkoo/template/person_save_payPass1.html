@@ -1,0 +1,104 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+    </div>
+</div>
+
+<div class="main" style="margin-bottom: 25px;">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-process" >来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p class="onp"><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div class="panel-right">
+            <div class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span ng-if="payPass==0"><a style="cursor:pointer;" class="cbt-wz on">设置支付密码</a></span>
+                        <span ng-if="payPass==1"><a style="cursor:pointer;" class="cbt-wz on">修改支付密码</a></span>
+                    </div>
+                </div>
+                <div class="cont-bd">
+                    <div class="contacts-wrap ">
+
+                        <div class="forget_mmone">
+                            <div class="forget_mmone_con">
+                                <div class="mmone_con_top">
+                                    <div class="forget_jd_t" style="margin-left:150px;height:32px;background: url(img/yz_lc.png) no-repeat left top;">
+                                        <span class="forget_sp2">验证身份</span>
+                                        <span ng-if="payPass==0" style="left:250px;" class="forget_sp3">设置支付密码</span>
+                                        <span ng-if="payPass==1" style="left:250px;" class="forget_sp3">修改支付密码</span>
+                                        <span style="left:545px;" class="forget_sp4">完成</span>
+                                        <!--<span class="forget_sp5">完成</span>-->
+                                    </div>
+                                </div>
+                                <div class="mmone_con_bt">
+                                    <div class="con_bt_div">
+                                        <span class="con_bt_sp">手机号 : </span>
+                                        <span class="con_bt_tel">{{userPhone}}</span>
+                                    </div>
+                                    <div class="con_bt_div">
+                                        <span class="con_bt_sp">验证码 : </span>
+                                        <!--<div class="mm_two_div">-->
+                                            <!--<input type="text" placeholder="请输入验证码" ng-model="forgotTwoOption.verify" class="mm_towyzm"/>-->
+                                            <!--<img style="border-left: 1px solid #e6e6e6" ng-src={{codeMa}} ng-click="codeAgain()" width="110px" height="35px" class="yzm_img">-->
+                                        <!--</div>-->
+                                        <div style="height:34px;position: absolute;right: -102px;" class="GeetestCaptchaView1"></div>
+                                    </div>
+                                    <div class="con_bt_div">
+                                        <span class="con_bt_sp">手机验证码 : </span>
+                                        <div class="mm_two_div">
+                                            <input type="text" ng-model="forgotTwoOption.phone_code" placeholder="请输入短信验证码" class="mm_towyzm"/>
+                                            <input style="border-left:1px solid #e6e6e6;background-color: #fff;" type="button" class="hqyzm" ng-disabled="vm.kedian" ng-value="vm.data" ng-click="info()">
+                                        </div>
+                                    </div>
+                                    <div class="con_btn_div">
+                                        <input type="button" style="margin-left: 140px;margin-top: 10px;" ng-click="stepTwo()" class="con_bt_btn" value="下一步"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

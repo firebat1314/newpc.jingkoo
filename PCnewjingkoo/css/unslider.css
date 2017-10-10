@@ -1,0 +1,72 @@
+.unslider {
+    /*overflow: auto;*/
+    margin: 0;
+    padding: 0;
+    position:relative;
+}
+
+.unslider-wrap {
+    position: relative
+}
+
+.unslider-wrap.unslider-carousel > li {
+    float: left
+}
+
+.unslider-vertical > ul {
+    height: 100%;
+    overflow:hidden;
+}
+
+.unslider-vertical li {
+    float: none;
+    width: 100%
+}
+
+.unslider-fade {
+    position: relative
+}
+
+.unslider-fade .unslider-wrap li {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 8
+}
+
+.unslider-fade .unslider-wrap li.unslider-active {
+    z-index: 10
+}
+
+.unslider li, .unslider ol, .unslider ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+
+.unslider-arrow {
+    position: absolute;
+    display: inline-block;
+    z-index: 200;
+    cursor: pointer;
+    width:40px;
+    height:40px;
+}
+.unslider-arrow.next {
+    right:20px;
+    top:45%;
+    background:url('../img/slider.png') -42px 0 no-repeat;
+}
+.unslider-arrow.next:hover{
+    background-position:-42px -42px;
+}
+.unslider-arrow.prev {
+    left:20px;
+    top:45%;
+    background:url('../img/slider.png') no-repeat;
+}
+.unslider-arrow.prev:hover{
+    background-position:0px -42px;
+}

@@ -1,0 +1,540 @@
+<div ng-controller="index_header_parentControl">
+    <div class="header-main">
+        <div class="header-top">
+            <div class="header-top-content">
+                <div class="header-top-content-left">
+                    <div class="trans-city">
+                        <p><span ng-if="areaListName.selected" ng-repeat="areaListName in IndexData.list.getAreaList">{{areaListName.region_name}}</span></p>
+                        <div class="dd dorpdown-layer">
+                            <div class="dd-spacer"></div>
+                            <div class="ui-areamini-content-wrap" style="left: auto;">
+                                <div class="ui-areamini-content">
+                                    <div class="ui-areamini-content-list">
+                                        <div class="item" ng-repeat="areaList in IndexData.list.getAreaList" ng-click="areaListAdd($event,$index)">
+                                            <a href="" ng-click="areaListChange(areaList.region_id)" ng-class="{'selected':areaList.selected}">{{areaList.region_name}}</a>
+                                        </div>
+                                        <a href="#/person-addr-apply" style="color:#0070c9;position: relative;top:2px;cursor:pointer;">申请城市</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jingkoo-call">
+                        <p>400-080-5118</p>
+                    </div>
+                </div>
+                <div class="header-top-content-right">
+                    <!--<a href="">-->
+                    <!--<div class="qycg">-->
+                    <!--<p>企业采购</p>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                    <!--<a href="">-->
+                    <!--<div class="wShop">-->
+                    <!--<p>微商城</p>-->
+                    <!--</div>-->
+                    <!--</a>-->
+                    <a href="#/order-all/">
+                        <div class="dingDan">
+                            <p>订单</p>
+                        </div>
+                    </a>
+                    <a href="#/parson-msg-center">
+                        <div class="xinXi">
+                            <!--<p>消息<span>({{msgNumber}})</span></p>-->
+                            <p>消息</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="phone-version">
+                            <p>手机版</p>
+                            <div class="iosAndAndroid-box">
+                                <div class="ios-box">
+                                    <p>手机镜库APP</p>
+                                </div>
+                                <div class="ios-box">
+                                    <p>关注镜库微信</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="person" style="margin-right:0;">
+                        <a href="#/control-mb"><p style="text-align: center;" ng-attr-title="{{username}}">{{username}}</p></a>
+                        <div class="user-ul">
+                            <ul>
+                                <a href="#/control-mb"><li class="geRen-center">会员中心</li></a>
+                                <a href="" ng-click="goHelpCenter()"><li class="bangzhu-center">帮助中心</li></a>
+                                <a href="#/person-invoices"><li class="fapiao">发票管理</li></a>
+                                <a href="#/person-process"><li class="jiagong">来镜加工</li></a>
+                                <a href="#/zijin-mana"><li class="zijin">资金管理</li></a>
+                                <a href=""><li ng-click="loginOut()" class="out">退出</li></a>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ano-header" ng-class="{'ano-header show':allNav==1,'ano-header':allNav==0}">
+            <div class="ano-header-grid">
+                <a href="#/home"><img src="img/logo.png" alt="" style="position: absolute;left:0;"></a>
+                <div class="search-box">
+                    <!--<div class="search-box-left">-->
+                    <!--<span>全部</span>-->
+                    <!--<div class="search-type">-->
+                    <!--<ul>-->
+                    <!--<li>全部</li>-->
+                    <!--<li>商品</li>-->
+                    <!--<li>供应商</li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="arrow-bottom arrow-box" >-->
+                    <!--<b class="bottom"><i class="bottom-arrow1"></i><i class="bottom-arrow2"></i></b>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <form name="searchForm" method="post"
+                          ng-submit="searchKey()" novalidate>
+                        <div class="search-box-center">
+                            <input id="txt" type="text" ng-model="keywords" placeholder="搜索镜库商品" autocomplete="off">
+                            <!--<div class="keywords-search-box">-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<span>眼镜</span>-->
+                            <!--<i>约2000个结果</i>-->
+                            <!--</div>-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<span>眼镜</span>-->
+                            <!--<i>约2000个结果</i>-->
+                            <!--</div>-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<span>眼镜</span>-->
+                            <!--<i>约2000个结果</i>-->
+                            <!--</div>-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<p>找“眼镜”相关店铺</p>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="history-search">-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<span>眼镜</span>-->
+                            <!--<i>搜索历史</i>-->
+                            <!--<p>删除</p>-->
+                            <!--</div>-->
+                            <!--<div class="keywords-search-item">-->
+                            <!--<span>眼镜</span>-->
+                            <!--<i>搜索历史</i>-->
+                            <!--<p>删除</p>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </form>
+                </div>
+                <div class="search-box-right" ng-click="searchKey()"></div>
+                <div class="car-box">
+                    <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
+                    <div class="white-line"></div>
+                    <div class="carGoods">
+                        <div class="carNoGoods" ng-if="!carRight">
+                            <img class="carNone" src="img/carNone.png" alt="">
+                            <p>您的购物车暂时还没有商品，赶紧选购吧！</p>
+                        </div>
+                        <div class="carHasGoods" ng-if="carRight">
+                            <h2>最近加入的商品</h2>
+                            <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
+                                <div ng-repeat="goods in goodsItem.goods_list">
+                                    <div class="has-car-goods" ng-repeat="attr in goods.attrs">
+                                        <a href="#/shop-detail/{{attr.goods_id}}">
+                                            <img ng-src={{goods.goods_thumb}} alt="">
+                                            <p class="goodsName">{{goods.goods_name}}</p>
+                                            <p class="attr"><em ng-repeat="attrAr in attr.arr_attr">{{attrAr}}</em></p>
+                                        </a>
+                                        <div class="price-del">
+                                            <div class="price">￥{{goods.goods_price}}×{{attr.goods_number}}</div>
+                                            <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="total-box" ng-if="totalNum">
+                            <p>共<em>{{totalNum}}</em>件商品 </p>
+                            <p>共计<em>￥{{totalPrice}}</em></p>
+                            <button ng-click="goCar()">去购物车</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="vip-center" ng-if="isShow">
+                    <div class="vip-touxiang-box">
+                        <div style="cursor: pointer;" ng-click="goVip()" class="vip-touxiang"><img ng-src={{userImg}} alt=""></div>
+                    </div>
+                    <span>您好！{{username}}</span>
+                    <button ng-click="goVip()">会员中心</button>
+                    <div class="vip-content-box">
+                        <a href="#/order-all/unpay">
+                            <div class="waiting-pay">
+                                <p>待付款</p>
+                                <i>{{unpay}}</i>
+                            </div>
+                        </a>
+                        <a href="#/order-all/collect">
+                            <div class="waiting-pay">
+                                <p>待发货</p>
+                                <i>{{send}}</i>
+                            </div>
+                        </a>
+                        <a href="#/order-all/collect">
+                            <div class="waiting-pay">
+                                <p>待收货</p>
+                                <i>{{uncollect}}</i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <a href="#/flashSale" target="_blank">
+                    <div class="summer-hot-box" ng-if="isShow">
+                        <h2>夏日热卖</h2>
+                        <p>热销经典快来抢购</p>
+                        <div class="summer-hot-goods-box">
+                            <div class="summer-hot-goods"></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="nav" ng-class="{'nav show':allNav==1||allNavs==1,'nav':allNav==0}">
+            <div class="nav-bar">
+                <div class="nav-bar-all">
+                    <span style="margin-left:0px;">全部商品分类</span>
+                    <div class="all-fenlei" ng-class="{'all-fenlei show':allFenLei==1,'all-fenlei':allFenLei==0}">
+                        <div ng-mouseover="Index($index)" ng-repeat="allItem in IndexData.list.fastnav" class="all-fenlei-item" repeat-done="glassLiBox()">
+                            <img style="width:25px;height:25px;" ng-src={{allItem.img}} alt="">
+                            <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val)">{{allItem.name}}</span>
+                            <div class="glass-li-box">
+                                <div class="hot-word-line">
+                                    <div class="line-title"> 
+                                        <div class="title-text" ng-repeat="allItemChild in allItem.child"> 
+                                        	<span style="margin-left:0;color:#598eca;display: block;float: none;font-size: 13px;width: calc(100% - 30px);text-align: left;height: 30px;line-height: 30px;border-bottom: 1px dashed #e5e5e5;">{{allItemChild.name}}</span>
+                                            <div class="line-con" style="float: none;display: block;">    
+                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word" style="color:{{allItemChilds.style}}">{{allItemChilds.name}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul>
+                    <a ui-sref="home"  ui-sref-active="active"><li>首页</li></a>
+                    <a ui-sref="fashion" ui-sref-active="active"><li>品牌</li></a>
+                    <!-- <a ui-sref="waitingSale" ui-sref-active="active"><li>预售</li></a> -->
+                    <a ui-sref="flashSale" ui-sref-active="active"><li>闪购</li></a>
+                    <a ui-sref="pointsMall" ui-sref-active="active"><li>积分商城</li></a>
+                    <a ui-sref="yhq" ui-sref-active="active"><li>优惠券</li></a>
+                    <!--<a ui-sref="recharge" ui-sref-active="active"><li>充值</li></a>-->
+                    <a ui-sref="person-pay" ui-sref-active="active"><li>充值</li></a>
+                    <a ui-sref="sheji" ui-sref-active="active"><li>镜库设计</li></a>
+                    <!--<li ng-click="jqqd()">镜库金融</li>-->
+                </ul>
+
+            </div>
+        </div>
+        <div class="right-bar_box" style="background: #F7F7F7;position: fixed;top: 0;right: -270px;z-index: 1200;width: 270px;">   
+	        <div class="right-bar">
+	            <div class="right-bar-child">
+	                <div class="table-bar white-car">
+	                    <div class="white-car-content">
+	                        <p>购物车</p>
+	                        <i>{{totalNum}}</i>
+	                    </div>
+	                </div>
+	                <div class="table-bar youhuiquan">
+	                    <div class="my-youhuiquan">我的优惠券</div>
+	                </div>
+	                <div class="youhuiquan kefu-phone">
+	                    <div class="my-youhuiquan ">400-080-5118</div>
+	                </div>
+	                <div class="youhuiquan qq" onclick="qimoChatClick();">
+	                    <div class="my-youhuiquan">在线客服</div>
+	                </div>
+	                <!--<div class="youhuiquan wx">-->
+	                <!--<div class="my-youhuiquan">微信客服</div>-->
+	                <!--</div>-->
+	                <div class="jingkoo-erweima">
+	                    <div class="erweima-box">
+	                        <img src="img/orange_wei.png" alt="">
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="youhuiquan goTop">
+	                <div class="my-youhuiquan">返回顶部</div>
+	            </div>
+	        </div>
+	        <div class="white-car-right-content">
+	            <div class="car-right-tit">
+	                <p>购物车</p>
+	                <i style="background: url(img/delete.png) no-repeat;width:20px;height:20px;margin-top: 11px;"></i>
+	            </div>
+	            <div class="big-carNone" ng-if="!carRight">
+	                <p>您的购物车暂时还没有商品哦~</p>
+	            </div>
+	            <div class="car-right-goods" ng-if="carRight">
+                    <div ng-repeat="carRight in shopCarHomeData.suppliers_goods_list">
+                        <div class="car-right-goods-item">
+                            <!--<div class="manjian">-->
+                            <!--<span>购满2000元，即可享受满减优惠</span>-->
+                            <!--</div>-->
+                            <div ng-repeat="carRightItem in carRight.goods_list">
+                                <div class="goods-item" ng-repeat="carRightAttr in carRightItem.attrs">
+                                    <a href="#/shop-detail/{{carRightItem.goods_id}}" target="_blank">
+                                        <img ng-src={{carRightItem.goods_thumb}} alt="">
+                                        <p>{{carRightItem.goods_name}}</p>
+                                        <p class="attr"><em ng-repeat="attrAr in carRightAttr.arr_attr">{{attrAr}}</em></p>
+                                    </a>
+                                    <i>￥{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
+                                    <div class="black-cha" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+	            </div>
+	            <div class="jdm-tbar-checkout" style="height: 40px;padding: 5px 5px 5px;position: relative;" ng-if="carRight">
+	                <div class="jtc-number" style="line-height: 20px;">
+	                    <strong style="font-family: verdana;color: #c81623;" class="J-count">{{totalNum}}</strong>件商品
+	                </div>
+	                <div class="jtc-sum" style="line-height: 20px;">共计：<strong style="font-family: verdana;color: #c81623;" class="J-total">￥{{totalPrice}}</strong></div>
+	                <a id="car" style="position: absolute;right: 50px;top: 7px;width: 110px; height: 35px;text-align: center;color: rgb(255, 255, 255);font: 16px/35px 微软雅黑;background: rgb(200, 22, 35);" class="jtc-btn J-btn" href="#/shop-car">去购物车结算</a>
+	            </div>
+	        </div>
+        </div>
+        <div class="white-car-right-content youhuiquan-right-content">
+            <div class="youhuiquan-right-tit">
+                <p>优惠券</p>
+                <i style="background: url(img/delete.png) no-repeat;width:20px;height:20px;margin-top: 11px;"></i>
+            </div>
+            <div class="big-quanNone">
+                <p>您暂时没有优惠券哦~</p>
+            </div>
+            <div class="quan-box">
+                <div class="no-lingQuan" ng-if="isGet">
+                    <h2>未领取的券</h2>
+                    <div class="no-lingQuan-item" ng-repeat="noYhq in yhqData.list" ng-if="noYhq.is_get==0">
+                        <div class="ling-message">
+                            <div class="quan-price">
+                                <i>￥</i>
+                                <span>{{noYhq.type_money}}</span>
+                            </div>
+                            <p style="color:#333;">【满{{noYhq.min_goods_amount | number:0}}元可用】</p>
+                            <p>{{noYhq.suppliers_name}}</p>
+                            <p>{{noYhq.send_start_date}}--{{noYhq.send_end_date}}</p>
+                        </div>
+                        <div class="ling-button" ng-click="lqYhq(noYhq.type_id)" style="cursor: pointer;">
+                            <p>立 即 领 取</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="has-lingQuan" ng-if="personYhq.data.length!=0">
+                    <h2>已领取的券</h2>
+                    <div class="no-lingQuan-item" ng-repeat="noYhq in personYhq.data">
+                        <div class="ling-message">
+                            <div class="quan-price">
+                                <i>￥</i>
+                                <span>{{noYhq.type_money}}</span>
+                            </div>
+                            <p style="color:#333;">【满{{noYhq.min_goods_amount | number:0}}元可用】</p>
+                            <p>{{noYhq.suppliers_name}}</p>
+                            <!--<p>{{noYhq.send_start_date}}&#45;&#45;{{noYhq.send_end_date}}</p>-->
+                            <p>{{noYhq.use_end_date}}之前使用</p>
+                        </div>
+                        <div class="ling-button" ng-click="goDpDetail(noYhq.suppliers_id)" style="cursor: pointer;">
+                            <p>立 即 使 用</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+//    $('.header-top .header-top-content .header-top-content-left .trans-city .item a').click(function(e){
+//        $('.header-top .header-top-content .header-top-content-left .trans-city .item a').removeClass('selected');
+//        $(e.target).addClass('selected');
+//    });
+    $('#txt').on('input',function(){
+        if(this.value){
+            $('.keywords-search-box').slideDown();
+            $('.history-search').hide();
+        }else{
+            $('.keywords-search-box').slideUp();
+        }
+    });
+    $('.history-search .keywords-search-item p').click(function(e){
+        $(e.target).parent().remove();
+    });
+    $('#txt').on('focus',function(){
+        $('.history-search').slideDown();
+    }).on('blur',function(){
+        $('.history-search').slideUp();
+    });
+
+    $('.right-bar').height($(window).height());
+    $('.right-bar_box').height($(window).height());
+    $('.white-car-right-content').height($(window).height());
+    $('.youhuiquan-right-content').height($(window).height());
+    $('.goTop').css('top',$(window).height() - 50);
+    $('.goTop').click(function(){
+        $("body,html").animate({
+            "scrollTop": 0 
+        }, 500)
+    });
+
+    var index = '';
+    var flag = true;
+    $('.table-bar').click(function(e){
+        if($(this).index() === index){
+            if(flag){
+                flag = false;
+                $('.white-car-right-content:eq('+$(this).index()+')').animate({
+                    'right': -270
+                },200);
+                $('.right-bar').animate({
+                    "right": 0
+                }, 200);
+                $('.right-bar_box').animate({
+                    "right": -270
+                }, 100);
+                //console.log(111)
+            }else{
+                flag = true;
+                $('.white-car-right-content:eq('+$(this).index()+')').animate({
+                    'right': 0
+                },200);
+                $('.right-bar').animate({
+                    "right": 270
+                }, 200);
+                $('.right-bar_box').animate({
+                    "right": 0 
+                }, 100);
+                //console.log(222)
+            }
+        }else{
+            //console.log(333)
+            $('.white-car-right-content').animate({
+                'right': -270
+            },200);
+            $('.white-car-right-content:eq('+$(this).index()+')').animate({
+                'right': 0
+            },200);
+            $('.right-bar').animate({
+                "right": 270
+            }, 200);
+            $('.right-bar_box').animate({
+                "right": 0
+            }, 100);
+        }
+//        $('.white-car-right-content').animate({
+//            'right': -270
+//        },200);
+        index = $(this).index();
+        e.stopPropagation();
+    });
+    $(document).click(function(){
+        flag = false;
+        $('.white-car-right-content').animate({
+            'right': -270
+        },200);
+        $('.right-bar').animate({
+            "right": 0
+        }, 200);
+        $('.right-bar_box').animate({
+            "right": -270
+        }, 100);
+    });
+
+    $('#car').click(function(){
+        flag = false;
+        $('.white-car-right-content').animate({
+            'right': -270
+        },200);
+        $('.right-bar').animate({
+            "right": 0
+        }, 200);
+        $('.right-bar_box').animate({
+            "right": -270
+        }, 100);
+    });
+
+    $('.car-right-tit i').click(function(){
+        flag = false;
+        $('.white-car-right-content').animate({
+            'right': -270
+        },200);
+        $('.right-bar').animate({
+            "right": 0
+        }, 200);
+        $('.right-bar_box').animate({
+            "right": -270
+        }, 100);
+    });
+    $('.youhuiquan-right-tit i').click(function(){
+        flag = false;
+        $('.white-car-right-content').animate({
+            'right': -270
+        },200);
+        $('.right-bar').animate({
+            "right": 0
+        }, 200);
+        $('.right-bar_box').animate({
+            "right": -270
+        }, 100);
+    });
+    $(".white-car-right-content").click(function(event){
+        event.stopPropagation();
+    });
+
+
+    function disabledMouseWheel() {
+        if (document.addEventListener) {
+            document.addEventListener('DOMMouseScroll', scrollFunc, false);
+        }//W3C
+        window.onmousewheel = document.onmousewheel = scrollFunc;//IE/Opera/Chrome
+    }
+
+
+//  var scrollFunc;
+//  $('.white-car-right-content').hover(
+//      function(){
+//          scrollFunc =  function(evt) {
+//              evt = evt || window.event;
+//              if(evt.preventDefault) {
+//                  // Firefox
+//                  evt.preventDefault();
+//                  evt.stopPropagation();
+//              } else {
+//                  // IE
+//                  evt.cancelBubble=true;
+//                  evt.returnValue = false;
+//              }
+//              return false;
+//          }
+//        disabledMouseWheel();
+//      },
+//      function(){
+//          scrollFunc = true;
+//          disabledMouseWheel();
+//  })
+
+//    $('.nav-bar li').click(function(e){
+//        $('.nav-bar li').css({
+//            color:'#333',
+//            boxSizing:'',
+//            borderBottom:''
+//        });
+//        $(e.target).css({
+//            color:'#ff3333',
+//            boxSizing:'border-box',
+//            borderBottom:'3px solid #ff3333'
+//        });
+//    });
+</script>

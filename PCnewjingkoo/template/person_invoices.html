@@ -1,0 +1,171 @@
+
+    <div class="route mb20">
+        <div class="gird">
+            当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>发票管理</a>
+        </div>
+    </div>
+
+    <div class="main" style="margin-bottom: 25px;">
+        <div class="im-panel gird cle">
+            <div class="panel-left">
+                <div class="control-bt" ng-click="goControlMb()"  style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+                <div class="control-list aotms">
+                    <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                    <div class="control-nr">
+                        <p><a href="#/order-all/">我的订单</a></p>
+                        <p><a href="#/myCollect">我的收藏</a></p>
+                        <p><a href="#/person-integral">积分管理</a></p>
+                        <p><a href="#/person-yhq">优惠券管理</a></p>
+                    </div>
+                </div>
+                <div class="control-list">
+                    <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                    <div class="control-nr">
+                        <p><a href="#/person-process" >来镜加工</a></p>
+                        <p><a href="#/person-return-repair">返修退换货</a></p>
+                        <p><a href="#/parson-msg-center">消息中心</a></p>
+                    </div>
+                </div>
+                <div class="control-list">
+                    <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                    <div class="control-nr">
+                        <p><a href="#/zijin-mana">资金管理</a></p>
+                        <p class="onp"><a href="#/person-invoices">发票管理</a></p>
+                    </div>
+                </div>
+                <div class="control-list">
+                    <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                    <div class="control-nr">
+                        <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                        <p><a href="#/person-save-center">安全中心</a></p>
+                        <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                    </div>
+                </div>
+                <div class="control-list">
+                    <h3 class="control-h3" ng-click="loginOut()"  style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+                </div>
+            </div>
+            <div class="panel-right">
+                <div class="control-wrp">
+                    <div class="cont-hd cle">
+                        <div class="cbt-left">
+                            <span><a href="#/person-inv-select" class="cbt-wz">发票索取</a></span>
+                            <span><a href="#/person-invoices" class="cbt-wz on">发票列表</a></span>
+                            <span><a href="#/person-inv-message" class="cbt-wz">发票信息管理</a></span>
+                        </div>
+                    </div>
+                    <div class="cont-bd">
+                        <div class="contacts-wrap czhi">
+                            <h3 class="invoice_order">
+                                <i class="invoice_order_ico"></i>发票在申请后的3个工作日开具并寄出
+                            </h3>
+                            <div class="invoice_order_div">
+                                <span class="order_div_sp1">所有发票</span>
+                                <input type="button" value="索取发票" class="order_div_ip" ng-click="goSelect()"/>
+                            </div>
+                            <div class="invoice_order_div" style="border-top: none;margin: 0;">
+                                <span class="order_div_sp2">所有发票 : </span>
+                                <div class="order_div_ip1box">
+                                    <i class="ico1"></i>
+                                    <input ngc-lay-date type="text" class="order_div_ip1" id="startTime" ng-model="invoicesList.starttime" max-date="{{endTime}}" placeholder="开始日期"/>
+                                </div>
+                                <span>--</span>
+                                <div class="order_div_ip1box">
+                                    <i class="ico1"></i>
+                                    <input ngc-lay-date type="text" class="order_div_ip1" id="endTime" ng-model="invoicesList.endtime" min-date="{{startTime}}" placeholder="结束日期"/>
+                                </div>
+                                <input type="button" ng-click="searchInvoices()" value="搜索" class="order_div_ip2"/>
+                            </div>
+
+                            <div class="invoice_order_tb">
+                                <table class="order_tb1">
+                                    <tr>
+                                        <th>商家</th>
+                                        <th>发票金额</th>
+                                        <th>申请时间</th>
+                                        <th>发票抬头</th>
+                                        <th>收取方式</th>
+                                        <th>发票单号</th>
+                                        <th>物流单号</th>
+                                        <th width="100px">状态</th>
+                                    </tr>
+                                    <!--<tr>-->
+                                        <!--<td>-->
+                                            <!--<span>北京沙福隆<br/>眼镜有限公司</span>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<span>￥520.00</span>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<span>2017-02-10 10：45：45</span></td>-->
+                                        <!--<td>-->
+                                            <!--<span>北京爱维时空 <br/>科技有限公司</span></td>-->
+                                        <!--<td>-->
+                                            <!--<span>快递</span>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<span>45465644</span>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<span>45465644</span>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<span>未开票</span>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                    <tr ng-repeat="tb in invoicesData.data">
+                                        <td>
+                                            <span>{{tb.suppliers_name}}</span></td>
+                                        <td>
+                                            <span>{{tb.money}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{tb.addtime}}</span></td>
+                                        <td>
+                                            <span>{{tb.payee}}</span></td>
+                                        <td>
+                                            <span>快递</span>
+                                        </td>
+                                        <td>
+                                            <span>{{tb.inv_sn}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{tb.logistics_sn}}</span>
+                                        </td>
+                                        <td>
+                                            <span>{{tb.status}}</span>
+                                            <!--<span class="have_send">已寄出<i class="send_ico"></i>-->
+                                                <!--<div class="have_send_msg">-->
+                                                    <!--<div class="have_wrp">-->
+                                                        <!--<span style="font-size: 14px;color: #808080;">挂号信单号：4645454564545</span>-->
+                                                        <!--<h2>2017-8-10 10：24：26   <span style="color: #4d4d4d;display: inline-block;">发票已寄出</span></h2>-->
+                                                        <!--<p class="redvs"><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
+                                                        <!--<p><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
+                                                        <!--<p><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+    									    <!--</span>-->
+                                        </td>
+                                    </tr>
+                                    <tr ng-hide="invoicesData.data">
+                                        <td colspan="8">
+                                            <p style="text-align: center;">暂时没有发票信息！</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="pages" style="float:left">
+                                    <div id="Pagination"></div>
+                                    <div class="searchPage">
+                                        <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                                        <span class="page-go">到第<input type="text" value="1">页</span>
+                                        <a href="javascript:;" class="page-btn">确定</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>

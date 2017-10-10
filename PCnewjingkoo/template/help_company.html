@@ -1,0 +1,28 @@
+<div class="help-mian">
+    <div class="clear"></div>
+    <div class="gird lujing">
+        <div class="tubiao lujing">
+            当前位置: <a href="#">首页</a> <code>&gt;</code> <a href="javascript:;">帮助中心</a><code>&gt;</code><em ng-bind="tit"></em>
+        </div>
+    </div>
+    <div class="gird">
+        <div class="help mb40">
+            <div class="help-left fl bg-fff">
+                <dl class="help-dl" ng-repeat="help in helpData.data" repeat-done="helpFn()">
+                    <dt class="help-name" style="cursor: pointer;">{{help.cat_name}} <span ng-class="{'select':help.selected==1}"></span></dt>
+                    <div ng-class="{'show':help.selected==1}">
+                        <dd ng-repeat="helpDd in help.article"><a style="cursor: pointer;" ng-class="{'select':helpDd.selected==1}" ng-click="getContent(helpDd.article_id)">{{helpDd.title}}</a></dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="help-right fr" style="width:995px;">
+                <h3 class="help-r-bt" ng-bind="tit"></h3>
+                <div class="gsjj-pic pt30 c" ng-bind-html="content">
+
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="allow mb40"><img src="img/footer-bo.png"></div>
+    </div>
+</div>

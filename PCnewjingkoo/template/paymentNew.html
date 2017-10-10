@@ -1,0 +1,149 @@
+<div class="new_close" ng-show="codeData">
+    <div class="new_close_top_box">
+        <div class="new_close_top">
+            <div class="close_top_topl">
+                <img src="img/close_ico1.png" class="close_ewm" width="100px"/>
+                <div class="close_div1">
+                    <!--<p ng-if="isPay==0" class="close_p1">恭喜您，订单提交成功！订单号：{{codeData.order_info.order_sn}}</p>-->
+                    <p ng-if="type!='mach'" class="close_p1">恭喜您，订单提交成功！订单号：{{codeData.order_info.order_sn}}</p>
+                    <p ng-if="type=='mach'" class="close_p1">恭喜您，来镜加工单提交成功！订单号：{{codeData.order_info.order_sn}}</p>
+                    <!--<p class="close_p2">推荐使用<span class="close_sp1"></span>扫码支付   |   请您在<span class="close_sp2">24小时</span>内完成支付，否则订单会被自动取消</p>-->
+                    <p ng-if="isPay==0" class="close_p2">请您在<span class="close_sp2">24小时</span>内完成支付，否则订单会被自动取消</p>
+                </div>
+            </div>
+            <div class="close_top_topr">
+                <p class="close_p3">
+                    应付金额 : <span class="close_sp3">{{payPrice}}</span> 元
+                </p>
+                <span ng-hide="type=='mach'" class="close_sp4">订单详情<i class="close_i"></i></span>
+            </div>
+        </div>
+        <div class="close_top_bot"> 
+            <p class="close_p4">收货地址：{{codeData.order_info.region}}<span class="close_sp5">收货人：{{codeData.order_info.consignee}}</span><span class="close_sp6">{{codeData.order_info.mobile}}</span></p>
+            <p class="close_p5">商品名称：<span ng-repeat="address in codeData.goods_name" style="margin-right: 20px;">{{address.name}}</span></p> 
+        </div>
+    </div>
+    <div class="new_close_top_center" ng-show="isPay==0">
+        <div class="top_center_div_box">
+            <div class="top_center_div lostPay">
+                <input type="checkbox" class="close_check" ng-model="yuE" id="aaa"/>
+                <label for="aaa" class="close_label">
+                    <span class="close_sp5"></span>
+                    <span class="close_sp6">镜库余额</span>
+                    <span class="close_sp7">可用余额：{{userMoney}}</span>
+                </label>
+            </div>
+            <div class="top_center_div onlinePay">
+                <input type="radio" name="pay" class="close_check"  ng-click="paymentType='alipay'" id="aaa1"/>
+                <!--<input ng-if="balance==1" type="checkbox" name="pay" class="close_check" id="aaa1"/>-->
+                <label for="aaa1" class="close_label">
+                    <span class="close_sp5 close_sp51"></span>
+                    <span class="close_sp6">支付宝支付</span>
+                </label>
+            </div>
+            <div class="top_center_div onlinePay">
+                <input type="radio" name="pay" class="close_check"  ng-click="paymentType='wx'" id="aaa2"/>
+                <!--<input ng-if="balance==1" type="checkbox" name="pay" class="close_check" id="aaa2"/>-->
+                <label for="aaa2" class="close_label">
+                    <span class="close_sp5 close_sp52"></span>
+                    <span class="close_sp6">微信支付</span>
+                </label>
+            </div>
+            <div class="top_center_div onlinePay">
+                <input type="radio" name="pay" class="close_check" ng-click="paymentType='union'" id="aaa3"/>
+                <!--<input ng-if="balance==1" type="checkbox" name="pay" class="close_check" id="aaa3"/>-->
+                <label for="aaa3" class="close_label">
+                    <span class="close_sp5 close_sp53"></span>
+                    <span class="close_sp6">中国银联支付</span>
+                </label>
+            </div>
+        </div>
+        <div ng-show="!yuE" style="margin-top: 20px;"></div>
+        <div ng-hide="payPass==0" class="top_center_bott">
+            <p ng-show="yuE" class="close_p6" style="margin-bottom: 10px;">请输入6位数字密码</p>
+            <form class="alieditContainer" name="pass_form" novalidate>
+                <label for="pass">
+                    <!--<input class="pass-input Jpass" type="tel" name="pass" id="pass" autocomplete="off" ng-model="pass" ng-value="pass" required maxlength="6" />-->
+                    <!--<ul class="center_bott_ul">-->
+                        <!--<li style="border-radius: 5px 0 0 5px;" class="pass-border"><i></i></li>-->
+                        <!--<li class="pass-border"><i></i></li>-->
+                        <!--<li class="pass-border"><i></i></li>-->
+                        <!--<li class="pass-border"><i></i></li>-->
+                        <!--<li class="pass-border"><i></i></li>-->
+                        <!--<li style="border-radius:0 5px 5px 0;" class="pass-border"><i></i></li>-->
+                        <!--<div class="faguang Jfaguang"></div>-->
+                    <!--</ul>-->
+                    <div ng-show="yuE">
+                        <input minlength="6" maxlength="6" ng-blur="yzPass(pass)" id="pass" name="pass" class="ui-input i-text" ng-model="pass" ng-value="pass" type="tel" autocomplete="off"/>
+                        <div class="sixDigitPassword" tabindex="0">
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <i><b></b></i>
+                            <span class="guangbiao" style="left:0px;"></span>
+                        </div>
+                        <span ng-if="payPass==1" class="close_sp7" style="cursor: pointer;left:310px;" ng-click="forgot()">忘记支付密码？</span>
+                    </div>
+                </label>
+            </form>   
+        </div> 
+        <div style="margin-top: 20px;margin-bottom: 20px;font-size: 15px;" ng-show="yuE&&payPass==0">
+            <a style="cursor: pointer;" ng-click="forgot()" style="color:#FF3333;">您还未设置支付密码，请立即去 <em style="color:#3f69a5;">设置</em>。</a>
+        </div>
+        <div class="btn_box">
+            <button type="button" ng-click="pay()" class="btn_inp">立即支付</button>
+            <!--<a href="www.baidu.com" target="_blank">跳转</a>-->
+        </div>
+    </div>
+</div>
+<div id="masks" class="masks"></div>
+<div class="payToLj">
+    <div class="pay-tit">
+        <h2>镜库科技</h2>
+        <img id="cha" src="img/cha.png" alt="">
+    </div>
+    <div class="zhif-tca">
+        <h3 class="ztca-h3">请您在新打开的页面完成支付</h3>
+        <div class="ztca-list">
+            <ul>
+                <li>完成支付前请不要关闭此窗口</li>
+                <li>支付完成后，请根据结果选择</li>
+                <li>支付失败时，您可拨打400-080-5118，会员专线竭诚为您服务</li>
+            </ul>
+        </div>
+        <div class="ztca-btn">
+            <a ng-if="type!='mach'" style="cursor:pointer;" ng-click="checkList()" class="zbtn-btn on mr20 check_ok">支付完成</a>
+            <a ng-if="type=='mach'" style="cursor:pointer;" ng-click="machCheckList()" class="zbtn-btn on mr20 check_ok">支付完成</a>
+            <a style="cursor:pointer;" ng-if="is_glass" ng-click="goMachining()" class="zbtn-btn new_select">来镜加工</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var close = 1;
+    $('.close_top_topr .close_sp4').click(function () {
+        if(close){
+            $(this).html('<span style="color:#ff3333;display:inline-block;">收起详情</span> <i class="close_i1"></i>');
+            close = 0;
+            $('.close_top_bot').show();
+        }else{
+            $(this).html('<span style="display:inline-block;">订单详情</span><i class="close_i"></i>');
+            close = 1;
+            $('.close_top_bot').hide();
+        }
+    })
+
+    //遮罩层
+    function showMask(){
+        $("#masks").css("height",$(document).height());
+        $("#masks").css("width",$(document).width());
+    }
+    showMask();
+
+    $('#cha').click(function(){
+        $('#masks').hide();
+        $('.payToLj').hide();
+    });
+</script>

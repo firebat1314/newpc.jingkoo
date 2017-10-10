@@ -1,0 +1,253 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>来镜加工</a>
+    </div>
+</div>
+
+<div class="main" style="margin-bottom: 25px;">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()"  style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p class="onp"><a href="#/person-process">来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()"  style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div class="panel-right">
+            <div class="control-wrp lj_box" style="min-height: 100px;">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span><a class="cbt-wz on">来镜加工</a></span>
+                    </div>
+                </div>
+                <div class="cont-bd">
+                    <!--新来镜加工详情-->
+                    <div class="new_process_detail">
+                        <div class="new_process_top">
+                            <ul class="new_process_ul">
+                                <li>
+                                    <span class="process_ul_spl">加工单号</span>
+                                    <span class="process_ul_spr" ng-attr-title="{{sn}}">{{sn}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">下单时间</span>
+                                    <span class="process_ul_spr">{{add_time}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">支付状态</span>
+                                    <span class="process_ul_spr">{{is_pay}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">订单状态</span>
+                                    <span class="process_ul_spr">{{status_info}}</span>
+                                </li>
+                            </ul>
+                            <ul class="new_process_ul">
+                                <li>
+                                    <span class="process_ul_spl">用户名</span>
+                                    <span class="process_ul_spr">{{user_name}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">收货人</span>
+                                    <span class="process_ul_spr">{{consignee}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">联系电话</span>
+                                    <span class="process_ul_spr">{{mobile}}</span>
+                                </li>
+                                <li>
+                                    <span class="process_ul_spl">加工费用</span>
+                                    <span class="process_ul_spr">{{amount_format}}</span>
+                                </li>
+                            </ul>
+                            <ul class="new_process_ul" ng-hide="is_zb==1&&status<4">
+                                <li ng-show="is_zb==0">
+                                    <span class="process_ul_spl">物流公司</span>
+                                    <span class="process_ul_spr">
+    									<div class="bj_div">
+                                            <!-- <input type="text" ng-model="wl" class="bj_inp"/> -->
+                                            <select  class="bj_inp" ng-model="wl" ng-init="wl=''" >
+                                                    <option value="">请选择</option>
+                                                <option ng-selected="shipping.selected" ng-repeat="shipping in shipping_code_cfg" value="{{shipping.code}}">{{shipping.name}}</option>
+                                            </select>
+    										<span class="bj_sp" ng-click="enterWuLiu()">确定</span>
+    									</div>
+    									<div class="bj_div_box">
+											<span class="nees_bj">{{lj_shipping}}</span>
+    										<span ng-show="status<2" class="bj_sp">编辑</span>
+                                        </div>
+                                        
+    								</span>
+                                </li>
+                                <li ng-show="is_zb==0">
+                                    <span class="process_ul_spl">快递单号</span>
+                                    <span class="process_ul_spr">
+    									<div class="bj_div">
+    										<input type="text" ng-model="wlsn" class="bj_inp"/>
+    										<span class="bj_sp" ng-click="enterWuLiuSn()">确定</span>
+    									</div>
+    									<div class="bj_div_box">
+											<span class="nees_bj" ng-attr-title="{{lj_shipping_sn}}">{{lj_shipping_sn}}</span>
+    										<span ng-show="status<2" class="bj_sp">编辑</span>
+                                        </div>
+    								</span>
+                                </li>
+                                <li ng-if="status>=4">
+                                    <span class="process_ul_spl">寄回物流</span>
+                                    <span class="process_ul_spr">{{jh_shipping}}</span>
+                                </li>
+                                <li ng-if="status>=4">
+                                    <span class="process_ul_spl">寄回单号</span>
+                                    <span class="process_ul_spr" ng-attr-title="{{jh_shipping_sn}}">{{jh_shipping_sn}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--新来镜加工详情-->
+                </div>
+            </div>
+
+            <!--新加-->
+            <div class="new_process_bott">
+                <ul class="nwe_process_bott_u">
+                    <li ng-repeat="li in machInfoData" repeat-done="liChange()">加工处方单{{li.key}}</li>
+                </ul>
+                <div class="new_process_tbbox">
+                    <div class="new_process_tbdiv" ng-repeat="tbdiv in machInfoData">
+                        <table class="new_process_tb1">
+                            <tr>
+                                <th width="110"></th>
+                                <th width="115"><i class="red">*</i> 球镜</th>
+                                <th width="115"><i class="red">*</i> 柱镜</th>
+                                <th width="115"><i class="red">*</i> 轴向</th>
+                                <th width="115">ADD</th>
+                                <th width="115"><i class="red">*</i> 瞳距</th>
+                                <th width="115">瞳高</th>
+                                <th>近用瞳距</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" class="inp_bt" value="右眼"/>
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.qiujing}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.zhujing}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.zhouxiang}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.add}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.tongju}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.tonggao}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.left.jytj}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" class="inp_bt" value="左眼"/>
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.qiujing}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.zhujing}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.zhouxiang}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.add}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.tongju}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.tonggao}}
+                                </td>
+                                <td>
+                                    {{tbdiv.eyeglass_cfg.right.jytj}}
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="new_process_tb1">
+                            <tr>
+                                <th width="110"></th>
+                                <th width="20%" style="text-align: left;padding-left: 40px;">名称</th>
+                                <th>型号</th>
+                                <th>加工类型</th>
+                                <!--<th width="115">折射率</th>-->
+                                <!--<th width="115">膜层</th>-->
+                                <!--<th width="115">染色描述</th>-->
+                                <th>备注</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="button" class="inp_bt" value="镜架"/>
+                                </td>
+                                <td style="text-align: left;padding-left: 40px;">
+                                    <p class="tb_wz">{{tbdiv.frame_from_name}}</p>
+                                </td>
+                                <td>{{tbdiv.frame_attr.xinghao}}</td>
+                                <td>{{tbdiv.frame_attr.mach_type_name}}</td>
+                                <td>{{tbdiv.frame_attr.beizhu}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--新加-->
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.bj_div_box .bj_sp').click(function () {
+        $(this).parent().hide();
+        $(this).parent().siblings().show();
+    })
+    $('.bj_div .bj_sp').click(function () {
+        $(this).parent().hide();
+        $(this).parent().siblings().show();
+    })
+
+</script>

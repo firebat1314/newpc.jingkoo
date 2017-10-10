@@ -1,0 +1,372 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>发票管理</a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="im-panel gird cle">
+        <div class="panel-left">
+            <div class="control-bt" ng-click="goControlMb()"  style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+            <div class="control-list aotms">
+                <h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+                <div class="control-nr">
+                    <p><a href="#/order-all/">我的订单</a></p>
+                    <p><a href="#/myCollect">我的收藏</a></p>
+                    <p><a href="#/person-integral">积分管理</a></p>
+                    <p><a href="#/person-yhq">优惠券管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-process" >来镜加工</a></p>
+                    <p><a href="#/person-return-repair">返修退换货</a></p>
+                    <p><a href="#/parson-msg-center">消息中心</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+                <div class="control-nr">
+                    <p><a href="#/zijin-mana">资金管理</a></p>
+                    <p class="onp"><a href="#/person-invoices">发票管理</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+                <div class="control-nr">
+                    <p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+                    <p><a href="#/person-save-center">安全中心</a></p>
+                    <p><a href="#/person-mana-addr">管理收货地址</a></p>
+                </div>
+            </div>
+            <div class="control-list">
+                <h3 class="control-h3" ng-click="loginOut()"  style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+            </div>
+        </div>
+        <div class="panel-right">
+            <div class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span><a href="#/person-inv-select" class="cbt-wz on">发票索取</a></span>
+                        <span><a href="#/person-invoices" class="cbt-wz">发票列表</a></span>
+                        <span><a href="#/person-inv-message" class="cbt-wz">发票信息管理</a></span>
+                    </div>
+                </div>
+                <div class="cont-bd">
+                    <div ng-show="hasKaiPiao" class="contacts-wrap czhi">
+                        <div class="invoice_ask">
+                            <ul class="invoice_ask_u1">
+                                <li class="con">第一步，开票订单、月结算单选择</li>
+                                <li>第二步，确定发票信息和地址</li>
+                            </ul>
+                            <div class="invoice_ask_d1">
+                                <span class="ask_d1_sp1">温馨提醒 : </span>
+                                <div class="ask_d1_div">
+                                    <p class="ask_d1_p">1.后付费月结算单的可开票金额为当月实际帐单结算金额。</p>
+                                    <p class="ask_d1_p">2.本月产生的后付费业务月结算单在下个月二号以后才可以索取发票。</p>
+                                    <p class="ask_d1_p">3.发票基本订单、月结算单开具（单个订单、月结算单不可拆分开票）。</p>
+                                </div>
+                            </div>
+                            <div class="ask_d1_div1">
+                                <span>订单成功时间 : </span>
+                                <div class="d1_div1_inp">
+                                    <input type="text" ngc-lay-date id="fpInpMin" ng-model="invSelectList.starttime" max-date="{{endTime}}" class="fp_inp" placeholder="开始日期">
+                                    <i class="fp_ico"></i>
+                                </div>
+                                <span>--</span>
+                                <div class="d1_div1_inp">
+                                    <input type="text" ngc-lay-date id="fpInpMax" ng-model="invSelectList.endtime" min-date="{{startTime}}" class="fp_inp" placeholder="结束日期">
+                                    <i class="fp_ico"></i>
+                                </div>
+                                <span class="fp_money">可开票金额 : </span>
+                                <input type="text" ng-model="invSelectList.min" class="fp_small">
+                                <em>—</em>
+                                <input type="text" ng-model="invSelectList.max" class="fp_small">
+                                <input type="button" class="fp_btn" ng-click="searchSelect()" value="搜索">
+                            </div>
+                            <div class="invoice_ask_tb">
+                                <!--<table class="ask_tb">-->
+                                    <!--<tbody><tr>-->
+                                        <!--<th width="180px">订单编号</th>-->
+                                        <!--<th width="190px">产品名称</th>-->
+                                        <!--<th width="100px">类型</th>-->
+                                        <!--<th>订单实付金额</th>-->
+                                        <!--<th>可开票金额 </th>-->
+                                        <!--<th>订单支付时间</th>-->
+                                    <!--</tr>-->
+                                    <!--<tr style="background-color: #f9f9f9;">-->
+                                        <!--<td colspan="3">-->
+                                            <!--<div class="ask_tb_d1">-->
+                                                <!--<input type="checkbox" class="ask_tb_ip">-->
+                                                <!--<div class="tb_d1_div">-->
+                                                    <!--<p class="d1_div_p">镜库网供货商<span class="d1_div_sp1">普</span></p>-->
+                                                    <!--<p class="d1_div_p1">已总选金额 : <span class="d1_div_sp2">￥0.00</span></p>-->
+                                                    <!--<p class="d1_div_p2">（可开票总金额：￥163.00）</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--<td colspan="3" style="padding-left: 40px;">-->
+                                            <!--<div class="ask_tb_d2">-->
+                                                <!--<div class="tb_d2_l">-->
+                                                    <!--<p class="tb_d2_lp">待开票金额 : <span>￥0.00</span></p>-->
+                                                    <!--<p class="tb_d2_lp2">（最小可开票金额：￥200.00）</p>-->
+                                                    <!--<div class="tb_d2_lp3">无法开票原因<i></i>-->
+                                                        <!--<div class="needshow_box">-->
+                                                            <!--<p>1.待开发票金额小于等于0</p>-->
+                                                            <!--<p>2.没有有效的发票抬头信息</p>-->
+                                                            <!--<p>3.开票前需先选择下方订单，否则索取发票按钮为灰</p>-->
+                                                            <!--<p>4.被总部或者分销商禁用了开票资格</p>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="tb_d2_r">-->
+                                                    <!--<input type="button" value="索取发票" class="tb_d2_rip">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+
+                                    <!--<tr>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<div class="ask_tb_d3">-->
+                                                <!--<input type="checkbox" class="tb_d3_ip">-->
+                                                <!--<span class="tb_d3_sp">45445645645645</span>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<div class="ask_tb_d4">-->
+                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp1">订单</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp3">2016-01-20</span>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+
+                                    <!--<tr>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<div class="ask_tb_d3">-->
+                                                <!--<input type="checkbox" class="tb_d3_ip">-->
+                                                <!--<span class="tb_d3_sp">45445645645645</span>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--<td>-->
+                                            <!--<div class="ask_tb_d4">-->
+                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
+                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp1">订单</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
+                                        <!--</td>-->
+                                        <!--<td class="ned_po">-->
+                                            <!--<span class="ask_tb_sp3">2016-01-20</span>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
+                                    <!--</tbody></table>-->
+                                <table ng-if="invSelectData.data.length!=0" class="ask_tb">
+                                    <tbody ng-repeat="tb in invSelectData.data">
+                                    <tr>
+                                        <th width="210px">订单编号</th>
+                                        <th width="190px">产品名称</th>
+                                        <th width="100px">类型</th>
+                                        <th>订单实付金额</th>
+                                        <th>可开票金额 </th>
+                                        <th>下单时间</th>
+                                    </tr>
+                                    <tr style="background-color: #fff;">
+                                        <td colspan="3">
+                                            <div class="ask_tb_d1">
+                                                <input ng-click="isCheck($index,tb.allCheck,tb.suppliers_id,$event.target)" ng-model="tb.allCheck" type="checkbox" class="ask_tb_ip">
+                                                <div class="tb_d1_div">
+                                                    <p class="d1_div_p">{{tb.suppliers_name}}
+                                                        <span ng-if="tb.inv_type==3"><span class="d1_div_sp1">普</span><span class="d1_div_sp1">增</span></span>
+                                                        <span ng-if="tb.inv_type==1"><span class="d1_div_sp1">普</span></span>
+                                                        <span ng-if="tb.inv_type==2"><span class="d1_div_sp1">增</span></span>
+                                                        <span ng-if="tb.inv_type==0"><span class="d1_div_sp1">不</span></span>
+                                                    </p>
+                                                    <p class="d1_div_p1">已总选金额 : <span class="d1_div_sp2">￥0.00</span></p>
+                                                    <p class="d1_div_p1"><span class="dif_sp1">(可开票总金额：{{tb.amount}})</span></p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td colspan="2" style="padding-left: 40px;position: relative;">
+
+                                                <div class="tb_d2_l" style="    position: absolute;left: 10px;width: 100%;text-align: right;">
+                                                    <p class="tb_d2_lp" style="margin-bottom: 15px;">待开票金额 : <span>￥0.00</span></p>
+                                                    <p class="tb_d2_lp2" style="margin-bottom:5px;">(最小可开票金额：{{tb.min_inv_format}})</p>
+                                                    <div ng-if="tb.inv_type==0" class="tb_d2_lp3">无法开票原因<i></i>
+                                                        <div class="needshow_box">
+                                                            <p>1.待开发票金额小于等于0</p>
+                                                            <p>2.没有有效的发票抬头信息</p>
+                                                            <p>3.开票前需先选择下方订单，否则索取发票按钮为灰</p>
+                                                            <p>4.被总部或者分销商禁用了开票资格</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                        </td>
+                                        <td colspan="1" style="padding-left: 40px;">
+                                            <div class="ask_tb_d2">
+                                                <!--<div class="tb_d2_l">-->
+                                                    <!--<p class="tb_d2_lp">待开票金额 : <span>￥0.00</span></p>-->
+                                                    <!--<p class="tb_d2_lp2">（最小可开票金额：{{tb.min_inv_format}}）</p>-->
+                                                <!--</div>-->
+                                                <div class="tb_d2_r">
+                                                    <input type="button" ng-click="sq()" value="索取发票" class="tb_d2_rip ip_dif">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="tr in tb.order">
+                                            <td class="ned_po">
+                                                <div class="ask_tb_d3" style="display: flex;align-items: center;">
+                                                    <input ng-model="tr.check" ng-click="selectInv($index,$parent.$index,tr.check,tr.suppliers_id,$event.target)" value="check" type="checkbox" class="tb_d3_ip">
+                                                    <p class="tb_d3_sp fl">{{tr.order_sn}}</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ask_tb_d4">
+                                                    <!--<p ng-repeat="td in tr.goods" class="tb_d4_p1" ng-attr-title="{{td.goods_name}}">-->
+                                                        <!--{{td.goods_name}}-->
+                                                        <!--<span style="color: #ff3333;">×{{td.goods_number}}</span>-->
+                                                    <!--</p>-->
+                                                    <p ng-repeat="td in tr.goods" class="tb_d4_p1">
+                                                        <span ng-attr-title="{{td.goods_name}}" style="display: inline-block;max-width: 120px;float:left;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;">{{td.goods_name}}</span>
+                                                        <span style="color: #ff3333;">×{{td.goods_number}}</span>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td class="ned_po">
+                                                <span class="ask_tb_sp1">订单</span>
+                                            </td>
+                                            <td class="ned_po">
+                                                <span class="ask_tb_sp2">{{tr.amount}}</span>
+                                            </td>
+                                            <td class="ned_po">
+                                                <span class="ask_tb_sp2">{{tr.amount}}</span>
+                                            </td>
+                                            <td class="ned_po">
+                                                <span class="ask_tb_sp3">{{tr.pay_time}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table ng-if="invSelectData.data.length==0" class="ask_tb">
+                                    <tbody>
+                                        <tr>
+                                            <th width="210px">订单编号</th>
+                                            <th width="190px">产品名称</th>
+                                            <th width="100px">类型</th>
+                                            <th>订单实付金额</th>
+                                            <th>可开票金额 </th>
+                                            <th>下单时间</th>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <p style="text-align: center;">暂时没有发票信息！</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--<div class="pages" style="float:left">-->
+                                    <!--<div id="Pagination"></div>-->
+                                    <!--<div class="searchPage">-->
+                                        <!--<span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>-->
+                                        <!--&lt;!&ndash;<span class="page-go">到第<input type="text" value="1">页</span>&ndash;&gt;-->
+                                        <!--&lt;!&ndash;<a href="javascript:;" class="page-btn">确定</a>&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-show="!hasKaiPiao" class="contacts-wrap czhi">
+                        <div class="invoice_ask">
+                            <ul class="invoice_ask_u1 invoice_ask_u2">
+                                <li>第一步，开票订单、月结算单选择</li>
+                                <li class="con">第二步，确定发票信息和地址</li>
+                            </ul>
+                            <div class="invoice_ask_d2">
+                                <span class="sp_l">您选取了 <span style="color: #ff3333;">{{kaiPiaoCount}}</span> 条单据开具发票</span>
+                                <span class="sp_r">待开票金额：<span style="color: #ff3333;">{{kaiPiaoPrice}}</span></span>
+                            </div>
+                            <div class="invoice_ask_d3">
+                                <h2>开票公司</h2>
+                                <div class="ask_d3_div1" ng-repeat="ask in kaiPiaoData.inv_list">
+                                    <input type="radio" name="qy" ng-value="ask.ivid" ng-model="piaoArr.ivid" class="ask_d3_ip"/>
+                                    <label for="">
+                                        <span ng-if="ask.type==1" class="ask_d3_sp">个人</span><span ng-if="ask.type==2" class="ask_d3_sp">企业</span>
+                                        <span class="ask_d3_sp">{{ask.payee}}</span>
+                                        <span ng-if="ask.inv_type==1" class="ask_d3_sp">普通发票</span><span ng-if="ask.inv_type==2" class="ask_d3_sp">增值税专用发票</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="invoice_ask_d3">
+                                <h2>寄送地址  将以快递（免费）方式寄送给您<a href="#/person-mana-addr" class="ask_d3_ha">管理寄送地址</a></h2>
+                                <div class="ask_d3_div1" ng-repeat="add in addressData.data">
+                                    <input type="radio" ng-value="add.address_id" ng-model="piaoArr.address_id" name="address" class="ask_d3_ip"/>
+                                    <label for="">
+                                        <span class="ask_d3_sp">{{add.consignee}}</span>
+                                        <span class="ask_d3_sp">{{add.region}},{{add.address}}</span>
+                                        <span class="ask_d3_sp">{{add.mobile}}</span>
+                                        <!--<div class="should_hide">-->
+                                            <!--<a href="" class="a1">默认地址</a>-->
+                                            <!--<a href="" ng-click="deleteAddress(add.address_id)" class="a2">删除</a>-->
+                                        <!--</div>-->
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="invoice_ask_d3">
+                                <h2>申请备注</h2>
+                                <div class="ask_d3_div1">
+                                    <textarea id="" rows="5" cols="13"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="fp_btnbox">
+                                <input type="button" ng-click="sure()" class="qd_btn" value="确定"/>
+                                <input type="button" class="qx_btn" value="取消"/>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="control-wrp" ng-if="invSelectData.data==0">-->
+                <!--<div class="cont-hd cle">-->
+                    <!--<div class="cbt-left">-->
+                        <!--<span><a href="#" class="cbt-wz on">温馨提示</a></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="cont-bd">-->
+                    <!--<div class="contacts-wrap czhi">-->
+                        <!--<div class="wsh_box">-->
+                            <!--<i class="wsh_ico"></i>-->
+                            <!--<p class="wsh_p1">您还未填写发票信息或您的发票信息还未通过审核！</p>-->
+                            <!--<p class="wsh_p2">您也可以<a href="#/person-inv-message" class="wsh_sp1">添加资质</a> </p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>

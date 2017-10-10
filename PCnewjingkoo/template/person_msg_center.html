@@ -1,0 +1,98 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="msg-center-main" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+        <div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+			<div class="control-list aotms">
+				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<div class="control-nr">
+					<p><a href="#/order-all/">我的订单</a></p>
+					<p><a href="#/myCollect">我的收藏</a></p>
+					<p><a href="#/person-integral">积分管理</a></p>
+					<p><a href="#/person-yhq">优惠券管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<div class="control-nr">
+					<p><a href="#/person-process" >来镜加工</a></p>
+					<p><a href="#/person-return-repair">返修退换货</a></p>
+					<p class="onp"><a href="#/parson-msg-center">消息中心</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<div class="control-nr">
+					<p><a href="#/zijin-mana">资金管理</a></p>
+					<p><a href="#/person-invoices">发票管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<div class="control-nr">
+					<p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+					<p><a href="#/person-save-center">安全中心</a></p>
+					<p><a href="#/person-mana-addr">管理收货地址</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+			</div>
+        </div>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-hd cle">
+    				<div class="cbt-left"> 
+    					<span><a style="pointer-events: none;" class="cbt-wz on">消息中心</a></span>
+    					
+    				</div>
+    			</div>
+    			<div class="cont-bd" ng-if="msg_show">
+    				<div class="contacts-wrap integral">
+    					<table class="integral-tab">
+    						<tr>
+    							<th width="165">消息类型</th>
+    							<th style="width: calc(100% - 380px);">消息内容</th>
+    							<th width="200">时间</th>
+    						</tr>
+    						<tr ng-repeat="cmsgs in msgCenter_msg.list">
+    							<td><div class="remind"><em></em><span>{{cmsgs.msg_title}}</span></div></td>
+    							<td><p  ng-bind-html="cmsgs.msg_content" ng-attr-title="{{cmsgs.msg_content}}" style="overflow:hidden;text-overflow:ellipsis; white-space:nowrap;padding: 0 10px;width: 500px;" ng-title="cmsgs.msg_content">{{cmsgs.msg_content}}</p></td>
+    							<td>{{cmsgs.dateline}}</td>
+    						</tr>
+    					</table>
+			             <div class="pages">
+			                <div id="Pagination"></div>
+			                <div class="searchPage">
+			                    <span class="page-sum">共<strong class="allPage">{{msgCenter_msg.pages}}</strong>页</span>
+			                    <span class="page-go">到第<input type="text" value="1">页</span>
+			                    <a href="javascript:;" class="page-btn" id="search">确定</a>
+			                </div>
+			            </div>
+    				</div>
+    			</div>
+    			<div class="cont-bd" ng-if="!msg_show">
+    				<div class="contacts-wrap czhi">
+    					<div class="error horn"></div>
+    					<div class="err-wz">
+    						<h4>暂无消息</h4>
+    						<!--<p><em>{{dateTime}}</em> 秒后将自动返回个人中心首页</p>-->
+    						<!--<a style="cursor:pointer;" class="er_btn" ng-click="goBack()">返回上一页</a>-->
+    					</div>
+    					
+    				</div>
+    			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	 $('#Pagination').pagination();
+</script>

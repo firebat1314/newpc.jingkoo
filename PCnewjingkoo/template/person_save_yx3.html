@@ -1,0 +1,112 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="main" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+        <div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+			<div class="control-list aotms">
+				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<div class="control-nr">
+					<p><a href="#/order-all/">我的订单</a></p>
+					<p><a href="#/myCollect">我的收藏</a></p>
+					<p><a href="#/person-integral">积分管理</a></p>
+					<p><a href="#/person-yhq">优惠券管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<div class="control-nr">
+					<p><a href="#/person-process" >来镜加工</a></p>
+					<p><a href="#/person-return-repair">返修退换货</a></p>
+					<p><a href="#/parson-msg-center">消息中心</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<div class="control-nr">
+					<p><a href="#/zijin-mana">资金管理</a></p>
+					<p><a href="#/person-invoices">发票管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<div class="control-nr">
+					<p><a href="#/person-qy-lxrmsg">个人信息</a></p>
+					<p class="onp"><a href="#/person-save-center">安全中心</a></p>
+					<p><a href="#/person-mana-addr">管理收货地址</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+			</div>
+        </div>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-hd cle">
+    				<div class="cbt-left">
+    					<span><a style="cursor:pointer;" class="cbt-wz on">邮箱验证</a></span>
+    				</div>
+    			</div>
+    			<div class="cont-bd">
+    				<div class="contacts-wrap">
+    					
+    					<div class="phone">
+    						<div class="yz_lc c-3">
+    							<div class="lct"></div>
+    							<div class="wzi">
+    								<span class="w-1">输入邮箱地址</span>
+    								<span class="w-2">发送验证邮箱</span>
+    								<span class="w-3">验证完成</span>
+    							</div>
+    						</div>
+    						<div class="gxin">
+    							<p class="s-1">恭喜您，成功验证邮箱信息!</p>
+    							<p class="s-2">您已成功绑定手机号码：<em>{{emailMsg}}</em>。为保证您购物安全，建议您定期更改密码以保护账户安全。</p>
+    							<p class="s-3"><em>{{dateTime}}</em> 秒后将自动返回安全中心首页</p>
+    							<p class="s-4"><a href="#/home">镜库网首页</a>|<a href="#/control-mb">个人中心</a>|<a href="#/person-save-center">安全中心</a></p>
+    						</div>
+    					</div>
+    					
+						
+					
+    				</div>
+    			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+
+<!--<div class="mapl-muse hidden"></div>
+<div class="mapl-alert hidden">
+	<em class="mapl-gbia js_jbgn"></em>
+	<div class="mapl-ok">
+		<h2 class="mapl-h2">您确定要删除该地址吗？</h2>
+		<div class="mapl-lji"><a href="#" class="d js_jbgn">确定</a><a href="#" class="q js_jbgn">取消</a></div>
+	</div>
+</div>-->
+
+<script>
+	
+	$(".ret-sli").click(function(){
+		$(this).parent().find(".muke").removeClass("hidden")
+		$(this).parent().find(".zzc").addClass("open");
+		$("body").addClass("over-hide");
+	})
+	$(".muke").click(function(){
+		$(".muke").addClass("hidden")
+		$(".zzc").removeClass("open");
+		$("body").removeClass("over-hide");
+	})
+	$(".zzc").click(function(){
+		$(".muke").addClass("hidden")
+		$(".zzc").removeClass("open");
+		$("body").removeClass("over-hide");
+	})
+	
+</script>

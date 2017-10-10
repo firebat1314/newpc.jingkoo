@@ -1,9 +1,27 @@
-<div class="shop-jiesuan-logo">
+<!--<div class="shop-jiesuan-logo">
     <div class="jiesuan-logo">
         <h2>我的结算页</h2>
     </div>
+</div>-->
+<div class="shop-jiesuan-changetop">
+	<div class="shop-jiesuan-changet gird">
+		<div class="shop-jiesuan-changetl">
+			<a href="#/home"><img src="img/logo.png" class="jiesuan-changetlimg" width="177px"/></a>
+			<span class="jiesuan-changetlsp">结算页</span>
+		</div>
+		<div class="shop-jiesuan-changetr">
+			<div class="jiesuan-changetrd">
+				<span class="jiesuan-changetrsp1">我的购物车</span>
+				<span class="jiesuan-changetrsp2">填写信息</span>
+				<span class="jiesuan-changetrsp3">提交订单</span>
+			</div>
+		</div>
+	</div>
+</div> 
+<div class="shop-jiesuan-gd">
+	<div class="jiesuan-gd-div gird">填写并核对订单信息</div>   
 </div>
-<div id="masks" class="masks"></div>
+<div id="masks" class="masks"></div> 
 <div class="pur_close_box gird">
     <a href="" class="pur_close_a" ng-click="tianjia()">+ 新增收货地址</a>
     <div class="pur_zengjia">
@@ -16,18 +34,9 @@
             <tr>
                 <td width="172"><div class="dzhita-r r"><em class="red">*</em> 所在地区：</div></td>
                 <td>
-                    <select class="dzhi-selt" ng-model="eeditData.province" ng-change="selectProvince(eeditData.province)">
-                        <option ng-selected="1" value="">请选择</option>
-                        <option ng-repeat="zjProvince in tianjiaData.province_list" value="{{zjProvince.region_id}}">{{zjProvince.region_name}}</option>
-                    </select>
-                    <select class="dzhi-selt" ng-model="eeditData.city" ng-change="selectCity(eeditData.city)">
-                        <option ng-selected="1" value="">请选择</option>
-                        <option ng-repeat="zjCity in cityData.data" value="{{zjCity.region_id}}">{{zjCity.region_name}}</option>
-                    </select>
-                    <select class="dzhi-selt" ng-model="eeditData.district">
-                        <option ng-selected="1" value="">请选择</option>
-                        <option ng-repeat="zjDistrict in disData.data" value="{{zjDistrict.region_id}}">{{zjDistrict.region_name}}</option>
-                    </select>
+                    <select class="dzhi-selt" ng-model="eeditData.province" ng-change="selectProvince(eeditData.province)"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjProvince in tianjiaData.province_list" value="{{zjProvince.region_id}}">{{zjProvince.region_name}}</option></select>
+                    <select class="dzhi-selt" ng-model="eeditData.city" ng-change="selectCity(eeditData.city)"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjCity in cityData.data" value="{{zjCity.region_id}}">{{zjCity.region_name}}</option></select>
+                    <select class="dzhi-selt" ng-model="eeditData.district"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjDistrict in disData.data" value="{{zjDistrict.region_id}}">{{zjDistrict.region_name}}</option></select>
                 </td>
             </tr>
             <tr>
@@ -36,24 +45,24 @@
             </tr>
             <tr>
                 <td width="172"><div class="dzhita-r r"><em class="red">*</em> 手机号码：</div></td>
-                <td><input maxlength="11" placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="eeditData.mobile"></td>
+                <td><input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="eeditData.mobile"></td>
             </tr>
             <tr>
                 <td width="172"><div class="dzhita-r r"> 固定电话：</div></td>
-                <td><input ng-model="eeditData.tel" placeholder="请输入您的固定电话" type="text" class="dzhi-text"></td>
+                <td><input placeholder="请输入您的固定电话" type="text" class="dzhi-text"></td>
             </tr>
             <tr>
                 <td width="172"><div class="dzhita-r r">&nbsp;</div></td>
                 <td>
                     <input class="dzhi-btn org mr20" ng-click="tianjiaAddress()" type="button" value="确认地址"><input class="dzhi-btn qx mr20" ng-click="quxiao()" type="button" value="取消">
-                    <span class="dzhi-mor"><input type="checkbox" class="dzhi-check" ng-checked="isMor" ng-model="isMor" ng-change="addSetMoren(isMor)">设为默认</span>
+                    <span class="dzhi-mor"><input type="checkbox" class="dzhi-check" ng-model="isMor" ng-change="addSetMoren(isMor)">设为默认</span>
                 </td>
             </tr>
             </tbody></table>
     </div>
     <div class="pur_close_top">
         <div class="pur_close_d pur_address">
-            <span class="pur_close_sp">收货信息 : </span>
+            <span class="pur_close_sp">收货信息 : </span> 
             <div class="pur_close_dlbox">
                     <div class="pur_close_dl" ng-class="{'pur_close_dl pur_close_don':address.selected,'pur_close_dl noEvent':address.is_show==0}" ng-init="flag=true" ng-if="flag||address.selected==1" ng-repeat="address in jiesuanData.consignee_list">
                         <span class="pur_close_sp1" ng-click="selectAddress(address.address_id)">{{address.consignee}}</span>
@@ -70,18 +79,9 @@
                                 <tr>
                                     <td width="172"><div class="dzhita-r r"><em class="red">*</em> 所在地区：</div></td>
                                     <td>
-                                        <select class="dzhi-selt" ng-model="editData.province" ng-change="changeProvince(editData.province)">
-                                            <option ng-selected="1" value="">请选择</option>
-                                            <option ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected" value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option>
-                                        </select>
-                                        <select class="dzhi-selt" ng-model="editData.city" ng-change="changeCity(editData.city)">
-                                            <option ng-selected="1" value="">请选择</option>
-                                            <option  ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected" value="{{bjCity.region_id}}">{{bjCity.region_name}}</option>
-                                        </select>
-                                        <select class="dzhi-selt" ng-model="editData.district" ng-change="changeDis(editData.district)">
-                                            <option ng-selected="1" value="">请选择</option>
-                                            <option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected" value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option>
-                                        </select>
+                                        <select class="dzhi-selt" ng-model="editData.province" ng-change="changeProvince(editData.province)"><option   ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected" value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option></select>
+                                        <select class="dzhi-selt" ng-model="editData.city" ng-change="changeCity(editData.city)"><option  ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected" value="{{bjCity.region_id}}">{{bjCity.region_name}}</option></select>
+                                        <select class="dzhi-selt" ng-model="editData.district" ng-change="changeDis(editData.district)"><option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected" value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option></select>
                                     </td>
                                 </tr>
                                 <tr>
@@ -90,11 +90,11 @@
                                 </tr>
                                 <tr>
                                     <td width="172"><div class="dzhita-r r"><em class="red">*</em> 手机号码：</div></td>
-                                    <td><input maxlength="11" placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="editData.mobile"></td>
+                                    <td><input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="editData.mobile"></td>
                                 </tr>
                                 <tr>
                                     <td width="172"><div class="dzhita-r r"> 固定电话：</div></td>
-                                    <td><input placeholder="请输入您的固定电话" ng-model="editData.tel" type="text" class="dzhi-text"></td>
+                                    <td><input placeholder="请输入您的固定电话" type="text" class="dzhi-text"></td>
                                 </tr>
                                 <tr>
                                     <td width="172"><div class="dzhita-r r">&nbsp;</div></td>
@@ -118,31 +118,32 @@
         <div class="pur_close_d" ng-show="isExchange==0">
             <span class="pur_close_sp">支付方式 : </span>
             <div class="zfbt_box">
-                <span ng-click="selectPay(payment.pay_id)" ng-class="{'onli':payment.selected}" ng-repeat="payment in jiesuanData.payment_list">{{payment.pay_name}}</span>
+                <span ng-click="selectPay(payment.pay_id)" ng-class="{'onli':payment.selected}" ng-repeat="payment in jiesuanData.payment_list">{{payment.pay_name}}<i class="round_qus"><div class="round_qusbox" ng-bind-html="payment.pay_desc"></div></i></span>
                 <!--<span class="sp_btn2">银行汇款/转账</span>-->
                 <!--<span class="sp_btn3">货到付款</span>-->
             </div>
         </div>
 
         <div class="pur_close_d">
-            <span class="pur_close_sp">商品清单 : </span>
+            <span class="pur_close_sp" style="padding: 0;">商品清单 : </span>
         </div>
         <div class="goods_table">
             <table>
-                <tr>
+                <tr> 
                     <th style="text-align: left;padding-left: 150px;">商品</th>
-                    <th width="220px">单价(元)</th>
-                    <th width="220px">数量</th>
-                    <th width="220px">小计</th>
+                    <th width="165px">数量</th> 
+                    <th width="165px">单价</th> 
+                    <th width="165px">优惠</th> 
+                    <th width="165px">小计</th> 
                 </tr>
             </table>
-            <div class="goods_table_item" ng-repeat="cartGoods in jiesuanData.cart_goods_list">
-                <p class="p_titl">{{cartGoods.title}}<span style="cursor: pointer;" class="per_lo" onclick="qimoChatClick();"></span></p>
+            <div class="goods_table_item" ng-repeat="cartGoods in jiesuanData.cart_goods_list"> 
+                <p class="p_titl">{{cartGoods.title}}<span style="cursor: pointer;" class="per_lo" onclick="qimoChatClick();"></span><span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;">购满￥199.00  已免运费</span></p>
                 <div class="table_bottom">
                     <div class="table_b1" ng-repeat="cartGoodsList in cartGoods.goods_list">
                         <div class="table_b1_left">
                             <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                <img ng-src={{cartGoodsList.goods_img}} width="100" height="100" style="border: 1px solid #e7e7e7;"/>
+                                <img ng-src={{cartGoodsList.goods_img}} width="80" height="80" style="border: 1px solid #e6e6e6;"/>
                             </a>
                         </div>
                         <div class="table_b1_rightbox">
@@ -161,8 +162,9 @@
                                     </ul>
                                 </div>
                                 <div class="table_b2_box">
+                                	<div class="table_b2">{{cartGoodsAttr.goods_number}}</div>
                                     <div class="table_b2">{{cartGoodsAttr.goods_price}}</div>
-                                    <div class="table_b2">{{cartGoodsAttr.goods_number}}</div>
+                                    <div class="table_b2">{{cartGoodsAttr.}}？？？</div>
                                     <div class="table_b2">{{cartGoodsAttr.formated_subtotal}}</div>
                                 </div>
                             </div>
@@ -170,18 +172,32 @@
                     </div>
                     <!--配送方式-->
                     <div class="send_way">
-                        <span class="sent_sp1">配送方式 : </span>
-                        <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-class="{'send_way_sp selected':sent.selected}" ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
-                    </div>
-
-                    <!--商家备注-->
-                    <div class="person_remark">
-                        <div class="remark_left">
-                            <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)" type="text" placeholder="" class="remark_ip"/>
-                        </div>
-                        <div class="remark_right">
+                    	<div class="send_way_l" style="float: left;">
+	                        <span class="sent_sp1">配送方式 : </span>
+	                        <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-class="{'send_way_sp selected':sent.selected}" ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
+		                    <!--商家备注-->
+	                        <div class="remark_left">
+	                            <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)" type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip"/>
+	                        </div>
+	                        <div class="remark_left remark_left2" style="overflow: hidden;"> 
+	                            <span class="sent_sp1" style="float: left;">商家备注 : </span>
+	                            <div class="texbox_d">
+	                            	<textarea class="bz_text">这是假的需要做个判断???</textarea>
+	                            	<ul class="bz_ul">
+	                            		<li>标签</li>
+	                            		<li>标签</li> 
+	                            		<li>标签</li>
+	                            		<li>标签</li>
+	                            		<li>标签</li>
+	                            	</ul>
+	                            	<p class="bz_p">若您需改变订单内容或另有特殊要求，请务必联系卖家达成一致。否则，该填写内容将视为无效。</p>
+	                            </div>
+	                        </div>
+                    	</div>
+                        <div class="remark_right" style="float: right;">
                             <p ng-if="isExchange==0">购物金额小计 :  <span>{{cartGoods.goods_subtotal}}</span></p>
                             <p ng-if="shipIf" class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
+                            <p ng-if="shipIf" class="p2">+ 获赠积分 : {{jifen}}</p>
                         </div>
                     </div>
                     <!--商家备注-->
@@ -406,12 +422,12 @@
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
         <div ng-if="isExchange==0" class="count_div">
-            <p class="count_p1">购物金额小计 : ￥{{totalPrice}}</p>
-            <p ng-if="yhqIf" class="count_p1">-优惠券 : ￥{{yhqTotal}}</p>
-            <p ng-if="shipIf" class="count_p1">+配送费用 : {{totalShip}}</p>
+            <p class="count_p1">购物金额小计 : <span>￥{{totalPrice}}</span></p>
+            <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>￥{{yhqTotal}}</span></p>
+            <p ng-if="shipIf" class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
             <p class="count_p1">+获赠积分 : {{jifen}}</p>
-            <p ng-if="yeIf" class="count_p1">-余额 : {{yeTotal}}</p>
-            <p ng-if="sub" class="count_p1">-镜库补贴 : {{subsidyPrice}}</p>
+            <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p>
+            <p ng-if="sub" class="count_p1">-镜库补贴 : <span>{{subsidyPrice}}</span></p>
         </div>
 
         <div ng-show="yeIf" class="top_center_bott" style="overflow: hidden;">
@@ -432,8 +448,12 @@
                 </label>
             </form>
         </div>
-
-        <div class="refer_order">
+        <!--订单金额-->
+		<div class="order_amont">
+			<p class="order_amont_p1"><span class="order_amont_sp1">订单总金额： </span><span class="order_amont_sp2">￥6704.00????????????</span></p> 
+			<p class="order_amont_p2"><span class="order_amont_sp1">寄送至： 北京 东城区 内环到三环里 左安漪园1号楼1单元这是假的??????</span><span class="order_amont_sp1">收货人：荆佳琦  188****1460?????????</span></p>
+		</div>
+        <div class="refer_order"> 
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
             <div class="refer_order_d" ng-if="isExchange==0">
                 <p class="refer_order_p">订单总金额 : <span class="refer_order_sp1">￥{{total}}</span><input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn"/></p>

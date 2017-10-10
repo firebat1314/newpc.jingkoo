@@ -22,12 +22,12 @@
 		<div class="shop_car_topr">
 			<div class="car_toprbox">
 				<form name="searchForm" method="post" ng-submit="searchKey()" novalidate>
-                    <input id="txt" class="car_toprip" type="text" ng-model="carkeywords" placeholder="搜索镜库商品" autocomplete="off">
+                    <input id="txt" class="car_toprip" type="text" ng-model="keywords" placeholder="搜索镜库商品" autocomplete="off">
 					<input type="button" value="搜索" class="car_toprbtn" ng-click="searchKey()"/>
                 </form>
 			</div>
 		</div>
-	</div><br />
+	</div>
 </div>
 <div class="shop-car-main" ng-if="data">
     <!--<div class="shop-car-logo" ng-if="Goods">-->
@@ -65,7 +65,7 @@
             <table width="100%">
                 <tbody>
                     <tr>
-                        <th class="kefu" width="280">
+                        <th class="kefu" width="1200">
                             <label>
                                 <input type="checkbox" ng-click="selectStore($index)" style="display: none;"><div class="all-check" ng-class="{'checked':carItem.is_select}" ></div>
                             </label>
@@ -146,9 +146,9 @@
                                 </label> 
                                 <ul ng-hide="carArr.qiujing==''&&carArr.zhujing==''&&carArr.zhouwei==''&&carArr.arr_attr==false">
                                     <li ng-if="carArr.qiujing">球镜：{{carArr.qiujing}}</li>
-                                    <li ng-if="carArr.zhujing">柱镜：{{carArr.zhujing}}</li>
-                                    <li ng-if="carArr.zhouwei">轴位：{{carArr.zhouwei}}</li>
-                                    <li ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
+                                    <li ng-if="carArr.zhujing">柱镜：{{carArr.zhujing}}</li> 
+                                    <li ng-if="carArr.zhouwei">轴位：{{carArr.zhouwei}}</li> 
+                                    <li ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li> 
                                 </ul>
                                 <ul ng-show="carArr.qiujing==''&&carArr.zhujing==''&&carArr.zhouwei==''&&carArr.arr_attr==false">
                                     <li>{{carList.goods_name}}</li>
@@ -156,7 +156,7 @@
                                 <div class="diy-right c">
                                     <span class="wenb">
                                         <a href="" class="fl borr c" ng-click="reduceCarArr($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">－</a>
-                                        <input type="number" class="fl c diyr-txt" ng-model="carArr.goods_number" value="goods_number" ng-blur="change($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">
+                                        <input type="text" class="fl c diyr-txt" ng-model="carArr.goods_number" value="goods_number" ng-blur="change($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">
                                         <a href="" class="fl borl c" ng-click="addCarArr($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">+</a>
                                     </span>
                                     <span class="text-value">{{carArr.goods_number}}</span>
@@ -188,10 +188,10 @@
                                 <em ng-if="!carArr.cha_price">--</em>
                             </div>
                             	<!--小计-->
-			                <div class="add_last_th" style="color:#ff3333;display: inline-block;float: left;position: absolute;right: -150px;width: 80px;overflow: hidden;top: 28px;font-size: 14px;text-align: center;">
+			                <div class="add_last_th" style="color:#ff3333;display: inline-block;float: left;position: absolute;right: -150px;width: 80px;overflow: hidden;top: 33px;font-size: 14px;text-align: center;">
                                 {{carArr.subtotal}}
 			                </div>
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">

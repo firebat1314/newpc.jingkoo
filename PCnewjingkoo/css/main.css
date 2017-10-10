@@ -504,10 +504,10 @@ span.a_arrow_r {
   .ano-header.show {
     display: none; }
   .ano-header .ano-header-grid {
-    width: 850px;
+    width: 830px;
     height: 85px;
     padding-top: 39.5px;
-    padding-left: 350px;
+    padding-left: 370px;
     position: relative; }
     .ano-header .ano-header-grid a img {
       left: 10px !important; }
@@ -8788,6 +8788,7 @@ span.a_arrow_r {
 
 /*来镜加工*/
 .process_cont_t .picScroll-left {
+  width: 100%;
   overflow: hidden;
   position: relative;
   border: none;
@@ -9896,7 +9897,7 @@ span.a_arrow_r {
   position: relative;
   cursor: pointer;
   padding-top: 5px;
-  margin-left: 10px; }
+  margin-left: 20px; }
 
 .pur_close_d .more_addr:hover {
   color: #0070c9; }
@@ -10013,14 +10014,14 @@ span.a_arrow_r {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  font-size: 16px;
-  color: #333333;
+  font-size: 14px;
+  color: #666;
   background-color: #f5f6fa; }
 
 .p_titl {
-  color: #333;
-  font-size: 16px;
-  padding: 16px 0 20px;
+  color: #4c4c4c;
+  font-size: 12px;
+  padding: 9px 0 12px 20px;
   background-color: #f5f6fa; }
 
 .p_titl .per_lo {
@@ -10042,15 +10043,15 @@ span.a_arrow_r {
 
 .table_b2_box {
   width: 660px;
-  height: 100px;
-  line-height: 100px; }
+  height: 80px;
+  line-height: 80px; }
 
 .table_b2_box .table_b2 {
   text-align: center;
-  width: 33.3%;
+  width: 25%;
   float: left;
-  font-size: 14px;
-  color: #4c4c4c; }
+  font-size: 12px;
+  color: #808080; }
 
 .table_b1 {
   width: 100%; }
@@ -10063,16 +10064,16 @@ span.a_arrow_r {
   background-color: #fff; }
 
 .table_b1_rightbox {
-  width: calc(100% - 130px);
-  padding: 15px 0; }
+  width: calc(100% - 120px);
+  padding: 10px 0; }
 
 .rightbox_more > * {
   float: left; }
 
 .table_b1 .table_b1_left {
-  width: 100px;
-  height: 100px;
-  padding: 15px; }
+  width: 80px;
+  height: 80px;
+  padding: 10px 20px; }
 
 .table_b1 .table_b1_right {
   width: calc(100% - 660px); }
@@ -10094,7 +10095,7 @@ span.a_arrow_r {
 
 .rightbox_more {
   overflow: hidden;
-  height: 100px;
+  height: 80px;
   border-bottom: 1px dashed #e6e6e6; }
 
 .table_b1_rightbox .rightbox_more:last-child {
@@ -10112,13 +10113,15 @@ span.a_arrow_r {
 .send_way .send_way_sp {
   cursor: pointer;
   width: 118px;
-  height: 33px;
-  line-height: 33px;
-  border: 1px solid #e5e5e5;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #ccc;
   background-color: #fff;
   margin-right: 10px;
   text-align: center;
-  position: relative; }
+  position: relative;
+  color: #666666;
+  font-size: 12px; }
 
 .send_way .send_way_sp.selected {
   border-color: #ff3333; }
@@ -10162,10 +10165,12 @@ span.a_arrow_r {
 
 .remark_right p {
   text-align: right;
-  padding-right: 20px; }
+  padding-right: 20px;
+  color: #808080;
+  font-size: 12px; }
 
 .remark_right .p2 {
-  padding-top: 5px; }
+  padding-top: 10px; }
 
 .remark_right p span {
   color: #ff3333;
@@ -10173,6 +10178,57 @@ span.a_arrow_r {
 
 .use_oupon_cont {
   display: none; }
+
+/*新加*/
+.send_way .remark_ip {
+  -webkit-appearance: none;
+  width: 358px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid #cccccc;
+  font-size: 12px;
+  color: #999999;
+  margin-left: 4px; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d {
+  float: left;
+  padding-left: 4px; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d textarea.bz_text {
+  width: 358px;
+  height: 78px;
+  padding: 10px;
+  color: #999999;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  margin-top: 10px; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d .bz_ul {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d .bz_ul li {
+  cursor: pointer;
+  padding: 0 10px;
+  min-width: 35px;
+  border: 1px solid #98b6ce;
+  margin-right: 10px;
+  float: left;
+  text-align: center;
+  color: #98b6ce; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d .bz_ul li:hover {
+  border-color: #ff3333;
+  color: #ff3333; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d .bz_ul li.on {
+  border-color: #FF3333;
+  color: #ff3333; }
+
+.send_way_l .remark_left.remark_left2 .texbox_d .bz_p {
+  color: #999999;
+  font-size: 12px; }
 
 /*使用优惠券*/
 .use_oupon {
@@ -10183,11 +10239,11 @@ span.a_arrow_r {
 .use_oupon .use_oupon_h2 {
   padding-left: 10px;
   width: 100%;
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
   cursor: pointer;
-  height: 60px;
-  line-height: 60px; }
+  height: 50px;
+  line-height: 50px; }
 
 .use_oupon .use_oupon_cont {
   padding-bottom: 25px; }
@@ -10513,7 +10569,10 @@ span.a_arrow_r {
 
 /*小计*/
 .count_div {
-  padding: 10px 0; }
+  padding: 10px 20px 10px 0; }
+
+.count_div span {
+  color: #FF3333; }
 
 .count_div .count_p1 {
   color: #808080;
@@ -10521,11 +10580,36 @@ span.a_arrow_r {
   text-align: right;
   padding: 3px 0; }
 
+/*订单金额*/
+.order_amont {
+  width: calc(100% - 20px);
+  height: 39px;
+  border-top: 1px solid #e6e6e6;
+  background-color: #f5f6fa;
+  padding: 20px 20px 20px 0; }
+
+.order_amont p {
+  color: #808080;
+  font-size: 12px;
+  line-height: 20px;
+  overflow: hidden;
+  text-align: right; }
+
+.order_amont p.order_amont_p2 span {
+  margin-left: 35px; }
+
+.order_amont p.order_amont_p1 .order_amont_sp2 {
+  color: #FF3333;
+  font-size: 16px; }
+
 /*提交订单*/
 .refer_order {
-  height: 100px;
-  line-height: 100px;
-  border: 1px solid #e6e6e6; }
+  height: 48px;
+  line-height: 48px;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+  border-left: none;
+  border-right: none; }
 
 .refer_order .refer_order_sp {
   position: relative;
@@ -10545,26 +10629,28 @@ span.a_arrow_r {
   margin-right: 10px; }
 
 .refer_order .refer_order_d {
-  float: right;
-  padding-right: 15px; }
+  float: right; }
 
 .refer_order_p {
-  font-size: 14px;
+  font-size: 12px;
   color: #808080; }
 
 .refer_order_p .refer_order_sp1 {
-  color: #0070c9;
-  font-weight: 700; }
+  color: #FF3333;
+  font-weight: 500;
+  font-size: 16px; }
 
 .refer_order .refer_order_btn {
   width: 120px;
-  height: 40px;
+  height: 50px;
+  line-height: 48px;
   background-color: #3f69a5;
   border: 1px solid #3f69a5;
   font-size: 16px;
   color: #fff;
   cursor: pointer;
-  margin-left: 15px; }
+  margin-left: 15px;
+  float: right; }
 
 /*结算页end*/
 textarea {

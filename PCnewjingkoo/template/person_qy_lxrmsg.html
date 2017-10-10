@@ -50,7 +50,7 @@
     				<div class="cbt-left">
     					<span><a href="#/person-qy-lxrmsg" class="cbt-wz on">联系人信息</a></span>
     					<span><a href="#/person-qy-msg" class="cbt-wz">企业资料</a></span>
-    					<span><a href="#/user-logo-center" class="cbt-wz">头像设置</a></span>  
+    					<span><a href="#/user-logo-center" class="cbt-wz">logo设置</a></span>
     					
     				</div>
     			</div>
@@ -75,10 +75,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getUserMsg.user_info.true_name" placeholder="请填写联系人姓名"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="true_name"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonMsg($event,getUserMsg.user_info.true_name)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveLx()"/>
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonMsg($event)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" />
 										</div>
 									</div>
     							</td>
@@ -93,10 +93,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getUserMsg.user_info.email" placeholder="请填写联系人邮箱"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="email"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonY($event,getUserMsg.user_info.email)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveLx()"/>
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonY($event)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" />
 										</div>
 									</div>
     							</td>
@@ -111,10 +111,10 @@
     									</div>
     								</div>
     								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="getUserMsg.user_info.qq" placeholder="请填写联系人QQ"/></div>
+										<div class="shur"><input class="stxt" type="number" placeholder="请输入qq号" ng-model="qq"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonQ($event,getUserMsg.user_info.qq)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveLx()"/>
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="savePersonQ($event)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" />
 										</div>
 									</div>
     							</td>

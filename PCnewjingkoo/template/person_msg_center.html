@@ -47,8 +47,8 @@
 		<div class="panel-right">
 			<div class="control-wrp">
 				<div class="cont-hd cle">
-    				<div class="cbt-left"> 
-    					<span><a style="pointer-events: none;" class="cbt-wz on">消息中心</a></span>
+    				<div class="cbt-left">
+    					<span><a style="cursor:pointer;" class="cbt-wz on">消息中心</a></span>
     					
     				</div>
     			</div>
@@ -70,8 +70,6 @@
 			                <div id="Pagination"></div>
 			                <div class="searchPage">
 			                    <span class="page-sum">共<strong class="allPage">{{msgCenter_msg.pages}}</strong>页</span>
-			                    <span class="page-go">到第<input type="text" value="1">页</span>
-			                    <a href="javascript:;" class="page-btn" id="search">确定</a>
 			                </div>
 			            </div>
     				</div>
@@ -81,8 +79,8 @@
     					<div class="error horn"></div>
     					<div class="err-wz">
     						<h4>暂无消息</h4>
-    						<!--<p><em>{{dateTime}}</em> 秒后将自动返回个人中心首页</p>-->
-    						<!--<a style="cursor:pointer;" class="er_btn" ng-click="goBack()">返回上一页</a>-->
+    						<p><em>{{dateTime}}</em> 秒后将自动返回个人中心首页</p>
+    						<a style="cursor:pointer;" class="er_btn" ng-click="goBack()">返回上一页</a>
     					</div>
     					
     				</div>

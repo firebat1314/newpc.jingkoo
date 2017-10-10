@@ -1,8 +1,7 @@
 <style type="text/css">
 	.picScroll-left .hd ul li.on{background-color: #3f69a5;}
-	.dd_table .tbe td span.user_name{display: inline-block;width: 100px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
 </style>
-<div class="route mb20"> 
+<div class="route mb20">
 	<div class="gird">
 		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
 	</div>
@@ -83,7 +82,7 @@
     					<span class="ts-1" ng-click="getNeedOrder('send')" style="cursor: pointer;">待发货 <em>{{send}}</em></span>
     					<span class="ts-1" ng-click="getNeedOrder('collect')" style="cursor: pointer;">待收货 <em>{{collect}}</em></span>
     					<span class="ts-1" ng-click="getNeedOrder('ok')" style="cursor: pointer;">已完成 <em>{{ok}}</em></span>
-    					<span class="ts-1" ng-click="goFX()" style="cursor: pointer;">返修/退换货<em>{{return}}</em></span>
+    					<span class="ts-1" ng-click="" style="cursor: pointer;">返修/退换货<em></em></span>
     				</div>
     				
     				<!--<div class="btit cle" style="overflow: hidden;">
@@ -115,7 +114,7 @@
 									</div>
 								</div>
 							</td>
-							<td width="100"><span class="user_name" ng-attr-title="{{ord.consignee}}">{{ord.consignee}}</span></td>
+							<td width="100">{{ord.consignee}}</td>
 							<td width="110">{{ord.order_amount}}<br ng-if="ord.order_amount">{{ord.pay_name}}</td>
 							<td width="110">{{ord.add_time}}</td>
 							<td width="160">{{ord.status}}</td>
@@ -135,19 +134,19 @@
 					</table>
 				</div>
 			</div>
-			 
+			
 			<div class="picScroll-left">
 				<div class="hd">
 					<span>猜你喜欢</span>
-					<!--<ul></ul>-->
+					<ul></ul>
 				</div>
 				<div class="bd" style="position: relative;left: 40px;">
 					<ul class="picList">
-						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;width: 157px;">
+						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
 								<p>{{like.goods_name}}</p>
-								<b>{{like.shop_price}}</b>
+								<b>{{like.market_price}}</b>
 							</div>
 						</li>
 					</ul>
@@ -155,6 +154,6 @@
 			</div>
 			
 		</div>
-		<div class="clear"></div> 
+		<div class="clear"></div>
 	</div>
 </div>

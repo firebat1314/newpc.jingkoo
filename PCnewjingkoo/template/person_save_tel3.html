@@ -48,26 +48,38 @@
 			<div class="control-wrp">
 				<div class="cont-hd cle">
     				<div class="cbt-left">
-    					<span><a style="cursor:pointer;" class="cbt-wz on">修改登录密码</a></span>
+    					<span><a style="cursor:pointer;" class="cbt-wz on">手机验证</a></span>
     				</div>
     			</div>
     			<div class="cont-bd">
     				<div class="contacts-wrap ">
     					
     					<div class="phone">
-    						<div class="yz_lc c-3">
+    						<div class="yz_lc c-2">
     							<div class="lct"></div>
     							<div class="wzi">
-    								<span class="w-1">验证身份</span>
-    								<span class="w-2">修改登录密码</span>
-    								<span class="w-3">完成</span>
+    								<span class="w-1">输入手机号码</span>
+    								<span class="w-2">发送短信验证码</span>
+    								<span class="w-3">验证完成</span>
     							</div>
     						</div>
-    						<div class="gxin">
-    							<p class="s-1">恭喜您，修改手机号成功!</p>
-    							<p class="s-3"><em>{{dateTime}}</em> 秒后将自动返回安全中心首页</p>
-    							<p class="s-4"><a href="#">镜库网首页</a>|<a href="#">个人中心</a>|<a href="#">安全中心</a></p>
-    						</div>
+    						<table class="yz_sj">
+    							<tr>
+    								<td width="350"><div class="yz-r">当前手机号：</div></td>
+    								<td >{{phoneNumber}}</td>
+    							</tr>
+    							<tr>
+    								<td width="350"><div class="yz-r">验证码：</div></td>
+    								<td>
+    									<input class="text" type="text" ng-model="mobileCode" placeholder="请输入验证码信息" />
+    									<input class="butn2" type="button" ng-click="getVerify()" ng-disabled="getVer" ng-value="str"/>
+    								</td>
+    							</tr>
+    							<tr>
+    								<td width="350"><div class="yz-r">&nbsp;</div></td>
+    								<td><input class="butn" type="button" ng-click="goTelThree()" value="下一步" /></td>
+    							</tr>
+    						</table>
     					</div>
     					
 						

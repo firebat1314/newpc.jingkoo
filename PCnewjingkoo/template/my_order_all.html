@@ -12,25 +12,22 @@
 	.ggz-tc .wrp p b{display:block;position:absolute;left:0;top:-2px;text-align:center;width: 20px;line-height: 27px;}
 	.ggz-tc .wrp p a{color:#0070c9;}
 	.ggz-tc .wrp p.redvs{color:#0070c9;}
-	.ggz-tc .wrp:after{content:" ";position:absolute;right:-15px;top:15px;display:block;width: 15px;height:22px;background:url(img/dd-3.png) no-repeat center; } 
+	.ggz-tc .wrp:after{content:" ";position:absolute;right:-15px;top:15px;display:block;width: 15px;height:22px;background:url(img/dd-3.png) no-repeat center; }
 	.bbb{color: #FF3333;}
 	.nero .n5-opon.a_wc>a:last-child{margin-bottom: 0 !important;}
-	.nony-bt .del_order{display: inline-block;width: 14px;height: 16px;background: url(img/dd-7.png) center;background-size: 100%;cursor: pointer;position: absolute;right: 20px;top: 9px;margin: 0 !important;display: none;}
-	.nony-bt .del_order:hover{background: url(img/dd-7_.png) center;background-size: 100%;}
-	.sydd-ittem:hover .del_order{display: block !important;}
 </style>
 
- 
-<div class="ggz-tc" ng-if="wlData">
+
+<div class="ggz-tc">
 <div class="wrp" ng-repeat="orderwuliu in wlData">
 	<h2>快递单号：{{orderwuliu.invoice_no}}</h2>
 	<div class="wrp_div" >
-		<div ng-repeat="wlt in orderwuliu.list.slice().reverse()" ng-if="$index<1"> 
+		<div ng-repeat="wlt in orderwuliu.list.reverse()" ng-if="$index<1">
 			<div class="time">{{wlt.time}}</div>
-			<p ng-repeat="wl in wlt.data" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
+			<p ng-repeat="wl in wlt.data.reverse()" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
 		</div>
- 
-		<p>以上为最新跟踪信息去订单详情  <a style="cursor:pointer;" ng-click="goOrdera()">查看全部</a></p>																
+
+		<p>以上为最新跟踪信息 <a style="cursor:pointer;" ng-click="goOrdera()">查看全部</a></p>																
 	</div>
 </div>
 </div>
@@ -83,21 +80,17 @@
 		<div class="panel-right">
 			<div class="control-wrp">	
 				<div class="cont-hd cle">
-    				<div class="cbt-left" style="width: 500px;"> 
+    				<div class="cbt-left" style="width: 700px;">
     					<span ng-click="getAllOrderHs('');showJf=2"><a style="cursor:pointer;" ng-class="{'on':tabType==''}" class="cbt-wz">所有订单</a></span>
     					<span ng-click="getAllOrderHs('unpay');showJf=2"><a style="cursor:pointer;" ng-class="{'on':tabType=='unpay'}" class="cbt-wz">待付款<em ng-if="orderpay">{{orderpay}}</em></a></span>
     					<span ng-click="getAllOrderHs('collect');showJf=2"><a style="cursor:pointer;" ng-class="{'on':tabType=='collect'}" class="cbt-wz">待收货<em ng-if="orderDsh">{{orderDsh}}</em></a></span>
-    					<span ng-click="getAllIntegral();showJf=1;"><a style="cursor:pointer;" class="cbt-wz">积分兑换<em ng-if="InNum">{{InNum}}</em></a></span>
+    					<span ng-click="getAllIntegral();showJf=1"><a style="cursor:pointer;" class="cbt-wz">积分兑换<em ng-if="InNum">{{InNum}}</em></a></span>
     				</div>
-    				<div class="shur-wrp" ng-if="showJf!=1" ng-init="showJf=2"> 
+    				<div class="shur-wrp">
 						<input type="button" class="btna" ng-click="serchGoods(order_number)"/>
 						<input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" ng-keyup="$event.keyCode==13?serchGoods(order_number):''" ng-model="order_number" value=" "/>
 					</div>
-    				<div class="shur-wrp" ng-if="showJf==1" ng-init="showJf=1">
-						<input type="button" class="btna" ng-click="serchJfGoods(order_sn)"/>
-						<input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" ng-keyup="$event.keyCode==13?serchJfGoods(order_sn):''" ng-model="order_sn" value=" "/>
-					</div>
-   				</div> 			
+    			</div>
     			<div class="cont-bd" ng-if="showJf!=1" ng-init="showJf=2">
     				<div class="contacts-wrap ddan integral">
     					<div class="sydd">
@@ -124,7 +117,7 @@
 										<div class="syincy hidden">
 											<div class="swrpp swrpp4">
 												<em></em>
-												<p><a style="cursor:pointer;" ng-click="getAllOrderHs('');tabType=' ';">全部状态</a></p>
+												<p><a style="cursor:pointer;" ng-click="getAllOrderHs('')">全部状态</a></p>
 												<p><a style="cursor:pointer;" ng-click="getAllOrderHs('unpay')">等待付款</a></p>
 												<p><a style="cursor:pointer;" ng-click="getAllOrderHs('collect')">等待收货</a></p>
 												<p><a style="cursor:pointer;" ng-click="getAllOrderHs('ok')">已完成</a></p>
@@ -137,32 +130,30 @@
 							</div>
 							<div class="sydd-body">
 								<div class="sydd-ittem" ng-repeat="order in AllOrder.list" repeat-done="renderJs()">
-									<div class="nony-bt"> 
-										<span class="nony-sp1">{{order.add_time}}</span> 
-										<span class="nony-sp2">订单号：{{order.order_sn}}</span> 
-										<span class="nony-sp2"><img src="img/dd-2.png" onclick="qimoChatClick()" style="margin: 0;margin-right: 10px;cursor: pointer;margin-top: -3px;" ng-if="order.suppliers_name"/>{{order.suppliers_name}}</span>
-										<span class="del_order" ng-click="delOrder(order.order_id)" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)" title="删除订单"></span>
+									<div class="nony-bt">
+										<span class="nony-sp1">{{order.add_time}}</span>
+										<span class="nony-sp2">订单号：{{order.order_sn}}</span>
+										<span class="nony-sp2"><img src="img/dd-2.png" onclick="qimoChatClick()" style="margin: 0;margin-right: 10px;cursor: pointer;" ng-if="order.suppliers_name"/>{{order.suppliers_name}}</span>
 									</div>
 									<div class="neiro">
 										<div class="nero n-1">
 											<div class="noot-sp">
-												<div class="le-dd"> 
-													<div class="imsldd" ng-repeat="goods in order.goods" style="position: relative;"> 
+												<div class="le-dd">
+													<div class="imsldd" ng-repeat="goods in order.goods" style="position: relative;">
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.original_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
-															<p class="gp-1">{{goods.goods_name}}</p> 
-															<p class="gp-2">x{{goods.goods_number}}</p> 
-														</div> 
-														<div class="clear"></div> 
-														<span ng-click="goSaleOver(goods.rec_id)" style="cursor: pointer;width: 80px;height: 30px;color: #0070c9;font-size: 12px;position: absolute;top: 32px;right: 10px;line-height: 30px;text-align:  center;" ng-if="order.order_status==5 && order.pay_status == 2 && order.shipping_status == 2 && goods.is_repair == 1  && order.is_inv == 1">申请售后</span>
-														<span ng-click="qxSaleOver(goods.return_id)" style="cursor: pointer;width: 80px;height: 30px;color: #0070c9;font-size: 12px;position: absolute;top: 32px;right: 10px;line-height: 30px;text-align:  center;" ng-if="order.order_status==5 && order.pay_status == 2 && order.shipping_status == 2 &&  goods.is_repair == 0">取消售后</span>
-													</div> 
-												</div> 
+															<p class="gp-1">{{goods.goods_name}}</p>
+															<p class="gp-2">x{{goods.goods_number}}</p>
+														</div>
+														<div class="clear"></div>
+														<span ng-click="goSaleOver(goods.rec_id,goods.order_id)" style="cursor: pointer;width: 80px;height: 30px;color: #808080;font-size: 12px;position: absolute;top: 14px;right: 10px;line-height: 30px;text-align:  center;" ng-if="order.order_status==5 && order.pay_status == 2 && order.shipping_status == 2">申请售后</span>
+													</div>
+												</div>
 												<div class="cgend" ng-click="lookMore($index,$event)" ng-if="order.goods.length>3"><a style="cursor:pointer;">查看更多商品 ></a></div>
 											</div>
-										</div> 
+										</div>
 										<div class="nero n-2 c">
-											<div class="dd-name need_tk"><em></em><span class="user_name" ng-attr-title="{{order.consignee}}">{{order.consignee}}</span> 
+											<div class="dd-name need_tk"><em></em>{{order.consignee}}
 												<div class="need_tkk" style="left: -265px;height: 80px;min-height: 80px;top: -35px;">
 													<p class="need_tkk_p1" style="font-size: 13px;">{{order.consignee}}</p>
 													<p class="need_tkk_p2" style="font-size: 12px;">{{order.region}}{{order.address}}</p>
@@ -171,47 +162,33 @@
 											</div>
 										</div>
 										<div class="nero n-3 c">
-											<div class="n3-hk" ng-if="order.isShowYf==1">
+											<div class="n3-hk" ng-if="order.pay_status==0 && order.gq==0">
 												<p class="hk-p1" style="border: 0;color: #808080;padding: 0;">总额 : {{order.total_fee}}</p>
 												<p class="hk-p1" style="color: #4c4c4c;border: none;padding: 0;">应付 : {{order.order_amount}}</p>
-												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><span>{{order.pay_name}}</span></p>
-											</div> 
-											<div class="n3-hk"  ng-if="order.isShowYf==0" style="margin-top: 16px;"> 
+												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><a style="cursor:pointer;">{{order.pay_name}}</a></p>
+											</div>
+											<div class="n3-hk" ng-if="!(order.pay_status==0 && order.gq==0)" style="margin-top: 16px;">
 												<p class="hk-p1" style="border: 0;color: #808080;padding: 8px 0;" style="padding-top: 10px;">总额 : {{order.total_fee}}</p>
-												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><span>{{order.pay_name}}</span></p> 
+												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><a style="cursor:pointer;">{{order.pay_name}}</a></p>
 											</div>
 										</div>
-										<!--!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))-->
 										<div class="nero n-4 c">
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status==1">
-												<p class="small_fh"><span class="red">{{order.status}}</span></p>
-												<div class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">   
-													<em></em>跟踪<i style="display: none;"></i>
+											<div class="n4-dsh" style="margin-top: 14px;" ng-if="!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))">
+												<p><span class="red">{{order.status}}</span></p>
+												<div class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">
+													<em></em>跟踪<i></i>
 												</div>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
-											</div>  
-											<!--待发货--> 
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0 && order.gq==0) ||  (order.order_status==1 && order.pay_status==0 && order.gq==0)"> 
+											</div>
+											
+											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==0)">
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
 											</div>
-											<!--已过期-->
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==1) ||  (order.order_status==1 && order.pay_status==0 && order.gq==1)"> 
-												<p style="padding-top: 16px;"><span class="red">已过期</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
-												</p>
-											</div>
-											<!--<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==0)">
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
-												</p>
-											</div>-->
 											
 											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)">
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
@@ -220,26 +197,11 @@
 												</p>
 											</div>
 											
-											<!--已完成-->
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status == 2"> 
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
-												</p>
-											</div>
-											
 										</div>
 										<div class="nero n-5 c">
-											
-											<!--未发货--> 
-											<div class="n5-opon" ng-if="(order.order_status==1 || order.shipping_status==5) && order.pay_status==2 && order.is_glassMachining==0">   
-												<span class="add_wfh" style="display: inline-block;margin-top: 15px;" ng-if="order_status == 0">未确认</span>
-												<span class="add_wfh" style="display: inline-block;margin-top: 15px;" ng-if="order_status != 0">已确认</span>
-											</div>
-											<div class="n5-opon" ng-if="(order.order_status==1 || order.shipping_status==5) && order.pay_status==2 && order.is_glassMachining>0">  
-												<span class="add_wfh" style="display: inline-block;margin-top: 0;" ng-if="order_status == 0">未确认</span> 
-												<span class="add_wfh" style="display: inline-block;margin-top: 0;" ng-if="order_status != 0">已确认</span> 
-												<a class="ako1"  ng-click="ljJG(order.order_parent)" style="margin-top: 5px;">来镜加工</a>
+											<!--未发货-->
+											<div class="n5-opon" ng-if="order.order_status==1 && order.pay_status==2">
+												<a class="ako1"  ng-click="sqSh()" style="margin-top: 32px;">来镜加工</a>
 											</div>
 											<!--已发货-->
 											<div class="n5-opon" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status==1">
@@ -247,11 +209,11 @@
 											</div>
 											<!--已完成-->
 											<div class="n5-opon a_wc" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status==2">
-												<a class="ako4" style="margin-top: 35px;cursor:pointer;margin-bottom: 65px;" ng-click="buyAgain(order.order_id)">再次购买</a>
+												<a class="ako4" style="margin-top: 35px;cursor:pointer;margin-bottom: 65px;" ng-click="buyAgain(goods.goods_id)">再次购买</a>
 											</div>
 											<!--订单失效-->
 											<div class="n5-opon" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)">
-												<a class="ako4" ng-click="buyAgain(order.order_id)" style="margin-top: 32px;">再次购买</a>
+												<a class="ako4" ng-click="delOrder(order.order_id)" style="margin-top: 32px;">删除订单</a>
 											</div>
 											<!--待付款-->
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==0)||(order.order_status==0 && order.pay_status==0 && order.gq==0)">
@@ -259,26 +221,22 @@
 												<a class="ako3" style="height: 25px;line-height: 25px;cursor: pointer;" ng-click="goOverPage(order.order_id)">付款</a>
 												<a style="cursor:pointer;" class="ako2" ng-click="cancelDd(order.order_id)">取消订单</a>
 											</div>
-											<!--已过期-->
-											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==1)||(order.order_status==0 && order.pay_status==0 && order.gq==1)">
-												<a class="ako4" ng-click="buyAgain(order.order_id)" style="margin-top: 32px;">立即购买</a> 
-											</div>
 										</div>
 										<div class="clear"></div>
-									</div> 		
+									</div>
 								</div>
-								<p ng-if="AllOrder.count==0" style="font-size: 20px;text-align: center;padding: 200px 0;">暂时没有订单哦~</p>
+								<p ng-if="AllOrder.list.length==0" style="font-size: 20px;text-align: center;padding: 200px 0;">暂时没有订单哦~</p>
 							</div>
 							
 						</div>
     					
     					
-    					<div class="pages" ng-if="AllOrder.count!=0" ng-init="AllOrder.count==0">
+    					<div class="pages" ng-if="AllOrder.list.length!=0" ng-init="AllOrder.count==0">
 			                <div id="Pagination"></div>
 			                <div class="searchPage">
 			                    <span class="page-sum">共<strong class="allPage">{{AllOrder.pages}}</strong>页</span>
-			                    <span class="page-go">到第<input type="text" value="1">页</span>
-			                    <a href="javascript:;" class="page-btn">确定</a> 
+			                    <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
+			                    <!--<a href="javascript:;" class="page-btn">确定</a>-->
 			                </div>
 			            </div>
     					
@@ -295,7 +253,7 @@
 										<div class="sgye sgye3 sssss" style="position: relative;">全部订单</div>
 									</div>
 								</div>
-								<div class="syd s-2" style="width: 314px;">订单详情</div> 
+								<div class="syd s-2" style="width: 300px;">订单详情</div>
 								<div class="syd s-3">收货人</div>
 								<div class="syd s-4">积分</div>
 								<div class="syd s-5">订单状态</div>
@@ -308,7 +266,7 @@
 										<span class="nony-sp2">订单号：{{intera.order_sn}}</span>
 									</div>
 									<div class="neiro">
-										<div class="nero n-1" style="width: 450px;">  
+										<div class="nero n-1" style="width: 440px;">
 											<div class="noot-sp">
 												<div class="le-dd" style="position: relative;">
 													<div class="imsldd">
@@ -324,8 +282,8 @@
 											</div>
 										</div>
 										<div class="nero n-2 c">
-											<div class="dd-name need_tk"><em></em><span class="user_name" ng-attr-title="{{intera.consignee}}">{{intera.consignee}}</span>
-												<div class="need_tkk" style="left: -265px;height: 80px;min-height: 80px;top: -35px;">
+											<div class="dd-name need_tk"><em></em>{{intera.consignee}}
+												<div class="need_tkk" style="left: -255px;height: 80px;min-height: 80px;top: -35px;">
 													<p class="need_tkk_p1" style="font-size: 14px;">{{intera.consignee}}</p>
 													<p class="need_tkk_p2" style="font-size: 13px;">{{intera.region}}{{intera.address}}</p>
 													<p class="need_tkk_p2" style="font-size: 13px;">{{intera.mobile}}</p>
@@ -342,9 +300,9 @@
 												<p style="padding-top: 28px;"><span class="red">{{intera.status}}</span></p>
 											</div>
 										</div>
-										<div class="nero n-5 c" style="border-right: none;width: 133px;">
+										<div class="nero n-5 c" style="border-right: none;width: 143px;">
 											<div class="n4-dsh" style="margin-top: 14px;">
-												<a class="ako4"  style="margin-top: 20px;cursor:pointer;display: inline-block;width: 80px;height: 30px;line-height: 30px;border: 1px solid #e6e6e6;background-color: #f7f7f7;" ng-click="dhAgain()">再次兑换</a>
+												<a class="ako4"  style="margin-top: 22px;cursor:pointer;display: inline-block;width: 80px;height: 30px;line-height: 30px;border: 1px solid #e6e6e6;background-color: #f7f7f7;" ng-click="dhAgain()">再次兑换</a>
 											</div>
 										</div>
 										<div class="clear"></div>
@@ -360,9 +318,9 @@
 			                <div id="Pagination"></div>
 			                <div class="searchPage">
 			                    <span class="page-sum">共<strong class="allPage">{{InOrd.pages}}</strong>页</span>
-			                    <span class="page-go">到第<input type="text" value="1">页</span>
-			                    <a href="javascript:;" class="page-btn" id="search">确定</a>
-			                </div> 
+			                    <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
+			                    <!--<a href="javascript:;" class="page-btn">确定</a>-->
+			                </div>
 			            </div>
     					
     					
@@ -372,15 +330,15 @@
 			<div class="picScroll-left">
 				<div class="hd">
 					<span>猜你喜欢</span>
-					<!--<ul></ul>-->
+					<ul></ul>
 				</div>
 				<div class="bd" style="position: relative;left: 40px;">
 					<ul class="picList">
-						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" style="cursor: pointer;width: 157px;" ng-click="gessGoods(like.goods_id)">
+						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" style="cursor: pointer;" ng-click="gessGoods(like.goods_id)">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
 								<p>{{like.goods_name}}</p>
-								<b>{{like.shop_price}}</b>
+								<b>{{like.market_price}}</b>
 							</div>
 						</li>
 					</ul>
@@ -402,5 +360,4 @@
 		var ptext1 = $(this).text();
 		$('.yxl .sgye4').text(ptext1);
 	})
-	
 </script>

@@ -47,7 +47,7 @@
 		<div class="panel-right">
 			<div class="control-wrp">
 				<div class="cont-hd cle">
-    				<div class="cbt-left"> 
+    				<div class="cbt-left">
     					<span><a href="#/person-mana-addr" class="cbt-wz">配送地址</a></span>
     					<span><a href="#/person-addr-apply" class="cbt-wz on">地区申请</a></span>
     				</div>
@@ -70,14 +70,14 @@
     							</td>
     							<td ng-if="no_city!=0">
     								<div class="app-neir">
-    									<div class="dux cle"><!-- ng-init="checkall=false"    ng-checked="checkall" --> 
-    										<span ng-repeat="city in cityData.no_user_citys" ng-click="changeId(city.region_id)" ><input class="need_check" type="radio" id="{{city.region_id}}" name="sss" /><label for="{{city.region_id}}">{{city.region_name}}</label></span>
+    									<div class="dux cle" ng-init="checkall=false" >
+    										<span  ng-repeat="city in cityData.no_user_citys"><input class="need_check" type="checkbox" ng-checked="checkall" ng-model="city.checked" id="{{city.region_id}}" /><label for="{{city.region_id}}">{{city.region_name}}</label></span>
     										<div class="clear"></div>
     									</div>
-    									<!--<div class="dux-btn cle">
+    									<div class="dux-btn cle">
     										<input class="btn" type="button" value="全选" ng-click="addressCheckall()"  />
     										<input class="btn btn1" type="button" value="重置"  ng-click="addressReset()"/>
-    									</div>-->
+    									</div>
     								</div>
     							</td>
     						</tr>
@@ -139,7 +139,7 @@
     							<td>
     								<div class="dux-btn cle">
 										<input class="btn" type="button" value="提交" ng-click="onSubmit()" />
-										<!--<input class="btn btn1" type="button" value="重置" ng-click="onReset()" style="margin-left: 12px;"/>-->
+										<input class="btn btn1" type="button" value="重置" ng-click="onReset()" style="margin-left: 12px;"/>
 									</div>
     							</td>
     						</tr>

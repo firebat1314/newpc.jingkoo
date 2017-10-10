@@ -54,8 +54,8 @@
     			</div>
     			<div class="cont-bd">
     				<div class="contacts-wrap czhi">
-    					<div class="location mb20">  
-							<div class="addc"><a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn">添加新地址</a></div>
+    					<div class="location mb20">
+							<div class="addc"><a style="cursor:pointer;" class="ad-btn js_adbtn">添加新地址</a><span>您已创建{{haveSetAddr}}个收货地址，最多可创建20个</span></div>
 							<div class="add-nr js_adbr">
 								<table class="addn-t">
 									<tr>
@@ -72,15 +72,15 @@
 											<div class="an-right">
 												<div class="anr-selt">
 													<select class="selt"  ng-model="addParamsData.province" ng-change="provinceChange()">
-														<option ng-selected="1" value="">请选择</option>
+														<option value="">请选择</option>
 														<option ng-repeat="item in provinceList" value="{{item.region_id}}">{{item.region_name}}</option>
 													</select>
 													<select class="selt" ng-disable="cityList" ng-model="addParamsData.city" ng-change="cityChange()">
-														<option ng-selected="1" value="">请选择</option>
+														<option value="">请选择</option>
 														<option ng-repeat="item in cityList" value="{{item.region_id}}">{{item.region_name}}</option>
 													</select>
 													<select class="selt" ng-disable="districtList" ng-model="addParamsData.district">
-														<option ng-selected="1" value="">请选择</option>
+														<option value="">请选择</option>
 														<option ng-repeat="item in districtList" value="{{item.region_id}}">{{item.region_name}}</option>
 													</select>
 												</div>												
@@ -107,7 +107,7 @@
 										<td width="170" valign="top" ><div class="an-left"><em></em> 固定电话：</div></td>
 										<td>
 											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入您的固定电话" ng-model="addParamsData.tel"/>
+												<input class="text" type="text" placeholder="请输入您的固定电话" />
 												<div class="mren mb10">
 													<span class="uq"><input type="checkbox" id="uep" value="" ng-model="addParamsData.default"/><label for="uep"></label></span>设置为默认收获地址
 												</div>
@@ -138,15 +138,15 @@
 												<div class="an-rightc">
 													<div class="anr-seltc">
 														<select class="seltc" ng-model="addParamsDataA.province" ng-change="provinceChangeA(addParamsDataA.province)">
-															<option ng-selected="1" value="">请选择</option>
+													
 															<option ng-repeat="itemA in getThisAddress.province_list" ng-selected="itemA.selected" value="{{itemA.region_id}}">{{itemA.region_name}}</option>
 														</select>
 														<select class="seltc" ng-disable="cityListA" ng-model="addParamsDataA.city" ng-change="cityChangeA(addParamsDataA.city)">
-															<option ng-selected="1" value="">请选择</option>
+															
 															<option ng-repeat="itemB in getThisAddress.city_list" ng-selected="itemB.selected" value="{{itemB.region_id}}">{{itemB.region_name}}</option>
 														</select>
 														<select class="seltc" ng-disable="districtListA" ng-model="addParamsDataA.district">
-															<option ng-selected="1" value="">请选择</option>
+															
 															<option ng-repeat="itemC in getThisAddress.district_list" ng-selected="itemC.selected" value="{{itemC.region_id}}">{{itemC.region_name}}</option>
 														</select>                                               
 													</div>												
@@ -173,7 +173,7 @@
 											<td width="170" valign="top" ><div class="an-leftc"><em></em> 固定电话：</div></td>
 											<td>
 												<div class="an-rightc">
-													<input class="textc" type="text"  ng-model="addParamsDataA.tel"/>
+													<input class="textc" type="text"/>
 													<div class="mrenc mb10">
 														<span class="uqc"><input type="checkbox" id="uepc" ng-checked="addParamsDataA.default" ng-model="addParamsDataA.default" ng-disabled="addParamsDataA.default"/><label for="uepc"></label></span>设为默认收获地址
 													</div>
@@ -191,7 +191,7 @@
     					<div class="add-list" ng-repeat="addr in manaAddress.data" ng-class="{'selected':addr.selected}">
     						<div class="item cle" ng-class="{'setdefault':addr.selected}">
     							<div class="only">
-    								<div class="veel icl-1" style="overflow-wrap: break-word;" ng-attr-title="{{addr.consignee}}">{{addr.consignee}}</div>
+    								<div class="veel icl-1" style="overflow-wrap: break-word;">{{addr.consignee}}</div>
     								<div class="veel icl-2">{{addr.address}}</div>
     								<div class="veel icl-3">{{addr.mobile}}</div>
     								<div class="veel icl-4" ng-if="!addr.selected">

@@ -68,8 +68,14 @@
     								<td width="350"><div class="yz-r">当前手机号：</div></td>
     								<td >{{phoneNumber}}</td>
     							</tr>
+								<tr>
+									<td width="350"><div class="yz-r">验证码：</div></td>
+									<td>
+										<div style="height:34px;" class="GeetestCaptchaView1"></div>
+									</td>
+								</tr>
     							<tr>
-    								<td width="350"><div class="yz-r">验证码：</div></td>
+    								<td width="350"><div class="yz-r">短信验证码：</div></td>
     								<td>
     									<input class="text" type="text" ng-model="mobileCode" placeholder="请输入验证码信息" />
     									<input class="butn2" type="button" ng-click="getVerify()" ng-disabled="getVer" ng-value="str"/>

@@ -59,37 +59,33 @@
     				</div>
     			</div>
     			<div class="cont-bd">
-    				<div class="contacts-wrap integral" style="overflow: hidden;">
-    					<table class="integral-tab">
+    				<div class="contacts-wrap integral zj-mana" style="overflow: hidden;">
+    					<table class="integral-tab zj-manatab">
     						<tr>
-    							<th width="124">操作时间</th>
-    							<th width="80">类型</th>
-    							<th width="110">金额</th>
-    							<th width="110">赠送积分</th>
-    							<th width="240">备注</th>
-    							<th width="80">状态</th>
+    							<th width="130">操作时间</th>
+    							<th width="100">类型</th>
+    							<th width="100">金额</th>
+    							<th width="100">赠送金额</th>
+    							<th width="200">备注</th>
+    							<th width="130">状态</th>
     							<th width="">操作</th>
     						</tr>
-    						<tr ng-repeat="zj in zjList.list" ng-if="zjLen!=0">
-    							<td>{{zj.add_time}}</td>
-    							<td>{{zj.type}}</td>
-    							<td>¥{{zj.amount}}</td>
-    							<td>{{zj.numerical}}</td>
-    							<td>{{zj.short_user_note}}</td>
-    							<td>{{zj.pay_status}}</td>
-    							<td><a style="cursor:pointer;" class="czuof" ng-if="zj.handle" ng-click="goPay(zj.id)"><em></em>付款</a></td>
+    						<tr ng-repeat="zj in zjList.recharge_list.list" ng-if="zjLenA!=0">
+    							<td>{{zj.created}}</td>
+    							<td>{{zj.object}}</td>
+    							<td>{{zj.amount}}</td>
+    							<td>{{zj.balance_bonus}}</td>
+    							<td>{{zj.description}}</td>
+    							<td><span ng-if="zj.succeeded==1" >已付款</span><span ng-if="zj.succeeded==0" >未付款</span></td>
+    							<td><a style="cursor:pointer;" ng-if="zj.succeeded==0" class="czuof" ng-click="goPay(zj.id)"><em></em>付款</a></td>
     						</tr>
-    						<tr ng-if="zjLen==0">
+    						<tr ng-if="zjLenA==0">
     							<td colspan="7"><p style="font-size: 20px;text-align: center;padding: 200px 0;">暂时没有资金明细信息~</p></td>
     						</tr>
     					</table>
-    					 <div class="pages" ng-if="zjLen!=0">
-			                <div id="Pagination"></div>
-			                <div class="searchPage">
-			                    <span class="page-sum">共<strong class="allPage">{{zjList.pages}}</strong>页</span>
-			                    <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
-			                    <!--<a href="javascript:;" class="page-btn">确定</a>-->
-			                </div>
+    					 <div class="newpages" ng-if="zjLen" style="width: 100%;text-align: center;height: 40px;line-height: 40px;margin-top: 20px;">
+			                <a style="cursor: pointer;display: inline-block;padding: 0 20px;height: 25px;line-height:25px;border: 1px solid #0070C9;border-radius: 3px;color: #0070C9;" class="newpages_sp1" ng-click="down_page()">上一页</a>
+			                <a style="cursor: pointer;display: inline-block;border: 1px solid #0070C9;border-radius: 3px;margin-left: 10px;padding: 0 20px;height: 25px;line-height:25px;color: #0070C9;" class="newpages_sp1" ng-click="up_page()">下一页</a>
 			            </div>
     				</div>
     			</div>

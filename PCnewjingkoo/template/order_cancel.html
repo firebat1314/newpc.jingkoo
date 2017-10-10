@@ -60,7 +60,7 @@
 						<td class="c-598eca">{{qxOr.goods_name}}</td>
 						<td>¥{{qxOr.goods_price}}</td>
 						<td>{{qxOr.goods_number}}</td>
-						<td><a style="cursor:pointer;" class="jgc" ng-click="joinBuyCar(qxOr.goods_id)">加入购物车</a></td>
+						<td><a style="cursor:pointer;" class="jgc" ng-click="joinBuyCar(orderid)">加入购物车</a></td>
 					</tr>
 				</table>
 			</div>
@@ -87,12 +87,12 @@
 					</tr>
 					<tr>
 						<td width="150">取消时间</td>
-						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
+						<td><span class="c-808080">{{orderDetailQx.order.best_time}}</span></td>
 					</tr>
-					<tr>
+					<!--<tr>
 						<td width="150">取消原因</td>
 						<td><span class="c-808080">{{orderDetailQx.order.}}</span></td>
-					</tr>
+					</tr>-->
 				</table>
 			</div>
 			
@@ -146,7 +146,7 @@
 						<th colspan="2">订单备注</th>
 					</tr>
 					<tr>
-						<td width="150" colspan="2">{{orderDetailQx.order.}}</td>
+						<td width="150" colspan="2">{{orderDetailQx.order.postscript}}</td>
 					</tr>
 				</table>
 			</div>
@@ -160,7 +160,7 @@
 						<td width="150" >商品金额</td>
 						<td>
 							<span class="c-808080">
-								商品总价：{{orderDetailQx.order.formated_goods_amount}}元  + 配送费用：{{orderDetailQx.order.formated_shipping_fee}}元 - 使用余额：{{orderDetailQx.order.formated_pay_fee}}元 - 优惠券：{{orderDetailQx.order.formated_surplus}}元 = 订单总金额：
+								商品总价：{{orderDetailQx.order.formated_goods_amount}}元  + 配送费用：{{orderDetailQx.order.formated_shipping_fee}}元 - 使用余额：{{orderDetailQx.order.surplus}}元 - 优惠券：{{orderDetailQx.order.bonus}}元 = 订单总金额：
 								<span class="c-ff3333">{{orderDetailQx.order.formated_order_amount}}</span>元
 							</span>
 						</td>

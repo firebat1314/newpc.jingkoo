@@ -27,14 +27,14 @@ a, body, br, dd, dl, dt, form, h1, h2, h3, h4, h5, h6, hr, img, li, p, table, td
 } 
 .icon-font, a, body { 
   -webkit-font-smoothing: antialiased;
-} 
+}
 body{font-size:75%}
 input,select,textarea{vertical-align:middle;color:#666;-webkit-appearance: listbox;}  
 button,input{*overflow:visible;line-height:normal}
 ::-webkit-input-placeholder{color:#808080}
 :-moz-placeholder{color:#808080}
 ::-moz-placeholder{color:#808080}
-:-ms-input-placeholder{color:#808080} 
+:-ms-input-placeholder{color:#808080}
 button{cursor:pointer}
 button::-moz-focus-inner,input::-moz-focus-inner{padding:0;border:0}
 table{border-collapse:collapse;border-spacing:0}

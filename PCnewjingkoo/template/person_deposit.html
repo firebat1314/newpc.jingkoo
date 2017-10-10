@@ -59,6 +59,15 @@
     				<div class="contacts-wrap">
     					<div class="tabg">
 							<div class="tag-neri cle">
+								<div class="tgne-left">收款人姓名：</div>
+								<div class="tgne-right">
+									<div class="nose">
+										<input class="nose-txt" type="text" ng-model="name" placeholder="请填写收款人姓名"  />
+									</div>
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="tag-neri cle">
 								<div class="tgne-left">提现金额：</div>
 								<div class="tgne-right">
 									<div class="nose">
@@ -67,20 +76,14 @@
 								</div>
 								<div class="clear"></div>
 							</div>
-							<div class="tag-neri cle">
-								<div class="tgne-left">提现银行：</div>
-								<div class="tgne-right">
-									<div class="nose">
-										<input class="nose-txt" type="text" ng-model="bank" placeholder="请填写提现银行"  />
-									</div>
-								</div>
-								<div class="clear"></div>
-							</div>
-							<div class="tag-neri cle">
-								<div class="tgne-left">银行账户名：</div>
-								<div class="tgne-right">
-									<div class="nose">
-										<input class="nose-txt" type="text" ng-model="account_holder" placeholder="请填写银行账户名"  />
+							<div class="tag-neri cle"> 
+								<div class="tgne-left">提现银行：</div> 
+								<div class="tgne-right"> 
+									<div class="nose"> 
+										<select ng-model='open_bank' ng-change="changeBank(open_bank)" style="-webkit-appearance: none;width: 330px;height: 35px;outline: none;padding: 0 15px;color: #666;font-size: 13px;border: 1px solid #d9d9d9;">
+											<option value="">请选择</option>
+											<option ng-repeat="bank in bankAll.recharge_list" value="{{bank.code}}">{{bank.name}}</option> 
+										</select>  
 									</div>
 								</div>
 								<div class="clear"></div>
@@ -89,7 +92,7 @@
 								<div class="tgne-left">银行卡号：</div>
 								<div class="tgne-right">
 									<div class="nose">
-										<input class="nose-txt" type="text" ng-model="bank_number" placeholder="请填写银行卡号"  />
+										<input class="nose-txt" type="text" ng-model="brank_code" placeholder="请填写银行卡号"  />
 									</div>
 								</div>
 								<div class="clear"></div>
@@ -98,7 +101,7 @@
 								<div class="tgne-left">温馨提示：</div>
 								<div class="tgne-right">
 									<div class="nose">
-										您的可用余额为￥{{yEMoney}}
+										您的可提现余额为￥{{yEMoney}}
 									</div>
 								</div>
 								<div class="clear"></div>

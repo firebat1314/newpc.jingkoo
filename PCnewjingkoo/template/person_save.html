@@ -48,7 +48,7 @@
 			<div class="control-wrp">
 				<div class="cont-hd cle">
     				<div class="cbt-left">
-    					<span><a style="cursor:pointer;" class="cbt-wz on">安全中心</a></span>
+    					<span><a style="pointer-events: none;" class="cbt-wz on">安全中心</a></span>
     				</div>
     			</div>
     			<div class="cont-bd">
@@ -91,7 +91,7 @@
     								<div class="dgo" style="color:#2894FF;">高</div>
     								<div class="jdut">
     									<div class="jd"><span style="width: 100%;background: linear-gradient(to left, #2894FF, #2894FF) !important;"></span></div>
-    									<div class="hzi">建议开启所有安全设置，已保证账号和资金安全。</div>
+    									<div class="hzi" ng-if="saveCd == 1 || saveCd == 2">建议开启所有安全设置，已保证账号和资金安全。</div>
     								</div>
     							</div>
     							<div class="clear"></div>
@@ -117,7 +117,7 @@
 										<p>验证后，可用于快速找回登录密码，接收账户余额变动提醒。</p>
 									</div>
 								</td>
-								<td width="100" ><a href="#/save-emailone" class="lxg"><em></em>{{haveYx?'立即验证':'立即绑定'}}</a></td>
+								<td width="100" ><a href="#/save-emailone" class="lxg"><em></em>{{haveYx?'更换邮箱':'立即绑定'}}</a></td>
 							</tr>
 							<tr>
 								<td width="65" ><div class="icon cre-6"></div></td>
@@ -128,6 +128,16 @@
 									</div>
 								</td>
 								<td width="100" ><a href="#/save-telone" class="lxg"><em></em>{{mobileP?'修改手机':'绑定手机'}}</a></td>
+							</tr>
+							<tr>
+								<td width="65" ><div class="icon cre-7"></div></td>
+								<td>
+									<div class="txt">
+										<h3>支付密码</h3>
+										<p>建议您定期更换新的支付密码，提高安全性。</p>
+									</div>
+								</td>
+								<td width="100" ><a href="#/save-payPass" class="lxg"><em></em>{{payPass?'修改密码':'立即设置'}}</a></td>
 							</tr>
 						</table>
 					

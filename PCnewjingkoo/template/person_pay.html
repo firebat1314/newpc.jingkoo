@@ -81,33 +81,16 @@
 							<div class="fsvee">支付方式</div>
 							<div class="llbuje cle">
 								<div class="Bank_card cak">
-									<span class="up"><input type="radio" name="fle" value="{{PayListZx.pay_id}}" ng-model="payment_id" class="zffs_input" id="zxzf"/></span>
-									<label for="zxzf"><img src="img/1.jpg" /></label>
-									<em class="onsj"></em>
-									<div class="tshik">
-										<em class="wenh"></em>
-										<div class="yincy">
-											<div class="wrpp">
-												<em></em>
-												<p>{{PayListZx.pay_desc}}</p>
-												<p>手续费：{{PayListZx.pay_fee}}元</p>
-											</div>
-										</div>
-									</div>
+									<span class="up"><input type="radio" name="fle" value="alipay_pc_direct" ng-model="payment_id" class="zffs_input" id="zxzf"/></span>
+									<label for="zxzf"><img src="img/j-01.jpg" /></label>
 								</div>
 								<div class="Bank_card ">
-									<span class="up"><input type="radio" name="fle" value="{{PayList.pay_id}}" ng-model="payment_id" class="zffs_input" id="yhzf"/></span>
-									<label for="yhzf"><img src="img/2.jpg" /></label>
-									<em class="onsj"></em>
-									<div class="tshik">
-										<em class="wenh"></em>
-										<div class="yincy" style="width:450px;margin-left:-216px;">
-											<div class="wrpp">
-												<em></em>
-												<p ng-bind-html="PayList.pay_desc"></p>
-											</div>
-										</div>
-									</div>
+									<span class="up"><input type="radio" name="fle" value="wx_pub_qr" ng-model="payment_id" class="zffs_input" id="yhzf"/></span>
+									<label for="yhzf"><img src="img/j-02.jpg" /></label>
+								</div>
+								<div class="Bank_card ">
+									<span class="up"><input type="radio" name="fle" value="upacp_pc" ng-model="payment_id" class="zffs_input" id="yhzf1"/></span>
+									<label for="yhzf1"><img src="img/j-03.jpg" /></label>
 								</div>
 							</div>
 							<div class="fs-anniu">

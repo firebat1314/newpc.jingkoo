@@ -1,3 +1,7 @@
+<style type="text/css">
+	input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
+	-webkit-appearance: none !important;-moz-appearance: none !important;-ms-appearance: none !important;}
+</style>
 <div class="route mb20">
 	<div class="gird">
 		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
@@ -50,7 +54,7 @@
     				<div class="cbt-left">
     					<span><a href="#/person-qy-lxrmsg" class="cbt-wz">联系人信息</a></span>
     					<span><a href="#/person-qy-msg" class="cbt-wz on">企业资料</a></span>
-    					<span><a href="#/user-logo-center" class="cbt-wz">logo设置</a></span>
+    					<span><a href="#/user-logo-center" class="cbt-wz">头像设置</a></span>
     					
     				</div>
     			</div>
@@ -68,10 +72,10 @@
     									</div>
     								</div>
     								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="company"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.company" placeholder="请填写企业名称"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyName($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyName($event,getQyMsg.user_info.company)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -102,7 +106,7 @@
 										</div>
 										<div class="anniu">
 											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJyszd($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -117,10 +121,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="address"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.address" placeholder="请填写经营地址"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJydz($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJydz($event,getQyMsg.user_info.address)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -135,10 +139,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="zctel"/></div>
+										<div class="shur"><input class="stxt" type="text" style="line-height: 16px;" ng-model="getQyMsg.company_info.zctel" placeholder="请填写注册电话"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyTel($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyTel($event,getQyMsg.company_info.zctel)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -153,10 +157,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="xk"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.xk" placeholder="请填写银行开户许可证号"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYh($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYh($event,getQyMsg.company_info.xk)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -171,10 +175,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="yyzzsn"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.yyzzsn" placeholder="请填写营业执照编号"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYyzzsn($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYyzzsn($event,getQyMsg.company_info.yyzzsn)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -205,10 +209,10 @@
     									</div>
     								</div>
     								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="fr"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.fr"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyFr($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyFr($event,getQyMsg.company_info.fr)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -223,10 +227,10 @@
     									</div>
     								</div>
     								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="code_sn"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.code_sn" placeholder="请填写身份证号"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyCodeSn($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyCodeSn($event,getQyMsg.company_info.code_sn)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -241,10 +245,10 @@
     									</div>
     								</div>
     								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="mobile"/></div>
+										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.mobile" placeholder="请填写手机号码"/></div>
 										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyMobile($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" />
+											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyMobile($event,getQyMsg.company_info.mobile)"/>
+											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
 										</div>
 									</div>
     							</td>
@@ -284,7 +288,7 @@
     											<img ng-src="{{getQyMsg.user_info.zhizhao}}" style="width: 400px;height: 400px;"/>
     										</div>
     									</div>
-    								</div>
+    								</div> 
     								
     							</td>
     						</tr>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN" ng-app="myApp">
+
 <head>
     <meta charset="UTF-8">
-    <title ng-bind="title"></title> 
+    <title ng-bind="title"></title>
     <link rel="Shortcut icon" type="image/x-icon" href="http://newpc.jingkoo.net/img/applogoNew.ico">
     <link rel="stylesheet" href="css/main.css">
-    <link href="css/elseSC.css" rel="stylesheet" type="text/css" media="screen and (max-width: 1200px)"> 
+    <link href="css/elseSC.css" rel="stylesheet" type="text/css" media="screen and (max-width: 1200px)">
     <link rel="stylesheet" href="js/lib/layer/skin/default/layer.css">
     <!--<link rel="stylesheet" href="js/lib/laydate/need/laydate.css">-->
     <link rel="stylesheet" href="js/lib/laydateNew/laydate/need/laydate.css">
@@ -28,73 +29,75 @@
     <script type="text/javascript" src="js/lib/jquery.circliful.js"></script>
     <script type="text/javascript" src="js/lib/qrcode.min.js"></script>
     <script type="text/javascript" src="js/lib/smohan.pop&share.js"></script>
-    <script type='text/javascript' src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId=b441f710-80d9-11e7-8ddd-b18e4f0e2471&autoShow=false' async='async'></script>
 </head>
+
 <body ng-controller="ParentControl">
-<header ng-include="'template/header.html'" ng-if="change"></header>
+    <header ng-include="'template/header.html'" ng-if="change"></header>
     <div id="" ui-view>
     </div>
-<footer ng-include="'template/footer.html'" ng-if="change"></footer>
+    <footer ng-include="'template/footer.html'" ng-if="change"></footer>
 
-<script>
-    setTimeout(function () {
-        var links = document.getElementsByTagName('link');
-        var linksLength = links.length;
-        for (var i = 0; i < linksLength; i++) {
-            if ('icon' === links[i].rel) {
-                links[i].type = 'image/x-icon';
-                links[i].href = 'img/applogoNew.ico';
+    <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
             }
-        }
-        links = null;
-    }, 0);
+            links = null;
+        }, 0);
 
-    $(function(){
-        var MobileUA = (function() {
-            var ua = navigator.userAgent.toLowerCase();
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
 
-            var mua = {
-                IOS: /ipod|iphone|ipad/.test(ua), //iOS
-                IPHONE: /iphone/.test(ua), //iPhone
-                IPAD: /ipad/.test(ua), //iPad
-                ANDROID: /android/.test(ua), //Android Device
-                WINDOWS: /windows/.test(ua), //Windows Device
-                TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
-                MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
-                ANDROID_TABLET: false, //Android Tablet
-                WINDOWS_TABLET: false, //Windows Tablet
-                TABLET: false, //Tablet (iPad, Android, Windows)
-                SMART_PHONE: false //Smart Phone (iPhone, Android)
-            };
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
 
-            mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
-            mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
-            mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
-            mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
 
-            return mua;
-        }());
+                return mua;
+            }());
 
-        //SmartPhone
-        if (MobileUA.SMART_PHONE) {
-            // 移动端链接地址
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
 
-            document.location.href = 'http://newm.jingkoo.net';
-        }
-    });
-</script>
-<script type="text/javascript" src="js/lib/angular.min.js"></script>
-<!--<script type="text/javascript" src="js/ionic.bundle.min.js"></script>-->
-<script type="text/javascript" src="js/lib/angular-ui-router.js"></script>
-<script type="text/javascript" src="js/lib/lazy-image.min.js"></script>
-<script type="text/javascript" src="js/lib/angular-animate.js"></script>
-<script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
-<script type="text/javascript" src="js/lib/angular-cookies.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
-<script src="js/services.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="js/controller.js"></script>
-<script src="js/user-controllers.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="js/directive.js"></script>
-<script type="text/javascript" src="js/router.js"></script>
+                document.location.href = 'http://newm.jingkoo.net';
+            }
+        });
+
+    </script>
+    <script type="text/javascript" src="js/lib/angular.min.js"></script>
+    <!--<script type="text/javascript" src="js/ionic.bundle.min.js"></script>-->
+    <script type="text/javascript" src="js/lib/angular-ui-router.js"></script>
+    <script type="text/javascript" src="js/lib/lazy-image.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-animate.js"></script>
+    <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
+    <script type="text/javascript" src="js/lib/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script src="js/services.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/controller.js"></script>
+    <script src="js/user-controllers.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/directive.js"></script>
+    <script type="text/javascript" src="js/router.js"></script>
 </body>
+
 </html>

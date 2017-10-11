@@ -569,6 +569,6 @@ angular.module("myApp.router", ["ui.router"])
                 controller:"personProcessContent-control"
             })
 
-            // $locationProvider.html5Mode(true);
+            // $locationProvider.html5Mode(true);y
 
     })

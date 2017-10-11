@@ -247,7 +247,7 @@
 											</div>
 											<!--已完成-->
 											<div class="n5-opon a_wc" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status==2">
-												<a class="ako4" style="margin-top: 35px;cursor:pointer;margin-bottom: 65px;" ng-click="buyAgain(order.order_id)">再次购买</a>
+												<a class="ako4" style="margin-top: 32px;cursor:pointer;margin-bottom: 65px;" ng-click="buyAgain(order.order_id)">再次购买</a>
 											</div>
 											<!--订单失效-->
 											<div class="n5-opon" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)">
@@ -257,7 +257,7 @@
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==0)||(order.order_status==0 && order.pay_status==0 && order.gq==0)">
 												<p><em></em><span data-date="{{order.gq_time}}" down-time1></span></p>
 												<a class="ako3" style="height: 25px;line-height: 25px;cursor: pointer;" ng-click="goOverPage(order.order_id)">付款</a>
-												<a style="cursor:pointer;" class="ako2" ng-click="cancelDd(order.order_id)">取消订单</a>
+												<a style="cursor:pointer;" class="ako2" ng-click="cancelDd(order.order_id)">取消订单</a> 
 											</div>
 											<!--已过期-->
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==1)||(order.order_status==0 && order.pay_status==0 && order.gq==1)">

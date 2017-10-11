@@ -1273,7 +1273,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$rootScope.change = true;
 		$scope.goto();
 		//定时器
-		$scope.dateTime = 5;
+		$scope.dateTime = 5; 
 		$scope.interval = setInterval(function() {
 			if($scope.dateTime > 1) {
 				$scope.dateTime--;

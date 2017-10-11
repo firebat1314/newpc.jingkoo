@@ -4169,7 +4169,7 @@ $browser-default-font-size: 37.5px !default;
                     text-align: center;
                   }
                   .img-th{
-                    padding-left: 30px;
+                    padding-left: 20px;
                   }
                   .table-img{
                     width: 51px;
@@ -7091,9 +7091,9 @@ $browser-default-font-size: 37.5px !default;
   .coupon-bd li .wrp .roosv .txt .rop-3{color:#808080;font-size:14px;}
   .coupon-bd li .wrp .syu{float:left;width:125px;height:150px;padding-top:20px;background:#799fff;border-radius:5px;box-shadow:0 0 7px rgba(0,0,0,.1);}
   .coupon-bd li .wrp .syu .lequ{
-    display:block;margin:20px auto 0;width:90px;height:30px;line-height:31px;text-align:center;border-radius:31px;border:1px solid #fff;color:#fff;font-size:14px;
-    &:hover{
-      background:#fff;color:#396cec;   
+    display:block;margin:15px auto 0;width:90px;height:30px;line-height:31px;text-align:center;border-radius:31px;border:1px solid #fff;color:#fff;font-size:14px;
+    &:hover{  
+      background:#fff;color:#396cec;    
     }  
   } 
   .coupon-bd li .wrp .cmo-bg{position:absolute;top:0;left:346px;display:block;width:25px;height:170px;background:url(../img/cmo-bg.jpg) no-repeat center;}

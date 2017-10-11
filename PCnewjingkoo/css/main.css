@@ -3723,7 +3723,7 @@ span.a_arrow_r {
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-table table tbody tr th {
             text-align: center; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-table table tbody tr .img-th {
-            padding-left: 30px; }
+            padding-left: 20px; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-table table tbody tr .table-img {
             width: 51px;
             height: 51px;
@@ -7078,7 +7078,7 @@ span.a_arrow_r {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.1); }
 .youhuiquan-main .coupon-bd li .wrp .syu .lequ {
   display: block;
-  margin: 20px auto 0;
+  margin: 15px auto 0;
   width: 100px;
   height: 31px;
   line-height: 31px;

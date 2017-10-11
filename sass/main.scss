@@ -4026,7 +4026,7 @@ $browser-default-font-size: 37.5px !default;
                     text-align: center;
                   }
                   .img-th{
-                    padding-left: 30px;
+                    padding-left: 20px; 
                   }
                   .table-img{
                     width: 51px;
@@ -6974,13 +6974,13 @@ $browser-default-font-size: 37.5px !default;
   .coupon-bd li .wrp .roosv .txt .rop-1{margin-bottom:10px;color:#ff3333;font-size:35px;}
   .coupon-bd li .wrp .roosv .txt .rop-1 em{position:relative;top:-15px;margin-right:5px;display:inline-block;font-size:24px;}
   .coupon-bd li .wrp .roosv .txt .rop-1 span{display: inline-block;font-size:14px;color:#666;padding-left: 10px;color: #3f69a5;}
-  .coupon-bd li .wrp .roosv .txt .rop-2{color:#808080;font-size:14px;margin-bottom:17px;}
+  .coupon-bd li .wrp .roosv .txt .rop-2{color:#808080;font-size:14px;margin-bottom:17px;} 
   .coupon-bd li .wrp .roosv .txt .rop-3{color:#808080;font-size:14px;}
   .coupon-bd li .wrp .syu{float:left;width:134px;height:150px;padding-top:20px;background:#799fff;border-radius:5px;box-shadow:0 0 7px rgba(0,0,0,.1);}
   .coupon-bd li .wrp .syu .lequ{
-    display:block;margin:20px auto 0;width:100px;height:31px;line-height:31px;text-align:center;border-radius:31px;border:1px solid #fff;color:#fff;font-size:14px;
+    display:block;margin:15px auto 0;width:100px;height:31px;line-height:31px;text-align:center;border-radius:31px;border:1px solid #fff;color:#fff;font-size:14px;
     &:hover{
-      background:#fff;color:#396cec;
+      background:#fff;color:#396cec; 
     }
   }
   .coupon-bd li .wrp .cmo-bg{position:absolute;top:0;left:430px;display:block;width:25px;height:170px;background:url(../img/cmo-bg.jpg) no-repeat center;}

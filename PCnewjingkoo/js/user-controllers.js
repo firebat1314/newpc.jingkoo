@@ -2455,15 +2455,25 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		
 		//取消订单
 		$scope.cancelDd = function (order_id) {
-			$data.cancelOrder({order_id:order_id}).success(function (data) {
-				if (data.status==0) {
-					layer.msg(data.data,{icon:2,time:500})
-				} else{
-					layer.msg(data.data,{icon:1,time:500})
-					$scope.getOrderLength();
-					$scope.getAllOrderHs();
-				}
-			})		
+			layer.confirm('您确定要取消么？', {
+				btn: ['确定', '取消'] //按钮
+			}, function() {
+				$data.cancelOrder({
+					order_id:order_id
+				}).success(function(data) {
+					if(data.status) {
+						layer.msg('取消成功', {
+							icon: 1
+						});
+						$scope.getAllOrderHs($scope.tabType);
+						$scope.getOrderLength();
+					} else {
+						layer.msg('取消失败', {
+							icon: 2
+						});
+					}
+				})
+			});	
 		}
 		
 		//		获取不同的订单信息

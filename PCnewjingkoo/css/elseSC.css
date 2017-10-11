@@ -9095,15 +9095,15 @@ span.a_arrow_r {
     margin: 0; }
   .glass-machining-main .process_cont_u2 .u2 .u2_d1 span {
     display: block;
-    margin: 40px auto 20px;
-    width: 35px;
-    height: 35px;
+    margin: 20px auto 15px;
+    width: 60px;
+    height: 60px;
     background: url(../img/ljjw_ico2.png) center center no-repeat;
-    background-size: 100%;
+    background-size: 60px 60px !important;
     cursor: pointer; }
   .glass-machining-main .process_cont_u2 .u2 .u2_d1 p {
     text-align: center;
-    font-size: 16px;
+    font-size: 14px;
     color: #666666; }
   .glass-machining-main .process_cont_c .process_cont_tb1 {
     width: 100%;

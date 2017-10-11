@@ -9923,7 +9923,7 @@ span.a_arrow_r {
   display: none; }
 
 /*小箭头*/
-.pur_close_d .more_addr {
+.pur_close_d .more_addr, .pur_close_d .more_addrr {
   display: inline-block;
   font-size: 14px;
   color: #666666;
@@ -9932,7 +9932,7 @@ span.a_arrow_r {
   padding-top: 5px;
   margin-left: 20px; }
 
-.pur_close_d .more_addr:hover {
+.pur_close_d .more_addr:hover, .pur_close_d .more_addrr:hover {
   color: #0070c9; }
 
 .more_addr:after {
@@ -9946,7 +9946,29 @@ span.a_arrow_r {
   position: relative;
   top: 1px; }
 
+.more_addrr:after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: url(../img/cg_ico2.png) no-repeat;
+  background-position: 1px -13px;
+  margin-left: 10px;
+  position: relative;
+  top: 1px; }
+
 .more_addr.open_addr:after {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: url(../img/cg_ico2.png) no-repeat;
+  background-position: 1px -10px;
+  margin-left: 10px;
+  position: relative;
+  top: -1px; }
+
+.more_addrr.open_addr:after {
   content: "";
   display: inline-block;
   width: 10px;

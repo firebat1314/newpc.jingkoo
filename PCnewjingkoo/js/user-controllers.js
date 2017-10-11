@@ -1333,7 +1333,17 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				}
 			}).success(function(data) {
 				layer.close(cool);
-				$scope.manaAddress = data;
+				$scope.manaAddress = data;  
+				$scope.AddressOrder = data.data;
+//				var addrs = [];
+//				 for(var i in $scope.AddressOrder){
+//			        if($scope.AddressOrder[i].selected == 1){
+//			        	addrs.unshift($scope.AddressOrder[i])
+//			        }else{
+//			        	addrs.push($scope.AddressOrder[i]);
+//			        }
+//			    }
+//				 console.log(addrs); 
 				$scope.haveSetAddr = data.data.length;
 			}).error(function(data){
                 if(data.status == 0){
@@ -1452,7 +1462,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						icon: 2,
 						time: 500
 					})
-				} else {
+				} else { 
 					layer.msg(data.info, {
 						icon: 1,
 						time: 500

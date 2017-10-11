@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </div>
-            <span class="more_addr" ng-click="flag=!flag">{{flag?'收起地址':'更多地址'}}</span>
+            <span ng-class="{'more_addr':!flag,'more_addrr':flag}" ng-click="flag=!flag">{{flag?'收起地址':'更多地址'}}</span>
         </div>
         <!--支付方式-->
         <div class="pur_close_d" ng-show="isExchange==0">

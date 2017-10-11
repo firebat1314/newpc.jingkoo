@@ -1,6 +1,6 @@
 
 angular.module("myApp.router", ["ui.router"])
-    .config(function ($stateProvider, $urlRouterProvider) {
+    .config(function ($stateProvider, $urlRouterProvider,$locationProvider) {
         //重定向首页
 
         //location.href = 'http://newwww.jingkoo.net/';
@@ -19,7 +19,7 @@ angular.module("myApp.router", ["ui.router"])
             //品牌路由
             .state("fashion", {
                 title:'品牌',
-                url: '/fashion',
+                url: '/fashion', 
                 templateUrl: 'template/fashion.html',
                 controller: "fashion-control"
             })

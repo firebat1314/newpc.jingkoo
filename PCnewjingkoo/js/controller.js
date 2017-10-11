@@ -9290,7 +9290,7 @@ angular.module('myApp.controllers', ['ipCookie','ngSanitize'])
     .controller('glassMachining-control', ['$scope', '$rootScope','$http','$state','ipCookie','$stateParams','$sce',function ($scope, $rootScope,$http,$state,ipCookie,$stateParams,$sce) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		var cool = layer.load(0, {shade: [0.3,'#fff'] });
 
             $http({
                 method:"POST",
@@ -9301,8 +9301,14 @@ angular.module('myApp.controllers', ['ipCookie','ngSanitize'])
                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             })
             .success(function(data) {
+                layer.close(cool);
                 console.log(data);
                 $scope.data = $sce.trustAsHtml(data.data);
+            }).error(function(data){
+                if(data.status == 0){
+                    layer.close(cool);
+                    $state.go('login');
+                }
             })
         
         $scope.enterMessage = function(){

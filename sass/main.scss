@@ -283,30 +283,30 @@ $browser-default-font-size: 37.5px !default;
           display: block;
         }
         .iosAndAndroid-box{
-          width:140px;
-          @include border;
-          position: absolute;
-          top:40px;
-          left:-35px;
-          display: none;
-          z-index:9999;
-          .ios-box{
-            height:34px;
-            border-bottom: 1px solid #ccc;
-            background: url(../img/ios.png) no-repeat center 15px;
-            background-size: 100% 80%;
-            padding-top: 130px;
-            text-align: center;
-            p{
-              color:#333; 
+            display:none;
+            min-width:120px;
+            height:160px;
+            box-shadow:0 0 10px 0 rgba(155,155,155,.4);
+            z-index:9999;
+            background:#fff;
+            position:absolute; 
+            top: 40px;
+            left: 50%; 
+            margin-left: -70px;  
+            .ewm_img{ 
+              display:block;
+              width:120px;
+              height:120px; 
+              margin: 10px; 
+              margin-bottom:0;
+            }
+            .erweima_p{
+              display:block;
               width:100%;
+              font-size:14px;
+              color:#333333; 
+              text-align:center;
             }
-            &:last-child{
-              border-bottom: none;
-              background: url(../img/orange_wei.png) no-repeat center 15px;
-              background-size: 100% 80%;
-            }
-          }
         }
       }
       .person{

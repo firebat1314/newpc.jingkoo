@@ -394,16 +394,16 @@ span.a_arrow_r {
     padding-left: 0;
     float: right;
     padding-right: 50px; }
-    .header-top .header-top-content .header-top-content-right .qycg, .header-top .header-top-content .header-top-content-right .wShop, .header-top .header-top-content .header-top-content-right .dingDan, .header-top .header-top-content .header-top-content-right .xinXi, .header-top .header-top-content .header-top-content-right .phone-version, .header-top .header-top-content .header-top-content-right .person {
+    .header-top .header-top-content .header-top-content-right .qycg, .header-top .header-top-content .header-top-content-right .wShop, .header-top .header-top-content .header-top-content-right .dingDan, .header-top .header-top-content .header-top-content-right .xinXi, .header-top .header-top-content .header-top-content-right .person {
       height: 40px;
       background: url(../img/cg_.png) no-repeat left;
       padding-left: 25px;
       margin-right: 24px;
       float: left; }
-      .header-top .header-top-content .header-top-content-right .qycg p, .header-top .header-top-content .header-top-content-right .wShop p, .header-top .header-top-content .header-top-content-right .dingDan p, .header-top .header-top-content .header-top-content-right .xinXi p, .header-top .header-top-content .header-top-content-right .phone-version p, .header-top .header-top-content .header-top-content-right .person p {
+      .header-top .header-top-content .header-top-content-right .qycg p, .header-top .header-top-content .header-top-content-right .wShop p, .header-top .header-top-content .header-top-content-right .dingDan p, .header-top .header-top-content .header-top-content-right .xinXi p, .header-top .header-top-content .header-top-content-right .person p {
         line-height: 40px;
         color: #666; }
-        .header-top .header-top-content .header-top-content-right .qycg p:hover, .header-top .header-top-content .header-top-content-right .wShop p:hover, .header-top .header-top-content .header-top-content-right .dingDan p:hover, .header-top .header-top-content .header-top-content-right .xinXi p:hover, .header-top .header-top-content .header-top-content-right .phone-version p:hover, .header-top .header-top-content .header-top-content-right .person p:hover {
+        .header-top .header-top-content .header-top-content-right .qycg p:hover, .header-top .header-top-content .header-top-content-right .wShop p:hover, .header-top .header-top-content .header-top-content-right .dingDan p:hover, .header-top .header-top-content .header-top-content-right .xinXi p:hover, .header-top .header-top-content .header-top-content-right .person p:hover {
           color: #0070c9; }
     .header-top .header-top-content .header-top-content-right .wShop {
       background: url(../img/wshop.png) no-repeat left; }
@@ -411,36 +411,6 @@ span.a_arrow_r {
       background: url(../img/dingdan_.png) no-repeat left; }
     .header-top .header-top-content .header-top-content-right .xinXi {
       background: url(../img/xinxi_.png) no-repeat left; }
-    .header-top .header-top-content .header-top-content-right .phone-version {
-      background: url(../img/phone_.png) no-repeat left;
-      position: relative; }
-      .header-top .header-top-content .header-top-content-right .phone-version:hover .iosAndAndroid-box {
-        display: block; }
-      .header-top .header-top-content .header-top-content-right .phone-version .iosAndAndroid-box {
-        width: 140px;
-        background-color: #fff;
-        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 40px;
-        left: -35px;
-        display: none;
-        z-index: 9999; }
-        .header-top .header-top-content .header-top-content-right .phone-version .iosAndAndroid-box .ios-box {
-          height: 34px;
-          border-bottom: 1px solid #ccc;
-          background: url(../img/ios.png) no-repeat center 15px;
-          background-size: 100% 80%;
-          padding-top: 130px;
-          text-align: center; }
-          .header-top .header-top-content .header-top-content-right .phone-version .iosAndAndroid-box .ios-box p {
-            color: #333;
-            width: 100%; }
-          .header-top .header-top-content .header-top-content-right .phone-version .iosAndAndroid-box .ios-box:last-child {
-            border-bottom: none;
-            background: url(../img/orange_wei.png) no-repeat center 15px;
-            background-size: 100% 80%; }
     .header-top .header-top-content .header-top-content-right .person {
       background: url(../img/person_.png) no-repeat 3px;
       position: relative; }

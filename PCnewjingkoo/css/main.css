@@ -401,13 +401,13 @@ span.a_arrow_r {
     .header-top .header-top-content .header-top-content-right .weixin {
       position: relative;
       background: url(../img/header_wx.png) no-repeat left; }
-      .header-top .header-top-content .header-top-content-right .weixin p:hover {
+      .header-top .header-top-content .header-top-content-right .weixin p {
         color: #86bf4a; }
       .header-top .header-top-content .header-top-content-right .weixin .erweima_box {
         display: none;
         min-width: 120px;
         height: 160px;
-        box-shadow: 0 0 10px 0 rgba(155, 155, 155, 0.4);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         z-index: 9999;
         background: #fff;
         position: absolute;
@@ -431,13 +431,15 @@ span.a_arrow_r {
     .header-top .header-top-content .header-top-content-right .phone-version {
       background: url(../img/phone_.png) no-repeat left;
       position: relative; }
+      .header-top .header-top-content .header-top-content-right .phone-version p {
+        color: #3f69a5; }
       .header-top .header-top-content .header-top-content-right .phone-version:hover .iosAndAndroid-box {
         display: block; }
       .header-top .header-top-content .header-top-content-right .phone-version .iosAndAndroid-box {
         display: none;
         min-width: 120px;
         height: 160px;
-        box-shadow: 0 0 10px 0 rgba(155, 155, 155, 0.4);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         z-index: 9999;
         background: #fff;
         position: absolute;

@@ -188,27 +188,29 @@
 								</div>
 							</div>
     					</div>
-    					<div class="add-list" ng-repeat="addr in manaAddress.data" ng-class="{'selected':addr.selected}">
-    						<div class="item cle" ng-class="{'setdefault':addr.selected}">
-    							<div class="only">
-    								<div class="veel icl-1" style="overflow-wrap: break-word;" ng-attr-title="{{addr.consignee}}">{{addr.consignee}}</div>
-    								<div class="veel icl-2">{{addr.address}}</div>
-    								<div class="veel icl-3">{{addr.mobile}}</div>
-    								<div class="veel icl-4" ng-if="!addr.selected">
-    									<a style="cursor:pointer;" ng-click="setDefaultDz(addr.address_id,$event)">设为默认</a>
-    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
-    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
-    								</div>  
-    								<div class="veel icl-4" ng-if="addr.selected">
-    									<a style="cursor:pointer;">默认地址</a>
-    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
-    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
-    								</div>    								
-    							</div>
-    							<div class="clear"></div>
-    						</div>
-    						<!--删除地址-->
-    					</div>
+    					<div class="addr_boxes">
+	    					<div class="add-list" ng-repeat="addr in manaAddress.data" ng-class="{'selected':addr.selected}">
+	    						<div class="item cle" ng-class="{'setdefault':addr.selected}">
+	    							<div class="only">
+	    								<div class="veel icl-1" style="overflow-wrap: break-word;" ng-attr-title="{{addr.consignee}}">{{addr.consignee}}</div>
+	    								<div class="veel icl-2">{{addr.address}}</div>
+	    								<div class="veel icl-3">{{addr.mobile}}</div>
+	    								<div class="veel icl-4" ng-if="!addr.selected">
+	    									<a style="cursor:pointer;" ng-click="setDefaultDz(addr.address_id,$event)">设为默认</a>
+	    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
+	    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
+	    								</div>  
+	    								<div class="veel icl-4" ng-if="addr.selected"> 
+	    									<a style="cursor:pointer;">默认地址</a>
+	    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
+	    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
+	    								</div>     								
+	    							</div> 
+	    							<div class="clear"></div> 
+	    						</div>
+	    						<!--删除地址-->
+	    					</div>
+    					</div> 
     					
     				</div>
     			</div>

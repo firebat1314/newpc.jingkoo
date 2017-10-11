@@ -403,6 +403,8 @@ span.a_arrow_r {
       background: url(../img/header_wx.png) no-repeat left; }
       .header-top .header-top-content .header-top-content-right .weixin p {
         color: #86bf4a; }
+        .header-top .header-top-content .header-top-content-right .weixin p:hover {
+          color: #86bf4a; }
       .header-top .header-top-content .header-top-content-right .weixin .erweima_box {
         display: none;
         min-width: 120px;

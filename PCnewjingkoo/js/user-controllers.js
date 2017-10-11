@@ -2442,7 +2442,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						layer.msg('删除成功', {
 							icon: 1
 						});
-						$scope.getAllOrderHs();
+						$scope.getAllOrderHs($scope.tabType);
 					} else {
 						layer.msg('删除失败', {
 							icon: 2

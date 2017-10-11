@@ -381,16 +381,16 @@ span.a_arrow_r {
     padding-left: 0;
     float: right;
     padding-right: 15px; }
-    .header-top .header-top-content .header-top-content-right .qycg, .header-top .header-top-content .header-top-content-right .wShop, .header-top .header-top-content .header-top-content-right .dingDan, .header-top .header-top-content .header-top-content-right .xinXi, .header-top .header-top-content .header-top-content-right .phone-version, .header-top .header-top-content .header-top-content-right .person {
+    .header-top .header-top-content .header-top-content-right .qycg, .header-top .header-top-content .header-top-content-right .wShop, .header-top .header-top-content .header-top-content-right .dingDan, .header-top .header-top-content .header-top-content-right .xinXi, .header-top .header-top-content .header-top-content-right .weixin, .header-top .header-top-content .header-top-content-right .phone-version, .header-top .header-top-content .header-top-content-right .person {
       height: 40px;
       background: url(../img/cg_.png) no-repeat left;
       padding-left: 25px;
       margin-right: 24px;
       float: left; }
-      .header-top .header-top-content .header-top-content-right .qycg p, .header-top .header-top-content .header-top-content-right .wShop p, .header-top .header-top-content .header-top-content-right .dingDan p, .header-top .header-top-content .header-top-content-right .xinXi p, .header-top .header-top-content .header-top-content-right .phone-version p, .header-top .header-top-content .header-top-content-right .person p {
+      .header-top .header-top-content .header-top-content-right .qycg p, .header-top .header-top-content .header-top-content-right .wShop p, .header-top .header-top-content .header-top-content-right .dingDan p, .header-top .header-top-content .header-top-content-right .xinXi p, .header-top .header-top-content .header-top-content-right .weixin p, .header-top .header-top-content .header-top-content-right .phone-version p, .header-top .header-top-content .header-top-content-right .person p {
         line-height: 40px;
         color: #666; }
-        .header-top .header-top-content .header-top-content-right .qycg p:hover, .header-top .header-top-content .header-top-content-right .wShop p:hover, .header-top .header-top-content .header-top-content-right .dingDan p:hover, .header-top .header-top-content .header-top-content-right .xinXi p:hover, .header-top .header-top-content .header-top-content-right .phone-version p:hover, .header-top .header-top-content .header-top-content-right .person p:hover {
+        .header-top .header-top-content .header-top-content-right .qycg p:hover, .header-top .header-top-content .header-top-content-right .wShop p:hover, .header-top .header-top-content .header-top-content-right .dingDan p:hover, .header-top .header-top-content .header-top-content-right .xinXi p:hover, .header-top .header-top-content .header-top-content-right .weixin p:hover, .header-top .header-top-content .header-top-content-right .phone-version p:hover, .header-top .header-top-content .header-top-content-right .person p:hover {
           color: #0070c9; }
     .header-top .header-top-content .header-top-content-right .wShop {
       background: url(../img/wshop.png) no-repeat left; }
@@ -398,6 +398,36 @@ span.a_arrow_r {
       background: url(../img/dingdan_.png) no-repeat left; }
     .header-top .header-top-content .header-top-content-right .xinXi {
       background: url(../img/xinxi_.png) no-repeat left; }
+    .header-top .header-top-content .header-top-content-right .weixin {
+      position: relative;
+      background: url(../img/header_wx.png) no-repeat left; }
+      .header-top .header-top-content .header-top-content-right .weixin p:hover {
+        color: #86bf4a; }
+      .header-top .header-top-content .header-top-content-right .weixin .erweima_box {
+        display: none;
+        min-width: 120px;
+        height: 160px;
+        box-shadow: 0 0 10px 0 rgba(155, 155, 155, 0.4);
+        z-index: 9999;
+        background: #fff;
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        margin-left: -70px; }
+        .header-top .header-top-content .header-top-content-right .weixin .erweima_box .ewm_img {
+          display: block;
+          width: 120px;
+          height: 120px;
+          margin: 10px;
+          margin-bottom: 0; }
+        .header-top .header-top-content .header-top-content-right .weixin .erweima_box .erweima_p {
+          display: block;
+          width: 100%;
+          font-size: 14px;
+          color: #333333;
+          text-align: center; }
+      .header-top .header-top-content .header-top-content-right .weixin:hover .erweima_box {
+        display: block; }
     .header-top .header-top-content .header-top-content-right .phone-version {
       background: url(../img/phone_.png) no-repeat left;
       position: relative; }

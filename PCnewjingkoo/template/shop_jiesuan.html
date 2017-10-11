@@ -194,10 +194,10 @@
 	                            </div>
 	                        </div>
                     	</div>
-                        <div class="remark_right" style="float: right;">
+                        <div class="remark_right" style="float: right;">  
                             <p ng-if="isExchange==0">购物金额小计 :  <span>{{cartGoods.goods_subtotal}}</span></p>
-                            <p ng-if="shipIf" class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
-                            <p ng-if="shipIf" class="p2">+ 获赠积分 : {{jifen}}</p>
+                            <p class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
+                            <p class="p2">+ 获赠积分 : {{jifen}}</p>
                         </div>
                     </div>
                     <!--商家备注-->
@@ -417,14 +417,14 @@
         </div>
         <!--使用优惠券-->
         <!--小计-->
-        <div ng-if="isExchange==1" class="count_div">
+        <div ng-if="isExchange==1" class="count_div" style="background: #f5f6fa;">
             <p class="count_p1">使用积分 :{{exchange_integral}}</p>
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
-        <div ng-if="isExchange==0" class="count_div">
+        <div ng-if="isExchange==0" class="count_div" style="background: #f5f6fa;">
             <p class="count_p1">购物金额小计 : <span>￥{{totalPrice}}</span></p>
             <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>￥{{yhqTotal}}</span></p>
-            <p ng-if="shipIf" class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
+            <p class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
             <p class="count_p1">+获赠积分 : {{jifen}}</p>
             <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p>
             <p ng-if="sub" class="count_p1">-镜库补贴 : <span>{{subsidyPrice}}</span></p>
@@ -449,10 +449,6 @@
             </form>
         </div>
         <!--订单金额-->
-		<div class="order_amont">
-			<p class="order_amont_p1"><span class="order_amont_sp1">订单总金额： </span><span class="order_amont_sp2">￥6704.00????????????</span></p> 
-			<p class="order_amont_p2"><span class="order_amont_sp1">寄送至： 北京 东城区 内环到三环里 左安漪园1号楼1单元这是假的??????</span><span class="order_amont_sp1">收货人：荆佳琦  188****1460?????????</span></p>
-		</div>
         <div class="refer_order"> 
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
             <div class="refer_order_d" ng-if="isExchange==0">

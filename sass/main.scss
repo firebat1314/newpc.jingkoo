@@ -238,6 +238,43 @@ $browser-default-font-size: 37.5px !default;
         @extend .qycg;
         background: url(../img/xinxi_.png) no-repeat left;
       }
+      .weixin{
+        @extend .qycg;
+        position:relative;
+        background: url(../img/header_wx.png) no-repeat left; 
+        p{
+          &:hover{color:#86bf4a;} 
+        }
+        .erweima_box{ 
+            display:none;
+            min-width:120px;
+            height:160px;
+            box-shadow:0 0 10px 0 rgba(155,155,155,.4);
+            z-index:9999;
+            background:#fff;
+            position:absolute; 
+            top: 40px;
+            left: 50%; 
+            margin-left: -70px; 
+            .ewm_img{
+              display:block;
+              width:120px;
+              height:120px; 
+              margin: 10px; 
+              margin-bottom:0;
+            }
+            .erweima_p{
+              display:block;
+              width:100%;
+              font-size:14px;
+              color:#333333; 
+              text-align:center;
+            }
+        }
+        &:hover{
+          .erweima_box{display:block;} 
+        }
+      }
       .phone-version{
         @extend .qycg;
         background: url(../img/phone_.png) no-repeat left;
@@ -261,7 +298,7 @@ $browser-default-font-size: 37.5px !default;
             padding-top: 130px;
             text-align: center;
             p{
-              color:#333;
+              color:#333; 
               width:100%;
             }
             &:last-child{

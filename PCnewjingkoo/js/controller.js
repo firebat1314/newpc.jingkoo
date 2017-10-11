@@ -9,7 +9,6 @@ angular.module('myApp.controllers', ['ipCookie','ngSanitize'])
                 }else{
                     $rootScope.allFenLei = false;
                 }
-
                 if(toState.title == "店铺首页"){
                     $rootScope.allNavs = true;
                 }else if(toState.title == "购物车"){

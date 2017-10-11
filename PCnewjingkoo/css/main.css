@@ -9957,28 +9957,6 @@ span.a_arrow_r {
   position: relative;
   top: 1px; }
 
-.more_addr.open_addr:after {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: url(../img/cg_ico2.png) no-repeat;
-  background-position: 1px -10px;
-  margin-left: 10px;
-  position: relative;
-  top: -1px; }
-
-.more_addrr.open_addr:after {
-  content: "";
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: url(../img/cg_ico2.png) no-repeat;
-  background-position: 1px -10px;
-  margin-left: 10px;
-  position: relative;
-  top: -1px; }
-
 /*小箭头*/
 /*支付*/
 .zfbt_box {

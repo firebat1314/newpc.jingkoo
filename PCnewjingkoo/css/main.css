@@ -2451,7 +2451,8 @@ span.a_arrow_r {
       margin-top: 15px; }
       .pointsMall-main .pointsMall-content .pointsMall-item button:hover {
         background: #3f69a5;
-        color: #fff; }
+        color: #fff;
+        border-color: #3f69a5; }
 
 /*商品列表页*/
 .shopList-main {

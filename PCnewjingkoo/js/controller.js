@@ -17,6 +17,8 @@ angular.module('myApp.controllers', ['ipCookie','ngSanitize'])
                     $rootScope.allNav = true;
                 }else if(toState.title == "结算页"){
                     $rootScope.allNav = true;
+                }else if(toState.title == "支付"){
+                    $rootScope.allNav = true;
                 }else{
                     $rootScope.allNav = false;
                     $rootScope.allNavs = false;

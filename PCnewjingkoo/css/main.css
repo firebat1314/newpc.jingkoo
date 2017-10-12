@@ -10918,7 +10918,8 @@ textarea {
   width: 10px;
   height: 10px;
   background: url(../img/fx_arr1.png) center center no-repeat;
-  background-size: 100% auto; }
+  background-size: 100% auto;
+  display: none; }
 
 .fx_box .fx_tb .span_box .fx_show_box {
   display: inline-block;

@@ -12337,23 +12337,27 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.cancelOrder = function (id) {
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/User/cancel_repair',
-                data: {
-                    id: id
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            }).success(function (data) {
-                //console.log(data);
-                if (data.status) {
-                    layer.msg(data.info, { time: 1000 }, function () {
-                        $scope.repairHistroyFn();
-                    });
-                } else {
-                    layer.msg(data.info, { time: 1000 });
-                }
-            })
+        	layer.confirm('您确定要取消么？', {
+				btn: ['确定', '取消'] //按钮
+			}, function() {
+	            $http({
+	                method: "POST",
+	                url: '' + $rootScope.ip + '/User/cancel_repair',
+	                data: {
+	                    id: id
+	                },
+	                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+	            }).success(function (data) {
+	                //console.log(data);
+	                if (data.status) {
+	                    layer.msg('取消成功', { time: 1000 }, function () {
+	                        $scope.repairHistroyFn();
+	                    });
+	                } else {
+	                    layer.msg('取消失败', { time: 1000 });
+	                }
+	            })
+			});	
         };
     }])
     //个人中心-返修退换货-返修/退款明细

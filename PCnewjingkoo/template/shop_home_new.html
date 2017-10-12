@@ -69,7 +69,7 @@
                     </div>
                     <div class="hd">
                         <ul>
-                            <li ng-repeat="bigs in listGoods.gallery"><img ng-src={{bigs.thumb_url}}></li>
+                            <li ng-repeat="bigs in listGoods.gallery"><a href="#/shop-detail/{{bigs.goods_id}}" target="_blank"><img ng-src={{bigs.thumb_url}}></a></li>
                         </ul>
                     </div>
                 </div>

@@ -8311,7 +8311,7 @@ width: 60px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     word-break: break-all;}  
-.fx_box .fx_tb .jt_fx{display: inline-block;width: 10px;height: 10px;background: url(../img/fx_arr1.png) center center no-repeat;background-size: 100% auto;}
+.fx_box .fx_tb .jt_fx{display: inline-block;width: 10px;height: 10px;background: url(../img/fx_arr1.png) center center no-repeat;background-size: 100% auto;display: none;} 
 .fx_box .fx_tb .span_box .fx_show_box{display: inline-block;width: 85px;height: 40px;text-align: center;line-height: 40px;color: #666666;font-size: 14px;background-color: #fff;box-shadow: 0 0 10px rgba(0,0,0,.2);display: none;position: absolute;left: 50%;margin-left: -42.5px;top: 40px;z-index: 100;}
 .fx_box .fx_tb .span_box .fx_show_box:after{content: "";display: block;border: 10px solid transparent;border-bottom: 10px solid #fff;position: absolute;top:-20px;left: 50%;margin-left: -10px;}
 .fx_box .fx_tb .span_box .fx_sp:hover .fx_show_box{display: block;}

@@ -212,8 +212,8 @@
                                     <!--<a class="sPrev" href="javascript:void(0)"></a>-->
                                 </div>
                             </div>
-                            <p class="goods-items-name" ng-attr-title='{{listGoods.name}}'>{{listGoods.name}}</p>
-                            <p class="goods-items-price">{{listGoods.shop_price}}</p>
+                            <p class="goods-items-name" ng-attr-title='{{listGoods.name}}'><a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.name}}</a></p>
+                            <p class="goods-items-price"><a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.shop_price}}</a></p>
                             <p class="goods-items-store">{{listGoods.suppliers_name}}</p>
                             <div class="shop_btn_box">
                                 <a href="#/shop-detail/{{listGoods.id}}" class="shop_btn_a1">立即购买</a>

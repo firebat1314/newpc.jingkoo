@@ -35,7 +35,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $('.goTop').hide();
             }
         });
-        $scope.goto = function () {
+        $rootScope.goto = function () {
             $location.hash('');
             $anchorScroll.yOffset = 1;
             $anchorScroll();
@@ -83,7 +83,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.shopCarHomeData = data;
                     if (data.suppliers_goods_list.length == 0) {
                         $scope.carRight = false;
@@ -94,7 +94,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.totalPrice = data.total.goods_price;
                 })
             //     .error(function(data){
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status == 0){
             //         //layer.msg('用户失效，请重新登录');
             //         $state.go('login');
@@ -117,7 +117,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.IndexData = data;
 
                 //get_html(document.getElementsByTagName('header')[0].cloneNode(true));
@@ -147,7 +147,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.userData = data;
                 $scope.username = data.user_info.user_name;
                 $scope.userImg = data.user_info.avatar;
@@ -162,7 +162,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.userShData = data;
                 $scope.unpay = data.data.unpay;
                 $scope.send = data.data.send;
@@ -178,7 +178,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             },
         })
             .success(function (data) {
-                console.log(data)
+                //console.log(data)
                 $scope.msgNumber = data.count;
             })
         //首页头部地区切换接口
@@ -193,7 +193,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                         // layer.msg('玩命加载中', {
@@ -224,7 +224,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId) {
 
             if (category == "category" && !brand && !zeiss) {
-                console.log(1)
+                //console.log(1)
                 var url = $state.href('shop-list', {
                     cat_id: categoryId,
                     filter: filterId,
@@ -234,7 +234,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && !category && !zeiss) {
-                console.log(2)
+                //console.log(2)
                 var url = $state.href('shop-list', {
                     brand_id: brandId,
                     cat_id: '',
@@ -244,7 +244,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && category == "category" && !zeiss) {
-                console.log(3)
+                //console.log(3)
                 var url = $state.href('shop-list', {
                     brand_id: brandId,
                     cat_id: categoryId,
@@ -256,7 +256,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
             if (filter == "filter" && category == "category") {
-                console.log(4)
+                //console.log(4)
                 var url = $state.href('shop-list', {
                     brand_id: '',
                     cat_id: categoryId,
@@ -314,7 +314,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.shopCarHomeData = data;
                     if (data.suppliers_goods_list.length == 0) {
                         $scope.carRight = false;
@@ -324,7 +324,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.totalNum = data.total.zong_goods_count;
                     $scope.totalPrice = data.total.goods_price;
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         layer.close(cool);
@@ -359,7 +359,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { icon: 1 });
                         $scope.carFn();
@@ -389,7 +389,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { icon: 1 });
                         $scope.carFn();
@@ -412,11 +412,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //搜索
         $scope.searchKey = function () {
             if ($scope.keywords == undefined || $scope.keywords == '') {
-                console.log($scope.keywords);
+                //console.log($scope.keywords);
                 layer.msg('请输入关键字！');
             } else {
                 var newOpens = window.open();
-                console.log($scope.keywords);
+                //console.log($scope.keywords);
                 var url = $state.href('shop-list', {
                     keywords: $scope.keywords,
                     brand_id: '',
@@ -457,7 +457,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $data.getYhqData({
                 bonus_type: bonus_type
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.data.length == 0) {
                     $scope.yhq_show = true;
                 } else {
@@ -479,7 +479,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.yhqList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.yhqData = data;
                 $scope.isGet = false;
                 for (var i = 0; i < data.list.length; i++) {
@@ -508,7 +508,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.yhqFn();
@@ -550,7 +550,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.helpData = data;
                 })
         };
@@ -570,10 +570,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         // $scope.$on('$destroy',function(){
         //     $(window).scroll(function(){
-        //         console.log('$destroy');
+        //         //console.log('$destroy');
         //         return null;
         //     });
-        //     console.log($(window))
+        //     //console.log($(window))
         // })
 
         //控制首页会员中心显隐
@@ -594,7 +594,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -614,7 +614,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 };
             })
             .error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -645,7 +645,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.yushouData = data;
             });
         //闪购
@@ -658,7 +658,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.flashData = data;
             });
 
@@ -780,7 +780,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.logoFashionData = data;
                 })
         };
@@ -879,7 +879,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.qxsjAd = data;
                 });
         };
@@ -900,7 +900,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.jsjmAd = data;
                 });
         };
@@ -921,7 +921,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.jjzyAd = data;
                 });
         };
@@ -947,7 +947,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -969,7 +969,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         data: '',
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -988,7 +988,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1006,7 +1006,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1025,7 +1025,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     $scope.all = true;
             //     $scope.anoAll = false;
             //     $scope.index = i;
-            //     console.log(i);
+            //     //console.log(i);
             //     $('.xd-hd li').removeClass('on');
             //     $('.xd-hd li').eq(i+1).addClass('on');
             // };
@@ -1056,7 +1056,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1064,7 +1064,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
             }
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -1078,11 +1078,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             $scope.fashionHomeData = data;
             $scope.brandAd = data.big_banner[0].ad_img;
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -1114,7 +1114,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 window.open(url, '_blank');
             }
             // else{
-            //     console.log('error');
+            //     //console.log('error');
             // }
         };
         //logo去列表
@@ -1138,7 +1138,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.logoFashionData = data;
                 })
         };
@@ -1170,7 +1170,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -1193,7 +1193,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1212,7 +1212,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1230,7 +1230,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1253,7 +1253,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1283,7 +1283,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1301,7 +1301,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1310,7 +1310,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -1332,7 +1332,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -1355,7 +1355,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1374,7 +1374,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1392,7 +1392,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1415,7 +1415,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1445,7 +1445,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1462,7 +1462,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1471,7 +1471,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -1502,7 +1502,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.ponitsList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1531,7 +1531,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $('.pointsMall-sort-item:eq(2) .xiaoyuhao').addClass('selected');
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -1647,7 +1647,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.yhqList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1655,7 +1655,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.getGoods(data);
                 $scope.totalSize = data.pages;
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -1724,7 +1724,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $rootScope.$broadcast('uploadCoupon')
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
@@ -1765,7 +1765,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.hotList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1783,7 +1783,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.artOneName = data.article_list[13].article[0].title;
                 $scope.artOneDesc = data.article_list[13].article[0].desc;
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -1822,7 +1822,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             layer.msg('关注失败');
                             //$state.go('login');
@@ -1842,7 +1842,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
                             //$state.go('login');
@@ -1865,7 +1865,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     })
         //         .success(function(data) {
-        //             console.log(data);
+        //             //console.log(data);
         //             $scope.qxsjAd = data;
         //         });
         // };
@@ -1919,7 +1919,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -1946,7 +1946,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -1987,9 +1987,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         }
 
         $scope.loginClick = function () {
-            console.log($scope.geeteTrue1);
+            //console.log($scope.geeteTrue1);
             var validate1 = $scope.geeteTrue1.getValidate();
-            console.log(validate1);
+            //console.log(validate1);
 
             if (validate1 != undefined) {
                 $scope.user.geetest_challenge = validate1.geetest_challenge;
@@ -2008,7 +2008,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //     return str.join("&");
                     // }   request-payload转为form-data格式的传输方式
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.userData = data;
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
@@ -2018,7 +2018,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.geeteTrue1.reset();
                         layer.msg(data.info, { time: 1000 });
                         $scope.codeFn();
-                        console.log($scope.user);
+                        //console.log($scope.user);
                     }
                     $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
@@ -2033,7 +2033,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //键盘登录获取token验证 获取首页全局数据
         $scope.login = function (e) {
             var validate1 = $scope.geeteTrue1.getValidate();
-            console.log(validate1);
+            //console.log(validate1);
             if (e.keyCode != 13) {
                 return;
             } else {
@@ -2054,7 +2054,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //     return str.join("&");
                         // }   request-payload转为form-data格式的传输方式
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.userData = data;
                         if (data.status) {
                             layer.msg(data.info, { time: 1000 }, function () {
@@ -2107,7 +2107,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //     return str.join("&");
                     // }   request-payload转为form-data格式的传输方式
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.userData = data;
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
@@ -2140,7 +2140,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     return str.join("&");
                 // }   request-payload转为form-data格式的传输方式
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.userData = data;
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
@@ -2168,7 +2168,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     useNoise: true
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2187,7 +2187,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     skey: $scope.code
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2207,7 +2207,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.info = function () {
             var validate2 = $scope.geeteTrue2.getValidate();
-            console.log(validate2);
+            //console.log(validate2);
 
             if (validate2 != undefined) {
                 $scope.infogeetest_challenge = validate2.geetest_challenge;
@@ -2228,7 +2228,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         geetest_seccode: $scope.infogeetest_seccode
                     }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $scope.geeteTrue2.reset();
                         layer.msg(data.info);
@@ -2257,7 +2257,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.anoinfo = function () {
             var validate2 = $scope.geeteTrue2.getValidate();
-            console.log(validate2);
+            //console.log(validate2);
 
             if (validate2 != undefined) {
                 $scope.anoInfogeetest_challenge = validate2.geetest_challenge;
@@ -2278,7 +2278,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         geetest_seccode: $scope.anoInfogeetest_seccode
                     }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -2346,7 +2346,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -2373,7 +2373,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             params: ''
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.rgProvinceData = data;
             })
 
@@ -2406,7 +2406,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == 0) {
                             $scope.validate_user = data;
                             $scope.isLife = false;
@@ -2582,7 +2582,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
         //验证手机号
         $scope.isPhone = function (phone) {
-            console.log(phone.length);
+            //console.log(phone.length);
             var res = /^[1][3,4,5,7,8][0-9]{9}$/;
             if (!res.test(phone)) {
                 $scope.isTel = false;
@@ -2611,7 +2611,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.cityData = data;
                     $scope.disData = [];
                     $scope.selectCity(pid);
@@ -2629,7 +2629,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.disData = data;
                 })
         };
@@ -2656,7 +2656,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     useNoise: true
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2675,7 +2675,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     skey: $scope.code
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2696,7 +2696,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.info = function () {
             var validate = $scope.geeteTrue.getValidate();
-            console.log(validate);
+            //console.log(validate);
 
             if (validate != undefined) {
                 $scope.reggeetest_challenge = validate.geetest_challenge;
@@ -2717,7 +2717,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         geetest_seccode: $scope.reggeetest_seccode
                     }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -2781,7 +2781,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             url: '' + $rootScope.ip + '/Login/user_agreement',
             data: ''
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             $scope.xieyi = $sce.trustAsHtml(data.data.content);
         })
 
@@ -2798,7 +2798,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     url: '' + $rootScope.ip + '/Login/register',
                     data: $scope.registerList
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $state.go('login');
@@ -2806,7 +2806,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         layer.msg(data.info);
                     }
                 })
-                console.log($scope.registerList);
+                //console.log($scope.registerList);
             } else {
                 layer.msg('请先阅读并同意用户协议');
             }
@@ -2833,7 +2833,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotOneOption
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $scope.isPhone = data.phone;
                     $scope.forgotTwoOption.phone = data.phone;
@@ -2846,7 +2846,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             method: 'GET',
                             params: '',
                         }).success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             initGeetest({
                                 // 以下配置参数来自服务端 SDK
                                 gt: data.gt,
@@ -2890,7 +2890,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     useNoise: true
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2908,7 +2908,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     codeSet: $scope.code
                 }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2931,7 +2931,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.info = function () {
             var validate = $scope.geeteTrue.getValidate();
-            console.log(validate);
+            //console.log(validate);
 
             if (validate != undefined) {
                 $scope.Twogeetest_challenge = validate.geetest_challenge;
@@ -2952,7 +2952,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         geetest_seccode: $scope.Twogeetest_seccode
                     }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -2986,8 +2986,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotTwoOption
             }).success(function (data) {
-                console.log(data);
-                console.log($scope.forgotTwoOption);
+                //console.log(data);
+                //console.log($scope.forgotTwoOption);
                 if (data.status) {
                     $scope.forgotThreeOption.phone = data.phone;
                     $scope.forgotThreeOption.verify = data.verify;
@@ -3012,7 +3012,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotThreeOption
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $scope.one = false;
                     $scope.two = false;
@@ -3069,7 +3069,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3081,7 +3081,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3092,7 +3092,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            console.log(data);
+                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3101,7 +3101,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                                                 })
                                                 pingpp.createPayment(data.pingxx, function (result, err) {
-                                                    console.log(result, err);
+                                                    //console.log(result, err);
                                                     if (result == "success") {
                                                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                                     } else if (result == "fail") {
@@ -3130,7 +3130,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3142,7 +3142,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3153,7 +3153,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            console.log(data);
+                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3174,7 +3174,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                             //
                                             //     })
                                             //     pingpp.createPayment(data.pingxx, function(result, err) {
-                                            //         console.log(result, err);
+                                            //         //console.log(result, err);
                                             //         if (result == "success") {
                                             //             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                             //         } else if (result == "fail") {
@@ -3203,7 +3203,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3215,7 +3215,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3226,7 +3226,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            console.log(data);
+                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3235,7 +3235,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                                                 })
                                                 pingpp.createPayment(data.pingxx, function (result, err) {
-                                                    console.log(result, err);
+                                                    //console.log(result, err);
                                                     if (result == "success") {
                                                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                                     } else if (result == "fail") {
@@ -3328,7 +3328,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -3336,7 +3336,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
         };
-        console.log($stateParams.filter);
+        //console.log($stateParams.filter);
         $scope.ListPage = {
             brand_id: $stateParams.brand_id,
             cat_id: $stateParams.cat_id,
@@ -3378,7 +3378,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -3391,10 +3391,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // for(var i = 0;i<$scope.shopListData.goods_attr_arr.length;i++){
                     //     for(var j = 0;j<$scope.shopListData.goods_attr_arr[i].data.length;j++){
                     //         if($scope.shopListData.goods_attr_arr[i].data[j].selected==1){
-                    //             console.log(1)
+                    //             //console.log(1)
                     //             $scope.delectHide = true;
                     //         }else{
-                    //             console.log(2)
+                    //             //console.log(2)
                     //             $scope.delectHide = false;
                     //         }
                     //     }
@@ -3443,7 +3443,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $('.shopList-sort-tit .shopList-sort-item:eq(1) .xiaoyuhao').removeClass('selected');
                     }
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -3461,7 +3461,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     var allPage = $(".allPage").text();
                     //console.log(allPage);
                     var goPage = $(".page-go input").val() - 1; //跳转页数
-                    console.log(goPage)
+                    //console.log(goPage)
         
                     if (goPage > -1 && goPage < allPage) {
                         $scope.options.current_page = 2;
@@ -3521,8 +3521,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
-            // console.log($location.search('fashion='+value+''));
-            // console.log($location.$$search.fashion);
+            // //console.log($location.search('fashion='+value+''));
+            // //console.log($location.$$search.fashion);
             $scope.InitList();
             $scope.fashion = true;
             $('.shopList-select-conditions .more-fashion:first').prev().css({
@@ -3786,7 +3786,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //猜你喜欢
         $data.guessYouLike().success(function (data) {
             $scope.YouLike = data;
-            console.log(data);
+            //console.log(data);
         });
 
         $scope.likeGoodsFn = function () {
@@ -3807,7 +3807,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.qxsjAd = data;
                 });
         };
@@ -3855,7 +3855,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('关注失败',{time:100});
                             //$state.go('login');
@@ -3875,7 +3875,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('取消关注失败',{time:100});
                             //$state.go('login');
@@ -3910,7 +3910,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -3920,7 +3920,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.cat_desc = data.infos.cat_desc;
             $scope.keywords = data.infos.keywords;
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -4019,7 +4019,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0 && data.info == "商品信息不存在") {
                     layer.msg(data.info);
                     $window.history.back();
@@ -4071,7 +4071,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 $scope.goodsData = data;
                                 if (data.data.length > 3) {
                                     setTimeout(function () {
@@ -4110,7 +4110,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         $scope.goodsCarParams.goods.spec.push(attrs);
                                         $scope.goodsCarParams.goods.attr.push(sAttr);
                                     }
-                                    console.log($scope.goodsCarParams);
+                                    //console.log($scope.goodsCarParams);
                                     //每次更新获取商品数量改变价格 接口
                                     $http({
                                         method: "POST",
@@ -4119,7 +4119,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            console.log(data);
+                                            //console.log(data);
                                             if (data.status) {
                                                 $scope.listTotalNumber = data.number;
                                                 $scope.listTotalPrice = data.goods_total;
@@ -4220,7 +4220,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             angular.element(e.target).focus().select();
         };
         $scope.change = function (e, pIndex, index, num) {
-            console.log($scope.goodsData.data[index].num);
+            //console.log($scope.goodsData.data[index].num);
             if ($scope.goodsData.data[index].num > 0) {
                 $scope.isCarParams = true;
                 //$scope.isReduce = false;
@@ -4247,7 +4247,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             $scope.numberChange();
             // if(angular.element(e.target).value >=1){
-            //     console.log($scope.num);
+            //     //console.log($scope.num);
             // }else{
             //     angular.element(e.target).value = 1;
             // }
@@ -4263,7 +4263,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -4281,7 +4281,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                     } else {
@@ -4347,7 +4347,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    console.log(data);
+                                    //console.log(data);
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 }, function () {
                                             $scope.shopDetailFn();
@@ -4367,7 +4367,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    console.log(data);
+                                    //console.log(data);
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 }, function () {
                                             $scope.shopDetailFn();
@@ -4430,7 +4430,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    console.log(data);
+                                    //console.log(data);
                                     if (data.status) {
                                         $state.go('shop-jiesuan');
                                         layer.msg(data.info, { icon: 1, time: 1000 });
@@ -4447,7 +4447,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         })
                     };
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -4468,7 +4468,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
                         $scope.shopDetailFn();
@@ -4505,7 +4505,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == '0') {
                         layer.msg('关注失败', { time: 1000 });
                         //$state.go('login');
@@ -4534,7 +4534,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == '0') {
                         layer.msg('取消关注失败', { time: 1000 });
                         //$state.go('login');
@@ -4565,7 +4565,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $scope.regionArr.region_id = region;
                         $http({
@@ -4575,7 +4575,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 $rootScope.$broadcast('uploadCity');
                                 layer.msg('更换地址成功', { icon: 1, time: 1000 }, function () {
                                     $scope.shopDetailFn();
@@ -4604,7 +4604,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('更换地区成功', { icon: 1, time: 500 });
                         $rootScope.$broadcast('uploadCity');
@@ -4640,7 +4640,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (e, dsItem, index) {
-            console.log(index);
+            //console.log(index);
             $scope.arr[index].qiujing = dsItem;
             //console.log(dsItem);
             //console.log(angular.element(e.target).parent().parent().parent().parent().prev());
@@ -4656,7 +4656,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.zhujingData = data;
                     var arrs = [];
                     for (var i in data.data) {
@@ -4671,7 +4671,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //点击柱镜数据来给当前的柱镜给度数值
         $scope.getDsZj = function (e, dsItems, index) {
-            console.log(dsItems);
+            //console.log(dsItems);
             $scope.arr[index].zhujing = dsItems;
             angular.element(e.target).parent().parent().parent().parent().prev().prev()[0].value = dsItems;
             $('#masks').hide();
@@ -4698,9 +4698,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     arr2.push(attr);
                 }
                 $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
-                console.log($scope.arr);
+                //console.log($scope.arr);
             }
-            console.log($scope.goodsSpectaclesCarParams);
+            //console.log($scope.goodsSpectaclesCarParams);
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
@@ -4758,8 +4758,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                     $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
                 }
-                console.log($scope.arr, arr2);
-                console.log($scope.goodsSpectaclesCarParams);
+                //console.log($scope.arr, arr2);
+                //console.log($scope.goodsSpectaclesCarParams);
                 if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                     //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
                 }
@@ -4771,7 +4771,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == -1) {
                             layer.msg(data.info, { time: 1000 });
                         } else if (data.status == 1) {
@@ -4798,7 +4798,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     }
                 //     $scope.goodsCarParams.goods.spec.push(arr1);
                 // }
-                // console.log($scope.goodsCarParams);
+                // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
                 $http({
                     method: "POST",
@@ -4807,7 +4807,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == -1) {
                             layer.msg(data.info, { time: 1000 });
                         } else if (data.status == 1) {
@@ -4845,8 +4845,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                     $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
                 }
-                console.log($scope.arr, arr2);
-                console.log($scope.goodsSpectaclesCarParams);
+                //console.log($scope.arr, arr2);
+                //console.log($scope.goodsSpectaclesCarParams);
                 if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                     //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
                 }
@@ -4858,7 +4858,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == -1) {
                             layer.msg(data.info, { time: 1000 });
                         } else if (data.status == 1) {
@@ -4883,7 +4883,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     }
                 //     $scope.goodsCarParams.goods.spec.push(arr1);
                 // }
-                // console.log($scope.goodsCarParams);
+                // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
                 $http({
                     method: "POST",
@@ -4892,7 +4892,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == -1) {
                             layer.msg(data.info, { time: 1000 });
                         } else if (data.status == 1) {
@@ -4915,7 +4915,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             for (var h = 0; h < $scope.shopDetailData.history.length; h++) {
                 $scope.historyItem.goods_ids.push($scope.shopDetailData.history[h].goods_id);
             }
-            console.log($scope.historyItem);
+            //console.log($scope.historyItem);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/user/del_watch',
@@ -4923,7 +4923,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.shopDetailFn();
@@ -4972,7 +4972,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.shop_price = data.goods.shop_price;
                     $scope.market_price = data.goods.market_price;
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -5123,7 +5123,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             setTimeout(function () {
                 $('#table_111 tr td').mouseover(function () {
-                    console.log('hh');
+                    //console.log('hh');
                     //$(this).siblings().eq(0).css('background','#fedede');
                     $(this).parent().find("td").eq(0).css('background', '#ebebeb');
                     //$(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#fedede');
@@ -5132,7 +5132,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 });
                 $('#table_111 tr td').mouseout(function () {
                     /*
-                    console.log($(this).siblings().eq(0).css('background'));
+                    //console.log($(this).siblings().eq(0).css('background'));
                     $(this).siblings().eq(0).css('background','#f5f5f5');
                     $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
                     */
@@ -5164,7 +5164,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
                 if (count > 0) {
                     is_prompt = false;
-                    // console.log(is_prompt);
+                    // //console.log(is_prompt);
                     layer.prompt({
                         title: '共选择' + count + "种,请填写数量", zIndex: 1260, formType: 0, cancel: function (index, layero) {
                             //if(confirm('确定要关闭么')){
@@ -5430,7 +5430,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $(".attr_val").each(function () {
                 tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                 spec.push(tr_val_id);
-                console.log(tr_val_id);
+                //console.log(tr_val_id);
                 $scope.trid = tr_val_id;
             });
 
@@ -5567,10 +5567,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             if ($scope.trid) {
                 $('.bulk-order-ano-table').show();
-                console.log($scope.trid);
+                //console.log($scope.trid);
             } else {
                 $('.bulk-order-ano-table').hide();
-                console.log($scope.trid);
+                //console.log($scope.trid);
             }
         }
 
@@ -5621,7 +5621,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $(".attr_val").each(function () {
                     tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                     spec.push(tr_val_id);
-                    console.log(tr_val_id);
+                    //console.log(tr_val_id);
                     $scope.trid = tr_val_id;
                 });
 
@@ -5635,7 +5635,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     async: false,
                     data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token },
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $("input[name=shop_price]").val(data.data.price);
                     }
                 });
@@ -5755,19 +5755,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 if ($scope.trid) {
                     $('.bulk-order-ano-table').show();
-                    console.log($scope.trid);
+                    //console.log($scope.trid);
                 } else {
                     $('.bulk-order-ano-table').hide();
-                    console.log($scope.trid);
+                    //console.log($scope.trid);
                 }
             });
 
             if ($scope.trid) {
                 $('.bulk-order-ano-table').show();
-                console.log($scope.trid);
+                //console.log($scope.trid);
             } else {
                 $('.bulk-order-ano-table').hide();
-                console.log($scope.trid);
+                //console.log($scope.trid);
             }
             //加入购物车
             //$(".add_to_cart").live("click",function (){
@@ -5777,7 +5777,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
 
-            // console.log(document.cookie);
+            // //console.log(document.cookie);
             // var arr,reg=new RegExp("(^| )token=([^;]*)(;|$)");
             // arr = document.cookie.match(reg);
             // var token = arr[2];
@@ -5846,7 +5846,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == -1) {
                         layer.msg(data.info);
                     } else if (data.status == 1) {
@@ -5879,7 +5879,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     if (data.status) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -5893,7 +5893,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.supll = data.total.suppliers_count;
                     }
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -5908,7 +5908,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 return
             }
             var old = document.getElementsByClassName('qimo')[0]
-            console.log(old)
+            //console.log(old)
             if(old){
                 old.parentNode.removeChild(old);
             }
@@ -5919,7 +5919,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             document.body.append(qimo)
             qimo.onload = function(){
                 setTimeout(function() {
-                    console.log('七陌加载完成')
+                    //console.log('七陌加载完成')
                     qimoChatClick();
                 }, 400);
             }
@@ -5958,7 +5958,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -5982,12 +5982,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                 })
         };
         //监控购物车商品数量
         $scope.change = function (e, index, pIndex, ppIndex, num) {
-            console.log(num);
+            //console.log(num);
             $scope.cgCarNumber.rec_id = $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].rec_id;
             $http({
                 method: "POST",
@@ -6000,7 +6000,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     //$scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -6009,7 +6009,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.suppliers_goods_list.length == 0) {
                                     $scope.Goods = false;
                                 } else {
@@ -6033,7 +6033,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         })
                             .success(function (data) {
                                 //$scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -6042,7 +6042,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            console.log(data);
+                                            //console.log(data);
                                             if (data.suppliers_goods_list.length == 0) {
                                                 $scope.Goods = false;
                                             } else {
@@ -6082,7 +6082,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $scope.carFn();
                         $rootScope.$broadcast('upCarList');
@@ -6121,7 +6121,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                         $rootScope.$broadcast('upCarList');
                     })
@@ -6143,7 +6143,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -6158,7 +6158,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -6177,7 +6177,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -6192,7 +6192,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -6210,7 +6210,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -6224,7 +6224,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -6242,7 +6242,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -6256,7 +6256,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -6285,7 +6285,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -6319,7 +6319,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -6351,7 +6351,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000, icon: 1 });
                         //$scope.carFn();
@@ -6382,7 +6382,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -6420,7 +6420,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $state.go('shop-jiesuan');
                         $rootScope.$broadcast('upCarList');
@@ -6487,11 +6487,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //搜索
         $scope.searchKey = function () {
             if ($scope.carkeywords == undefined || $scope.carkeywords == '') {
-                console.log($scope.carkeywords);
+                //console.log($scope.carkeywords);
                 layer.msg('请输入关键字！');
             } else {
                 var newOpens = window.open();
-                console.log($scope.carkeywords);
+                //console.log($scope.carkeywords);
                 var url = $state.href('shop-list', {
                     keywords: $scope.carkeywords,
                     brand_id: '',
@@ -6522,7 +6522,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.jiesuanData = data;
 
                     if (data.status) {
@@ -6561,14 +6561,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                         //判断商品是否为积分商品
                         $scope.isExchange = data.is_exchange;
                     }
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -6593,7 +6593,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6618,7 +6618,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6666,7 +6666,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //编辑提交收货地址
         $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
-            console.log($scope.editData);
+            //console.log($scope.editData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/edit_address',
@@ -6674,7 +6674,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6704,7 +6704,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.bianjiData.city_list = data.data;
                     $scope.disDatas = [];
                     $scope.changeCity(pid);
@@ -6723,7 +6723,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.disDatas = data;
                     $scope.bianjiData.district_list = data.data;
                 })
@@ -6731,10 +6731,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.addSetMoren = function (mor) {
             if (mor == true) {
                 $scope.eeditData.default = 1;
-                console.log($scope.eeditData);
+                //console.log($scope.eeditData);
             } else {
                 $scope.eeditData.default = 0;
-                console.log($scope.eeditData);
+                //console.log($scope.eeditData);
             }
         };
         //添加收货地址
@@ -6748,7 +6748,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.tianjiaData = data;
 
                     //添加收货地址参数
@@ -6761,7 +6761,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //提交添加收货地址
         $scope.tianjiaAddress = function () {
             $scope.eeditData.default = $scope.isMor ? 1 : 0;
-            console.log($scope.eeditData);
+            //console.log($scope.eeditData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/add_address',
@@ -6769,7 +6769,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $('.masks').hide();
@@ -6794,7 +6794,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.cityData = data;
                     $scope.disData = [];
                     $scope.selectCity(pid);
@@ -6813,7 +6813,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.disData = data;
                 })
         };
@@ -6828,7 +6828,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6849,7 +6849,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6871,7 +6871,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6893,7 +6893,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -6922,10 +6922,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.jiesuanFn();
                 })
-            console.log($scope.write);
+            //console.log($scope.write);
         };
 
         //个人信息面板信息
@@ -6936,7 +6936,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.userMoney = data.user_info.user_money;
             })
 
@@ -6952,7 +6952,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -6967,7 +6967,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -7013,7 +7013,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             $http({
                                 method: "POST",
@@ -7028,7 +7028,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    console.log(data);
+                                    //console.log(data);
                                     // if(data.status&&$scope.jiesuanData.is_exchange==0){
                                     //     layer.msg(data.info);
                                     //     $rootScope.$broadcast('upCarList');
@@ -7076,7 +7076,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         // if(data.status&&$scope.jiesuanData.is_exchange==0){
                         //     layer.msg(data.info);
                         //     $rootScope.$broadcast('upCarList');
@@ -7164,7 +7164,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.codeData = data;
                 $scope.isPay = data.is_pay;
                 $scope.type = data.type;
@@ -7182,7 +7182,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         // })
                         //     .success(function(data) {
-                        //         console.log(data);
+                        //         //console.log(data);
                         //         if(data.status){
                         //             $http({
                         //                 method:"GET",
@@ -7193,7 +7193,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         //             })
                         //                 .success(function(data) {
-                        //                     console.log(data);
+                        //                     //console.log(data);
                         //                     if(data.status){
                         //                         layer.msg(data.info, {
                         //                             icon: 1,
@@ -7219,7 +7219,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, {
                                         icon: 1,
@@ -7245,7 +7245,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         // })
                         //     .success(function(data) {
-                        //         console.log(data);
+                        //         //console.log(data);
                         //         if(data.status){
                         //             $http({
                         //                 method:"GET",
@@ -7256,7 +7256,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         //             })
                         //                 .success(function(data) {
-                        //                     console.log(data);
+                        //                     //console.log(data);
                         //                     if(data.status){
                         //                         layer.msg(data.info,{icon:1});
                         //                         var url = $state.href('glassMachining',{
@@ -7281,7 +7281,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, { icon: 1 });
                                     var url = $state.href('glassMachining', {
@@ -7302,7 +7302,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info);
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -7330,7 +7330,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     // })
                     //     .success(function(data) {
-                    //         console.log(data);
+                    //         //console.log(data);
                     //         if(data.status){
                     //             $http({
                     //                 method:"GET",
@@ -7341,7 +7341,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     //             })
                     //                 .success(function(data) {
-                    //                     console.log(data);
+                    //                     //console.log(data);
                     //                     if(data.status){
                     //                         layer.msg(data.info, {
                     //                             icon: 1,
@@ -7367,7 +7367,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -7393,7 +7393,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     // })
                     //     .success(function(data) {
-                    //         console.log(data);
+                    //         //console.log(data);
                     //         if(data.status){
                     //             $http({
                     //                 method:"GET",
@@ -7404,7 +7404,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     //             })
                     //                 .success(function(data) {
-                    //                     console.log(data);
+                    //                     //console.log(data);
                     //                     if(data.status){
                     //                         layer.msg(data.info,{icon:1});
                     //                         var url = $state.href('glassMachining',{
@@ -7429,7 +7429,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -7443,7 +7443,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 };
 
             } else if ($('.zfs-pic').eq(1).hasClass('on')) {
-                console.log(1);
+                //console.log(1);
                 var newTab = window.open();
                 $http({
                     method: "POST",
@@ -7454,7 +7454,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg('玩命加载中', {
                                 icon: 16,
@@ -7477,7 +7477,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //         ,shade: 0.3
                         //     },function(){
                         //         pingpp.createPayment(data.pingxx, function(result, err) {
-                        //             console.log(result, err);
+                        //             //console.log(result, err);
                         //             if (result == "success") {
                         //                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         //             } else if (result == "fail") {
@@ -7501,7 +7501,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -7529,7 +7529,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -7559,7 +7559,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -7587,7 +7587,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -7608,14 +7608,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // })
                 // .success(function(data) {
-                //     console.log(data);
+                //     //console.log(data);
                 //     if(data.status){
                 //         layer.msg('玩命加载中', {
                 //             icon: 16
                 //             ,shade: 0.3
                 //         },function(){
                 //             pingpp.createPayment(data.pingxx, function(result, err) {
-                //                 console.log(result, err);
+                //                 //console.log(result, err);
                 //                 if (result == "success") {
                 //                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                 //                 } else if (result == "fail") {
@@ -7641,7 +7641,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.is_glass = data.order_id;
             })
     }])
@@ -7659,7 +7659,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.userMoney = data.user_info.user_money;
                 $scope.payPass = data.user_info.is_pay_pass;
             })
@@ -7676,7 +7676,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $rootScope.$broadcast('upCarList');
                 $scope.codeData = data;
                 $scope.isPay = data.is_pay;
@@ -7701,7 +7701,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, {
                                         icon: 1,
@@ -7728,7 +7728,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                console.log(data);
+                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, { icon: 1 });
                                     var url = $state.href('glassMachining', {
@@ -7750,7 +7750,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info);
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -7811,7 +7811,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, {
                                 icon: 1,
@@ -7836,7 +7836,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, {
                                 icon: 1,
@@ -7863,7 +7863,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, { icon: 1 });
                             var url = $state.href('glassMachining', {
@@ -7885,7 +7885,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.yzPass = function (pass) {
             //console.log($scope.password);
             if ($scope.codeData.pay_salt != '') {
-                console.log($.md5($.md5(pass) + $scope.codeData.pay_salt));
+                //console.log($.md5($.md5(pass) + $scope.codeData.pay_salt));
                 if ($.md5($.md5(pass) + $scope.codeData.pay_salt) == $scope.password) {
                     $scope.passyes = true;
                 } else {
@@ -7913,7 +7913,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.pay = function () {
-            console.log($scope.balance);
+            //console.log($scope.balance);
 
 
             if (!$scope.yuE && !$scope.paymentType) {
@@ -7942,12 +7942,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if ($scope.yuE) {
 
                 if ($scope.pass == '') {
-                    console.log(1)
+                    //console.log(1)
                 } else if ($scope.pass != '' && $scope.passyes == true) {
-                    console.log(2)
+                    //console.log(2)
                     var newOpens = window.open();
                 } else {
-                    console.log(3);
+                    //console.log(3);
                     //var newOpens = window.open();
                 }
 
@@ -7963,7 +7963,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             //$scope.$broadcast('passYes');
                             //$scope.passyes=true;
@@ -7981,7 +7981,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 $scope.showShadow();
 
                             } else {
-                                console.log('组合');
+                                //console.log('组合');
                                 //使用组合支付
 
                                 //z直接调插件传pingXX
@@ -8009,7 +8009,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
                                 } else if ($('.onlinePay .close_check').eq(1).attr("checked")) {
-                                    console.log('wx');
+                                    //console.log('wx');
 
 
                                     var url = $state.href('erweimaNew', {
@@ -8043,7 +8043,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         }
                     })
                 // }).then(function(url){
-                //     console.log(url)
+                //     //console.log(url)
                 //     window.open(url)
                 // })
 
@@ -8067,8 +8067,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
                 } else if ($('.onlinePay .close_check').eq(1).attr("checked")) {
-                    console.log('wx');
-                    console.log($stateParams.log_id);
+                    //console.log('wx');
+                    //console.log($stateParams.log_id);
 
                     var url = $state.href('erweima', {
                         url: $scope.codeData.weixin,
@@ -8111,7 +8111,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     })
         //         .success(function(data) {
-        //             console.log(data);
+        //             //console.log(data);
         //
         //
         //             if(data.status){
@@ -8126,7 +8126,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     console.log('余额选中');
+        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -8141,7 +8141,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8168,7 +8168,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8188,7 +8188,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     console.log('余额选中');
+        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -8203,7 +8203,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8230,7 +8230,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8250,7 +8250,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     console.log('余额选中');
+        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -8265,7 +8265,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8292,7 +8292,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8322,7 +8322,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8349,7 +8349,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8363,7 +8363,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                     };
         //
         //                 }else if($('.onlinePay .close_check').eq(1).attr("checked")&&$scope.balance==0){
-        //                     console.log('wx');
+        //                     //console.log('wx');
         //
         //
         //                     var url = $state.href('erweimaNew',{
@@ -8380,7 +8380,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                     })
         //                         .success(function(data) {
-        //                             console.log(data);
+        //                             //console.log(data);
         //                             if(data.status){
         //                                 layer.msg('玩命加载中', {
         //                                     icon: 16,
@@ -8419,7 +8419,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8447,7 +8447,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8477,7 +8477,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -8505,7 +8505,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -8518,7 +8518,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             })
         //                     };
         //                 }else{
-        //                     console.log('没有选中');
+        //                     //console.log('没有选中');
         //
         //
         //                     $('#masks').show();
@@ -8540,7 +8540,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -8567,7 +8567,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -8581,7 +8581,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                         };
         //
         //                     }else if($('.onlinePay .close_check').eq(1).attr("checked")){
-        //                         console.log(1);
+        //                         //console.log(1);
         //                         //var newTab=window.open();
         //
         //                         var url = $state.href('erweimaNew',{
@@ -8598,7 +8598,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 console.log(data);
+        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg('玩命加载中', {
         //                                         icon: 16,
@@ -8628,7 +8628,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -8656,7 +8656,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -8670,7 +8670,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                         };
         //
         //                     }else if($('.onlinePay .close_check').eq(2).attr("checked")){
-        //                         console.log(2)
+        //                         //console.log(2)
         //                         var url = $state.href('unionPay',{
         //                             url:$scope.codeData.upacp
         //                         });
@@ -8687,7 +8687,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -8715,7 +8715,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     console.log(data);
+        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -8752,13 +8752,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.is_glass = data.order_id;
             })
 
         // $scope.pass='';
         // $scope.tijiao = function(){
-        //     console.log($scope.pass);
+        //     //console.log($scope.pass);
         // };
 
         $scope.forgot = function () {
@@ -8781,8 +8781,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
-                console.log($stateParams.type)
+                //console.log(data);
+                //console.log($stateParams.type)
                 if (data.status) {
                     layer.msg(data.info, {
                         icon: 1
@@ -8828,7 +8828,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     layer.msg(data.info)
                 }
@@ -8844,7 +8844,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             //$scope.wxurl = data;
                             //$scope.wxurl = $stateParams.url;
@@ -8865,7 +8865,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -8895,7 +8895,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -8904,7 +8904,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        console.log(result, err);
+                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -8930,7 +8930,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -8939,7 +8939,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        console.log(result, err);
+                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -8972,7 +8972,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.ermData = data;
                 $scope.wxurl = data.wx_url;
                 $scope.res = ipCookie('token');
@@ -8991,7 +8991,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 $scope.url = data;
                                 //$scope.wxurl = $stateParams.url;
@@ -9014,7 +9014,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -9041,7 +9041,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -9054,7 +9054,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $state.go('order-all');
                     } else if (data.type == "pay") {
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            console.log(result, err);
+                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -9085,7 +9085,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -9098,7 +9098,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $state.go('order-all');
                     } else if (data.type == "pay") {
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            console.log(result, err);
+                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -9136,7 +9136,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.wxData = data;
                 $scope.wxurl = data.wx_url;
                 $scope.res = ipCookie('token');
@@ -9150,7 +9150,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 $scope.url = data;
                                 $scope.wxurl = $scope.wxData.wx_url;
@@ -9174,7 +9174,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -9204,7 +9204,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -9213,7 +9213,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }, function () {
 
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            console.log(result, err);
+                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -9246,7 +9246,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -9255,7 +9255,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        console.log(result, err);
+                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -9282,7 +9282,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.helpData = data;
 
                     for (var i = 0; i < data.data.length; i++) {
@@ -9306,7 +9306,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.tit = data.data.title;
                 $scope.content = $sce.trustAsHtml(data.data.content);
             })
@@ -9365,7 +9365,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         })
             .success(function (data) {
                 layer.close(cool);
-                console.log(data);
+                //console.log(data);
                 $scope.data = $sce.trustAsHtml(data.data);
             }).error(function (data) {
                 if (data.status == 0) {
@@ -9384,8 +9384,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //点击显示左右眼显示框
         $scope.showLeft = function (e) {
             // angular.element(e.target).attr('data-id');
-            // console.log(angular.element(e.target).html());
-            // console.log(angular.element(e.target).attr("data-id"));
+            // //console.log(angular.element(e.target).html());
+            // //console.log(angular.element(e.target).attr("data-id"));
             $('.leftBox').show();
             //默认框里所有的数据
             $http({
@@ -9400,7 +9400,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.pianList = data;
                     $scope.lengths = $scope.liArr.length;
 
@@ -9421,7 +9421,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.pianList = data;
 
                     $scope.lengths = $scope.liArr.length;
@@ -9442,7 +9442,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.pianList = data;
 
                     $scope.lengths = $scope.liArr.length;
@@ -9490,7 +9490,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //确认选择左眼获取左眼数据
 
         $scope.leftSelect = function (id) {
-            console.log(id);
+            //console.log(id);
             $scope.leftArr.goods_rec = id;
         };
 
@@ -9510,7 +9510,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         //$scope.leftEyeData = data;
                         $scope.liArr[index].left = data;
@@ -9527,7 +9527,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //     $.each($scope.liArr[i].left.spec_info.goods_attr,function(k,v){
                         //         arr.push(v);
                         //     });
-                        //     console.log(arr);
+                        //     //console.log(arr);
                         //     //console.log(typeof $scope.liArr[i].left.spec_info.goods_attr); object
                         //
                         //     for(var j = 0;j<arr.length;j++){
@@ -9536,9 +9536,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //          leftLiArr.push(attr);
                         //          $scope.liArrParams.ladd.push(arr[j].goods_attr_id);
                         //     }
-                        //     console.log($scope.liArrParams);
-                        //     console.log(leftLiArr);
-                        //     console.log($scope.liArr);
+                        //     //console.log($scope.liArrParams);
+                        //     //console.log(leftLiArr);
+                        //     //console.log($scope.liArr);
                         // }
                         if ($scope.liArrParams.lqiujing.indexOf($scope.liArr[index].left.spec_info.qiujing) == -1) {
                             $scope.liArrParams.lqiujing.push($scope.liArr[index].left.spec_info.qiujing);
@@ -9555,13 +9555,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         if ($scope.eyeglassArr.indexOf($scope.liArr[index].left.spec_info.rec_id) == -1) {
                             $scope.eyeglassArr.push($scope.liArr[index].left.spec_info.rec_id);
                         }
-                        console.log($scope.liArrParams);
+                        //console.log($scope.liArrParams);
                         $('.leftBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            console.log($scope.leftArr);
+            //console.log($scope.leftArr);
         };
 
 
@@ -9590,7 +9590,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.right_goods_rec = null;
 
         $scope.rightSelect = function (id) {
-            console.log(id);
+            //console.log(id);
             $scope.rightArr.goods_rec = id;
         };
         //确认选择右眼获取右眼数据
@@ -9610,7 +9610,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         //$scope.rightEyeData = data;
                         $scope.liArr[index].right = data;
@@ -9634,13 +9634,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         if ($scope.eyeglassArr.indexOf($scope.liArr[index].right.spec_info.rec_id) == -1) {
                             $scope.eyeglassArr.push($scope.liArr[index].right.spec_info.rec_id);
                         }
-                        console.log($scope.liArrParams);
+                        //console.log($scope.liArrParams);
                         $('.rightBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            console.log($scope.liArr);
+            //console.log($scope.liArr);
         };
 
 
@@ -9669,7 +9669,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.jia_goods_rec = null;
 
         $scope.jiaSelect = function (id) {
-            console.log(id);
+            //console.log(id);
             $scope.jiaArr.goods_rec = id;
         };
         //确认镜架数据
@@ -9689,7 +9689,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if ($scope.goods_rec_arr.indexOf(data.spec_info.rec_id) == -1) {
                         $scope.goods_rec_arr.push(data.spec_info.rec_id);
                     }
@@ -9702,13 +9702,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } else {
                             $scope.liArrParams.frame_from.push($scope.liArr[index].jia.spec_info.rec_id);
                         }
-                        console.log($scope.liArr);
+                        //console.log($scope.liArr);
                         $('.jiaBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            console.log($scope.liArr);
+            //console.log($scope.liArr);
 
 
             if ($scope.liArrParams.mach_type == 1) {
@@ -9765,8 +9765,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             } else {
                 //$scope.eyeglassArr = [];
                 $scope.liArr.push({});
-                console.log($scope.liArr);
-                console.log($scope.goods_rec_arr);
+                //console.log($scope.liArr);
+                //console.log($scope.goods_rec_arr);
                 $scope.show = true;
                 $scope.shows = false;
 
@@ -9788,19 +9788,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
 
                         $scope.leftArr.goods_rec = '';
                         $scope.rightArr.goods_rec = '';
                         $scope.jiaArr.goods_rec = '';
-                        console.log($scope.leftArr);
+                        //console.log($scope.leftArr);
                         $scope.goods_rec_arr = [];
 
                         if (data.status) {
 
                         }
                     })
-                // console.log(angular.element(e.target).parent().prev().find('.bd li'));
+                // //console.log(angular.element(e.target).parent().prev().find('.bd li'));
                 // for(var i=0;i<$scope.liArr.length;i++){
                 //     $(this).index = i;
                 //    $('.picScroll-left li').eq(i).addClass('con');
@@ -9838,8 +9838,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //确认信息
         $scope.submit = function () {
-            console.log($scope.liArr);
-            console.log($scope.liArrParams);
+            //console.log($scope.liArr);
+            //console.log($scope.liArrParams);
             $scope.liArrParams.eyeglass_from.push($scope.eyeglassArr);
             $http({
                 method: "POST",
@@ -9848,7 +9848,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $state.go('person-process');
@@ -9872,7 +9872,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.content = $sce.trustAsHtml(data.data);
             })
 
@@ -9887,7 +9887,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $state.go('paymentNew', {
                             log_id: data.log_id,
@@ -9922,7 +9922,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.shopHomeData = data;
                     $scope.shopLogo = data.data.logo;
                     $scope.name = data.data.name;
@@ -9940,7 +9940,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.shopHotGoods = data;
                 $scope.getHotGoods($scope.shopHotGoods.suppliers_cat_list[0].cat_id);
             })
@@ -9978,7 +9978,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -9997,7 +9997,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -10029,7 +10029,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.hotGoodsData = data;
                 })
         };
@@ -10063,7 +10063,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.yhqFn();
@@ -10091,7 +10091,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.shopHomeData = data;
                     $scope.shopLogo = data.data.logo;
                     $scope.name = data.data.name;
@@ -10113,7 +10113,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -10132,7 +10132,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -10180,7 +10180,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     "scrollTop": 0
                 }, 500)
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -10211,7 +10211,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -10252,7 +10252,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
 
                 }).error(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         $state.go('login');
@@ -10401,7 +10401,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('关注失败',{time:100});
                             //$state.go('login');
@@ -10421,7 +10421,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('取消关注失败',{time:100});
                             //$state.go('login');
@@ -10436,10 +10436,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
     }])
     //个人中心-发票管理-发票列表页面
-    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams','$location','$anchorScroll', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams,$location,$anchorScroll) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		
+		$scope.goto = function () {
+            $location.hash('');
+            $anchorScroll.yOffset = 1;
+            $anchorScroll();
+        };
+        $scope.goto(); 
         $scope.invoicesList = {
             page: 1,
             size: 10,
@@ -10461,7 +10467,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.invoicesList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -10470,9 +10476,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.invoicesData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
-                    ////layer.msg('用户失效，请重新登录');
+                    //layer.msg('用户失效，请重新登录');
                     $state.go('login');
                     layer.close(cool);
                 }
@@ -10492,14 +10498,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             current_page: 0,
             callback: function (index) {
                 $scope.invoicesList.page = index + 1;
+            	var cool = layer.load(0, { shade: [0.3, '#fff'] });
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/User/inv_list',
                     data: $scope.invoicesList,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
+	                layer.close(cool);
                     $scope.invoicesData = data;
-                })
+                }).error(function (data) {
+                //console.log(data);
+	                if (data.status == 0) {
+	                    //layer.msg('用户失效，请重新登录');
+	                    $state.go('login');
+	                    layer.close(cool);
+	                }
+	            })
             }
         };
         $scope.getGoods = function (data) {
@@ -10525,7 +10540,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.invSelectList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -10534,7 +10549,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.invSelectData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -10581,9 +10596,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         var sum = 0;
         //全选
         $scope.isCheck = function (index, check, id, e) {
-            console.log($scope.invSelectData);
+            //console.log($scope.invSelectData);
             if (!$scope.invSelectData.data[index].allCheck) {
-                console.log(1);
+                //console.log(1);
                 for (var j = 0; j < $scope.invSelectData.data[index].order.length; j++) {
                     $scope.invSelectData.data[index].order[j].check = true;
                     if ($scope.invSelectData.data[index].order[j].check == false) {
@@ -10605,14 +10620,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     console.log(data);
+                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().find('.d1_div_sp2').html(data.float);
                 // })
 
                 angular.element(e).parent().find('.d1_div_sp2').html('¥' + sum.toFixed(2));
                 angular.element(e).parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
-                console.log($scope.orderIdArr);
+                //console.log($scope.orderIdArr);
             } else {
                 for (var j = 0; j < $scope.invSelectData.data[index].order.length; j++) {
                     $scope.invSelectData.data[index].order[j].check = false;
@@ -10625,7 +10640,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     console.log(data);
+                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().find('.d1_div_sp2').html(data.float);
                 // })
@@ -10633,7 +10648,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 angular.element(e).parent().find('.d1_div_sp2').html('¥' + sum.toFixed(2));
                 angular.element(e).parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
-                console.log($scope.orderIdArr);
+                //console.log($scope.orderIdArr);
             }
         };
 
@@ -10645,7 +10660,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //选中改变价格
         $scope.selectInv = function (index, pIndex, ck, id, e) {
             if (!ck) {
-                console.log(index);
+                //console.log(index);
                 $scope.orderIdArr.order_ids.splice($.inArray(index, $scope.orderIdArr.order_ids), 0, $scope.invSelectData.data[pIndex].order[index].order_id);
                 sum += parseFloat($scope.invSelectData.data[pIndex].order[index].old_amount);
                 $scope.orderIdArr.suppliers_id = id;
@@ -10656,7 +10671,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     console.log(data);
+                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().parent().parent().siblings().eq(1).find('.d1_div_sp2').html(data.float);
                 // })
@@ -10666,7 +10681,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e).parent().parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
             }
             else {
-                console.log(index);
+                //console.log(index);
                 //$scope.orderIdArr.order_ids.splice(index,1);
                 //angular删除数组
                 $scope.orderIdArr.order_ids.splice($.inArray(index, $scope.orderIdArr.order_ids), 1);
@@ -10676,7 +10691,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     console.log(data);
+                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().parent().parent().siblings().eq(1).find('.d1_div_sp2').html(data.float);
                 // })
@@ -10693,7 +10708,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //         data:$scope.orderIdArr,
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     }).success(function(data) {
-        //         console.log(data);
+        //         //console.log(data);
         //         $scope.price = data.float;
         //     })
         // };
@@ -10714,13 +10729,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: '',
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.addressData = data;
             })
         };
         //索取发票
         $scope.sq = function () {
-            console.log($scope.orderIdArr);
+            //console.log($scope.orderIdArr);
             if ($scope.orderIdArr.suppliers_id == "") {
                 layer.msg('请选择正确的开票金额！');
             } else {
@@ -10730,7 +10745,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     data: $scope.orderIdArr,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $scope.hasKaiPiao = false;
                         $scope.kaiPiaoData = data;
@@ -10754,7 +10769,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.piaoArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $state.go('person-invoices');
@@ -10780,7 +10795,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.getAddress();
@@ -10825,7 +10840,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         data: $scope.invMessageList,
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -10841,7 +10856,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.type = false;
                         $scope.zzType = false;
                         $scope.changeType = function () {
-                            console.log($scope.zizhiArr);
+                            //console.log($scope.zizhiArr);
                             if ($scope.zizhiArr.type == 2) {
                                 $scope.type = true;
                                 $scope.zzType = true;
@@ -10866,7 +10881,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         };
 
                     }).error(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status == 0) {
                             ////layer.msg('用户失效，请重新登录');
                             $state.go('login');
@@ -10896,7 +10911,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.invMessageList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -10912,7 +10927,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.type = false;
                 $scope.zzType = false;
                 $scope.changeType = function () {
-                    console.log($scope.zizhiArr);
+                    //console.log($scope.zizhiArr);
                     if ($scope.zizhiArr.type == 2) {
                         $scope.type = true;
                         $scope.zzType = true;
@@ -10937,7 +10952,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 };
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -11067,7 +11082,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.zizhiArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.invMessageFn();
@@ -11075,14 +11090,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info);
                 }
             })
-            console.log($scope.zizhiArr);
+            //console.log($scope.zizhiArr);
         };
     }])
     //个人中心-返修退换货-返修/退换货
     .controller('returnRepair-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairList = {
             page: 1,
             size: 10,
@@ -11128,7 +11143,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.repairList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -11137,7 +11152,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.repairData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -11191,7 +11206,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     $scope.allGoods.orders.goods_ids.push(arr1);
             //
             // }
-            // console.log($scope.allGoods);
+            // //console.log($scope.allGoods);
 
 
             // $scope.allGoods.orders.rec_ids = [];
@@ -11199,7 +11214,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //
             // $scope.allGoods.orders.order_ids.push($scope.repairData.list[index].goods_id);
             // $scope.allGoods.orders.rec_ids.push($scope.repairData.list[index].rec_id);
-            // console.log($scope.allGoods);
+            // //console.log($scope.allGoods);
 
             //其中一个不选，取消全选
             for (var i = 0, item1 = $scope.repairData.list; i < item1.length; i++) {
@@ -11277,7 +11292,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.allGoods.orders.rec_ids.push($scope.repairData.list[i].rec_id);
                 }
             }
-            console.log($scope.allGoods);
+            //console.log($scope.allGoods);
 
             $http({
                 method: "POST",
@@ -11285,7 +11300,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.allGoods,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $state.go('return-repair-content', {
                         id: '',
@@ -11305,7 +11320,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status) {
             //         $scope.isSubmit = false;
             //         $scope.lotsSubmit = true;
@@ -11323,7 +11338,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status) {
             //         $scope.lotsSubmit = true;
             //         $scope.isSubmit = false;
@@ -11339,7 +11354,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
             //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
             //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-            //                     console.log($scope.subArr);
+            //                     //console.log($scope.subArr);
             //                 }
             //             }
             //         }
@@ -11391,7 +11406,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $state.go('return-repair-content', {
                         id: id
@@ -11408,7 +11423,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status){
             //         $scope.isSubmit = false;
             //         $scope.lotsSubmit = true;
@@ -11441,7 +11456,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
             //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
             //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-            //                     console.log($scope.subArr);
+            //                     //console.log($scope.subArr);
             //                 }
             //             }
             //         }
@@ -11455,7 +11470,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //             }else{
             //                 $scope.shopGoods.push($scope.sqshData.goodslist[index].rec_id);
             //             }
-            //             console.log($scope.shopGoods);
+            //             //console.log($scope.shopGoods);
             //
             //             //其中一个不选，取消全选
             //             if($scope.shopGoods.length<$scope.sqshData.goodslist.length){
@@ -11472,14 +11487,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
             //                     $scope.sqshData.goodslist[i].selects = false;
             //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),1);
-            //                     console.log($scope.shopGoods);
+            //                     //console.log($scope.shopGoods);
             //                 }
             //
             //             }else{
             //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
             //                     $scope.sqshData.goodslist[i].selects = true;
             //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),0,$scope.sqshData.goodslist[i].rec_id);
-            //                     console.log($scope.shopGoods);
+            //                     //console.log($scope.shopGoods);
             //                 }
             //             }
             //         };
@@ -11499,7 +11514,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             params: ''
         })
             .success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.bianjiData = data;
             })
         $scope.editData = {
@@ -11517,10 +11532,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.bianjiData.city_list = data.data;
                     $scope.changeCity(pid);
-                    console.log($scope.editData);
+                    //console.log($scope.editData);
                 })
         };
         //编辑市切换
@@ -11535,9 +11550,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     $scope.bianjiData.district_list = data.data;
-                    console.log($scope.editData);
+                    //console.log($scope.editData);
                 })
         };
 
@@ -11553,7 +11568,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 order_id: $scope.sqshData.order_info.order_id,
                 rec_ids: $scope.shopGoods
             };
-            console.log($scope.tjsqArr);
+            //console.log($scope.tjsqArr);
             if ($scope.tjsqArr.rec_ids.length == 0) {
                 layer.msg('请先勾选一个商品');
             } else {
@@ -11563,7 +11578,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     data: $scope.tjsqArr,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    console.log(data);
+                    //console.log(data);
                     if (data.status) {
                         $scope.lotsSubmit = true;
                         $scope.isLotsSubmit = false;
@@ -11617,7 +11632,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.goodslist[pIndex][index].rec_id);
             // $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             if (num > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().removeClass('reduce');
@@ -11637,18 +11652,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
 
 
-            console.log(num);
+            //console.log(num);
             $scope.subArr.rec_ids.member[index] = num;
         };
 
         //增加
         //$scope.numArr = [{}];
         $scope.add = function (e, index, pIndex) {
-            // console.log(angular.element(e.target).parent().parent().prev().html());
+            // //console.log(angular.element(e.target).parent().parent().prev().html());
             // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
             //$scope.numberChange();
@@ -11665,7 +11680,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).addClass('add');
             }
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
 
         };
         //减少
@@ -11676,7 +11691,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
             // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
             // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
                 $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
@@ -11693,7 +11708,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //$scope.numberChange();
             }
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
         };
 
         //修改返修信息
@@ -11726,7 +11741,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         })
 
         $scope.xg = function () {
-            console.log($scope.xgArr);
+            //console.log($scope.xgArr);
 
             $http({
                 method: "POST",
@@ -11734,7 +11749,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.xgArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.return_pay_way = data.data.return_pay_way;
                 $scope.is_fapiao = data.data.is_fapiao;
                 $scope.return_way = data.data.return_way;
@@ -11817,7 +11832,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //图片路径设置为读取的图片
                 $scope.img_ava = e.target.result;
                 $scope.subArr.return_img[index] = $scope.img_ava;
-                console.log($scope.subArr);
+                //console.log($scope.subArr);
                 img.src = $scope.img_ava;
             };
             reader.readAsDataURL(file);
@@ -11834,11 +11849,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log($scope.subArr);
                         if ($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[i][j].order_id) == -1) {
                             $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-                            console.log($scope.subArr);
+                            //console.log($scope.subArr);
                         }
                         if ($scope.subArr.rec_ids.rec_id.indexOf($scope.afterSaleData.order_goods[i][j].rec_id) == -1) {
                             $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-                            console.log($scope.subArr);
+                            //console.log($scope.subArr);
                         }
                         $http({
                             method: "POST",
@@ -11846,7 +11861,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             data: $scope.subArr,
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         }).success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info);
                                 $scope.isSuccess = true;
@@ -11865,7 +11880,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
 
         $scope.isSuccess = false;
         $scope.lotsSubmit = true;
@@ -11881,7 +11896,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     // $scope.lotsSubmit = true;
                     // $scope.isSubmit = false;
@@ -11898,7 +11913,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
                                 $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
                                 $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-                                console.log($scope.subArr);
+                                //console.log($scope.subArr);
                             }
                         }
                     }
@@ -11937,7 +11952,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info);
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -11958,7 +11973,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     // $scope.lotsSubmit = true;
                     // $scope.isSubmit = false;
@@ -11975,7 +11990,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
                                 $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
                                 $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-                                console.log($scope.subArr);
+                                //console.log($scope.subArr);
                             }
                         }
                     }
@@ -12003,7 +12018,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12039,7 +12054,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.goodslist[pIndex][index].rec_id);
             // $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             if (num > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().removeClass('reduce');
@@ -12070,11 +12085,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //增加
         //$scope.numArr = [{}];
         $scope.add = function (e, index, pIndex) {
-            // console.log(angular.element(e.target).parent().parent().prev().html());
+            // //console.log(angular.element(e.target).parent().parent().prev().html());
             // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
             //$scope.numberChange();
@@ -12091,7 +12106,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).addClass('add');
             }
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
 
         };
         //减少
@@ -12107,7 +12122,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
             // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
             // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
             if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
                 $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
@@ -12124,7 +12139,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //$scope.numberChange();
             }
 
-            console.log($scope.subArr);
+            //console.log($scope.subArr);
         };
 
         $('.fx_th_btn input').click(function (e) {
@@ -12132,13 +12147,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $(e.target).addClass('bt1');
 
             // if($('.fx_th_btn input').eq(0).hasClass('bt1')){
-            //     console.log(1)
+            //     //console.log(1)
             //     $scope.subArr.return_type=1;
             // }else if($('.fx_th_btn input').eq(1).hasClass('bt1')){
-            //     console.log(2)
+            //     //console.log(2)
             //     $scope.subArr.return_type=2;
             // }else if($('.fx_th_btn input').eq(2).hasClass('bt1')){
-            //     console.log(3)
+            //     //console.log(3)
             //     $scope.subArr.return_type=3;
             // }
         })
@@ -12174,7 +12189,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //图片路径设置为读取的图片
                 $scope.img_ava = e.target.result;
                 $scope.subArr.return_img[index] = $scope.img_ava;
-                console.log($scope.subArr);
+                //console.log($scope.subArr);
                 img.src = $scope.img_ava;
             };
             reader.readAsDataURL(file);
@@ -12196,11 +12211,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log($scope.subArr);
                         if ($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[i][j].order_id) == -1 && $scope.afterSaleData.order_goods[i][j].server_end == 1) {
                             $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-                            console.log($scope.subArr);
+                            //console.log($scope.subArr);
                         }
                         if ($scope.subArr.rec_ids.rec_id.indexOf($scope.afterSaleData.order_goods[i][j].rec_id) == -1 && $scope.afterSaleData.order_goods[i][j].server_end == 1) {
                             $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-                            console.log($scope.subArr);
+                            //console.log($scope.subArr);
                         }
                     }
                 }
@@ -12212,7 +12227,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.subArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.isSuccess = true;
@@ -12228,7 +12243,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairHistory-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairHistroyList = {
             page: 1,
             size: 10,
@@ -12251,7 +12266,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.repairHistroyList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12260,7 +12275,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.repairHistoryData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12312,7 +12327,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $scope.islook = false;
                     $scope.lookContentData = data;
@@ -12339,7 +12354,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             data: $scope.returnArr,
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         }).success(function (data) {
-                            console.log(data);
+                            //console.log(data);
                             if (data.status) {
                                 $scope.isSubmit = false;
                             } else {
@@ -12364,30 +12379,34 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.cancelOrder = function (id) {
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/User/cancel_repair',
-                data: {
-                    id: id
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            }).success(function (data) {
-                console.log(data);
-                if (data.status) {
-                    layer.msg(data.info, { time: 1000 }, function () {
-                        $scope.repairHistroyFn();
-                    });
-                } else {
-                    layer.msg(data.info, { time: 1000 });
-                }
-            })
+        	layer.confirm('您确定要取消么？', {
+				btn: ['确定', '取消'] //按钮
+			}, function() {
+	            $http({
+	                method: "POST",
+	                url: '' + $rootScope.ip + '/User/cancel_repair',
+	                data: {
+	                    id: id
+	                },
+	                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+	            }).success(function (data) {
+	                //console.log(data);
+	                if (data.status) {
+	                    layer.msg('取消成功', { time: 1000 }, function () {
+	                        $scope.repairHistroyFn();
+	                    });
+	                } else {
+	                    layer.msg('取消失败', { time: 1000 });
+	                }
+	            })
+			});	
         };
     }])
     //个人中心-返修退换货-返修/退款明细
     .controller('repairRefund-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12404,7 +12423,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.repairRefundList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12413,7 +12432,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.repairRefundData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12467,7 +12486,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     },
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status){
             //         $scope.islook = false;
             //         $scope.lookContentData = data;
@@ -12494,7 +12513,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //                 data:$scope.returnArr,
             //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             //             }).success(function(data) {
-            //                 console.log(data);
+            //                 //console.log(data);
             //                 if(data.status){
             //                     $scope.isSubmit = false;
             //                 }else{
@@ -12517,7 +12536,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('repairRefundContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         //查看
         //$scope.islook = true;
         $scope.isSubmit = true;
@@ -12531,7 +12550,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status) {
                 //$scope.islook = false;
                 layer.close(cool);
@@ -12559,7 +12578,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         data: $scope.returnArr,
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        console.log(data);
+                        //console.log(data);
                         if (data.status) {
                             $scope.isSubmit = false;
                         } else {
@@ -12573,7 +12592,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 layer.msg(data.info);
             }
         }).error(function (data) {
-            console.log(data);
+            //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
                 $state.go('login');
@@ -12587,7 +12606,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnMoney-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12603,13 +12622,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.repairRefundList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 $scope.getGoods(data);
                 $scope.totalSize = data.pages;
                 $scope.repairRefundData = data;
 
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12658,7 +12677,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     },
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     console.log(data);
+            //     //console.log(data);
             //     if(data.status){
             //         $scope.islook = false;
             //         $scope.lookContentData = data;
@@ -12685,7 +12704,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //                 data:$scope.returnArr,
             //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             //             }).success(function(data) {
-            //                 console.log(data);
+            //                 //console.log(data);
             //                 if(data.status){
             //                     $scope.isSubmit = false;
             //                 }else{
@@ -12710,7 +12729,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.getData = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $data.collectionShop().success(function (data) {
@@ -12721,7 +12740,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.collectShop = data;
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12754,14 +12773,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }else{
                     $scope.ids.push(item.rec_id);
                 }
-                console.log($scope.ids)
+                //console.log($scope.ids)
             } */
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                 if (item[i].selected) {
                     $scope.ids.push(item[i].rec_id);
                 }
             }
-            console.log($scope.ids)
+            //console.log($scope.ids)
             $scope.delCollectionGoods($scope.ids)
         }
         /* 全选按钮 */
@@ -12818,7 +12837,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.totalSize = data.pages;
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -12883,14 +12902,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }else{
                     $scope.ids.push(item.rec_id);
                 }
-                console.log($scope.ids)
+                //console.log($scope.ids)
             } */
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                 if (item[i].selected) {
                     $scope.ids.push(item[i].rec_id);
                 }
             }
-            console.log($scope.ids)
+            //console.log($scope.ids)
             $scope.delCollectionGoods($scope.ids)
         }
         /* 全选按钮 */
@@ -12934,7 +12953,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.machiningList = {
             page: 1,
             size: 10
@@ -12956,7 +12975,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.getDatas = function () {
                     $data.machiningList($scope.machiningList).success(function (res) {
                         $scope.data = res;
-                        console.log(res);
+                        //console.log(res);
                         if (res.status) {
                             layer.close(cool);
                             $("body,html").animate({
@@ -12976,13 +12995,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $data.machiningList($scope.machiningList).success(function (res) {
                 $scope.data = res;
-                console.log(res);
+                //console.log(res);
                 if (res.status) {
                     layer.close(cool);
                 }
                 $scope.getGoods(res);
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -13012,7 +13031,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //		查看更多
         $scope.lookMore = function (index, event) {
-            console.log('more');
+            //console.log('more');
             $(event.currentTarget).prev().css({
                 'height': 'auto',
                 'overflow': 'auto'
@@ -13047,7 +13066,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //付款
         $scope.buyAgain = function (goods_id) {
-            console.log(goods_id);
+            //console.log(goods_id);
             $state.go('paymentNew', { log_id: goods_id, type: 'mach' })
         }
 
@@ -13058,13 +13077,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }).success(function (data) {
                 if (data.status == 0) {
                     layer.msg('请确定输入是否正确', { icon: 2, time: 1000 })
-                    console.log($scope.order_number)
+                    //console.log($scope.order_number)
                 } else {
                     $scope.AllDetial = data.list;
                     $scope.AllDetialLength = data.list.length;
                     $scope.AllOrder = data;
                     $scope.getOrd(data);
-                    console.log($scope.order_number)
+                    //console.log($scope.order_number)
                 }
             })
         }
@@ -13079,7 +13098,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     $scope.getData();
                     layer.msg(data.info, { icon: 1 })
@@ -13107,7 +13126,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     // layer.close(cool);
                     $scope.machInfoData = data.mach_list;
@@ -13134,7 +13153,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info);
                 }
             }).error(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
                     $state.go('login');
@@ -13166,7 +13185,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                         $scope.personProcessContentFn();
@@ -13187,7 +13206,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                         $scope.personProcessContentFn();

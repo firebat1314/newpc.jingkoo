@@ -2222,7 +2222,7 @@ span.a_arrow_r {
           display: block; }
       .home-main .cool-eye-world .cool-eye-content .coolEye-right {
         width: 215px;
-        height: 405px;
+        height: 430px;
         float: left;
         overflow: hidden; }
         .home-main .cool-eye-world .cool-eye-content .coolEye-right .coolEye-right-tit {
@@ -10638,7 +10638,8 @@ textarea {
   width: 10px;
   height: 10px;
   background: url(../img/fx_arr1.png) center center no-repeat;
-  background-size: 100% auto; }
+  background-size: 100% auto;
+  display: none; }
 
 .fx_box .fx_tb .span_box .fx_show_box {
   display: inline-block;

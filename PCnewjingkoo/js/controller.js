@@ -1872,9 +1872,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // $scope.qxsjFn();
 
         $scope.prev = function () {
-            $scope.hotList.page++;
-            $scope.qxsjFn();
-            // if($scope.qxsjAd.page<$scope.qxsjAd.pages){
+            if($scope.hotList.size>$scope.shejiData.hot_goods.length){
+                return
+            }else{
+                $scope.hotList.page++;
+            }
+                $scope.qxsjFn();
+                // if($scope.qxsjAd.page<$scope.qxsjAd.pages){
             //     $scope.hotList.page++;
             //     $scope.qxsjFn();
             // }else{
@@ -1883,7 +1887,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // }
         };
         $scope.next = function () {
-            $scope.hotList.page--;
+            if($scope.hotList.page==1){
+                return
+            }else{
+                $scope.hotList.page--;
+            }
             $scope.qxsjFn();
             // if($scope.qxsjAd.page==1){
             //     $scope.hotList.page = 1;
@@ -6534,6 +6542,17 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
                         $scope.exchange_integral = data.total.exchange_integral;
+                            /* 选中的收货方式 */
+                        if (data.consignee_list.length == 0) {
+                            $scope.defaultShipping = null;
+                          } else {
+                            for (let i = 0; i < data.consignee_list.length; i++) {
+                              if (data.consignee_list[i].is_show == 1&&data.consignee_list[i].selected == 1) {
+                                $scope.defaultShipping = data.consignee_list[i]
+                              }
+                            }
+                          }
+                          console.log($scope.defaultShipping)
                         //个人信息面板信息
                         $http({
                             method: "POST",
@@ -6959,9 +6978,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //提交订单
         $scope.notes = {
             note: [],
-            suppliers: []
+            suppliers: [],
+            label:null
         };
         $scope.submitList = function (e, index) {
+            let commentArr = [];
+            let suppliers = [];
+            for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
+                if($scope.jiesuanData.cart_goods_list[i].suppliers_note){
+                    commentArr.push($scope.jiesuanData.cart_goods_list[i].suppliers_note)
+                    suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id)
+                }
+           }
+            let label = [];
+            for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
+              var sArr = []
+              for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                  sArr.push(j)
+                }
+              }
+              label.push(sArr)
+            }
+            // console.log(commentArr,suppliers,label)
+            // return;
+
             if ($scope.yeIf) {
                 $http({
                     method: "POST",
@@ -6974,15 +7015,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     .success(function (data) {
                         console.log(data);
                         if (data.status) {
-                            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
-                                $scope.notes.note.push($scope.jiesuanData.suppliers_notes[$scope.jiesuanData.cart_goods_list[i].suppliers_id]);
-                                $scope.notes.suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id);
-                            }
                             $http({
                                 method: "POST",
                                 url: '' + $rootScope.ip + '/Flow/done',
                                 data: {
-                                    notes: $scope.notes
+                                    notes: {
+                                        note: commentArr,
+                                        suppliers: suppliers,
+                                        label: label
+                                    }
                                 },
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
@@ -7021,15 +7062,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         }
                     })
             } else {
-                for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
-                    $scope.notes.note.push($scope.jiesuanData.suppliers_notes[$scope.jiesuanData.cart_goods_list[i].suppliers_id]);
-                    $scope.notes.suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id);
-                }
+
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/Flow/done',
                     data: {
-                        notes: $scope.notes
+                        notes: {
+                            note: commentArr,
+                            suppliers: suppliers,
+                            label: label
+                        }
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })

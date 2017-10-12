@@ -90,8 +90,9 @@
                         <th width="100"></th>
                         <th width="135">
                         	<div class="mana_addr_box" style="width: 300px;text-align: right;font-size: 12px;">
-                        		<span class="addr_money" style="color: #808080;margin-left: 10px;">运费：¥20.00</span>
-                        		<span class="free_money" style="color: #ff3333;margin-left: 10px;">还差¥199.00免运费</span>
+                        		<!-- <span class="addr_money" style="color: #808080;margin-left: 10px;">运费：¥20.00</span> -->
+                                <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free!=1&&carItem.free_price">还差￥{{carItem.free_price}}免运费</span>
+                                <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free==1">免运费</span>
                         	</div>
                         </th>
                     </tr>

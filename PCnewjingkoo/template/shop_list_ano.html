@@ -98,7 +98,7 @@
                         <div class="item-list1">
                             <ul>
                                 <li>
-                                    <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>  【A58渐进 / A60渐进 / A67渐进】  <em class="bjtou"></em></h3>
+                                    <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>  【A58渐进 / A60渐进 / A67渐进】  <em class="bjtou" ng-if="item.cat_id.length"></em></h3>
                                     <div class="box-tcd" ng-repeat="box in item.cat_id" repeat-done="getZeissGoods(item,$index,$parent.$index,$parent.$parent.$index)">
                                         <h2 class="tcd-h2">{{box.name}}</h2>
                                         <div class="tcd-itm">

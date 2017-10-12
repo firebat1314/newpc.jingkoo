@@ -35,7 +35,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $('.goTop').hide();
             }
         });
-        $scope.goto = function () {
+        $rootScope.goto = function () {
             $location.hash('');
             $anchorScroll.yOffset = 1;
             $anchorScroll();
@@ -10394,10 +10394,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
     }])
     //个人中心-发票管理-发票列表页面
-    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams','$location','$anchorScroll', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams,$location,$anchorScroll) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		
+		$scope.goto = function () {
+            $location.hash('');
+            $anchorScroll.yOffset = 1;
+            $anchorScroll();
+        };
+        $scope.goto(); 
         $scope.invoicesList = {
             page: 1,
             size: 10,
@@ -11049,7 +11055,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepair-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairList = {
             page: 1,
             size: 10,
@@ -11832,7 +11838,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
 
         $scope.isSuccess = false;
         $scope.lotsSubmit = true;
@@ -12195,7 +12201,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairHistory-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairHistroyList = {
             page: 1,
             size: 10,
@@ -12354,7 +12360,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('repairRefund-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12484,7 +12490,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('repairRefundContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         //查看
         //$scope.islook = true;
         $scope.isSubmit = true;
@@ -12554,7 +12560,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnMoney-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12677,7 +12683,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.getData = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $data.collectionShop().success(function (data) {
@@ -12901,7 +12907,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-
+		$scope.goto();
         $scope.machiningList = {
             page: 1,
             size: 10

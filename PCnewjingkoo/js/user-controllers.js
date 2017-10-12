@@ -728,12 +728,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 
 	}])
-	//个人中心-充值
+	//个人中心-充值 
 	.controller('personPay-control', ['$scope', '$rootScope', '$state', '$http','$data','ipCookie', function($scope, $rootScope, $state, $http,$data,ipCookie) {
 		//控制首页会员中心显隐
 		$rootScope.isShow = false;
 		//控制header和footer显隐
-		$rootScope.change = true;
+		$rootScope.change = true; 
 		$scope.goto();
 		$scope.payApply = function () {
 			if($scope.payment_id==undefined){

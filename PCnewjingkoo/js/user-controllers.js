@@ -240,7 +240,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				//图片路径设置为读取的图片
 				img.src = e.target.result;
 				$scope.yyzz = e.target.result;
-				console.log($scope.yyzz)
+//				console.log($scope.yyzz)
 			};
 		}
 		
@@ -509,13 +509,13 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
 				},
 			}).success(function (data) {
-				console.log(data); 
+				//console.log(data); 
 				$scope.isWx = data.is_weixin;
 				
 				if(data.is_weixin==0){
 				
 					pingpp.createPayment(data.pingxx, function(result, err) {
-	                    console.log(result, err); 
+	                    //console.log(result, err); 
 	                    if (result == "success") { 
 	                        // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
 	                    } else if (result == "fail") { 
@@ -1703,7 +1703,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET',
                 params:'',
             }).success(function(data) {
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -1730,7 +1730,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			clearInterval($scope.interval);
 			
 			var validate = $scope.geeteTrue.getValidate();
-            console.log(validate);
+            //console.log(validate);
 
             if(validate != undefined) {
                 $scope.Twogeetest_challenge = validate.geetest_challenge;
@@ -1896,7 +1896,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		
 		$scope.GoPasThereA = function() {
 			var validate = $scope.geeteTrue.getValidate();
-            console.log(validate);
+            //console.log(validate);
 
             if(validate != undefined) {
                 $scope.Twogeetest_challenge = validate.geetest_challenge;
@@ -1976,7 +1976,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET', 
                 params:'', 
             }).success(function(data) { 
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK 
                     gt: data.gt,
@@ -2014,7 +2014,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                     useNoise:true
                 }
             }).success(function(data) {
-                console.log(data);
+                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2032,7 +2032,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                     codeSet:$scope.code
                 }
             }).success(function(data) {
-                console.log(data);
+                //console.log(data);
                 setTimeout(function(){
                     $scope.$apply(function () {
                         $scope.codeMa =  data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2055,7 +2055,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.info = function(){
             var validate = $scope.geeteTrue.getValidate();
-            console.log(validate);
+            //console.log(validate);
 
             if(validate != undefined) {
                 $scope.onegeetest_challenge = validate.geetest_challenge;
@@ -2075,7 +2075,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                         geetest_seccode:$scope.onegeetest_seccode
                     }
                 }).success(function(data) {
-                    console.log(data);
+                    //console.log(data);
                     if(data.status){
                        
                         layer.msg(data.info);
@@ -2109,7 +2109,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.forgotTwoOption,
                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if(data.status){
 					$state.go('save-payPasstwo',{
                         verify:$scope.forgotTwoOption.verify
@@ -2146,7 +2146,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.forgotThreeOption,
                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             }).success(function (data) {
-                console.log(data);
+                //console.log(data);
                 if(data.status){
                 	$state.go('save-payPassthree');
                 }else{
@@ -2188,7 +2188,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 method: 'GET',
                 params:'',
             }).success(function(data) {
-                console.log(data);
+                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -2351,7 +2351,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.goto();
 			$scope.tabType = $stateParams.type1 || '';
-        	console.log($scope.tabType)
+        	//console.log($scope.tabType)
 	        //		页码
 			$scope.ListPage = {
 				page: 1,
@@ -2411,7 +2411,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				page:$scope.ListPage.page
 			}).success(function(data) {
 				layer.close(cool);
-				console.log(data);
+				//console.log(data);
 				$scope.AllDetial = data.list;
 				$scope.AllDetialLength = data.list.length;
 				$scope.AllOrder = data;
@@ -2923,7 +2923,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$data.getOrderInfo({order_id:$scope.orderid}).success(function (data) {
 			layer.close(cool);
 			$scope.orderDetail = data;
-			console.log(data);
+			//console.log(data);
 		}).error(function(data){
                 if(data.status == 0){
                     $state.go('login');
@@ -3149,7 +3149,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             })
                 .success(function(data) {
-                    console.log(data);
+                    //console.log(data);
                     if(data.status){
                         layer.msg(data.info,{icon:1});
                       

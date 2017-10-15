@@ -173,7 +173,7 @@ angular.module("myApp.router", ["ui.router"])
             //微信路由-充值
             .state("erweimaRecharge", {
                 title:'微信支付',
-                url: '/erweimaRecharge/:pay/:amount/:note/:type',
+                url: '/erweimaRecharge/:log_id',
                 templateUrl: 'template/erweimaRecharge.html',
                 controller: "erweimaRecharge-control"
             })
@@ -194,7 +194,7 @@ angular.module("myApp.router", ["ui.router"])
             //支付宝路由-充值
             .state("alipayRecharge", {
                 title:'支付宝支付',
-                url: '/alipayRecharge/:pay/:amount/:note/:type',
+                url: '/alipayRecharge/:log_id',
                 templateUrl: 'template/alipayRecharge.html',
                 controller: "alipayRecharge-control"
             })
@@ -215,7 +215,7 @@ angular.module("myApp.router", ["ui.router"])
             //银联路由-充值
             .state("unionPayRecharge", {
                 title:'银联支付',
-                url: '/unionPayRecharge/:pay/:amount/:note/:type',
+                url: '/unionPayRecharge/:log_id',
                 templateUrl: 'template/unionPayRecharge.html',
                 controller: "unionPayRecharge-control"
             })

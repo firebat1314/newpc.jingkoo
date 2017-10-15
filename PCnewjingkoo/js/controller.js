@@ -9129,9 +9129,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             method: "POST",
             url: '' + $rootScope.ip + '/User/recharge_money',
             data: {
-                amount: $stateParams.amount,
-                note: $stateParams.note,
-                pay: $stateParams.pay
+                log_id:$stateParams.log_id,
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
@@ -9192,14 +9190,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/recharge_money',
             data: {
-                amount: $stateParams.amount,
-                note: $stateParams.note,
-                pay: $stateParams.pay
+                log_id: $stateParams.log_id,
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
@@ -9234,14 +9229,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('unionPayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = false;
-
+		
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/recharge_money',
             data: {
-                amount: $stateParams.amount,
-                note: $stateParams.note,
-                pay: $stateParams.pay,
+                log_id: $stateParams.log_id,
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
@@ -9251,7 +9244,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg('玩命加载中', {
                         icon: 16
                         , shade: 0.3
-                    }, function () {
+                    }, function () { 
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
@@ -9271,6 +9264,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('helpCompany-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
         $rootScope.isShow = false;
         $rootScope.change = true;
+        
+		var cool = layer.load(0, {shade: [0.3,'#fff'] }); 
         //获取每个标题
         $scope.helpInit = function () {
             $http({
@@ -9282,6 +9277,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
+                	layer.close(cool);
                     //console.log(data);
                     $scope.helpData = data;
 
@@ -9292,10 +9288,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             }
                         }
                     }
-                })
+                }).error(function(data){
+		            if(data.status == 0){
+		                $state.go('login');
+		                layer.close(cool);
+		            }
+		        })
         };
         $scope.helpInit();
-
+		
         //标题的内容
         $http({
             method: "POST",

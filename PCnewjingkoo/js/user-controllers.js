@@ -735,6 +735,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//控制header和footer显隐
 		$rootScope.change = true; 
 		$scope.goto();
+		
 		$scope.payApply = function () {
 			if($scope.payment_id==undefined){
 				layer.msg('请选择一种支付方式',{icon:2});
@@ -748,10 +749,27 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                 //     if (data.status==0) {
                 //         layer.msg(data.info,{icon:2})
                 //     } else{
-				var win = window.open();
+
+					if (!checkNumber($scope.amount)) {
+	
+					 }else{
+					 	var win = window.open();
+					 }
+					 
+					 
+					//验证字符串是否是数字
+					function checkNumber(theObj) {
+					  var reg = /^[0-9]+.?[0-9]*$/;
+					  if (reg.test(theObj)) {
+					    return true;
+					  }
+					  return false;
+					}
+
+
             	$http({
 			            method: "POST",
-			            url: '' + $rootScope.ip + '/User/recharge_money',
+			            url: '' + $rootScope.ip + '/User/addAccount',
 			            data: {
 			                amount: $scope.amount,
 			                note: $scope.note,
@@ -759,31 +777,26 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			            },
 			            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			        }).success(function (data) {
+			 			$scope.log_id = data.log_id;
 						if(data.status!=1){
 							layer.msg(data.info,{icon:2,time:500})
 							return;
 						}else{
 							if($scope.payment_id=='alipay_pc_direct'){
 	                            var url = $state.href('alipayRecharge',{
-	                                pay:$scope.payment_id,
-	                                amount:$scope.amount,
-	                                note:$scope.note
+	                                log_id:$scope.log_id
 	                            });
 	                            win.location.href = url;
 								}else if($scope.payment_id=='upacp_pc'){
 		
 		                            var url = $state.href('unionPayRecharge',{
-		                                pay:$scope.payment_id,
-		                                amount:$scope.amount,
-		                                note:$scope.note
+		                                log_id:$scope.log_id
 		                            });
 	                            	win.location.href = url;
 								}else if($scope.payment_id=='wx_pub_qr'){
 		
 		                            var url = $state.href('erweimaRecharge',{
-		                                pay:$scope.payment_id,
-		                                amount:$scope.amount,
-		                                note:$scope.note
+		                                log_id:$scope.log_id
 		                            });
 	                            	win.location.href = url;
 								}

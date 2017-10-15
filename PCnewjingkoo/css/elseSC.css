@@ -9769,39 +9769,6 @@ span.a_arrow_r {
       font-size: 30px;
       color: #333; }
 
-/*支付*/
-.zfbt_box {
-  width: calc(100% - 100px);
-  float: left; }
-
-.zfbt_box span {
-  display: inline-block;
-  background-color: #fff;
-  text-align: center;
-  font-size: 14px;
-  color: #666666;
-  cursor: pointer;
-  width: 118px;
-  height: 38px;
-  line-height: 38px;
-  border: 1px solid #ccc;
-  position: relative;
-  margin-right: 15px; }
-
-.zfbt_box span.onli {
-  border-color: #ff3333; }
-
-.zfbt_box span.onli:after {
-  content: "";
-  display: inline-block;
-  width: 17px;
-  height: 17px;
-  background: url(../img/cg_ico1.png) center center no-repeat;
-  background-size: 100%;
-  position: absolute;
-  right: 0;
-  bottom: 0; }
-
 /*商品清单*/
 .goods_table {
   display: block; }

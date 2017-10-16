@@ -9823,7 +9823,13 @@ span.a_arrow_r {
 
 .pur_close_dl .pur_close_sp2 {
   display: inline-block;
-  width: 200px; }
+  max-width: 200px; }
+
+.pur_close_d .pur_close_sp3 i:nth-child(2) {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 .pur_close_d .pur_close_sp3 i {
   margin-right: 10px; }

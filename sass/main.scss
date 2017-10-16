@@ -7926,8 +7926,9 @@ display: -webkit-flex;
 .pur_close_d .pur_close_sp{display: block;width: 100%;text-align: left;font-size: 14px;color: #4c4c4c;position: relative;padding-bottom: 20px;font-weight: bold;}  
 .pur_close_dl .pur_close_sp1{width: 138px;height: 28px;line-height: 28px;border: 1px solid #cccccc;text-align: center;font-size: 12px;color: #666666;background-color: #fff;position: relative;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;float: left;} 
 .pur_close_dl .pur_close_sp2,.pur_close_d .pur_close_sp3{padding: 0 15px;height: 30px;line-height: 30px;font-size: 12px;color: #4C4C4C;float: left;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
-.pur_close_dl .pur_close_sp2{display: inline-block;width: 200px;}   
-.pur_close_d .pur_close_sp3 i{margin-right: 10px;} 
+.pur_close_dl .pur_close_sp2{display: inline-block;max-width: 200px;}       
+.pur_close_d .pur_close_sp3 i:nth-child(2){max-width: 300px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}  
+.pur_close_d .pur_close_sp3 i{margin-right: 10px;}  
 .pur_close_dl .pur_close_btn{cursor: pointer;width: 90px;height: 30px;display: none;border: 1px solid #cccccc;border-radius: 3px;background-color: #ccc;color: #fff;float: left;font-size: 12px;}      
 .pur_close_a{float: right;font-size: 12px;color: #ff3333;height: 40px;line-height: 40px;position: absolute;z-index: 1000;right: 0;top: 8px;}   
 .pur_close_a:hover{color: #0070c9;}     

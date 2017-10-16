@@ -140,7 +140,13 @@
 		<div class="clear"></div>
 	</div>
 </div>
-<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" style="margin-bottom: 20px;">
+
+<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="!wlData[0].state" style="margin-bottom: 20px;">
+	<div class="track-bt">订单跟踪</div>
+	<div class="" style="padding: 20px;">{{wlData[0].msg}}</div>
+</div>
+
+<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="wlData[0].state" style="margin-bottom: 20px;">
 	<div class="track-bt">订单跟踪</div>
 	<div class="track-nr cle">
 		<div class="track-left">

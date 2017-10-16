@@ -2959,7 +2959,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$data.getWlMsg({order_id:$scope.orderid}).success(function (data) {
 			$scope.WlMsg = data;
 			$scope.wlData = data.data;
-		})
+		}) 
 		
 		//再次购买
 		$scope.buyAgain1 = function (order_id) {

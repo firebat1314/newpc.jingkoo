@@ -13130,6 +13130,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status) {
                     // layer.close(cool);
+                    $scope.machInfo = data;
                     $scope.machInfoData = data.mach_list;
                     $scope.consignee = data.mach_info.consignee;
                     $scope.sn = data.mach_info.sn;
@@ -13150,6 +13151,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                     $scope.wl = data.mach_info.lj_shipping;
                     $scope.wlsn = data.mach_info.lj_shipping_sn;
+
+                    $data.getWlMsg({shipping_name:data.mach_info.jh_shipping,invoice_no:data.mach_info.jh_shipping_sn}).success(function (data) {
+                        $scope.wlData1 = data.data;
+                    })
+                    $data.getWlMsg({shipping_name:data.mach_info.lj_shipping,invoice_no:data.mach_info.lj_shipping_sn}).success(function (data) {
+                        $scope.wlData2 = data.data;
+                    })
                 } else {
                     layer.msg(data.info);
                 }
@@ -13217,5 +13225,5 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
         };
-
+         
     }])

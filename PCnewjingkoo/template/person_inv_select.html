@@ -182,14 +182,6 @@
                                     <!--</tbody></table>-->
                                 <table ng-if="invSelectData.data.length!=0" class="ask_tb">
                                     <tbody ng-repeat="tb in invSelectData.data">
-                                    <tr>
-                                        <th width="210px">订单编号</th>
-                                        <th width="190px">产品名称</th>
-                                        <th width="100px">类型</th>
-                                        <th>订单实付金额</th>
-                                        <th>可开票金额 </th>
-                                        <th>下单时间</th>
-                                    </tr>
                                     <tr style="background-color: #fff;">
                                         <td colspan="3">
                                             <div class="ask_tb_d1">
@@ -234,6 +226,14 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <th width="210px">订单编号</th>
+                                        <th width="190px">产品名称</th>
+                                        <th width="100px">类型</th>
+                                        <th>订单实付金额</th>
+                                        <th>可开票金额 </th>
+                                        <th>下单时间</th>
+                                    </tr>
                                     <tr ng-repeat="tr in tb.order">
                                             <td class="ned_po">
                                                 <div class="ask_tb_d3" style="display: flex;align-items: center;">
@@ -264,7 +264,10 @@
                                             </td>
                                             <td class="ned_po">
                                                 <span class="ask_tb_sp3">{{tr.pay_time}}</span>
-                                            </td>
+                                            </td> 
+                                        </tr>
+                                        <tr style="border: none;">
+                                        	<td colspan="6" style="padding: 0;">&nbsp;</td> 
                                         </tr>
                                     </tbody>
                                 </table>

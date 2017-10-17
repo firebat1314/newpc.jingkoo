@@ -407,7 +407,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.Index = function (index) {
             $scope.num = index;
         };
-
+		
+		
+        /* 新增客服功能 */
+        $rootScope.qimoChatClick = function(access_id){ 
+            if(!access_id){
+                layer.msg('客服正在路上,请稍后。。。', { time: 1000, icon: 2 });
+                return
+            }
+            var old = document.getElementsByClassName('qimo')[0]
+            //console.log(old)
+            if(old){
+                old.parentNode.removeChild(old);
+            }
+            var qimo = document.createElement('script');
+            $scope.access_id = access_id;
+            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+            qimo.classList = 'qimo'
+            document.body.append(qimo)
+            qimo.onload = function(){
+                setTimeout(function() {
+                    //console.log('七陌加载完成')
+                    qimoChatClick();
+                }, 400);
+            }
+        }
 
         //搜索
         $scope.searchKey = function () {
@@ -5902,6 +5926,29 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         };
+        /* 新增客服功能 */
+        $scope.qimoChatClick = function(access_id){ 
+            if(!access_id){
+                layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
+                return
+            }
+            var old = document.getElementsByClassName('qimo')[0]
+            //console.log(old)
+            if(old){
+                old.parentNode.removeChild(old);
+            }
+            var qimo = document.createElement('script');
+            $scope.access_id = access_id;
+            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+            qimo.classList = 'qimo'
+            document.body.append(qimo)
+            qimo.onload = function(){
+                setTimeout(function() {
+                    //console.log('七陌加载完成')
+                    qimoChatClick();
+                }, 400);
+            }
+        }
         $scope.carFn();
 
         var flag = true;

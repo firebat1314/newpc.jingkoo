@@ -2384,7 +2384,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				type:$scope.tabType,
 				order_number:''
 			};
-		
+			
 
 			$scope.getOrd = function(data) {
 				$('#Pagination').pagination(data.pages, $scope.options)
@@ -2427,6 +2427,29 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				}
 			}
 			
+        /* 新增客服功能 */
+        $scope.qimoChatClick = function(access_id){ 
+            if(!access_id){
+                layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
+                return
+            }
+            var old = document.getElementsByClassName('qimo')[0]
+            //console.log(old)
+            if(old){
+                old.parentNode.removeChild(old);
+            }
+            var qimo = document.createElement('script');
+            $scope.access_id = access_id;
+            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+            qimo.classList = 'qimo'
+            document.body.append(qimo)
+            qimo.onload = function(){
+                setTimeout(function() {
+                    //console.log('七陌加载完成')
+                    qimoChatClick();
+                }, 400);
+            }
+        }
 		$scope.getAllOrderHs = function(order) {
 			var cool = layer.load(0, {shade: [0.3,'#fff'] }); 
 			$scope.tabType = order

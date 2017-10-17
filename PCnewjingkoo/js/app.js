@@ -31,6 +31,7 @@
 }(angular));
 
 angular.module('myApp', [
+    'myApp.services',
     'myApp.controllers',
     'myApp.user-controllers',
     'myApp.router',
@@ -38,7 +39,6 @@ angular.module('myApp', [
     'ngLoadScript',
     'ipCookie',
     'ngSanitize',
-    'myApp.services',
     'afkl.lazyImage'
 ])
 // function get_html(html){

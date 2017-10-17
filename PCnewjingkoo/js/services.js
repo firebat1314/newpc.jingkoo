@@ -30,7 +30,33 @@ angular.module('myApp.services', [])
 	            return $q.reject(err);
 	        }
 	    };
-	})*/
+	})*//* 新增客服功能 */
+	.factory('$qimoChat',[function() {
+		return{
+			qimoChatClick:function(access_id){
+				console.log(access_id)
+				if(!access_id){
+					layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
+					return
+				}
+				var old = document.getElementsByClassName('qimo')[0]
+				//console.log(old)
+				if(old){
+					old.parentNode.removeChild(old);
+				}
+				var qimo = document.createElement('script');
+				qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+				qimo.classList = 'qimo'
+				document.body.append(qimo)
+				qimo.onload = function(){
+					setTimeout(function() {
+						//console.log('七陌加载完成')
+						qimoChatClick();
+					}, 400);
+				}
+			}
+		}
+	}])
 	.factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function($http, $window, $timeout, ipCookie) {
 		// var ip = 'http://v401app.jingkoo.net'; //测试
 		var ip = 'http://newpc.jingkoo.net'; //正式

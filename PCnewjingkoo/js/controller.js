@@ -26,7 +26,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
     }])
     //主控制
-    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location) {
+    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location,$qimoChat) {
+        this.$qimoChat = $qimoChat;
         //控制首页楼梯效果
         $(window).scroll(function () {
             if ($(document).scrollTop() > 500) {
@@ -53,9 +54,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
         };
         $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
-
-
-
 
         $scope.loginOut = function () {
             $http({
@@ -106,10 +104,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.$on('upCarList', function () {
             $scope.carFn();
         });
-
+        
     }])
     //首页头部
-    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data) {
+    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data,$qimoChat) {
+        $scope.$qimoChat= $qimoChat;
+        
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
@@ -3316,14 +3316,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.ListPage,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                if (data.status) {
                     layer.close(cool);
-                }
-                $scope.shopListData = data;
-                $scope.totalSize = data.pages;
-                $scope.ye = data.page;
-                $scope.count = data.count;
-
+                    if (data.status) {
+                        $scope.shopListData = data;
+                        $scope.totalSize = data.pages;
+                        $scope.ye = data.page;
+                        $scope.count = data.count;
+                    }
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
@@ -5865,9 +5864,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //购物车
-    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', function ($scope, $rootScope, $http, $state, ipCookie, $document) {
+    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document','$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document,$qimoChat) {
         $rootScope.isShow = false;
         $rootScope.change = true;
+
+        $scope.$qimoChat = $qimoChat;
         //购物车接口
         $scope.carFn = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
@@ -5901,29 +5902,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         };
-        /* 新增客服功能 */
-        $scope.qimoChatClick = function(access_id){
-            if(!access_id){
-                layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
-                return
-            }
-            var old = document.getElementsByClassName('qimo')[0]
-            //console.log(old)
-            if(old){
-                old.parentNode.removeChild(old);
-            }
-            var qimo = document.createElement('script');
-            $scope.access_id = access_id;
-            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
-            qimo.classList = 'qimo'
-            document.body.append(qimo)
-            qimo.onload = function(){
-                setTimeout(function() {
-                    //console.log('七陌加载完成')
-                    qimoChatClick();
-                }, 400);
-            }
-        }
         $scope.carFn();
 
         var flag = true;

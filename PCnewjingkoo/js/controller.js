@@ -26,7 +26,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
     }])
     //主控制
-    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location) {
+    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location,$qimoChat) {
+        this.$qimoChat = $qimoChat;
         //控制首页楼梯效果
         $(window).scroll(function () {
             if ($(document).scrollTop() > 500) {
@@ -53,9 +54,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
         };
         $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
-
-
-
 
         $scope.loginOut = function () {
             $http({
@@ -106,10 +104,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.$on('upCarList', function () {
             $scope.carFn();
         });
-
+        
     }])
     //首页头部
-    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data) {
+    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data,$qimoChat) {
+        $scope.$qimoChat= $qimoChat;
+        
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
@@ -3340,14 +3340,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.ListPage,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                if (data.status) {
                     layer.close(cool);
-                }
-                $scope.shopListData = data;
-                $scope.totalSize = data.pages;
-                $scope.ye = data.page;
-                $scope.count = data.count;
-
+                    if (data.status) {
+                        $scope.shopListData = data;
+                        $scope.totalSize = data.pages;
+                        $scope.ye = data.page;
+                        $scope.count = data.count;
+                    }
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
@@ -5889,9 +5888,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //购物车
-    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', function ($scope, $rootScope, $http, $state, ipCookie, $document) {
+    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document','$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document,$qimoChat) {
         $rootScope.isShow = false;
         $rootScope.change = true;
+
+        $scope.$qimoChat = $qimoChat;
         //购物车接口
         $scope.carFn = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });

@@ -1,3 +1,9 @@
+<style type="text/css">
+	.coolEye-center .center-item1>img:hover{border: 1px solid #b2dcf5;}
+	.coolEye-center .center-item2>img:hover{border: 1px solid #b4c5f9;}
+	.coolEye-center .center-item3>img:hover{border: 1px solid #f8c1d6;}
+	.coolEye-center .center-item1:first-child>img:hover,.coolEye-center .center-item2:first-child>img:hover,.coolEye-center .center-item3:first-child>img:hover{border: none;}
+</style>
 <div class="scroll-area" style="margin-bottom: 50px;">  
     <div class="pic">
         <div class="slider" style="width:100%;margin: 0 auto;">
@@ -161,7 +167,7 @@
                     <!--<img ng-src={{qxsjImg}} alt="">-->
                 <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item" ng-click="adDiv(qxsj.link_type.type_name,qxsj.link_type.type_value)" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                    <div class="coolEye-center-item center-item1" ng-click="adDiv(qxsj.link_type.type_name,qxsj.link_type.type_value)" ng-repeat="qxsj in IndexData.list.ads_qxsj">
                         <img ng-src={{qxsj.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
@@ -221,7 +227,7 @@
                     <!--<img ng-src={{jsjmImg}} alt="">-->
                 <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item" ng-click="adDiv(jsjm.link_type.type_name,jsjm.link_type.type_value)" ng-repeat="jsjm in IndexData.list.ads_jsjm">
+                    <div class="coolEye-center-item center-item2" ng-click="adDiv(jsjm.link_type.type_name,jsjm.link_type.type_value)" ng-repeat="jsjm in IndexData.list.ads_jsjm">
                         <img ng-src={{jsjm.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
@@ -281,7 +287,7 @@
                     <!--<img ng-src={{jjzyImg}} alt="">-->
                 <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item" ng-click="adDiv(jjzy.link_type.type_name,jjzy.link_type.type_value)" ng-repeat="jjzy in IndexData.list.ads_jjzy">
+                    <div class="coolEye-center-item center-item3" ng-click="adDiv(jjzy.link_type.type_name,jjzy.link_type.type_value)" ng-repeat="jjzy in IndexData.list.ads_jjzy">
                         <img ng-src={{jjzy.ad_img}} alt="">
                     </div>
                     <div class="left-ad">

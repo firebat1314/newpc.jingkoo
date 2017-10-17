@@ -7545,15 +7545,6 @@ span.a_arrow_r {
       color: #4c4c4c;
       font-size: 14px;
       position: relative; }
-      .help-mian .help-left .help-dl dt span {
-        display: inline-block;
-        width: 8px;
-        height: 6px;
-        background: url(../img/up_arrow.png) no-repeat center 100%;
-        position: absolute;
-        top: 50%;
-        margin-top: -3px;
-        right: 10px; }
     .help-mian .help-left .help-dl dd {
       height: 28px;
       line-height: 28px;

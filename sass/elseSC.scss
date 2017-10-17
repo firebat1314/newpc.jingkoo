@@ -7210,17 +7210,7 @@ $browser-default-font-size: 37.5px !default;
         border-bottom: 1px solid #e6e6e6; 
         color: #4c4c4c;   
         font-size: 14px;
-        position: relative; 
-        span {
-          display: inline-block;  
-          width: 8px;
-          height: 6px;  
-          background: url(../img/up_arrow.png) no-repeat center 100%;
-          position: absolute;
-          top: 50%;
-          margin-top: -3px;
-          right: 10px; 
-        }
+        position: relative;    
       }
       dd {
         height: 28px;

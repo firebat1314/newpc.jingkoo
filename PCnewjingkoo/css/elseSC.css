@@ -2562,7 +2562,7 @@ span.a_arrow_r {
     .shopList-main .shop-list .shopList-main-tit p {
       float: left;
       font-size: 13px;
-      margin-right: 8px;
+      margin-right: 0;
       padding-left: 10px;
       color: #333333;
       min-width: 100px;

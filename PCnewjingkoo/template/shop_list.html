@@ -113,16 +113,16 @@
                         <!--<i>+</i>-->
                     <!--</div>-->
                 <!--</div>-->
-                <!--<div class="shopList-fashion shopList-price">
+                <div class="shopList-fashion shopList-price" ng-if="shopListData.cat_is_show">
                     <div class="shopList-fashion-tit">{{fashionMonthName}}：</div>
                     <div class="shopList-fashion-content">
                         <div class="shopList-fashion-item" ng-repeat="fashionMonthItem in shopListData.goods_attr_arr[1].data" ng-click="getMonthValue(fashionMonthItem.cat_name,fashionMonthItem.cat_id)">{{fashionMonthItem.cat_name}}</div>
                     </div>
-                    <div class="more-fashion">
+                    <div class="more-fashion" ng-if="shopListData.goods_attr_arr[1].data.length > 6">
                         <p>更多</p>
                         <i>+</i>
                     </div>
-                </div>-->
+                </div>
                 <div class="moreAttr" ng-if="shouQi">
                     <div class="shopList-fashion shopList-price" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
                         <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>

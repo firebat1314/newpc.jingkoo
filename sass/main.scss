@@ -5909,13 +5909,13 @@ $browser-default-font-size: 37.5px !default;
                 } 
               } 
               p{ 
-                color:#666;  
+                color:#666;   
                 font-size: 14px; 
-                text-align: center; 
+                text-align: center;   
                 position: relative;   
                 top: 23px;        
-                margin-top: 9px; 
-                width: 114px;     
+                margin-top: 4px;    
+                width: 114px;      
 //              top: -21px; 
               } 
             }
@@ -5927,7 +5927,7 @@ $browser-default-font-size: 37.5px !default;
               position: relative;   
                top: 11px; 
                width: 100px; 
-               text-align: center;     
+               text-align: center;      
             }
           }
         }
@@ -5938,7 +5938,7 @@ $browser-default-font-size: 37.5px !default;
           p{
             float:left;
             height:30px;
-            cursor:pointer;
+            cursor:pointer; 
             &:hover{
               color: #ff3333;
             }

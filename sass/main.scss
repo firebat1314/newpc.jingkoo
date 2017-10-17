@@ -5045,11 +5045,12 @@ $browser-default-font-size: 37.5px !default;
               }
               .goStore{
                 width:115px;
-                height:30px;
+                height:30px; 
                 border:1px solid #ccc;
                 &:hover{
                   background: #3f69a5;
                   color:#fff;
+                  border-color: #3f69a5; 
                 }
               }
               .service-zhichi{

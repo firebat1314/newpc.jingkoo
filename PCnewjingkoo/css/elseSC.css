@@ -4594,6 +4594,7 @@ span.a_arrow_r {
             border: 1px solid #ccc; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-store .store-tell .goStore:hover {
               background: #3f69a5;
+              border-color: #3f69a5;
               color: #fff; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-store .store-tell .service-zhichi p {
             margin-left: 0;

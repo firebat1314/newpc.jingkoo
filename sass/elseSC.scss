@@ -5105,7 +5105,8 @@ $browser-default-font-size: 37.5px !default;
                 height:30px;
                 border:1px solid #ccc;
                 &:hover{
-                  background: #3f69a5;
+                  background: #3f69a5; 
+                  border-color: #3f69a5;  
                   color:#fff;
                 }
               }

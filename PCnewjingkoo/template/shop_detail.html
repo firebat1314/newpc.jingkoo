@@ -228,7 +228,7 @@
                                             <strong ng-if="shopDetailData.goods_fee.goods_number==0" style="color:#999;">无货</strong>
                                             <em ng-if="shopDetailData.goods_fee.is_diqu==1">,本地区暂不销售</em>
                                         </span>
-                                        <p class="saler_p11"><span ng-if="is_fee>-1" class="saler_msg_sp6">满300包邮</span></p>
+                                        <p class="saler_p11"><span ng-if="is_fee>-1" class="saler_msg_sp6">满{{shopDetailData.goods_fee.free_money}}包邮</span></p>
                                     </div>
                                     <!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
                                 </div>

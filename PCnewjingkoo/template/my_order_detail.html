@@ -141,12 +141,12 @@
 	</div>
 </div>
 
-<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="!wlData[0].state" style="margin-bottom: 20px;">
+<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="!wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1" style="margin-bottom: 20px;">
 	<div class="track-bt">订单跟踪</div>
 	<div class="" style="padding: 20px;">{{wlData[0].msg}}</div>
 </div>
 
-<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="wlData[0].state" style="margin-bottom: 20px;">
+<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1" style="margin-bottom: 20px;">
 	<div class="track-bt">订单跟踪</div>
 	<div class="track-nr cle">
 		<div class="track-left">
@@ -178,7 +178,7 @@
 				<p class="p">收<em>货</em>人：  {{orderDetail.order.consignee}}</p>
 				<p class="p">地<em></em><em></em>址：  {{orderDetail.order.address}}</p>
 				<p class="p">手机号码：  {{orderDetail.order.mobile}}</p>
-				<p class="p">电子邮件：  {{orderDetail.order.email}}</p>
+				<p class="p">固定电话：  {{orderDetail.order.tel}}</p>
 			</div>
 			<div class="info-xx">
 				<b class="bt">支付及配送方式</b>
@@ -194,8 +194,9 @@
 					<th width="179" class="lef" style="text-align: center;"><span class="shrk" ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2"><input type="checkbox" id="chea" ng-model="selectedAll" ng-change="chooseAll(selectedAll)"/><label for="chea"></label></span>商品编号</th>
 					<th width="179"><div class="c">商品图片</div></th>
 					<th width="409"><div class="c">商品名称</div></th>
-					<th width="119"><div class="c">价格</div></th>
-					<th width="119"><div class="c">商品数量</div></th>
+					<th width="90"><div class="c">价格</div></th>
+					<th width="90"><div class="c">优惠</div></th>
+					<th width="90"><div class="c">商品数量</div></th>
 					<th><div class="c">提示</div></th>
 				</tr>
 				<tr ng-repeat="ord in orderDetail.goods_list">
@@ -213,6 +214,7 @@
 						</div>
 					</td>
 					<td><div class="c hsez">￥{{ord.goods_price}}</div></td>
+					<td><div class="c hsez">--</div></td>
 					<td><div class="c hsez">{{ord.goods_number}}</div></td>
 					<td>
 						<div class="c aneni">
@@ -229,7 +231,7 @@
 					</td>
 				</tr>
 				<tr ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2">
-					<td colspan="6">
+					<td colspan="7">
 						<div class="sen-btn">
 							<a style="cursor: pointer;" class="ant" ng-click="tuihuoa(1)">退货</a>
 							<a style="cursor: pointer;" class="ant" ng-click="tuihuoa(2)">换货</a>

@@ -6898,9 +6898,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+						$scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }

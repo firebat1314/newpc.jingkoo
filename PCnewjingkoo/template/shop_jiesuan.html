@@ -214,12 +214,12 @@
                             <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
                             <span ng-if="!defaultShipping">请选择收货地址</span>
                             <!--商家备注-->
-                            <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true">
+                            <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                                 <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]"
                                     ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)"
                                     type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
-                            <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;">
+                            <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;margin-top: 10px;">
                                 <span class="sent_sp1" style="float: left;">商家备注 : </span>
                                 <div class="texbox_d">
                                     <textarea class="bz_text" ng-model="cartGoods.suppliers_note"></textarea>
@@ -269,7 +269,7 @@
                                             <div class="oupon_top_d needcli" ng-class="{'oupon_top_d needcli oncli':yhqUse.selected}" ng-repeat="yhqUse in parentYhqUse.use_bonus"
                                                 ng-click="useYhq(yhqUse.suppliers_id,yhqUse.bonus_id)">
                                                 <p class="oupon_top_p1">
-                                                    <span class="top_p1_sp1">￥</span>
+                                                    <span class="top_p1_sp1"></span>
                                                     <span class="top_p1_sp2">{{yhqUse.bonus_money_formated | number:0}}</span>
                                                     <span class="top_p1_sp3">满{{yhqUse.min_goods_amount | number:0}}</span>
                                                 </p>
@@ -311,7 +311,7 @@
                                         <div ng-repeat="parentYhqNoUse in jiesuanData.cart_goods_list">
                                             <div class="oupon_top_d gray_bg" ng-repeat="yhqNoUse in parentYhqNoUse.no_use_bonus">
                                                 <p class="oupon_top_p1">
-                                                    <span class="top_p1_sp1">￥</span>
+                                                    <span class="top_p1_sp1"></span>
                                                     <span class="top_p1_sp2">{{yhqNoUse.bonus_money_formated | number:0}}</span>
                                                     <span class="top_p1_sp3">满{{yhqNoUse.min_goods_amount | number:0}}</span>
                                                 </p>
@@ -439,7 +439,7 @@
 
                             </div>
                         </div>
-                        <p ng-if="yhqIf" class="goods_oupon_p" ng-class="{'goods_oupon_p show':yhqIf,'goods_oupon_p':!yhqIf}"><span style="padding-left: 25px;">金额抵用 </span><span class="oupon_p_sp">￥{{yhqTotal}}</span></p>
+                        <p ng-if="yhqIf" class="goods_oupon_p" ng-class="{'goods_oupon_p show':yhqIf,'goods_oupon_p':!yhqIf}"><span style="padding-left: 25px;">金额抵用 </span><span class="oupon_p_sp">{{yhqTotal}}</span></p>
                     </div>
                     <!--余额-->
                     <!--<div class="surplus_box">-->
@@ -454,13 +454,13 @@
         </div>
         <!--使用优惠券-->
         <!--小计-->
-        <div ng-if="isExchange==1" class="count_div" style="background: #f5f6fa;">
+        <div ng-if="isExchange==1" class="count_div" style="background: #fff;">
             <p class="count_p1">使用积分 :{{exchange_integral}}</p>
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
-        <div ng-if="isExchange==0" class="count_div" style="background: #f5f6fa;">
-            <p class="count_p1">购物金额小计 : <span>￥{{totalPrice}}</span></p>
-            <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>￥{{yhqTotal}}</span></p>
+        <div ng-if="isExchange==0" class="count_div" style="background: #fff;">
+            <p class="count_p1">订单总金额 : <span>{{totalPrice}}</span></p>
+            <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>{{yhqTotal}}</span></p>
             <p class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
             <p class="count_p1">+获赠积分 : {{jifen}}</p>
             <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p>
@@ -490,7 +490,7 @@
         <div class="refer_order">
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
             <div class="refer_order_d" ng-if="isExchange==0">
-                <p class="refer_order_p">订单总金额 : <span class="refer_order_sp1">￥{{total}}</span><input ng-click="submitList($event,$index)" type="button"
+                <p class="refer_order_p">应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
                         value="提交订单" class="refer_order_btn" /></p>
             </div>
             <div class="refer_order_d" ng-if="isExchange==1">

@@ -91,7 +91,7 @@
                         <th width="135">
                         	<div class="mana_addr_box" style="width: 300px;text-align: right;font-size: 12px;">
                         		<!-- <span class="addr_money" style="color: #808080;margin-left: 10px;">运费：¥20.00</span> -->
-                                <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free!=1&&carItem.free_price">还差￥{{carItem.free_price}}免运费</span>
+                                <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free!=1&&carItem.free_price">还差{{carItem.free_price}}免运费</span>
                                 <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free==1">免运费</span>
                         	</div>
                         </th>
@@ -168,7 +168,7 @@
                         </div>
                         <div ng-repeat="carArr in carList.attrs" style="display: inline-flex;position: relative;">
                             <div class="hasGoods-check-price">
-                                <p>￥{{carArr.goods_price}}</p>
+                                <p>{{carArr.goods_price}}</p>
                                 <!--<div class="more-cuXiao" ng-click="moreCuXiao($event)" ng-show="carList.gift_list.volume_price">更多促销</div>-->
                                 <!--<div class="more-cuXiao-box">-->
                                     <!--<div class="more-cuXiao-item">-->
@@ -185,7 +185,7 @@
                                 </div>-->
                             </div>
                             <div class="hasGoods-check-xiaoji" style="color:#666;">
-                                <em ng-if="carArr.cha_price">￥{{carArr.cha_price}}</em>
+                                <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
                                 <em ng-if="!carArr.cha_price">--</em>
                             </div>
                             	<!--小计-->
@@ -224,7 +224,7 @@
 	                <span><em>卖家数量：{{supp}}/</em><i>{{supll}}</i></span>
 	                <span>货品种类：{{typeCount}} 种</span>
 	                <span>数量总计：{{count}} 件</span>
-	                <span><em>货品金额总计（不包含运费)：</em><i class="whole-price">￥{{totalPrice}}</i></span>
+	                <span><em>货品金额总计（不包含运费)：</em><i class="whole-price">{{totalPrice}}</i></span>
 	            </div>
 	            <button ng-click="goJiesuan()">去结算</button>
 	        </div>

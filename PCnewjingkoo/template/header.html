@@ -50,7 +50,7 @@
                             <p>手机版</p>
                             <div class="iosAndAndroid-box">
                             	<img src="img/app.png" class="ewm_img"> 
-                                <span class="erweima_p">手机镜库APP</span>
+                                <span class="erweima_p">镜库APP</span>
                             </div>
                         </div>
                     </a>
@@ -153,7 +153,7 @@
                                             <p class="attr"><em ng-repeat="attrAr in attr.arr_attr">{{attrAr}}</em></p>
                                         </a>
                                         <div class="price-del">
-                                            <div class="price">￥{{goods.goods_price}}×{{attr.goods_number}}</div>
+                                            <div class="price">{{goods.goods_price}}×{{attr.goods_number}}</div>
                                             <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
                                         </div>
                                     </div>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="total-box" ng-if="totalNum">
                             <p>共<em>{{totalNum}}</em>件商品 </p>
-                            <p>共计<em>￥{{totalPrice}}</em></p>
+                            <p>共计<em>{{totalPrice}}</em></p>
                             <button ng-click="goCar()">去购物车</button>
                         </div>
                     </div>
@@ -296,7 +296,7 @@
                                         <p>{{carRightItem.goods_name}}</p>
                                         <p class="attr"><em ng-repeat="attrAr in carRightAttr.arr_attr">{{attrAr}}</em></p>
                                     </a>
-                                    <i>￥{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
+                                    <i>{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
                                     <div class="black-cha" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)"></div>
                                 </div>
                             </div>
@@ -307,7 +307,7 @@
 	                <div class="jtc-number" style="line-height: 20px;">
 	                    <strong style="font-family: verdana;color: #c81623;" class="J-count">{{totalNum}}</strong>件商品
 	                </div>
-	                <div class="jtc-sum" style="line-height: 20px;">共计：<strong style="font-family: verdana;color: #c81623;" class="J-total">￥{{totalPrice}}</strong></div>
+	                <div class="jtc-sum" style="line-height: 20px;">共计：<strong style="font-family: verdana;color: #c81623;" class="J-total">{{totalPrice}}</strong></div>
 	                <a id="car" style="position: absolute;right: 50px;top: 7px;width: 110px; height: 35px;text-align: center;color: rgb(255, 255, 255);font: 16px/35px 微软雅黑;background: rgb(200, 22, 35);" class="jtc-btn J-btn" href="#/shop-car">去购物车结算</a>
 	            </div>
 	        </div>
@@ -326,7 +326,7 @@
                     <div class="no-lingQuan-item" ng-repeat="noYhq in yhqData.list" ng-if="noYhq.is_get==0">
                         <div class="ling-message">
                             <div class="quan-price">
-                                <i>￥</i>
+                                <i></i>
                                 <span>{{noYhq.type_money}}</span>
                             </div>
                             <p style="color:#333;">【满{{noYhq.min_goods_amount | number:0}}元可用】</p>
@@ -343,7 +343,7 @@
                     <div class="no-lingQuan-item" ng-repeat="noYhq in personYhq.data">
                         <div class="ling-message">
                             <div class="quan-price">
-                                <i>￥</i>
+                                <i></i>
                                 <span>{{noYhq.type_money}}</span>
                             </div>
                             <p style="color:#333;">【满{{noYhq.min_goods_amount | number:0}}元可用】</p>

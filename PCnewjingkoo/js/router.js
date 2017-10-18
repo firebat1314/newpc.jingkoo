@@ -568,7 +568,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl:'template/person_process_content.html',
                 controller:"personProcessContent-control"
             })
-
+            //个人中心-来镜加工打印
+            .state("person-process-print",{
+                title:'来镜加工打印',
+                url:'/person-process-print/:mid',
+                templateUrl:'template/person-process/person-process-print.html',
+                controller:"person-process-print-control"
+            })
             // $locationProvider.html5Mode(true);y
 
     })

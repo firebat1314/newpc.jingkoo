@@ -150,6 +150,9 @@
 												<p ng-if="(order.order_status == 2 && order.pay_status == 0 && order.shipping_status == 0) || (order.order_status == 3 && order.pay_status == 0 && order.shipping_status == 0)">
 													<a style="cursor: pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
 												</p>
+												<p >
+													<a style="cursor: pointer;" class="hse" ng-click="print(order.mid)">打印</a>
+												</p>
 											</div>
 											<div class="n5-opon" ng-if="order.mach_status==4" style="margin-top: 0">
 												<a class="ako1" ng-click="QrGet(order.mid)">确认收货</a>

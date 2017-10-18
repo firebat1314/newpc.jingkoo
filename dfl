@@ -1,0 +1,264 @@
+[33mcommit 176679381d6a9af26681e5122b91584520a19366[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 18 15:15:19 2017 +0800
+
+    spcz
+
+[33mcommit 544ed8b1365b303b6fb1599459ebc881e55c065d[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 18 10:57:29 2017 +0800
+
+    yibosp
+
+[33mcommit 634195a12cbbb9b8724264112cc4349ca535900f[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 18:08:38 2017 +0800
+
+    上调
+
+[33mcommit b9166177210c41237464a7657a70bba0735567bf[m
+Merge: c2b082d fc360ea
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 18:06:01 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit c2b082d44fad0e8f5ee3962a98ce9940ddda5bc1[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 18:05:39 2017 +0800
+
+    搜索
+
+[33mcommit fc360eadef900ce32c8806884d8d593711acb3ac[m
+Merge: 3860bec 0ef1e89
+Author: firebat1314 <1121112856@qq.com>
+Date:   Tue Oct 17 17:34:37 2017 +0800
+
+    同上
+
+[33mcommit 3860bece1ff182f9183aa0ef18b9b3132ec33c70[m
+Author: firebat1314 <1121112856@qq.com>
+Date:   Tue Oct 17 17:32:43 2017 +0800
+
+    列表页不lodding半天了
+
+[33mcommit 0ef1e89275dcaa634db599e4dc6bf9fa3fc7eb1c[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 16:19:57 2017 +0800
+
+    样式
+
+[33mcommit ed3bbbc0056eed4ec658a1c85ba63693d6f0d7d5[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 16:06:12 2017 +0800
+
+    订单详情更多去掉
+
+[33mcommit 1d16e740022a5651fa3fff7f3e107a8a156e385f[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 15:26:05 2017 +0800
+
+    客服sp
+
+[33mcommit b60c25f17482bae14b2fd0162ee16a7ed63ee09e[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 14:17:17 2017 +0800
+
+    sp样式
+
+[33mcommit 107c79b7cc543780b1f07c15f9edea03c971a061[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 14:14:02 2017 +0800
+
+    shep
+
+[33mcommit eb22259c17b5acf0974311ace98d9c45c3b22a5b[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 13:59:25 2017 +0800
+
+    shepi
+
+[33mcommit 1cbb15751335c01e814468402b0f9edb5fe31e53[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 10:37:25 2017 +0800
+
+    shepi
+
+[33mcommit 80a972a292aaa7f10848a13192bd9ef4403cc8bc[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Tue Oct 17 10:04:15 2017 +0800
+
+    样式
+
+[33mcommit 5e691e7fdbd9e78f838005ff6b9862a6b1e28d18[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Mon Oct 16 15:38:59 2017 +0800
+
+    wanshe
+
+[33mcommit 5d9c3bb78fbe6490d798e6d905fd346cd1665c01[m
+Merge: fcd0b66 c7dd46c
+Author: firebat1314 <1121112856@qq.com>
+Date:   Mon Oct 16 14:10:25 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit fcd0b66379567d551aecab23d95efd8e13636e10[m
+Author: firebat1314 <1121112856@qq.com>
+Date:   Mon Oct 16 14:10:16 2017 +0800
+
+    来镜加工添加物流信息
+
+[33mcommit c7dd46cb40416e53a0c7351602bc1356529aa8cd[m
+Merge: 5cbfa77 b9f0280
+Author: myNameWZH <18437980752@163.com>
+Date:   Mon Oct 16 13:33:16 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit 5cbfa7700e769bedc9de336dcdbe87ff62021c07[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Mon Oct 16 13:33:05 2017 +0800
+
+    蛇皮
+
+[33mcommit b9f028069a8336c8c25e148fbb0a8fa8e7cbda3d[m
+Merge: d2f9584 01c652d
+Author: firebat1314 <1121112856@qq.com>
+Date:   Sun Oct 15 23:41:42 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit d2f9584c5e68d0cc0caf29486c1e96bb5c127fa1[m
+Author: firebat1314 <1121112856@qq.com>
+Date:   Sun Oct 15 23:41:36 2017 +0800
+
+    手机版二维码和微信二维码调换位置
+
+[33mcommit 01c652d0f2041130d2c45c22ef03445d39268e95[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Fri Oct 13 18:14:12 2017 +0800
+
+    玩蛇
+
+[33mcommit a87b20b9fc985001f76d3101f21e14f7d8072c5e[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Fri Oct 13 16:31:27 2017 +0800
+
+    改了问题样式
+
+[33mcommit 1a8d8fad16632ecf93243ad1c9f11e7c05648a1d[m
+Merge: 2011c8e d62abbf
+Author: firebat1314 <1121112856@qq.com>
+Date:   Thu Oct 12 20:03:06 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit 2011c8e37b1b1c1cde2b05bbaa7f44543eb22fbc[m
+Author: firebat1314 <1121112856@qq.com>
+Date:   Thu Oct 12 20:02:54 2017 +0800
+
+    app二维码更换，新版结算页修改
+
+[33mcommit d62abbf731f4588c958cb0ba03548c345cc7483b[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 17:54:27 2017 +0800
+
+    万波摄
+
+[33mcommit 799e892a12c4b93016f594ae88f10fc093e9fa5a[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 14:33:21 2017 +0800
+
+    万蛇
+
+[33mcommit c04dedba0299eeadba11c0b9aa3ac32364aeacbd[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 14:22:32 2017 +0800
+
+    修改了蛇
+
+[33mcommit 6402bdc8a6d8e57cf71f151a227ec53521b6676c[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 13:16:05 2017 +0800
+
+    下送东东
+
+[33mcommit 94a5b23107abf03d432f2c14d7264ea879f43715[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 11:56:46 2017 +0800
+
+    去掉console.log
+
+[33mcommit 478e97ab3224c02b0f3e2623a82fde0cce31b1ef[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 11:37:22 2017 +0800
+
+    小时不识月
+
+[33mcommit e31697b344d8648ffe51f47e9d8e4f4d5e78df7f[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 11:10:51 2017 +0800
+
+    你好
+
+[33mcommit dfda34d1584ff58233b5b74471048c75f049e182[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Thu Oct 12 10:05:54 2017 +0800
+
+    购物车
+
+[33mcommit 7ee2b44c606c3189ce88666f841624fc69f583b7[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 19:40:09 2017 +0800
+
+    cao
+
+[33mcommit c6cd2dc0216798df55fb5f99d33b323af40e3258[m
+Merge: a6f1b55 38cc6ca
+Author: firebat1314 <1121112856@qq.com>
+Date:   Wed Oct 11 19:31:01 2017 +0800
+
+    Merge branch 'bug' of https://github.com/firebat1314/newpc.jingkoo into bug
+
+[33mcommit a6f1b55d3f8ea57fb8a9c448e25b25dc3e608dd8[m
+Author: firebat1314 <1121112856@qq.com>
+Date:   Wed Oct 11 19:30:54 2017 +0800
+
+    客服没毛病
+
+[33mcommit 38cc6cadf8c63c262400c60f70840943b247f8b2[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 19:25:59 2017 +0800
+
+    下
+
+[33mcommit 23edb47ab24eb27d1127edfdf01c04a53b4db017[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 19:17:30 2017 +0800
+
+    蛇
+
+[33mcommit eaa3ceb6a39d1dc9727ab39d1f65e82931996800[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 16:52:15 2017 +0800
+
+    小问题不足挂齿
+
+[33mcommit a67b7d4b27e57ab8d68d1ee713d890611dfe5d0e[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 16:45:35 2017 +0800
+
+    20
+
+[33mcommit 4812cf8676ab63c77b554fa55a68fa2fdc86c13b[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 15:39:43 2017 +0800
+
+    新改样式
+
+[33mcommit 387943df814680bf54a6e87103d7a123f51bb5ba[m
+Author: myNameWZH <18437980752@163.com>
+Date:   Wed Oct 11 15:16:38 2017 +0800
+
+    样式

@@ -277,7 +277,8 @@
                         <table class="new_process_tb1">
                             <tr>
                                 <th width="110"></th>
-                                <th width="20%" style="text-align: left;padding-left: 40px;">名称</th>
+                                <th style="text-align: left;padding-left: 40px;">名称</th>
+                                <th>品牌</th>
                                 <th>型号</th>
                                 <th>加工类型</th>
                                 <!--<th width="115">折射率</th>-->
@@ -292,6 +293,7 @@
                                 <td style="text-align: left;padding-left: 40px;">
                                     <p class="tb_wz">{{tbdiv.frame_from_name}}</p>
                                 </td>
+                                <td>{{tbdiv.frame_attr.pinpai||'无'}}</td>
                                 <td>{{tbdiv.frame_attr.xinghao}}</td>
                                 <td>{{tbdiv.frame_attr.mach_type_name}}</td>
                                 <td>{{tbdiv.frame_attr.beizhu}}</td>

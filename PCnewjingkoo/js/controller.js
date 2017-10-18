@@ -26,7 +26,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
     }])
     //主控制
-    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location,$qimoChat) {
+    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat) {
         this.$qimoChat = $qimoChat;
         //控制首页楼梯效果
         $(window).scroll(function () {
@@ -104,12 +104,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.$on('upCarList', function () {
             $scope.carFn();
         });
-        
+
     }])
     //首页头部
-    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data','$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data,$qimoChat) {
-        $scope.$qimoChat= $qimoChat;
-        
+    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat) {
+        $scope.$qimoChat = $qimoChat;
+
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
@@ -407,26 +407,26 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.Index = function (index) {
             $scope.num = index;
         };
-		
-		
+
+
         /* 新增客服功能 */
-        $rootScope.qimoChatClick = function(access_id){ 
-            if(!access_id){
+        $rootScope.qimoChatClick = function (access_id) {
+            if (!access_id) {
                 layer.msg('客服正在路上,请稍后。。。', { time: 1000, icon: 2 });
                 return
             }
             var old = document.getElementsByClassName('qimo')[0]
             //console.log(old)
-            if(old){
+            if (old) {
                 old.parentNode.removeChild(old);
             }
             var qimo = document.createElement('script');
             $scope.access_id = access_id;
-            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + access_id + '&autoShow=false'
             qimo.classList = 'qimo'
             document.body.append(qimo)
-            qimo.onload = function(){
-                setTimeout(function() {
+            qimo.onload = function () {
+                setTimeout(function () {
                     //console.log('七陌加载完成')
                     qimoChatClick();
                 }, 400);
@@ -1896,13 +1896,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // $scope.qxsjFn();
 
         $scope.prev = function () {
-            if($scope.hotList.size>$scope.shejiData.hot_goods.length){
+            if ($scope.hotList.size > $scope.shejiData.hot_goods.length) {
                 return
-            }else{
+            } else {
                 $scope.hotList.page++;
             }
-                $scope.qxsjFn();
-                // if($scope.qxsjAd.page<$scope.qxsjAd.pages){
+            $scope.qxsjFn();
+            // if($scope.qxsjAd.page<$scope.qxsjAd.pages){
             //     $scope.hotList.page++;
             //     $scope.qxsjFn();
             // }else{
@@ -1911,9 +1911,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // }
         };
         $scope.next = function () {
-            if($scope.hotList.page==1){
+            if ($scope.hotList.page == 1) {
                 return
-            }else{
+            } else {
                 $scope.hotList.page--;
             }
             $scope.qxsjFn();
@@ -3340,13 +3340,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 data: $scope.ListPage,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                    layer.close(cool);
-                    if (data.status) {
-                        $scope.shopListData = data;
-                        $scope.totalSize = data.pages;
-                        $scope.ye = data.page;
-                        $scope.count = data.count;
-                    }
+                layer.close(cool);
+                if (data.status) {
+                    $scope.shopListData = data;
+                    $scope.totalSize = data.pages;
+                    $scope.ye = data.page;
+                    $scope.count = data.count;
+                }
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
@@ -5815,7 +5815,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
-                if (k_code == 38 || k_code == 40 || 　k_code == 39 || k_code == 37) {
+                if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                     var w_index = $(this).parent().index();//横向
                     var h_index = $(this).parent().parent().index();//纵向
                     switch (k_code) {
@@ -5888,7 +5888,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //购物车
-    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document','$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document,$qimoChat) {
+    .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', '$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document, $qimoChat) {
         $rootScope.isShow = false;
         $rootScope.change = true;
 
@@ -5927,23 +5927,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         /* 新增客服功能 */
-        $scope.qimoChatClick = function(access_id){ 
-            if(!access_id){
+        $scope.qimoChatClick = function (access_id) {
+            if (!access_id) {
                 layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
                 return
             }
             var old = document.getElementsByClassName('qimo')[0]
             //console.log(old)
-            if(old){
+            if (old) {
                 old.parentNode.removeChild(old);
             }
             var qimo = document.createElement('script');
             $scope.access_id = access_id;
-            qimo.src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId='+ access_id +'&autoShow=false'    
+            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + access_id + '&autoShow=false'
             qimo.classList = 'qimo'
             document.body.append(qimo)
-            qimo.onload = function(){
-                setTimeout(function() {
+            qimo.onload = function () {
+                setTimeout(function () {
                     //console.log('七陌加载完成')
                     qimoChatClick();
                 }, 400);
@@ -6567,17 +6567,17 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
                         $scope.exchange_integral = data.total.exchange_integral;
-                            /* 选中的收货方式 */
+                        /* 选中的收货方式 */
                         if (data.consignee_list.length == 0) {
                             $scope.defaultShipping = null;
-                          } else {
+                        } else {
                             for (let i = 0; i < data.consignee_list.length; i++) {
-                              if (data.consignee_list[i].is_show == 1&&data.consignee_list[i].selected == 1) {
-                                $scope.defaultShipping = data.consignee_list[i]
-                              }
+                                if (data.consignee_list[i].is_show == 1 && data.consignee_list[i].selected == 1) {
+                                    $scope.defaultShipping = data.consignee_list[i]
+                                }
                             }
-                          }
-                          console.log($scope.defaultShipping)
+                        }
+                        console.log($scope.defaultShipping)
                         //个人信息面板信息
                         $http({
                             method: "POST",
@@ -7004,26 +7004,26 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.notes = {
             note: [],
             suppliers: [],
-            label:null
+            label: null
         };
         $scope.submitList = function (e, index) {
             let commentArr = [];
             let suppliers = [];
             for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
-                if($scope.jiesuanData.cart_goods_list[i].suppliers_note){
+                if ($scope.jiesuanData.cart_goods_list[i].suppliers_note) {
                     commentArr.push($scope.jiesuanData.cart_goods_list[i].suppliers_note)
                     suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id)
                 }
-           }
+            }
             let label = [];
             for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
-              var sArr = []
-              for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
-                if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
-                  sArr.push(j)
+                var sArr = []
+                for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                    if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                        sArr.push(j)
+                    }
                 }
-              }
-              label.push(sArr)
+                label.push(sArr)
             }
             // console.log(commentArr,suppliers,label)
             // return;
@@ -9154,7 +9154,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             method: "POST",
             url: '' + $rootScope.ip + '/User/recharge_money',
             data: {
-                log_id:$stateParams.log_id,
+                log_id: $stateParams.log_id,
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
@@ -9254,7 +9254,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('unionPayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = false;
-		
+
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/recharge_money',
@@ -9269,7 +9269,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg('玩命加载中', {
                         icon: 16
                         , shade: 0.3
-                    }, function () { 
+                    }, function () {
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
@@ -9289,8 +9289,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('helpCompany-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-        
-		var cool = layer.load(0, {shade: [0.3,'#fff'] }); 
+
+        var cool = layer.load(0, { shade: [0.3, '#fff'] });
         //获取每个标题
         $scope.helpInit = function () {
             $http({
@@ -9302,7 +9302,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                	layer.close(cool);
+                    layer.close(cool);
                     //console.log(data);
                     $scope.helpData = data;
 
@@ -9313,15 +9313,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             }
                         }
                     }
-                }).error(function(data){
-		            if(data.status == 0){
-		                $state.go('login');
-		                layer.close(cool);
-		            }
-		        })
+                }).error(function (data) {
+                    if (data.status == 0) {
+                        $state.go('login');
+                        layer.close(cool);
+                    }
+                })
         };
         $scope.helpInit();
-		
+
         //标题的内容
         $http({
             method: "POST",
@@ -9354,7 +9354,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         background: 'url(img/down_arrow.png) center 100% no-repeat'
                     })
                 } else {
-                    $(this).find('span').css({ 
+                    $(this).find('span').css({
                         background: 'url(img/up_arrow.png) center 100% no-repeat'
                     })
                 }
@@ -10462,16 +10462,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
     }])
     //个人中心-发票管理-发票列表页面
-    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams','$location','$anchorScroll', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams,$location,$anchorScroll) {
+    .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$location', '$anchorScroll', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $location, $anchorScroll) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		
-		$scope.goto = function () {
+
+        $scope.goto = function () {
             $location.hash('');
             $anchorScroll.yOffset = 1;
             $anchorScroll();
         };
-        $scope.goto(); 
+        $scope.goto();
         $scope.invoicesList = {
             page: 1,
             size: 10,
@@ -10524,23 +10524,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             current_page: 0,
             callback: function (index) {
                 $scope.invoicesList.page = index + 1;
-            	var cool = layer.load(0, { shade: [0.3, '#fff'] });
+                var cool = layer.load(0, { shade: [0.3, '#fff'] });
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/User/inv_list',
                     data: $scope.invoicesList,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-	                layer.close(cool);
+                    layer.close(cool);
                     $scope.invoicesData = data;
                 }).error(function (data) {
-                //console.log(data);
-	                if (data.status == 0) {
-	                    //layer.msg('用户失效，请重新登录');
-	                    $state.go('login');
-	                    layer.close(cool);
-	                }
-	            })
+                    //console.log(data);
+                    if (data.status == 0) {
+                        //layer.msg('用户失效，请重新登录');
+                        $state.go('login');
+                        layer.close(cool);
+                    }
+                })
             }
         };
         $scope.getGoods = function (data) {
@@ -11123,7 +11123,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepair-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.repairList = {
             page: 1,
             size: 10,
@@ -11906,7 +11906,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
 
         $scope.isSuccess = false;
         $scope.lotsSubmit = true;
@@ -12269,7 +12269,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnRepairHistory-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.repairHistroyList = {
             page: 1,
             size: 10,
@@ -12405,34 +12405,34 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.cancelOrder = function (id) {
-        	layer.confirm('您确定要取消么？', {
-				btn: ['确定', '取消'] //按钮
-			}, function() {
-	            $http({
-	                method: "POST",
-	                url: '' + $rootScope.ip + '/User/cancel_repair',
-	                data: {
-	                    id: id
-	                },
-	                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-	            }).success(function (data) {
-	                //console.log(data);
-	                if (data.status) {
-	                    layer.msg('取消成功', { time: 1000 }, function () {
-	                        $scope.repairHistroyFn();
-	                    });
-	                } else {
-	                    layer.msg('取消失败', { time: 1000 });
-	                }
-	            })
-			});	
+            layer.confirm('您确定要取消么？', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/User/cancel_repair',
+                    data: {
+                        id: id
+                    },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                }).success(function (data) {
+                    //console.log(data);
+                    if (data.status) {
+                        layer.msg('取消成功', { time: 1000 }, function () {
+                            $scope.repairHistroyFn();
+                        });
+                    } else {
+                        layer.msg('取消失败', { time: 1000 });
+                    }
+                })
+            });
         };
     }])
     //个人中心-返修退换货-返修/退款明细
     .controller('repairRefund-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12562,7 +12562,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('repairRefundContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         //查看
         //$scope.islook = true;
         $scope.isSubmit = true;
@@ -12632,7 +12632,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('returnMoney-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.repairRefundList = {
             page: 1,
             size: 10,
@@ -12755,7 +12755,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.getData = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $data.collectionShop().success(function (data) {
@@ -12979,7 +12979,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
-		$scope.goto();
+        $scope.goto();
         $scope.machiningList = {
             page: 1,
             size: 10
@@ -13133,7 +13133,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
         }
-
+        $scope.print = function (mid) {
+            $state.go('person-process-print', { mid: mid })
+        }
     }])
     //个人中心-来镜加工详情页面
     .controller('personProcessContent-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams) {
@@ -13177,10 +13179,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.wl = data.mach_info.lj_shipping;
                     $scope.wlsn = data.mach_info.lj_shipping_sn;
 
-                    $data.getWlMsg({shipping_name:data.mach_info.jh_shipping,invoice_no:data.mach_info.jh_shipping_sn}).success(function (data) {
+                    $data.getWlMsg({ shipping_name: data.mach_info.jh_shipping, invoice_no: data.mach_info.jh_shipping_sn }).success(function (data) {
                         $scope.wlData1 = data.data;
                     })
-                    $data.getWlMsg({shipping_name:data.mach_info.lj_shipping,invoice_no:data.mach_info.lj_shipping_sn}).success(function (data) {
+                    $data.getWlMsg({ shipping_name: data.mach_info.lj_shipping, invoice_no: data.mach_info.lj_shipping_sn }).success(function (data) {
                         $scope.wlData2 = data.data;
                     })
                 } else {
@@ -13250,5 +13252,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
         };
-         
+
+    }])
+    .controller('person-process-print-control', ['$scope', '$stateParams', '$data', '$sce', '$rootScope', function ($scope, $stateParams, $data, $sce, $rootScope) {
+
+        $scope.mid = $stateParams.mid;
+        $data.machiningInfoPrint({ mid: $scope.mid }).success(function (data) {
+            if (data.status) {
+                $scope.html = ($sce.trustAsHtml(data.info));
+            }
+        })
+
     }])

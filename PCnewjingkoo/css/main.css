@@ -9445,7 +9445,6 @@ span.a_arrow_r {
   outline: none; }
 
 .new_process_tbbox .new_process_tbdiv table td .tb_wz {
-  width: 200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden; }
@@ -9901,6 +9900,9 @@ span.a_arrow_r {
 
 .pur_close_dl.pur_close_don .pur_close_sp1 {
   border: 1px solid #ff3333; }
+
+.pur_close_dlbox .pur_close_dl:hover {
+  background-color: #f7f7f7; }
 
 .pur_close_dl.pur_close_don .pur_close_sp1:after {
   content: "";

@@ -7930,7 +7930,7 @@ display: -webkit-flex;
 .pur_close_dl .pur_close_sp2{display: inline-block;max-width: 200px;}       
 .pur_close_d .pur_close_sp3 i:nth-child(2){max-width: 300px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}  
 .pur_close_d .pur_close_sp3 i{margin-right: 10px;}  
-.pur_close_dl .pur_close_btn{cursor: pointer;width: 90px;height: 30px;display: none;border: 1px solid #cccccc;border-radius: 3px;background-color: #ccc;color: #fff;float: left;font-size: 12px;}      
+.pur_close_dl .pur_close_btn{cursor: pointer;width: 80px;height: 26px;display: none;border: 1px solid #cccccc;border-radius: 3px;background-color: #ccc;color: #fff;float: left;font-size: 12px;margin-top: 2px;}         
 .pur_close_a{float: right;font-size: 12px;color: #ff3333;height: 40px;line-height: 40px;position: absolute;z-index: 1000;right: 0;top: 8px;}   
 .pur_close_a:hover{color: #0070c9;}     
 .pur_close_dl .a_box a{display: inline-block;height: 30px;line-height: 30px;color: #ff3333;font-size: 12px;margin-right: 15px;}     
@@ -7939,8 +7939,8 @@ display: -webkit-flex;
 .pur_close_dl .a_box{display: none;position: absolute;right: 0;top: 0;}  
 /*点击后的效果*/
 /*.pur_close_dl.pur_close_don .pur_close_btn,.pur_close_dl.pur_close_don .pur_close_a{display: inline-block;}*/
-.pur_close_dl .pur_close_btn.block{display: inline-block;} 
-.pur_close_top .pur_close_dl:hover .a_box{display:inline-block;}    
+.pur_close_dl .pur_close_btn.block{display: inline-block;}  
+.pur_close_top .pur_close_dl:hover .a_box{display:inline-block;}     
 .pur_close_dl.noEvent{ 
   pointer-events: none; 
   opacity: .6; 
@@ -7952,9 +7952,10 @@ display: -webkit-flex;
   }
 }
 .pur_close_dl.pur_close_don .pur_close_sp1{border:1px solid #ff3333;} 
-.pur_close_dl.pur_close_don{
-  background-color: #f7f7f7;
-}
+//.pur_close_dl.pur_close_don{
+//background-color: #f7f7f7;
+//} 
+.pur_close_dlbox .pur_close_dl:hover{background-color: #f7f7f7;} 
 .pur_close_dl.pur_close_don .pur_close_sp1:after{content: "";display: inline-block;width: 17px;height: 17px;background: url(../img/cg_ico1.png) center center no-repeat;background-size: 100%;position: absolute;right: 0;bottom: 0;}
 .pur_close_dlbox .pur_close_dl:first-child{margin-top: 0;}
 .pur_close_dl:hover{background-color: #F7F7F7;}

@@ -9837,15 +9837,16 @@ span.a_arrow_r {
 
 .pur_close_dl .pur_close_btn {
   cursor: pointer;
-  width: 90px;
-  height: 30px;
+  width: 80px;
+  height: 26px;
   display: none;
   border: 1px solid #cccccc;
   border-radius: 3px;
   background-color: #ccc;
   color: #fff;
   float: left;
-  font-size: 12px; }
+  font-size: 12px;
+  margin-top: 2px; }
 
 .pur_close_a {
   float: right;
@@ -9900,9 +9901,6 @@ span.a_arrow_r {
 
 .pur_close_dl.pur_close_don .pur_close_sp1 {
   border: 1px solid #ff3333; }
-
-.pur_close_dl.pur_close_don {
-  background-color: #f7f7f7; }
 
 .pur_close_dl.pur_close_don .pur_close_sp1:after {
   content: "";

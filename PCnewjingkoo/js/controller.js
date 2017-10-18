@@ -9351,11 +9351,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 if ($(this).next().hasClass('show')) {
                     $(this).find('span').css({
-                        background: 'url(img/up_arrow.png) center 100% no-repeat'
+                        background: 'url(img/down_arrow.png) center 100% no-repeat'
                     })
                 } else {
-                    $(this).find('span').css({
-                        background: 'url(img/down_arrow.png) center 100% no-repeat'
+                    $(this).find('span').css({ 
+                        background: 'url(img/up_arrow.png) center 100% no-repeat'
                     })
                 }
 

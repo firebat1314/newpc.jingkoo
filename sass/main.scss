@@ -7145,18 +7145,19 @@ $browser-default-font-size: 37.5px !default;
     color: #4c4c4c;
     a{
       font-size: 12px;
-      color: #4c4c4c;
+      color: #4c4c4c; 
     }
-    .tubiao {
-      padding-left: 30px;
+    .tubiao { 
+      padding-left: 30px; 
       background: url(../img/heisanj.png) no-repeat left center;
-    }
-  }
+    } 
+  } 
   .help-left {
     width: 178px;
-    border: 1px solid #e6e6e6;
-    border-top: 0;
-    .help-dl {
+    border: 1px solid #e6e6e6; 
+    border-top: 0; 
+    border-bottom: 0;
+    .help-dl { 
       border-top: 1px solid #e6e6e6;
       div{
         height:0;
@@ -7167,10 +7168,10 @@ $browser-default-font-size: 37.5px !default;
         } 
       }      
       dt {
-        height: 28px;   
-        line-height: 28px; 
+        height: 38px;   
+        line-height: 38px; 
         text-align: center;  
-        background: #f5f5f5;
+        background: #f5f5f5; 
         border-bottom: 1px solid #e6e6e6; 
         color: #4c4c4c;   
         font-size: 14px; 
@@ -7190,27 +7191,27 @@ $browser-default-font-size: 37.5px !default;
         }
       }
       dd {
-        height: 28px;
-        line-height: 28px;
+        height: 38px;
+        line-height: 38px; 
         text-align: center;
         border-bottom: 1px dashed #e6e6e6;
         a {
           color: #666;
-          font-size: 12px;
+          font-size: 12px; 
           &.select{
-            color:#0070c9;
+            color:#0070c9; 
           }
         }
         &:last-of-type{
           border-bottom:0;
-        }
+        } 
       }
     }
   }
   .help-right .help-r-bt {
     width: 950px;
-    height: 28px;
-    line-height: 28px;
+    height: 38px;
+    line-height: 38px;  
     font-size: 14px;
     color: #4c4c4c;
     background: #f5f5f5;

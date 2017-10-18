@@ -7464,6 +7464,7 @@ span.a_arrow_r {
 .help-mian .help-left {
   width: 178px;
   border: 1px solid #e6e6e6;
+  border-top: 0;
   border-top: 0; }
   .help-mian .help-left .help-dl {
     border-top: 1px solid #e6e6e6; }
@@ -7474,8 +7475,8 @@ span.a_arrow_r {
       .help-mian .help-left .help-dl div.show {
         height: 100%; }
     .help-mian .help-left .help-dl dt {
-      height: 28px;
-      line-height: 28px;
+      height: 38px;
+      line-height: 38px;
       text-align: center;
       background: #f5f5f5;
       border-bottom: 1px solid #e6e6e6;
@@ -7494,8 +7495,8 @@ span.a_arrow_r {
         .help-mian .help-left .help-dl dt span.select {
           background: url(../img/down_arrow.png) no-repeat center 100%; }
     .help-mian .help-left .help-dl dd {
-      height: 28px;
-      line-height: 28px;
+      height: 38px;
+      line-height: 38px;
       text-align: center;
       border-bottom: 1px dashed #e6e6e6; }
       .help-mian .help-left .help-dl dd a {
@@ -7507,8 +7508,8 @@ span.a_arrow_r {
         border-bottom: 0; }
 .help-mian .help-right .help-r-bt {
   width: 950px;
-  height: 28px;
-  line-height: 28px;
+  height: 38px;
+  line-height: 38px;
   font-size: 14px;
   color: #4c4c4c;
   background: #f5f5f5;
@@ -9901,6 +9902,9 @@ span.a_arrow_r {
 
 .pur_close_dl.pur_close_don .pur_close_sp1 {
   border: 1px solid #ff3333; }
+
+.pur_close_dlbox .pur_close_dl:hover {
+  background-color: #f7f7f7; }
 
 .pur_close_dl.pur_close_don .pur_close_sp1:after {
   content: "";

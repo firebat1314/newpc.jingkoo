@@ -3070,7 +3070,7 @@ span.a_arrow_r {
           display: block;
           width: 100%; }
   .shopList-main .shop-list .hot-sale-tuijian {
-    height: 290px;
+    height: 285px;
     border: 1px solid #ccc;
     margin-bottom: 25px; }
     .shopList-main .shop-list .hot-sale-tuijian .hot-sale-tit {
@@ -7465,7 +7465,7 @@ span.a_arrow_r {
   width: 178px;
   border: 1px solid #e6e6e6;
   border-top: 0;
-  border-top: 0; }
+  border-bottom: 0; }
   .help-mian .help-left .help-dl {
     border-top: 1px solid #e6e6e6; }
     .help-mian .help-left .help-dl div {
@@ -9678,6 +9678,7 @@ span.a_arrow_r {
   left: 50%;
   margin-left: -325px;
   top: 30%;
+  padding-bottom: 20px;
   display: none; }
   .pur_bianji .dzhi-table, .pur_zengjia .dzhi-table {
     margin-top: 20px; }
@@ -10436,7 +10437,7 @@ span.a_arrow_r {
   color: #ff8a66;
   font-size: 12px;
   text-align: center;
-  padding-top: 15px; }
+  padding-top: 25px; }
 
 .goods_oupon_top .needcli.oncli {
   border: 1px solid #ff8a66;
@@ -15017,7 +15018,7 @@ textarea {
 .location .add-nr .addn-t td .an-right .anr-selt .selt {
   float: left;
   margin-right: 20px;
-  width: 170px;
+  width: 134px;
   height: 40px;
   border: 1px solid #d9d9d9;
   color: #666;
@@ -15161,7 +15162,7 @@ textarea {
 
 .apply .apply-tab td .app-neir .app-txt {
   padding: 0 10px;
-  width: 440px;
+  width: 418px;
   height: 33px;
   background: #fff;
   border: 1px solid #e6e6e6; }

@@ -14,6 +14,10 @@ npm-debug.log*
 
 .idea/
 .sass-cache/
+PCnewjingkoo/elseSC.css.map
+PCnewjingkoo/elseSC.css
+PCnewjingkoo/main.css.map
+PCnewjingkoo/main.css
 .tmp/
 .versions/
 coverage/

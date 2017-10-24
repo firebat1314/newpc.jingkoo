@@ -12003,17 +12003,17 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // $scope.isSubmit = false;
                     layer.close(cool);
                     $scope.afterSaleData = data;
-                    $scope.shop = data.suppliers_name;
+                    $scope.shop = data.suppliers_name; 
 
 
-                    for (var i = 0; i < $scope.afterSaleData.order_goods.length; i++) {
-                        for (var j = 0; j < $scope.afterSaleData.order_goods[i].length; j++) {
-                            if ($scope.afterSaleData.order_goods[i][j].goods_number == $scope.afterSaleData.order_goods[i][j].return_number && $scope.afterSaleData.order_goods[i][j].server_end == 1) {
+                    for (var i = 0,item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
+                        for (var j = 0,item2 = item1[i].goods_list; j < item2.length; j++) {//商品
+                            if (item2[j].goods_number == item2[j].return_number && item2[j].server_end == 1) {
                                 $scope.isAdd = true;
                                 $scope.isReduce = false;
-                                $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-                                $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-                                $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
+                                $scope.subArr.order_ids.push(item2[j].order_id);
+                                $scope.subArr.rec_ids.rec_id.push(item2[j].rec_id);
+                                $scope.subArr.rec_ids.member.push(item2[j].goods_number);
                                 //console.log($scope.subArr);
                             }
                         }
@@ -12089,20 +12089,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).next().removeClass('add');
             }
 
-            if (num > $scope.afterSaleData.order_goods[pIndex][index].return_number) {
+            if (num > $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].return_number) {
                 //$scope.isAdd = true;
-                $scope.afterSaleData.order_goods[pIndex][index].goods_number = $scope.afterSaleData.order_goods[pIndex][index].return_number;
+                $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number = $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].return_number;
                 angular.element(e.target).next().addClass('add');
             }
             else if (num < 0) {
-                $scope.afterSaleData.order_goods[pIndex][index].goods_number = 0;
+                $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number = 0;
             }
             else {
                 //$scope.isAdd = false;
                 angular.element(e.target).next().removeClass('add');
             }
 
-            $scope.subArr.rec_ids.member[index] = $scope.afterSaleData.order_goods[pIndex][index].goods_number;
+            $scope.subArr.rec_ids.member[index] = $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number;
             //console.log(num);
         };
 
@@ -12114,10 +12114,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
             //console.log($scope.subArr);
-            $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
+            $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
             //$scope.numberChange();
-            if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 0) {
+            if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().prev().removeClass('reduce');
             }
@@ -12125,7 +12125,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             }
 
-            if ($scope.afterSaleData.order_goods[pIndex][index].goods_number == $scope.afterSaleData.order_goods[pIndex][index].return_number) {
+            if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number == $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].return_number) {
                 //$scope.isAdd = true;
                 angular.element(e.target).addClass('add');
             }
@@ -12147,19 +12147,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
             // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
             //console.log($scope.subArr);
-            if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
-                $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
+            if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number > 1) {
+                $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
                 //$scope.numberChange();
                 $scope.isAdd = false;
             } else {
-                $scope.afterSaleData.order_goods[pIndex][index].goods_number = 0;
+                $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number = 0;
                 $scope.subArr.rec_ids.member[index] = 0;
                 //$scope.isReduce = true;
                 //$scope.isAdd = false;
-
+                console.log(angular.element(e.target))
                 angular.element(e.target).addClass('reduce');
-                angular.element(e.target).next().next().removeClass('add');
+                angular.element(e.target).next().next().removeClass('');
                 //$scope.numberChange();
             }
 
@@ -12221,9 +12221,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.sub = function () {
-            for (var i = 0; i < $scope.afterSaleData.order_goods.length; i++) {
-                for (var j = 0; j < $scope.afterSaleData.order_goods[i].length; j++) {
-                    if ($scope.afterSaleData.order_goods[i][j].tui_end == 0 && $scope.afterSaleData.order_goods[i][j].huan_end == 0 && $scope.afterSaleData.order_goods[i][j].xiu_end == 0) {
+            for (var i = 0,item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
+                for (var j = 0,item2 = item1[i].goods_list; j < item2.length; j++) {//商品
+                    if (item2[j].tui_end == 0 && item2[j].huan_end == 0 && item2[j].xiu_end == 0) {
                         layer.msg('该商品不可售后');
                     } else {
                         if ($scope.afterSaleData.type == '') {
@@ -12233,17 +12233,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         }
 
                         //console.log($scope.subArr);
-                        if ($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[i][j].order_id) == -1 && $scope.afterSaleData.order_goods[i][j].server_end == 1) {
-                            $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
+                        if ($scope.subArr.order_ids.indexOf(item2[j].order_id) == -1 && item2[j].server_end == 1) {
+                            $scope.subArr.order_ids.push(item2[j].order_id);
                             //console.log($scope.subArr);
                         }
-                        if ($scope.subArr.rec_ids.rec_id.indexOf($scope.afterSaleData.order_goods[i][j].rec_id) == -1 && $scope.afterSaleData.order_goods[i][j].server_end == 1) {
-                            $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
+                        if ($scope.subArr.rec_ids.rec_id.indexOf(item2[j].rec_id) == -1 && item2[j].server_end == 1) {
+                            $scope.subArr.rec_ids.rec_id.push(item2[j].rec_id);
                             //console.log($scope.subArr);
                         }
                     }
                 }
             }
+           
 
             $http({
                 method: "POST",

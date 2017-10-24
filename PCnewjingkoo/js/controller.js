@@ -5024,6 +5024,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         }
         var is_prompt = true;
         var top_ = 0;
+        var left_ = 0;
         var selDiv = '';
         //判断:当前元素是否是被筛选元素的子元素
         jQuery.fn.isChildOf = function (b) {
@@ -5065,6 +5066,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var startX = (evt.x || evt.clientX);
                 var startY = (evt.y || evt.clientY);
                 top_ = document.body.scrollTop || document.documentElement.scrollTop;
+                left_ = document.body.scrollLeft || document.documentElement.scrollLeft;
                 //var selDiv = document.createElement("div");
                 if (selDiv) {
                     document.body.removeChild(selDiv);
@@ -5076,7 +5078,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 selDiv.style.cssText = "position:absolute;width:0px;height:0px;font-size:0px;margin:0px;padding:0px;border:1px dashed #0099FF;background-color:#C3D5ED;z-index:1000;filter:alpha(opacity:60);opacity:0.6;display:none;";
                 selDiv.id = "selectDiv";
                 document.body.appendChild(selDiv);
-                selDiv.style.left = startX + "px";
+                selDiv.style.left = startX + left_ + "px";
                 selDiv.style.top = startY + top_ + "px";
                 var _x = null;
                 var _y = null;
@@ -5090,15 +5092,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     evt = window.event || arguments[0];
                     if (isSelect) {
                         var mousemove_top = document.body.scrollTop || document.documentElement.scrollTop;
+                        var mousemove_left = document.body.scrollLeft || document.documentElement.scrollLeft;
                         if (selDiv.style.display == "none") {
                             selDiv.style.display = "";
                         }
                         _x = (evt.x || evt.clientX);
                         _y = (evt.y || evt.clientY);
-                        selDiv.style.left = Math.min(_x, startX) + "px";
+                        //selDiv.style.left = Math.min(_x, startX) + "px";
+                        selDiv.style.left = Math.min(Math.abs(_x + left_), Math.abs(startX + left_)) + "px";
+                        
+                        if (mousemove_left > left_) {
+							selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
+						}else{
+							selDiv.style.width = Math.abs(_x - startX) + "px";
+                        }
                         //selDiv.style.top = Math.abs(startY + top_) + "px";
                         selDiv.style.top = Math.min(Math.abs(_y + top_), Math.abs(startY + top_)) + "px";
-                        selDiv.style.width = Math.abs(_x - startX) + "px";
+                        //selDiv.style.width = Math.abs(_x - startX) + "px";
+                        
                         if (mousemove_top > top_) {
                             selDiv.style.height = Math.abs(_y + (mousemove_top - startY - top_)) + "px";
                         } else {
@@ -5499,7 +5510,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                 }
                 $("#order").append(html);
-            } else {
+            } else if($("#tr" + data_id).length > 0) {
                 var html = '';
                 if (nums != '') {
                     html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
@@ -5687,7 +5698,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                     }
                     $("#order").append(html);
-                } else {
+                } else if($("#tr" + data_id).length > 0) {
                     var html = '';
                     if (nums != '') {
                         html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
@@ -5722,8 +5733,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 //获取加入购物车参数
                 if (count == 0 || $(".attr_lists").length == 0) {
-                    layer.msg("请选择下单商品");
-                    return;
+                    //layer.msg("请选择下单商品");
+                    //return;
                 }
                 var is_true = false;
                 var i = 0;
@@ -5757,8 +5768,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     i++;
                 });
                 if (is_true) {
-                    layer.msg('数量参数错误！');
-                    return false;
+                    //layer.msg('数量参数错误！');
+                    //return false;
                 }
                 //属性构建完成
                 var goods = new Object();
@@ -5820,17 +5831,17 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     var h_index = $(this).parent().parent().index();//纵向
                     switch (k_code) {
                         case 38:
-                            h_index += 1;
+                            h_index -= 0;
                             break;
                         case 40:
-                            h_index += 3;
+                            h_index += 2;
                             break;
                         case 39:
-                            h_index += 2;
+                            h_index += 1;
                             w_index += 1;
                             break;
                         case 37:
-                            h_index += 2;
+                            h_index += 1;
                             w_index -= 1;
                             break;
                     }

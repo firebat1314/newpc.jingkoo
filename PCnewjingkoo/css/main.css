@@ -764,7 +764,8 @@ span.a_arrow_r {
           margin-right: 20px; }
         .ano-header .ano-header-grid .car-box .carGoods .carNoGoods p {
           margin-left: 40px;
-          line-height: 75px; }
+          line-height: 75px;
+          color: #666; }
         .ano-header .ano-header-grid .car-box .carGoods .carHasGoods::-webkit-scrollbar {
           /*滚动条整体样式*/
           width: 4px;

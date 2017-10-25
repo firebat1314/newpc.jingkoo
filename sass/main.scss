@@ -668,13 +668,14 @@ $browser-default-font-size: 37.5px !default;
           .carNone{
             float:left;
             line-height: 75px;
-            margin-left: 20px;
+            margin-left: 20px; 
             margin-top: 25px;
             margin-right: 20px;
           }
-          p{
+          p{ 
             margin-left: 40px;
-            line-height: 75px;
+            line-height: 75px; 
+            color: #666;  
           }
         }
         .carHasGoods::-webkit-scrollbar {/*滚动条整体样式*/

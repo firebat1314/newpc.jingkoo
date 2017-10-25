@@ -5202,8 +5202,10 @@ $browser-default-font-size: 37.5px !default;
     margin-bottom: 25px; 
   @extend .gird;
   .bulk-order-head{
-    height:96px;
-    padding:30px 0;
+    height:96px;   
+    padding:30px 0;     
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 20px;
     .order-head-img{
       width:100px;
       height:100px;

@@ -6514,11 +6514,10 @@ $browser-default-font-size: 37.5px !default;
   .re-t{width:650px;margin:0 auto;padding:15px 0;}
   .re-t li{float:left !important;padding-right:20px;margin-bottom: 20px;}
   .re-t li .label{padding:10px 0 10px;color:#595959;font-size:14px;}
-  .re-t li .label em{color:#e50000;margin-right:5px;}
-  .re-t li .ret-nr{font-size:0;}
+  .re-t li .label em{color:#e50000;margin-right:5px;} 
   .re-t li .ret-nr .ret-txt{padding:0 10px;width:608px;height:34px;border:1px solid #d9d9d9;color:#808080;font-size:13px;}
-  .re-t li .ret-nr .ret-txt.error{border:1px solid #e22;}
-  .i-status{
+  .re-t li .ret-nr .ret-txt.error{border:1px solid #e22;} 
+  .i-status{ 
     background: url(../img/green_right.png) no-repeat;background-size: 15px 15px;width: 15px;height: 15px; position: absolute;right: 20px !important;top: 10px;display: none;
   }
   

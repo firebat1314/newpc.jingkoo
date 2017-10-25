@@ -38,31 +38,7 @@
 
                         </div>
                     </li>
-                    <style>
-                        .ps_qd {
-                            width: 180px;
-                            height: 20px;
-                            background: #e0e0e0;
-                            overflow: hidden;
-                            margin-top: 10px;
-                        }
 
-                        .ps_qd>div {
-                            width: 60px;
-                            height: 20px;
-                            float: left;
-                            box-sizing: border-box;
-                            border-right: 1px solid #fff;
-                        }
-
-                        .ps_qd>div.on {
-                            background: green;
-                        }
-
-                        .ps_qd>div:last-child {
-                            border: none;
-                        }
-                    </style>
 
                     <li style="float: none;">
                         <div class="wrp">
@@ -81,11 +57,113 @@
                                 <!-- <i class="ruoTip" ng-class="{'error':isRuo==true}">有被盗风险,建议使用字母、数字和符号两种及以上组合</i> -->
                                 <!-- <i class="zhongTip" ng-class="{'error':isZhong==true}">安全强度适中，可以使用三种以上的组合来提高安全强度</i> -->
                                 <!-- <i class="qiangTip" ng-class="{'error':isQiang==true}">你的密码很安全</i> -->
-                                <div class="ps_qd" ng-If="isRuo||isZhong||isQiang">
-                                    <div ng-class="{'on':isRuo}"></div>
-                                    <div ng-class="{'on':isZhong}"></div>
-                                    <div ng-class="{'on':isQiang}"></div>
+                                <!-- ———————————————————————— 密码强度样式 ———————————————————————— -->
+                                <style>
+                                    .ps_qd_wrap * {
+                                        box-sizing: border-box;
+                                    }
+
+                                    .ps_qd_wrap {
+                                        display: -webkit-box;
+                                        display: -webkit-flex;
+                                        display: -ms-flexbox;
+                                        display: flex;
+                                        /* 
+                                -webkit-justify-content: space-around;
+                                -ms-flex-pack: distribute;
+                                justify-content: space-around; */
+                                        -webkit-box-align: center;
+                                        -webkit-align-items: center;
+                                        -ms-flex-align: center;
+                                        margin-top: 10px;
+                                    }
+
+                                    .ps_qd {
+                                        width: 180px;
+                                        background: #f5f5f5;
+                                        overflow: hidden;
+                                        border-radius: 10px;
+                                        padding: 4px;
+                                        margin-right: 12px;
+                                    }
+
+                                    .ps_qd>div {
+                                        width: 33.333%;
+                                        height: 10px;
+                                        float: left;
+                                        box-sizing: border-box;
+                                        background: #e0e0e0;
+                                        border-right: 3px solid #f5f5f5;
+                                    }
+
+                                    .ps_qd>div:last-child {
+                                        margin: 0;
+                                        border-radius: 0 10px 10px 0;
+                                        border: none;
+                                    }
+
+                                    .ps_qd>div:first-child {
+                                        border-radius: 10px 0 0 10px;
+                                    }
+
+                                    .ruo>div:nth-child(1) {
+                                        background: #e94822 !important;
+                                    }
+
+                                    .zhong>div:nth-child(1) {
+                                        background: #f6d11c !important;
+                                    }
+
+                                    .zhong>div:nth-child(2) {
+                                        background: #f6d11c !important;
+                                    }
+
+                                    .qiang>div:nth-child(1) {
+                                        background: #4bc13b !important;
+                                    }
+
+                                    .qiang>div:nth-child(2) {
+                                        background: #4bc13b !important;
+                                    }
+
+                                    .qiang>div:nth-child(3) {
+                                        background: #4bc13b !important;
+                                    }
+
+                                    .ps_qd_t {
+                                        height: 22px;
+                                        width: 22px;
+                                        border-radius: 50%;
+                                        position: relative;
+                                        background: #4bc13b;
+                                        border-color: #4bc13b;
+                                        font-size: 12px;
+                                        text-align: center;
+                                        color: #fff;
+                                        line-height: 22px;
+                                    }
+
+                                    .ps_qd_t:before {
+                                        content: "";
+                                        position: absolute;
+                                        top: 4px;
+                                        left: -11px;
+                                        display: block;
+                                        border: 7px solid transparent;
+                                        border-right-color: inherit;
+                                    }
+                                </style>
+                                <div class="ps_qd_wrap">
+                                    <div class="ps_qd" ng-class="{'ruo':isRuo,'zhong':isZhong,'qiang':isQiang}" ng-If="isRuo||isZhong||isQiang">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="ps_qd_t" ng-if="isRuo" style="background: #e94822;border-color: #e94822;">低</div>
+                                    <div class="ps_qd_t" ng-if="isZhong" style="background: #f6d11c;border-color: #f6d11c;">中</div>
+                                    <div class="ps_qd_t" ng-if="isQiang" style="background: #4bc13b;border-color: #4bc13b;">高</div>
                                 </div>
+                                <!-- ———————————————————————— 密码强度 ———————————————————————— -->
                             </div>
                         </div>
                     </li>

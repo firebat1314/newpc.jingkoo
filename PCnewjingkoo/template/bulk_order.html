@@ -20,35 +20,38 @@
         <div class="shop_car">
         	<input type="button" class="shop_car_ip" value="预览"/>
         	<div class="car-box">
-                    <span ng-click="goCar()">购物车<i class="ng-binding">1</i></span>
-                    <div class="white-line"></div>
-                    <div class="carGoods">
-                        <!-- ngIf: !carRight -->
-                        <!-- ngIf: carRight --><div class="carHasGoods ng-scope" ng-if="carRight">
-                            <h2>最近加入的商品</h2>
-                            <!-- ngRepeat: goodsItem in shopCarHomeData.suppliers_goods_list --><div class="has-car-goods-box ng-scope" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
-                                <!-- ngRepeat: goods in goodsItem.goods_list --><div ng-repeat="goods in goodsItem.goods_list" class="ng-scope">
-                                    <!-- ngRepeat: attr in goods.attrs --><div class="has-car-goods ng-scope" ng-repeat="attr in goods.attrs">
-                                        <a href="#/shop-detail/6404">
-                                            <img ng-src="http://img.jing-ku.com/images/201705/goods_img/6404_G_1495782416493.png" alt="" src="http://img.jing-ku.com/images/201705/goods_img/6404_G_1495782416493.png">
-                                            <p class="goodsName ng-binding">测试3</p>
-                                            <p class="attr"><!-- ngRepeat: attrAr in attr.arr_attr --><em ng-repeat="attrAr in attr.arr_attr" class="ng-scope ng-binding">光度:-0.50 </em><!-- end ngRepeat: attrAr in attr.arr_attr --></p>
-                                        </a>
-                                        <div class="price-del">
-                                            <div class="price ng-binding">¥0.01×1</div>
-                                            <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
-                                        </div>
-                                    </div><!-- end ngRepeat: attr in goods.attrs -->
-                                </div><!-- end ngRepeat: goods in goodsItem.goods_list -->
-                            </div><!-- end ngRepeat: goodsItem in shopCarHomeData.suppliers_goods_list -->
-                        </div><!-- end ngIf: carRight -->
-                        <!-- ngIf: totalNum --><div class="total-box ng-scope" ng-if="totalNum">
-                            <p>共<em class="ng-binding">1</em>件商品 </p>
-                            <p>共计<em class="ng-binding">¥0.01</em></p>
-                            <button ng-click="goCar()">去购物车</button>
-                        </div><!-- end ngIf: totalNum -->
+                <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
+                <div class="white-line"></div>
+                <div class="carGoods">
+                    <div class="carNoGoods" ng-if="!carRight">
+                        <img class="carNone" src="img/carNone.png" alt="">
+                        <p>您的购物车暂时还没有商品，赶紧选购吧！</p>
+                    </div>
+                    <div class="carHasGoods" ng-if="carRight">
+                        <h2>最近加入的商品</h2>
+                        <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
+                            <div ng-repeat="goods in goodsItem.goods_list">
+                                <div class="has-car-goods" ng-repeat="attr in goods.attrs">
+                                    <a href="#/shop-detail/{{attr.goods_id}}">
+                                        <img ng-src={{goods.goods_thumb}} alt="">
+                                        <p class="goodsName">{{goods.goods_name}}</p>
+                                        <p class="attr"><em ng-repeat="attrAr in attr.arr_attr">{{attrAr}}</em></p>
+                                    </a>
+                                    <div class="price-del">
+                                        <div class="price">{{goods.goods_price}}×{{attr.goods_number}}</div>
+                                        <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-box" ng-if="totalNum">
+                        <p>共<em>{{totalNum}}</em>件商品 </p>
+                        <p>共计<em>{{totalPrice}}</em></p>
+                        <button ng-click="goCar()">去购物车</button>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
     <div class="bulk-order-table" ng-bind-html="table">

@@ -10348,9 +10348,9 @@ width: 60px;
 .close_top_topr .close_sp4{color: #3f69a5;font-size: 12px;cursor: pointer;}
 .close_top_topr .close_sp4 .close_i{display: inline-block;width: 10px;height: 6px;background: url(../img/close_ico3.png) center center no-repeat;background-size: 100%;margin-left: 20px;}
 .close_top_topr .close_sp4 .close_i1{display: inline-block;width: 10px;height: 6px;background: url(../img/close_up.png) center center no-repeat;background-size: 100%;margin-left: 20px;}
-.close_top_bot{display: none;height: 85px;font-size: 12px;color: #808080;border-top: 1px solid #e6e6e6;}
-.close_top_bot p{height: 30px;line-height: 30px;}     
-.close_top_bot .close_p4{padding-top: 10px;}      
+.close_top_bot{display: none;min-height: 85px;font-size: 12px;color: #808080;border-top: 1px solid #e6e6e6;}
+.close_top_bot p{line-height: 30px;}        
+.close_top_bot .close_p4{padding-top: 10px;}       
 .close_top_bot .close_p4 .close_sp5{margin:  0 30px;}      
 .new_close_top_center{height: 370px;padding: 25px;box-shadow: 0 0 10px rgba(99,99,99,.2);}     
 .new_close_top_center .top_center_div{height: 45px;line-height: 45px;position: relative;}    
@@ -10374,5 +10374,6 @@ width: 60px;
 .top_center_bott .close_sp7{font-size: 12px;color: #0070c9;position: relative;top: -28px;padding-left: 10px;left: 250px !important;}
 .new_close_top_center .btn_box{width: 100%;margin: 0;padding: 0;text-align: left;} 
 .new_close_top_center .btn_box .btn_inp{display: inline-block;width:120px;height: 40px;border: 1px solid #3f69a5;background-color: #3f69a5;color: #fff;border-radius: 3px;}
-/*新结算页*/    
+/*新结算页*/  
+  
    

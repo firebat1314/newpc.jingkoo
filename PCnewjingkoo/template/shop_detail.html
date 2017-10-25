@@ -257,6 +257,7 @@
 
                     <div ng-show="pickTable" class="pick-table">
                         <div class="tableZk" ng-class="{'zk':zk}">
+                            
                             <table width="100%">
                                 <tbody>
                                 <tr class="first-line">
@@ -269,7 +270,15 @@
                                     <th width="124">数量</th>
                                 </tr>
                                 <tr ng-repeat="trItem in goodsData.data">
-                                    <th class="img-th" width="72"><div class="table-img"><img ng-src={{trItem.img_path}} alt=""></div></th>
+                                    <th class="img-th" width="72">
+                                        <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;" ng-mousemove="trItem.event = $event">
+                                            <img ng-src={{trItem.img_path}} alt="">
+                                        </div>
+                                        <div ng-if="show11" style="position: fixed; z-index: 100;top:{{trItem.event.clientY+5+'px'}};left:{{trItem.event.clientX+5+'px'}};">
+                                            <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" -->
+                                                <img src="{{trItem.img_path}}" alt="">
+                                            </div>
+                                    </th>
                                     <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
                                     <th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
                                     <th width="124" ng-if="is_promotion" style="color:#ff3333;">{{trItem.price}}</th>

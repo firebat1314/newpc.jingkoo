@@ -2035,12 +2035,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //console.log(data);
                     $scope.userData = data;
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
+                        layer.msg(data.info, { time: 2000 }, function () {
                             $state.go('home');
                         });
                     } else {
                         $scope.geeteTrue1.reset();
-                        layer.msg(data.info, { time: 1000 });
+                        layer.msg(data.info, { time: 2000 });
                         $scope.codeFn();
                         //console.log($scope.user);
                     }
@@ -2049,7 +2049,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("username", data.data.user_name, { expires: 21 });
                 });
             } else {
-                layer.msg('请先完成验证', { icon: 2, time: 500 });
+                layer.msg('请先完成验证', { icon: 2, time: 800 });
             }
 
 
@@ -2467,83 +2467,35 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
         });
         $scope.isPassWordChange = function (password) {
-            $scope.isRuo = false;
-            $scope.isZhong = false;
-            $scope.isQiang = false;
-            if (password.length < 6) {
-                $scope.isPwd = false;
-                $scope.pwdRight = false;
-                $scope.pwdShow = false;
-            } else {
-                $scope.isPwd = true;
-                $scope.pwdRight = true;
-            }
-
-            if (password == '') {
-                //console.log(2);
-                $scope.isPwd = true;
-                $scope.pwdRight = false;
-                $scope.pwdShow = false;
-            }
-
-            if (!$scope.isPwd) {
-                $scope.isRuo = false;
-                $scope.isZhong = false;
-                $scope.isQiang = false;
-            } else {
-                return;
-            }
-        };
-        $scope.isPassWord = function (password) {
-            if (password.length < 6) {
-                $scope.isPwd = false;
-                $scope.pwdRight = false;
-                $scope.pwdShow = false;
-            } else {
-                $scope.isPwd = true;
-                $scope.pwdRight = true;
-            }
-
-            if (password == '') {
-                //console.log(2);
-                $scope.isPwd = true;
-                $scope.pwdRight = false;
-                $scope.pwdShow = false;
-            }
-
-            if (password != $scope.registerList.cpassword || password.length == 0) {
-                //$scope.isCpwd = false;
-                $scope.cpwdRight = false;
-                $scope.cpwdShow = false;
-            }
-            else {
-                $scope.isCpwd = true;
-                $scope.cpwdRight = true;
-            }
-
 
             var ruo = /^\d+$/;
             var zhong = /^(?!\d+$)(?![a-zA-Z]+$)[a-zA-Z\d]+$/;
             var qiang = /^(?!\d+$)(?![a-zA-Z]+$)(?![@#$%^&]+$)[\da-zA-Z@#$%^&]+$/;
-
-            if (ruo.test(password) && password.length < 6) {
-                $scope.isPwd = false;
-                $scope.isRuo = false;
-            }
-            if (ruo.test(password) && password.length > 6) {
-                $scope.isRuo = true;
-            }
-            else if (zhong.test(password)) {
-                $scope.isZhong = true;
-            }
-            else if (qiang.test(password)) {
-                $scope.isQiang = true;
-            }
-            else {
-                $scope.isRuo = false;
+            if (password.length <= 6) {
                 $scope.isZhong = false;
+                $scope.isRuo = false;
                 $scope.isQiang = false;
+            } else {
+                if (ruo.test(password)) {
+                    $scope.isRuo = true;
+                    $scope.isZhong = false;
+                    $scope.isQiang = false;
+                }
+                else if (zhong.test(password)) {
+                    $scope.isZhong = true;
+                    $scope.isRuo = false;
+                    $scope.isQiang = false;
+                }
+                else if (qiang.test(password)) {
+                    $scope.isQiang = true;
+                    $scope.isRuo = false;
+                    $scope.isZhong = false;
+                }
             }
+
+        };
+        $scope.isPassWord = function (password) {
+            $scope.isPassWordChange(password)
         };
 
 
@@ -2766,7 +2718,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 layer.msg('请先完成验证', { icon: 2, time: 500 });
             }
 
-
         };
         //获取img base64编码
         $scope.imgPreview = function (event) {
@@ -2822,10 +2773,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     url: '' + $rootScope.ip + '/Login/register',
                     data: $scope.registerList
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info);
-                        $state.go('login');
+                        layer.confirm('您已提交申请，请耐心等待客服审核，如有疑问，请联系客服电话：400-080-5118', {
+                            btn: ['确定'], //按钮
+                            title:'提示',
+                            closeBtn:0
+                        }, function(index){
+                            layer.close(index);
+                            $state.go('login');
+                        });
                     } else {
                         layer.msg(data.info);
                     }
@@ -4016,6 +3972,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             goods_id: $stateParams.goods_id,
             attr: ''
         };
+        
+        $scope.mouseenter = function(e){
+            console.log(e)
+        }
         //点击展开
         $scope.isZk = true;
         $scope.zhankai = function () {
@@ -5100,16 +5060,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         _y = (evt.y || evt.clientY);
                         //selDiv.style.left = Math.min(_x, startX) + "px";
                         selDiv.style.left = Math.min(Math.abs(_x + left_), Math.abs(startX + left_)) + "px";
-                        
+
                         if (mousemove_left > left_) {
-							selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
-						}else{
-							selDiv.style.width = Math.abs(_x - startX) + "px";
+                            selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
+                        } else {
+                            selDiv.style.width = Math.abs(_x - startX) + "px";
                         }
                         //selDiv.style.top = Math.abs(startY + top_) + "px";
                         selDiv.style.top = Math.min(Math.abs(_y + top_), Math.abs(startY + top_)) + "px";
                         //selDiv.style.width = Math.abs(_x - startX) + "px";
-                        
+
                         if (mousemove_top > top_) {
                             selDiv.style.height = Math.abs(_y + (mousemove_top - startY - top_)) + "px";
                         } else {
@@ -5510,7 +5470,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                 }
                 $("#order").append(html);
-            } else if($("#tr" + data_id).length > 0) {
+            } else if ($("#tr" + data_id).length > 0) {
                 var html = '';
                 if (nums != '') {
                     html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
@@ -5600,10 +5560,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.goods = goods;
 
             if ($scope.trid) {
-                $('.bulk-order-ano-table').show();
+                // $('.bulk-order-ano-table').show();
                 //console.log($scope.trid);
             } else {
-                $('.bulk-order-ano-table').hide();
+                // $('.bulk-order-ano-table').hide();
                 //console.log($scope.trid);
             }
         }
@@ -5631,7 +5591,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var hr = $(this).height();
                 $(this).css("width", wd);
                 $(this).css("height", hr);
-                var numss = "<input type='text' class='text_inp' style='width:" + (wd - 4) + "px;height:" + (hr - 3) + "px' value=" + $(this).text() + ">";
+                //var numss = "<input type='text' class='text_inp' style='width:" + (wd - 4) + "px;height:" + (hr - 3) + "px' value=" + $(this).text() + ">";
+                var numss = "<input type='text' class='text_inp' style='width:100%;text-align:center;border:none;outline:1px solid #3f69a5;height:" + (hr - 3) + "px' value=" + $(this).text() + ">";
                 $(this).html(numss);
                 $(this).find("input").focus();
             });
@@ -5698,7 +5659,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                     }
                     $("#order").append(html);
-                } else if($("#tr" + data_id).length > 0) {
+                } else if ($("#tr" + data_id).length > 0) {
                     var html = '';
                     if (nums != '') {
                         html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
@@ -5788,19 +5749,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.goods = goods;
 
                 if ($scope.trid) {
-                    $('.bulk-order-ano-table').show();
+                    // $('.bulk-order-ano-table').show();
                     //console.log($scope.trid);
                 } else {
-                    $('.bulk-order-ano-table').hide();
+                    // $('.bulk-order-ano-table').hide();
                     //console.log($scope.trid);
                 }
             });
 
             if ($scope.trid) {
-                $('.bulk-order-ano-table').show();
+                // $('.bulk-order-ano-table').show();
                 //console.log($scope.trid);
             } else {
-                $('.bulk-order-ano-table').hide();
+                // $('.bulk-order-ano-table').hide();
                 //console.log($scope.trid);
             }
             //加入购物车
@@ -6909,7 +6870,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-						$scope.jiesuanFn();
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -12014,11 +11975,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // $scope.isSubmit = false;
                     layer.close(cool);
                     $scope.afterSaleData = data;
-                    $scope.shop = data.suppliers_name; 
+                    $scope.shop = data.suppliers_name;
 
 
-                    for (var i = 0,item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
-                        for (var j = 0,item2 = item1[i].goods_list; j < item2.length; j++) {//商品
+                    for (var i = 0, item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
+                        for (var j = 0, item2 = item1[i].goods_list; j < item2.length; j++) {//商品
                             if (item2[j].goods_number == item2[j].return_number && item2[j].server_end == 1) {
                                 $scope.isAdd = true;
                                 $scope.isReduce = false;
@@ -12232,8 +12193,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.sub = function () {
-            for (var i = 0,item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
-                for (var j = 0,item2 = item1[i].goods_list; j < item2.length; j++) {//商品
+            for (var i = 0, item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) {//供应商
+                for (var j = 0, item2 = item1[i].goods_list; j < item2.length; j++) {//商品
                     if (item2[j].tui_end == 0 && item2[j].huan_end == 0 && item2[j].xiu_end == 0) {
                         layer.msg('该商品不可售后');
                     } else {
@@ -12255,7 +12216,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 }
             }
-           
+
 
             $http({
                 method: "POST",
@@ -13265,7 +13226,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
     }])
     .controller('person-process-print-control', ['$scope', '$stateParams', '$data', '$sce', '$rootScope', function ($scope, $stateParams, $data, $sce, $rootScope) {
-
+        //控制首页会员中心显隐
+        $rootScope.isShow = false;
+        //控制header和footer显隐
+        $rootScope.change = false;
         $scope.mid = $stateParams.mid;
         $data.machiningInfoPrint({ mid: $scope.mid }).success(function (data) {
             if (data.status) {

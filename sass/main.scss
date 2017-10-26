@@ -10516,7 +10516,7 @@ width: 60px;
             } 
             .goodsName{ 
               width:120px; 
-              height: 34px;  
+              height: 36px;  
               overflow: hidden;
               display: -webkit-box;
               -webkit-line-clamp: 2;
@@ -10525,7 +10525,8 @@ width: 60px;
               cursor: pointer;
               float:left;
               margin-right: 40px;
-              margin-bottom: 5px;
+              margin-bottom: 3px;
+              color: #666;         
               &:hover{
                 color:#ff3333;
               }

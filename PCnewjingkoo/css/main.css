@@ -18588,7 +18588,7 @@ textarea {
             margin-right: 5px; }
         .car-box .carGoods .carHasGoods .has-car-goods .goodsName {
           width: 120px;
-          height: 34px;
+          height: 36px;
           overflow: hidden;
           display: -webkit-box;
           -webkit-line-clamp: 2;
@@ -18597,7 +18597,8 @@ textarea {
           cursor: pointer;
           float: left;
           margin-right: 40px;
-          margin-bottom: 5px; }
+          margin-bottom: 3px;
+          color: #666; }
           .car-box .carGoods .carHasGoods .has-car-goods .goodsName:hover {
             color: #ff3333; }
         .car-box .carGoods .carHasGoods .has-car-goods .price-del {

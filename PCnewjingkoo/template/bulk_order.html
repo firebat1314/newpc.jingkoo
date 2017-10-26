@@ -18,7 +18,7 @@
         <p> 批发价：<span style="font-size: 16px;">￥{{shop_price}}元</span></p>
         <!--<div class="bulk-order-car">购物车<span>９</span>件</div>-->
         <div class="shop_car">
-        	<input type="button" class="shop_car_ip" value="预览"/>
+        	<input type="button" ng-click="orderPreview()" class="shop_car_ip" value="预览"/>
         	<div class="car-box">
                 <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
                 <div class="white-line"></div>

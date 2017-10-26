@@ -2776,9 +2776,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.confirm('您已提交申请，请耐心等待客服审核，如有疑问，请联系客服电话：400-080-5118', {
                             btn: ['确定'], //按钮
-                            title:'提示',
-                            closeBtn:0
-                        }, function(index){
+                            title: '提示',
+                            closeBtn: 0
+                        }, function (index) {
                             layer.close(index);
                             $state.go('login');
                         });
@@ -3972,8 +3972,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             goods_id: $stateParams.goods_id,
             attr: ''
         };
-        
-        $scope.mouseenter = function(e){
+
+        $scope.mouseenter = function (e) {
             console.log(e)
         }
         //点击展开
@@ -4720,53 +4720,72 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 attr: []
             }
         };
+        //镜片购买
+        $scope.add_to_cart_spec_jp = function (success) {
+            $scope.goodsSpectaclesCarParams.goods.member = [];
+            $scope.goodsSpectaclesCarParams.goods.qiujing = [];
+            $scope.goodsSpectaclesCarParams.goods.zhujing = [];
+            $scope.goodsSpectaclesCarParams.goods.zhouwei = [];
+            $scope.goodsSpectaclesCarParams.goods.spc = [];
+            for (var i = 0; i < $scope.arr.length; i++) {
+                $scope.goodsSpectaclesCarParams.goods.qiujing.push($scope.arr[i].qiujing);
+                $scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
+                $scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
+                $scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
+                var arr2 = [];
+                for (var s = 0; s < $scope.spectaclesData.specification.length; s++) {
+                    var attr = $scope.arr[i][$scope.spectaclesData.specification[s].name];
+                    arr2.push(attr);
+                }
+                $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
+            }
+            //console.log($scope.arr, arr2);
+            //console.log($scope.goodsSpectaclesCarParams);
+            if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
+                //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
+            }
+            //镜片加入购物车接口
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
+                data: $scope.goodsSpectaclesCarParams,
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+                .success(function (data) {
+                    //console.log(data);
+                    success ? success(data) : null;
+                })
+        }
+        //普通商品购买
+        $scope.add_to_cart_spec = function (success) {
+
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Goods/add_to_cart_spec',
+                data: $scope.goodsCarParams,
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+                .success(function (data) {
+                    //console.log(data);
+                    success ? success(data) : null;
+
+                })
+        }
         //加入购物车
         $scope.joinCar = function () {
             //镜片加入购物车
             if ($scope.spectaclesData.goods_type == "goods_spectacles") {
-                $scope.goodsSpectaclesCarParams.goods.member = [];
-                $scope.goodsSpectaclesCarParams.goods.qiujing = [];
-                $scope.goodsSpectaclesCarParams.goods.zhujing = [];
-                $scope.goodsSpectaclesCarParams.goods.zhouwei = [];
-                $scope.goodsSpectaclesCarParams.goods.spc = [];
-                for (var i = 0; i < $scope.arr.length; i++) {
-                    $scope.goodsSpectaclesCarParams.goods.qiujing.push($scope.arr[i].qiujing);
-                    $scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
-                    $scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
-                    $scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
-                    var arr2 = [];
-                    for (var s = 0; s < $scope.spectaclesData.specification.length; s++) {
-                        var attr = $scope.arr[i][$scope.spectaclesData.specification[s].name];
-                        arr2.push(attr);
-                    }
-                    $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
-                }
-                //console.log($scope.arr, arr2);
-                //console.log($scope.goodsSpectaclesCarParams);
-                if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
-                    //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
-                }
-                //镜片加入购物车接口
-                $http({
-                    method: "POST",
-                    url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
-                    data: $scope.goodsSpectaclesCarParams,
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-                })
-                    .success(function (data) {
-                        //console.log(data);
-                        if (data.status == -1) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data.status == 1) {
-                            layer.msg(data.info, { time: 1000 });
-                            $scope.arr = [{}];
-                            $rootScope.$broadcast('upCarList');
-                        } else if (data.status == 0) {
-                            layer.msg(data.info, { time: 1000 });
-                        }
-                    }).error(function (data) {
+                $scope.add_to_cart_spec_jp(function (data) {
+                    if (data.status == -1) {
                         layer.msg(data.info, { time: 1000 });
-                    })
+                    } else if (data.status == 1) {
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.arr = [{}];
+                        $rootScope.$broadcast('upCarList');
+                    } else if (data.status == 0) {
+                        layer.msg(data.info, { time: 1000 });
+                    }
+                })
             }
             //普通商品加入购物车
             else if ($scope.spectaclesData.goods_type == "goods") {
@@ -4783,75 +4802,55 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 // }
                 // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
-                $http({
-                    method: "POST",
-                    url: '' + $rootScope.ip + '/Goods/add_to_cart_spec',
-                    data: $scope.goodsCarParams,
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                $scope.add_to_cart_spec(function (data) {
+                    if (data.status == -1) {
+                        layer.msg(data.info, { time: 1000 });
+                    } else if (data.status == 1) {
+                        layer.msg(data.info, { time: 1000 });
+                        // for(var i = 0;i<$scope.goodsData.data.length;i++){
+                        //     $scope.goodsData.data[i].num = 0;
+                        // }
+                        /* for (var s = 0; s < $scope.goodsData.data.length; s++) {
+                            $scope.goodsData.data[s].num=0;
+                        } */
+                        layer.confirm('商品已添加至购物车', {
+                            btn: ['去结算', '继续选购'], //按钮
+                            title: '提示',btnAlign: 'c',
+                            yes: function (index) {
+                                $state.go('shop-car');
+                                layer.close(index);
+                            },
+                            btn2: function (index) {
+                                layer.close(index);
+                            }
+                            // closeBtn: 0
+                        });
+                        $rootScope.$broadcast('upCarList');
+                        $scope.getAttrList();
+
+                    } else if (data.status == 0) {
+                        layer.msg(data.info, { time: 1000 });
+                    } else if (data == 'null') {
+                        layer.msg('商品数量不能为零', { time: 1000 });
+                    }
                 })
-                    .success(function (data) {
-                        //console.log(data);
-                        if (data.status == -1) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data.status == 1) {
-                            layer.msg(data.info, { time: 1000 });
-                            // for(var i = 0;i<$scope.goodsData.data.length;i++){
-                            //     $scope.goodsData.data[i].num = 0;
-                            // }
-                            $rootScope.$broadcast('upCarList');
-                        } else if (data.status == 0) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data == 'null') {
-                            layer.msg('商品数量不能为零', { time: 1000 });
-                        }
-                    })
             }
         };
         //立即购买
         $scope.buyNow = function () {
             //镜片购买
             if ($scope.spectaclesData.goods_type == "goods_spectacles") {
-                $scope.goodsSpectaclesCarParams.goods.member = [];
-                $scope.goodsSpectaclesCarParams.goods.qiujing = [];
-                $scope.goodsSpectaclesCarParams.goods.zhujing = [];
-                $scope.goodsSpectaclesCarParams.goods.zhouwei = [];
-                $scope.goodsSpectaclesCarParams.goods.spc = [];
-                for (var i = 0; i < $scope.arr.length; i++) {
-                    $scope.goodsSpectaclesCarParams.goods.qiujing.push($scope.arr[i].qiujing);
-                    $scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
-                    $scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
-                    $scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
-                    var arr2 = [];
-                    for (var s = 0; s < $scope.spectaclesData.specification.length; s++) {
-                        var attr = $scope.arr[i][$scope.spectaclesData.specification[s].name];
-                        arr2.push(attr);
+                $scope.add_to_cart_spec_jp(function (data) {
+                    if (data.status == -1) {
+                        layer.msg(data.info, { time: 1000 });
+                    } else if (data.status == 1) {
+                        layer.msg(data.info, { time: 1000 });
+                        $rootScope.$broadcast('upCarList');
+                        $state.go('shop-car');
+                    } else if (data.status == 0) {
+                        layer.msg(data.info, { time: 1000 });
                     }
-                    $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
-                }
-                //console.log($scope.arr, arr2);
-                //console.log($scope.goodsSpectaclesCarParams);
-                if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
-                    //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
-                }
-                //镜片加入购物车接口
-                $http({
-                    method: "POST",
-                    url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
-                    data: $scope.goodsSpectaclesCarParams,
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
-                    .success(function (data) {
-                        //console.log(data);
-                        if (data.status == -1) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data.status == 1) {
-                            layer.msg(data.info, { time: 1000 });
-                            $rootScope.$broadcast('upCarList');
-                            $state.go('shop-car');
-                        } else if (data.status == 0) {
-                            layer.msg(data.info, { time: 1000 });
-                        }
-                    })
             }
             //普通商品购买
             else if ($scope.spectaclesData.goods_type == "goods") {
@@ -4868,28 +4867,22 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 // }
                 // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
-                $http({
-                    method: "POST",
-                    url: '' + $rootScope.ip + '/Goods/add_to_cart_spec',
-                    data: $scope.goodsCarParams,
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                $scope.add_to_cart_spec(function (data) {
+                    if (data.status == -1) {
+                        layer.msg(data.info, { time: 1000 });
+                    } else if (data.status == 1) {
+                        layer.msg(data.info, { time: 1000 });
+                        $rootScope.$broadcast('upCarList');
+                        $state.go('shop-car');
+                    } else if (data.status == 0) {
+                        layer.msg(data.info, { time: 1000 });
+                    } else if (data == 'null') {
+                        layer.msg('商品数量不能为零', { time: 1000 });
+                    }
                 })
-                    .success(function (data) {
-                        //console.log(data);
-                        if (data.status == -1) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data.status == 1) {
-                            layer.msg(data.info, { time: 1000 });
-                            $rootScope.$broadcast('upCarList');
-                            $state.go('shop-car');
-                        } else if (data.status == 0) {
-                            layer.msg(data.info, { time: 1000 });
-                        } else if (data == 'null') {
-                            layer.msg('商品数量不能为零', { time: 1000 });
-                        }
-                    })
             }
         };
+
         //清除浏览记录
         $scope.historyItem = {
             goods_ids: []
@@ -4929,7 +4922,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //商品批量下单页
-    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', function ($scope, $rootScope, $http, $stateParams, ipCookie, $sce) {
+    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce','$state', function ($scope, $rootScope, $http, $stateParams, ipCookie, $sce,$state) {
         $rootScope.change = true;
 
         $scope.getdata = function () {
@@ -5489,7 +5482,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                 }
-                $("#tr" + data_id).append(html);
+                $("#tr" + data_id).html(html);
             }
             var tr_id = obj.attr("data-id");
             $("#" + tr_id).text(nums);//toFixed(2)
@@ -5678,7 +5671,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                     }
-                    $("#tr" + data_id).append(html);
+                    $("#tr" + data_id).html(html);
                 }
                 var tr_id = $(this).parent().attr("data-id");
                 $("#" + tr_id).text(nums);//toFixed(2)
@@ -5849,6 +5842,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         // $rootScope.$broadcast('upCarList');
                         // $scope.getdata();
                         // $("#order").html('');
+                        
                         setTimeout(function () {
                             location.reload()
                         }, 1000);
@@ -5858,6 +5852,35 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg('商品球镜柱镜属性不能为空');
                 })
         };
+        /* 预览按钮 */
+        $scope.orderPreview = function(){
+            $state.go('person-process-preview',{params:JSON.stringify({
+                goods: $scope.goods,
+                goods_id: $stateParams.goods_id
+            })});
+            console.log(JSON.stringify({
+                goods: $scope.goods,
+                goods_id: $stateParams.goods_id
+            }))
+        }
+    }])
+    .controller('person-process-preview-control',['$rootScope','$http','$stateParams','ipCookie','$sce','$scope',function($rootScope,$http,$stateParams,ipCookie,$sce,$scope){
+        $rootScope.isShow = false;
+        $rootScope.change = false;
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Goods/batch_preview',
+            data: JSON.parse($stateParams.params),
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            if(data.status){
+                $scope.data = data;
+                $scope.html = ($sce.trustAsHtml(data.content));
+                var js = document.createElement('script');
+                js.src = './plugins/js.js';
+                document.body.append(js)
+            }
+        })
     }])
     //购物车
     .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', '$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document, $qimoChat) {

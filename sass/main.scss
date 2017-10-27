@@ -1622,26 +1622,26 @@ $browser-default-font-size: 37.5px !default;
 } 
 /*首页*/
 //侧边栏位置          
-@media screen and (min-width:1230px) and (max-width: 1377px) {              
-    .home-main .selected-topics .floor-select{  
-        left: 30px !important;    
-    }  
-} 
-@media screen and (min-width:1378px) and (max-width: 1620px) {                
-    .home-main .selected-topics .floor-select{   
-        left: 120px !important;      
-    }
-}
-@media screen and (min-width:1621px) and (max-width: 1930px) {            
-    .home-main .selected-topics .floor-select{ 
-        left: 280px !important;    
-    } 
-} 
-@media screen and (min-width:1931px) and (max-width: 2570px) {             
-    .home-main .selected-topics .floor-select{
-        left: 600px !important;  
-    }
-}
+//@media screen and (min-width:1230px) and (max-width: 1377px) {              
+//  .home-main .selected-topics .floor-select{  
+//      left: 30px !important;    
+//  }  
+//} 
+//@media screen and (min-width:1378px) and (max-width: 1620px) {                
+//  .home-main .selected-topics .floor-select{   
+//      left: 120px !important;      
+//  }
+//}
+//@media screen and (min-width:1621px) and (max-width: 1930px) {            
+//  .home-main .selected-topics .floor-select{ 
+//      left: 280px !important;    
+//  } 
+//} 
+//@media screen and (min-width:1931px) and (max-width: 2570px) {             
+//  .home-main .selected-topics .floor-select{
+//      left: 600px !important;  
+//  }
+//} 
 .home-main{
   width:100%;
   background: #fff;
@@ -1653,16 +1653,16 @@ $browser-default-font-size: 37.5px !default;
     .floor-select{ 
       //width:70px;
       width:35px; 
-      border:1px solid #e8e8e8; 
-      position: fixed; 
+      border:1px solid #e8e8e8;  
+      position: fixed;  
       background: #999;  
-      color:#fff;
-      top:50%;
+      color:#fff; 
+      top:50%; 
       margin-top: -142px;
-      //padding-left: 5px;
-      //padding-top: 5px;
+      //padding-left: 5px; 
+      //padding-top: 5px; 
       display: none;
-      left:20px;
+      left:calc(50% - 1342px/2);   
       z-index: 9999;
       .floor-select-item{
         width:35px;

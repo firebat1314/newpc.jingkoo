@@ -47,7 +47,7 @@
             </div>
         </div>
         <!--<div style="margin-top: 10px;" ng-show="!price"></div>-->
-            <div class="shopList-main-tit">
+            <div class="shopList-main-tit" ng-if="shopListData.goods.length!=0">
                  <!--当前位置：<a href="#/home">首页</a> > - -->
                 <!--<p>{{ding}}</p>-->
                 <p ng-if="is_true==1">已选条件：</p>
@@ -82,7 +82,7 @@
                 </div>
 
             </div>
-            <div class="shopList-select-conditions">
+            <div class="shopList-select-conditions"  ng-if="shopListData.goods.length!=0">
                 <div class="more-conditions" ng-if="moreXx" ng-click="moreXxFn()">
                     <p>更多选项</p>
                 </div>

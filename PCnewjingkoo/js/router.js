@@ -575,6 +575,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl:'template/person-process/person-process-print.html',
                 controller:"person-process-print-control"
             })
+            //个人中心-来镜加工预览
+            .state("person-process-preview",{
+                title:'批量下单预览',
+                url:'/person-process-preview/:params',
+                templateUrl:'template/person-process/person-process-preview.html',
+                controller:"person-process-preview-control"
+            })
             // $locationProvider.html5Mode(true);y
 
     })

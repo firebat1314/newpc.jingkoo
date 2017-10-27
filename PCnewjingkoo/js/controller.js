@@ -8761,18 +8761,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         //判断是否能来镜加工
-        $http({
-            method: "POST",
-            url: '' + $rootScope.ip + '/User/is_machining_goods',
-            data: {
-                order_id: $stateParams.order_id
-            },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-        })
-            .success(function (data) {
-                //console.log(data);
-                $scope.is_glass = data.order_id;
+        var is_machining_goods_timer = setInterval(function(){
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/User/is_machining_goods',
+                data: {
+                    order_id: $stateParams.order_id
+                },
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
+                .success(function (data) {
+                    //console.log(data);
+                    $scope.is_glass = data.order_id;
+                    if(data.order_id>0||data.status){
+                        clearInterval(is_machining_goods_timer)
+                    }
+                })
+        },500)
 
         // $scope.pass='';
         // $scope.tijiao = function(){

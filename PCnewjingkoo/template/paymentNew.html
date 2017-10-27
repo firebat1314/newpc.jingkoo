@@ -33,12 +33,12 @@
     </div>
     <div class="new_close_top_center" ng-show="isPay==0">
         <div class="top_center_div_box">
-            <div class="top_center_div lostPay">
+            <div class="top_center_div lostPay" ng-style="{'pointer-events':userMoney==0?'none':'auto','opacity':userMoney==0?'.5':'1'}">
                 <input type="checkbox" class="close_check" ng-model="yuE" id="aaa"/>
                 <label for="aaa" class="close_label">
                     <span class="close_sp5"></span>
                     <span class="close_sp6">镜库余额</span>
-                    <span class="close_sp7">可用余额：{{userMoney}}</span>
+                    <span class="close_sp7">可用余额：¥{{userMoney}}</span>
                 </label>
             </div>
             <div class="top_center_div onlinePay">

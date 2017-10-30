@@ -274,9 +274,9 @@
                                         <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;" ng-mousemove="trItem.event = $event">
                                             <img ng-src={{trItem.img_path}} alt="">
                                         </div>
-                                        <div ng-if="show11" style="position: fixed; z-index: 100;top:{{trItem.event.clientY+5+'px'}};left:{{trItem.event.clientX+5+'px'}};">
-                                            <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" -->
-                                                <img src="{{trItem.img_path}}" alt="">
+                                        <div ng-if="show11" style="position: fixed; z-index: 100;top:{{trItem.event.clientY+5+'px'}};left:{{trItem.event.clientX+5+'px'}};width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                            <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" --> 
+                                                <img src="{{trItem.img_path}}" alt="" style="width: 100%;height: 100%;"> 
                                             </div>
                                     </th>
                                     <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>

@@ -2977,8 +2977,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//控制header和footer显隐
 		$rootScope.change = true;
 
-		console.log($stateParams)
-
 		$scope.goto();
         $scope.goto = function () {
             $location.hash('');

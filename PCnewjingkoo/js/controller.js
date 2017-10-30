@@ -8826,7 +8826,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     btn2:function(){
                                         $state.go('glassMachining',{order_id:$stateParams.laijingId}); 
                                     }
-                                }, function () { 
+                                }, function (index) { 
+                                    layer.close(index)
                                     $state.go('person-process'); 
                                 })
                             }else{
@@ -8834,7 +8835,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     shade: 0.3,
                                     title:'镜库科技',
                                     btn:['确定'],
-                                }, function () { 
+                                }, function (index) { 
+                                    layer.close(index)
                                         $state.go('order-all');
                                 })
                             }

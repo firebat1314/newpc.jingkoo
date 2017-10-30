@@ -7611,7 +7611,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 var url = $state.href('glassMachining', {
                                     order_id: $stateParams.order_id
                                 });
-                                newGlass.location.href = url;
                             } else {
                                 layer.msg('支付还未完成，请勿关闭窗口', { icon: 2 });
                             }
@@ -7817,7 +7816,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.showShadow = function () {
             $('#masks').show();
             $('.payToLj').show();
-
+            //判断是否能来镜加工
+            var is_machining_goods_timer = setInterval(function(){
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/User/is_machining_goods',
+                    data: {
+                        order_id: $stateParams.order_id
+                    },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                })
+                    .success(function (data) {
+                        //console.log(data);
+                        $scope.is_glass = data.order_id;
+                        if(data.order_id<0||data.status){
+                            clearInterval(is_machining_goods_timer)
+                        }
+                    })
+            },500)
             //监控订单
             $scope.checkList = function () {
                 $http({
@@ -7990,7 +8006,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 //$scope.sss = true;
                                 var url = $state.href('yue', {
                                     url: $scope.codeData.yuepay,
-                                    type: $scope.codeData.type
+                                    type: $scope.codeData.type,
+                                    laijingId:$stateParams.order_id
                                 });
                                 //relove(url)
                                 setTimeout(function () {
@@ -8760,24 +8777,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // }
 
 
-        //判断是否能来镜加工
-        var is_machining_goods_timer = setInterval(function(){
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/User/is_machining_goods',
-                data: {
-                    order_id: $stateParams.order_id
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            })
-                .success(function (data) {
-                    //console.log(data);
-                    $scope.is_glass = data.order_id;
-                    if(data.order_id>0||data.status){
-                        clearInterval(is_machining_goods_timer)
-                    }
-                })
-        },500)
+        
 
         // $scope.pass='';
         // $scope.tijiao = function(){
@@ -8807,17 +8807,38 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 //console.log($stateParams.type)
                 if (data.status) {
-                    layer.msg(data.info, {
-                        icon: 1
-                        , shade: 0.3,
-                        time: 1000
-                    }, function () {
-                        if ($stateParams.type == 'mach') {
-                            $state.go('person-process');
-                        } else {
-                            $state.go('order-all')
-                        }
+                    //判断是否能来镜加工
+                    $http({
+                        method: "POST",
+                        url: '' + $rootScope.ip + '/User/is_machining_goods',
+                        data: {
+                            order_id: $stateParams.laijingId
+                        },
+                        headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
+                        .success(function (data) {
+                            //console.log(data);
+                            if(data.order_id){
+                                layer.confirm('订单已支付成功', {
+                                    shade: 0.3,
+                                    title:'镜库科技',
+                                    btn:['确定','来镜加工'],
+                                    btn2:function(){
+                                        $state.go('glassMachining',{order_id:$stateParams.laijingId}); 
+                                    }
+                                }, function () { 
+                                    $state.go('person-process'); 
+                                })
+                            }else{
+                                layer.confirm('订单已支付成功', {
+                                    shade: 0.3,
+                                    title:'镜库科技',
+                                    btn:['确定'],
+                                }, function () { 
+                                        $state.go('order-all');
+                                })
+                            }
+                        })
                 } else {
                     layer.msg(data.info, {
                         icon: 2,

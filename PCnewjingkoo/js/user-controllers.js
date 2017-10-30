@@ -2369,6 +2369,29 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$rootScope.change = true;
 		$scope.goto();
 		
+		if( $stateParams.type1.indexOf('pay_over')>-1){
+			$http({
+				method: "POST",
+				url: ''+$rootScope.ip+'/User/is_machining_goods',
+				data: {order_id:$stateParams.type1.split('-')[1]},
+				headers: {
+					'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
+				}
+			}).success(function(data) {
+				if(data.order_id>0){
+					layer.confirm('支付完成', {
+						btn: ['确定','来镜加工'], //按钮
+						title:'镜库科技',
+						btn2:function(){
+							$state.go('glassMachining',{order_id:$stateParams.type1})
+						}
+					}, function(index){
+						layer.close(index);
+					})
+				}
+			})
+			
+		}
         $scope.goto = function () {
             $location.hash('');
             $anchorScroll.yOffset = 0;
@@ -2953,6 +2976,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$rootScope.isShow = false;
 		//控制header和footer显隐
 		$rootScope.change = true;
+
+		console.log($stateParams)
+
 		$scope.goto();
         $scope.goto = function () {
             $location.hash('');

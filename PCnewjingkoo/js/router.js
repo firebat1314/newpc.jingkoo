@@ -145,7 +145,7 @@ angular.module("myApp.router", ["ui.router"])
             //余额路由
             .state("yue", {
                 title:'余额支付',
-                url: '/yue/:url/:id/:type',
+                url: '/yue/:url/:id/:type/:laijingId',
                 templateUrl: 'template/yue.html',
                 controller: "yue-control"
             })

@@ -2971,7 +2971,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$data.getOrderInfo({order_id:$scope.orderid}).success(function (data) {
 			layer.close(cool);
 			$scope.orderDetail = data;
-			//console.log(data);
+			$scope.butie_price = (Number(data.order.supp_subsidy_amount)+Number(data.order.subsidy_amount)).toFixed(2);
 		}).error(function(data){
                 if(data.status == 0){
                     $state.go('login');

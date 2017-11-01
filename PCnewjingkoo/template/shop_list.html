@@ -123,8 +123,8 @@
                         <!--<i>+</i>-->
                     <!--</div>-->
                 <!--</div>-->
-                <div class="moreAttr" ng-if="shouQi">
-                    <div class="shopList-fashion shopList-price" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
+                <div class="moreAttr">
+                    <div class="shopList-fashion shopList-price" ng-if="shouQi?true:$index<2" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
                         <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>
                         <!--<div class="shopList-fashion-item-one">全部</div>-->
                         <div class="shopList-fashion-content">

@@ -6961,9 +6961,9 @@ $browser-default-font-size: 37.5px !default;
   .purchase li .wrp .txt .tt-1 .suzi{float:left;line-height:30px;padding:0 10px;color:#999;font-size:14px;text-decoration: line-through;}
   .purchase li .wrp .txt .tt-2{padding:0 10px;color:#666;font-size:14px;line-height:22px;overflow:hidden;
   text-overflow:ellipsis;
-    display:-webkit-box;
-    -webkit-box-orient:vertical;
-    -webkit-line-clamp:2;}
+    display:-webkit-box; 
+    -webkit-box-orient:vertical; 
+    -webkit-line-clamp:1;} 
   .purchase li:hover .wrp{box-shadow:0 0 10px rgba(0,0,0,.1)}
   .purchase li:nth-child(4n){margin-right:0;}
 

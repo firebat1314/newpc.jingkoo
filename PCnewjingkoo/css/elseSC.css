@@ -6937,7 +6937,7 @@ span.a_arrow_r {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; }
+  -webkit-line-clamp: 1；; }
 .flash-sale-main .purchase li:hover .wrp {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
 .flash-sale-main .purchase li:nth-child(4n) {

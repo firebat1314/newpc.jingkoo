@@ -196,9 +196,8 @@
                     </div>
                 </div>
                 <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">
-                    <p>{{mz.title}}</p>
-                    <p>×{{mz.num}}</p>
-                    <a href="#/shop-detail/{{carList.goods_id}}"><p>查看价格</p></a>
+                    <p>{{mz.title}}</p>×{{mz.num}}
+                    <a ng-if="mz.goods_id" href="#/shop-detail/{{carList.goods_id}}">查看价格</a>
                 </div>
                 <!--<div class="hasGoods-item-zeng">-->
                     <!--<p>【赠品】 赠品  护理液</p>-->

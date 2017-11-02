@@ -3464,7 +3464,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //  $window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+''+'/'+''+'/'+''+'';
             // });
             $scope.ListPage.brand_id = '';
-            $scope.ListPage.cat_id = '';
+            // $scope.ListPage.cat_id = '';
             $stateParams.brand_id = '';
             $stateParams.cat_id = '';
             $scope.ListPage.min_price = '';
@@ -3729,6 +3729,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //点击更多展开
         $scope.clickMore = function () {
             var more = true;
+            console.log($('.shopList-select-conditions .more-fashion:not(:first)'))
+            
             $('.shopList-select-conditions .more-fashion:not(:first)').click(function () {
                 if (more) {
                     more = false;

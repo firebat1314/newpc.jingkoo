@@ -58,7 +58,7 @@
                     <!--</div>-->
                     <div class="select-conditions" ng-if="ding">
                         分类：<span>{{ding}}</span>
-                        <i ng-click="closeFenlei($event)">×</i>
+                        <!-- <i ng-click="closeFenlei($event)">×</i> -->
                     </div>
                     <div ng-repeat="fashionSelect in shopListData.goods_attr_arr[0].data" class="select-conditions" ng-if="fashionSelect.selected">
                         品牌：<span>{{fashionSelect.brand_name}}</span>
@@ -102,7 +102,7 @@
                 <div class="shopList-fashion">
                     <div class="shopList-fashion-tit" style="top:21px;">{{fashionAllName}}：</div>
                     <div class="shopList-fashion-content brand-item">
-                        <div class="shopList-fashion-item" ng-repeat="fashionAllItem in shopListData.goods_attr_arr[0].data">
+                        <div class="shopList-fashion-item" ng-repeat="fashionAllItem in shopListData.goods_attr_arr[0].data" repeat-done="clickMore()">
                             <div class="fashion-item-name" ng-click="getAllValue(fashionAllItem.brand_name,fashionAllItem.brand_id)">{{fashionAllItem.brand_name}}</div>
                             <img ng-src={{fashionAllItem.brand_logo}} alt="">
                         </div>
@@ -123,14 +123,14 @@
                         <!--<i>+</i>-->
                     <!--</div>-->
                 <!--</div>-->
-                <div class="moreAttr" ng-if="shouQi">
-                    <div class="shopList-fashion shopList-price" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
+                <div class="moreAttr">
+                    <div class="shopList-fashion shopList-price" ng-if="shouQi?true:$index<2" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
                         <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>
                         <!--<div class="shopList-fashion-item-one">全部</div>-->
                         <div class="shopList-fashion-content">
                             <div class="shopList-fashion-item" ng-repeat="fashionWaterItem in fashionAttr.values" ng-click="getAttrValue(fashionWaterItem.value,fashionWaterItem.filter)">{{fashionWaterItem.value}}</div>
                         </div>
-                        <div class="more-fashion" ng-if="shopListData.goods_attr_arr[3].data.length > 5">
+                        <div class="more-fashion" ng-show="shopListData.goods_attr_arr[3].data.length > 5">
                             <p>更多</p>
                             <i>+</i>
                         </div>

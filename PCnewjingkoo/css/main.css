@@ -8811,6 +8811,9 @@ span.a_arrow_r {
   /* Opera */ }
 
 /*来镜加工*/
+.process_cont_t {
+  position: relative; }
+
 .process_cont_t .picScroll-left {
   width: 100%;
   overflow: hidden;
@@ -8949,9 +8952,11 @@ span.a_arrow_r {
     padding-left: 20px;
     line-height: 55px; }
   .glass-machining-main .process_cont_t .cont_t_abox {
-    float: right;
     line-height: 55px;
-    padding-right: 25px; }
+    padding-right: 25px;
+    position: absolute;
+    right: 0;
+    top: 0; }
   .glass-machining-main .cont_t_abox a {
     display: inline-block;
     font-size: 13px;

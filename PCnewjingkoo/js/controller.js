@@ -1990,13 +1990,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
         };
         $scope.geeteInitFn2();
-
-
-
         //手动登录
         $scope.user = {
             type: 'user',
-            // username:$scope.username,
+            username:'',
             // password:$scope.password,
             // str_verify:$scope.vcode,
             mobile_phone: '',
@@ -2006,9 +2003,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             geetest_seccode: '',
             trece: 1
         };
-        if (ipCookie('jk_user_name')) {
-            $scope.user.username = ipCookie('jk_user_name');
+        if (ipCookie('remeber_user_name')) {
+            $scope.user.remember = true;
+            $scope.user.username = ipCookie('username');
         }
+        
 
         $scope.loginClick = function () {
             //console.log($scope.geeteTrue1);
@@ -2047,6 +2046,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
+                    ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
+
                 });
             } else {
                 layer.msg('请先完成验证', { icon: 2, time: 800 });
@@ -2092,7 +2093,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $rootScope.res = data.data.token;
                         ipCookie("token", data.data.token, { expires: 21 });
                         ipCookie("username", data.data.user_name, { expires: 21 });
-
+                        ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     });
                 } else {
                     layer.msg('请先完成验证', { icon: 2, time: 500 });
@@ -2108,8 +2109,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             is_verify: 1
         };
 
-        if (ipCookie('jk_phone')) {
-            $scope.userPhone.userphone = ipCookie('jk_phone');
+        if (ipCookie('remeber_user_phone')) {
+            $scope.userPhone.remember = true;
+            $scope.userPhone.userphone = ipCookie('phone_number');
         }
 
         $scope.anoLogin = function (e) {
@@ -2144,7 +2146,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
-
+                    ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                 });
             }
 
@@ -2177,7 +2179,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $rootScope.res = data.data.token;
                 ipCookie("token", data.data.token, { expires: 21 });
                 ipCookie("username", data.data.user_name, { expires: 21 });
-
+                ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
             });
         };
         //获取验证码接口
@@ -2329,28 +2331,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         };
 
-        $scope.isCheck = false;
         //记住用户名
         $scope.remeberUser = function (user) {
-            if ($scope.isCheck) {
-                $scope.isCheck = false;
-                $scope.user.remember = 0;
+            if (user) {
+                ipCookie("remeber_user_name", true, { expires: 21 });
             } else {
-                $scope.isCheck = true;
-                $scope.user.remember = 1;
+                ipCookie("remeber_user_phone", false, { expires: 21 });
             }
         };
 
-        $scope.isChecked = false;
         //记住用户名
         $scope.remeberUserPhone = function (user) {
-            if ($scope.isChecked) {
-                $scope.isChecked = false;
-                $scope.userPhone.remember = 0;
+            if (user) {
+                ipCookie("remeber_user_name", true, { expires: 21 });
             } else {
-                $scope.isChecked = true;
-                $scope.userPhone.remember = 1;
+                ipCookie("remeber_user_phone", false, { expires: 21 });
             }
+
         };
     }])
     //注册
@@ -3730,7 +3727,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.clickMore = function () {
             var more = true;
             console.log($('.shopList-select-conditions .more-fashion:not(:first)'))
-            
+
             $('.shopList-select-conditions .more-fashion:not(:first)').click(function () {
                 if (more) {
                     more = false;
@@ -4817,7 +4814,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } */
                         layer.confirm('商品已添加至购物车', {
                             btn: ['去结算', '继续选购'], //按钮
-                            title: '提示',btnAlign: 'c',
+                            title: '提示', btnAlign: 'c',
                             yes: function (index) {
                                 $state.go('shop-car');
                                 layer.close(index);
@@ -4924,7 +4921,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //商品批量下单页
-    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce','$state', function ($scope, $rootScope, $http, $stateParams, ipCookie, $sce,$state) {
+    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$state', function ($scope, $rootScope, $http, $stateParams, ipCookie, $sce, $state) {
         $rootScope.change = true;
 
         $scope.getdata = function () {
@@ -5844,7 +5841,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         // $rootScope.$broadcast('upCarList');
                         // $scope.getdata();
                         // $("#order").html('');
-                        
+
                         setTimeout(function () {
                             location.reload()
                         }, 1000);
@@ -5855,18 +5852,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         /* 预览按钮 */
-        $scope.orderPreview = function(){
-            $state.go('person-process-preview',{params:JSON.stringify({
-                goods: $scope.goods,
-                goods_id: $stateParams.goods_id
-            })});
+        $scope.orderPreview = function () {
+            $state.go('person-process-preview', {
+                params: JSON.stringify({
+                    goods: $scope.goods,
+                    goods_id: $stateParams.goods_id
+                })
+            });
             console.log(JSON.stringify({
                 goods: $scope.goods,
                 goods_id: $stateParams.goods_id
             }))
         }
     }])
-    .controller('person-process-preview-control',['$rootScope','$http','$stateParams','ipCookie','$sce','$scope',function($rootScope,$http,$stateParams,ipCookie,$sce,$scope){
+    .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
         $rootScope.isShow = false;
         $rootScope.change = false;
         $http({
@@ -5875,7 +5874,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             data: JSON.parse($stateParams.params),
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            if(data.status){
+            if (data.status) {
                 $scope.data = data;
                 $scope.html = ($sce.trustAsHtml(data.content));
                 var js = document.createElement('script');
@@ -7819,7 +7818,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $('#masks').show();
             $('.payToLj').show();
             //判断是否能来镜加工
-            var is_machining_goods_timer = setInterval(function(){
+            var is_machining_goods_timer = setInterval(function () {
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/User/is_machining_goods',
@@ -7831,11 +7830,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     .success(function (data) {
                         //console.log(data);
                         $scope.is_glass = data.order_id;
-                        if(data.order_id<0||data.status){
+                        if (data.order_id < 0 || data.status) {
                             clearInterval(is_machining_goods_timer)
                         }
                     })
-            },500)
+            }, 500)
             //监控订单
             $scope.checkList = function () {
                 $http({
@@ -8009,7 +8008,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 var url = $state.href('yue', {
                                     url: $scope.codeData.yuepay,
                                     type: $scope.codeData.type,
-                                    laijingId:$stateParams.order_id
+                                    laijingId: $stateParams.order_id
                                 });
                                 //relove(url)
                                 setTimeout(function () {
@@ -8779,7 +8778,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // }
 
 
-        
+
 
         // $scope.pass='';
         // $scope.tijiao = function(){
@@ -8820,34 +8819,34 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     })
                         .success(function (data) {
                             //console.log(data);
-                            if(data.order_id){
+                            if (data.order_id) {
                                 layer.confirm('订单已支付成功', {
                                     shade: 0.3,
-                                    title:'镜库科技',
-                                    btn:['确定','来镜加工'],
-                                    btn2:function(){
-                                        $state.go('glassMachining',{order_id:$stateParams.laijingId}); 
+                                    title: '镜库科技',
+                                    btn: ['确定', '来镜加工'],
+                                    btn2: function () {
+                                        $state.go('glassMachining', { order_id: $stateParams.laijingId });
                                     },
-                                    cancel: function(index, layero){ 
+                                    cancel: function (index, layero) {
                                         layer.close(index)
-                                        return false; 
-                                    } 
-                                }, function (index) { 
+                                        return false;
+                                    }
+                                }, function (index) {
                                     layer.close(index)
-                                    $state.go('person-process'); 
+                                    $state.go('person-process');
                                 })
-                            }else{
+                            } else {
                                 layer.confirm('订单已支付成功', {
                                     shade: 0.3,
-                                    title:'镜库科技',
-                                    btn:['确定'],
-                                    cancel: function(index, layero){ 
+                                    title: '镜库科技',
+                                    btn: ['确定'],
+                                    cancel: function (index, layero) {
                                         layer.close(index)
-                                        return false; 
-                                    } 
-                                }, function (index) { 
+                                        return false;
+                                    }
+                                }, function (index) {
                                     layer.close(index)
-                                        $state.go('order-all');
+                                    $state.go('order-all');
                                 })
                             }
                         })

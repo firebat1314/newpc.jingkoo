@@ -30,7 +30,7 @@
                     <div class="remeber-user" style="margin-top:10px;">
                         <label>
                             <input type="checkbox" name="user" ng-model="user.remember" ng-change="remeberUser(user.remember)" style="display: none;">
-                            <div class="all-check" ng-class="{'checked':isCheck}"></div>
+                            <div class="all-check" ng-class="{'checked':user.remember}"></div>
                         </label>
                         <p>记住用户名</p>
                     </div>
@@ -70,7 +70,7 @@
                     <label>
                         <label>
                             <input type="checkbox" name="userPhone" ng-model="userPhone.remember" ng-change="remeberUserPhone(userPhone.remember)" style="display: none;">
-                            <div class="all-check" ng-class="{'checked':isChecked}"></div>
+                            <div class="all-check" ng-class="{'checked':userPhone.remember}"></div>
                         </label>
                     </label>
                     <p>记住手机号</p>

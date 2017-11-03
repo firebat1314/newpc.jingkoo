@@ -1931,9 +1931,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-        if(ipCookie('login_by_phone')==false){
+        if (ipCookie('login_by_phone') == false) {
             $scope.isPhone = false;
-        }else{
+        } else {
             $scope.isPhone = true;
         }
         $scope.phoneLogin = function () {
@@ -1999,7 +1999,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //手动登录
         $scope.user = {
             type: 'user',
-            username:'',
+            username: '',
             // password:$scope.password,
             // str_verify:$scope.vcode,
             mobile_phone: '',
@@ -2013,7 +2013,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.user.remember = true;
             $scope.user.username = ipCookie('username');
         }
-        
+
 
         $scope.loginClick = function () {
             //console.log($scope.geeteTrue1);
@@ -5867,7 +5867,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     goods: $scope.goods,
                     goods_id: $stateParams.goods_id
                 })
-            }),'_blank');
+            }), '_blank');
         }
     }])
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
@@ -6538,6 +6538,38 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // $scope.returnCar = function(){
         //   $state.go('shop-car');
         // };
+        /* —————————————— 保存用户备注信息 —————————————— */
+        $scope.saveNotes = function () {
+            let commentArr = [];
+            let suppliers = [];
+            let label = [];
+
+            for (var i in this.jiesuanData.suppliers_notes) {
+                commentArr.push(this.jiesuanData.suppliers_notes[i])
+            }
+            for (let i = 0; i < this.jiesuanData.cart_goods_list.length; i++) {
+                var sArr = []
+                suppliers.push(this.jiesuanData.cart_goods_list[i].suppliers_id);
+                for (var j = 0; j < this.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                    if (this.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                        sArr.push(j)
+                    }
+                }
+                label.push(sArr)
+            }
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Flow/write_notes',
+                data: {
+                    notes: {
+                        note: commentArr,
+                        suppliers: suppliers,
+                        label: label
+                    }
+                },
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+        }
         //结算页所有信息接口数据
         $scope.jiesuanFn = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
@@ -6550,9 +6582,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     $scope.jiesuanData = data;
-
+                    layer.close(cool);
                     if (data.status) {
-                        layer.close(cool);
                         $scope.totalPrice = $scope.jiesuanData.total.formated_goods_price;
                         $scope.total = $scope.jiesuanData.total.amount_formated;
                         $scope.totalShip = $scope.jiesuanData.total.suppliers_shipping_fee_formated;
@@ -6592,6 +6623,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             })
                         //判断商品是否为积分商品
                         $scope.isExchange = data.is_exchange;
+                    } else {
+                        layer.msg('购物车没有商品');
+                        $state.go('shop-car');
                     }
                 }).error(function (data) {
                     //console.log(data);

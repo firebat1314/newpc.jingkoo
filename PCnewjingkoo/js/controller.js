@@ -1930,6 +1930,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .controller('login-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function ($scope, $rootScope, $state, $http, ipCookie, $interval) {
         $rootScope.isShow = false;
         $rootScope.change = false;
+
+        if(ipCookie('login_by_phone')==false){
+            $scope.isPhone = false;
+        }else{
+            $scope.isPhone = true;
+        }
         $scope.phoneLogin = function () {
             $scope.isPhone = true;
         };
@@ -2047,7 +2053,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-
+                    ipCookie("login_by_phone", false, { expires: 21 });
                 });
             } else {
                 layer.msg('请先完成验证', { icon: 2, time: 800 });
@@ -2094,6 +2100,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         ipCookie("token", data.data.token, { expires: 21 });
                         ipCookie("username", data.data.user_name, { expires: 21 });
                         ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
+                        ipCookie("login_by_phone", false, { expires: 21 });
                     });
                 } else {
                     layer.msg('请先完成验证', { icon: 2, time: 500 });
@@ -2147,6 +2154,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
+                    ipCookie("login_by_phone", true, { expires: 21 });
                 });
             }
 
@@ -2180,6 +2188,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 ipCookie("token", data.data.token, { expires: 21 });
                 ipCookie("username", data.data.user_name, { expires: 21 });
                 ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
+                ipCookie("login_by_phone", true, { expires: 21 });
             });
         };
         //获取验证码接口
@@ -2336,14 +2345,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if (user) {
                 ipCookie("remeber_user_name", true, { expires: 21 });
             } else {
-                ipCookie("remeber_user_phone", false, { expires: 21 });
+                ipCookie("remeber_user_name", false, { expires: 21 });
             }
         };
 
         //记住用户名
         $scope.remeberUserPhone = function (user) {
             if (user) {
-                ipCookie("remeber_user_name", true, { expires: 21 });
+                ipCookie("remeber_user_phone", true, { expires: 21 });
             } else {
                 ipCookie("remeber_user_phone", false, { expires: 21 });
             }
@@ -5853,16 +5862,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         /* 预览按钮 */
         $scope.orderPreview = function () {
-            $state.go('person-process-preview', {
+            window.open($state.href('person-process-preview', {
                 params: JSON.stringify({
                     goods: $scope.goods,
                     goods_id: $stateParams.goods_id
                 })
-            });
-            console.log(JSON.stringify({
-                goods: $scope.goods,
-                goods_id: $stateParams.goods_id
-            }))
+            }),'_blank');
         }
     }])
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {

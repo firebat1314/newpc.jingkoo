@@ -2007,7 +2007,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             geetest_challenge: '',
             geetest_validate: '',
             geetest_seccode: '',
-            trece: 1
+            trece: 1,
+            remember: true
         };
         if (ipCookie('remeber_user_name')) {
             $scope.user.remember = true;
@@ -2113,7 +2114,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // username:$scope.usernamePhone,
             // str_verify:$scope.phoneVcode,
             // mobile_code:$scope.mobile_verify,
-            is_verify: 1
+            is_verify: 1,
+            remember: true
         };
 
         if (ipCookie('remeber_user_phone')) {
@@ -2348,7 +2350,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 ipCookie("remeber_user_name", false, { expires: 21 });
             }
         };
-
+        ipCookie("remeber_user_name", true, { expires: 21 });
         //记住用户名
         $scope.remeberUserPhone = function (user) {
             if (user) {
@@ -2356,8 +2358,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             } else {
                 ipCookie("remeber_user_phone", false, { expires: 21 });
             }
-
         };
+        ipCookie("remeber_user_phone", true, { expires: 21 });
     }])
     //注册
     .controller('register-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce) {
@@ -13204,7 +13206,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
         }
         $scope.print = function (mid) {
-             window.open($state.href('person-process-print', { mid: mid }));
+            window.open($state.href('person-process-print', { mid: mid }));
         }
     }])
     //个人中心-来镜加工详情页面

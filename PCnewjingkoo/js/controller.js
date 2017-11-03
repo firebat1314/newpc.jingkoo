@@ -13204,7 +13204,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
         }
         $scope.print = function (mid) {
-            $state.go('person-process-print', { mid: mid })
+             window.open($state.href('person-process-print', { mid: mid }));
         }
     }])
     //个人中心-来镜加工详情页面

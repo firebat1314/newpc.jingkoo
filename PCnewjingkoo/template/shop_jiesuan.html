@@ -82,11 +82,11 @@
                 <div class="pur_close_dl" ng-class="{'pur_close_dl pur_close_don':address.selected,'pur_close_dl noEvent':address.is_show==0}"
                     ng-init="flag=true" ng-if="flag||address.selected==1" ng-repeat="address in jiesuanData.consignee_list">
                     <span class="pur_close_sp1" ng-click="selectAddress(address.address_id)">{{address.consignee}}</span>
+                      <input type="button" value="可选地址" ng-if="address.is_show==1"  style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
+                    <input type="button" value="不可选地址" ng-if="address.is_show==0" style="height: 26px;padding: 0 15px;border-radius: 3px;background-color: #ccc;color: #fff;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
                     <span class="pur_close_sp2">{{address.consignee}}</span>
                     <span class="pur_close_sp3 "><i>{{address.region}}</i><i>{{address.address}}</i><i>{{address.mobile}}</i></span> 
-                    <input type="button" value="默认地址" ng-class="{'pur_close_btn block':address.is_default}" class="pur_close_btn" style="width:auto;padding: 0 15px;background-color: #ff3333;color: #fff;border: none;margin-right: 10px;"/> 
-                    <input type="button" value="可选地址" ng-if="address.is_show==1"  style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin-top: 2px;margin-right: 10px;"/>  
-                    <input type="button" value="不可选地址" ng-if="address.is_show==0" style="height: 26px;padding: 0 15px;border-radius: 3px;background-color: #ccc;color: #fff;font-size: 12px;border:none;margin-top: 2px;margin-right: 10px;"/>  
+                    <input type="button" value="默认地址" ng-class="{'pur_close_btn block':address.is_default}" class="pur_close_btn" style="width:auto;padding: 0 15px;background-color: #ff3333;color: #fff;border: none;margin-right: 10px;"/>         
                     <div class="pur_bianji">  
                         <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库科技</div>
                         <table class="dzhi-table" width="100%"> 
@@ -235,7 +235,7 @@
                         <div class="remark_right" style="float: right;">
                             <p ng-if="isExchange==0">购物金额小计 : <span>{{cartGoods.goods_subtotal}}</span></p>
                             <p class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
-                            <p class="p2">+ 获赠积分 : {{jifen}}</p>
+                            <p class="p2">+ 获赠积分 : {{cartGoods.will_get_integral}}</p>
                             <!-- <p class="p2" ng-if="cartGoods.subsidy_subtotal">+ 镜库补贴 : {{cartGoods.subsidy_subtotal}}</p> -->
                         </div>
                     </div>

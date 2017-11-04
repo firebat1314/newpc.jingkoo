@@ -4140,21 +4140,7 @@ $browser-default-font-size: 37.5px !default;
               color: #3f69a5;         
               background-color: #fff !important; 
             }
-          }
-          .zhic{
-            height:30px;
-            line-height: 30px;
-            div{
-              float:left;
-              img {
-                width:18px;
-                height:18px;
-                position: relative;
-                top: 4px;
-                margin: 0 10px;
-              }
-            }
-          }
+          } 
           //2017.920add
           .new_shop_detail_top{
 //            padding-bottom: 10px; 
@@ -4910,20 +4896,7 @@ $browser-default-font-size: 37.5px !default;
                   border-color: #3f69a5;  
                   color:#fff;
                 }
-              }
-              .service-zhichi{
-                p{
-                  margin-left: 0;
-                  display: flex;
-                  align-items: center;
-                }
-                img{
-                  width: 20px;
-                  height: 20px;
-                  margin-right: 10px;
-                  margin-top: 6px;
-                }
-              }
+              }  
             }
           }
           .mainly-left-history{
@@ -9851,9 +9824,8 @@ textarea{
   .dianpu_top .shop_top_con{height:35px;line-height:35px;overflow:hidden;}
   .dianpu_top .shop_top_con .top_conbox{float:right;font-size:12px;}
   .dianpu_top .shop_top_con .top_conbox .shop_top_sp2{margin:0 30px;color:#ff3333;} 
-  .shop_top_con .top_conbox .shop_top_sp1{color:#808080;margin-left: 10px;} 
-  .shop_top_con .top_conbox .shop_top_sp3{color:#808080;margin-left: 10px;}  
-  .shop_top_con .top_conbox .shop_top_sp3 i.lx_saler{display:inline-block;width:22px;height:16px;background:url(../img/dd-2.png) center no-repeat;background-size:100%;position:relative;top:2px;margin-right:5px;}
+  .shop_top_con .top_conbox .shop_top_sp1{color:#808080;margin-left: 10px;}  
+  .shop_top_con .top_conbox .shop_top_sp3{color:#808080;margin-left: 10px;}   
   .procurement_box .dianpu_cen{height:70px;width:100%;padding-top:30px;}
   .procurement_box .dianpu_cen>img{width: auto !important;}  
   .procurement_box .new_shop_div_box{width:100%;height:40px;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;}

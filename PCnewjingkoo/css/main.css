@@ -3932,11 +3932,12 @@ span.a_arrow_r {
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .zhic div {
           float: left; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .zhic div img {
-            width: 18px;
-            height: 18px;
+            width: 25px;
+            height: 25px;
             position: relative;
-            top: 4px;
-            margin: 0 10px; }
+            top: 3px;
+            margin: 0 10px;
+            float: left; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .new_shop_detail_top .new_shop_h2 {
         font: 700 16px Arial,"microsoft yahei";
         color: #666;
@@ -4549,10 +4550,10 @@ span.a_arrow_r {
             display: flex;
             align-items: center; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-store .store-tell .service-zhichi img {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             margin-right: 10px;
-            margin-top: 6px; }
+            margin-top: 4px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history {
         border: 1px solid #ccc; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history .history-tit {
@@ -10123,10 +10124,10 @@ span.a_arrow_r {
 .p_titl .per_lo {
   display: inline-block;
   width: 22px;
-  height: 16px;
+  height: 24px;
   background: url(../img/dd-2.png) no-repeat;
   position: relative;
-  top: 1px;
+  top: 10px;
   left: 10px;
   background-size: 100%; }
 
@@ -17835,9 +17836,9 @@ textarea {
   .shopHomeNew .shop_top_con .top_conbox .shop_top_sp3 i.lx_saler {
     display: inline-block;
     width: 22px;
-    height: 16px;
+    height: 18px;
     background: url(../img/dd-2.png) center no-repeat;
-    background-size: 100%;
+    background-size: 100% auto;
     position: relative;
     top: 2px;
     margin-right: 5px; }

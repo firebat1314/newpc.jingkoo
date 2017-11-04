@@ -183,7 +183,7 @@
 										</div>
 										<!--!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))-->
 										<div class="nero n-4 c">
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status==1">
+											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)">
 												<p class="small_fh"><span class="red">{{order.status}}</span></p>
 												<div class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">   
 													<em></em>跟踪<i style="display: none;"></i>
@@ -193,6 +193,7 @@
 												</p>
 											</div>  
 											<!--待发货--> 
+											<!--已完成-->
 											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0 && order.gq==0) ||  (order.order_status==1 && order.pay_status==0 && order.gq==0)"> 
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>
@@ -220,13 +221,6 @@
 												</p>
 											</div>
 											
-											<!--已完成-->
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="order.order_status==5 && order.pay_status==2 && order.shipping_status == 2"> 
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
-												</p>
-											</div>
 											
 										</div>
 										<div class="nero n-5 c">

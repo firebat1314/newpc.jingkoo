@@ -12,7 +12,7 @@
                 <span class="shop_top_sp1" ng-click="goStore()" style="cursor: pointer;"><span class="join_dp"></span>{{name}}</span>
                 <span ng-if="!shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
                 <span ng-if="shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>已关注店铺</span>
-                <span ng-click="qimoChatClick();" style="cursor: pointer;" class="shop_top_sp3"><i class="lx_saler"></i>联系卖家</span> 
+                <span ng-click="qimoChatClick(shopDetailData.supplier_info.access_id);" style="cursor: pointer;" class="shop_top_sp3"><i class="lx_saler"></i>联系卖家</span> 
             </div>  
         </div>
     </div>   

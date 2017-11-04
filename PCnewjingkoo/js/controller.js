@@ -55,6 +55,28 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $rootScope.ip = 'http://www.jingku.cn'; //当前域名
 
+        /* 新增客服功能 */
+        $rootScope.qimoChatClick = function (access_id) {
+            if (!access_id) {
+            }
+            var old = document.getElementsByClassName('qimo')[0]
+            //console.log(old)
+            if (old) {
+                old.parentNode.removeChild(old);
+            }
+            var qimo = document.createElement('script');
+            $scope.access_id = access_id;
+            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+            qimo.classList = 'qimo'
+            document.getElementsByTagName('body')[0].appendChild(qimo);
+            qimo.onload = function () {
+                setTimeout(function () {
+                    //console.log('七陌加载完成')
+                    qimoChatClick();
+                }, 400);
+            }
+        }
+
         $scope.loginOut = function () {
             $http({
                 method: "POST",
@@ -407,31 +429,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.Index = function (index) {
             $scope.num = index;
         };
-
-
-        /* 新增客服功能 */
-        $rootScope.qimoChatClick = function (access_id) {
-            if (!access_id) {
-                layer.msg('客服正在路上,请稍后。。。', { time: 1000, icon: 2 });
-                return
-            }
-            var old = document.getElementsByClassName('qimo')[0]
-            //console.log(old)
-            if (old) {
-                old.parentNode.removeChild(old);
-            }
-            var qimo = document.createElement('script');
-            $scope.access_id = access_id;
-            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + access_id + '&autoShow=false'
-            qimo.classList = 'qimo'
-            document.body.append(qimo)
-            qimo.onload = function () {
-                setTimeout(function () {
-                    //console.log('七陌加载完成')
-                    qimoChatClick();
-                }, 400);
-            }
-        }
 
         //搜索
         $scope.searchKey = function () {
@@ -3977,7 +3974,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             goods_id: $stateParams.goods_id,
             attr: ''
         };
-
+        
         $scope.mouseenter = function (e) {
             console.log(e)
         }
@@ -5438,7 +5435,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Goods/batch_changeprice',
                 type: "POST",
                 dataType: "json",
-                async: true,
+                async: false,
                 data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token },
                 success: function (data) {
                     layer.close(cool);
@@ -5926,29 +5923,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         };
-        /* 新增客服功能 */
-        $scope.qimoChatClick = function (access_id) {
-            if (!access_id) {
-                layer.msg('该店铺暂无客服', { time: 1000, icon: 2 });
-                return
-            }
-            var old = document.getElementsByClassName('qimo')[0]
-            //console.log(old)
-            if (old) {
-                old.parentNode.removeChild(old);
-            }
-            var qimo = document.createElement('script');
-            $scope.access_id = access_id;
-            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + access_id + '&autoShow=false'
-            qimo.classList = 'qimo'
-            document.body.append(qimo)
-            qimo.onload = function () {
-                setTimeout(function () {
-                    //console.log('七陌加载完成')
-                    qimoChatClick();
-                }, 400);
-            }
-        }
+
+        
         $scope.carFn();
 
         var flag = true;
@@ -7038,6 +7014,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             suppliers: [],
             label: null
         };
+        
         $scope.submitList = function (e, index) {
             let commentArr = [];
             let suppliers = [];
@@ -7059,6 +7036,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
             // console.log(commentArr,suppliers,label)
             // return;
+            console.log(commentArr,suppliers,label)
+            return;
 
             if ($scope.yeIf) {
                 $http({
@@ -7868,11 +7847,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     .success(function (data) {
                         //console.log(data);
                         $scope.is_glass = data.order_id;
-                        if (data.order_id < 0 || data.status) {
+                        if (data.order_id < 0 || data.status < 0) {
                             clearInterval(is_machining_goods_timer)
                         }
                     })
-            }, 500)
+            }, 1500)
             //监控订单
             $scope.checkList = function () {
                 $http({
@@ -7957,7 +7936,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.passyes = '';
         $scope.yzPass = function (pass) {
             //console.log($scope.password);
-            if ($scope.codeData.pay_salt != '') {
+            if ($scope.codeData.pay_salt != '' && $scope.codeData.pay_salt != null) {
                 //console.log($.md5($.md5(pass) + $scope.codeData.pay_salt));
                 if ($.md5($.md5(pass) + $scope.codeData.pay_salt) == $scope.password) {
                     $scope.passyes = true;
@@ -12858,6 +12837,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             })
         }
+
         /* 批量取消收藏 */
         $scope.delSelectedCollectionShop = function () {
             $scope.ids = [];

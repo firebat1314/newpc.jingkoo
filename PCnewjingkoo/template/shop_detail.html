@@ -307,7 +307,7 @@
                                     <th>数量</th>
                                     <th>球镜</th>
                                     <th>柱镜</th>
-                                    <th>轴位</th>
+                                    <th ng-if="data.data.zhouwei">轴位</th>
                                     <th ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
                                     <!--<th>通道</th>-->
                                     <!--<th>ADD</th>-->
@@ -347,7 +347,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td><input id="zhouwei" class="pick-text" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
+                                    <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
                                     <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]">
                                         <option value="" ng-selected="1">请选择</option><option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option></select></td>
                                     <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->

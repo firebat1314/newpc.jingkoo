@@ -53,7 +53,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.goLogin = function () {
             $state.go('login');
         };
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
+        $rootScope.ip = 'http://www.jingku.cn'; //当前域名
 
         $scope.loginOut = function () {
             $http({
@@ -171,7 +171,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //个人信息数量
         $http({
             method: "POST",
-            url: 'http://newpc.jingkoo.net/User/getTidings',
+            url: 'http://www.jingku.cn/User/getTidings',
             data: {},
             headers: {
                 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
@@ -194,8 +194,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     //console.log(data);
+                    layer.close(cool);
                     if (data.status) {
-                        layer.close(cool);
                         // layer.msg('玩命加载中', {
                         //     icon: 16,
                         //     shade: 0.3,
@@ -216,7 +216,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                         // })
                     } else {
-                        layer.msg('切换地区失败', { icon: 2 });
+                        layer.msg(data.info, { icon: 2 });
                     }
                 })
         };
@@ -619,9 +619,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         })
             .success(function (data) {
                 //console.log(data);
-                if (data.status) {
-                    layer.close(cool);
-                }
+                layer.close(cool);
+
                 $scope.IndexData = data;
                 // for(var i = 0;i<data.list.getAreaList.length;i++){
                 //     if(data.list.getAreaList[i].selected){
@@ -972,9 +971,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             //console.log(data);
-            if (data.status) {
-                layer.close(cool);
-            }
+            layer.close(cool);
             $scope.fashionData = data;
 
 
@@ -994,9 +991,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
                         //console.log(data);
-                        if (data.status) {
-                            layer.close(cool);
-                        }
+                        layer.close(cool);
                         $scope.fashionHomeData = data;
                     })
                 } else if ($scope.index > 4) {
@@ -1931,9 +1926,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-        if(ipCookie('login_by_phone')==false){
+        if (ipCookie('login_by_phone') == false) {
             $scope.isPhone = false;
-        }else{
+        } else {
             $scope.isPhone = true;
         }
         $scope.phoneLogin = function () {
@@ -1999,7 +1994,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //手动登录
         $scope.user = {
             type: 'user',
-            username:'',
+            username: '',
             // password:$scope.password,
             // str_verify:$scope.vcode,
             mobile_phone: '',
@@ -2013,7 +2008,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.user.remember = true;
             $scope.user.username = ipCookie('username');
         }
-        
+
 
         $scope.loginClick = function () {
             //console.log($scope.geeteTrue1);
@@ -3898,14 +3893,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             //console.log(data);
+            layer.close(cool);
             if (data.status) {
-                layer.close(cool);
+                $scope.anoListData = data;
+                $scope.anoName = data.infos.cat_name;
+                $scope.anImg = data.infos.thumb;
+                $scope.cat_desc = data.infos.cat_desc;
+                $scope.keywords = data.infos.keywords;
             }
-            $scope.anoListData = data;
-            $scope.anoName = data.infos.cat_name;
-            $scope.anImg = data.infos.thumb;
-            $scope.cat_desc = data.infos.cat_desc;
-            $scope.keywords = data.infos.keywords;
         }).error(function (data) {
             //console.log(data);
             if (data.status == 0) {
@@ -4830,11 +4825,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             },
                             btn2: function (index) {
                                 layer.close(index);
+                                $scope.getAttrList();
                             }
                             // closeBtn: 0
                         });
                         $rootScope.$broadcast('upCarList');
-                        $scope.getAttrList();
 
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -5109,8 +5104,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     isSelect = false;
                     if (selDiv) {
                         //selDiv.style.display = "none";
-                        document.body.removeChild(selDiv);
-                        showSelDiv(selList);
+                        if (~~$(selDiv).height() > 0) {
+                            document.body.removeChild(selDiv);
+                            showSelDiv(selList);
+                        }
                     }
                     selList = null, _x = null, _y = null, selDiv = null, startX = null, startY = null, evt = null;
                 }
@@ -5867,7 +5864,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     goods: $scope.goods,
                     goods_id: $stateParams.goods_id
                 })
-            }),'_blank');
+            }), '_blank');
         }
     }])
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {

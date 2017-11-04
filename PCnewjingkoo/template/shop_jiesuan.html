@@ -234,6 +234,7 @@
                             <p ng-if="isExchange==0">购物金额小计 : <span>{{cartGoods.goods_subtotal}}</span></p>
                             <p class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
                             <p class="p2">+ 获赠积分 : {{jifen}}</p>
+                            <p class="p2" ng-if="cartGoods.subsidy_subtotal">+ 镜库补贴 : {{cartGoods.subsidy_subtotal}}</p>
                         </div>
                     </div>
                     <!--商家备注-->
@@ -490,7 +491,8 @@
         <div class="refer_order">
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
             <div class="refer_order_d" ng-if="isExchange==0">
-                <p class="refer_order_p">应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
+                    
+                <p class="refer_order_p"><span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span>　应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
                         value="提交订单" class="refer_order_btn" /></p>
             </div>
             <div class="refer_order_d" ng-if="isExchange==1">

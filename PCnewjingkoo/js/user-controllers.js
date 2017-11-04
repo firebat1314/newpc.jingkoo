@@ -13,7 +13,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.goto(); 
 		var cool = layer.load(0, {shade: [0.3,'#fff'] }); 
-		$rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
+		$rootScope.ip = 'http://www.jingku.cn'; //当前域名
 		$scope.getUserMsgHs = function() {
 			$data.getUserMsg().success(function(data) {
 				layer.close(cool);

@@ -164,35 +164,37 @@
                                 </div>
                                 <div class="check-li-del" ng-click="delAttrGoods($index,$parent.$index,$parent.$parent.$index)"></div>
                             </div>
-                            <div class="hasGoods-xiugai" ng-click="xiugaiFn($event)">修改</div>
-                        </div>
-                        <div ng-repeat="carArr in carList.attrs" style="display: inline-flex;position: relative;">
-                            <div class="hasGoods-check-price">
-                                <p>{{carArr.goods_price}}</p>
-                                <!--<div class="more-cuXiao" ng-click="moreCuXiao($event)" ng-show="carList.gift_list.volume_price">更多促销</div>-->
-                                <!--<div class="more-cuXiao-box">-->
-                                    <!--<div class="more-cuXiao-item">-->
-                                    <!--<div class="kongxin dian"></div>-->
-                                    <!--<p>满199.00减100.00</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="more-cuXiao-item">
-                                        <p ng-repeat="yh in carList.gift_list.volume_price">{{yh.title}}</p>
-                                    </div>
-                                    <div class="more-cuXiao-item more-cuXiao-btn">
-                                        <button class="red-btn">确定</button>
-                                        <button ng-click="closeMoreCuxiao($event)">取消</button>
-                                    </div>
-                                </div>-->
-                            </div>
-                            <div class="hasGoods-check-xiaoji" style="color:#666;">
-                                <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
-                                <em ng-if="!carArr.cha_price">--</em>
-                            </div>
-                            	<!--小计-->
-			                <div class="add_last_th" style="color:#ff3333;display: inline-block;float: left;position: absolute;right: -150px;width: 80px;overflow: hidden;top: 29px;font-size: 14px;text-align: center;">
-                                {{carArr.subtotal}}
-			                </div>
-                        </div> 
+                            <div class="hasGoods-xiugai" ng-click="xiugaiFn($event)">修改</div> 
+                        </div>  
+                        <div class="gwc_wt">    
+	                        <div ng-repeat="carArr in carList.attrs" style="padding: 0;margin: 0;display: inline-flex;position: relative;width: 100%;">
+	                            <div class="hasGoods-check-price">
+	                                <p style="padding: 0;margin: 0;position: relative;top: 0;">{{carArr.goods_price}}</p>
+	                                <!--<div class="more-cuXiao" ng-click="moreCuXiao($event)" ng-show="carList.gift_list.volume_price">更多促销</div>-->
+	                                <!--<div class="more-cuXiao-box">-->
+	                                    <!--<div class="more-cuXiao-item">-->
+	                                    <!--<div class="kongxin dian"></div>-->
+	                                    <!--<p>满199.00减100.00</p>-->
+	                                    <!--</div>-->
+	                                    <!--<div class="more-cuXiao-item">
+	                                        <p ng-repeat="yh in carList.gift_list.volume_price">{{yh.title}}</p>
+	                                    </div>
+	                                    <div class="more-cuXiao-item more-cuXiao-btn">
+	                                        <button class="red-btn">确定</button>
+	                                        <button ng-click="closeMoreCuxiao($event)">取消</button>
+	                                    </div>
+	                                </div>-->
+	                            </div>
+	                            <div class="hasGoods-check-xiaoji" >
+	                                <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
+	                                <em ng-if="!carArr.cha_price">--</em>
+	                            </div>
+	                            	<!--小计-->
+				                <div class="add_last_th">
+	                                {{carArr.subtotal}}
+				                </div>
+	                        </div> 
+	                    </div>
                     </div>
                 </div>
                 <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">
@@ -264,4 +266,6 @@
 //		}
 //	})
 //})
+
+
 </script>

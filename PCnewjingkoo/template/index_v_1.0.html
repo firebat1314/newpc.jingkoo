@@ -184,7 +184,7 @@
                     <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
                         <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
                             <img ng-src={{qxsj.goods_img}} alt="">
-                            <p>{{qxsj.name}}</p>
+                            <p ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
                             <p>{{qxsj.shop_price}}</p>
                         </a>
                     </div>
@@ -244,7 +244,7 @@
                     <div class="coolEye-right-content" ng-repeat="jsjm in jsjmAd.data">
                         <a href="#/shop-detail/{{jsjm.id}}" target="_blank">
                             <img ng-src={{jsjm.goods_img}} alt="">
-                            <p>{{jsjm.name}}</p>
+                            <p ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
                             <p>{{jsjm.shop_price}}</p>
                         </a>
                     </div>
@@ -304,7 +304,7 @@
                     <div class="coolEye-right-content" ng-repeat="jjzy in jjzyAd.data">
                         <a href="#/shop-detail/{{jjzy.id}}" target="_blank">
                             <img ng-src={{jjzy.goods_img}} alt="">
-                            <p>{{jjzy.name}}</p>
+                            <p ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
                             <p>{{jjzy.shop_price}}</p>
                         </a>
                     </div>

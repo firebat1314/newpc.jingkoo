@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="newRepair_box">
-                    <div class="category-box">
+                    <div class="category-box" ng-if="repairData.cat_list">
                         <div class="s-main">
                             <ul class="category-list">
                                 <li ng-class="{'selected':li.selected}" ng-repeat="li in repairData.cat_list" ng-click="returnCatId(li.cat_id)">

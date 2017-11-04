@@ -1218,16 +1218,17 @@ span.a_arrow_r {
       .right-bar .right-bar-child .jingkoo-erweima:hover {
         background: url(../img/erweima.png) no-repeat center #ff3333; }
         .right-bar .right-bar-child .jingkoo-erweima:hover .erweima-box {
-          left: -102px;
+          left: -101px;
           opacity: 1;
-          pointer-events: auto; }
+          pointer-events: auto;
+          display: block; }
       .right-bar .right-bar-child .jingkoo-erweima .erweima-box {
         width: 100px;
         height: 100px;
         position: absolute;
         left: -122px;
         opacity: 0;
-        top: -27px;
+        top: -30px;
         border: 1px solid #ccc;
         border-right: none;
         border-radius: 5px 0 0 5px;
@@ -1241,7 +1242,8 @@ span.a_arrow_r {
         transition: all .3s ease-in;
         background: #fff;
         border-radius: 0;
-        pointer-events: none; }
+        pointer-events: none;
+        display: none; }
         .right-bar .right-bar-child .jingkoo-erweima .erweima-box img {
           width: 96%;
           height: 100%; }
@@ -1250,9 +1252,10 @@ span.a_arrow_r {
           border-bottom: 5px solid transparent;
           border-left: 5px solid #fff;
           content: "";
-          position: relative;
-          top: -3px;
-          left: 5px;
+          position: absolute;
+          top: 50%;
+          left: 100px;
+          margin-top: -7px;
           width: 0;
           height: 0;
           display: block; }
@@ -2316,13 +2319,14 @@ span.a_arrow_r {
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             word-break: break-all;
-            line-height: 20px; }
+            line-height: 20px;
+            height: 40px; }
             .home-main .cool-eye-world .cool-eye-content .coolEye-right .coolEye-right-content p:hover {
               color: #0070c9; }
           .home-main .cool-eye-world .cool-eye-content .coolEye-right .coolEye-right-content p:last-child {
             color: #e60000;
             font-size: 14px;
-            margin-top: 15px;
+            margin-top: 10px;
             font-weight: normal; }
 
 /*积分商城*/
@@ -2677,9 +2681,10 @@ span.a_arrow_r {
       width: 1167px;
       padding: 10px 20px 10px 10px;
       display: inline-block;
-      border-bottom: 1px dashed #ccc; }
-      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
-        border-bottom: none; }
+      border-top: 1px dashed #cccccc;
+      position: relative; }
+      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:first-child {
+        border-top: none; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-tit {
         width: 100px;
         color: #808080;
@@ -3018,6 +3023,8 @@ span.a_arrow_r {
           color: #e60000;
           font-size: 16px;
           font-weight: normal; }
+          .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .goods-items-price a {
+            color: #ff3333; }
         .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .goods-items-store {
           color: #808080; }
         .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .shop_btn_box {
@@ -3145,9 +3152,11 @@ span.a_arrow_r {
   background: #fff;
   z-index: 1000;
   position: fixed;
+  border-radius: 10px;
+  overflow: hidden;
   left: 50%;
   margin-left: -315px;
-  top: 20%;
+  top: 10%;
   display: none; }
   .shopDetail-main .dushu-box .dushu-tit {
     height: 65px;
@@ -3180,9 +3189,8 @@ span.a_arrow_r {
     background: rgba(0, 0, 0, 0.1); }
   .shopDetail-main .dushu-box .dushu-content {
     padding: 0 25px;
-    height: 320px;
     overflow: hidden;
-    overflow-y: scroll; }
+    min-height: 300px; }
     .shopDetail-main .dushu-box .dushu-content .dushu-fanwei {
       height: 55px;
       line-height: 55px;
@@ -3210,10 +3218,12 @@ span.a_arrow_r {
   position: fixed;
   left: 50%;
   margin-left: -315px;
-  top: 20%;
-  display: none; }
+  top: 10%;
+  display: none;
+  border-radius: 10px;
+  overflow: hidden; }
   .shopDetail-main .dushuQiuJing-box .dushuQiuJing-tit {
-    height: 70px;
+    height: 65px;
     display: flex;
     align-items: center;
     padding-left: 270px;
@@ -3243,9 +3253,8 @@ span.a_arrow_r {
     background: rgba(0, 0, 0, 0.1); }
   .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content {
     padding: 0 25px;
-    height: 300px;
     overflow: hidden;
-    overflow-y: scroll; }
+    min-height: 300px; }
     .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content .dushuQiuJing-fanwei {
       height: 55px;
       line-height: 55px;
@@ -4565,7 +4574,8 @@ span.a_arrow_r {
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
               overflow: hidden;
-              line-height: 25px; }
+              line-height: 24px;
+              height: 49px; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history .history-goods .history-goods-item p:hover {
                 color: #0070c9; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history .history-goods .history-goods-item span {
@@ -5058,13 +5068,12 @@ span.a_arrow_r {
             float: left;
             margin-right: 100px;
             width: 350px;
-            height: 30px;
+            height: 60px;
             line-height: 30px;
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap; }
             .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li ul li {
-              height: 30px;
               margin-right: 10px;
               float: left;
               line-height: 30px; }
@@ -5133,90 +5142,121 @@ span.a_arrow_r {
             background-image: url(../img/qianbi_.png);
             color: #ff3333;
             border: 1px solid #ff3333; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price {
-        width: 85px;
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt {
+        width: 420px;
         float: left;
-        margin-top: 0;
-        margin-right: 80px;
-        position: relative;
-        width: 85px;
-        text-align: center; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao {
-          width: 75px;
-          height: 24px;
-          line-height: 24px;
-          color: #3f69a5;
-          padding-left: 10px;
-          border: 1px solid #3f69a5;
-          background: url(../img/dayuhao_.png) no-repeat 64px;
-          cursor: pointer;
-          position: absolute;
-          right: 0;
-          top: 42px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box {
-          width: 250px;
-          min-height: 120px;
-          background: #fff;
-          box-shadow: 0 0 5px 0;
-          border: 1px solid #e6e6e6;
-          color: #e6e6e6;
-          position: absolute;
-          top: 73px;
-          right: 0;
-          padding: 10px;
-          z-index: 999;
-          display: none; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item {
-            display: inline-block;
-            overflow: hidden; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin {
-              width: 16px;
-              height: 16px;
-              border-radius: 50%;
-              border: 1px solid #ccc;
-              float: left;
-              margin-right: 12px;
-              margin-top: 3px; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin.dian {
-                border: 1px solid #ff3333;
-                background: url(../img/red-dot.png) no-repeat center; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item p {
-              float: left;
-              width: 100%;
-              text-align: center;
-              top: 0; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item button {
-              width: 60px;
-              height: 30px;
-              border-radius: 3px;
-              background: #fff;
-              color: #666;
-              border: 1px solid #ccc;
-              float: left;
-              margin-right: 15px;
-              outline: none; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn {
-            margin-left: 50px; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn .red-btn {
-              background: #ff3333;
-              color: #fff; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-price p {
+        padding: 15px 0;
+        margin-top: 10px; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price {
+          padding: 0;
+          margin: 0;
+          position: relative;
+          top: 0;
+          margin-right: 0;
+          float: left;
+          width: 157px;
+          height: 60px;
+          line-height: 35px;
+          margin-bottom: 7px;
+          text-align: center; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao {
+            width: 75px;
+            height: 24px;
+            line-height: 24px;
+            color: #3f69a5;
+            padding-left: 10px;
+            border: 1px solid #3f69a5;
+            background: url(../img/dayuhao_.png) no-repeat 64px;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 42px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box {
+            width: 250px;
+            min-height: 120px;
+            background: #fff;
+            box-shadow: 0 0 5px 0;
+            border: 1px solid #e6e6e6;
+            color: #e6e6e6;
+            position: absolute;
+            top: 73px;
+            right: 0;
+            padding: 10px;
+            z-index: 999;
+            display: none; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item {
+              display: inline-block;
+              overflow: hidden; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: 1px solid #ccc;
+                float: left;
+                margin-right: 12px;
+                margin-top: 3px; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin.dian {
+                  border: 1px solid #ff3333;
+                  background: url(../img/red-dot.png) no-repeat center; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item p {
+                float: left;
+                width: 100%;
+                text-align: center;
+                top: 0; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item button {
+                width: 60px;
+                height: 30px;
+                border-radius: 3px;
+                background: #fff;
+                color: #666;
+                border: 1px solid #ccc;
+                float: left;
+                margin-right: 15px;
+                outline: none; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn {
+              margin-left: 50px; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn .red-btn {
+                background: #ff3333;
+                color: #fff; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price p {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            top: 23px;
+            margin-top: 4px;
+            width: 114px; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-xiaoji {
           color: #666;
+          position: relative;
+          top: 0;
+          float: left;
+          padding: 0;
+          margin: 0;
+          height: 30px;
+          line-height: 30px;
+          width: 120px;
+          margin-bottom: 7px;
+          font-size: 14px;
+          text-align: center; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .add_last_th {
+          padding: 0;
+          margin: 0;
+          color: #ff3333;
+          display: inline-block;
+          float: left;
+          position: relative;
+          right: 0;
+          width: 80px;
+          overflow: hidden;
+          top: 0;
           font-size: 14px;
           text-align: center;
-          position: relative;
-          top: 23px;
-          margin-top: 4px;
-          width: 114px; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-xiaoji {
-        float: left;
-        font-size: 14px;
-        color: #ff3333;
-        margin-top: 20px;
-        position: relative;
-        top: 11px;
-        width: 100px;
-        text-align: center; }
+          width: 105px;
+          padding-left: 40px;
+          height: 30px;
+          line-height: 30px;
+          margin-bottom: 7px; }
   .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng {
     width: 100%;
     padding-left: 60px;
@@ -5367,7 +5407,13 @@ span.a_arrow_r {
   .login-main input::-webkit-outer-spin-button,
   .login-main input::-webkit-inner-spin-button {
     -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
     margin: 0; }
+  .login-main input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield; }
   .login-main .jingkoo-logo {
     position: absolute;
     left: 6%;
@@ -6870,11 +6916,11 @@ span.a_arrow_r {
   color: #666;
   font-size: 14px;
   line-height: 22px;
+  height: 22px;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1; }
+  white-space: nowrap;
+  overflow: hidden; }
 .flash-sale-main .purchase li:hover .wrp {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
 .flash-sale-main .purchase li:nth-child(4n) {
@@ -10127,7 +10173,8 @@ span.a_arrow_r {
 
 .table_b1_right p {
   color: #4c4c4c;
-  font-size: 14px; }
+  font-size: 14px;
+  padding-top: 10px; }
 
 .rightbox_more {
   overflow: hidden;
@@ -17708,11 +17755,12 @@ textarea {
 .footer-main {
   width: 100%;
   background: #f5f5f5;
-  height: 180px;
+  min-height: 180px;
   position: relative; }
   .footer-main .footer-content {
     padding-left: 100px;
     padding-top: 25px;
+    padding-bottom: 40px;
     overflow: hidden; }
     .footer-main .footer-content ul {
       float: left;
@@ -18065,6 +18113,8 @@ textarea {
     color: #e60000;
     font-size: 16px;
     font-weight: normal; }
+  .shopHomeNew .shopList-goodsnew .big-shopList-goods-itemsnew .shopList-goods-itemsnew .goods-items-pricenew a {
+    color: #ff3333; }
   .shopHomeNew .shopList-goodsnew .big-shopList-goods-itemsnew .shopList-goods-itemsnew .goods-items-storenew {
     color: #808080; }
   .shopHomeNew .shopList-goodsnew .big-shopList-goods-itemsnew .shopList-goods-itemsnew .shop_btn_boxnew {

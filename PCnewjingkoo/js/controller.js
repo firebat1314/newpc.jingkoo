@@ -53,7 +53,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.goLogin = function () {
             $state.go('login');
         };
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
+        $rootScope.ip = 'http://www.jingku.cn'; //当前域名
 
         $scope.loginOut = function () {
             $http({
@@ -171,7 +171,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //个人信息数量
         $http({
             method: "POST",
-            url: 'http://newpc.jingkoo.net/User/getTidings',
+            url: 'http://www.jingku.cn/User/getTidings',
             data: {},
             headers: {
                 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')

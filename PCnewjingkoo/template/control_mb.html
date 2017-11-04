@@ -146,7 +146,7 @@
 						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;width: 157px;">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
-								<p>{{like.goods_name}}</p>
+								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
 								<b>{{like.shop_price}}</b>
 							</div>
 						</li>

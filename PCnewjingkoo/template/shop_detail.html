@@ -7,7 +7,7 @@
     <div class="shopDetail-tit">
         <div class="shop-detail-tit">
             <!--<p style="float:left;">当前位置：<a href="#/home">首页</a> > <em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>-->
-            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>
+            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-attr-title="{{detailTitle}}" ng-bind="detailTitle"></em></p>
             <div class="top_conbox"> 
                 <span class="shop_top_sp1" ng-click="goStore()" style="cursor: pointer;"><span class="join_dp"></span>{{name}}</span>
                 <span ng-if="!shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
@@ -180,8 +180,8 @@
                 									</p>
                 									<div class="dzbox_d1p1_p1">
                 										<p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}" ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
-                                                            <span class="d1p1_p1_sp1">{{fee.consignee}}</span>
-                                                            <span class="d1p1_p1_sp2">{{fee.region}}{{fee.address}}</span>
+                                                            <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
+                                                            <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
                                                         </p>
                                                         <p ng-if="shopDetailData.goods_fee.consignee_list==0">暂无收货地址,请<a href="#/person-mana-addr" target="_blank" style="color: #0070c9;">添加</a>收货地址</p>
                 									</div>
@@ -560,7 +560,7 @@
                             <div class="history-goods-item" ng-repeat="historyItem in shopDetailData.history">
                                 <a href="#/shop-detail/{{historyItem.goods_id}}">
                                     <div class="history-goods-item-img"><img ng-src={{historyItem.goods_thumb}} alt=""></div>
-                                    <p>{{historyItem.goods_name}}</p>
+                                    <p ng-attr-title="{{historyItem.goods_name}}">{{historyItem.goods_name}}</p>
                                     <span>{{historyItem.format_shop_price}}</span>
                                 </a>
                             </div>

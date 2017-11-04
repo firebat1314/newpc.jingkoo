@@ -150,7 +150,7 @@
 													<div class="imsldd" ng-repeat="goods in order.goods" style="position: relative;"> 
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.original_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
-															<p class="gp-1">{{goods.goods_name}}</p> 
+															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p> 
 															<p class="gp-2">x{{goods.goods_number}}</p> 
 														</div> 
 														<div class="clear"></div> 
@@ -308,7 +308,7 @@
 													<div class="imsldd">
 														<div class="img" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;"><img src="{{intera.goods_img}}"/></div>
 														<div class="txt" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;">
-															<p class="gp-1">{{intera.goods_name}}</p>
+															<p class="gp-1" ng-attr-title="{{intera.goods_name}}">{{intera.goods_name}}</p>
 															<p class="gp-2">x{{intera.goods_number}}</p>
 														</div>
 														<div class="clear"></div>
@@ -373,7 +373,7 @@
 						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" style="cursor: pointer;width: 157px;" ng-click="gessGoods(like.goods_id)">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
-								<p>{{like.goods_name}}</p>
+								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
 								<b>{{like.shop_price}}</b>
 							</div>
 						</li>

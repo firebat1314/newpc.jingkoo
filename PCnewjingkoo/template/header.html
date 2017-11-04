@@ -149,8 +149,8 @@
                                     <div class="has-car-goods" ng-repeat="attr in goods.attrs">
                                         <a href="#/shop-detail/{{attr.goods_id}}">
                                             <img ng-src={{goods.goods_thumb}} alt="">
-                                            <p class="goodsName">{{goods.goods_name}}</p>
-                                            <p class="attr"><em ng-repeat="attrAr in attr.arr_attr">{{attrAr}}</em></p>
+                                            <p class="goodsName" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p>
+                                            <p class="attr"><em ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em></p>
                                         </a>
                                         <div class="price-del">
                                             <div class="price">{{goods.goods_price}}×{{attr.goods_number}}</div>
@@ -293,8 +293,8 @@
                                 <div class="goods-item" ng-repeat="carRightAttr in carRightItem.attrs">
                                     <a href="#/shop-detail/{{carRightItem.goods_id}}" target="_blank">
                                         <img ng-src={{carRightItem.goods_thumb}} alt="">
-                                        <p>{{carRightItem.goods_name}}</p>
-                                        <p class="attr"><em ng-repeat="attrAr in carRightAttr.arr_attr">{{attrAr}}</em></p>
+                                        <p ng-attr-title="{{carRightItem.goods_name}}">{{carRightItem.goods_name}}</p>
+                                        <p class="attr"><em ng-repeat="attrAr in carRightAttr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em></p>
                                     </a>
                                     <i>{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
                                     <div class="black-cha" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)"></div>

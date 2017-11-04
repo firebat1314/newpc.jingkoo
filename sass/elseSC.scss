@@ -7335,10 +7335,10 @@ display: -webkit-flex;
 .bookmark .item .bk-left .xtianl .txt a{display:block;width: 50%;float:left;background:#f9f9f9;height:38px;line-height:38px;text-align:center;color:#808080;font-size:14px;}
 .bookmark .item .bk-left .xtianl .txt a img{display:inline-block;vertical-align: middle;position:relative;top:-2px;margin-right:10px;}
 .bookmark .item .bk-left .xtianl .txt:after{content: " ";display:block;position:absolute;left:50%;width: 1px;height:38px;background:#e6e6e6;}
-
+.bookmark .item .bk-left .xtianl .img .zhid>span:after{display: none;}    
  
 .bookmark .item .bk-right{margin-left:20px;float:left;}
-.bookmark .slideGroup{width:490px;text-align:left;margin-top:20px;margin-left: 20px;}
+.bookmark .slideGroup{width:490px;text-align:left;margin-top:20px;margin-left: 20px;}  
 .bookmark .slideGroup .parHd{height:28px;line-height:28px;position:relative;margin-bottom:10px;display: none;} 
 .bookmark .slideGroup .parHd ul{float:left; position:absolute; left:0; height:28px;}
 .bookmark .slideGroup .parHd ul li{float:left; width:58px; text-align:center; cursor:pointer;border:1px solid #e6e6e6;}

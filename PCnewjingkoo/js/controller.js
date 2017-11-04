@@ -6523,14 +6523,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         // };
         /* —————————————— 保存用户备注信息 —————————————— */
         $scope.saveNotes = function () {
-            let commentArr = [];
-            let suppliers = [];
-            let label = [];
+            var commentArr = [];
+            var suppliers = [];
+            var label = [];
 
             for (var i in this.jiesuanData.suppliers_notes) {
                 commentArr.push(this.jiesuanData.suppliers_notes[i])
             }
-            for (let i = 0; i < this.jiesuanData.cart_goods_list.length; i++) {
+            for (var i = 0; i < this.jiesuanData.cart_goods_list.length; i++) {
                 var sArr = []
                 suppliers.push(this.jiesuanData.cart_goods_list[i].suppliers_id);
                 for (var j = 0; j < this.jiesuanData.cart_goods_list[i].order_label.length; j++) {
@@ -6586,7 +6586,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         if (data.consignee_list.length == 0) {
                             $scope.defaultShipping = null;
                         } else {
-                            for (let i = 0; i < data.consignee_list.length; i++) {
+                            for (var i = 0; i < data.consignee_list.length; i++) {
                                 if (data.consignee_list[i].is_show == 1 && data.consignee_list[i].selected == 1) {
                                     $scope.defaultShipping = data.consignee_list[i]
                                 }
@@ -7024,16 +7024,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         
         $scope.submitList = function (e, index) {
-            let commentArr = [];
-            let suppliers = [];
-            for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
+            var commentArr = [];
+            var suppliers = [];
+            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
                 if ($scope.jiesuanData.cart_goods_list[i].suppliers_note) {
                     commentArr.push($scope.jiesuanData.cart_goods_list[i].suppliers_note)
                     suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id)
                 }
             }
-            let label = [];
-            for (let i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
+            var label = [];
+            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
                 var sArr = []
                 for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
                     if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {

@@ -8592,6 +8592,9 @@ span.a_arrow_r {
   height: 38px;
   background: #e6e6e6; }
 
+.bookmark .item .bk-left .xtianl .img .zhid > span:after {
+  display: none; }
+
 .bookmark .item .bk-right {
   margin-left: 20px;
   float: left; }

@@ -109,7 +109,7 @@
 													<div class="imsldd" ng-repeat="goods in order.pian_goods">
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.goods_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
-															<p class="gp-1">{{goods.goods_name}}</p>
+															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p>
 															<p class="gp-2">x{{goods.goods_number}}</p>
 														</div>
 														<div class="clear"></div>
@@ -122,7 +122,7 @@
 											</div>
 										</div>
 										<div class="nero n-2 c">
-											<div class="dd-name need_tk"><em></em> <span class="user_name">{{order.consignee}}</span>
+											<div class="dd-name need_tk"><em></em> <span class="user_name" ng-attr-title="{{order.consignee}}">{{order.consignee}}</span>
 												<div class="need_tkk">
 													<p class="need_tkk_p1">{{order.consignee}}</p>
 													<p class="need_tkk_p2">{{order.region}}{{order.address}}</p>

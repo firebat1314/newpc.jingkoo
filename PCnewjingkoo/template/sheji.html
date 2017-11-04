@@ -136,7 +136,7 @@
                                         <div class="img">
                                             <img ng-src={{hot.goods_img}}>
                                         </div>
-                                        <span style="width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display: block;float: left;">{{hot.name}}</span>
+                                        <span style="width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display: block;float: left;" ng-attr-title="{{hot.name}}">{{hot.name}}</span>
                                         <span style="float: right;font-size: 13px;color:#ff3333;">{{hot.shop_price}}</span>
                                         <div class="muzz"></div>
                                         <a href="#/shop-detail/{{hot.id}}" class="gwc"></a>

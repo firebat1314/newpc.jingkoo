@@ -10039,18 +10039,18 @@ span.a_arrow_r {
   border: 1px solid #ccc;
   position: relative;
   margin-right: 15px;
-  min-width: 138px; }
+  min-width: 148px; }
 
 .zfbt_box span .round_qus {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background: url(../img/newjs_ico2.png) center no-repeat;
   background-size: 100%;
   position: relative;
   position: absolute;
   z-index: 100;
-  top: 5px;
+  top: 2px;
   right: 10px; }
 
 .zfbt_box span .round_qus .round_qusbox {

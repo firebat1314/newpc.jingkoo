@@ -8319,7 +8319,8 @@ span.a_arrow_r {
   margin-bottom: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  white-space: nowrap;
+  padding: 0 10px; }
 
 .d-shop ul li .wenbook .wbk-2 {
   color: #ff0000;

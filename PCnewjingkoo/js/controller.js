@@ -8972,12 +8972,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             .success(function (data) {
                 //console.log(data);
                 if (data.status) {
+                	if(data.type == 'jump'){
+						$state.go('control-mb');
+						return;
+					}
                     layer.msg('玩命加载中', {
                         icon: 16
                         , shade: 0.3
-                    }, function () {
-
-                    })
+                    });
                     pingpp.createPayment(data.pingxx, function (result, err) {
                         //console.log(result, err);
                         if (result == "success") {

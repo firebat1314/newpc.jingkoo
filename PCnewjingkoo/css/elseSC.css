@@ -3797,17 +3797,6 @@ span.a_arrow_r {
           border: 1px solid #3f69a5;
           color: #3f69a5;
           background-color: #fff !important; }
-      .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .zhic {
-        height: 30px;
-        line-height: 30px; }
-        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .zhic div {
-          float: left; }
-          .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .zhic div img {
-            width: 18px;
-            height: 18px;
-            position: relative;
-            top: 4px;
-            margin: 0 10px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .new_shop_detail_top .new_shop_h2 {
         font: 700 16px Arial,"microsoft yahei";
         color: #666;
@@ -4420,15 +4409,6 @@ span.a_arrow_r {
               background: #3f69a5;
               border-color: #3f69a5;
               color: #fff; }
-          .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-store .store-tell .service-zhichi p {
-            margin-left: 0;
-            display: flex;
-            align-items: center; }
-          .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-store .store-tell .service-zhichi img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            margin-top: 6px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history {
         border: 1px solid #ccc; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-mainly .goods-mainly-left .mainly-left-history .history-tit {
@@ -17328,15 +17308,6 @@ textarea {
   .shopHomeNew .shop_top_con .top_conbox .shop_top_sp3 {
     color: #808080;
     margin-left: 10px; }
-  .shopHomeNew .shop_top_con .top_conbox .shop_top_sp3 i.lx_saler {
-    display: inline-block;
-    width: 22px;
-    height: 16px;
-    background: url(../img/dd-2.png) center no-repeat;
-    background-size: 100%;
-    position: relative;
-    top: 2px;
-    margin-right: 5px; }
   .shopHomeNew .procurement_box .dianpu_cen {
     height: 70px;
     width: 100%;

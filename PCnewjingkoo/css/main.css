@@ -3190,7 +3190,9 @@ span.a_arrow_r {
   .shopDetail-main .dushu-box .dushu-content {
     padding: 0 25px;
     overflow: hidden;
-    min-height: 300px; }
+    min-height: 300px;
+    max-height: 530px;
+    overflow-y: auto; }
     .shopDetail-main .dushu-box .dushu-content .dushu-fanwei {
       height: 55px;
       line-height: 55px;
@@ -3254,7 +3256,9 @@ span.a_arrow_r {
   .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content {
     padding: 0 25px;
     overflow: hidden;
-    min-height: 300px; }
+    min-height: 300px;
+    max-height: 530px;
+    overflow-y: auto; }
     .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content .dushuQiuJing-fanwei {
       height: 55px;
       line-height: 55px;

@@ -3400,7 +3400,9 @@ $browser-default-font-size: 37.5px !default;
     .dushu-content{
       padding:0 25px;
       overflow: hidden; 
-      min-height: 300px;  
+      min-height: 300px; 
+      max-height: 530px; 
+      overflow-y: auto;       
       .dushu-fanwei{
         height:55px;
         line-height: 55px;
@@ -3471,7 +3473,9 @@ $browser-default-font-size: 37.5px !default;
     .dushuQiuJing-content{
       padding:0 25px;
       overflow: hidden;  
-      min-height: 300px;  
+      min-height: 300px;
+      max-height: 530px;   
+      overflow-y: auto;
       .dushuQiuJing-fanwei{
         height:55px;
         line-height: 55px;

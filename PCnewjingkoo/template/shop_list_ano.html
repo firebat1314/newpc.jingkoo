@@ -102,11 +102,23 @@
                         <div class="item-list1">
                             <ul>
                                 <li>
-                                    <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>  【A58渐进 / A60渐进 / A67渐进】  <em class="bjtou" ng-if="item.cat_id.length"></em></h3>
-                                    <div class="box-tcd" ng-repeat="box in item.cat_id" repeat-done="getZeissGoods(item,$index,$parent.$index,$parent.$parent.$index)">
+                                    <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>{{}}<em class="bjtou" ng-if="item.cat_id.length||item.goods_list.length"></em></h3>
+                                    
+                                    <div class="box-tcd">  
+                                         <div class="tcd-itm">
+                                            <div class="lis" ng-repeat="lis in item.goods_list">
+                                                <div class="lis-1 fl">{{lis.brand_name}}</div>
+                                                <div class="lis-2 fl c">{{lis.name}}</div>
+                                                <div class="lis-3 fl c"><i>{{lis.shop_price}}</i>起/片</div>
+                                                <div class="lis-4 fl r"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="box-tcd" ng-repeat="box in item.cat_id">                                            
                                         <h2 class="tcd-h2">{{box.name}}</h2>
                                         <div class="tcd-itm">
-                                            <div class="lis" ng-repeat="lis in box.zeissList">
+                                            <div class="lis" ng-repeat="lis in box.goods_list">
                                                 <div class="lis-1 fl">{{lis.brand_name}}</div>
                                                 <div class="lis-2 fl c">{{lis.name}}</div>
                                                 <div class="lis-3 fl c"><i>{{lis.shop_price}}</i>起/片</div>

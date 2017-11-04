@@ -194,8 +194,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     //console.log(data);
+                    layer.close(cool);
                     if (data.status) {
-                        layer.close(cool);
                         // layer.msg('玩命加载中', {
                         //     icon: 16,
                         //     shade: 0.3,
@@ -216,7 +216,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                         // })
                     } else {
-                        layer.msg('切换地区失败', { icon: 2 });
+                        layer.msg(data.info, { icon: 2 });
                     }
                 })
         };
@@ -619,9 +619,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         })
             .success(function (data) {
                 //console.log(data);
-                if (data.status) {
-                    layer.close(cool);
-                }
+                layer.close(cool);
+
                 $scope.IndexData = data;
                 // for(var i = 0;i<data.list.getAreaList.length;i++){
                 //     if(data.list.getAreaList[i].selected){
@@ -972,9 +971,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             //console.log(data);
-            if (data.status) {
-                layer.close(cool);
-            }
+            layer.close(cool);
             $scope.fashionData = data;
 
 
@@ -994,9 +991,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
                         //console.log(data);
-                        if (data.status) {
-                            layer.close(cool);
-                        }
+                        layer.close(cool);
                         $scope.fashionHomeData = data;
                     })
                 } else if ($scope.index > 4) {
@@ -3900,14 +3895,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             //console.log(data);
+            layer.close(cool);
             if (data.status) {
-                layer.close(cool);
+                $scope.anoListData = data;
+                $scope.anoName = data.infos.cat_name;
+                $scope.anImg = data.infos.thumb;
+                $scope.cat_desc = data.infos.cat_desc;
+                $scope.keywords = data.infos.keywords;
             }
-            $scope.anoListData = data;
-            $scope.anoName = data.infos.cat_name;
-            $scope.anImg = data.infos.thumb;
-            $scope.cat_desc = data.infos.cat_desc;
-            $scope.keywords = data.infos.keywords;
         }).error(function (data) {
             //console.log(data);
             if (data.status == 0) {
@@ -4832,11 +4827,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             },
                             btn2: function (index) {
                                 layer.close(index);
+                                $scope.getAttrList();
                             }
                             // closeBtn: 0
                         });
                         $rootScope.$broadcast('upCarList');
-                        $scope.getAttrList();
 
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -5111,8 +5106,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     isSelect = false;
                     if (selDiv) {
                         //selDiv.style.display = "none";
-                        document.body.removeChild(selDiv);
-                        showSelDiv(selList);
+                        if (~~$(selDiv).height() > 0) {
+                            document.body.removeChild(selDiv);
+                            showSelDiv(selList);
+                        }
                     }
                     selList = null, _x = null, _y = null, selDiv = null, startX = null, startY = null, evt = null;
                 }

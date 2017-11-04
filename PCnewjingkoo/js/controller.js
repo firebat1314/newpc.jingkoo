@@ -3672,12 +3672,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.ListPage.page = 1;
             $scope.InitList();
         };
-        //商品价格排序
-        $scope.priceOrder = function () {
-            $scope.ListPage.order = 'shop_price';
-            $scope.ListPage.page = 1;
-            $scope.InitList();
-        };
         //价格升序
         $scope.PriceAsOrder = function () {
             $scope.ListPage.stort = 'ASC';
@@ -3691,6 +3685,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.ListPage.order = 'shop_price';
             $scope.ListPage.page = 1;
             $scope.InitList();
+        };
+        //商品价格排序
+        var good_price = 1;
+        $scope.priceOrder = function () {
+        	if(good_price==1){
+        		$scope.PriceAsOrder();
+        		good_price = 0;
+        	}else{
+        		$scope.PriceDsOrder();
+        		good_price = 1;  
+        	}
+//          $scope.ListPage.order = 'shop_price';
+//          $scope.ListPage.page = 1;
+//          $scope.InitList();
         };
         //商品时间排序
         $scope.timeOrder = function () {

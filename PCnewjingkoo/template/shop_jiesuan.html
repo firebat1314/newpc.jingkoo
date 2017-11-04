@@ -216,15 +216,15 @@
                             <!--商家备注-->
                             <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                                 <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]"
-                                    ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)"
+                                ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)"
                                     type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
                             <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;margin-top: 10px;">
                                 <span class="sent_sp1" style="float: left;">商家备注 : </span>
                                 <div class="texbox_d">
-                                    <textarea class="bz_text" ng-model="cartGoods.suppliers_note"></textarea>
+                                    <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()" ></textarea>
                                     <ul class="bz_ul">
-                                        <li ng-class="order_label.selected?'on':''" ng-repeat="order_label in cartGoods.order_label" ng-click="order_label.selected = !order_label.selected">{{order_label.value}}</li>
+                                        <li ng-class="order_label.selected?'on':''" ng-repeat="order_label in cartGoods.order_label" ng-click="order_label.selected = !order_label.selected;saveNotes()">{{order_label.value}}</li>
                                     </ul>
                                     <!-- <p class="bz_p">若您需改变订单内容或另有特殊要求，请务必联系卖家达成一致。否则，该填写内容将视为无效。</p> -->
                                 </div>

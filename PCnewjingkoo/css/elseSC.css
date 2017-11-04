@@ -6040,7 +6040,7 @@ span.a_arrow_r {
     cursor: pointer; }
   .register-main .re-t li .ret-nr .ret-selt {
     padding: 0 10px;
-    width: 197px;
+    width: 194px;
     height: 36px;
     border: 1px solid #d9d9d9;
     color: #808080;
@@ -6937,7 +6937,7 @@ span.a_arrow_r {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1；; }
+  -webkit-line-clamp: 1; }
 .flash-sale-main .purchase li:hover .wrp {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
 .flash-sale-main .purchase li:nth-child(4n) {

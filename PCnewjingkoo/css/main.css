@@ -5238,9 +5238,10 @@ span.a_arrow_r {
             font-size: 14px;
             text-align: center;
             position: relative;
-            top: 23px;
             margin-top: 4px;
-            width: 114px; }
+            width: 114px;
+            height: 100%;
+            line-height: 35px; }
         .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-xiaoji {
           color: #666;
           position: relative;
@@ -5248,8 +5249,8 @@ span.a_arrow_r {
           float: left;
           padding: 0;
           margin: 0;
-          height: 30px;
-          line-height: 30px;
+          height: 60px;
+          line-height: 35px;
           width: 120px;
           margin-bottom: 7px;
           font-size: 14px;
@@ -5269,8 +5270,8 @@ span.a_arrow_r {
           text-align: center;
           width: 105px;
           padding-left: 40px;
-          height: 30px;
-          line-height: 30px;
+          height: 60px;
+          line-height: 35px;
           margin-bottom: 7px; }
   .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng {
     width: 100%;

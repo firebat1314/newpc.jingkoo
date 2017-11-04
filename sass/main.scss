@@ -5874,7 +5874,7 @@ $browser-default-font-size: 37.5px !default;
                   width: 157px;  
                   height: 60px; 
                   line-height: 35px;  
-                  margin-bottom: 7px; 
+                  margin-bottom: 7px;   
                   text-align: center;  
                   .more-cuXiao{   
                     width:75px;    
@@ -5948,11 +5948,12 @@ $browser-default-font-size: 37.5px !default;
                     color:#666;   
                     font-size: 14px; 
                     text-align: center;   
-                    position: relative;   
-                    top: 23px;        
+                    position: relative;       
                     margin-top: 4px;    
                     width: 114px;      
     //              top: -21px; 
+                    height: 100%;
+                    line-height: 35px;   
                   } 
                 }
                 .hasGoods-check-xiaoji{
@@ -5962,8 +5963,8 @@ $browser-default-font-size: 37.5px !default;
                   float: left;
                   padding: 0;
                   margin: 0;
-                  height: 30px;
-                  line-height: 30px;
+                  height: 60px;
+                  line-height: 35px;
                   width: 120px;
                   margin-bottom: 7px;
                   font-size: 14px;  
@@ -5984,8 +5985,8 @@ $browser-default-font-size: 37.5px !default;
                     text-align: center; 
                      width: 105px;
                      padding-left: 40px;
-                     height: 30px;
-                     line-height: 30px;
+                     height: 60px;
+                     line-height: 35px;
                      margin-bottom: 7px; 
                 }
             }

@@ -35,6 +35,16 @@ input::-webkit-inner-spin-button {
 @font-face {
   font-family: 'tahoma';
   src: url(../font/tahoma.ttf); }
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  position: relative;
+  outline: none;
+  background: url(../img/down_arrow.png) calc(100% - 15px) center no-repeat; }
+
 a, body, br, dd, dl, dt, form, h1, h2, h3, h4, h5, h6, hr, img, li, p, table, td, tr, ul {
   -webkit-font-smoothing: antialiased;
   font-family: "tahoma", "PingFang sc","Helvetica Neue","Hiragino Sans GB","WenQuanYi Micro Hei","Microsoft Yahei"  !important;

@@ -1923,11 +1923,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-        if (ipCookie('login_by_phone') == false) {
+       /*  if (ipCookie('login_by_phone') == false) {
             $scope.isPhone = false;
         } else {
             $scope.isPhone = true;
-        }
+        } */
         $scope.phoneLogin = function () {
             $scope.isPhone = true;
         };
@@ -1999,8 +1999,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             geetest_challenge: '',
             geetest_validate: '',
             geetest_seccode: '',
-            trece: 1,
-            remember: true
+            trece: 1
         };
         if (ipCookie('remeber_user_name')) {
             $scope.user.remember = true;
@@ -2046,7 +2045,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                    ipCookie("login_by_phone", false, { expires: 21 });
                 });
             } else {
                 layer.msg('请先完成验证', { icon: 2, time: 800 });
@@ -2093,7 +2091,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         ipCookie("token", data.data.token, { expires: 21 });
                         ipCookie("username", data.data.user_name, { expires: 21 });
                         ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                        ipCookie("login_by_phone", false, { expires: 21 });
                     });
                 } else {
                     layer.msg('请先完成验证', { icon: 2, time: 500 });
@@ -2106,8 +2103,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // username:$scope.usernamePhone,
             // str_verify:$scope.phoneVcode,
             // mobile_code:$scope.mobile_verify,
-            is_verify: 1,
-            remember: true
+            is_verify: 1
         };
 
         if (ipCookie('remeber_user_phone')) {
@@ -2148,7 +2144,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                    ipCookie("login_by_phone", true, { expires: 21 });
                 });
             }
 

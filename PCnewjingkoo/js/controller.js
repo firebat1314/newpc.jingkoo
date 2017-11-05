@@ -636,7 +636,7 @@ $rootScope.qimoChatClick = function (access_id) {
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href="http://www.jingku.cn/default.html";
+                $state.go('login');
                 layer.close(cool);
             }
         })

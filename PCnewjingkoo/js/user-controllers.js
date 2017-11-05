@@ -2101,8 +2101,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                     }
                 }).success(function(data) {
                     //console.log(data);
-                    if(data.status){
-                       
+                	$scope.geeteTrue.reset();
+                    if(data.status){   
                         layer.msg(data.info);
                         $scope.vm.kedian =true;
                         $scope.vm.data = $scope.vm.time+'s';
@@ -2116,7 +2116,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                             }
                         },1000,$scope.vm.time)
                     }else{
-                    	$scope.geeteTrue.reset();
                         layer.msg(data.info);
                         $scope.codeAgain();
                     }

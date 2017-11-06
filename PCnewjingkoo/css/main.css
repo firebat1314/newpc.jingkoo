@@ -5263,7 +5263,6 @@ span.a_arrow_r {
           float: left;
           position: relative;
           right: 0;
-          width: 80px;
           overflow: hidden;
           top: 0;
           font-size: 14px;
@@ -9735,7 +9734,7 @@ span.a_arrow_r {
   z-index: 1000;
   position: fixed;
   left: 50%;
-  margin-left: -325px;
+  margin-left: -375px;
   top: 30%;
   padding-bottom: 20px;
   display: none; }
@@ -9765,7 +9764,7 @@ span.a_arrow_r {
         float: left;
         margin-right: 10px; }
     .pur_bianji .dzhi-table .dzhi-btn.org, .pur_zengjia .dzhi-table .dzhi-btn.org {
-      background: #ff3333;
+      background: #3f69a5;
       color: #fff; }
     .pur_bianji .dzhi-table .dzhi-btn, .pur_zengjia .dzhi-table .dzhi-btn {
       height: 35px;
@@ -9775,7 +9774,8 @@ span.a_arrow_r {
       color: #666;
       font-size: 14px;
       border-radius: 5px;
-      cursor: pointer; }
+      cursor: pointer;
+      margin-right: 15px !important; }
     .pur_bianji .dzhi-table .dzhi-mor, .pur_zengjia .dzhi-table .dzhi-mor {
       font-size: 14px;
       color: #666; }
@@ -10049,7 +10049,7 @@ span.a_arrow_r {
   width: 25px;
   height: 25px;
   background: url(../img/newjs_ico2.png) center no-repeat;
-  background-size: 100%;
+  background-size: 21px;
   position: relative;
   position: absolute;
   z-index: 100;
@@ -10058,10 +10058,10 @@ span.a_arrow_r {
 
 .zfbt_box span .round_qus .round_qusbox {
   width: 360px;
-  padding: 0 10px;
+  padding: 10px;
   text-align: left;
   min-height: 25px;
-  line-height: 40px;
+  line-height: 30px;
   position: absolute;
   background-color: #fff;
   font-size: 12px;

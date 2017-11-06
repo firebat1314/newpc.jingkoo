@@ -5978,7 +5978,6 @@ $browser-default-font-size: 37.5px !default;
                     float: left;
                     position: relative;
                     right: 0;
-                    width: 80px;
                     overflow: hidden;
                     top: 0;
                     font-size: 14px;
@@ -7889,7 +7888,7 @@ display: -webkit-flex;
   z-index: 1000; 
   position: fixed;
   left: 50%;
-  margin-left: -325px;  
+  margin-left: -375px;   
   top: 30%; 
   padding-bottom: 20px;  
   display: none;
@@ -7924,8 +7923,8 @@ display: -webkit-flex;
         margin-right: 10px;
       }
     }
-    .dzhi-btn.org {
-      background: #ff3333;
+    .dzhi-btn.org { 
+      background: #3f69a5; 
       color: #fff;
     }
     .dzhi-btn {
@@ -7937,6 +7936,7 @@ display: -webkit-flex;
       font-size: 14px;
       border-radius: 5px;
       cursor: pointer;
+      margin-right: 15px !important; 
     }
     .dzhi-mor {
       font-size: 14px; 
@@ -8041,16 +8041,16 @@ display: -webkit-flex;
 /*支付*/    
 .zfbt_box{width: calc(100% - 20px);float: left;padding-left: 20px;}        
 .zfbt_box span{display: inline-block;background-color: #fff;text-align: center;font-size: 12px;color: #666666;cursor: pointer;height: 28px;line-height: 28px;border: 1px solid #ccc;position: relative;margin-right: 15px;min-width: 148px;}   
-.zfbt_box span .round_qus{display: inline-block;width: 25px;height: 25px;background: url(../img/newjs_ico2.png) center no-repeat;background-size: 100%;position: relative;position: absolute;z-index: 100;top: 2px;right: 10px;}     
-.zfbt_box span .round_qus .round_qusbox{width: 360px;padding:0 10px;text-align: left;min-height: 25px;line-height: 40px;position: absolute;background-color: #fff;font-size: 12px;color: #666666;box-shadow: 0 0 10px 0 rgba(150,150,150,.4);top: 35px;left: -181px;display: none;}            
+.zfbt_box span .round_qus{display: inline-block;width: 25px;height: 25px;background: url(../img/newjs_ico2.png) center no-repeat;background-size:21px;position: relative;position: absolute;z-index: 100;top: 2px;right: 10px;}     
+.zfbt_box span .round_qus .round_qusbox{width: 360px;padding:10px;text-align: left;min-height: 25px;line-height: 30px;position: absolute;background-color: #fff;font-size: 12px;color: #666666;box-shadow: 0 0 10px 0 rgba(150,150,150,.4);top: 35px;left: -181px;display: none;}            
 .zfbt_box span .round_qus .round_qusbox:before{content: "";display: block;width: 13px;height: 7px;background: url(../img/fx_ico6.png) center top;position: absolute;top: -7px;left: 50%;margin-left:-6.5px;}        
-.zfbt_box span .round_qus:hover .round_qusbox{display: block;}   
-.zfbt_box span.onli{border-color: #ff3333;}      
+.zfbt_box span .round_qus:hover .round_qusbox{display: block;}     
+.zfbt_box span.onli{border-color: #ff3333;}       
 .zfbt_box span.onli:after{content: "";display: inline-block;width: 14px;height: 14px;background: url(../img/cg_ico1.png) center center no-repeat;background-size: 100%;position: absolute;right: 0;bottom: 0;}
         
-/*商品清单*/   
-.goods_table{display: block;}    
-.goods_table table{width: 100%;} 
+/*商品清单*/    
+.goods_table{display: block;}      
+.goods_table table{width: 100%;}  
 .goods_table table tr {border-bottom: 1px solid #e5e5e5;}   
 .goods_table table th{text-align: center;height: 40px;line-height: 40px;font-size: 14px;color: #666;background-color: #f5f6fa;}      
 .p_titl{color: #4c4c4c;font-size: 12px;padding: 9px 0 12px 20px;background-color: #f5f6fa;} 

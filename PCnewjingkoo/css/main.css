@@ -5263,6 +5263,7 @@ span.a_arrow_r {
           float: left;
           position: relative;
           right: 0;
+          width: 80px;
           overflow: hidden;
           top: 0;
           font-size: 14px;
@@ -8318,8 +8319,7 @@ span.a_arrow_r {
   margin-bottom: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 0 10px; }
+  white-space: nowrap; }
 
 .d-shop ul li .wenbook .wbk-2 {
   color: #ff0000;
@@ -9734,7 +9734,7 @@ span.a_arrow_r {
   z-index: 1000;
   position: fixed;
   left: 50%;
-  margin-left: -375px;
+  margin-left: -325px;
   top: 30%;
   padding-bottom: 20px;
   display: none; }
@@ -9764,7 +9764,7 @@ span.a_arrow_r {
         float: left;
         margin-right: 10px; }
     .pur_bianji .dzhi-table .dzhi-btn.org, .pur_zengjia .dzhi-table .dzhi-btn.org {
-      background: #3f69a5;
+      background: #ff3333;
       color: #fff; }
     .pur_bianji .dzhi-table .dzhi-btn, .pur_zengjia .dzhi-table .dzhi-btn {
       height: 35px;
@@ -9774,8 +9774,7 @@ span.a_arrow_r {
       color: #666;
       font-size: 14px;
       border-radius: 5px;
-      cursor: pointer;
-      margin-right: 15px !important; }
+      cursor: pointer; }
     .pur_bianji .dzhi-table .dzhi-mor, .pur_zengjia .dzhi-table .dzhi-mor {
       font-size: 14px;
       color: #666; }
@@ -10049,7 +10048,7 @@ span.a_arrow_r {
   width: 25px;
   height: 25px;
   background: url(../img/newjs_ico2.png) center no-repeat;
-  background-size: 19px;
+  background-size: 100%;
   position: relative;
   position: absolute;
   z-index: 100;
@@ -10058,10 +10057,10 @@ span.a_arrow_r {
 
 .zfbt_box span .round_qus .round_qusbox {
   width: 360px;
-  padding: 10px;
+  padding: 0 10px;
   text-align: left;
   min-height: 25px;
-  line-height: 30px;
+  line-height: 40px;
   position: absolute;
   background-color: #fff;
   font-size: 12px;

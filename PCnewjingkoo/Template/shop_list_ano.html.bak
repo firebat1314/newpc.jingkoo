@@ -1,0 +1,128 @@
+<style type="text/css">
+    /*品牌专题页*/
+    .jsqu{height:120px;border:1px solid #e0e0e0;}
+    .jsqu .jsqu-img{width:155px;height:120px;}
+    .jsqu .jsqu-img img{display:block;width:155px;height:120px;}
+    .jsqu-txt{padding:0 30px 0 185px;height:120px;}
+    .jsqu-txt .title{line-height:120px;}
+    .jsqu-txt .title h1{color:#333;font-size:26px;}
+    .jsqu-txt .title h1 i{display:inline-block;margin-left:7px;position:relative;top:3px;width:26px;height:26px;background:url(img/pzpt-2.png) no-repeat center;}
+    .jsqu-txt .qugan{padding-left:210px;padding-top:30px;line-height:30px;}
+    .jsqu-txt .qugan h2{color:#666;font-size:14px;border-bottom:1px solid #e0e0e0;}
+
+
+    .cuntab{}
+    .cuntab .hd{height:42px;/*border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;*/}
+    .cuntab .hd ul{height:42px;}
+    .cuntab .hd ul li{position:relative;float:left;width:12.5%;height:42px;line-height:42px;text-align:center;background:url(img/pzpt-3.png) repeat-x left center;cursor:pointer;
+        -moz-user-select:none;/*火狐*/
+        -webkit-user-select:none;/*webkit浏览器*/
+        -ms-user-select:none;/*IE10*/
+        -khtml-user-select:none;/*早期浏览器*/
+        user-select:none;
+        color:#666;
+        font-size:16px;
+    }
+    @media only screen and (max-width:1200px) {
+    	.cuntab .hd ul li{font-size: 14px;}
+    	.cuntab .bd .item-list1 li .ls1h3 .ls1sp{font-size: 16px;}
+    }
+    .cuntab .hd ul li:after
+    {
+        content:"";
+        display:block;
+        float:right;
+        margin-top:6px;
+        width:1px;
+        height:30px;
+        background:#e6e6e6;
+    }
+    .cuntab .hd ul li em{display:none;position:absolute;z-index: 97;bottom:-8px;left:50%;margin-left:-17px;width:35px;height:9px;background:url(img/pzpt-5.png) no-repeat center;}
+    .cuntab .hd ul li:last-of-type:after{display:none;}
+    .cuntab .hd ul li:hover,.cuntab .hd ul li.on{background:url(img/pzpt-4.png) repeat-x left center;color:#fff;}
+    .cuntab .hd ul li:hover em,.cuntab .hd ul li.on em{display:block;}
+    .cuntab .hd ul li:hover:after,.cuntab .hd ul li.on:after{display:none;}
+
+    /*.cuntab .hd ul li:nth-child(1){background:url(../images/pzpt-4.png) repeat-x left center;color:#fff;}
+    .cuntab .hd ul li:nth-child(1) em{display:block;}
+    .cuntab .hd ul li:nth-child(1):after{display:none;}*/
+
+
+
+    .cuntab .bd{border:1px solid #e0e0e0;border-bottom:0;}
+    .cuntab .bd .item-list1{}
+    .cuntab .bd .item-list1 li{}
+    .cuntab .bd .item-list1 li .ls1h3{line-height:55px;padding:0 30px;font-size:14px;color:#4c4c4c;cursor:pointer;border-bottom:1px solid #e0e0e0;}
+    .cuntab .bd .item-list1 li .ls1h3 .ls1sp{margin-right:40px;font-size:18px;}
+    .cuntab .bd .item-list1 li .ls1h3 .bjtou{display:block;float:right;margin-top:25px;width:21px;height:12px;background:url(img/pzpt-6.png) no-repeat center bottom;}
+    .cuntab .bd .item-list1 li .ls1h3:hover,.cuntab .bd .item-list1 li .ls1h3.attr{box-shadow:2px 2px 7px rgba(0,0,0,0.1);background:#fafafa;}
+    .cuntab .bd .item-list1 li .ls1h3.bjtous em{background:url(img/pzpt-6.png) no-repeat center top;}
+
+    .cuntab .bd .item-list1 li .ls1h3:hover .ls1sp,.cuntab .bd .item-list1 li .ls1h3.attr .ls1sp{color:#598eca;}
+    .cuntab .bd .item-list1 li .box-tcd{display:none;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-h2{height:50px;font-size:22px;color:#333;text-align:center;line-height:50px;background:#f5f5f5;border-bottom:1px solid #e0e0e0;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm{}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis{height:65px;line-height:65px;overflow:hidden;padding:0 30px;color:#666;font-size:12px;border-bottom:1px solid #e0e0e0;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-1{width:30%;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-2{width:30%;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-3{width:20%;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-3 i{color:#598eca;font-size:20px;font-style:normal;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4{width:20%;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a{display:inline-block;width:120px;height:35px;line-height:35px;text-align:center;color:#fff;border-radius:3px;background:#598eca;}
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a b{position:relative;top:3px;margin-right:10px;display:inline-block;width:20px;height:17px;background:url(img/pzpt-7.png) no-repeat center;}
+    /*.cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a:hover{background:#65a1e6;}*/
+    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis:hover{background:#fafafa;box-shadow:2px 2px 7px rgba(0,0,0,0.1);}
+
+</style>
+
+<div class="main bg-fff">
+    <div class="gird">
+        <div class="jsqu mb20">
+            <div class="jsqu-img fl"><img ng-src={{anImg}}></div>
+            <div class="jsqu-txt">
+                <div class="title fl">
+                    <h1>{{anoName}}<i></i></h1>
+                </div>
+                <div class="qugan">
+                    <h2>{{keywords}}</h2>
+                    <p ng-bind-html="cat_desc"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cuntab mb60">
+            <div class="hd">
+                <ul>
+                    <li ng-repeat="cate in anoListData.category.cat_id" repeat-done="anoSlideFn()">{{cate.name}}<em></em></li>
+                </ul>
+            </div>
+            <div class="bd">
+                <div ng-repeat="cate in anoListData.category.cat_id"  repeat-done="catFn()" ng-if="cate">
+                    <div class="item" ng-repeat="item in cate.cat_id">
+                        <div class="item-list1">
+                            <ul>
+                                <li>
+                                    <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>  <!--【A58渐进 / A60渐进 / A67渐进】 -->  <em class="bjtou" ng-if="item.cat_id.length"></em></h3>
+                                    <div class="box-tcd" ng-repeat="box in item.cat_id" repeat-done="getZeissGoods(item,$index,$parent.$index,$parent.$parent.$index)">
+                                        <h2 class="tcd-h2">{{box.name}}</h2>
+                                        <div class="tcd-itm">
+                                            <div class="lis" ng-repeat="lis in box.zeissList">
+                                                <div class="lis-1 fl">{{lis.brand_name}}</div>
+                                                <div class="lis-2 fl c">{{lis.name}}</div>
+                                                <div class="lis-3 fl c"><i>{{lis.shop_price}}</i>起/片</div>
+                                                <div class="lis-4 fl r"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>

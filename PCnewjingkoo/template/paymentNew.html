@@ -32,7 +32,7 @@
             <p class="close_p5">商品名称：<span ng-repeat="address in codeData.goods_name" style="margin-right: 20px;">{{address.name}}</span></p> 
         </div>
     </div>
-    <div class="new_close_top_center">
+    <div class="new_close_top_center" ng-show="codeData&&codeData.order_info.pay_id!=4">
         <div class="top_center_div_box">
             <div class="top_center_div lostPay" ng-style="{'pointer-events':userMoney==0?'none':'auto','opacity':userMoney==0?'.5':'1'}">
                 <input type="checkbox" class="close_check" ng-model="yuE" id="aaa"/>
@@ -105,7 +105,14 @@
             <button type="button" ng-click="pay()" class="btn_inp">立即支付</button>
             <!--<a href="www.baidu.com" target="_blank">跳转</a>-->
         </div>
-    </div>
+    </div>      
+    <div class="new_close_top_center" style="height :200px;" ng-if="codeData&&codeData.order_info.pay_id==4">
+            <div class="top_center_div_box">
+                    <div class="top_center_div lostPay" ng-style="{'pointer-events':userMoney==0?'none':'auto','opacity':userMoney==0?'.5':'1'}" ng-bind-html="codeData.pay_info.pay_desc" >
+                        
+                    </div>
+            </div>
+    </div>            
 </div>
 <div id="masks" class="masks"></div>
 <div class="payToLj">

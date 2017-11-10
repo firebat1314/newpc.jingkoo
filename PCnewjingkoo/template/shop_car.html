@@ -70,7 +70,7 @@
                                 <input type="checkbox" ng-click="selectStore($index)" style="display: none;"><div class="all-check" ng-class="{'checked':carItem.is_select}" ></div>
                             </label>
                             <p style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" ng-attr-title="{{carItem.title}}">{{carItem.title}}</p>
-                            <span class="kf_sp" ng-click="$qimoChat.qimoChatClick(carItem.access_id)"></span>
+                            <span class="kf_sp" ng-click="qimoChatClick(carItem.access_id)"></span>
                         </th>
                         <th width="415"></th>
                         <th width="180" class="more-youhui" style="text-align: left"> 
@@ -123,11 +123,13 @@
                     <div class="fl hasGoods-check-right">
                         <div class="hasGoods-check-img"><a href="#/shop-detail/{{carList.goods_id}}"><img ng-src={{carList.goods_thumb}} alt=""></a></div>
                         <div style="position: relative;" class="newmore-p"><a href="#/shop-detail/{{carList.goods_id}}">{{carList.goods_name}}</a>
+								<!--
                         		<div class="canfxbox"  ng-if="carList.is_inv==1">
                         			<span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>
                         			<span class="can_hh" ng-if="carList.server_date.huan==-1||carList.server_date.huan>0">换货</span>
                         			<span class="can_wx" ng-if="carList.server_date.return==-1||carList.server_date.return>0">维修</span>
                         		</div>
+								-->
                         	    <span ng-if="yh" class="newmore-cuXiao" ng-click="moreCuXiao($event)">更多促销</span>
                         		<div class="newmore-cuXiao-box" ng-if="yh">
                                     <div class="newmore-cuXiao-item">
@@ -266,6 +268,4 @@
 //		}
 //	})
 //})
-
-
 </script>

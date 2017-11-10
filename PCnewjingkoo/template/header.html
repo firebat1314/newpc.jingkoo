@@ -33,7 +33,14 @@
                     <!--<div class="wShop">-->
                     <!--<p>微商城</p>-->
                     <!--</div>-->
-                    <!--</a>-->
+                    <!--</a>
+						#/order-all/
+					-->
+                    <a href="http://crm.jingku.cn" target="_blank" ng-if="userData.user_info.is_salesman==1">
+                        <div class="dingDan" style="background: url(../img/CRM_.png) no-repeat left;background-size: 19px;">
+                            <p>CRM</p>
+                        </div>
+                    </a>
                     <a href="#/order-all/">
                         <div class="dingDan">
                             <p>订单</p>
@@ -196,7 +203,7 @@
                 </div>
                 <a href="#/flashSale" target="_blank">
                     <div class="summer-hot-box" ng-if="isShow">
-                        <h2>夏日热卖</h2>
+                        <h2>冬季热卖</h2>
                         <p>热销经典快来抢购</p>
                         <div class="summer-hot-goods-box">
                             <div class="summer-hot-goods"></div>

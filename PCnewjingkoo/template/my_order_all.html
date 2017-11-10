@@ -27,7 +27,7 @@
 	<div class="wrp_div" >
 		<div ng-repeat="wlt in orderwuliu.list.slice().reverse()" ng-if="$index<1"> 
 			<div class="time">{{wlt.time}}</div>
-			<p ng-repeat="wl in wlt.data.slice().reverse()" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
+			<p ng-repeat="wl in wlt.data" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
 		</div>
  
 		<p>以上为最新跟踪信息去订单详情  <a style="cursor:pointer;" ng-click="goOrdera()">查看全部</a></p>																

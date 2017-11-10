@@ -13,7 +13,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.goto(); 
 		var cool = layer.load(0, {shade: [0.3,'#fff'] }); 
-		$rootScope.ip = 'http://www.jingku.cn'; //当前域名
+		$rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
 		$scope.getUserMsgHs = function() {
 			$data.getUserMsg().success(function(data) {
 				layer.close(cool);
@@ -79,6 +79,36 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			reader.readAsDataURL(file);
 
 		}
+        /* 新增客服功能 */
+        $rootScope.qimoChatClick = function (access_id) {
+			//this.native.showLoading();
+			var cool = layer.load(0, { shade: [0.3, '#fff'] });
+			if (!access_id) {
+			  // this.native.showToast('该店铺暂无客服');
+			}
+			var old = document.getElementsByClassName('qimo')[0]
+			//console.log(old);
+			if (old) {
+			  old.parentNode.removeChild(old);
+			}
+			var qimo = document.createElement('script');
+			qimo.type = 'text/javascript';
+			qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+			qimo.className = 'qimo';
+			document.getElementsByTagName('body')[0].appendChild(qimo);
+			var that = this;
+			qimo.onload = qimo['onreadystatechange'] = function () {
+			  //that.native.hideLoading();
+			  if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+				setTimeout(function () {
+				//console.log('客服加载完成');
+				layer.close(cool);
+				  qimoChatClick();
+				}, 800);
+				qimo.onload = qimo['onreadystatechange'] = null;
+			  }
+			};
+        }
 
 	}])
 
@@ -2101,8 +2131,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                     }
                 }).success(function(data) {
                     //console.log(data);
-                	$scope.geeteTrue.reset();
-                    if(data.status){   
+					$scope.geeteTrue.reset();
+                    if(data.status){
                         layer.msg(data.info);
                         $scope.vm.kedian =true;
                         $scope.vm.data = $scope.vm.time+'s';
@@ -2116,6 +2146,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
                             }
                         },1000,$scope.vm.time)
                     }else{
+                    	
                         layer.msg(data.info);
                         $scope.codeAgain();
                     }

@@ -81,7 +81,7 @@
                                             <span ng-click="delCollectionGoods([item.rec_id])">取消收藏</span>
                                         </div>
                                         <div class="ner-img">
-                                            <a href="#/shop-detail/{{item.goods_id}}">
+                                            <a ng-attr-title="{{item.goods_name}}" href="#/shop-detail/{{item.goods_id}}">
                                                 <img ng-src="{{item.img}}">
                                             </a>
                                             <!--<div class="no-huo">已无货</div>-->

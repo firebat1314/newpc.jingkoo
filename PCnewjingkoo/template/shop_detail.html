@@ -7,7 +7,7 @@
     <div class="shopDetail-tit">
         <div class="shop-detail-tit">
             <!--<p style="float:left;">当前位置：<a href="#/home">首页</a> > <em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>-->
-            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-attr-title="{{detailTitle}}" ng-bind="detailTitle"></em></p>
+            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>
             <div class="top_conbox"> 
                 <span class="shop_top_sp1" ng-click="goStore()" style="cursor: pointer;"><span class="join_dp"></span>{{name}}</span>
                 <span ng-if="!shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
@@ -342,7 +342,7 @@
                                                     <p>度数范围：<span>{{highs}}</span>  至 <span>{{lows}}</span> </p>
                                                 </div>
                                                 <div class="dushuQiuJing-table">
-                                                    <div class="dushuQiuJing-table-item" ng-repeat="dushuItems in zhujingData.data"><p ng-click="getDsZj($event,dushuItems,$parent.$index)">{{dushuItems}}</p></div>
+                                                    <div class="dushuQiuJing-table-item" ng-repeat="dushuItems in zhujingData.data"><p ng-click="getDsZj($event,dushuItems,$parent.$index);">{{dushuItems}}</p></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,8 +351,8 @@
                                     <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]">
                                         <option value="" ng-selected="1">请选择</option><option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option></select></td>
                                     <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->
+                                    <td ng-if="is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{oldShopPrice}}</td>
-                                    <td ng-if="is_promotion==0" style="color:#ff3333;">{{cxPrcie}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{cxPrcie}}</td>
                                     <!--<td><input class="pick-text" placeholder="1" type="text"></td>-->
                                 </tr>

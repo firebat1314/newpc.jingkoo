@@ -1653,6 +1653,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         };
     }])
+    //新品专区
+    .controller('new-goods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
+    	//控制首页会员中心显隐
+        $rootScope.isShow = false;
+        //控制header和footer显隐
+        $rootScope.change = true;
+    }])
+    
     //优惠券
     .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐

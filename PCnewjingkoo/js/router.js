@@ -582,6 +582,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl:'template/person-process/person-process-preview.html',
                 controller:"person-process-preview-control"
             })
+            //新品专区
+             .state("newGoods",{
+                title:'新品专区',
+                url:'/newGoods',
+                templateUrl:'template/newGoods.html',
+                controller:"new-goods-control"
+            })
             // $locationProvider.html5Mode(true);y
 
     })

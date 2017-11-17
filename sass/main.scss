@@ -2783,13 +2783,13 @@ $browser-default-font-size: 37.5px !default;
         }
       }
       .shopList-fashion{
-        width:1167px;   
-        padding:10px 20px 10px 10px;    
-        display: inline-block;  
-        border-bottom: 1px dashed #cccccc;  
-        position: relative;   
-        &:last-child{ 
-          border-bottom: none;    
+        width:1167px;  
+        padding:10px 20px 10px 10px;   
+        display: inline-block; 
+        border-top: 1px dashed #cccccc; 
+        position: relative;  
+        &:first-child{ 
+          border-top: none;  
         }
         .shopList-fashion-tit{
           width:100px;
@@ -9620,10 +9620,10 @@ width: 60px;
 .picScroll-left .hd ul li{ float:left;  width:23px; height:23px; text-align:center;line-height:23px; color:#808080;overflow:hidden; margin-right:7px; cursor:pointer; background:#fff; border:1px solid #e6e6e6;border-radius:50%; }
 .picScroll-left .hd ul li.on{ background:#ff3333; color:#fff;}
 
-.picScroll-left .bd{ padding:10px;   }
+// .picScroll-left .bd{ padding:10px;   }
 .picScroll-left .bd .tempWrap{margin: auto;}  
 .picScroll-left .bd ul{ overflow:hidden; zoom:1; }
-.picScroll-left .bd ul li{ float:left; _display:inline; overflow:hidden; text-align:center;  }
+.picScroll-left .bd ul li{ margin:0 9px; float:left; _display:inline; overflow:hidden; text-align:center;width:157px !important;  }
 .picScroll-left .bd ul li .pic{ text-align:center;background: none; }
 .picScroll-left .bd ul li .pic img{ width:155px; height:155px; border:1px solid #e6e6e6; } 
 .picScroll-left .bd ul li .pic a:hover img{ border-color:#999;  } 

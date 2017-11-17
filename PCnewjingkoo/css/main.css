@@ -2691,10 +2691,10 @@ span.a_arrow_r {
       width: 1167px;
       padding: 10px 20px 10px 10px;
       display: inline-block;
-      border-bottom: 1px dashed #cccccc;
+      border-top: 1px dashed #cccccc;
       position: relative; }
-      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
-        border-bottom: none; }
+      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:first-child {
+        border-top: none; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-tit {
         width: 100px;
         color: #808080;
@@ -16291,9 +16291,6 @@ textarea {
   background: #ff3333;
   color: #fff; }
 
-.picScroll-left .bd {
-  padding: 10px; }
-
 .picScroll-left .bd .tempWrap {
   margin: auto; }
 
@@ -16302,10 +16299,12 @@ textarea {
   zoom: 1; }
 
 .picScroll-left .bd ul li {
+  margin: 0 9px;
   float: left;
   _display: inline;
   overflow: hidden;
-  text-align: center; }
+  text-align: center;
+  width: 157px !important; }
 
 .picScroll-left .bd ul li .pic {
   text-align: center;

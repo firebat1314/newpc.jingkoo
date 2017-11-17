@@ -24,7 +24,7 @@ html {
   .header-top p:hover {
     color: #0070c9; }
   .header-top .header-top-content .header-top-content-left {
-    width: 535px;
+    width: 440px;
     float: left;
     color: #666;
     padding-left: 10px; }
@@ -2075,10 +2075,15 @@ html {
   margin-bottom: 13px;
   width: 153px;
   height: 78px; }
+.fashion-main .pinpai ul li .wrp {
+  width: 153px;
+  height: 78px; }
 .fashion-main .pinpai ul li .wrp img {
   display: block;
   width: 153px;
   height: 78px; }
+.fashion-main .pinpai ul li .wrp .txt p {
+  padding: 12px 0 10px; }
 .fashion-main .pinpai .gdoo {
   position: absolute;
   right: 0px;
@@ -2115,7 +2120,8 @@ html {
 .fashion-main .xt-list li .img {
   width: 231px;
   height: 173px;
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  overflow: hidden; }
 .fashion-main .xt-list li:nth-child(4n + 4) {
   margin-right: 0; }
 .fashion-main .xt-list li .img img {

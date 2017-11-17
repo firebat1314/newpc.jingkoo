@@ -2693,7 +2693,7 @@ span.a_arrow_r {
       display: inline-block;
       border-bottom: 1px dashed #cccccc;
       position: relative; }
-      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:first-child {
+      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
         border-bottom: none; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-tit {
         width: 100px;

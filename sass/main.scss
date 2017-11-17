@@ -2784,17 +2784,17 @@ $browser-default-font-size: 37.5px !default;
       }
       .shopList-fashion{
         width:1167px;   
-        padding:10px 20px 10px 10px;    
-        display: inline-block;  
+        padding:10px 20px 10px 10px;     
+        display: inline-block;   
         border-bottom: 1px dashed #cccccc;  
         position: relative;  
-        &:first-child{ 
+        &:last-child{  
           border-bottom: none;   
         }
         .shopList-fashion-tit{
           width:100px;
           color:#808080;
-          float:left;
+          float:left; 
           position: relative;
           top: 5px; 
           font-size:13px;

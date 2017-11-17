@@ -2787,9 +2787,9 @@ $browser-default-font-size: 37.5px !default;
         padding:10px 20px 10px 10px;    
         display: inline-block;  
         border-bottom: 1px dashed #cccccc;  
-        position: relative;   
-        &:last-child{ 
-          border-bottom: none;    
+        position: relative;  
+        &:first-child{ 
+          border-bottom: none;   
         }
         .shopList-fashion-tit{
           width:100px;
@@ -4097,7 +4097,6 @@ $browser-default-font-size: 37.5px !default;
                     height:51px;
                     border:1px solid #ccc;
                     position: relative; 
-                    box-sizing: border-box;
                     img{
                       width:100%; 
                       height: 100%;    
@@ -6932,11 +6931,11 @@ $browser-default-font-size: 37.5px !default;
   .xt-list{width: 1200px;margin:20px auto 0;}
   .xt-list ul{padding-left:30px;}
   .xt-list li{float:left;width: 262px;height:221px;margin-right:30px;margin-bottom:30px;}
-  .xt-list li .img{width: 262px;height:173px;background:#f5f5f5;}
+  .xt-list li .img{width: 262px;height:173px;background:#f5f5f5;overflow: hidden;}
   .xt-list li .img{display:block;width: 262px;height:173px;}
-  .xt-list li .txt{padding:0 20px;height: 50px;line-height:60px;background:#fafafa;color:#666;font-size:15px;text-align: center;}
+  .xt-list li .txt{padding:0 20px;height: 50px;line-height:50px;background:#fafafa;color:#666;font-size:15px;text-align: center;}
   .xt-list li:hover .wrp{box-shadow:0 0 15px rgba(0,0,0,.1)}
-  .xt-list li:hover .txt{color:#ff3333}
+  .xt-list li:hover .txt{color:#ff3333} 
 }
 /*预售*/
 .waiting-sale-main{
@@ -9619,32 +9618,18 @@ width: 60px;
 .picScroll-left .hd ul{ float:right; overflow:hidden; margin-top:13px; zoom:1; }
 .picScroll-left .hd ul li{ float:left;  width:23px; height:23px; text-align:center;line-height:23px; color:#808080;overflow:hidden; margin-right:7px; cursor:pointer; background:#fff; border:1px solid #e6e6e6;border-radius:50%; }
 .picScroll-left .hd ul li.on{ background:#ff3333; color:#fff;}
-
-.picScroll-left .bd{ padding:10px;   }
-.picScroll-left .bd .tempWrap{margin: auto;}  
-.picScroll-left .bd ul{ overflow:hidden; zoom:1; }
-.picScroll-left .bd ul li{ float:left; _display:inline; overflow:hidden; text-align:center;  }
+.picScroll-left a{position: absolute;z-index: 100;display: inline-block;width: 30px;height: 55px;cursor: pointer;top: 50%;margin-top:-27.5px;}          
+.picScroll-left a.next{position: absolute;right: 10px;background:#fff url(../img/snext.png) center center no-repeat;background-size: 50%;}
+.picScroll-left a.prev{position: absolute;left: 10px;background:#fff url(../img/spre.png) center center no-repeat;background-size: 50%;}
+.picScroll-left .bd{ padding:10px; }  
+.picScroll-left .bd ul{ overflow:hidden; zoom:1; }  
+.picScroll-left .bd ul li{ margin:0 9px; float:left; _display:inline; overflow:hidden; text-align:center;  }
 .picScroll-left .bd ul li .pic{ text-align:center;background: none; }
 .picScroll-left .bd ul li .pic img{ width:155px; height:155px; border:1px solid #e6e6e6; } 
 .picScroll-left .bd ul li .pic a:hover img{ border-color:#999;  } 
 .picScroll-left .bd ul li .title{ line-height:24px;   } 
 .picScroll-left .bd ul li .title p{color:#4c4c4c;font-size:12px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
 .picScroll-left .bd ul li .title b{color:#e50000;font-size:14px;font-weight:normal}
-
-.picScroll-left{ overflow:hidden; position:relative;  border:1px solid #e6e6e6; margin-top:20px;  }
-.picScroll-left .hd{ overflow:hidden;  height:44px; background:#fff; padding:0 20px;}
-.picScroll-left .hd span{float:left;line-height:35px;font-size:14px;} 
-.picScroll-left .hd ul{ float:right; overflow:hidden; margin-top:13px; zoom:1; }
-.picScroll-left .hd ul li{ float:left;  width:23px; height:23px; text-align:center;line-height:23px; color:#808080;overflow:hidden; margin-right:7px; cursor:pointer; background:#fff; border:1px solid #e6e6e6;border-radius:50%; }
-.picScroll-left .hd ul li.on{ background:#ff3333; color:#fff;}
-.picScroll-left .prev,
-.picScroll-left .next{ position:absolute; left:1%; top:50%; margin-top:-25px; display:block; width:32px; height:40px; background:url(../img/caig_ico10.png) no-repeat; filter:alpha(opacity=50);opacity:0.5;background-size: 35px;background-position: 0px 2px;  }
-.picScroll-left .next{ left:auto; right:1%;  }
-.picScroll-left .prev{background-image: url(../img/caig_ico9.png);}
-.picScroll-left .prev:hover,
-.picScroll-left .next:hover{ filter:alpha(opacity=100);opacity:1;  }
-.picScroll-left .prevStop{ display:none;  }
-.picScroll-left .nextStop{ display:none;  }
 
 
 /*企业select*/

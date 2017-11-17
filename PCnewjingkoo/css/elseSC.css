@@ -2115,7 +2115,8 @@ html {
 .fashion-main .xt-list li .img {
   width: 231px;
   height: 173px;
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  overflow: hidden; }
 .fashion-main .xt-list li:nth-child(4n + 4) {
   margin-right: 0; }
 .fashion-main .xt-list li .img img {

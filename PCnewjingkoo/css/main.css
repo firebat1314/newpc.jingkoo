@@ -2693,7 +2693,7 @@ span.a_arrow_r {
       display: inline-block;
       border-bottom: 1px dashed #cccccc;
       position: relative; }
-      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
+      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:first-child {
         border-bottom: none; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-tit {
         width: 100px;
@@ -3770,8 +3770,7 @@ span.a_arrow_r {
             width: 51px;
             height: 51px;
             border: 1px solid #ccc;
-            position: relative;
-            box-sizing: border-box; }
+            position: relative; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-table table tbody tr .table-img img {
               width: 100%;
               height: 100%; }
@@ -6555,7 +6554,8 @@ span.a_arrow_r {
 .fashion-main .xt-list li .img {
   width: 262px;
   height: 173px;
-  background: #f5f5f5; }
+  background: #f5f5f5;
+  overflow: hidden; }
 .fashion-main .xt-list li .img {
   display: block;
   width: 262px;
@@ -16291,17 +16291,37 @@ textarea {
   background: #ff3333;
   color: #fff; }
 
+.picScroll-left a {
+  position: absolute;
+  z-index: 100;
+  display: inline-block;
+  width: 30px;
+  height: 55px;
+  cursor: pointer;
+  top: 50%;
+  margin-top: -27.5px; }
+
+.picScroll-left a.next {
+  position: absolute;
+  right: 10px;
+  background: #fff url(../img/snext.png) center center no-repeat;
+  background-size: 50%; }
+
+.picScroll-left a.prev {
+  position: absolute;
+  left: 10px;
+  background: #fff url(../img/spre.png) center center no-repeat;
+  background-size: 50%; }
+
 .picScroll-left .bd {
   padding: 10px; }
-
-.picScroll-left .bd .tempWrap {
-  margin: auto; }
 
 .picScroll-left .bd ul {
   overflow: hidden;
   zoom: 1; }
 
 .picScroll-left .bd ul li {
+  margin: 0 9px;
   float: left;
   _display: inline;
   overflow: hidden;
@@ -16333,80 +16353,6 @@ textarea {
   color: #e50000;
   font-size: 14px;
   font-weight: normal; }
-
-.picScroll-left {
-  overflow: hidden;
-  position: relative;
-  border: 1px solid #e6e6e6;
-  margin-top: 20px; }
-
-.picScroll-left .hd {
-  overflow: hidden;
-  height: 44px;
-  background: #fff;
-  padding: 0 20px; }
-
-.picScroll-left .hd span {
-  float: left;
-  line-height: 35px;
-  font-size: 14px; }
-
-.picScroll-left .hd ul {
-  float: right;
-  overflow: hidden;
-  margin-top: 13px;
-  zoom: 1; }
-
-.picScroll-left .hd ul li {
-  float: left;
-  width: 23px;
-  height: 23px;
-  text-align: center;
-  line-height: 23px;
-  color: #808080;
-  overflow: hidden;
-  margin-right: 7px;
-  cursor: pointer;
-  background: #fff;
-  border: 1px solid #e6e6e6;
-  border-radius: 50%; }
-
-.picScroll-left .hd ul li.on {
-  background: #ff3333;
-  color: #fff; }
-
-.picScroll-left .prev,
-.picScroll-left .next {
-  position: absolute;
-  left: 1%;
-  top: 50%;
-  margin-top: -25px;
-  display: block;
-  width: 32px;
-  height: 40px;
-  background: url(../img/caig_ico10.png) no-repeat;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
-  background-size: 35px;
-  background-position: 0px 2px; }
-
-.picScroll-left .next {
-  left: auto;
-  right: 1%; }
-
-.picScroll-left .prev {
-  background-image: url(../img/caig_ico9.png); }
-
-.picScroll-left .prev:hover,
-.picScroll-left .next:hover {
-  filter: alpha(opacity=100);
-  opacity: 1; }
-
-.picScroll-left .prevStop {
-  display: none; }
-
-.picScroll-left .nextStop {
-  display: none; }
 
 /*企业select*/
 .modify .shur .selec {

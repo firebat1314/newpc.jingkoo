@@ -2569,13 +2569,13 @@ $browser-default-font-size: 37.5px !default;
   .xt-list{width: 1000px;margin:20px auto;} 
   .xt-list ul{padding-left:0;} 
   .xt-list li{float:left;width: 231px;height:190px;margin-right:25px;margin-bottom:25px;}    
-  .xt-list li .img{width: 231px;height:173px;background:#f5f5f5;}      
+  .xt-list li .img{width: 231px;height:173px;background:#f5f5f5;overflow: hidden;}       
   .xt-list li:nth-child(4n + 4){margin-right: 0;}               
-  .xt-list li .img img{display:block;width: 231px;height:173px;}       
+  .xt-list li .img img{display:block;width: 231px;height:173px;}         
   .xt-list li .txt{padding:0 20px;height: 40px;line-height:42px;background:#fafafa;color:#666;font-size:15px;text-align: center;} 
   .xt-list li:hover .wrp{box-shadow:0 0 15px rgba(0,0,0,.1)}
   .xt-list li:hover .txt{color:#ff3333}
-}
+} 
 /*预售*/ 
 .waiting-sale-main{
   .nav-xdh{position:relative;width:1000px;margin:0 auto;background:#fff;}

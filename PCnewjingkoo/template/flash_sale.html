@@ -5,7 +5,7 @@
 
     <div class="navc-wrap">
         <div class="nav-xdh all">
-            <div class="zaki">全部分类<em></em></div>
+            <div class="zaki" ng-if="flashData.data.length>7">全部分类<em></em></div>
             <ul class="xd-hd">
                 <li class="on" ng-click="getPromote(0,-1)"><div class="wrp"><a href="">全部</a></div></li>
                 <li ng-repeat="xd in flashData.data" repeat-done="xdFn()" ng-click="getPromote(xd.cat_id,$index)" class=""><div class="wrp"><a href="">{{xd.cat_name}}</a></div></li>

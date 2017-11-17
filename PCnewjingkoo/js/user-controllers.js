@@ -372,8 +372,13 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
             });
         }
 
-        $data.guessYouLike().success(function (data) {
-            $scope.YouLike = data;
+        $data.guessYouLike({
+			page:2,
+			size:3
+		}).success(function (data) {
+			if(data.status){
+				$scope.YouLike = data;
+			}
         })
         
         $scope.gessGoods = function (goods_id) {
@@ -2757,7 +2762,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 		
 		$data.guessYouLike().success(function (data) {
-			$scope.YouLike = data;
+			if(data.status){
+				$scope.YouLike = data;
+			}
 		})
 		
 		

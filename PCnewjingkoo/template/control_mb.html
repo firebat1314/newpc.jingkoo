@@ -139,11 +139,11 @@
 			<div class="picScroll-left">
 				<div class="hd">
 					<span>猜你喜欢</span>
-					<!--<ul></ul>-->
+					<!-- <ul></ul> -->
 				</div>
-				<div class="bd" style="position: relative;left: 40px;">
+				<div class="bd" style="">
 					<ul class="picList">
-						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;width: 157px;">
+						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
 								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
@@ -152,6 +152,8 @@
 						</li>
 					</ul>
 				</div>
+				<a class="prev" href="javascript:void(0)"></a>
+				<a class="next" href="javascript:void(0)"></a>
 			</div>
 			
 		</div>

@@ -42,6 +42,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $anchorScroll();
         };
         $scope.goto();
+
         //去购物车
         $scope.goCar = function () {
             $state.go('shop-car');
@@ -52,7 +53,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //去登陆
         $scope.goLogin = function () {
             $state.go('login');
-			
+
         };
         $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
 
@@ -67,7 +68,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         ipCookie.remove("token");
-                        location.href="http://newpc.jingkoo.net/default.html";
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -108,33 +109,33 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //pc 手机客服，支付微信只有微信跳URL 
         /* 新增客服功能 */
         $rootScope.qimoChatClick = function (access_id) {
-			//this.native.showLoading();
-			var cool = layer.load(0, { shade: [0.3, '#fff'] });
-			if (!access_id) {
-			  // this.native.showToast('该店铺暂无客服');
-			}
-			var old = document.getElementsByClassName('qimo')[0]
-			//console.log(old);
-			if (old) {
-			  old.parentNode.removeChild(old);
-			}
-			var qimo = document.createElement('script');
-			qimo.type = 'text/javascript';
-			qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-			qimo.className = 'qimo';
-			document.getElementsByTagName('body')[0].appendChild(qimo);
-			var that = this;
-			qimo.onload = qimo['onreadystatechange'] = function () {
-			  //that.native.hideLoading();
-			  if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-				setTimeout(function () {
-				//console.log('客服加载完成');
-				layer.close(cool);
-				  qimoChatClick();
-				}, 800);
-				qimo.onload = qimo['onreadystatechange'] = null;
-			  }
-			};
+            //this.native.showLoading();
+            var cool = layer.load(0, { shade: [0.3, '#fff'] });
+            if (!access_id) {
+                // this.native.showToast('该店铺暂无客服');
+            }
+            var old = document.getElementsByClassName('qimo')[0]
+            //console.log(old);
+            if (old) {
+                old.parentNode.removeChild(old);
+            }
+            var qimo = document.createElement('script');
+            qimo.type = 'text/javascript';
+            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
+            qimo.className = 'qimo';
+            document.getElementsByTagName('body')[0].appendChild(qimo);
+            var that = this;
+            qimo.onload = qimo['onreadystatechange'] = function () {
+                //that.native.hideLoading();
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+                    setTimeout(function () {
+                        //console.log('客服加载完成');
+                        layer.close(cool);
+                        qimoChatClick();
+                    }, 800);
+                    qimo.onload = qimo['onreadystatechange'] = null;
+                }
+            };
         }
     }])
     //首页头部
@@ -318,7 +319,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info);
                         ipCookie.remove("token");
-                        location.href="http://newpc.jingkoo.net/default.html";
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     } else {
                         layer.msg(data.info);
                     }
@@ -359,7 +360,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         layer.close(cool);
-                        location.href="http://newpc.jingkoo.net/default.html";
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     }
                 })
         };
@@ -614,7 +615,54 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('shop-list');
         };
         //首页接口
-        $rootScope.res = ipCookie('token');
+        // $rootScope.res = ipCookie('token');
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Index/ad_tan',
+            data: '',
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (res) {
+            if (res.status) {
+                if ((ipCookie("pc_index_tan_second") != res.pc_index_tan_second) || (ipCookie('show_ads') != res.pc_index_tan_time)) {
+                    ipCookie("show_ads_time", 0)//已经显示多少次
+                    ipCookie("pc_index_tan_second", res.pc_index_tan_second);//需要显示次数
+
+                    if (res.pc_index_tan_time == 1) {//每天
+                        ipCookie("show_ads", 1, { expires: 1 });
+                    } else if (res.pc_index_tan_time == 2) {//每周
+                        ipCookie("show_ads", 2, { expires: 7 });
+                    } else if (res.pc_index_tan_time == 3) {//每月
+                        ipCookie("show_ads", 3, { expires: 30 });
+                    } else if (res.pc_index_tan_time == 0) {//每次
+                        ipCookie.remove('show_ads');
+                    }
+                }
+                $scope.link_type = res.ads[0].link_type;
+                if (res.pc_index_tan_time == 0) {
+                    var img = new Image();
+                    img.src = res.ads[0].ad_img;
+                    img.onload = () => {
+                        $scope.ad_img = (img.src);
+                    }
+                } else {
+                    var num = ipCookie("show_ads_time") || 0;
+                    if (ipCookie("show_ads_time") < res.pc_index_tan_second) {
+                        var img = new Image();
+                        img.src = res.ads[0].ad_img;
+                        img.onload = () => {
+                            $scope.ad_img = (img.src);
+                        }
+                        ipCookie("show_ads_time", ++num);
+                    } else {
+                        ipCookie("show_ads_time", num);
+                    }
+                    num = null;
+                }
+            }
+        })
+        $scope.closeAd = function () {
+            $scope.ad_show = true;
+        }
 
         var cool = layer.load(0, { shade: [0.3, '#fff'] });
         $http({
@@ -696,7 +744,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             setTimeout(function () {
                 $('.slider').unslider({
                     autoplay: true,
-                    delay: 3000,
+                    delay: 6000,
                     speed: 750,
                     infinite: false,
                     index: 0,
@@ -1092,7 +1140,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href="http://newpc.jingkoo.net/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1110,7 +1158,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href="http://newpc.jingkoo.net/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1338,7 +1386,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href="http://newpc.jingkoo.net/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1353,7 +1401,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //闪购除了全部的数据
         $http({
             method: "POST",
-            url: '' + $rootScope.ip + '/Category/get_categorys',
+            url: '' + $rootScope.ip + '/Index/getCategoryPromote',
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
@@ -1499,7 +1547,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href="http://newpc.jingkoo.net/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1559,7 +1607,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href="http://newpc.jingkoo.net/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -1683,7 +1731,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href="http://newpc.jingkoo.net/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -1811,7 +1859,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href="http://newpc.jingkoo.net/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -2021,7 +2069,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log($scope.geeteTrue1);
             //var validate1 = $scope.geeteTrue1.getValidate();
             //console.log(validate1);
-			//validate1 != undefined
+            //validate1 != undefined
             if (true) {
                 //$scope.user.geetest_challenge = validate1.geetest_challenge;
                 //$scope.user.geetest_validate = validate1.geetest_validate;
@@ -2051,7 +2099,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.codeFn();
                         //console.log($scope.user);
                     }
-                    $rootScope.res = data.data.token;
+                    // $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
@@ -2098,7 +2146,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             layer.msg(data.info, { time: 1000 });
                             $scope.codeFn();
                         }
-                        $rootScope.res = data.data.token;
+                        // $rootScope.res = data.data.token;
                         ipCookie("token", data.data.token, { expires: 21 });
                         ipCookie("username", data.data.user_name, { expires: 21 });
                         ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
@@ -2153,7 +2201,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         layer.msg(data.info, { time: 1000 });
                         $scope.codeFn();
                     }
-                    $rootScope.res = data.data.token;
+                    // $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
@@ -2187,7 +2235,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg(data.info, { time: 1000 });
                     $scope.codeFn();
                 }
-                $rootScope.res = data.data.token;
+                // $rootScope.res = data.data.token;
                 ipCookie("token", data.data.token, { expires: 21 });
                 ipCookie("username", data.data.user_name, { expires: 21 });
                 ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
@@ -3279,7 +3327,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.moreXx = true;
         };
         $('.nav-bar ul a:eq(0)').addClass('active');
-        $rootScope.res = ipCookie('token');
+        // $rootScope.res = ipCookie('token');
 
         //分页操作
         $scope.pageIndex = 0;  //初始页索引
@@ -3684,16 +3732,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //商品价格排序
         var good_price = 1;
         $scope.priceOrder = function () {
-        	if(good_price==1){
-        		$scope.PriceAsOrder();
-        		good_price = 0;
-        	}else{
-        		$scope.PriceDsOrder();
-        		good_price = 1;  
-        	}
-//          $scope.ListPage.order = 'shop_price';
-//          $scope.ListPage.page = 1;
-//          $scope.InitList();
+            if (good_price == 1) {
+                $scope.PriceAsOrder();
+                good_price = 0;
+            } else {
+                $scope.PriceDsOrder();
+                good_price = 1;
+            }
+            //          $scope.ListPage.order = 'shop_price';
+            //          $scope.ListPage.page = 1;
+            //          $scope.InitList();
         };
         //价格升序
         $scope.PriceAsOrder = function () {
@@ -3986,12 +4034,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.goto();
 
-        $rootScope.res = ipCookie('token');
+        // $rootScope.res = ipCookie('token');
         $scope.detailOption = {
             goods_id: $stateParams.goods_id,
             attr: ''
         };
-        
+
         $scope.mouseenter = function (e) {
             console.log(e)
         }
@@ -4645,21 +4693,21 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(index);
 
             $scope.arr[index].qiujing = dsItem;
-            
-           /*  $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/Goods/changeprice',
-                data: {
-                    goods_id: $scope.detailOption.goods_id,
-                      attr:[],
-                        qiujing:dsItem,
-                          zhujing:$scope.arr[index].zhujing,
 
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            }).success(function(data){
-                $scope.arr[index].price = data.data.price;
-            }) */
+            /*  $http({
+                 method: "POST",
+                 url: '' + $rootScope.ip + '/Goods/changeprice',
+                 data: {
+                     goods_id: $scope.detailOption.goods_id,
+                       attr:[],
+                         qiujing:dsItem,
+                           zhujing:$scope.arr[index].zhujing,
+ 
+                 },
+                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+             }).success(function(data){
+                 $scope.arr[index].price = data.data.price;
+             }) */
             //console.log(dsItem);
             //console.log(angular.element(e.target).parent().parent().parent().parent().prev());
             angular.element(e.target).parent().parent().parent().parent().prev()[0].value = dsItem;
@@ -4698,16 +4746,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Goods/changeprice',
                 data: {
                     goods_id: $scope.detailOption.goods_id,
-                      attr:[],
-                        qiujing:$scope.arr[index].qiujing,
-                          zhujing:dsItems,
+                    attr: [],
+                    qiujing: $scope.arr[index].qiujing,
+                    zhujing: dsItems,
 
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            }).success(function(data){
+            }).success(function (data) {
                 $scope.arr[index].price = data.data.price;
             })
-            
+
 
             angular.element(e.target).parent().parent().parent().parent().prev().prev()[0].value = dsItems;
             $('#masks').hide();
@@ -5481,7 +5529,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var token = arr[2];
 
             var cool = layer.load(0, { shade: [0.3, '#fff'], zIndex: 198910121260 });
-			
+
 
             $.ajax({
                 url: '' + $rootScope.ip + '/Goods/batch_changeprice',
@@ -5975,7 +6023,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         };
-        
+
         $scope.carFn();
 
         var flag = true;
@@ -6320,20 +6368,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // }, function(){
 
             //商品ID数组
-            $scope.carIdArr = {
-                goods_ids: []
-            };
-            for (var i = 0; i < $scope.shopCarData.suppliers_goods_list.length; i++) {
-                for (var j = 0; j < $scope.shopCarData.suppliers_goods_list[i].goods_list.length; j++) {
-                    if ($scope.shopCarData.suppliers_goods_list[i].goods_list[j].is_select == 1) {
-                        $scope.carIdArr.goods_ids.push($scope.shopCarData.suppliers_goods_list[i].goods_list[j].goods_id);
+            var shopIds = [];
+            var goodsIds = [];
+            var attrIds = [];
+            for (var i = 0, item1 = $scope.shopCarData.suppliers_goods_list; i < item1.length; i++) {//店铺列表
+                if (item1[i].is_select) {
+                    shopIds.push(item1[i].suppliers_id);
+                }
+                for (var n = 0, item2 = item1[i].goods_list; n < item2.length; n++) {//商品列表
+                    if (item2[n].is_select) {
+                        goodsIds.push(item2[n].goods_id);
+                    }
+                    for (var g = 0, item3 = item2[n].attrs; g < item3.length; g++) {//商品属性列表
+                        if (item3[g].is_select) {
+                            attrIds.push(item3[g].rec_id);
+                        }
                     }
                 }
             }
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Flow/drop_cart_goods_select',
-                data: $scope.carIdArr,
+                data: {
+                    goods_ids: goodsIds,
+                    rec_id: attrIds
+                },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
@@ -7068,8 +7127,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.submitList = function (e, index) {
             var commentArr = [];
             var suppliers = [];
-          
-			for (var i in this.jiesuanData.suppliers_notes) {
+
+            for (var i in this.jiesuanData.suppliers_notes) {
                 commentArr.push(this.jiesuanData.suppliers_notes[i])
             }
             var label = [];
@@ -9015,10 +9074,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             .success(function (data) {
                 //console.log(data);
                 if (data.status) {
-					if(data.type == 'jump'){
-						$state.go('control-mb');
-						return;
-					}
+                    if (data.type == 'jump') {
+                        $state.go('control-mb');
+                        return;
+                    }
                     layer.msg('玩命加载中', {
                         icon: 16
                         , shade: 0.3
@@ -10010,9 +10069,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-						if(data.paid){
-							$state.go('person-process');return;
-						}
+                        if (data.paid) {
+                            $state.go('person-process'); return;
+                        }
                         $state.go('paymentNew', {
                             log_id: data.log_id,
                             type: 'mach'
@@ -10223,7 +10282,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         $scope.shopMessage();
-		
+
         //店铺关注
         $scope.shopGz = function () {
             if ($scope.shopHomeData.data.is_select) {

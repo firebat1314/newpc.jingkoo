@@ -14,10 +14,6 @@ npm-debug.log*
 
 .idea/
 .sass-cache/
-PCnewjingkoo/elseSC.css.map
-PCnewjingkoo/elseSC.css
-PCnewjingkoo/main.css.map
-PCnewjingkoo/main.css
 .tmp/
 .versions/
 coverage/
@@ -36,3 +32,5 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+PCnewjingkoo/css/main.css.map
+PCnewjingkoo/css/elseSC.css.map

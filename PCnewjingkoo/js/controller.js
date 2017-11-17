@@ -3856,7 +3856,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
                 params: {
                     type: 'hot',
-                    is_return: 1
+                    is_return: 1,
+                    cats:$stateParams.cat_id
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })

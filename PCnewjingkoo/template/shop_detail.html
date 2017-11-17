@@ -288,7 +288,7 @@
                                         <div class="diy-right">
                                             <span class="wenb">
                                                 <a href="javascript:;" class="fl borr c" ng-class="{'fl borr c no':isReduce,'fl borr c':!isReduce}" ng-click="reduce($event,$index)">－</a>
-                                                <input id="Num" type="number" class="fl c diyr-txt" value="num" ng-model="trItem.num"  ng-change="change($event,$parent.$index,$index,trItem.num)">
+                                                <input id="Num" type="number" class="fl c diyr-txt" value="num" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
                                                 <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="add($event,$index)">+</a>
                                             </span>
                                         </div>

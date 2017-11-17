@@ -77,7 +77,7 @@
                         	<img src="img/kefu-youhuiquan.png" alt="" ng-show="carItem.suppliers_bonus" ng-click="gowuquanFn($event)">
                             <div class="more-youhui-box">
                                 <div class="more-youhui-item" ng-repeat="yhq in carItem.suppliers_bonus">
-                                    <img ng-src={{yhq.logo}} alt="">
+                                    <!-- <img ng-src={{yhq.logo}} alt=""> -->
                                     <p>{{yhq.suppliers_name}}</p>
                                     <span>{{yhq.send_start_date}} - {{yhq.send_end_date}}</span>
                                     <button ng-show="yhq.is_get==1" class="get">已领取</button>

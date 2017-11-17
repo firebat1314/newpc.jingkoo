@@ -4276,9 +4276,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.NumSelect = function (e) {
+            
             angular.element(e.target).focus().select();
         };
         $scope.change = function (e, pIndex, index, num) {
+            console.log(e)
             //console.log($scope.goodsData.data[index].num);
             if ($scope.goodsData.data[index].num > 0) {
                 $scope.isCarParams = true;
@@ -5193,7 +5195,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             var st = selList[i].offsetHeight + selList[i].offsetTop + table_t; // table_h +
                             // div 的 left
                             if (sl > _l && st > _t && selList[i].offsetLeft + table_l < _l + _w && selList[i].offsetTop + table_t < _t + _h) {
-                                if (selList[i].className.indexOf("seled") == -1 && selList[i].name != 'desa') {
+                                if (selList[i].className.indexOf("seled") == -1 && $(selList[i]).attr("name") != 'desa') {
+                                    //selList[i].attr("name")
                                     selList[i].className = selList[i].className + " seled";
                                 }
                             } else {
@@ -5278,14 +5281,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             is_prompt = true;
                         },
                     }, function (text, index) {
-                        if (text > 0) {
-                            //$(".seled").html();
-                            $(".seled").each(function () {
-                                seled_sel($(this), text);
-                                $(this).removeClass("seled");
-                            });
+                        //if (text > 0) {
+                        //$(".seled").html();
+                        $(".seled").each(function () {
+                            seled_sel($(this), text);
+                            $(this).removeClass("seled");
+                        });
 
-                        }
+                        //}
                         layer.close(index);
                         is_prompt = true;
                     });
@@ -5558,7 +5561,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var data_id = obj.attr("data-id");
             if ($("#tr" + data_id).length == 0) {
                 var html = '';
-                if (nums != '') {
+                if (nums != '' && nums > 0) {
                     html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
                     html += '<td align="center" class="qiujing">' + obj.parent().find("td").eq(0).text() + '</td>';
 
@@ -5577,32 +5580,44 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
                 $("#order").append(html);
             } else if ($("#tr" + data_id).length > 0) {
-                var html = '';
-                if (nums != '') {
-                    html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-                    html += '<td align="center" class="qiujing">' + obj.parent().find("td").eq(0).text() + '</td>';
+                if (nums > 0) {
+                    var html = '';
+                    if (nums != '') {
+                        html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                        html += '<td align="center" class="qiujing">' + obj.parent().find("td").eq(0).text() + '</td>';
 
-                    html += '<td align="center" class="zhujing">' + obj.attr("data-zhu") + '</td>';
-                    if (is_zhouwei == 1) {
-                        html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                        html += '<td align="center" class="zhujing">' + obj.attr("data-zhu") + '</td>';
+                        if (is_zhouwei == 1) {
+                            html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                        }
+                        $(".attr_val").each(function () {
+                            tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                            tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+                            html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                        });
+                        pic_count = nums * price;
+                        html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                        html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                     }
-                    $(".attr_val").each(function () {
-                        tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-                        tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-                        html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-                    });
-                    pic_count = nums * price;
-                    html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-                    html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+                    $("#tr" + data_id).html(html);
+                } else {
+                    $("#tr" + data_id).remove();
                 }
-                $("#tr" + data_id).html(html);
             }
             var tr_id = obj.attr("data-id");
-            $("#" + tr_id).text(nums);//toFixed(2)
+            if (nums > 0) {
+                $("#" + tr_id).text(nums);//toFixed(2)
+            }
             pic_count = parseFloat(shop_price) * parseInt(nums);
             $("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
-            obj.css('background', nums == '' ? "" : '#ffecb6');
-            obj.text(nums);
+
+            if (nums > 0) {
+                obj.text(nums);
+                obj.css('background', nums == '' ? "" : '#ffecb6');
+            } else {
+                obj.text(' ');
+                obj.css('background', "");
+            }
             if (nums == '' || ~~nums <= 0) {
                 $("#" + tr_id).parent(".attr_lists").remove();
             }
@@ -5747,7 +5762,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var data_id = $(this).parent().attr("data-id");
                 if ($("#tr" + data_id).length == 0) {
                     var html = '';
-                    if (nums != '') {
+                    if (nums != '' && nums > 0) {
                         html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
                         html += '<td align="center" class="qiujing">' + $(this).parent().parent().find("td").eq(0).text() + '</td>';
 
@@ -5766,32 +5781,44 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                     $("#order").append(html);
                 } else if ($("#tr" + data_id).length > 0) {
-                    var html = '';
-                    if (nums != '') {
-                        html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-                        html += '<td align="center" class="qiujing">' + $(this).parent().parent().find("td").eq(0).text() + '</td>';
+                    if (nums > 0) {
+                        var html = '';
+                        if (nums != '') {
+                            html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                            html += '<td align="center" class="qiujing">' + $(this).parent().parent().find("td").eq(0).text() + '</td>';
 
-                        html += '<td align="center" class="zhujing">' + $(this).parent().attr("data-zhu") + '</td>';
-                        if (is_zhouwei == 1) {
-                            html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                            html += '<td align="center" class="zhujing">' + $(this).parent().attr("data-zhu") + '</td>';
+                            if (is_zhouwei == 1) {
+                                html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                            }
+                            $(".attr_val").each(function () {
+                                tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                                tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+                                html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                            });
+                            pic_count = nums * price;
+                            html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                            html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                         }
-                        $(".attr_val").each(function () {
-                            tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-                            tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-                            html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-                        });
-                        pic_count = nums * price;
-                        html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-                        html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+                        $("#tr" + data_id).html(html);
+                    } else {
+                        $("#tr" + data_id).remove();
                     }
-                    $("#tr" + data_id).html(html);
                 }
                 var tr_id = $(this).parent().attr("data-id");
-                $("#" + tr_id).text(nums);//toFixed(2)
+                if (nums > 0) {
+                    $("#" + tr_id).text(nums);//toFixed(2)
+                }
                 pic_count = parseFloat(shop_price) * parseInt(nums);
                 $("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
-                $(this).parent().css('background', nums == '' ? "" : '#ffecb6');
-                $(this).parent().text(nums);
+                if (nums > 0) {
+                    $(this).parent().css('background', nums == '' ? "" : '#ffecb6');
+                    $(this).parent().text(nums);
+                } else {
+                    $(this).parent().css('background', "");
+                    $(this).parent().text(" ");
+                }
+
                 if (nums == '' || ~~nums <= 0) {
                     $("#" + tr_id).parent(".attr_lists").remove();
                 }
@@ -5960,6 +5987,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             location.reload()
                         }, 1000);
                     } else if (data.status == 0) {
+                        layer.msg(data.info);
                     }
                 }).error(function (data) {
                     layer.msg('商品球镜柱镜属性不能为空');

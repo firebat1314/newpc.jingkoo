@@ -27,7 +27,7 @@
 	<div class="wrp_div" >
 		<div ng-repeat="wlt in orderwuliu.list.slice().reverse()" ng-if="$index<1"> 
 			<div class="time">{{wlt.time}}</div>
-			<p ng-repeat="wl in wlt.data" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
+			<p ng-repeat="wl in wlt.data.slice().reverse()" class="li"><b ng-class="{'bbb':$index==0&&$parent.$index==0}">●</b>{{wl.ftime}}{{wl.context}}</p>
 		</div>
  
 		<p>以上为最新跟踪信息去订单详情  <a style="cursor:pointer;" ng-click="goOrdera()">查看全部</a></p>																
@@ -194,19 +194,24 @@
 											</div>  
 											<!--待发货--> 
 											<!--已完成-->
+											<!--
 											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0 && order.gq==0) ||  (order.order_status==1 && order.pay_status==0 && order.gq==0)"> 
+											-->
+											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0) ||  (order.order_status==1 && order.pay_status==0)"> 
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
 											</div>
 											<!--已过期-->
+											<!--
 											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==1) ||  (order.order_status==1 && order.pay_status==0 && order.gq==1)"> 
 												<p style="padding-top: 16px;"><span class="red">已过期</span></p>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
 												</p>
 											</div>
+											-->
 											<!--<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==0)">
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>

@@ -747,7 +747,7 @@ span.a_arrow_r {
           font-size: 12px; }
       .ano-header .ano-header-grid .car-box .white-line {
         width: 140px;
-        height: 1px;
+        height: 2px;
         background: #fff;
         position: absolute;
         top: 40px;
@@ -6431,11 +6431,17 @@ span.a_arrow_r {
 .fashion-main .pinpai ul li {
   float: left;
   margin-right: 19px;
-  margin-bottom: 13px; }
+  margin-bottom: 13px;
+  width: 183px;
+  height: 95px; }
 .fashion-main .pinpai ul li .wrp {
-  position: relative; }
+  position: relative;
+  width: 183px;
+  height: 95px; }
 .fashion-main .pinpai ul li .wrp img {
-  display: block; }
+  display: block;
+  width: 183px;
+  height: 95px; }
 .fashion-main .pinpai ul li .wrp .txt {
   opacity: 0;
   position: absolute;
@@ -6563,7 +6569,7 @@ span.a_arrow_r {
 .fashion-main .xt-list li .txt {
   padding: 0 20px;
   height: 50px;
-  line-height: 60px;
+  line-height: 50px;
   background: #fafafa;
   color: #666;
   font-size: 15px;
@@ -18586,7 +18592,7 @@ textarea {
       font-size: 12px; }
   .car-box .white-line {
     width: 140px;
-    height: 1px;
+    height: 2px;
     background: #fff;
     position: absolute;
     top: 40px;

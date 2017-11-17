@@ -620,10 +620,10 @@ $browser-default-font-size: 37.5px !default;
       cursor: pointer;
       position: relative;
       &:hover .carGoods{
-        display: block;
+        display: block; 
       }
       &:hover .white-line{
-        display: block;
+        display: block; 
       }
       span{
         display: flex;
@@ -652,7 +652,7 @@ $browser-default-font-size: 37.5px !default;
       }
       .white-line{ 
         width: 140px;
-        height: 1px;
+        height: 2px;
         background: #fff;
         position: absolute;
         top: 40px;
@@ -6891,11 +6891,11 @@ $browser-default-font-size: 37.5px !default;
     }
   } 
 
-  .pinpai{position:relative;width:1200px;margin:0 auto;} 
+  .pinpai{position:relative;width:1200px;margin:0 auto;}  
   .pinpai ul{height:218px;overflow:hidden;} 
-  .pinpai ul li{float:left;margin-right:19px;margin-bottom:13px;} 
-  .pinpai ul li .wrp{position:relative;}    
-  .pinpai ul li .wrp img{display:block;}     
+  .pinpai ul li{float:left;margin-right:19px;margin-bottom:13px;width: 183px;height: 95px;}     
+  .pinpai ul li .wrp{position:relative;width: 183px;height: 95px;}      
+  .pinpai ul li .wrp img{display:block;width: 183px;height: 95px;}      
   .pinpai ul li .wrp .txt{opacity:0;position:absolute;left:0;top:0;z-index:3;width: 100%;height:100%;background:rgba(0, 0, 0, 0.5);text-align:center;} 
   .pinpai ul li .wrp .txt p{color:#fff;font-size:14px;padding:25px 0 10px;}
   .pinpai ul li .wrp .txt .btnv{display:block;margin:0 auto;background:#3f69a5;color:#fff;font-size:12px;width:80px;height:25px;line-height:25px;border-radius:25px;}
@@ -10485,14 +10485,14 @@ width: 60px;
             border-radius: 50%;
             margin-left: 5px;
           font-size: 12px;
-        }
-      }
-      .white-line{ 
+        } 
+      } 
+      .white-line{  
         width: 140px;
-        height: 1px;
-        background: #fff;
+        height: 2px;
+        background: #fff; 
         position: absolute;
-        top: 40px;
+        top: 40px; 
         z-index: 999999;
         left:0;
         //opacity: 0;

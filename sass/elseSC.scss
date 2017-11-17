@@ -26,21 +26,21 @@ $browser-default-font-size: 37.5px !default;
 }
 
 
-.header-top{
-  width: 100%;   
-  background: #f5f6fa; 
-  color:#fff;
-  height:40px;
-  p{
-      &:hover{color: #0070c9;}
+.header-top{ 
+  width: 100%;     
+  background: #f5f6fa;  
+  color:#fff; 
+  height:40px; 
+  p{ 
+      &:hover{color: #0070c9;} 
   } 
-  .header-top-content{
-    @extend .gird;
-    .header-top-content-left{
-      width:535px; 
-      float:left;
-      color:#666; 
-      padding-left: 10px;
+  .header-top-content{ 
+    @extend .gird; 
+    .header-top-content-left{ 
+      width:440px;   
+      float:left; 
+      color:#666;  
+      padding-left: 10px; 
     }
     .header-top-content-right{  
       padding-left: 0;
@@ -2558,8 +2558,10 @@ $browser-default-font-size: 37.5px !default;
 
   .pinpai{position:relative;width:1000px;margin:0 auto;}  
   .pinpai ul{height:185px;overflow:hidden;}  
-  .pinpai ul li{float:left;margin-right:16px;margin-bottom:13px;width: 153px;height: 78px;}     
-  .pinpai ul li .wrp img{display:block;width: 153px;height: 78px;}  
+  .pinpai ul li{float:left;margin-right:16px;margin-bottom:13px;width: 153px;height: 78px;}      
+   .pinpai ul li .wrp{width: 153px;height: 78px;}  
+  .pinpai ul li .wrp img{display:block;width: 153px;height: 78px;}   
+  .pinpai ul li .wrp .txt p{ padding: 12px 0 10px;} 
 
   .pinpai .gdoo{position:absolute;right:0px;bottom:15px;z-index:10;width:153px;height:78px;text-align:center;line-height:78px;color:#333;font-size:16px;background:#f7f7f7;cursor:pointer;} 
   

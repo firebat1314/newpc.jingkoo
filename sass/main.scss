@@ -2783,13 +2783,13 @@ $browser-default-font-size: 37.5px !default;
         }
       }
       .shopList-fashion{
-        width:1167px;  
-        padding:10px 20px 10px 10px;   
-        display: inline-block; 
-        border-top: 1px dashed #cccccc; 
-        position: relative;  
-        &:first-child{ 
-          border-top: none;  
+        width:1167px;   
+        padding:10px 20px 10px 10px;    
+        display: inline-block;  
+        border-bottom: 1px dashed #cccccc;  
+        position: relative;   
+        &:last-child{ 
+          border-bottom: none;    
         }
         .shopList-fashion-tit{
           width:100px;

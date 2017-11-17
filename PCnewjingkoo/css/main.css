@@ -2691,10 +2691,10 @@ span.a_arrow_r {
       width: 1167px;
       padding: 10px 20px 10px 10px;
       display: inline-block;
-      border-top: 1px dashed #cccccc;
+      border-bottom: 1px dashed #cccccc;
       position: relative; }
-      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:first-child {
-        border-top: none; }
+      .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
+        border-bottom: none; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-tit {
         width: 100px;
         color: #808080;

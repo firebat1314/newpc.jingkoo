@@ -161,7 +161,7 @@
 			<i class="x" ng-if="wlData"></i>
 			<div style="height: 220px;overflow: auto;" class="wl_box"> 
 				<div class="noogkci" ng-repeat="wlt in orderwuliu.list.slice().reverse()">
-					<p class="p-pt" style="overflow: hidden;" ng-repeat="wl in wlt.data"><em class="ydn"><i></i></em><span class="sj" style="float: left;">{{wl.ftime}}</span> <span class="dz" style="float: left;">{{wl.context}}</span></p>
+					<p class="p-pt" style="overflow: hidden;" ng-repeat="wl in wlt.data.slice().reverse()"><em class="ydn"><i></i></em><span class="sj" style="float: left;">{{wl.ftime}}</span> <span class="dz" style="float: left;">{{wl.context}}</span></p>
 				</div>
 			</div>
 		</div>

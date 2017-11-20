@@ -4,7 +4,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.title = toState.title;
-            if (toState.title == "首页") {
+            if (toState.title == "镜库首页") {
                 $rootScope.allFenLei = true;
             } else {
                 $rootScope.allFenLei = false;
@@ -22,6 +22,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             } else {
                 $rootScope.allNav = false;
                 $rootScope.allNavs = false;
+            }
+            if(toState.name == "bulk-order"){
+                $rootScope.showHomeBtn = true;
+            }else{
+                $rootScope.showHomeBtn = false;
             }
         });
     }])
@@ -1391,7 +1396,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         })
     }])
-    //闪购  
+    //闪购
     .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐
         $rootScope.isShow = false;
@@ -1708,14 +1713,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         };
     }])
-    //新品专区
-    .controller('new-goods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
-    	//控制首页会员中心显隐
-        $rootScope.isShow = false;
-        //控制header和footer显隐
-        $rootScope.change = true;
-    }])
-
     //优惠券
     .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐

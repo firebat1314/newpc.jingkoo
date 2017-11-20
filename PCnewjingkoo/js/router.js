@@ -11,7 +11,7 @@ angular.module("myApp.router", ["ui.router"])
         $stateProvider
             //首页路由
             .state("home", {
-                title:'首页',
+                title:'镜库首页',
                 url: '/home',
                 templateUrl: 'template/index_v_1.0.html',
                 controller: "index_parentControl"

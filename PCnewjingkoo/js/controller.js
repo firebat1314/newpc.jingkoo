@@ -141,7 +141,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     //首页头部
     .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat) {
         $scope.$qimoChat = $qimoChat;
-
+        /* console.log(location.href.indexOf('bulk-order'))
+        if(location.href.indexOf('bulk-order')>-1){
+            $scope.showHomeBtn = true;
+        } */
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
@@ -4171,6 +4174,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     }
                                     //console.log($scope.goodsCarParams);
                                     //每次更新获取商品数量改变价格 接口
+                                    var cool = layer.load(0, { shade: [0.3, '#fff'] });
                                     $http({
                                         method: "POST",
                                         url: '' + $rootScope.ip + '/Goods/change_goods_number',
@@ -4178,6 +4182,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
+                                            layer.close(cool);
                                             //console.log(data);
                                             if (data.status) {
                                                 $scope.listTotalNumber = data.number;
@@ -4893,6 +4898,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.arr = [{}];
+                        layer.confirm('商品已添加至购物车', {
+                            btn: ['去结算', '继续选购'], //按钮
+                            title: '提示', btnAlign: 'c',
+                            yes: function (index) {
+                                $state.go('shop-car');
+                                layer.close(index);
+                            },
+                            btn2: function (index) {
+                                layer.close(index);
+                                $scope.getAttrList();
+                            }
+                            // closeBtn: 0
+                        });
                         $rootScope.$broadcast('upCarList');
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -5025,12 +5043,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.goBulkOrder = function () {
-            $state.go('bulk-order', {
+            window.open($state.href('bulk-order', {
                 goods_id: $stateParams.goods_id,
                 shop_price: $scope.shopDetailData.data.shop_price,
                 is_promote: $scope.shopDetailData.data.is_promote,
                 zhouwei: $scope.shopDetailData.data.zhouwei
-            });
+            }));
         };
     }])
     //商品批量下单页
@@ -10501,7 +10519,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // nextCell: ".sNext",
                     //vis:num
                 });
-            }, 1500)
+            }, 2500)
         };
 
         //分类导航栏切换

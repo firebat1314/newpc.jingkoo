@@ -19,9 +19,7 @@
 </style>
 <style type="text/css">
     .ad_box {
-        height: 80%;
-        width: 80%;
-        max-width: 80%;
+
         position: fixed;
         top: 0;
         right: 0;
@@ -42,14 +40,18 @@
         -webkit-justify-content: center;
         -ms-flex-pack: center;
         justify-content: center;
-        cursor: pointer;
+        background: rgba(0, 0, 0, .4);
     }
-    .ad_box .img{
+
+    .ad_box .img {
         position: relative;
+        max-width: 80%;
     }
+
     .ad_box img {
         max-height: 100%;
         max-width: 100%;
+        cursor: pointer;
     }
 
     .ad_box .close {
@@ -70,6 +72,17 @@
         -khtml-user-select: none;
         /*早期浏览器*/
         user-select: none;
+        color: #e0e0e0;
+        border-radius: 50%;
+        background: #666;
+        width: 30px;
+        height: 30px;
+        line-height: 27px;
+        font-size: 27px;
+    }
+
+    .ad_box .close:hover {
+        color: #fff;
     }
 </style>
 <div class="ad_box" ng-if="!ad_show&&ad_img">

@@ -7,7 +7,7 @@ html{min-width: 1000px;
 .right-bar_box{display: none !important;}        
 
 
-.gird{width:1000px;margin:0 auto;}   
+.gird{width:1000px !important;margin:0 auto;}    
 
 @mixin border{
   background-color: #fff;
@@ -93,10 +93,10 @@ $browser-default-font-size: 37.5px !default;
   }
 }
 .ano-header{
-  .ano-header-grid{
+  .ano-header-grid{ 
     @extend .gird; 
-    width:678px;   
-    height:85px;
+    width:678px !important;     
+    height:85px;    
     padding-top: 39.5px; 
     padding-left: 297px;  
     position: relative; 

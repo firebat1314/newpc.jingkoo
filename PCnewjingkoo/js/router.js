@@ -583,11 +583,11 @@ angular.module("myApp.router", ["ui.router"])
                 controller:"person-process-preview-control"
             })
             //新品专区
-             .state("newGoods",{
+            .state("newGoods",{
                 title:'新品专区',
                 url:'/newGoods',
                 templateUrl:'template/newGoods.html',
-                controller:"new-goods-control"
+                controller:"newgoods-control"
             })
             // $locationProvider.html5Mode(true);y
 

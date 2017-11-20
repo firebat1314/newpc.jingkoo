@@ -13,7 +13,11 @@ html {
   display: none !important; }
 
 .gird, .header-top .header-top-content, .ano-header .ano-header-grid, .nav .nav-bar, .home-main .selected-topics, .home-main .brand-block, .home-main .brand-block-fashion, .home-main .cool-eye-world, .shopList-main .shop-list, .shopDetail-main .shopDetail-tit .shop-detail-tit, .shopDetail-main .goods-detail-nrBox .goods-detail-content, .shop-car-main .car-hasGoods-main, .shop-jiesuan-logo .jiesuan-logo {
+<<<<<<< HEAD
   width: 1000px;
+=======
+  width: 1000px !important;
+>>>>>>> 去掉新品
   margin: 0 auto; }
 
 .header-top {
@@ -71,7 +75,11 @@ html {
             color: #0070c9; }
 
 .ano-header .ano-header-grid {
+<<<<<<< HEAD
   width: 678px;
+=======
+  width: 678px !important;
+>>>>>>> 去掉新品
   height: 85px;
   padding-top: 39.5px;
   padding-left: 297px;

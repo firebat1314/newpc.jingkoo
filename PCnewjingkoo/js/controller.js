@@ -1391,7 +1391,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         })
     }])
-    //闪购
+    //闪购  
     .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐
         $rootScope.isShow = false;
@@ -1551,6 +1551,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 layer.close(cool);
             }
         })
+    }])
+    //新品专区
+    .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
+        //控制首页会员中心显隐
+        $rootScope.isShow = false;
+        //控制header和footer显隐
+        $rootScope.change = true;
     }])
     //积分商城
     .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {

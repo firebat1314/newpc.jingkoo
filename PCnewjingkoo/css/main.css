@@ -18444,7 +18444,8 @@ textarea {
 .new_close_top_center .top_center_div {
   height: 45px;
   line-height: 45px;
-  position: relative; }
+  position: relative;
+  color: #333; }
 
 .new_close_top_center .top_center_div .close_check {
   cursor: pointer;

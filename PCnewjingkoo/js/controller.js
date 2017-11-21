@@ -3372,6 +3372,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.ye = data.page;
                     $scope.count = data.count;
                 }
+                $scope.listControl();
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
@@ -10573,7 +10574,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.hotGoodList.page = index + 1;
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Category/suppliers_category_goods',
+                url: '' + $rootScope.ip + '/Category/suppliers_category_goods', 
                 data: $scope.hotGoodList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {

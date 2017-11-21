@@ -646,7 +646,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 if (res.pc_index_tan_time == 0) {
                     var img = new Image();
                     img.src = res.ads[0].ad_img;
-                    img.onload = () => {
+                    img.onload = function () {
                         $scope.ad_img = (img.src);
                     }
                 } else {
@@ -654,7 +654,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (ipCookie("show_ads_time") < res.pc_index_tan_second) {
                         var img = new Image();
                         img.src = res.ads[0].ad_img;
-                        img.onload = () => {
+                        img.onload = function () {
                             $scope.ad_img = (img.src);
                         }
                         ipCookie("show_ads_time", ++num);
@@ -5356,6 +5356,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 									//$("input[name=shop_price]").val();
 
 									var data_id = data.data[data_i].data_id;
+									if(data.data[data_i].qiu == '' || data.data[data_i].zhu == '' || typeof data.data[data_i].zhu == 'undefined' || typeof data.data[data_i].qiu == 'undefined'){
+										continue;
+									}
 									//obj.attr("data-id");
 									if ($("#tr" + data_id).length == 0) {
 										var html = '';
@@ -5375,6 +5378,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 												html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
 											});
 											pic_count = nums * price;
+											html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
 											html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
 											html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
 										}
@@ -5398,6 +5402,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 													html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
 												});
 												pic_count = nums * price;
+												html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
 												html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
 												html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
 											}
@@ -5771,6 +5776,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                     });
                     pic_count = nums * price;
+					html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                     html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                 }
@@ -5792,6 +5798,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                         });
                         pic_count = nums * price;
+						html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                     }
@@ -5919,6 +5926,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var zhu = $(this).parent().attr("data-zhu");
                 var goodsId = $('.add_to_cart').attr("data-id");
                 var arr_spec = new Array();//属性
+				if(qiu == '' || zhu == '' || typeof zhu == 'undefined' || typeof qiu == 'undefined'){
+					return ;
+				}
 
 
                 /*$.post("batch.php",{step:"changeprice",id:goodsId,qiu:qiu,zhu:zhu}, function(data){
@@ -5968,6 +5978,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                         });
                         pic_count = nums * price;
+                        html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                     }
@@ -5989,6 +6000,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                             });
                             pic_count = nums * price;
+                            html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                             html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                             html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                         }
@@ -6104,29 +6116,34 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //});
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
+				console.log(k_code);
                 if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                     var w_index = $(this).parent().index();//横向
                     var h_index = $(this).parent().parent().index();//纵向
                     switch (k_code) {
                         case 38:
-                            h_index -= 0;
+							//上
+                            h_index -= 1;
                             break;
                         case 40:
-                            h_index += 2;
+							//下
+                            h_index += 1;
                             break;
                         case 39:
-                            h_index += 1;
+							//右
+                            //h_index += 1;
                             w_index += 1;
                             break;
                         case 37:
-                            h_index += 1;
+							//左
+                            //h_index += 1;
                             w_index -= 1;
                             break;
                     }
                     if (w_index == 0) {
                         w_index -= 1;
                     }
-                    $("tr").eq(h_index).find("td").eq(w_index).trigger("click");
+                    $("#table_111").find("tr").eq(h_index).find("td").eq(w_index).trigger("click");
                     return false;
                 }
             });
@@ -6182,6 +6199,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.msg('商品球镜柱镜属性不能为空');
                 })
         };
+        /* 打印单预览按钮 */
+        $scope.printPreview = function () {
+            window.open($state.href('person-process-print-preview', {
+                params: JSON.stringify({
+                    goods: $scope.goods,
+                    goods_id: $stateParams.goods_id
+                })
+            }), '_blank');
+        }
         /* 预览按钮 */
         $scope.orderPreview = function () {
             window.open($state.href('person-process-preview', {
@@ -6191,6 +6217,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
             }), '_blank');
         }
+    }])
+    .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
+        $rootScope.isShow = false;
+        $rootScope.change = false;
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Goods/qz_batch_preview',
+            data: JSON.parse($stateParams.params),
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            if (data.status) {
+                $scope.data = data;
+                $scope.html = ($sce.trustAsHtml(data.content));
+                var js = document.createElement('script');
+                js.src = './plugins/js.js';
+                document.body.append(js)
+            }
+        })
     }])
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
         $rootScope.isShow = false;
@@ -10574,7 +10618,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.hotGoodList.page = index + 1;
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Category/suppliers_category_goods', 
+                url: '' + $rootScope.ip + '/Category/suppliers_category_goods',
                 data: $scope.hotGoodList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {

@@ -582,6 +582,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl:'template/person-process/person-process-preview.html',
                 controller:"person-process-preview-control"
             })
+            //个人中心-来镜加工预览
+            .state("person-process-print-preview",{
+                title:'批量下单预览',
+                url:'/person-process-print-preview/:params',
+                templateUrl:'template/person-process/person-process-print-preview.html',
+                controller:"person-process-print-preview-control"
+            })
             //新品专区
             .state("newGoods",{
                 title:'新品专区',

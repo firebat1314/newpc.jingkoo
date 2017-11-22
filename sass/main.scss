@@ -5432,11 +5432,12 @@ $browser-default-font-size: 37.5px !default;
     }
 }
 .shop-car-main{
+    min-height: 500px; 
   .shop-car-logo{
     width:100%;
     height:160px;
     background: #f7f7f7;
-    padding-top: 40px;
+    padding-top: 40px; 
     .car-logo{
       height:160px;
       @extend .gird;

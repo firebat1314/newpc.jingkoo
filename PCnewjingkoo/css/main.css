@@ -4821,590 +4821,592 @@ span.a_arrow_r {
     visibility: hidden;
     clear: both; }
 
-.shop-car-main .shop-car-logo {
-  width: 100%;
-  height: 160px;
-  background: #f7f7f7;
-  padding-top: 40px; }
-  .shop-car-main .shop-car-logo .car-logo {
+.shop-car-main {
+  min-height: 500px; }
+  .shop-car-main .shop-car-logo {
+    width: 100%;
     height: 160px;
-    display: flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    justify-content: center;
-    background: url(../img/carOne.png) no-repeat center 55px; }
-    .shop-car-main .shop-car-logo .car-logo h2 {
-      font-size: 30px;
-      color: #333; }
-.shop-car-main .shop-car-noGoods {
-  height: 300px;
-  background: url(../img/shopCarNone.png) no-repeat 370px 200px;
-  padding-top: 150px; }
-  .shop-car-main .shop-car-noGoods p {
-    margin-left: 460px;
-    color: #333;
-    line-height: 25px; }
-    .shop-car-main .shop-car-noGoods p:first-child {
-      font-size: 16px;
-      color: #000;
-      margin-top: 40px;
-      line-height: 38px; }
-    .shop-car-main .shop-car-noGoods p a {
-      color: #ff3333; }
-.shop-car-main .car-hasGoods-main .car-hasGoods-table {
-  height: 40px; }
-  .shop-car-main .car-hasGoods-main .car-hasGoods-table table {
-    border: 1px solid #e6e6e6; }
-    .shop-car-main .car-hasGoods-main .car-hasGoods-table table tr {
-      border: 1px solid #e6e6e6; }
-    .shop-car-main .car-hasGoods-main .car-hasGoods-table table th {
-      padding-left: 15px;
-      height: 40px;
-      font-size: 14px;
-      color: #666666;
-      background-color: #f5f6fa; }
-    .shop-car-main .car-hasGoods-main .car-hasGoods-table table .all-check {
-      width: 15px;
-      height: 15px;
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      border-radius: 3px;
-      float: left;
-      margin-right: 10px;
-      position: relative;
-      top: 2px; }
-      .shop-car-main .car-hasGoods-main .car-hasGoods-table table .all-check.checked {
-        background: url(../img/yes.png) no-repeat center #3f69a5;
-        border-color: #3f69a5;
-        background-size: 10px; }
-.shop-car-main .car-hasGoods-main .shop-hasGoods-item table th {
-  padding-left: 15px;
-  height: 50px;
-  font-size: 14px;
-  color: #000; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table th .kf_sp {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background: url(../img/kefu.png) center center no-repeat;
-    background-size: 25px;
-    margin-left: 10px;
-    cursor: pointer;
-    position: relative;
-    top: 2px; }
-.shop-car-main .car-hasGoods-main .shop-hasGoods-item table .all-check {
-  width: 15px;
-  height: 15px;
-  background: #fff;
-  border-radius: 3px;
-  float: left;
-  margin-right: 20px;
-  position: relative;
-  top: 8px;
-  border: 1px solid #e6e6e6; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .all-check.checked {
-    background: url(../img/yes.png) no-repeat center #3f69a5;
-    background-size: 10px;
-    border-color: #3f69a5; }
-.shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui {
-  position: relative;
-  cursor: pointer; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui img {
-    position: relative;
-    left: -63px; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box {
-    width: 350px;
-    box-shadow: 0 0 5px 0;
-    background: #fff;
-    z-index: 999;
-    padding: 20px 20px 0 20px;
-    position: absolute;
-    top: 50px;
-    left: -358px;
-    color: #e6e6e6;
-    border: 1px solid #e6e6e6;
-    display: none; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item {
-      height: 50px;
-      font-size: 12px;
-      position: relative; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item img {
-        float: left;
-        display: block;
-        margin-right: 12px; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item p {
-        color: #666;
-        text-align: left; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item span {
-        color: #bfbfbf;
-        float: left; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item button {
-        width: 60px;
-        height: 30px;
-        border-radius: 3px;
-        background: #ff3333;
-        color: #fff;
-        border: none;
-        outline: none;
-        position: absolute;
-        right: 0;
-        top: 0; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item button.get {
-          background: #808080;
-          pointer-events: none; }
-.shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content {
-  display: inline-block;
-  border: 1px solid #e6e6e6;
-  position: relative; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian {
-    height: 64px;
-    line-height: 64px;
-    padding-left: 20px;
-    color: #808080; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box {
-      width: 60px;
-      height: 25px;
-      line-height: 25px;
-      text-align: center;
-      color: #ff3333;
-      border: 1px solid #ff3333;
-      position: relative;
-      float: left;
-      margin-top: 18px;
-      margin-right: 10px; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box:before {
-        position: absolute;
-        border-left: 13px solid #fff;
-        border-bottom: 7px solid transparent;
-        content: " ";
-        display: block;
-        width: 0;
-        height: 0;
-        top: 25px;
-        left: 0; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box:after {
-        position: absolute;
-        border-left: 16px solid #ff3333;
-        border-bottom: 8px solid transparent;
-        content: " ";
-        display: block;
-        width: 0;
-        height: 0;
-        top: 25px;
-        left: -1px;
-        z-index: -1; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian a {
-      color: #ff3333; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check {
-    display: inline-block; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left {
-      width: 54px;
-      height: 80px;
-      float: left;
+    background: #f7f7f7;
+    padding-top: 40px; }
+    .shop-car-main .shop-car-logo .car-logo {
+      height: 160px;
       display: flex;
       display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
       display: -webkit-flex;
       justify-content: center;
-      align-items: center; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check {
+      background: url(../img/carOne.png) no-repeat center 55px; }
+      .shop-car-main .shop-car-logo .car-logo h2 {
+        font-size: 30px;
+        color: #333; }
+  .shop-car-main .shop-car-noGoods {
+    height: 300px;
+    background: url(../img/shopCarNone.png) no-repeat 370px 200px;
+    padding-top: 150px; }
+    .shop-car-main .shop-car-noGoods p {
+      margin-left: 460px;
+      color: #333;
+      line-height: 25px; }
+      .shop-car-main .shop-car-noGoods p:first-child {
+        font-size: 16px;
+        color: #000;
+        margin-top: 40px;
+        line-height: 38px; }
+      .shop-car-main .shop-car-noGoods p a {
+        color: #ff3333; }
+  .shop-car-main .car-hasGoods-main .car-hasGoods-table {
+    height: 40px; }
+    .shop-car-main .car-hasGoods-main .car-hasGoods-table table {
+      border: 1px solid #e6e6e6; }
+      .shop-car-main .car-hasGoods-main .car-hasGoods-table table tr {
+        border: 1px solid #e6e6e6; }
+      .shop-car-main .car-hasGoods-main .car-hasGoods-table table th {
+        padding-left: 15px;
+        height: 40px;
+        font-size: 14px;
+        color: #666666;
+        background-color: #f5f6fa; }
+      .shop-car-main .car-hasGoods-main .car-hasGoods-table table .all-check {
         width: 15px;
         height: 15px;
         background: #fff;
-        border-radius: 3px;
-        position: relative;
-        left: -4px;
-        border: 1px solid #e6e6e6; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check.checked {
-          background: url(../img/yes.png) no-repeat center #3f69a5;
-          background-size: 10px;
-          border-color: #3F69A5; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check.isArea {
-          pointer-events: none;
-          opacity: .6; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right {
-      width: 1142px;
-      margin-bottom: 20px; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-img {
-        width: 80px;
-        height: 80px;
         border: 1px solid #e6e6e6;
+        border-radius: 3px;
         float: left;
-        margin-right: 30px;
-        position: relative; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-img img {
-          width: 100%;
-          height: 100%;
-          display: block; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right p {
-        color: #000;
-        margin-bottom: 10px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right p:hover {
-          color: #ff3333; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message {
-        width: 552px;
-        border: 1px dotted transparent;
-        padding: 15px 0 15px 5px;
-        margin-right: 48px;
-        float: left;
+        margin-right: 10px;
         position: relative;
-        min-height: 30px;
-        margin-top: 10px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message.bor {
-          border-color: #ccc; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:hover {
-          border-color: #ccc; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:hover .hasGoods-xiugai {
-            display: block; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:last-child {
-          margin-bottom: 0; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li {
-          display: inline-block;
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          margin-bottom: 5px; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .all-check {
-            width: 15px;
-            height: 15px;
-            background: #fff;
-            border: 1px solid #e6e6e6;
-            border-radius: 3px;
-            float: left;
-            margin-right: 20px; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .all-check.checked {
-              background: url(../img/yes.png) no-repeat center #3f69a5;
-              background-size: 10px;
-              border-color: #3f69a5; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li ul {
-            float: left;
-            margin-right: 100px;
-            width: 350px;
-            height: 60px;
-            line-height: 30px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li ul li {
-              margin-right: 10px;
-              float: left;
-              line-height: 30px; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right {
-            width: 112px;
-            height: 30px;
-            float: left;
-            margin-right: 30px;
-            margin-bottom: 20px;
-            margin-left: 65px;
-            line-height: 28px;
-            position: absolute;
-            right: -3px;
-            top: 0; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a {
-              display: block;
-              width: 30px;
-              height: 28px;
-              line-height: 27px;
-              font-size: 20px;
-              border: 1px solid #ccc; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a:hover {
-                border: 1px solid #ff3333;
-                color: #ff3333; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a.no {
-                pointer-events: none;
-                color: #ccc; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right .diyr-txt {
-              width: 35px;
-              height: 28px;
-              border-bottom: 1px solid #ccc;
-              border-top: 1px solid #ccc;
-              border-right: 0;
-              border-left: 0;
-              outline: none;
-              position: relative; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right .text-value {
-              display: none; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .check-li-del {
-            width: 25px;
-            height: 25px;
-            background: url(../img/car-del.png) no-repeat center;
-            float: left;
-            display: none;
-            cursor: pointer;
-            position: absolute;
-            right: 10px;
-            top: 3px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .hasGoods-xiugai {
-          width: 35px;
-          height: 24px;
-          line-height: 24px;
-          border: 1px solid #ccc;
-          color: #808080;
-          background-image: url(../img/qianbi.png);
-          background-repeat: no-repeat;
-          background-position: 10px center;
-          background-color: #fff;
-          padding-left: 25px;
-          cursor: pointer;
-          display: none;
-          position: absolute;
-          left: -29.5px;
-          top: -10px; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .hasGoods-xiugai:hover {
-            background-image: url(../img/qianbi_.png);
-            color: #ff3333;
-            border: 1px solid #ff3333; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt {
-        width: 420px;
-        float: left;
-        padding: 15px 0;
-        margin-top: 10px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price {
-          padding: 0;
-          margin: 0;
-          position: relative;
-          top: 0;
-          margin-right: 0;
-          float: left;
-          width: 157px;
-          height: 60px;
-          line-height: 35px;
-          margin-bottom: 7px;
-          text-align: center; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao {
-            width: 75px;
-            height: 24px;
-            line-height: 24px;
-            color: #3f69a5;
-            padding-left: 10px;
-            border: 1px solid #3f69a5;
-            background: url(../img/dayuhao_.png) no-repeat 64px;
-            cursor: pointer;
-            position: absolute;
-            right: 0;
-            top: 42px; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box {
-            width: 250px;
-            min-height: 120px;
-            background: #fff;
-            box-shadow: 0 0 5px 0;
-            border: 1px solid #e6e6e6;
-            color: #e6e6e6;
-            position: absolute;
-            top: 73px;
-            right: 0;
-            padding: 10px;
-            z-index: 999;
-            display: none; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item {
-              display: inline-block;
-              overflow: hidden; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin {
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                border: 1px solid #ccc;
-                float: left;
-                margin-right: 12px;
-                margin-top: 3px; }
-                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin.dian {
-                  border: 1px solid #ff3333;
-                  background: url(../img/red-dot.png) no-repeat center; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item p {
-                float: left;
-                width: 100%;
-                text-align: center;
-                top: 0; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item button {
-                width: 60px;
-                height: 30px;
-                border-radius: 3px;
-                background: #fff;
-                color: #666;
-                border: 1px solid #ccc;
-                float: left;
-                margin-right: 15px;
-                outline: none; }
-            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn {
-              margin-left: 50px; }
-              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn .red-btn {
-                background: #ff3333;
-                color: #fff; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price p {
-            color: #666;
-            font-size: 14px;
-            text-align: center;
-            position: relative;
-            margin-top: 4px;
-            width: 114px;
-            height: 100%;
-            line-height: 35px; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-xiaoji {
-          color: #666;
-          position: relative;
-          top: 0;
-          float: left;
-          padding: 0;
-          margin: 0;
-          height: 60px;
-          line-height: 35px;
-          width: 120px;
-          margin-bottom: 7px;
-          font-size: 14px;
-          text-align: center; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .add_last_th {
-          padding: 0;
-          margin: 0;
-          color: #ff3333;
-          display: inline-block;
-          float: left;
-          position: relative;
-          right: 0;
-          overflow: hidden;
-          top: 0;
-          font-size: 14px;
-          text-align: center;
-          width: 105px;
-          padding-left: 40px;
-          height: 60px;
-          line-height: 35px;
-          margin-bottom: 7px; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng {
-    width: 100%;
-    padding-left: 60px;
-    display: inline-block; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p {
-      float: left;
-      height: 30px;
-      cursor: pointer; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:hover {
-        color: #ff3333; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:nth-of-type(1) {
-        width: 360px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:nth-of-type(2) {
-        width: 45px; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc {
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    cursor: pointer;
-    background: url(../img/car-del.png) no-repeat center #f2f2f2;
-    background-size: 17px; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao {
-      z-index: 2;
-      position: absolute;
-      top: 46px;
-      left: -20px;
-      width: 75px;
-      height: 35px;
-      line-height: 35px;
-      font-size: 12px;
-      color: #999;
-      background: #fff;
-      border: 1px solid #dcdcdc;
-      border-radius: 5px;
-      display: none;
-      text-align: center; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre {
-        position: relative; }
-        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre .triangle_border_up, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre .triangle_border_up {
-          width: 0;
-          height: 0;
-          border-width: 0 7px 7px;
-          border-style: solid;
-          border-color: transparent transparent #d3d3d3;
-          position: absolute;
-          top: -17px;
-          left: 50%;
-          margin-left: -7px; }
-          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre .triangle_border_up em, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre .triangle_border_up em {
-            display: block;
-            width: 0;
-            height: 0;
-            border-width: 0 6px 6px;
-            border-style: solid;
-            border-color: transparent transparent #fff;
-            position: absolute;
-            top: 1px;
-            left: -6px; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del:hover, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover {
-      background: url(../img/car-del_.png) no-repeat center #808080; }
-      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del:hover .qipao, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover .qipao {
-        display: block; }
-  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc {
-    right: 35px;
-    background: url(../img/sc.png) no-repeat center #f2f2f2; }
-    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover {
-      background: url(../img/sc_.png) no-repeat center #808080; }
-.shop-car-main .car-hasGoods-main .whole {
-  height: 50px;
-  line-height: 50px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  padding-left: 15px;
-  margin-top: 20px;
-  color: #808080;
-  position: relative; }
-  .shop-car-main .car-hasGoods-main .whole .all-check {
+        top: 2px; }
+        .shop-car-main .car-hasGoods-main .car-hasGoods-table table .all-check.checked {
+          background: url(../img/yes.png) no-repeat center #3f69a5;
+          border-color: #3f69a5;
+          background-size: 10px; }
+  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table th {
+    padding-left: 15px;
+    height: 50px;
+    font-size: 14px;
+    color: #000; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item table th .kf_sp {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      background: url(../img/kefu.png) center center no-repeat;
+      background-size: 25px;
+      margin-left: 10px;
+      cursor: pointer;
+      position: relative;
+      top: 2px; }
+  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .all-check {
     width: 15px;
     height: 15px;
     background: #fff;
-    border: 1px solid #E6E6E6;
     border-radius: 3px;
     float: left;
-    margin-right: 20px; }
-    .shop-car-main .car-hasGoods-main .whole .all-check.checked {
+    margin-right: 20px;
+    position: relative;
+    top: 8px;
+    border: 1px solid #e6e6e6; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .all-check.checked {
       background: url(../img/yes.png) no-repeat center #3f69a5;
       background-size: 10px;
       border-color: #3f69a5; }
-  .shop-car-main .car-hasGoods-main .whole p {
-    float: left;
-    margin-right: 20px; }
-  .shop-car-main .car-hasGoods-main .whole .del-all {
+  .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui {
+    position: relative;
     cursor: pointer; }
-    .shop-car-main .car-hasGoods-main .whole .del-all:hover {
-      color: #ff3333; }
-  .shop-car-main .car-hasGoods-main .whole .whole-attr {
-    margin-left: 90px;
-    position: absolute;
-    right: 100px;
-    height: 20px;
-    line-height: 20px;
-    top: 15px; }
-    .shop-car-main .car-hasGoods-main .whole .whole-attr em {
-      float: left; }
-    .shop-car-main .car-hasGoods-main .whole .whole-attr i {
-      color: #ff3333;
-      float: left; }
-    .shop-car-main .car-hasGoods-main .whole .whole-attr span {
-      float: left;
-      margin-right: 25px; }
-    .shop-car-main .car-hasGoods-main .whole .whole-attr .whole-price {
-      color: #ff3333;
-      font-size: 15px; }
-  .shop-car-main .car-hasGoods-main .whole button {
-    width: 100px;
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui img {
+      position: relative;
+      left: -63px; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box {
+      width: 350px;
+      box-shadow: 0 0 5px 0;
+      background: #fff;
+      z-index: 999;
+      padding: 20px 20px 0 20px;
+      position: absolute;
+      top: 50px;
+      left: -358px;
+      color: #e6e6e6;
+      border: 1px solid #e6e6e6;
+      display: none; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item {
+        height: 50px;
+        font-size: 12px;
+        position: relative; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item img {
+          float: left;
+          display: block;
+          margin-right: 12px; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item p {
+          color: #666;
+          text-align: left; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item span {
+          color: #bfbfbf;
+          float: left; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item button {
+          width: 60px;
+          height: 30px;
+          border-radius: 3px;
+          background: #ff3333;
+          color: #fff;
+          border: none;
+          outline: none;
+          position: absolute;
+          right: 0;
+          top: 0; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item table .more-youhui .more-youhui-box .more-youhui-item button.get {
+            background: #808080;
+            pointer-events: none; }
+  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content {
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    position: relative; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian {
+      height: 64px;
+      line-height: 64px;
+      padding-left: 20px;
+      color: #808080; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box {
+        width: 60px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        color: #ff3333;
+        border: 1px solid #ff3333;
+        position: relative;
+        float: left;
+        margin-top: 18px;
+        margin-right: 10px; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box:before {
+          position: absolute;
+          border-left: 13px solid #fff;
+          border-bottom: 7px solid transparent;
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          top: 25px;
+          left: 0; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian .manjian-box:after {
+          position: absolute;
+          border-left: 16px solid #ff3333;
+          border-bottom: 8px solid transparent;
+          content: " ";
+          display: block;
+          width: 0;
+          height: 0;
+          top: 25px;
+          left: -1px;
+          z-index: -1; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .car-manjian a {
+        color: #ff3333; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check {
+      display: inline-block; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left {
+        width: 54px;
+        height: 80px;
+        float: left;
+        display: flex;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        justify-content: center;
+        align-items: center; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check {
+          width: 15px;
+          height: 15px;
+          background: #fff;
+          border-radius: 3px;
+          position: relative;
+          left: -4px;
+          border: 1px solid #e6e6e6; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check.checked {
+            background: url(../img/yes.png) no-repeat center #3f69a5;
+            background-size: 10px;
+            border-color: #3F69A5; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-left .all-check.isArea {
+            pointer-events: none;
+            opacity: .6; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right {
+        width: 1142px;
+        margin-bottom: 20px; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-img {
+          width: 80px;
+          height: 80px;
+          border: 1px solid #e6e6e6;
+          float: left;
+          margin-right: 30px;
+          position: relative; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-img img {
+            width: 100%;
+            height: 100%;
+            display: block; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right p {
+          color: #000;
+          margin-bottom: 10px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right p:hover {
+            color: #ff3333; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message {
+          width: 552px;
+          border: 1px dotted transparent;
+          padding: 15px 0 15px 5px;
+          margin-right: 48px;
+          float: left;
+          position: relative;
+          min-height: 30px;
+          margin-top: 10px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message.bor {
+            border-color: #ccc; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:hover {
+            border-color: #ccc; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:hover .hasGoods-xiugai {
+              display: block; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message:last-child {
+            margin-bottom: 0; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li {
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 5px; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .all-check {
+              width: 15px;
+              height: 15px;
+              background: #fff;
+              border: 1px solid #e6e6e6;
+              border-radius: 3px;
+              float: left;
+              margin-right: 20px; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .all-check.checked {
+                background: url(../img/yes.png) no-repeat center #3f69a5;
+                background-size: 10px;
+                border-color: #3f69a5; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li ul {
+              float: left;
+              margin-right: 100px;
+              width: 350px;
+              height: 60px;
+              line-height: 30px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li ul li {
+                margin-right: 10px;
+                float: left;
+                line-height: 30px; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right {
+              width: 112px;
+              height: 30px;
+              float: left;
+              margin-right: 30px;
+              margin-bottom: 20px;
+              margin-left: 65px;
+              line-height: 28px;
+              position: absolute;
+              right: -3px;
+              top: 0; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a {
+                display: block;
+                width: 30px;
+                height: 28px;
+                line-height: 27px;
+                font-size: 20px;
+                border: 1px solid #ccc; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a:hover {
+                  border: 1px solid #ff3333;
+                  color: #ff3333; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right a.no {
+                  pointer-events: none;
+                  color: #ccc; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right .diyr-txt {
+                width: 35px;
+                height: 28px;
+                border-bottom: 1px solid #ccc;
+                border-top: 1px solid #ccc;
+                border-right: 0;
+                border-left: 0;
+                outline: none;
+                position: relative; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right .text-value {
+                display: none; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .check-li-del {
+              width: 25px;
+              height: 25px;
+              background: url(../img/car-del.png) no-repeat center;
+              float: left;
+              display: none;
+              cursor: pointer;
+              position: absolute;
+              right: 10px;
+              top: 3px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .hasGoods-xiugai {
+            width: 35px;
+            height: 24px;
+            line-height: 24px;
+            border: 1px solid #ccc;
+            color: #808080;
+            background-image: url(../img/qianbi.png);
+            background-repeat: no-repeat;
+            background-position: 10px center;
+            background-color: #fff;
+            padding-left: 25px;
+            cursor: pointer;
+            display: none;
+            position: absolute;
+            left: -29.5px;
+            top: -10px; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .hasGoods-xiugai:hover {
+              background-image: url(../img/qianbi_.png);
+              color: #ff3333;
+              border: 1px solid #ff3333; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt {
+          width: 420px;
+          float: left;
+          padding: 15px 0;
+          margin-top: 10px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            top: 0;
+            margin-right: 0;
+            float: left;
+            width: 157px;
+            height: 60px;
+            line-height: 35px;
+            margin-bottom: 7px;
+            text-align: center; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao {
+              width: 75px;
+              height: 24px;
+              line-height: 24px;
+              color: #3f69a5;
+              padding-left: 10px;
+              border: 1px solid #3f69a5;
+              background: url(../img/dayuhao_.png) no-repeat 64px;
+              cursor: pointer;
+              position: absolute;
+              right: 0;
+              top: 42px; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box {
+              width: 250px;
+              min-height: 120px;
+              background: #fff;
+              box-shadow: 0 0 5px 0;
+              border: 1px solid #e6e6e6;
+              color: #e6e6e6;
+              position: absolute;
+              top: 73px;
+              right: 0;
+              padding: 10px;
+              z-index: 999;
+              display: none; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item {
+                display: inline-block;
+                overflow: hidden; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin {
+                  width: 16px;
+                  height: 16px;
+                  border-radius: 50%;
+                  border: 1px solid #ccc;
+                  float: left;
+                  margin-right: 12px;
+                  margin-top: 3px; }
+                  .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item .kongxin.dian {
+                    border: 1px solid #ff3333;
+                    background: url(../img/red-dot.png) no-repeat center; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item p {
+                  float: left;
+                  width: 100%;
+                  text-align: center;
+                  top: 0; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-item button {
+                  width: 60px;
+                  height: 30px;
+                  border-radius: 3px;
+                  background: #fff;
+                  color: #666;
+                  border: 1px solid #ccc;
+                  float: left;
+                  margin-right: 15px;
+                  outline: none; }
+              .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn {
+                margin-left: 50px; }
+                .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price .more-cuXiao-box .more-cuXiao-btn .red-btn {
+                  background: #ff3333;
+                  color: #fff; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-price p {
+              color: #666;
+              font-size: 14px;
+              text-align: center;
+              position: relative;
+              margin-top: 4px;
+              width: 114px;
+              height: 100%;
+              line-height: 35px; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .hasGoods-check-xiaoji {
+            color: #666;
+            position: relative;
+            top: 0;
+            float: left;
+            padding: 0;
+            margin: 0;
+            height: 60px;
+            line-height: 35px;
+            width: 120px;
+            margin-bottom: 7px;
+            font-size: 14px;
+            text-align: center; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .gwc_wt .add_last_th {
+            padding: 0;
+            margin: 0;
+            color: #ff3333;
+            display: inline-block;
+            float: left;
+            position: relative;
+            right: 0;
+            overflow: hidden;
+            top: 0;
+            font-size: 14px;
+            text-align: center;
+            width: 105px;
+            padding-left: 40px;
+            height: 60px;
+            line-height: 35px;
+            margin-bottom: 7px; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng {
+      width: 100%;
+      padding-left: 60px;
+      display: inline-block; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p {
+        float: left;
+        height: 30px;
+        cursor: pointer; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:hover {
+          color: #ff3333; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:nth-of-type(1) {
+          width: 360px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-zeng p:nth-of-type(2) {
+          width: 45px; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc {
+      width: 35px;
+      height: 35px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: pointer;
+      background: url(../img/car-del.png) no-repeat center #f2f2f2;
+      background-size: 17px; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao {
+        z-index: 2;
+        position: absolute;
+        top: 46px;
+        left: -20px;
+        width: 75px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 12px;
+        color: #999;
+        background: #fff;
+        border: 1px solid #dcdcdc;
+        border-radius: 5px;
+        display: none;
+        text-align: center; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre {
+          position: relative; }
+          .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre .triangle_border_up, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre .triangle_border_up {
+            width: 0;
+            height: 0;
+            border-width: 0 7px 7px;
+            border-style: solid;
+            border-color: transparent transparent #d3d3d3;
+            position: absolute;
+            top: -17px;
+            left: 50%;
+            margin-left: -7px; }
+            .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del .qipao .pre .triangle_border_up em, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc .qipao .pre .triangle_border_up em {
+              display: block;
+              width: 0;
+              height: 0;
+              border-width: 0 6px 6px;
+              border-style: solid;
+              border-color: transparent transparent #fff;
+              position: absolute;
+              top: 1px;
+              left: -6px; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del:hover, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover {
+        background: url(../img/car-del_.png) no-repeat center #808080; }
+        .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-del:hover .qipao, .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover .qipao {
+          display: block; }
+    .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc {
+      right: 35px;
+      background: url(../img/sc.png) no-repeat center #f2f2f2; }
+      .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-item-sc:hover {
+        background: url(../img/sc_.png) no-repeat center #808080; }
+  .shop-car-main .car-hasGoods-main .whole {
     height: 50px;
-    background: #3f69a5;
-    color: #fff;
-    font-size: 15px;
-    border: none;
-    outline: none;
-    position: absolute;
-    top: 0;
-    right: 0; }
-    .shop-car-main .car-hasGoods-main .whole button:hover {
-      background-color: #4e82cc; }
+    line-height: 50px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    padding-left: 15px;
+    margin-top: 20px;
+    color: #808080;
+    position: relative; }
+    .shop-car-main .car-hasGoods-main .whole .all-check {
+      width: 15px;
+      height: 15px;
+      background: #fff;
+      border: 1px solid #E6E6E6;
+      border-radius: 3px;
+      float: left;
+      margin-right: 20px; }
+      .shop-car-main .car-hasGoods-main .whole .all-check.checked {
+        background: url(../img/yes.png) no-repeat center #3f69a5;
+        background-size: 10px;
+        border-color: #3f69a5; }
+    .shop-car-main .car-hasGoods-main .whole p {
+      float: left;
+      margin-right: 20px; }
+    .shop-car-main .car-hasGoods-main .whole .del-all {
+      cursor: pointer; }
+      .shop-car-main .car-hasGoods-main .whole .del-all:hover {
+        color: #ff3333; }
+    .shop-car-main .car-hasGoods-main .whole .whole-attr {
+      margin-left: 90px;
+      position: absolute;
+      right: 100px;
+      height: 20px;
+      line-height: 20px;
+      top: 15px; }
+      .shop-car-main .car-hasGoods-main .whole .whole-attr em {
+        float: left; }
+      .shop-car-main .car-hasGoods-main .whole .whole-attr i {
+        color: #ff3333;
+        float: left; }
+      .shop-car-main .car-hasGoods-main .whole .whole-attr span {
+        float: left;
+        margin-right: 25px; }
+      .shop-car-main .car-hasGoods-main .whole .whole-attr .whole-price {
+        color: #ff3333;
+        font-size: 15px; }
+    .shop-car-main .car-hasGoods-main .whole button {
+      width: 100px;
+      height: 50px;
+      background: #3f69a5;
+      color: #fff;
+      font-size: 15px;
+      border: none;
+      outline: none;
+      position: absolute;
+      top: 0;
+      right: 0; }
+      .shop-car-main .car-hasGoods-main .whole button:hover {
+        background-color: #4e82cc; }
 
 /*登录*/
 .login-main {

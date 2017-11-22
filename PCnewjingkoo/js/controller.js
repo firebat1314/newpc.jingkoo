@@ -4,7 +4,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
     .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
             $rootScope.title = toState.title;
-            if (toState.title == "首页") {
+            if (toState.title == "镜库首页") {
                 $rootScope.allFenLei = true;
             } else {
                 $rootScope.allFenLei = false;
@@ -22,6 +22,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             } else {
                 $rootScope.allNav = false;
                 $rootScope.allNavs = false;
+            }
+            if(toState.name == "bulk-order"){
+                $rootScope.showHomeBtn = true;
+            }else{
+                $rootScope.showHomeBtn = false;
             }
         });
     }])
@@ -641,7 +646,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 if (res.pc_index_tan_time == 0) {
                     var img = new Image();
                     img.src = res.ads[0].ad_img;
-                    img.onload = () => {
+                    img.onload = function () {
                         $scope.ad_img = (img.src);
                     }
                 } else {
@@ -649,7 +654,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (ipCookie("show_ads_time") < res.pc_index_tan_second) {
                         var img = new Image();
                         img.src = res.ads[0].ad_img;
-                        img.onload = () => {
+                        img.onload = function () {
                             $scope.ad_img = (img.src);
                         }
                         ipCookie("show_ads_time", ++num);
@@ -1391,7 +1396,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         })
     }])
-    //闪购  
+    //闪购
     .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐
         $rootScope.isShow = false;
@@ -1708,14 +1713,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         };
     }])
-    //新品专区
-    .controller('new-goods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
-    	//控制首页会员中心显隐
-        $rootScope.isShow = false;
-        //控制header和footer显隐
-        $rootScope.change = true;
-    }])
-    
     //优惠券
     .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
         //控制首页会员中心显隐
@@ -3375,6 +3372,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.ye = data.page;
                     $scope.count = data.count;
                 }
+                $scope.listControl();
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
@@ -4178,6 +4176,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     }
                                     //console.log($scope.goodsCarParams);
                                     //每次更新获取商品数量改变价格 接口
+                                    var cool = layer.load(0, { shade: [0.3, '#fff'] });
                                     $http({
                                         method: "POST",
                                         url: '' + $rootScope.ip + '/Goods/change_goods_number',
@@ -4185,6 +4184,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
+                                            layer.close(cool);
                                             //console.log(data);
                                             if (data.status) {
                                                 $scope.listTotalNumber = data.number;
@@ -4900,6 +4900,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.arr = [{}];
+                        layer.confirm('商品已添加至购物车', {
+                            btn: ['去结算', '继续选购'], //按钮
+                            title: '提示', btnAlign: 'c',
+                            yes: function (index) {
+                                $state.go('shop-car');
+                                layer.close(index);
+                            },
+                            btn2: function (index) {
+                                layer.close(index);
+                                $scope.getAttrList();
+                            }
+                            // closeBtn: 0
+                        });
                         $rootScope.$broadcast('upCarList');
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -5032,12 +5045,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.goBulkOrder = function () {
-            $state.go('bulk-order', {
+            window.open($state.href('bulk-order', {
                 goods_id: $stateParams.goods_id,
                 shop_price: $scope.shopDetailData.data.shop_price,
                 is_promote: $scope.shopDetailData.data.is_promote,
                 zhouwei: $scope.shopDetailData.data.zhouwei
-            });
+            }));
         };
     }])
     //商品批量下单页
@@ -5077,10 +5090,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         }
         $scope.getdata();
 
-
-
-
-
         var num_s = 1;
         var count = 0;
         var old_num = 0;
@@ -5113,7 +5122,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             document.getElementsByClassName('bulk-order-table')[0].onmousedown = function (event) {
                 var is_batch_table = $(event.target).isChildAndSelfOf(".batch_table");
                 var is_zhouwei = $(event.target).isChildAndSelfOf("input[name=zhouwei]");
-                if (is_batch_table || is_zhouwei || $("input:focus").hasClass("text_inp")) {
+				// || $("input:focus").hasClass("text_inp")
+                if (is_batch_table || is_zhouwei) {
                     return;
                 }
                 var isSelect = true;
@@ -5230,26 +5240,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
 
-            setTimeout(function () {
-                $('#table_111 tr td').mouseover(function () {
+                $('#table_111 tr td').live("mouseover", function () {
                     //console.log('hh');
                     //$(this).siblings().eq(0).css('background','#fedede');
                     $(this).parent().find("td").eq(0).css('background', '#ebebeb');
                     //$(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#fedede');
-                    $(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#ebebeb');
-                    $(".fist_td").eq($(this).index()).css('background', '#ebebeb');
+					if($(this).index() > 0){
+						//$(this).parent().parent().find("tr").eq(0).children().eq($(this).index()).css('background', '#ebebeb');
+						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('background', '#ebebeb');
+						//$(".fist_td").eq($(this).index()).css('background', '#ebebeb');
+						$(".fist").find("th").eq($(this).index()).css('background', '#ebebeb');
+					}
+                    
                 });
-                $('#table_111 tr td').mouseout(function () {
+                $('#table_111 tr td').live("mouseout", function () {
                     /*
                     //console.log($(this).siblings().eq(0).css('background'));
                     $(this).siblings().eq(0).css('background','#f5f5f5');
                     $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
                     */
                     $(this).parent().find("td").eq(0).css('background', '#f5f5f5');
-                    $(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#f5f5f5');
-                    $(".fist_td").eq($(this).index()).css('background', '#f5f5f5');
+					if($(this).index() > 0){
+						$(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#f5f5f5');
+						$(".fist").find("th").eq($(this).index()).css('background', '#f5f5f5');
+					}
                 });
-            }, 500)
 
             function clearEventBubble(evt) {
                 if (evt.stopPropagation)
@@ -5274,7 +5289,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 if (count > 0) {
                     is_prompt = false;
                     // //console.log(is_prompt);
-                    layer.prompt({
+                    var layer_index = layer.prompt({
                         title: '共选择' + count + "种,请填写数量", zIndex: 1260, formType: 0, cancel: function (index, layero) {
                             //if(confirm('确定要关闭么')){
                             //只有当点击confirm框的确定时，该层才会关闭
@@ -5290,16 +5305,195 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }, function (text, index) {
                         //if (text > 0) {
                         //$(".seled").html();
-                        $(".seled").each(function () {
-                            seled_sel($(this), text);
-                            $(this).removeClass("seled");
-                        });
+						//layer.closeAll();
+						layer.close(index);
+                        layer.close(layer_index);
+						var prompt_cool = layer.load(0, { shade: [0.3, '#fff'], zIndex: 198910121260 });
+						
+						var qiu = new Array();
+						var zhu = new Array();
+						var data_id = new Array();
+						var goodsId = $('.add_to_cart').attr("data-id");
+						var arr_spec = new Array();//属性
 
+						var arr, reg = new RegExp("(^| )token=([^;]*)(;|$)");
+						arr = document.cookie.match(reg);
+						var token = arr[2];
+						var nums = text;
+
+						var spec = new Array();//属性
+						$(".attr_val").each(function () {
+							tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+							spec.push(tr_val_id);
+							$scope.trid = tr_val_id;
+						});
+						
+						$(".seled").each(function () {
+							qiu.push($(this).parent().find("td").eq(0).text());
+							zhu.push($(this).data("zhu"));
+							data_id.push($(this).data("id"));
+							//seled_sel($(this), text);
+							
+							if (nums > 0) {
+								$(this).text(nums);
+								$(this).css('background', nums == '' ? "" : '#ffecb6');
+							} else {
+								$(this).text(' ');
+								$(this).css('background', "");
+							}
+							$(this).removeClass("seled");
+						});
+						$.ajax({
+							url: '' + $rootScope.ip + '/Goods/batch_changeprices',
+							type: "POST",
+							dataType: "json",
+							async: true,
+							data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token,data_id : data_id },
+							success: function (data) {
+								for(var data_i = 0; data_i < data.data.length; data_i++){
+									var pic_count;
+									var price = data.data[data_i].price;
+									//$("input[name=shop_price]").val();
+
+									var data_id = data.data[data_i].data_id;
+									if(data.data[data_i].qiu == '' || data.data[data_i].zhu == '' || typeof data.data[data_i].zhu == 'undefined' || typeof data.data[data_i].qiu == 'undefined'){
+										continue;
+									}
+									//obj.attr("data-id");
+									if ($("#tr" + data_id).length == 0) {
+										var html = '';
+										if (nums != '' && nums > 0) {
+											html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+											html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
+											//obj.parent().find("td").eq(0).text()
+
+											html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
+											//obj.attr("data-zhu")
+											if (is_zhouwei == 1) {
+												html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+											}
+											$(".attr_val").each(function () {
+												tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+												tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+												html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+											});
+											pic_count = nums * price;
+											html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+											html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+											html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
+										}
+										$("#order").append(html);
+									} else if ($("#tr" + data_id).length > 0) {
+										if (nums > 0) {
+											var html = '';
+											if (nums != '') {
+												html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+												html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
+												//obj.parent().find("td").eq(0).text()
+
+												html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
+												//obj.attr("data-zhu")
+												if (is_zhouwei == 1) {
+													html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+												}
+												$(".attr_val").each(function () {
+													tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+													tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+													html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+												});
+												pic_count = nums * price;
+												html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+												html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+												html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+											}
+											$("#tr" + data_id).html(html);
+										} else {
+											$("#tr" + data_id).remove();
+										}
+									}
+									var tr_id = data_id;
+									//obj.attr("data-id");
+									if (nums > 0) {
+										$("#" + tr_id).text(nums);//toFixed(2)
+									}
+									pic_count = parseFloat(shop_price) * parseInt(nums);
+									$("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
+
+									if (nums == '' || ~~nums <= 0) {
+										$("#" + tr_id).parent(".attr_lists").remove();
+									}
+									update_cart_num();
+
+
+									//获取加入购物车参数
+									if (count == 0 || $(".attr_lists").length == 0) {
+										layer.msg("请选择下单商品");
+										return;
+									}
+									var is_true = false;
+									var i = 0;
+									var munber = new Array();//数量
+									var zhujing = new Array();//柱镜
+									var qiujing = new Array();//球镜
+									var arr_spec = new Array();//属性
+									var arr_attr = new Array();//属性
+									var zhouwei = new Array();//属性
+									$(".attr_lists").each(function () {
+										munber[i] = parseInt($(this).find(".nums").text());
+										if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+											is_true = true;
+											return false;
+										}
+										zhujing[i] = $(this).find(".zhujing").text();
+										qiujing[i] = $(this).find(".qiujing").text();
+										zhouwei[i] = $(this).find(".zhouwei").val();
+										var spec = new Array();//属性
+										var attr = new Array();//属性
+										//var spec = '';
+										//var attr = '';
+										$(this).find(".str_attr").each(function () {
+											//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+											//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+											spec.push($(this).find("input").val());
+											attr.push($(this).find("span").html());
+										})
+										arr_attr[i] = attr;
+										arr_spec[i] = spec;
+										i++;
+									});
+									if (is_true) {
+										layer.msg('数量参数错误！');
+										return false;
+									}
+									//属性构建完成
+									var goods = new Object();
+									goods.quick = 1;
+									goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
+
+									goods.member = munber;//数量
+									goods.spc = arr_spec;//属性
+									goods.qiujing = qiujing;//球镜
+									goods.zhujing = zhujing;//柱镜
+									goods.zhouwei = zhouwei;//轴位
+									goods.parent = 0;
+									goods.carttype = 0;
+									//goods.attr      = arr_attr;
+
+									$scope.goods = goods;
+									$("input[name=shop_price]").val(data.data[data_i].price);
+								}
+								layer.close(prompt_cool);
+							}
+						});
+						
+						//push
+						
+						layer.close(prompt_cool);
                         //}
-                        layer.close(index);
                         is_prompt = true;
                     });
                 }
+				$("#selectDiv").remove();
             }
 
 
@@ -5582,6 +5776,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                     });
                     pic_count = nums * price;
+					html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                     html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                 }
@@ -5603,6 +5798,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                         });
                         pic_count = nums * price;
+						html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                     }
@@ -5695,10 +5891,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log($scope.trid);
             }
         }
-
-
-
-
         $(function () {
             $("#nums").change(function () {
                 $("input[name=box]").val($(this).val());
@@ -5734,6 +5926,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var zhu = $(this).parent().attr("data-zhu");
                 var goodsId = $('.add_to_cart').attr("data-id");
                 var arr_spec = new Array();//属性
+				if(qiu == '' || zhu == '' || typeof zhu == 'undefined' || typeof qiu == 'undefined'){
+					return ;
+				}
 
 
                 /*$.post("batch.php",{step:"changeprice",id:goodsId,qiu:qiu,zhu:zhu}, function(data){
@@ -5783,6 +5978,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                         });
                         pic_count = nums * price;
+                        html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                     }
@@ -5804,6 +6000,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                             });
                             pic_count = nums * price;
+                            html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                             html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                             html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                         }
@@ -5906,12 +6103,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
             //加入购物车
             //$(".add_to_cart").live("click",function (){
-
-
-
-
-
-
             // //console.log(document.cookie);
             // var arr,reg=new RegExp("(^| )token=([^;]*)(;|$)");
             // arr = document.cookie.match(reg);
@@ -5923,33 +6114,36 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     addToCartResponse(data);
             // }, 'json');
             //});
-
-
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
+				console.log(k_code);
                 if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                     var w_index = $(this).parent().index();//横向
                     var h_index = $(this).parent().parent().index();//纵向
                     switch (k_code) {
                         case 38:
-                            h_index -= 0;
+							//上
+                            h_index -= 1;
                             break;
                         case 40:
-                            h_index += 2;
+							//下
+                            h_index += 1;
                             break;
                         case 39:
-                            h_index += 1;
+							//右
+                            //h_index += 1;
                             w_index += 1;
                             break;
                         case 37:
-                            h_index += 1;
+							//左
+                            //h_index += 1;
                             w_index -= 1;
                             break;
                     }
                     if (w_index == 0) {
                         w_index -= 1;
                     }
-                    $("tr").eq(h_index).find("td").eq(w_index).trigger("click");
+                    $("#table_111").find("tr").eq(h_index).find("td").eq(w_index).trigger("click");
                     return false;
                 }
             });
@@ -5961,7 +6155,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             });
             $(window).scroll(function () {
                 var index = $(document).scrollTop();
-                if (index > 1) {
+				var height = $("#table_111").height();
+                if (index > 264 && index < (264 + height)) {
                     $(".fist").show();
                 } else {
                     $(".fist").hide();
@@ -5971,6 +6166,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
         //加入购物车
         $scope.join = function () {
+			var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
@@ -5983,6 +6179,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status == -1) {
+						layer.close(cool);
                         layer.msg(data.info);
                     } else if (data.status == 1) {
                         layer.msg(data.info);
@@ -5991,15 +6188,26 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         // $("#order").html('');
 
                         setTimeout(function () {
+							layer.close(cool);
                             location.reload()
                         }, 1000);
                     } else if (data.status == 0) {
+						layer.close(cool);
                         layer.msg(data.info);
                     }
                 }).error(function (data) {
                     layer.msg('商品球镜柱镜属性不能为空');
                 })
         };
+        /* 打印单预览按钮 */
+        $scope.printPreview = function () {
+            window.open($state.href('person-process-print-preview', {
+                params: JSON.stringify({
+                    goods: $scope.goods,
+                    goods_id: $stateParams.goods_id
+                })
+            }), '_blank');
+        }
         /* 预览按钮 */
         $scope.orderPreview = function () {
             window.open($state.href('person-process-preview', {
@@ -6009,6 +6217,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
             }), '_blank');
         }
+    }])
+    .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
+        $rootScope.isShow = false;
+        $rootScope.change = false;
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Goods/qz_batch_preview',
+            data: JSON.parse($stateParams.params),
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            if (data.status) {
+                $scope.data = data;
+                $scope.html = ($sce.trustAsHtml(data.content));
+                var js = document.createElement('script');
+                js.src = './plugins/js.js';
+                document.body.append(js)
+            }
+        })
     }])
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
         $rootScope.isShow = false;
@@ -10508,7 +10734,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // nextCell: ".sNext",
                     //vis:num
                 });
-            }, 1500)
+            }, 2500)
         };
 
         //分类导航栏切换

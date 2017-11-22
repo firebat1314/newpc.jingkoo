@@ -11,7 +11,7 @@ angular.module("myApp.router", ["ui.router"])
         $stateProvider
             //首页路由
             .state("home", {
-                title:'首页',
+                title:'镜库首页',
                 url: '/home',
                 templateUrl: 'template/index_v_1.0.html',
                 controller: "index_parentControl"
@@ -581,6 +581,13 @@ angular.module("myApp.router", ["ui.router"])
                 url:'/person-process-preview/:params',
                 templateUrl:'template/person-process/person-process-preview.html',
                 controller:"person-process-preview-control"
+            })
+            //个人中心-来镜加工预览
+            .state("person-process-print-preview",{
+                title:'批量下单预览',
+                url:'/person-process-print-preview/:params',
+                templateUrl:'template/person-process/person-process-print-preview.html',
+                controller:"person-process-print-preview-control"
             })
             //新品专区
             .state("newGoods",{

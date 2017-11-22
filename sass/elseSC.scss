@@ -1,17 +1,17 @@
 @charset "UTF-8";
 header{width: 100%;}   
-.header-main{width: 100%;}      
+.header-main{width: 100%;}       
 html{min-width: 1000px;     
-//  max-width: 1024px;        
+//  max-width: 1024px;         
     margin: 0 auto;}   
 .right-bar_box{display: none !important;}        
-
+ 
 
 .gird{width:1000px !important;margin:0 auto;}    
 
 @mixin border{
   background-color: #fff;
-  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.1); 
   -moz-box-shadow: 0 5px 15px rgba(0,0,0,.1);
   box-shadow: 0 5px 15px rgba(0,0,0,.1);
 }
@@ -21,7 +21,7 @@ $browser-default-font-size: 37.5px !default;
     @return pxTorem($px + 0px); 
   }@else if (unit($px) == em) {
     @return $px;
-  }
+  } 
   @return ($px / $browser-default-font-size) * 1rem;
 }
 

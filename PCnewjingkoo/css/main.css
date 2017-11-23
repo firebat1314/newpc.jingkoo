@@ -3874,6 +3874,45 @@ span.a_arrow_r {
         background: #fff;
         color: #808080;
         cursor: pointer; }
+      .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right {
+        height: 30px;
+        margin: 0 auto;
+        display: inline-block; }
+        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right a {
+          display: block;
+          width: 30px;
+          height: 28px;
+          line-height: 27px;
+          font-size: 20px;
+          border: 1px solid #ccc;
+          -webkit-touch-callout: none;
+          /* iOS Safari */
+          -webkit-user-select: none;
+          /* Chrome/Safari/Opera */
+          -khtml-user-select: none;
+          /* Konqueror */
+          -moz-user-select: none;
+          /* Firefox */
+          -ms-user-select: none;
+          /* Internet Explorer/Edge */
+          user-select: none; }
+          .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right a:hover {
+            border: 1px solid #ff3333;
+            color: #ff3333; }
+          .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right a.no {
+            pointer-events: none;
+            color: #ccc; }
+        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right .diyr-txt {
+          width: 35px;
+          height: 28px;
+          border-bottom: 1px solid #ccc;
+          border-top: 1px solid #ccc;
+          border-right: 0;
+          border-left: 0;
+          outline: none;
+          position: relative; }
+        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right .text-value {
+          display: none; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .pick-selt {
         width: 70px;
         height: 30px;

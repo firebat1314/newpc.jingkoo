@@ -4057,6 +4057,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.mouseenter = function (e) {
             console.log(e)
         }
+        
         //点击展开
         $scope.isZk = true;
         $scope.zhankai = function () {
@@ -4706,6 +4707,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).next().next().show();
             }
         };
+        
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (e, dsItem, index) {
             //console.log(index);
@@ -4781,7 +4783,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //设置一个空数组用来新增一行
         //用来存放镜片属性的数组
-        $scope.arr = [{}];
+        $scope.arr = [{member:1}];
         //新增一行
         $scope.addTr = function () {
             $scope.goodsSpectaclesCarParams.goods.member = [];
@@ -4806,18 +4808,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
-                $scope.arr.push({});
+                $scope.arr.push({member:1});
             }
         };
         //删除一行
-        $scope.delTr = function () {
+        $scope.delTr = function (index) {
+            console.log(index)
             if ($scope.arr.length == 1) {
                 layer.msg('客官,给留一件吧 = =');
-            } else {
+            } 
+            else if(index>=0){
+                $scope.arr.splice(index,1);
+            }else{
                 $scope.arr.pop();
             }
 
         };
+        
         //获取商品的各种属性值
         //传到购物车 镜片的数据
         $scope.goodsSpectaclesCarParams = {

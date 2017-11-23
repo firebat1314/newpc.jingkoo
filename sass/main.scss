@@ -4241,6 +4241,46 @@ $browser-default-font-size: 37.5px !default;
               color: #808080;
               cursor:pointer;
             }
+            .diy-right {
+              height: 30px;
+              margin: 0 auto;
+              display: inline-block;
+              a{
+                display: block; 
+                width: 30px;
+                height: 28px;   
+                line-height: 27px; 
+                font-size: 20px;
+                border:1px solid #ccc;
+                -webkit-touch-callout: none; /* iOS Safari */
+                -webkit-user-select: none; /* Chrome/Safari/Opera */
+                -khtml-user-select: none; /* Konqueror */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none;
+                &:hover{
+                  border:1px solid #ff3333;
+                  color:#ff3333;
+                }
+                &.no{
+                  pointer-events: none; 
+                  color:#ccc;
+                }
+              }
+              .diyr-txt{
+                width: 35px;
+                height: 28px; 
+                border-bottom: 1px solid #ccc;
+                border-top:1px solid #ccc;
+                border-right: 0;
+                border-left: 0;
+                outline: none;
+                position: relative;
+              }
+              .text-value{
+                display: none;
+              }
+            }
             .pick-selt {
               width: 70px;
               height: 30px;

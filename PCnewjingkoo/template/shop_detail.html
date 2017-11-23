@@ -154,7 +154,7 @@
                             </div>
                         </div>
                         <div class="saler_msg_box">
-                            <div class="saler_msg_d1">
+                            <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price">
                                 <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">{{marketPriceFormated}}</span>
                             </div>
                             <div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">

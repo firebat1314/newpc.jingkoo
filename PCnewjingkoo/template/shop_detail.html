@@ -20,7 +20,6 @@
         <div class="goods-detail-content">
             <div class="sp-box">
                 <div class="fl sp-nrleft">
-                    <div class="goods_brief" style="color: #e60000;margin-bottom: 9px;">{{shopDetailData.data.goods_brief}}</div>
                     <div id="preview" class="spec-preview"> <span class="jqzoom"><img jqimg={{imgUrl}} ng-src={{imgUrl}} alt=""></span> </div>
                     <!--缩图开始-->
                     <div class="spec-scroll"> <a ng-if="shopDetailData.gallery.length>5" class="prev"></a> <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
@@ -110,10 +109,10 @@
 
                     <div class="new_shop_detail_top">
                         <h2 class="new_shop_h2">{{goodsName}}</h2>
-                        <!--<p class="new_shop_p1">-->
-                            <!--<span class="new_shop_sp1">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
+                        <p class="new_shop_p1">
+                            <span class="new_shop_sp1">{{shopDetailData.data.goods_brief}}</span>
                             <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
-                        <!--</p>-->
+                        </p>
                         <div class="money_cg_box" ng-if="shopDetailData.promotion.length!=0 && shopDetailData.promotion[0].is_jti == 1 && shopDetailData.promotion[0].type == 0">
                             <div class="money_cg_d1">
                                 <span class="new_shop_sp3">价格</span>
@@ -275,7 +274,7 @@
                                         <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;" ng-mousemove="trItem.event = $event">
                                             <img ng-src={{trItem.img_path}} alt="">
                                         </div>
-                                        <div ng-if="show11" style="position: fixed; z-index: 100;top:{{trItem.event.clientY+5+'px'}};left:{{trItem.event.clientX+5+'px'}};width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                        <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
                                             <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" --> 
                                                 <img src="{{trItem.img_path}}" alt="" style="width: 100%;height: 100%;"> 
                                             </div>
@@ -399,9 +398,13 @@
                 </div>
                 <div class="fl sp-nrright" ng-if="data&&data.data.exchange_info">
                     <h2>{{goodsName}}</h2>
+                        <!-- <p class="new_shop_p1" style="    font-size: 12px;"> -->
+                            <!-- <span class="new_shop_sp1" style="    color: #FF3333;">{{shopDetailData.data.goods_brief}}</span> -->
+                            <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
+                        <!-- </p> -->
                     <div class="model">
                         <div class="fl goods-number">商品编号：<span>{{goodsSn}}</span></div>
-                        <div class="fl goods-number">型号：<span>MR1523-04</span></div>
+                        <!-- <div class="fl goods-number">型号：<span>MR1523-04</span></div> -->
                         <div class="fl goods-number">计价单位：<span>{{unit}}</span></div>
                     </div>
                     <div class="sale-points-bigBox">

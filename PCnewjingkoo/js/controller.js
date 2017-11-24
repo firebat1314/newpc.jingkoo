@@ -3991,7 +3991,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.catFn = function () {
             setTimeout(function () {
-                $(".ls1h3").live("click", function () {
+                $(".ls1h3").on("click", function () {
                     $(".ls1h3").removeClass("attr");
                     $(this).addClass("attr");
 

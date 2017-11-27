@@ -248,6 +248,46 @@ $browser-default-font-size: 37.5px !default;
         @extend .qycg;
         background: url(../img/xinxi_.png) no-repeat left;
       }
+      .ywy{
+        @extend .qycg;
+        background: url(../img/ywy_01.png) no-repeat left/18px;
+        position:relative;
+        cursor: pointer;
+        &:hover {
+          .ywy-box{
+            display: block;
+          }
+        }
+        .ywy-box{
+            display: none;
+            min-width:120px;
+              box-shadow:0 5px 15px rgba(0, 0, 0, 0.1);
+              z-index:9999;
+              background:#fff;
+              position:absolute; 
+              top: 40px;
+              left: 50%; 
+              margin-left: -118px;
+              padding: 15px 48px;
+              line-height: 0;
+              >span{
+                color: #333333;
+                display: block;
+                white-space: nowrap;
+                line-height: 2;
+                padding-left: 30px;
+                span{
+                  color: #0070c9;
+                }
+              }
+              .name{
+                background: url(../img/ywy_02.png) no-repeat left/18px;
+              }
+              .phone{
+                background: url(../img/ywy_03.png) no-repeat left/20px;
+              }
+        }
+      }
       .weixin{
         @extend .qycg;
         position:relative;
@@ -4200,6 +4240,46 @@ $browser-default-font-size: 37.5px !default;
               background: #fff;
               color: #808080;
               cursor:pointer;
+            }
+            .diy-right {
+              height: 30px;
+              margin: 0 auto;
+              display: inline-block;
+              a{
+                display: block; 
+                width: 30px;
+                height: 28px;   
+                line-height: 27px; 
+                font-size: 20px;
+                border:1px solid #ccc;
+                -webkit-touch-callout: none; /* iOS Safari */
+                -webkit-user-select: none; /* Chrome/Safari/Opera */
+                -khtml-user-select: none; /* Konqueror */
+                -moz-user-select: none; /* Firefox */
+                -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none;
+                &:hover{
+                  border:1px solid #ff3333;
+                  color:#ff3333;
+                }
+                &.no{
+                  pointer-events: none; 
+                  color:#ccc;
+                }
+              }
+              .diyr-txt{
+                width: 35px;
+                height: 28px; 
+                border-bottom: 1px solid #ccc;
+                border-top:1px solid #ccc;
+                border-right: 0;
+                border-left: 0;
+                outline: none;
+                position: relative;
+              }
+              .text-value{
+                display: none;
+              }
             }
             .pick-selt {
               width: 70px;

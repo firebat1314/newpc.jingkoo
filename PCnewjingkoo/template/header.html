@@ -55,6 +55,14 @@
                             <p>消息</p>
                         </div>
                     </a>
+                    <div class="ywy" ng-if="userData.user_info.parent_id>0">
+                        <!--<p>消息<span>({{msgNumber}})</span></p>-->
+                        <p>业务员</p>
+                        <div class="ywy-box">
+                            <span class="name">您的专属业务员：<span>{{userData.user_info.ywy_true_name}}</span></span>
+                            <span class="phone">手机号：<span>{{userData.user_info.ywy_phone}}</span></span>
+                        </div>
+                    </div>
                     <a href="">
                         <div class="phone-version">
                             <p>手机版</p>

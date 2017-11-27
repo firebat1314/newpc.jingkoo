@@ -102,7 +102,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     //console.log(data);
             //     if(data.status == 0){
             //         //layer.msg('用户失效，请重新登录');
-            //         location.href="http://www.jingku.cn/default.html";
+            //         location.href="http://newpc.jingkoo.net/default.html";
             //     }
             // })
         };
@@ -953,9 +953,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.qxsjFn = function () {
             $http({
                 method: "GET",
-                url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
+                url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
                 params: {
-                    type: 'hot',
+                    type: 'qxsj',
                     is_return: 1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
@@ -974,9 +974,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.jsjmFn = function () {
             $http({
                 method: "GET",
-                url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
+                url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
                 params: {
-                    type: 'new',
+                    type: 'jsjm',
                     is_return: 1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
@@ -995,9 +995,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.jjzyFn = function () {
             $http({
                 method: "GET",
-                url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
+                url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
                 params: {
-                    type: 'best',
+                    type: 'jjzy',
                     is_return: 1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
@@ -1910,7 +1910,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href="http://newpc.jingkoo.net/default.html";
                         } else {
                             layer.msg('关注成功');
                             $scope.shejiData.hot_goods.is_collect = 1;
@@ -1930,7 +1930,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href="http://newpc.jingkoo.net/default.html";
                         } else {
                             layer.msg('已取消关注');
                             $scope.shejiData.hot_goods.is_collect = 0;
@@ -3991,7 +3991,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.catFn = function () {
             setTimeout(function () {
-                $(".ls1h3").live("click", function () {
+                $(".ls1h3").on("click", function () {
                     $(".ls1h3").removeClass("attr");
                     $(this).addClass("attr");
 
@@ -4057,6 +4057,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.mouseenter = function (e) {
             console.log(e)
         }
+        
         //点击展开
         $scope.isZk = true;
         $scope.zhankai = function () {
@@ -4176,7 +4177,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     }
                                     //console.log($scope.goodsCarParams);
                                     //每次更新获取商品数量改变价格 接口
-                                    var cool = layer.load(0, { shade: [0.3, '#fff'] });
+                                    //var cool = layer.load(0, { shade: [0.3, '#fff'] });
                                     $http({
                                         method: "POST",
                                         url: '' + $rootScope.ip + '/Goods/change_goods_number',
@@ -4184,7 +4185,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            layer.close(cool);
+                                            //layer.close(cool);
                                             //console.log(data);
                                             if (data.status) {
                                                 $scope.listTotalNumber = data.number;
@@ -4706,6 +4707,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).next().next().show();
             }
         };
+        
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (e, dsItem, index) {
             //console.log(index);
@@ -4781,7 +4783,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //设置一个空数组用来新增一行
         //用来存放镜片属性的数组
-        $scope.arr = [{}];
+        $scope.arr = [{member:1}];
         //新增一行
         $scope.addTr = function () {
             $scope.goodsSpectaclesCarParams.goods.member = [];
@@ -4806,18 +4808,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
-                $scope.arr.push({});
+                $scope.arr.push({member:1});
             }
         };
         //删除一行
-        $scope.delTr = function () {
+        $scope.delTr = function (index) {
+            console.log(index)
             if ($scope.arr.length == 1) {
                 layer.msg('客官,给留一件吧 = =');
-            } else {
+            } 
+            else if(index>=0){
+                $scope.arr.splice(index,1);
+            }else{
                 $scope.arr.pop();
             }
 
         };
+        
         //获取商品的各种属性值
         //传到购物车 镜片的数据
         $scope.goodsSpectaclesCarParams = {
@@ -5079,6 +5086,171 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.goodsImg = data.goods.goods_img;
                     $scope.shop_price = data.goods.shop_price;
                     $scope.market_price = data.goods.market_price;
+					if(data.is_cache_goods == 1 && data.result.length > 0){
+						for(var data_i = 0; data_i < data.result.length; data_i++){
+							var pic_count;
+							var price = data.result[data_i].price;
+							var nums = data.result[data_i].nums;
+							//$("input[name=shop_price]").val();
+
+							var data_id = data.result[data_i].data_id;
+							if(data.result[data_i].qiu == '' || data.result[data_i].zhu == '' || typeof data.result[data_i].zhu == 'undefined' || typeof data.result[data_i].qiu == 'undefined'){
+								continue;
+							}
+							//obj.attr("data-id");
+							if ($("#tr" + data_id).length == 0) {
+								var html = '';
+								if (nums != '' && nums > 0) {
+									html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+									html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
+									//obj.parent().find("td").eq(0).text()
+
+									html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
+									//obj.attr("data-zhu")
+									if (is_zhouwei == 1) {
+										html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
+									}
+									var spc = data.result[data_i].spc;
+									for(var spc_i = 0; spc_i < spc.length; spc_i++){
+										
+										tr_val = spc[spc_i].value;
+										//$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+										tr_val_id = spc[spc_i].id;
+										//$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+										
+										html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+									}
+									/*
+									$(".attr_val").each(function () {
+										tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+										tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+										html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+									});
+									*/
+									pic_count = nums * price;
+									html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+									html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+									html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
+								}
+								$("#order").append(html);
+							} else if ($("#tr" + data_id).length > 0) {
+								if (nums > 0) {
+									var html = '';
+									if (nums != '') {
+										html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+										html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
+										//obj.parent().find("td").eq(0).text()
+
+										html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
+										//obj.attr("data-zhu")
+										if (is_zhouwei == 1) {
+											html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
+										}
+										var spc = data.result[data_i].spc;
+										for(var spc_i = 0; spc_i < spc.length; spc_i++){
+											
+											tr_val = spc[spc_i].value;
+											//$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+											tr_val_id = spc[spc_i].id;
+											//$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+											
+											html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+										}
+										/*
+										$(".attr_val").each(function () {
+											tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+											tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+											
+											html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+										});
+										*/
+										pic_count = nums * price;
+										html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+										html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+										html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+									}
+									//console.log(data.result[data_i].qiu+"|||"+data.result[data_i].zhu+"|||"+data_id+"|||"+nums);
+									$("#tr" + data_id).html(html);
+								} else {
+									$("#tr" + data_id).remove();
+								}
+							}
+							var tr_id = data_id;
+							//obj.attr("data-id");
+							if (nums > 0) {
+								$("#" + tr_id).text(nums);//toFixed(2)
+							}
+							pic_count = parseFloat(shop_price) * parseInt(nums);
+							$("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
+
+							if (nums == '' || ~~nums <= 0) {
+								$("#" + tr_id).parent(".attr_lists").remove();
+							}
+							update_cart_num();
+
+
+							//获取加入购物车参数
+							if (count == 0 || $(".attr_lists").length == 0) {
+								layer.msg("请选择下单商品");
+								return;
+							}
+							$("input[name=shop_price]").val(data.result[data_i].price);
+						}
+						var is_true = false;
+						var i = 0;
+						var munber = new Array();//数量
+						var zhujing = new Array();//柱镜
+						var qiujing = new Array();//球镜
+						var arr_spec = new Array();//属性
+						var arr_attr = new Array();//属性
+						var zhouwei = new Array();//属性
+						var dataid = new Array();//属性
+						$(".attr_lists").each(function () {
+							munber[i] = parseInt($(this).find(".nums").text());
+							if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+								is_true = true;
+								return false;
+							}
+							dataid[i] = $(this).find(".nums").attr("id");
+							zhujing[i] = $(this).find(".zhujing").text();
+							qiujing[i] = $(this).find(".qiujing").text();
+							zhouwei[i] = $(this).find(".zhouwei").val();
+							var spec = new Array();//属性
+							var attr = new Array();//属性
+							//var spec = '';
+							//var attr = '';
+							$(this).find(".str_attr").each(function () {
+								//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+								//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+								spec.push($(this).find("input").val());
+								attr.push($(this).find("span").html());
+							})
+							arr_attr[i] = attr;
+							arr_spec[i] = spec;
+							i++;
+						});
+						if (is_true) {
+							layer.msg('数量参数错误！');
+							return false;
+						}
+						//属性构建完成
+						var goods = new Object();
+						goods.quick = 1;
+						goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
+
+						goods.member = munber;//数量
+						goods.spc = arr_spec;//属性
+						goods.qiujing = qiujing;//球镜
+						goods.zhujing = zhujing;//柱镜
+						goods.zhouwei = zhouwei;//轴位
+						goods.parent = 0;
+						goods.dataid = dataid;
+						goods.carttype = 0;
+						//goods.attr      = arr_attr;
+
+						$scope.goods = goods;
+					}
+
                 }).error(function (data) {
                     //console.log(data);
                     if (data.status == 0) {
@@ -5286,6 +5458,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         selInfo += arr[i].innerHTML + "\n";
                     }
                 }
+				if(count > 300){
+					$(".seled").removeClass("seled");
+					is_prompt = true;
+					layer.msg("最多选择300种");
+					return false;
+				}
                 if (count > 0) {
                     is_prompt = false;
                     // //console.log(is_prompt);
@@ -5406,6 +5584,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 												html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
 												html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
 											}
+											console.log(data.data[data_i].qiu+"|||"+data.data[data_i].zhu+"|||"+data_id+"|||"+nums);
 											$("#tr" + data_id).html(html);
 										} else {
 											$("#tr" + data_id).remove();
@@ -5430,65 +5609,72 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 										layer.msg("请选择下单商品");
 										return;
 									}
-									var is_true = false;
-									var i = 0;
-									var munber = new Array();//数量
-									var zhujing = new Array();//柱镜
-									var qiujing = new Array();//球镜
-									var arr_spec = new Array();//属性
-									var arr_attr = new Array();//属性
-									var zhouwei = new Array();//属性
-									$(".attr_lists").each(function () {
-										munber[i] = parseInt($(this).find(".nums").text());
-										if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
-											is_true = true;
-											return false;
-										}
-										zhujing[i] = $(this).find(".zhujing").text();
-										qiujing[i] = $(this).find(".qiujing").text();
-										zhouwei[i] = $(this).find(".zhouwei").val();
-										var spec = new Array();//属性
-										var attr = new Array();//属性
-										//var spec = '';
-										//var attr = '';
-										$(this).find(".str_attr").each(function () {
-											//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
-											//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
-											spec.push($(this).find("input").val());
-											attr.push($(this).find("span").html());
-										})
-										arr_attr[i] = attr;
-										arr_spec[i] = spec;
-										i++;
-									});
-									if (is_true) {
-										layer.msg('数量参数错误！');
-										return false;
-									}
-									//属性构建完成
-									var goods = new Object();
-									goods.quick = 1;
-									goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
-
-									goods.member = munber;//数量
-									goods.spc = arr_spec;//属性
-									goods.qiujing = qiujing;//球镜
-									goods.zhujing = zhujing;//柱镜
-									goods.zhouwei = zhouwei;//轴位
-									goods.parent = 0;
-									goods.carttype = 0;
-									//goods.attr      = arr_attr;
-
-									$scope.goods = goods;
 									$("input[name=shop_price]").val(data.data[data_i].price);
 								}
+								var is_true = false;
+								var i = 0;
+								var munber = new Array();//数量
+								var zhujing = new Array();//柱镜
+								var qiujing = new Array();//球镜
+								var arr_spec = new Array();//属性
+								var arr_attr = new Array();//属性
+								var zhouwei = new Array();//属性
+								var dataid = new Array();//属性
+								$(".attr_lists").each(function () {
+									munber[i] = parseInt($(this).find(".nums").text());
+									if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+										is_true = true;
+										return false;
+									}
+									dataid[i] = $(this).find(".nums").attr("id");
+									zhujing[i] = $(this).find(".zhujing").text();
+									qiujing[i] = $(this).find(".qiujing").text();
+									zhouwei[i] = $(this).find(".zhouwei").val();
+									var spec = new Array();//属性
+									var attr = new Array();//属性
+									//var spec = '';
+									//var attr = '';
+									$(this).find(".str_attr").each(function () {
+										//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+										//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+										spec.push($(this).find("input").val());
+										attr.push($(this).find("span").html());
+									})
+									arr_attr[i] = attr;
+									arr_spec[i] = spec;
+									i++;
+								});
+								if (is_true) {
+									layer.msg('数量参数错误！');
+									return false;
+								}
+								//属性构建完成
+								var goods = new Object();
+								goods.quick = 1;
+								goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
+
+								goods.member = munber;//数量
+								goods.spc = arr_spec;//属性
+								goods.qiujing = qiujing;//球镜
+								goods.zhujing = zhujing;//柱镜
+								goods.zhouwei = zhouwei;//轴位
+								goods.parent = 0;
+								goods.dataid = dataid;
+								goods.carttype = 0;
+								//goods.attr      = arr_attr;
+
+								$scope.goods = goods;
+
+								layer.close(prompt_cool);
+							}, error: function(){
+								layer.msg("参数错误");
 								layer.close(prompt_cool);
 							}
 						});
 						
 						//push
 						
-						layer.close(prompt_cool);
+						//layer.close(prompt_cool);
                         //}
                         is_prompt = true;
                     });
@@ -5840,12 +6026,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var arr_spec = new Array();//属性
             var arr_attr = new Array();//属性
             var zhouwei = new Array();//属性
+			var dataid = new Array();//属性
             $(".attr_lists").each(function () {
                 munber[i] = parseInt($(this).find(".nums").text());
                 if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                     is_true = true;
                     return false;
                 }
+                dataid[i] = $(this).find(".nums").attr("id");
                 zhujing[i] = $(this).find(".zhujing").text();
                 qiujing[i] = $(this).find(".qiujing").text();
                 zhouwei[i] = $(this).find(".zhouwei").val();
@@ -5892,6 +6080,25 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         }
         $(function () {
+			setInterval(function(){
+				if($scope.goods){
+					console.log("setInterval");
+					$http({
+						method: "POST",
+						url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
+						data: {
+							goods: $scope.goods,
+							goods_id: $stateParams.goods_id
+						},
+						headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+					})
+						.success(function (data) {
+							console.log("cache_goods_batch_success");
+						}).error(function (data) {
+							console.log("cache_goods_batch_error");
+						})
+				}
+			}, 10000);
             $("#nums").change(function () {
                 $("input[name=box]").val($(this).val());
             });
@@ -6042,12 +6249,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var arr_spec = new Array();//属性
                 var arr_attr = new Array();//属性
                 var zhouwei = new Array();//属性
+				var dataid = new Array();//属性
                 $(".attr_lists").each(function () {
                     munber[i] = parseInt($(this).find(".nums").text());
                     if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                         is_true = true;
                         return false;
                     }
+                    dataid[i] = $(this).find(".nums").attr("id");
                     zhujing[i] = $(this).find(".zhujing").text();
                     qiujing[i] = $(this).find(".qiujing").text();
                     zhouwei[i] = $(this).find(".zhouwei").val();
@@ -6151,6 +6360,60 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var ids = $(this).attr("data-val");
                 $("td:[name=" + ids + ']').text('').css('background', '');
                 $(this).parent().parent().remove();
+				
+                var is_true = false;
+                var i = 0;
+                var munber = new Array();//数量
+                var zhujing = new Array();//柱镜
+                var qiujing = new Array();//球镜
+                var arr_spec = new Array();//属性
+                var arr_attr = new Array();//属性
+                var zhouwei = new Array();//属性
+				var dataid = new Array();//属性
+                $(".attr_lists").each(function () {
+                    munber[i] = parseInt($(this).find(".nums").text());
+                    if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+                        is_true = true;
+                        return false;
+                    }
+                    dataid[i] = $(this).find(".nums").attr("id");
+                    zhujing[i] = $(this).find(".zhujing").text();
+                    qiujing[i] = $(this).find(".qiujing").text();
+                    zhouwei[i] = $(this).find(".zhouwei").val();
+                    var spec = new Array();//属性
+                    var attr = new Array();//属性
+                    //var spec = '';
+                    //var attr = '';
+                    $(this).find(".str_attr").each(function () {
+                        //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+                        //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+                        spec.push($(this).find("input").val());
+                        attr.push($(this).find("span").html());
+                    })
+                    arr_attr[i] = attr;
+                    arr_spec[i] = spec;
+                    i++;
+                });
+                if (is_true) {
+                    //layer.msg('数量参数错误！');
+                    //return false;
+                }
+                //属性构建完成
+                var goods = new Object();
+                goods.quick = 1;
+                goods.goods_id = $stateParams.goods_id;
+
+                goods.member = munber;//数量
+                goods.spc = arr_spec;//属性
+                goods.qiujing = qiujing;//球镜
+                goods.zhujing = zhujing;//柱镜
+                goods.zhouwei = zhouwei;//轴位
+                goods.parent = 0;
+                goods.carttype = 0;
+                //goods.attr      = arr_attr;
+
+                $scope.goods = goods;
+
                 update_cart_num();
             });
             $(window).scroll(function () {
@@ -6200,22 +6463,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         /* 打印单预览按钮 */
+
         $scope.printPreview = function () {
+			if($scope.goods){
             window.open($state.href('person-process-print-preview', {
                 params: JSON.stringify({
                     goods: $scope.goods,
                     goods_id: $stateParams.goods_id
                 })
             }), '_blank');
+			}else{
+				layer.msg("请选择球柱镜");
+			}
         }
         /* 预览按钮 */
         $scope.orderPreview = function () {
+			if($scope.goods){
             window.open($state.href('person-process-preview', {
                 params: JSON.stringify({
                     goods: $scope.goods,
                     goods_id: $stateParams.goods_id
                 })
             }), '_blank');
+			}else{
+				layer.msg("请选择球柱镜");
+			}
         }
     }])
     .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {

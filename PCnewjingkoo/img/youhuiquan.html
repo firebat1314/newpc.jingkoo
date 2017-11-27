@@ -1,0 +1,117 @@
+<div class="youhuiquan-main">
+    <div class="brand-gg">
+        <img style="width:100%;height:100%;display: block;" src="img/youhuiquanBigPic.jpg" alt="">
+    </div>
+
+    <!--<div class="navc-wrap">-->
+        <!--<div class="nav-xdh all">-->
+            <!--<div class="zaki">全部分类<em></em></div>-->
+            <!--<ul class="xd-hd">-->
+                <!--<li class="on"><div class="wrp"><a href="#">全部</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <div class="coupon-hd cle">
+        <div class="cou-pxv">
+            <span ng-click="moren()">默认排序</span>
+            <span ng-click="guoqi()">即将过期</span>
+            <span ng-click="moneyMax()">面值最大</span>
+        </div>
+        <!--<div class="cou-goux">-->
+            <!--<span><input type="checkbox" id="go-1"/><label for="go-1"></label>全部类型</span>-->
+            <!--<span><input type="checkbox" id="go-2"/><label for="go-2"></label>运费券</span>-->
+        <!--</div>-->
+    </div>
+
+    <div class="coupon-box">
+        <div class="coupon-bd">
+            <ul class="cle">
+                <li ng-repeat="yhq in yhqData.list" repeat-done="circleFn()">
+                    <div class="wrp" ng-class="{'hbg':yhq.is_get==2,'shyg':yhq.is_get==1}">
+                        <div class="cmo-bg"></div>
+                        <div class="roosv">
+                            <div class="img"><img ng-src={{yhq.logo}}/></div>
+                            <div class="txt">
+                                <p class="rop-1"><em>¥</em>{{yhq.type_money | number:0}}<span>【满{{yhq.min_goods_amount | number:0}}元可用】</span></p>
+                                <p class="rop-2">{{yhq.type_name}}</p>
+                                <p class="rop-3">{{yhq.send_start_date}}--{{yhq.send_end_date}}</p>
+                            </div>
+                        </div>
+                        <div class="syu all">
+                            <div class="lnasi mb10" ng-show="yhq.is_get==0"><div class="myStat2" style="padding-top:0;margin:0 auto;width:88px;" data-dimension="80" data-text="已抢" data-percent="{{yhq.number}}" data-info="{{yhq.baifen}}" data-width="3" data-fontsize="12" data-fgcolor="#fff" data-bgcolor="#3871ff"></div></div>
+                            <a href="" class="lequ" ng-show="yhq.is_get==0" ng-click="lqYhq(yhq.type_id)">立即领取</a>
+                            <div class="ylq mb10" ng-show="yhq.is_get==1"></div>
+                            <a href="" ng-click="quList()" class="lequ" ng-show="yhq.is_get==1">立即使用</a>
+                            <div class="yqg mb10" ng-show="yhq.is_get==2"></div>
+                            <span class="yliwa" ng-show="yhq.is_get==2">已领完</span>
+                        </div>
+                    </div>
+                </li>
+                <div class="pages" style="float:left">
+                    <div id="Pagination"></div>
+                    <div class="searchPage">
+                        <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                        <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
+                        <!--<a href="javascript:;" class="page-btn">确定</a>-->
+                    </div>
+                </div>
+                <!--<li>-->
+                    <!--<div class="wrp hbg">-->
+                        <!--<div class="cmo-bg"></div>-->
+                        <!--<div class="roosv">-->
+                            <!--<div class="img"><img src="images/6.jpg"/></div>-->
+                            <!--<div class="txt">-->
+                                <!--<p class="rop-1"><em>¥</em>20<span>【满200元可用】</span></p>-->
+                                <!--<p class="rop-2">全平台可用</p>-->
+                                <!--<p class="rop-3">2016.02.12&#45;&#45;2016-08.02</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="syu">-->
+                            <!--<div class="yqg mb10"></div>-->
+                            <!--<span class="yliwa">已领完</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="wrp shyg">-->
+                        <!--<div class="cmo-bg"></div>-->
+                        <!--<div class="roosv">-->
+                            <!--<div class="img"><img src="images/6.jpg"/></div>-->
+                            <!--<div class="txt">-->
+                                <!--<p class="rop-1"><em>¥</em>20<span>【满200元可用】</span></p>-->
+                                <!--<p class="rop-2">全平台可用</p>-->
+                                <!--<p class="rop-3">2016.02.12&#45;&#45;2016-08.02</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="syu">-->
+                            <!--<div class="ylq mb10"></div>-->
+                            <!--<a href="#" class="lequ">立即领取</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!--<div class="next_fel">-->
+        <!--<p>点击查看下一个分类</p>-->
+        <!--<em></em>-->
+    <!--</div>-->
+</div>
+<script>
+    $(".zaki").click(function(){
+        $(this).parent().toggleClass("goot");
+    });
+</script>

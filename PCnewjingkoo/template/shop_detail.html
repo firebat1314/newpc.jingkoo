@@ -20,7 +20,6 @@
         <div class="goods-detail-content">
             <div class="sp-box">
                 <div class="fl sp-nrleft">
-                    <div class="goods_brief" style="color: #e60000;margin-bottom: 9px;">{{shopDetailData.data.goods_brief}}</div>
                     <div id="preview" class="spec-preview"> <span class="jqzoom"><img jqimg={{imgUrl}} ng-src={{imgUrl}} alt=""></span> </div>
                     <!--缩图开始-->
                     <div class="spec-scroll"> <a ng-if="shopDetailData.gallery.length>5" class="prev"></a> <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
@@ -110,10 +109,10 @@
 
                     <div class="new_shop_detail_top">
                         <h2 class="new_shop_h2">{{goodsName}}</h2>
-                        <!--<p class="new_shop_p1">-->
-                            <!--<span class="new_shop_sp1">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
+                        <p class="new_shop_p1">
+                            <span class="new_shop_sp1">{{shopDetailData.data.goods_brief}}</span>
                             <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
-                        <!--</p>-->
+                        </p>
                         <div class="money_cg_box" ng-if="shopDetailData.promotion.length!=0 && shopDetailData.promotion[0].is_jti == 1 && shopDetailData.promotion[0].type == 0">
                             <div class="money_cg_d1">
                                 <span class="new_shop_sp3">价格</span>
@@ -154,7 +153,7 @@
                             </div>
                         </div>
                         <div class="saler_msg_box">
-                            <div class="saler_msg_d1">
+                            <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price">
                                 <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">{{marketPriceFormated}}</span>
                             </div>
                             <div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
@@ -275,7 +274,7 @@
                                         <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;" ng-mousemove="trItem.event = $event">
                                             <img ng-src={{trItem.img_path}} alt="">
                                         </div>
-                                        <div ng-if="show11" style="position: fixed; z-index: 100;top:{{trItem.event.clientY+5+'px'}};left:{{trItem.event.clientX+5+'px'}};width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                        <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
                                             <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" --> 
                                                 <img src="{{trItem.img_path}}" alt="" style="width: 100%;height: 100%;"> 
                                             </div>
@@ -317,10 +316,19 @@
                                     <th ng-if="is_promotion==0">单价</th>
                                     <th ng-if="is_promotion==1">原价</th>
                                     <th ng-if="is_promotion==1">促销价</th>
-                                    <!--<th>时间</th>-->
+                                    <th></th>
                                 </tr>
                                 <tr ng-repeat="item in arr">
-                                    <td><input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"></td>
+                                    <td>
+                                        <div class="diy-right">
+                                            <span class="wenb">
+                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0)">－</a>
+                                                <input  type="number" class="fl c diyr-txt pick-text" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
+                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1">+</a>
+                                            </span>
+                                        </div>
+                                        <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
+                                    </td>
                                     <td><input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing"  ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
                                         <div class="dushu-box">
                                             <div class="dushu-tit"><p>选择度数</p><img ng-click="hideDuShuBox($event)" src="img/cha.png" alt=""></div>
@@ -355,7 +363,7 @@
                                     <td ng-if="is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{oldShopPrice}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{cxPrcie}}</td>
-                                    <!--<td><input class="pick-text" placeholder="1" type="text"></td>-->
+                                    <td><img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt=""></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -390,9 +398,13 @@
                 </div>
                 <div class="fl sp-nrright" ng-if="data&&data.data.exchange_info">
                     <h2>{{goodsName}}</h2>
+                        <!-- <p class="new_shop_p1" style="    font-size: 12px;"> -->
+                            <!-- <span class="new_shop_sp1" style="    color: #FF3333;">{{shopDetailData.data.goods_brief}}</span> -->
+                            <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
+                        <!-- </p> -->
                     <div class="model">
                         <div class="fl goods-number">商品编号：<span>{{goodsSn}}</span></div>
-                        <div class="fl goods-number">型号：<span>MR1523-04</span></div>
+                        <!-- <div class="fl goods-number">型号：<span>MR1523-04</span></div> -->
                         <div class="fl goods-number">计价单位：<span>{{unit}}</span></div>
                     </div>
                     <div class="sale-points-bigBox">

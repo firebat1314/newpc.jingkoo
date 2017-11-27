@@ -3130,7 +3130,8 @@ span.a_arrow_r {
         .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li {
           width: 165px;
           height: 236px;
-          margin-right: 20px; }
+          margin-right: 20px;
+          float: left; }
           .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li p {
             width: 100%;
             text-overflow: ellipsis;
@@ -4440,7 +4441,8 @@ span.a_arrow_r {
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-recommended .goods-recommended-content .tempWrap li {
           width: 128px;
           height: 188px;
-          margin-right: 25px; }
+          margin-right: 25px;
+          float: left; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .goods-recommended .goods-recommended-content .tempWrap li p {
             width: 100%;
             text-overflow: ellipsis;

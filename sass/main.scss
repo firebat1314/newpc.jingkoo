@@ -3193,7 +3193,7 @@ $browser-default-font-size: 37.5px !default;
             } 
             ul{ 
               width:100%;   
-              height:50px;  
+              height:50px;   
               padding-top: 4px;   
               zoom:1;
               display: flex;
@@ -3206,7 +3206,7 @@ $browser-default-font-size: 37.5px !default;
               overflow: hidden;
               position: relative;  
               li{
-                zoom:1;  
+                zoom:1;   
                 width:40px;  
                 height:40px; 
                 overflow: hidden; 
@@ -3338,6 +3338,7 @@ $browser-default-font-size: 37.5px !default;
             width:165px;
             height:236px;
             margin-right: 20px;
+            float: left; 
             p{
               width:100%;
               text-overflow: ellipsis;
@@ -4940,6 +4941,7 @@ $browser-default-font-size: 37.5px !default;
               width:128px;
               height:188px;
               margin-right: 25px;
+              float: left; 
               p{
                 width:100%;
                 text-overflow: ellipsis;

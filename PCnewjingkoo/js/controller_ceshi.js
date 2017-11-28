@@ -60,7 +60,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        $rootScope.ip = 'http://www.jingku.cn'; //当前域名
+        $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
 
         $scope.loginOut = function () {
             $http({
@@ -73,7 +73,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         ipCookie.remove("token");
-                        location.href = "http://www.jingku.cn/default.html";
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -102,7 +102,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     //console.log(data);
             //     if(data.status == 0){
             //         //layer.msg('用户失效，请重新登录');
-            //         location.href="http://www.jingku.cn/default.html";
+            //         location.href="http://newpc.jingkoo.net/default.html";
             //     }
             // })
         };
@@ -208,7 +208,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //个人信息数量
         $http({
             method: "POST",
-            url: 'http://www.jingku.cn/User/getTidings',
+            url: 'http://newpc.jingkoo.net/User/getTidings',
             data: {},
             headers: {
                 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
@@ -324,8 +324,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info);
                         ipCookie.remove("token");
-                        ipCookie.remove("has_login");
-                        location.href = "http://www.jingku.cn/default.html";
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     } else {
                         layer.msg(data.info);
                     }
@@ -365,8 +364,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //console.log(data);
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
-                        // layer.close(cool);
-                        location.href = "http://www.jingku.cn/default.html";
+                        layer.close(cool);
+                        location.href = "http://newpc.jingkoo.net/default.html";
                     }
                 })
         };
@@ -1146,7 +1145,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1164,7 +1163,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1392,7 +1391,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1553,7 +1552,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = "http://newpc.jingkoo.net/default.html";
                 layer.close(cool);
             }
         })
@@ -1620,7 +1619,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -1744,7 +1743,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -1872,7 +1871,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = "http://newpc.jingkoo.net/default.html";
                     layer.close(cool);
                 }
             })
@@ -1911,7 +1910,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href="http://newpc.jingkoo.net/default.html";
                         } else {
                             layer.msg('关注成功');
                             $scope.shejiData.hot_goods.is_collect = 1;
@@ -1931,7 +1930,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href="http://newpc.jingkoo.net/default.html";
                         } else {
                             layer.msg('已取消关注');
                             $scope.shejiData.hot_goods.is_collect = 0;
@@ -2117,7 +2116,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     ipCookie("login_by_phone", false, { expires: 21 });
-                    ipCookie("has_login", true, { expires: 21 });
                 });
             } else {
                 layer.msg('请先完成验证', { icon: 2, time: 800 });
@@ -3951,7 +3949,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //商品品牌专题页
-    .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll','$state', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll,$state) {
+    .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll) {
         $rootScope.isShow = false;
         $rootScope.change = true;
 
@@ -5262,12 +5260,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         }
-		Array.prototype.max = function(){ 
-			return Math.max.apply({},this) 
-		} 
-		Array.prototype.min = function(){ 
-			return Math.min.apply({},this) 
-		} 
         $scope.getdata();
 
         var num_s = 1;
@@ -5297,33 +5289,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
 
         (function () {
-			function myBrowser(){
-				var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-				//console.log(navigator);
-				console.log(userAgent);
-				var isOpera = userAgent.indexOf("Opera") > -1;
-				//console.log(isOpera);
-				if(isOpera){
-					return "Opera"
-				};//判断是否Opera浏览器
-				if(userAgent.indexOf("Firefox") > -1){
-					return "FF";
-				}//判断是否Firefox浏览器
-				if(userAgent.indexOf("Chrome") > -1){
-					return "Chrome";
-				}
-				if (userAgent.indexOf("Safari") > -1){
-					return "Safari";
-				}//判断是否Safari浏览器
-				if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
-					return "IE";
-				};//判断是否IE浏览器
-				if(userAgent.indexOf("Mozilla") > -1) {
-					return "IE";
-				};//判断是否IE浏览器
-			}
-			var mb = myBrowser();
-			//去掉浏览器右击默认事件
+
             //事件会在鼠标按键被按下时发生
             document.getElementsByClassName('bulk-order-table')[0].onmousedown = function (event) {
                 var is_batch_table = $(event.target).isChildAndSelfOf(".batch_table");
@@ -5351,10 +5317,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //clientX 返回当事件被触发时，鼠标指针的水平坐标。
                 //clientY 返回当事件被触发时，鼠标指针的垂直坐标。
                 //IE 属性  x,y 事件发生的位置的 x 坐标和 y 坐标，它们相对于用CSS动态定位的最内层包容元素。
-                //var startX = (evt.x || evt.clientX);
-				var startX = mb == 'IE' ? evt.clientX : evt.x;
-                //var startY = (evt.y || evt.clientY);
-				var startY = mb == 'IE' ? evt.clientY : evt.y;
+                var startX = (evt.x || evt.clientX);
+                var startY = (evt.y || evt.clientY);
                 top_ = document.body.scrollTop || document.documentElement.scrollTop;
                 left_ = document.body.scrollLeft || document.documentElement.scrollLeft;
                 //var selDiv = document.createElement("div");
@@ -5378,49 +5342,33 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var table_l = $("#table_111").offset().left, table_t = $("#table_111").offset().top;
                 var table_w = table_obj.offsetWidth, table_h = table_obj.offsetHeight;
                 //事件会在鼠标指针移动时发生
-				console.log(mb);
                 document.onmousemove = function () {
                     evt = window.event || arguments[0];
                     if (isSelect) {
                         var mousemove_top = document.body.scrollTop || document.documentElement.scrollTop;
                         var mousemove_left = document.body.scrollLeft || document.documentElement.scrollLeft;
-						var div_width = 0;
-						var div_height = 0;
-                        //_x = (evt.x || evt.clientX);
-                        //_y = (evt.y || evt.clientY);
-                        _x = mb == 'IE' ? evt.clientX : evt.x;
-                        _y = mb == 'IE' ? evt.clientY : evt.y;
-						//console.log(evt,_x,_y);
-
-                        if (mousemove_left > left_) {
-							div_width = Math.abs(_x - (mousemove_left - startX - left_));
-                            //selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
-                        } else {
-							div_width = Math.abs(_x - startX);
-                            //selDiv.style.width = Math.abs(_x - startX) + "px";
-                        }
-                        if (mousemove_top > top_) {
-							div_height = Math.abs(_y + (mousemove_top - startY - top_));
-                            //selDiv.style.height = Math.abs(_y + (mousemove_top - startY - top_)) + "px";
-                        } else {
-							div_height = Math.abs(_y - startY);
-                            //selDiv.style.height = Math.abs(_y - startY) + "px";
-                        }
-						if(div_width > 0 || div_height > 0){
-							selDiv.style.height = div_height + "px";
-							selDiv.style.width = div_width + "px";
-						}else{
-							return false;
-						}
                         if (selDiv.style.display == "none") {
                             selDiv.style.display = "";
                         }
+                        _x = (evt.x || evt.clientX);
+                        _y = (evt.y || evt.clientY);
                         //selDiv.style.left = Math.min(_x, startX) + "px";
                         selDiv.style.left = Math.min(Math.abs(_x + left_), Math.abs(startX + left_)) + "px";
+
+                        if (mousemove_left > left_) {
+                            selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
+                        } else {
+                            selDiv.style.width = Math.abs(_x - startX) + "px";
+                        }
                         //selDiv.style.top = Math.abs(startY + top_) + "px";
                         selDiv.style.top = Math.min(Math.abs(_y + top_), Math.abs(startY + top_)) + "px";
                         //selDiv.style.width = Math.abs(_x - startX) + "px";
 
+                        if (mousemove_top > top_) {
+                            selDiv.style.height = Math.abs(_y + (mousemove_top - startY - top_)) + "px";
+                        } else {
+                            selDiv.style.height = Math.abs(_y - startY) + "px";
+                        }
 
                         // ---------------- 关键算法 ---------------------
                         var _l = selDiv.offsetLeft, _t = selDiv.offsetTop;
@@ -5438,93 +5386,14 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             if (sl > _l && st > _t && selList[i].offsetLeft + table_l < _l + _w && selList[i].offsetTop + table_t < _t + _h) {
                                 if (selList[i].className.indexOf("seled") == -1 && $(selList[i]).attr("name") != 'desa') {
                                     //selList[i].attr("name")
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#dee9fa');
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
-									$(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
                                     selList[i].className = selList[i].className + " seled";
-                                }else if(selList[i].className.indexOf("seled") > -1){
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
-									$(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
-								}
+                                }
                             } else {
                                 if (selList[i].className.indexOf("seled") != -1) {
                                     selList[i].className = "bs_bg";
-									//
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#f5f5f5');
                                 }
-								
-								/*
-								else if(selList[i].className.indexOf("seled") > -1){
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', 'red');
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', 'red');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', 'red');
-								}
-								*/
                             }
                         }
-						var arr_td = new Array();
-						var arr_tr = new Array();
-						$(".seled").each(function(){
-							if($.inArray($(this).index(), arr_td) == -1){
-								arr_td.push($(this).index());
-							}
-							if($.inArray($(this).parent("tr").index(), arr_tr) == -1){
-								arr_tr.push($(this).parent("tr").index());
-							}
-						});
-						//清除样式
-						$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-						$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-						for(var seled_i = 0; seled_i < arr_tr.length; seled_i++){
-							//第一个tr top
-							if(arr_tr[seled_i] == arr_tr.min()){
-								//top
-								for(var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++){
-									if((arr_tr[seled_i] - 1) == 0){
-										$("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("th").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-									}else{
-										$("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-									}
-								}
-							}
-							//最后一个 bottom
-							if(arr_tr[seled_i] == arr_tr.max()){
-								for(var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++){
-									$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-								}
-							}
-							
-							//left
-							$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.min() - 1).css("border-right", "2px solid #3f69a5");
-							//right
-							$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.max()).css("border-right", "2px solid #3f69a5");
-						}
                     }
                     clearEventBubble(evt);
                 }
@@ -5546,16 +5415,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $('#table_111 tr td').live("mouseover", function () {
                     //console.log('hh');
                     //$(this).siblings().eq(0).css('background','#fedede');
-                    $(this).parent().find("td").eq(0).css('background', '#dee9fa');
-                    $(this).parent().find("td").eq(0).css('color', '#3f69a5');
+                    $(this).parent().find("td").eq(0).css('background', '#ebebeb');
                     //$(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#fedede');
 					if($(this).index() > 0){
 						//$(this).parent().parent().find("tr").eq(0).children().eq($(this).index()).css('background', '#ebebeb');
-						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('background', '#dee9fa');
-						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('color', '#3f69a5');
+						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('background', '#ebebeb');
 						//$(".fist_td").eq($(this).index()).css('background', '#ebebeb');
-						$(".fist").find("th").eq($(this).index()).css('background', '#dee9fa');
-						$(".fist").find("th").eq($(this).index()).css('color', '#3f69a5');
+						$(".fist").find("th").eq($(this).index()).css('background', '#ebebeb');
 					}
                     
                 });
@@ -5566,12 +5432,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
                     */
                     $(this).parent().find("td").eq(0).css('background', '#f5f5f5');
-                    $(this).parent().find("td").eq(0).css('color', 'rgb(102, 102, 102)');
 					if($(this).index() > 0){
 						$(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#f5f5f5');
-						$(this).parent().parent().children().eq(0).children().eq($(this).index()).css('color', 'rgb(102, 102, 102)');
 						$(".fist").find("th").eq($(this).index()).css('background', '#f5f5f5');
-						$(".fist").find("th").eq($(this).index()).css('color', 'rgb(102, 102, 102)');
 					}
                 });
 
@@ -5609,22 +5472,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             //if(confirm('确定要关闭么')){
                             //只有当点击confirm框的确定时，该层才会关闭
                             $(".seled").removeClass("seled");
-							//清除样式
-							$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-							$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-							$(".f5").css('background', 'rgb(245, 245, 245)');
-							$(".f5").css('color', 'rgb(102, 102, 102)');
                             layer.close(index);
                             is_prompt = true;
                             //}
                             return false;
                         }, btn2: function () {//这里就是你要的
                             $(".seled").removeClass("seled");
-							//清除样式
-							$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-							$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-							$(".f5").css('background', 'rgb(245, 245, 245)');
-							$(".f5").css('color', 'rgb(102, 102, 102)');
                             is_prompt = true;
                         },
                     }, function (text, index) {
@@ -5661,7 +5514,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 							
 							if (nums > 0) {
 								$(this).text(nums);
-								$(this).css('background', nums == '' ? "" : '#ebf3fe');
+								$(this).css('background', nums == '' ? "" : '#ffecb6');
 							} else {
 								$(this).text(' ');
 								$(this).css('background', "");
@@ -5811,20 +5664,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 								//goods.attr      = arr_attr;
 
 								$scope.goods = goods;
-								
-								//清除样式
-								$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-								$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-								$(".f5").css('color', 'rgb(102, 102, 102)');
-								$(".f5").css('background', 'rgb(245, 245, 245)');
 
 								layer.close(prompt_cool);
 							}, error: function(){
-								//清除样式
-								$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-								$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-								$(".f5").css('background', 'rgb(245, 245, 245)');
-								$(".f5").css('color', 'rgb(102, 102, 102)');
 								layer.msg("参数错误");
 								layer.close(prompt_cool);
 							}
@@ -6160,7 +6002,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
             if (nums > 0) {
                 obj.text(nums);
-                obj.css('background', nums == '' ? "" : '#ebf3fe');
+                obj.css('background', nums == '' ? "" : '#ffecb6');
             } else {
                 obj.text(' ');
                 obj.css('background', "");
@@ -6381,7 +6223,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 pic_count = parseFloat(shop_price) * parseInt(nums);
                 $("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
                 if (nums > 0) {
-                    $(this).parent().css('background', nums == '' ? "" : '#ebf3fe');
+                    $(this).parent().css('background', nums == '' ? "" : '#ffecb6');
                     $(this).parent().text(nums);
                 } else {
                     $(this).parent().css('background', "");

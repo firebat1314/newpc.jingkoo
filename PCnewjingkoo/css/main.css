@@ -4766,13 +4766,13 @@ span.a_arrow_r {
       .bulk-order-main .bulk-order-head .bulk-order-car span {
         color: #dc2d35; }
   .bulk-order-main .bulk-order-table {
-    min-height: 500px;
+    min-height: 300px;
     border-collapse: collapse; }
     .bulk-order-main .bulk-order-table table .table-origen {
       background: url(../img/tableOrigenLine.png) no-repeat center #f5f5f5;
       background-size: 100% 100%; }
     .bulk-order-main .bulk-order-table table th, .bulk-order-main .bulk-order-table table td {
-      height: 50px;
+      height: 40px;
       border: 1px solid #ccc;
       text-align: center; }
     .bulk-order-main .bulk-order-table table th:first-child {
@@ -4794,8 +4794,8 @@ span.a_arrow_r {
           border: none;
           outline: none; }
   .bulk-order-main .bulk-order-total {
-    height: 50px;
-    line-height: 50px;
+    height: 40px;
+    line-height: 40px;
     background: #f5f5f5;
     border: 1px solid #ccc;
     padding-left: 24px;
@@ -4807,8 +4807,8 @@ span.a_arrow_r {
       .bulk-order-main .bulk-order-total p span {
         color: #dc2d35; }
     .bulk-order-main .bulk-order-total button {
-      width: 155px;
-      height: 50px;
+      width: 135px;
+      height: 40px;
       border: none;
       outline: none;
       cursor: pointer;
@@ -4821,7 +4821,7 @@ span.a_arrow_r {
     margin-top: -1px;
     margin-bottom: 10px; }
     .bulk-order-main .bulk-order-ano-table table th, .bulk-order-main .bulk-order-ano-table table td {
-      height: 48px;
+      height: 40px;
       text-align: center; }
     .bulk-order-main .bulk-order-ano-table table th {
       background: #f5f5f5;

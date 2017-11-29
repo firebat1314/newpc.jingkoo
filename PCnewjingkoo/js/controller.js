@@ -23,9 +23,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $rootScope.allNav = false;
                 $rootScope.allNavs = false;
             }
-            if(toState.name == "bulk-order"){
+            if (toState.name == "bulk-order") {
                 $rootScope.showHomeBtn = true;
-            }else{
+            } else {
                 $rootScope.showHomeBtn = false;
             }
         });
@@ -60,7 +60,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        $rootScope.ip = 'http://www.jingku.cn'; //当前域名
+        $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
 
         $scope.loginOut = function () {
             $http({
@@ -73,7 +73,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         ipCookie.remove("token");
-                        location.href = "http://www.jingku.cn/default.html";
+                        location.href = $rootScope.ip + "/default.html";
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -102,7 +102,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //     //console.log(data);
             //     if(data.status == 0){
             //         //layer.msg('用户失效，请重新登录');
-            //         location.href="http://www.jingku.cn/default.html";
+            //         location.href=$rootScope.ip + "/default.html";
             //     }
             // })
         };
@@ -208,7 +208,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //个人信息数量
         $http({
             method: "POST",
-            url: 'http://www.jingku.cn/User/getTidings',
+            url: $rootScope.ip + '/User/getTidings',
             data: {},
             headers: {
                 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
@@ -325,7 +325,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         layer.msg(data.info);
                         ipCookie.remove("token");
                         ipCookie.remove("has_login");
-                        location.href = "http://www.jingku.cn/default.html";
+                        location.href = $rootScope.ip + "/default.html";
                     } else {
                         layer.msg(data.info);
                     }
@@ -366,7 +366,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         // layer.close(cool);
-                        location.href = "http://www.jingku.cn/default.html";
+                        location.href = $rootScope.ip + "/default.html";
                     }
                 })
         };
@@ -1146,7 +1146,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = $rootScope.ip + "/default.html";
                 layer.close(cool);
             }
         })
@@ -1164,7 +1164,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = $rootScope.ip + "/default.html";
                 layer.close(cool);
             }
         })
@@ -1392,7 +1392,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = $rootScope.ip + "/default.html";
                 layer.close(cool);
             }
         })
@@ -1553,7 +1553,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = "http://www.jingku.cn/default.html";
+                location.href = $rootScope.ip + "/default.html";
                 layer.close(cool);
             }
         })
@@ -1620,7 +1620,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = $rootScope.ip + "/default.html";
                     layer.close(cool);
                 }
             })
@@ -1744,7 +1744,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = $rootScope.ip + "/default.html";
                     layer.close(cool);
                 }
             })
@@ -1872,7 +1872,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = "http://www.jingku.cn/default.html";
+                    location.href = $rootScope.ip + "/default.html";
                     layer.close(cool);
                 }
             })
@@ -1911,7 +1911,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href=$rootScope.ip + "/default.html";
                         } else {
                             layer.msg('关注成功');
                             $scope.shejiData.hot_goods.is_collect = 1;
@@ -1931,7 +1931,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
-                            //location.href="http://www.jingku.cn/default.html";
+                            //location.href="http://newpc.jingkoo.net2017/11/28/default.html";
                         } else {
                             layer.msg('已取消关注');
                             $scope.shejiData.hot_goods.is_collect = 0;
@@ -3438,6 +3438,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.words = $scope.ListPage.keywords;
                     $scope.ding = data.ding;
                     $scope.is_true = data.is_true;
+                    $scope.listControl();
 
                     // for(var i = 0;i<$scope.shopListData.goods_attr_arr.length;i++){
                     //     for(var j = 0;j<$scope.shopListData.goods_attr_arr[i].data.length;j++){
@@ -3864,7 +3865,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 params: {
                     type: 'hot',
                     is_return: 1,
-                    cats:$stateParams.cat_id
+                    cats: $stateParams.cat_id
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -3951,7 +3952,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
     }])
     //商品品牌专题页
-    .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll','$state', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll,$state) {
+    .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state) {
         $rootScope.isShow = false;
         $rootScope.change = true;
 
@@ -4059,7 +4060,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.mouseenter = function (e) {
             console.log(e)
         }
-        
+
         //点击展开
         $scope.isZk = true;
         $scope.zhankai = function () {
@@ -4286,7 +4287,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.NumSelect = function (e) {
-            
+
             angular.element(e.target).focus().select();
         };
         $scope.change = function (e, pIndex, index, num) {
@@ -4709,7 +4710,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 angular.element(e.target).next().next().show();
             }
         };
-        
+
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (e, dsItem, index) {
             //console.log(index);
@@ -4785,7 +4786,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //设置一个空数组用来新增一行
         //用来存放镜片属性的数组
-        $scope.arr = [{member:1}];
+        $scope.arr = [{ member: 1 }];
         //新增一行
         $scope.addTr = function () {
             $scope.goodsSpectaclesCarParams.goods.member = [];
@@ -4810,7 +4811,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
-                $scope.arr.push({member:1});
+                $scope.arr.push({ member: 1 });
             }
         };
         //删除一行
@@ -4818,15 +4819,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             console.log(index)
             if ($scope.arr.length == 1) {
                 layer.msg('客官,给留一件吧 = =');
-            } 
-            else if(index>=0){
-                $scope.arr.splice(index,1);
-            }else{
+            }
+            else if (index >= 0) {
+                $scope.arr.splice(index, 1);
+            } else {
                 $scope.arr.pop();
             }
 
         };
-        
+
         //获取商品的各种属性值
         //传到购物车 镜片的数据
         $scope.goodsSpectaclesCarParams = {
@@ -5085,43 +5086,45 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.goodsId = $stateParams.goods_id;
 
                     $scope.goodsName = data.goods.goods_name;
+                    $scope.goods_id = data.goods.goods_id;
                     $scope.goodsImg = data.goods.goods_img;
                     $scope.shop_price = data.goods.shop_price;
                     $scope.market_price = data.goods.market_price;
-					if(data.is_cache_goods == 1 && data.result.length > 0){
-						for(var data_i = 0; data_i < data.result.length; data_i++){
-							var pic_count;
-							var price = data.result[data_i].price;
-							var nums = data.result[data_i].nums;
-							//$("input[name=shop_price]").val();
+                    if (data.is_cache_goods == 1 && data.result.length > 0) {
+                        for (var data_i = 0; data_i < data.result.length; data_i++) {
+                            var pic_count;
+                            var price = data.result[data_i].price;
+                            var pro_price = data.result[data_i].pro_price;
+                            var nums = data.result[data_i].nums;
+                            //$("input[name=shop_price]").val();
 
-							var data_id = data.result[data_i].data_id;
-							if(data.result[data_i].qiu == '' || data.result[data_i].zhu == '' || typeof data.result[data_i].zhu == 'undefined' || typeof data.result[data_i].qiu == 'undefined'){
-								continue;
-							}
-							//obj.attr("data-id");
-							if ($("#tr" + data_id).length == 0) {
-								var html = '';
-								if (nums != '' && nums > 0) {
-									html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-									html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
-									//obj.parent().find("td").eq(0).text()
+                            var data_id = data.result[data_i].data_id;
+                            if (data.result[data_i].qiu == '' || data.result[data_i].zhu == '' || typeof data.result[data_i].zhu == 'undefined' || typeof data.result[data_i].qiu == 'undefined') {
+                                continue;
+                            }
+                            //obj.attr("data-id");
+                            if ($("#tr" + data_id).length == 0) {
+                                var html = '';
+                                if (nums != '' && nums > 0) {
+                                    html = '<tr id="tr' + data_id + '" class="attr_lists" shop_price="' + price + '" pro_price="' + pro_price + '"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                                    html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
+                                    //obj.parent().find("td").eq(0).text()
 
-									html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
-									//obj.attr("data-zhu")
-									if (is_zhouwei == 1) {
-										html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
-									}
-									var spc = data.result[data_i].spc;
-									for(var spc_i = 0; spc_i < spc.length; spc_i++){
-										
-										tr_val = spc[spc_i].value;
-										//$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-										tr_val_id = spc[spc_i].id;
-										//$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-										
-										html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-									}
+                                    html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
+                                    //obj.attr("data-zhu")
+                                    if (is_zhouwei == 1) {
+                                        html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
+                                    }
+                                    var spc = data.result[data_i].spc;
+                                    for (var spc_i = 0; spc_i < spc.length; spc_i++) {
+
+                                        tr_val = spc[spc_i].value;
+                                        //$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                                        tr_val_id = spc[spc_i].id;
+                                        //$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+
+                                        html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                                    }
 									/*
 									$(".attr_val").each(function () {
 										tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
@@ -5129,35 +5132,35 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 										html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
 									});
 									*/
-									pic_count = nums * price;
-									html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
-									html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-									html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
-								}
-								$("#order").append(html);
-							} else if ($("#tr" + data_id).length > 0) {
-								if (nums > 0) {
-									var html = '';
-									if (nums != '') {
-										html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-										html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
-										//obj.parent().find("td").eq(0).text()
+                                    pic_count = nums * price;
+                                    html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                                    html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                                    html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
+                                }
+                                $("#order").append(html);
+                            } else if ($("#tr" + data_id).length > 0) {
+                                if (nums > 0) {
+                                    var html = '';
+                                    if (nums != '') {
+                                        html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                                        html += '<td align="center" class="qiujing">' + data.result[data_i].qiu + '</td>';
+                                        //obj.parent().find("td").eq(0).text()
 
-										html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
-										//obj.attr("data-zhu")
-										if (is_zhouwei == 1) {
-											html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
-										}
-										var spc = data.result[data_i].spc;
-										for(var spc_i = 0; spc_i < spc.length; spc_i++){
-											
-											tr_val = spc[spc_i].value;
-											//$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-											tr_val_id = spc[spc_i].id;
-											//$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-											
-											html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-										}
+                                        html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
+                                        //obj.attr("data-zhu")
+                                        if (is_zhouwei == 1) {
+                                            html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
+                                        }
+                                        var spc = data.result[data_i].spc;
+                                        for (var spc_i = 0; spc_i < spc.length; spc_i++) {
+
+                                            tr_val = spc[spc_i].value;
+                                            //$(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                                            tr_val_id = spc[spc_i].id;
+                                            //$(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+
+                                            html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                                        }
 										/*
 										$(".attr_val").each(function () {
 											tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
@@ -5166,92 +5169,92 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 											html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
 										});
 										*/
-										pic_count = nums * price;
-										html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
-										html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-										html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
-									}
-									//console.log(data.result[data_i].qiu+"|||"+data.result[data_i].zhu+"|||"+data_id+"|||"+nums);
-									$("#tr" + data_id).html(html);
-								} else {
-									$("#tr" + data_id).remove();
-								}
-							}
-							var tr_id = data_id;
-							//obj.attr("data-id");
-							if (nums > 0) {
-								$("#" + tr_id).text(nums);//toFixed(2)
-							}
-							pic_count = parseFloat(shop_price) * parseInt(nums);
-							$("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
+                                        pic_count = nums * price;
+                                        html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                                        html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                                        html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+                                    }
+                                    //console.log(data.result[data_i].qiu+"|||"+data.result[data_i].zhu+"|||"+data_id+"|||"+nums);
+                                    $("#tr" + data_id).html(html);
+                                } else {
+                                    $("#tr" + data_id).remove();
+                                }
+                            }
+                            var tr_id = data_id;
+                            //obj.attr("data-id");
+                            if (nums > 0) {
+                                $("#" + tr_id).text(nums);//toFixed(2)
+                            }
+                            pic_count = parseFloat(shop_price) * parseInt(nums);
+                            $("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
 
-							if (nums == '' || ~~nums <= 0) {
-								$("#" + tr_id).parent(".attr_lists").remove();
-							}
-							update_cart_num();
+                            if (nums == '' || ~~nums <= 0) {
+                                $("#" + tr_id).parent(".attr_lists").remove();
+                            }
+                            update_cart_num();
 
 
-							//获取加入购物车参数
-							if (count == 0 || $(".attr_lists").length == 0) {
-								layer.msg("请选择下单商品");
-								return;
-							}
-							$("input[name=shop_price]").val(data.result[data_i].price);
-						}
-						var is_true = false;
-						var i = 0;
-						var munber = new Array();//数量
-						var zhujing = new Array();//柱镜
-						var qiujing = new Array();//球镜
-						var arr_spec = new Array();//属性
-						var arr_attr = new Array();//属性
-						var zhouwei = new Array();//属性
-						var dataid = new Array();//属性
-						$(".attr_lists").each(function () {
-							munber[i] = parseInt($(this).find(".nums").text());
-							if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
-								is_true = true;
-								return false;
-							}
-							dataid[i] = $(this).find(".nums").attr("id");
-							zhujing[i] = $(this).find(".zhujing").text();
-							qiujing[i] = $(this).find(".qiujing").text();
-							zhouwei[i] = $(this).find(".zhouwei").val();
-							var spec = new Array();//属性
-							var attr = new Array();//属性
-							//var spec = '';
-							//var attr = '';
-							$(this).find(".str_attr").each(function () {
-								//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
-								//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
-								spec.push($(this).find("input").val());
-								attr.push($(this).find("span").html());
-							})
-							arr_attr[i] = attr;
-							arr_spec[i] = spec;
-							i++;
-						});
-						if (is_true) {
-							layer.msg('数量参数错误！');
-							return false;
-						}
-						//属性构建完成
-						var goods = new Object();
-						goods.quick = 1;
-						goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
+                            //获取加入购物车参数
+                            if (count == 0 || $(".attr_lists").length == 0) {
+                                layer.msg("请选择下单商品");
+                                return;
+                            }
+                            $("input[name=shop_price]").val(data.result[data_i].price);
+                        }
+                        var is_true = false;
+                        var i = 0;
+                        var munber = new Array();//数量
+                        var zhujing = new Array();//柱镜
+                        var qiujing = new Array();//球镜
+                        var arr_spec = new Array();//属性
+                        var arr_attr = new Array();//属性
+                        var zhouwei = new Array();//属性
+                        var dataid = new Array();//属性
+                        $(".attr_lists").each(function () {
+                            munber[i] = parseInt($(this).find(".nums").text());
+                            if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+                                is_true = true;
+                                return false;
+                            }
+                            dataid[i] = $(this).find(".nums").attr("id");
+                            zhujing[i] = $(this).find(".zhujing").text();
+                            qiujing[i] = $(this).find(".qiujing").text();
+                            zhouwei[i] = $(this).find(".zhouwei").val();
+                            var spec = new Array();//属性
+                            var attr = new Array();//属性
+                            //var spec = '';
+                            //var attr = '';
+                            $(this).find(".str_attr").each(function () {
+                                //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+                                //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+                                spec.push($(this).find("input").val());
+                                attr.push($(this).find("span").html());
+                            })
+                            arr_attr[i] = attr;
+                            arr_spec[i] = spec;
+                            i++;
+                        });
+                        if (is_true) {
+                            layer.msg('数量参数错误！');
+                            return false;
+                        }
+                        //属性构建完成
+                        var goods = new Object();
+                        goods.quick = 1;
+                        goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
 
-						goods.member = munber;//数量
-						goods.spc = arr_spec;//属性
-						goods.qiujing = qiujing;//球镜
-						goods.zhujing = zhujing;//柱镜
-						goods.zhouwei = zhouwei;//轴位
-						goods.parent = 0;
-						goods.dataid = dataid;
-						goods.carttype = 0;
-						//goods.attr      = arr_attr;
+                        goods.member = munber;//数量
+                        goods.spc = arr_spec;//属性
+                        goods.qiujing = qiujing;//球镜
+                        goods.zhujing = zhujing;//柱镜
+                        goods.zhouwei = zhouwei;//轴位
+                        goods.parent = 0;
+                        goods.dataid = dataid;
+                        goods.carttype = 0;
+                        //goods.attr      = arr_attr;
 
-						$scope.goods = goods;
-					}
+                        $scope.goods = goods;
+                    }
 
                 }).error(function (data) {
                     //console.log(data);
@@ -5262,12 +5265,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         }
-		Array.prototype.max = function(){ 
-			return Math.max.apply({},this) 
-		} 
-		Array.prototype.min = function(){ 
-			return Math.min.apply({},this) 
-		} 
+        Array.prototype.max = function () {
+            return Math.max.apply({}, this)
+        }
+        Array.prototype.min = function () {
+            return Math.min.apply({}, this)
+        }
         $scope.getdata();
 
         var num_s = 1;
@@ -5297,38 +5300,38 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
 
         (function () {
-			function myBrowser(){
-				var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-				//console.log(navigator);
-				console.log(userAgent);
-				var isOpera = userAgent.indexOf("Opera") > -1;
-				//console.log(isOpera);
-				if(isOpera){
-					return "Opera"
-				};//判断是否Opera浏览器
-				if(userAgent.indexOf("Firefox") > -1){
-					return "FF";
-				}//判断是否Firefox浏览器
-				if(userAgent.indexOf("Chrome") > -1){
-					return "Chrome";
-				}
-				if (userAgent.indexOf("Safari") > -1){
-					return "Safari";
-				}//判断是否Safari浏览器
-				if(userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
-					return "IE";
-				};//判断是否IE浏览器
-				if(userAgent.indexOf("Mozilla") > -1) {
-					return "IE";
-				};//判断是否IE浏览器
-			}
-			var mb = myBrowser();
-			//去掉浏览器右击默认事件
+            function myBrowser() {
+                var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+                //console.log(navigator);
+                console.log(userAgent);
+                var isOpera = userAgent.indexOf("Opera") > -1;
+                //console.log(isOpera);
+                if (isOpera) {
+                    return "Opera"
+                };//判断是否Opera浏览器
+                if (userAgent.indexOf("Firefox") > -1) {
+                    return "FF";
+                }//判断是否Firefox浏览器
+                if (userAgent.indexOf("Chrome") > -1) {
+                    return "Chrome";
+                }
+                if (userAgent.indexOf("Safari") > -1) {
+                    return "Safari";
+                }//判断是否Safari浏览器
+                if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) {
+                    return "IE";
+                };//判断是否IE浏览器
+                if (userAgent.indexOf("Mozilla") > -1) {
+                    return "IE";
+                };//判断是否IE浏览器
+            }
+            var mb = myBrowser();
+            //去掉浏览器右击默认事件
             //事件会在鼠标按键被按下时发生
             document.getElementsByClassName('bulk-order-table')[0].onmousedown = function (event) {
                 var is_batch_table = $(event.target).isChildAndSelfOf(".batch_table");
                 var is_zhouwei = $(event.target).isChildAndSelfOf("input[name=zhouwei]");
-				// || $("input:focus").hasClass("text_inp")
+                // || $("input:focus").hasClass("text_inp")
                 if (is_batch_table || is_zhouwei) {
                     return;
                 }
@@ -5352,9 +5355,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //clientY 返回当事件被触发时，鼠标指针的垂直坐标。
                 //IE 属性  x,y 事件发生的位置的 x 坐标和 y 坐标，它们相对于用CSS动态定位的最内层包容元素。
                 //var startX = (evt.x || evt.clientX);
-				var startX = mb == 'IE' ? evt.clientX : evt.x;
+                var startX = mb == 'IE' ? evt.clientX : evt.x;
                 //var startY = (evt.y || evt.clientY);
-				var startY = mb == 'IE' ? evt.clientY : evt.y;
+                var startY = mb == 'IE' ? evt.clientY : evt.y;
                 top_ = document.body.scrollTop || document.documentElement.scrollTop;
                 left_ = document.body.scrollLeft || document.documentElement.scrollLeft;
                 //var selDiv = document.createElement("div");
@@ -5378,40 +5381,40 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var table_l = $("#table_111").offset().left, table_t = $("#table_111").offset().top;
                 var table_w = table_obj.offsetWidth, table_h = table_obj.offsetHeight;
                 //事件会在鼠标指针移动时发生
-				console.log(mb);
+                console.log(mb);
                 document.onmousemove = function () {
                     evt = window.event || arguments[0];
                     if (isSelect) {
                         var mousemove_top = document.body.scrollTop || document.documentElement.scrollTop;
                         var mousemove_left = document.body.scrollLeft || document.documentElement.scrollLeft;
-						var div_width = 0;
-						var div_height = 0;
+                        var div_width = 0;
+                        var div_height = 0;
                         //_x = (evt.x || evt.clientX);
                         //_y = (evt.y || evt.clientY);
                         _x = mb == 'IE' ? evt.clientX : evt.x;
                         _y = mb == 'IE' ? evt.clientY : evt.y;
-						//console.log(evt,_x,_y);
+                        //console.log(evt,_x,_y);
 
                         if (mousemove_left > left_) {
-							div_width = Math.abs(_x - (mousemove_left - startX - left_));
+                            div_width = Math.abs(_x - (mousemove_left - startX - left_));
                             //selDiv.style.width = Math.abs(_x - (mousemove_left - startX - left_)) + "px";
                         } else {
-							div_width = Math.abs(_x - startX);
+                            div_width = Math.abs(_x - startX);
                             //selDiv.style.width = Math.abs(_x - startX) + "px";
                         }
                         if (mousemove_top > top_) {
-							div_height = Math.abs(_y + (mousemove_top - startY - top_));
+                            div_height = Math.abs(_y + (mousemove_top - startY - top_));
                             //selDiv.style.height = Math.abs(_y + (mousemove_top - startY - top_)) + "px";
                         } else {
-							div_height = Math.abs(_y - startY);
+                            div_height = Math.abs(_y - startY);
                             //selDiv.style.height = Math.abs(_y - startY) + "px";
                         }
-						if(div_width > 0 || div_height > 0){
-							selDiv.style.height = div_height + "px";
-							selDiv.style.width = div_width + "px";
-						}else{
-							return false;
-						}
+                        if (div_width > 0 || div_height > 0) {
+                            selDiv.style.height = div_height + "px";
+                            selDiv.style.width = div_width + "px";
+                        } else {
+                            return false;
+                        }
                         if (selDiv.style.display == "none") {
                             selDiv.style.display = "";
                         }
@@ -5438,43 +5441,43 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             if (sl > _l && st > _t && selList[i].offsetLeft + table_l < _l + _w && selList[i].offsetTop + table_t < _t + _h) {
                                 if (selList[i].className.indexOf("seled") == -1 && $(selList[i]).attr("name") != 'desa') {
                                     //selList[i].attr("name")
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#dee9fa');
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
-									$(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
+                                    //改变柱镜显示颜色
+                                    //console.log($(selList[i]).index());
+                                    $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
+                                    $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#dee9fa');
+                                    //改变柱镜显示颜色
+                                    $(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
+                                    $(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
+                                    //改变球镜显示颜色
+                                    $(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
+                                    $(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
                                     selList[i].className = selList[i].className + " seled";
-                                }else if(selList[i].className.indexOf("seled") > -1){
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
-									$(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
-									$(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
-								}
+                                } else if (selList[i].className.indexOf("seled") > -1) {
+                                    //改变柱镜显示颜色
+                                    //console.log($(selList[i]).index());
+                                    $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
+                                    $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
+
+                                    //改变柱镜显示颜色
+                                    $(".fist").find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
+                                    $(".fist").find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
+                                    //改变球镜显示颜色
+                                    $(selList[i]).parent().find("td").eq(0).css('background', '#dee9fa');
+                                    $(selList[i]).parent().find("td").eq(0).css('color', '#3f69a5');
+                                }
                             } else {
                                 if (selList[i].className.indexOf("seled") != -1) {
                                     selList[i].className = "bs_bg";
-									//
-									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
-									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
-									//改变柱镜显示颜色
-									$(".fist").find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
-									//改变球镜显示颜色
-									$(selList[i]).parent().find("td").eq(0).css('background', '#f5f5f5');
+                                    //
+                                    //改变柱镜显示颜色
+                                    //console.log($(selList[i]).index());
+                                    $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
+                                    //改变柱镜显示颜色
+                                    $(".fist").find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
+                                    //改变球镜显示颜色
+                                    $(selList[i]).parent().find("td").eq(0).css('background', '#f5f5f5');
                                 }
-								
+
 								/*
 								else if(selList[i].className.indexOf("seled") > -1){
 									//改变柱镜显示颜色
@@ -5488,43 +5491,43 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 								*/
                             }
                         }
-						var arr_td = new Array();
-						var arr_tr = new Array();
-						$(".seled").each(function(){
-							if($.inArray($(this).index(), arr_td) == -1){
-								arr_td.push($(this).index());
-							}
-							if($.inArray($(this).parent("tr").index(), arr_tr) == -1){
-								arr_tr.push($(this).parent("tr").index());
-							}
-						});
-						//清除样式
-						$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-						$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-						for(var seled_i = 0; seled_i < arr_tr.length; seled_i++){
-							//第一个tr top
-							if(arr_tr[seled_i] == arr_tr.min()){
-								//top
-								for(var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++){
-									if((arr_tr[seled_i] - 1) == 0){
-										$("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("th").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-									}else{
-										$("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-									}
-								}
-							}
-							//最后一个 bottom
-							if(arr_tr[seled_i] == arr_tr.max()){
-								for(var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++){
-									$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
-								}
-							}
-							
-							//left
-							$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.min() - 1).css("border-right", "2px solid #3f69a5");
-							//right
-							$("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.max()).css("border-right", "2px solid #3f69a5");
-						}
+                        var arr_td = new Array();
+                        var arr_tr = new Array();
+                        $(".seled").each(function () {
+                            if ($.inArray($(this).index(), arr_td) == -1) {
+                                arr_td.push($(this).index());
+                            }
+                            if ($.inArray($(this).parent("tr").index(), arr_tr) == -1) {
+                                arr_tr.push($(this).parent("tr").index());
+                            }
+                        });
+                        //清除样式
+                        $("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+                        $("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+                        for (var seled_i = 0; seled_i < arr_tr.length; seled_i++) {
+                            //第一个tr top
+                            if (arr_tr[seled_i] == arr_tr.min()) {
+                                //top
+                                for (var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++) {
+                                    if ((arr_tr[seled_i] - 1) == 0) {
+                                        $("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("th").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
+                                    } else {
+                                        $("#table_111").find("tr").eq(arr_tr[seled_i] - 1).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
+                                    }
+                                }
+                            }
+                            //最后一个 bottom
+                            if (arr_tr[seled_i] == arr_tr.max()) {
+                                for (var seled_td_i = 0; seled_td_i < arr_td.length; seled_td_i++) {
+                                    $("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td[seled_td_i]).css("border-bottom", "2px solid #3f69a5");
+                                }
+                            }
+
+                            //left
+                            $("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.min() - 1).css("border-right", "2px solid #3f69a5");
+                            //right
+                            $("#table_111").find("tr").eq(arr_tr[seled_i]).find("td").eq(arr_td.max()).css("border-right", "2px solid #3f69a5");
+                        }
                     }
                     clearEventBubble(evt);
                 }
@@ -5543,37 +5546,37 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
 
-                $('#table_111 tr td').live("mouseover", function () {
-                    //console.log('hh');
-                    //$(this).siblings().eq(0).css('background','#fedede');
-                    $(this).parent().find("td").eq(0).css('background', '#dee9fa');
-                    $(this).parent().find("td").eq(0).css('color', '#3f69a5');
-                    //$(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#fedede');
-					if($(this).index() > 0){
-						//$(this).parent().parent().find("tr").eq(0).children().eq($(this).index()).css('background', '#ebebeb');
-						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('background', '#dee9fa');
-						$(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('color', '#3f69a5');
-						//$(".fist_td").eq($(this).index()).css('background', '#ebebeb');
-						$(".fist").find("th").eq($(this).index()).css('background', '#dee9fa');
-						$(".fist").find("th").eq($(this).index()).css('color', '#3f69a5');
-					}
-                    
-                });
-                $('#table_111 tr td').live("mouseout", function () {
-                    /*
-                    //console.log($(this).siblings().eq(0).css('background'));
-                    $(this).siblings().eq(0).css('background','#f5f5f5');
-                    $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
-                    */
-                    $(this).parent().find("td").eq(0).css('background', '#f5f5f5');
-                    $(this).parent().find("td").eq(0).css('color', 'rgb(102, 102, 102)');
-					if($(this).index() > 0){
-						$(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#f5f5f5');
-						$(this).parent().parent().children().eq(0).children().eq($(this).index()).css('color', 'rgb(102, 102, 102)');
-						$(".fist").find("th").eq($(this).index()).css('background', '#f5f5f5');
-						$(".fist").find("th").eq($(this).index()).css('color', 'rgb(102, 102, 102)');
-					}
-                });
+            $('#table_111 tr td').live("mouseover", function () {
+                //console.log('hh');
+                //$(this).siblings().eq(0).css('background','#fedede');
+                $(this).parent().find("td").eq(0).css('background', '#dee9fa');
+                $(this).parent().find("td").eq(0).css('color', '#3f69a5');
+                //$(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#fedede');
+                if ($(this).index() > 0) {
+                    //$(this).parent().parent().find("tr").eq(0).children().eq($(this).index()).css('background', '#ebebeb');
+                    $(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('background', '#dee9fa');
+                    $(this).parents("#table_111").find("tr").eq(0).find("th").eq($(this).index()).css('color', '#3f69a5');
+                    //$(".fist_td").eq($(this).index()).css('background', '#ebebeb');
+                    $(".fist").find("th").eq($(this).index()).css('background', '#dee9fa');
+                    $(".fist").find("th").eq($(this).index()).css('color', '#3f69a5');
+                }
+
+            });
+            $('#table_111 tr td').live("mouseout", function () {
+                /*
+                //console.log($(this).siblings().eq(0).css('background'));
+                $(this).siblings().eq(0).css('background','#f5f5f5');
+                $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
+                */
+                $(this).parent().find("td").eq(0).css('background', '#f5f5f5');
+                $(this).parent().find("td").eq(0).css('color', 'rgb(102, 102, 102)');
+                if ($(this).index() > 0) {
+                    $(this).parent().parent().children().eq(0).children().eq($(this).index()).css('background', '#f5f5f5');
+                    $(this).parent().parent().children().eq(0).children().eq($(this).index()).css('color', 'rgb(102, 102, 102)');
+                    $(".fist").find("th").eq($(this).index()).css('background', '#f5f5f5');
+                    $(".fist").find("th").eq($(this).index()).css('color', 'rgb(102, 102, 102)');
+                }
+            });
 
             function clearEventBubble(evt) {
                 if (evt.stopPropagation)
@@ -5595,12 +5598,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         selInfo += arr[i].innerHTML + "\n";
                     }
                 }
-				if(count > 300){
-					$(".seled").removeClass("seled");
-					is_prompt = true;
-					layer.msg("最多选择300种");
-					return false;
-				}
+                if (count > 300) {
+                    $(".seled").removeClass("seled");
+                    is_prompt = true;
+                    layer.msg("最多选择300种");
+                    return false;
+                }
                 if (count > 0) {
                     is_prompt = false;
                     // //console.log(is_prompt);
@@ -5609,235 +5612,236 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             //if(confirm('确定要关闭么')){
                             //只有当点击confirm框的确定时，该层才会关闭
                             $(".seled").removeClass("seled");
-							//清除样式
-							$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-							$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-							$(".f5").css('background', 'rgb(245, 245, 245)');
-							$(".f5").css('color', 'rgb(102, 102, 102)');
+                            //清除样式
+                            $("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+                            $("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+                            $(".f5").css('background', 'rgb(245, 245, 245)');
+                            $(".f5").css('color', 'rgb(102, 102, 102)');
                             layer.close(index);
                             is_prompt = true;
                             //}
                             return false;
                         }, btn2: function () {//这里就是你要的
                             $(".seled").removeClass("seled");
-							//清除样式
-							$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-							$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-							$(".f5").css('background', 'rgb(245, 245, 245)');
-							$(".f5").css('color', 'rgb(102, 102, 102)');
+                            //清除样式
+                            $("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+                            $("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+                            $(".f5").css('background', 'rgb(245, 245, 245)');
+                            $(".f5").css('color', 'rgb(102, 102, 102)');
                             is_prompt = true;
                         },
                     }, function (text, index) {
                         //if (text > 0) {
                         //$(".seled").html();
-						//layer.closeAll();
-						layer.close(index);
+                        //layer.closeAll();
+                        layer.close(index);
                         layer.close(layer_index);
-						var prompt_cool = layer.load(0, { shade: [0.3, '#fff'], zIndex: 198910121260 });
-						
-						var qiu = new Array();
-						var zhu = new Array();
-						var data_id = new Array();
-						var goodsId = $('.add_to_cart').attr("data-id");
-						var arr_spec = new Array();//属性
+                        var prompt_cool = layer.load(0, { shade: [0.3, '#fff'], zIndex: 198910121260 });
 
-						var arr, reg = new RegExp("(^| )token=([^;]*)(;|$)");
-						arr = document.cookie.match(reg);
-						var token = arr[2];
-						var nums = text;
+                        var qiu = new Array();
+                        var zhu = new Array();
+                        var data_id = new Array();
+                        var goodsId = $('.add_to_cart').attr("data-id");
+                        var arr_spec = new Array();//属性
 
-						var spec = new Array();//属性
-						$(".attr_val").each(function () {
-							tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-							spec.push(tr_val_id);
-							$scope.trid = tr_val_id;
-						});
-						
-						$(".seled").each(function () {
-							qiu.push($(this).parent().find("td").eq(0).text());
-							zhu.push($(this).data("zhu"));
-							data_id.push($(this).data("id"));
-							//seled_sel($(this), text);
-							
-							if (nums > 0) {
-								$(this).text(nums);
-								$(this).css('background', nums == '' ? "" : '#ebf3fe');
-							} else {
-								$(this).text(' ');
-								$(this).css('background', "");
-							}
-							$(this).removeClass("seled");
-						});
-						$.ajax({
-							url: '' + $rootScope.ip + '/Goods/batch_changeprices',
-							type: "POST",
-							dataType: "json",
-							async: true,
-							data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token,data_id : data_id },
-							success: function (data) {
-								for(var data_i = 0; data_i < data.data.length; data_i++){
-									var pic_count;
-									var price = data.data[data_i].price;
-									//$("input[name=shop_price]").val();
+                        var arr, reg = new RegExp("(^| )token=([^;]*)(;|$)");
+                        arr = document.cookie.match(reg);
+                        var token = arr[2];
+                        var nums = text;
 
-									var data_id = data.data[data_i].data_id;
-									if(data.data[data_i].qiu == '' || data.data[data_i].zhu == '' || typeof data.data[data_i].zhu == 'undefined' || typeof data.data[data_i].qiu == 'undefined'){
-										continue;
-									}
-									//obj.attr("data-id");
-									if ($("#tr" + data_id).length == 0) {
-										var html = '';
-										if (nums != '' && nums > 0) {
-											html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-											html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
-											//obj.parent().find("td").eq(0).text()
+                        var spec = new Array();//属性
+                        $(".attr_val").each(function () {
+                            tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+                            spec.push(tr_val_id);
+                            $scope.trid = tr_val_id;
+                        });
 
-											html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
-											//obj.attr("data-zhu")
-											if (is_zhouwei == 1) {
-												html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
-											}
-											$(".attr_val").each(function () {
-												tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-												tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-												html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-											});
-											pic_count = nums * price;
-											html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
-											html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-											html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
-										}
-										$("#order").append(html);
-									} else if ($("#tr" + data_id).length > 0) {
-										if (nums > 0) {
-											var html = '';
-											if (nums != '') {
-												html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
-												html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
-												//obj.parent().find("td").eq(0).text()
+                        $(".seled").each(function () {
+                            qiu.push($(this).parent().find("td").eq(0).text());
+                            zhu.push($(this).data("zhu"));
+                            data_id.push($(this).data("id"));
+                            //seled_sel($(this), text);
 
-												html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
-												//obj.attr("data-zhu")
-												if (is_zhouwei == 1) {
-													html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
-												}
-												$(".attr_val").each(function () {
-													tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
-													tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
-													html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
-												});
-												pic_count = nums * price;
-												html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
-												html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
-												html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
-											}
-											console.log(data.data[data_i].qiu+"|||"+data.data[data_i].zhu+"|||"+data_id+"|||"+nums);
-											$("#tr" + data_id).html(html);
-										} else {
-											$("#tr" + data_id).remove();
-										}
-									}
-									var tr_id = data_id;
-									//obj.attr("data-id");
-									if (nums > 0) {
-										$("#" + tr_id).text(nums);//toFixed(2)
-									}
-									pic_count = parseFloat(shop_price) * parseInt(nums);
-									$("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
+                            if (nums > 0) {
+                                $(this).text(nums);
+                                $(this).css('background', nums == '' ? "" : '#ebf3fe');
+                            } else {
+                                $(this).text(' ');
+                                $(this).css('background', "");
+                            }
+                            $(this).removeClass("seled");
+                        });
+                        $.ajax({
+                            url: '' + $rootScope.ip + '/Goods/batch_changeprices',
+                            type: "POST",
+                            dataType: "json",
+                            async: true,
+                            data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token, data_id: data_id },
+                            success: function (data) {
+                                for (var data_i = 0; data_i < data.data.length; data_i++) {
+                                    var pic_count;
+                                    var price = data.data[data_i].price;
+                                    var pro_price = data.data[data_i].pro_price;
+                                    //$("input[name=shop_price]").val();
 
-									if (nums == '' || ~~nums <= 0) {
-										$("#" + tr_id).parent(".attr_lists").remove();
-									}
-									update_cart_num();
+                                    var data_id = data.data[data_i].data_id;
+                                    if (data.data[data_i].qiu == '' || data.data[data_i].zhu == '' || typeof data.data[data_i].zhu == 'undefined' || typeof data.data[data_i].qiu == 'undefined') {
+                                        continue;
+                                    }
+                                    //obj.attr("data-id");
+                                    if ($("#tr" + data_id).length == 0) {
+                                        var html = '';
+                                        if (nums != '' && nums > 0) {
+                                            html = '<tr id="tr' + data_id + '" class="attr_lists" shop_price="' + price + '" pro_price="' + pro_price + '"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                                            html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
+                                            //obj.parent().find("td").eq(0).text()
+
+                                            html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
+                                            //obj.attr("data-zhu")
+                                            if (is_zhouwei == 1) {
+                                                html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                                            }
+                                            $(".attr_val").each(function () {
+                                                tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                                                tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+                                                html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                                            });
+                                            pic_count = nums * price;
+                                            html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                                            html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                                            html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
+                                        }
+                                        $("#order").append(html);
+                                    } else if ($("#tr" + data_id).length > 0) {
+                                        if (nums > 0) {
+                                            var html = '';
+                                            if (nums != '') {
+                                                html = '<td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                                                html += '<td align="center" class="qiujing">' + data.data[data_i].qiu + '</td>';
+                                                //obj.parent().find("td").eq(0).text()
+
+                                                html += '<td align="center" class="zhujing">' + data.data[data_i].zhu + '</td>';
+                                                //obj.attr("data-zhu")
+                                                if (is_zhouwei == 1) {
+                                                    html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
+                                                }
+                                                $(".attr_val").each(function () {
+                                                    tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
+                                                    tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
+                                                    html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
+                                                });
+                                                pic_count = nums * price;
+                                                html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                                                html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
+                                                html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
+                                            }
+                                            console.log(data.data[data_i].qiu + "|||" + data.data[data_i].zhu + "|||" + data_id + "|||" + nums);
+                                            $("#tr" + data_id).html(html);
+                                        } else {
+                                            $("#tr" + data_id).remove();
+                                        }
+                                    }
+                                    var tr_id = data_id;
+                                    //obj.attr("data-id");
+                                    if (nums > 0) {
+                                        $("#" + tr_id).text(nums);//toFixed(2)
+                                    }
+                                    pic_count = parseFloat(shop_price) * parseInt(nums);
+                                    $("#" + tr_id).parent().find(".picc").text(pic_count.toFixed(2));
+
+                                    if (nums == '' || ~~nums <= 0) {
+                                        $("#" + tr_id).parent(".attr_lists").remove();
+                                    }
+                                    update_cart_num();
 
 
-									//获取加入购物车参数
-									if (count == 0 || $(".attr_lists").length == 0) {
-										layer.msg("请选择下单商品");
-										return;
-									}
-									$("input[name=shop_price]").val(data.data[data_i].price);
-								}
-								var is_true = false;
-								var i = 0;
-								var munber = new Array();//数量
-								var zhujing = new Array();//柱镜
-								var qiujing = new Array();//球镜
-								var arr_spec = new Array();//属性
-								var arr_attr = new Array();//属性
-								var zhouwei = new Array();//属性
-								var dataid = new Array();//属性
-								$(".attr_lists").each(function () {
-									munber[i] = parseInt($(this).find(".nums").text());
-									if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
-										is_true = true;
-										return false;
-									}
-									dataid[i] = $(this).find(".nums").attr("id");
-									zhujing[i] = $(this).find(".zhujing").text();
-									qiujing[i] = $(this).find(".qiujing").text();
-									zhouwei[i] = $(this).find(".zhouwei").val();
-									var spec = new Array();//属性
-									var attr = new Array();//属性
-									//var spec = '';
-									//var attr = '';
-									$(this).find(".str_attr").each(function () {
-										//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
-										//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
-										spec.push($(this).find("input").val());
-										attr.push($(this).find("span").html());
-									})
-									arr_attr[i] = attr;
-									arr_spec[i] = spec;
-									i++;
-								});
-								if (is_true) {
-									layer.msg('数量参数错误！');
-									return false;
-								}
-								//属性构建完成
-								var goods = new Object();
-								goods.quick = 1;
-								goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
+                                    //获取加入购物车参数
+                                    if (count == 0 || $(".attr_lists").length == 0) {
+                                        layer.msg("请选择下单商品");
+                                        return;
+                                    }
+                                    $("input[name=shop_price]").val(data.data[data_i].price);
+                                }
+                                var is_true = false;
+                                var i = 0;
+                                var munber = new Array();//数量
+                                var zhujing = new Array();//柱镜
+                                var qiujing = new Array();//球镜
+                                var arr_spec = new Array();//属性
+                                var arr_attr = new Array();//属性
+                                var zhouwei = new Array();//属性
+                                var dataid = new Array();//属性
+                                $(".attr_lists").each(function () {
+                                    munber[i] = parseInt($(this).find(".nums").text());
+                                    if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+                                        is_true = true;
+                                        return false;
+                                    }
+                                    dataid[i] = $(this).find(".nums").attr("id");
+                                    zhujing[i] = $(this).find(".zhujing").text();
+                                    qiujing[i] = $(this).find(".qiujing").text();
+                                    zhouwei[i] = $(this).find(".zhouwei").val();
+                                    var spec = new Array();//属性
+                                    var attr = new Array();//属性
+                                    //var spec = '';
+                                    //var attr = '';
+                                    $(this).find(".str_attr").each(function () {
+                                        //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+                                        //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+                                        spec.push($(this).find("input").val());
+                                        attr.push($(this).find("span").html());
+                                    })
+                                    arr_attr[i] = attr;
+                                    arr_spec[i] = spec;
+                                    i++;
+                                });
+                                if (is_true && nums > 0) {
+                                    layer.msg('数量参数错误！');
+                                    return false;
+                                }
+                                //属性构建完成
+                                var goods = new Object();
+                                goods.quick = 1;
+                                goods.goods_id = $stateParams.goods_id;//obj.attr("data-id");
 
-								goods.member = munber;//数量
-								goods.spc = arr_spec;//属性
-								goods.qiujing = qiujing;//球镜
-								goods.zhujing = zhujing;//柱镜
-								goods.zhouwei = zhouwei;//轴位
-								goods.parent = 0;
-								goods.dataid = dataid;
-								goods.carttype = 0;
-								//goods.attr      = arr_attr;
+                                goods.member = munber;//数量
+                                goods.spc = arr_spec;//属性
+                                goods.qiujing = qiujing;//球镜
+                                goods.zhujing = zhujing;//柱镜
+                                goods.zhouwei = zhouwei;//轴位
+                                goods.parent = 0;
+                                goods.dataid = dataid;
+                                goods.carttype = 0;
+                                //goods.attr      = arr_attr;
 
-								$scope.goods = goods;
-								
-								//清除样式
-								$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-								$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-								$(".f5").css('color', 'rgb(102, 102, 102)');
-								$(".f5").css('background', 'rgb(245, 245, 245)');
+                                $scope.goods = goods;
 
-								layer.close(prompt_cool);
-							}, error: function(){
-								//清除样式
-								$("#table_111").find("td").css({"border-bottom" : "", "border-right" : ""});
-								$("#table_111").find("th").css({"border-bottom" : "", "border-right" : ""});
-								$(".f5").css('background', 'rgb(245, 245, 245)');
-								$(".f5").css('color', 'rgb(102, 102, 102)');
-								layer.msg("参数错误");
-								layer.close(prompt_cool);
-							}
-						});
-						
-						//push
-						
-						//layer.close(prompt_cool);
+                                //清除样式
+                                $("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+                                $("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+                                $(".f5").css('color', 'rgb(102, 102, 102)');
+                                $(".f5").css('background', 'rgb(245, 245, 245)');
+
+                                layer.close(prompt_cool);
+                            }, error: function () {
+                                //清除样式
+                                $("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+                                $("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+                                $(".f5").css('background', 'rgb(245, 245, 245)');
+                                $(".f5").css('color', 'rgb(102, 102, 102)');
+                                layer.msg("参数错误");
+                                layer.close(prompt_cool);
+                            }
+                        });
+
+                        //push
+
+                        //layer.close(prompt_cool);
                         //}
                         is_prompt = true;
                     });
                 }
-				$("#selectDiv").remove();
+                $("#selectDiv").remove();
             }
 
 
@@ -6042,12 +6046,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var int_counts = 0;
             var members = 0;
             var picc = 0;
+            var pro_picc = 0;
             $(".attr_lists").each(function () {
                 members = $(this).find(".nums").text();
                 if (isNaN(members) || isNaN(parseInt(members))) {
                     members = 0;
                 }
+                var shop_price = $(this).attr("shop_price");
+                var pro_price = $(this).attr("pro_price");
                 picc += parseFloat(shop_price) * parseInt(members);
+                pro_picc += parseFloat(pro_price) * parseInt(members);
 
 
                 //console.log(picc);
@@ -6056,6 +6064,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             count = int_counts;
             $(".count_num").text(int_counts);
             $(".count_pic").text(picc.toFixed(2));
+            $(".count_pro_pic").text(pro_picc.toFixed(2));
         }
 
         function seled_sel(obj, nums) {
@@ -6097,17 +6106,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 success: function (data) {
                     layer.close(cool);
                     $("input[name=shop_price]").val(data.data.price);
+                    $("input[name=shop_price]").attr("data-pro_price", data.data.pro_price);
                 }
             });
 
             var pic_count;
             var price = $("input[name=shop_price]").val();
+            var pro_price = $("input[name=shop_price]").attr("data-pro_price");
 
             var data_id = obj.attr("data-id");
             if ($("#tr" + data_id).length == 0) {
                 var html = '';
                 if (nums != '' && nums > 0) {
-                    html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                    html = '<tr id="tr' + data_id + '" class="attr_lists" shop_price="' + price + '" pro_price="' + pro_price + '"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
                     html += '<td align="center" class="qiujing">' + obj.parent().find("td").eq(0).text() + '</td>';
 
                     html += '<td align="center" class="zhujing">' + obj.attr("data-zhu") + '</td>';
@@ -6120,7 +6131,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                     });
                     pic_count = nums * price;
-					html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                    html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                     html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                     html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td></tr>';
                 }
@@ -6142,7 +6153,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
                         });
                         pic_count = nums * price;
-						html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
+                        html += '<td align="center" class="">' + (price * 1).toFixed(2) + '</td>';
                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                     }
@@ -6184,7 +6195,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var arr_spec = new Array();//属性
             var arr_attr = new Array();//属性
             var zhouwei = new Array();//属性
-			var dataid = new Array();//属性
+            var dataid = new Array();//属性
             $(".attr_lists").each(function () {
                 munber[i] = parseInt($(this).find(".nums").text());
                 if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
@@ -6209,7 +6220,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 arr_spec[i] = spec;
                 i++;
             });
-            if (is_true) {
+            if (is_true && nums > 0) {
                 layer.msg('数量参数错误！');
                 return false;
             }
@@ -6238,25 +6249,25 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         }
         $(function () {
-			setInterval(function(){
-				if($scope.goods){
-					console.log("setInterval");
-					$http({
-						method: "POST",
-						url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
-						data: {
-							goods: $scope.goods,
-							goods_id: $stateParams.goods_id
-						},
-						headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-					})
-						.success(function (data) {
-							console.log("cache_goods_batch_success");
-						}).error(function (data) {
-							console.log("cache_goods_batch_error");
-						})
-				}
-			}, 10000);
+            setInterval(function () {
+                if ($scope.goods) {
+                    console.log("setInterval");
+                    $http({
+                        method: "POST",
+                        url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
+                        data: {
+                            goods: $scope.goods,
+                            goods_id: $stateParams.goods_id
+                        },
+                        headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                    })
+                        .success(function (data) {
+                            console.log("cache_goods_batch_success");
+                        }).error(function (data) {
+                            console.log("cache_goods_batch_error");
+                        })
+                }
+            }, 10000);
             $("#nums").change(function () {
                 $("input[name=box]").val($(this).val());
             });
@@ -6291,9 +6302,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var zhu = $(this).parent().attr("data-zhu");
                 var goodsId = $('.add_to_cart').attr("data-id");
                 var arr_spec = new Array();//属性
-				if(qiu == '' || zhu == '' || typeof zhu == 'undefined' || typeof qiu == 'undefined'){
-					return ;
-				}
+                if (qiu == '' || zhu == '' || typeof zhu == 'undefined' || typeof qiu == 'undefined') {
+                    return;
+                }
 
 
                 /*$.post("batch.php",{step:"changeprice",id:goodsId,qiu:qiu,zhu:zhu}, function(data){
@@ -6320,17 +6331,19 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     success: function (data) {
                         //console.log(data);
                         $("input[name=shop_price]").val(data.data.price);
+                        $("input[name=shop_price]").attr("pro_price", data.data.pro_price);
                     }
                 });
 
                 var pic_count;
                 var price = $("input[name=shop_price]").val();
+                var pro_price = $("input[name=shop_price]").attr("pro_price");
 
                 var data_id = $(this).parent().attr("data-id");
                 if ($("#tr" + data_id).length == 0) {
                     var html = '';
                     if (nums != '' && nums > 0) {
-                        html = '<tr id="tr' + data_id + '" class="attr_lists"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
+                        html = '<tr id="tr' + data_id + '" class="attr_lists" shop_price="' + price + '" pro_price="' + pro_price + '"><td align="center" id="' + data_id + '" class="nums">' + nums + '</td>';
                         html += '<td align="center" class="qiujing">' + $(this).parent().parent().find("td").eq(0).text() + '</td>';
 
                         html += '<td align="center" class="zhujing">' + $(this).parent().attr("data-zhu") + '</td>';
@@ -6407,7 +6420,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var arr_spec = new Array();//属性
                 var arr_attr = new Array();//属性
                 var zhouwei = new Array();//属性
-				var dataid = new Array();//属性
+                var dataid = new Array();//属性
                 $(".attr_lists").each(function () {
                     munber[i] = parseInt($(this).find(".nums").text());
                     if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
@@ -6483,26 +6496,26 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //});
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
-				console.log(k_code);
+                console.log(k_code);
                 if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                     var w_index = $(this).parent().index();//横向
                     var h_index = $(this).parent().parent().index();//纵向
                     switch (k_code) {
                         case 38:
-							//上
+                            //上
                             h_index -= 1;
                             break;
                         case 40:
-							//下
+                            //下
                             h_index += 1;
                             break;
                         case 39:
-							//右
+                            //右
                             //h_index += 1;
                             w_index += 1;
                             break;
                         case 37:
-							//左
+                            //左
                             //h_index += 1;
                             w_index -= 1;
                             break;
@@ -6518,7 +6531,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var ids = $(this).attr("data-val");
                 $("td:[name=" + ids + ']').text('').css('background', '');
                 $(this).parent().parent().remove();
-				
+
                 var is_true = false;
                 var i = 0;
                 var munber = new Array();//数量
@@ -6527,7 +6540,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 var arr_spec = new Array();//属性
                 var arr_attr = new Array();//属性
                 var zhouwei = new Array();//属性
-				var dataid = new Array();//属性
+                var dataid = new Array();//属性
                 $(".attr_lists").each(function () {
                     munber[i] = parseInt($(this).find(".nums").text());
                     if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
@@ -6576,7 +6589,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             });
             $(window).scroll(function () {
                 var index = $(document).scrollTop();
-				var height = $("#table_111").height();
+                var height = $("#table_111").height();
                 if (index > 264 && index < (264 + height)) {
                     $(".fist").show();
                 } else {
@@ -6587,7 +6600,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
         //加入购物车
         $scope.join = function () {
-			var cool = layer.load(0, { shade: [0.3, '#fff'] });
+            var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
@@ -6600,7 +6613,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status == -1) {
-						layer.close(cool);
+                        layer.close(cool);
                         layer.msg(data.info);
                     } else if (data.status == 1) {
                         layer.msg(data.info);
@@ -6609,11 +6622,25 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         // $("#order").html('');
 
                         setTimeout(function () {
-							layer.close(cool);
+                            $http({
+                                method: "POST",
+                                url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
+                                data: {
+                                    goods_id: $stateParams.goods_id,
+                                    type: 1
+                                },
+                                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                            })
+                                .success(function (data) {
+                                    console.log("cache_goods_batch_success");
+                                }).error(function (data) {
+                                    console.log("cache_goods_batch_error");
+                                });
+                            layer.close(cool);
                             location.reload()
                         }, 1000);
                     } else if (data.status == 0) {
-						layer.close(cool);
+                        layer.close(cool);
                         layer.msg(data.info);
                     }
                 }).error(function (data) {
@@ -6621,33 +6648,66 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         /* 打印单预览按钮 */
-
         $scope.printPreview = function () {
-			if($scope.goods){
-            window.open($state.href('person-process-print-preview', {
-                params: JSON.stringify({
-                    goods: $scope.goods,
-                    goods_id: $stateParams.goods_id
+            if ($scope.goods) {
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/Goods/qz_batch_preview',
+                    data: {
+                        goods: $scope.goods,
+                        goods_id: $stateParams.goods_id
+                    },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                }).success(function (data) {
+                    if (data.status) {
+                        $scope.data = data;
+                        $scope.printPreviewHtml = ($sce.trustAsHtml(data.content));
+
+                    }
                 })
-            }), '_blank');
-			}else{
-				layer.msg("请选择球柱镜");
-			}
+                /*  window.open($state.href('person-process-print-preview', {
+                     params: JSON.stringify({
+                         goods: $scope.goods,
+                         goods_id: $stateParams.goods_id
+                     })
+                 }), '_blank'); */
+            } else {
+                layer.msg("请选择球柱镜");
+            }
         }
         /* 预览按钮 */
         $scope.orderPreview = function () {
-			if($scope.goods){
-            window.open($state.href('person-process-preview', {
-                params: JSON.stringify({
-                    goods: $scope.goods,
-                    goods_id: $stateParams.goods_id
+            if ($scope.goods) {
+                $scope.printPreview();
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/Goods/batch_preview',
+                    data: {
+                        goods: $scope.goods,
+                        goods_id: $stateParams.goods_id
+                    },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                }).success(function (data) {
+                    if (data.status) {
+                        $scope.data = data;
+                        $scope.orderPreviewHtml = ($sce.trustAsHtml(data.content));
+                        /* var js = document.createElement('script');
+                        js.src = './plugins/js.js';
+                        document.body.append(js) */
+                    }
                 })
-            }), '_blank');
-			}else{
-				layer.msg("请选择球柱镜");
-			}
+                /* window.open($state.href('person-process-preview', {
+                    params: JSON.stringify({
+                        goods: $scope.goods,
+                        goods_id: $stateParams.goods_id
+                    })
+                }), '_blank'); */
+            } else {
+                layer.msg("请选择球柱镜");
+            }
         }
     }])
+            /* 打印单预览按钮 */
     .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
         $rootScope.isShow = false;
         $rootScope.change = false;
@@ -6666,6 +6726,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         })
     }])
+            /* 预览按钮 */
     .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
         $rootScope.isShow = false;
         $rootScope.change = false;

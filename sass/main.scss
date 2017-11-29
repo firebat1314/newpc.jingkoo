@@ -5363,6 +5363,7 @@ $browser-default-font-size: 37.5px !default;
         height:40px; 
         border: 1px solid #ccc;
         text-align: center;
+        cursor: cell;
       }
       th{
         &:first-child{

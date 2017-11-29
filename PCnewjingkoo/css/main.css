@@ -4774,7 +4774,8 @@ span.a_arrow_r {
     .bulk-order-main .bulk-order-table table th, .bulk-order-main .bulk-order-table table td {
       height: 40px;
       border: 1px solid #ccc;
-      text-align: center; }
+      text-align: center;
+      cursor: cell; }
     .bulk-order-main .bulk-order-table table th:first-child {
       position: relative; }
       .bulk-order-main .bulk-order-table table th:first-child span:first-child {

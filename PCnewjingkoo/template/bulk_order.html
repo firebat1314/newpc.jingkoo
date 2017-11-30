@@ -1,25 +1,91 @@
 <style>
     .fileDiv{float:left;width:100px;height:100px;text-align:center;line-height:100px;font-size:12px;border:1px solid #d9d9d9;margin-right:10px;margin-bottom:10px;}
-    .seled{border:1px solid red;background-color:#D6DFF7;}
-	.bulk-order-main .bulk-order-table #table_111 td:hover{background-color:#ebebeb;}
+    .seled{border:1px solid red;background-color:#ebf3fe;}/* D6DFF7   background: rgb(255, 236, 182); */
+	.bulk-order-main .bulk-order-table #table_111 td:hover{background-color:#ebf3fe;/* ebebeb */}
 	.br_7 { border-radius: 7px; border:1px solid #ccc !important;position:relative;left:-20px;}
 	.batch_table,.batch_table tr,.batch_table td,.batch_table th{border:none !important;}
 	.shop_car{height: 42px;position: absolute;right: 0;top: 50%;margin-top: -21px;}
-	.shop_car .shop_car_ip{cursor: pointer;width: 102px;height: 42px;background: #3f69a5;color: #fff;font-size: 14px;margin-right: 15px;border: 1px solid #3f69a5;}
-    .bulk-order-main .bulk-order-table table td:hover{background-color:#ebebeb;}
+	.shop_car_ip{cursor: pointer;width: 102px;height: 42px;background: #3f69a5;color: #fff;font-size: 14px;margin-right: 15px;border: 1px solid #3f69a5;}
+    .bulk-order-main .bulk-order-table table td:hover{background-color:#ebebeb; /* ebebeb */}
+	.Lr-box{width:100%;padding:20px 0;background-color:#fff;}
+	.Lr-box .Lr-ul{overflow:hidden;}
+	.Lr-box .Lr-ul li{width:100px;height:37px;line-height:35px;text-align:center;font-size:12px;color:#666666;margin-right:15px;float:left;position:relative;}
+	.batch_table{margin-bottom:0 !important;}
+	.Lr-box .Lr-ul li label{display:block;border:1px solid #cccccc;}
+	.Lr-box .Lr-ul li input{position:absolute;width:100%;height:100%;opacity:0;top:0;left:0;}
+	.Lr-box .Lr-ul li input:checked + label{border:1px solid #ff3333;background:url(../img/cg_ico1.png)  no-repeat right bottom;}
+	.bulk-order-total input{width:70px;height:30px;border:1px solid #3f69a5;color:#3f69a5;font-size:12px;margin-right:10px;background-color:#fff;}
+	.bulk-order-total input.save{color:#fff;background-color:#3f69a5;}
+	.bulk-order-total .xj{float:right;padding-right:20px;font-size:12px;color:#808080;}
+	.bulk-order-total .xj i{margin:0 10px;}
+	.bulk-order-total .xj .xj-sp1{font-size:16px;color:#ff3333;}
+	.bulk-order-total .xj .xj-sp2{font-size:14px;}
+	.bulk-order-total .look-detail{padding:15px;font-size:12px;color:#fff;background-color:#3f69a5;line-height:16px;text-align:center;width:50px;}
+	.zhouwei{border:1px solid #ccc;}
+
+    .pl_index_cover{display: none;width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 10001;background-color: rgba(0,0,0,.4);}
+    .pl_index_cov{/* display: none;min-width: 700px;height: 580px;max-width: 1400px;background-color: #fff;border-radius: 5px;z-index: 10002;position: fixed;margin-top: -290px;left: 0%;top: 0%;right: 0;bottom: 0;margin: 0 auto; */
+        display: none;
+    min-width: 700px;
+    height: 586px;
+    max-width: 810px;
+    background-color: #fff;
+    border-radius: 5px;
+    z-index: 10002;
+    position: fixed;
+    /* margin-top: -290px; */
+    left: 0%;
+    top: 0px;
+    right: 0;
+    bottom: 0;
+    margin: auto;}
+    .pl_index_cov h3{position: relative;height: 59px;line-height:59px;font-size: 15px;border-bottom: 1px solid #d9d9d9;color: #4c4c4c;text-align: center;font-weight: normal;}
+    .pl_index_div1 .pl_index_ul{width: 100%;height: 40px;line-height: 40px;}
+    .pl_index_div1 .pl_index_ul li{width: 50%;float: left;text-align: center;font-size: 13px;color: #666666;background-color: #f7f7f7;height: 40px;line-height: 40px;cursor: pointer;cursor: pointer;}
+    .pl_index_div1 .pl_index_ul li.on{background-color: #3f69a5;color: #fff;}
+    .pl_index_cov .pl_index_div2{width: 100%;display: none;}
+    .pl_index_div2 .pl_index_p1{width: 100%;height: 60px;line-height: 60px;text-align: center;color: #666666;font-size: 14px;}
+    .pl_index_cov .pl_index_div2.show{display: block;}
+    .pl_div2_box .pl_index_tbbox{padding: 20px;width: calc(100% - 40px);}
+    .pl_div2_box .pl_index_tbbox table{width: 100%;}
+    .pl_div2_box .pl_index_tbbox table th{height: 40px;background-color: #f7f7f7;color: #6c6c6c;font-size: 13px;text-align: center;border: 1px solid #e6e6e6;}
+    .pl_index_tbbox table td{border:1px solid #e6e6e6;height: 40px;text-align: center;font-size: 12px;color: #808080;padding: 0 20px;}
+    .pl_index_cov h3 .xh{display: inline-block;width: 14px;height: 15px;cursor: pointer;background: url(img/pl_xh.png) center no-repeat;background-size: 14px;position: absolute;right: 20px;top:22px;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox2{height: 412px;overflow-y: auto;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1{height: 400px;overflow-y: auto;padding-top: 0;padding-bottom: 0;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table{border-bottom: 0;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table.goods_number.tb3{
+        border-bottom: 1px solid #ccc;
+    }
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child,.pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child td{border-bottom: 0;}
+    .pl_div2_box .pl_index_ul2{width: calc(100% - 40px);margin: 0 auto;height: 40px;font-size: 13px;color: #666666;}
+    .pl_div2_box .pl_index_ul2 li{width:calc(50% - 1.5px);float: left;text-align: center;border: 1px solid #e6e6e6;height: 40px;line-height: 40px;}
+    .pl_div2_box .pl_index_ul2 li:nth-child(1){border-right: none;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1::-webkit-scrollbar {
+        width: 0px;
+        height: 1px;
+    }
+    .pl_index_ul2 span{color: #ff0000;}
+    .pl_index_tbbox1 .xxa{width: 100%;height: 100%;overflow: hidden;background: url(img/xxa.png) center no-repeat;background-size: 100% 100%;position: relative;}
+    .pl_index_tbbox1 .xxa span{position: absolute;font-size: 13px;color: #6c6c6c;}
+    .pl_index_tbbox1 .xxa .zj{top: 5px;right: 5px;}
+    .pl_index_tbbox1 .xxa .qj{left: 5px;bottom: 5px;}
+    .pl_index_tbbox1 table tr:first-child th:first-child{min-width:100px;}
+    .pl_index_tbbox1 table tr td:first-child{background-color: #f7f7f7;}
+
 </style>
 <div class="bulk-order-main"> 
     <div class="bulk-order-head" style="position: relative;">   
         <div class="order-head-img">
             <img ng-src={{goodsImg}} alt="">
         </div>
-        <h2>{{goodsName}}</h2>
+        <h2><a href="#/shop-detail/{{goods_id}}">{{goodsName}}</a></h2>
         <p>建议零售价格：<span>￥{{market_price}}元</span></p>
         <p> 批发价：<span style="font-size: 16px;">￥{{shop_price}}元</span></p>
         <!--<div class="bulk-order-car">购物车<span>９</span>件</div>-->
         <div class="shop_car">
-        	<input type="button" ng-click="printPreview()" class="shop_car_ip" value="打印单预览"/>
-        	<input type="button" ng-click="orderPreview()" class="shop_car_ip" value="预览"/>
+        	<!-- <input type="button" ng-click="printPreview()" class="shop_car_ip" value="打印单预览"/> -->
+        	<!-- <input type="button" ng-click="orderPreview()" class="shop_car_ip" value="预览"/> -->
         	<div class="car-box">
                 <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
                 <div class="white-line"></div>
@@ -55,112 +121,22 @@
             </div>
         </div>
     </div>
+	<!-- ————————————————————  ———————————————————— -->
     <div class="bulk-order-table" ng-bind-html="table">
-        <!--<table class="bulk-table" width="100%" border="0" cellpadding="0" cellspacing="1">-->
-            <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<th class="f5 table-origen" width="10%"><span>球镜</span><span>柱镜</span></th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                    <!--<th class="f5"  width="10%">0.00</th>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"><input type="text" value=""></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td class="f5"  width="10%">0.00</td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                    <!--<td width="10%"></td>-->
-                <!--</tr>-->
-            <!--</tbody>-->
-        <!--</table>-->
+       
     </div>
-    <div class="bulk-order-total">
-        <p>小计： <span class="count_num">0</span>件/<span>￥<font class="count_pic">0</font> </span></p>
-        <button ng-click="join()" class="add_to_cart" data-id={{goodsId}}>加入购物车</button>
+    <div class="bulk-order-total" style="margin-top:0;border-top:none;">
+        <p>
+			<!-- <input type="button" value="保存" class="save"> -->
+			<!-- <input type="button" ng-click="printPreview()" value="打印单预览" class="look shop_car_ip"> -->
+			<input type="button" value="预览" ng-click="orderPreview()" class="look shop_car_ip">
+		<!-- 小计： <span class="count_num">0</span>件/<span>￥<font class="count_pic">0</font> </span> -->
+		</p>
+        <button ng-click="join()" class="add_to_cart" data-id={{goodsId}} style="background-color:#3f69a5;width:80px;height:30px;font-size:12px;margin-top:5px;margin-right:20px;">加入购物车</button>
         <input type="hidden" class="shop_price" name="shop_price" value="">
+		<div class="xj">
+			总价：<span class="xj-sp1">￥<font class="count_pic">0.00</font></span> <i></i> 已节省：<span class="xj-sp2">￥<font class="count_pro_pic">0.00</font></span>
+		</div>
     </div>
     <div class="bulk-order-ano-table">
         <table width="100%">
@@ -170,7 +146,8 @@
                     <th>柱镜</th>
                     <th ng-if="zhouwei">轴位</th>
                     <th ng-repeat="th in specification">{{th.name}}</th>
-                    <th width="250">价格</th>
+                    <th width="120">单价</th>
+                    <th width="130">价格</th>
                     <th width="135">操作</th>
                 </tr>
                 <!--<tr>-->
@@ -186,3 +163,52 @@
         </table>
     </div>
 </div>
+<div class="pl_index_cover"></div>
+<div class="pl_index_cov">
+    <h3>批量下单预览<span class="xh xxh"></span></h3>
+    <div class="pl_index_div1">
+        <ul class="pl_index_ul">
+            <li class="on">打印单预览</li>
+            <li>预览</li>
+        </ul>
+        <div class="pl_div2_box">
+            <div class="pl_index_div2 show">
+                <p class="pl_index_p1">商品名称：{{goodsName}}</p>
+                <div class="pl_index_tbbox pl_index_tbbox1 batch_preview" id="person-process-preview-base64img" ng-bind-html="printPreviewHtml">
+                    
+                </div>
+                <!-- <ul class="pl_index_ul2">
+                    <li>商品总数量：¥{{count_num}}</li>
+                    <li>商品总金额：
+                        <span>¥{{count_pic}}</span>
+                    </li>
+                </ul> -->
+            </div>
+            <div class="pl_index_div2">
+                <div class="pl_index_tbbox pl_index_tbbox2 batch_preview" id="person-process-preview-base64img" ng-bind-html="orderPreviewHtml">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+	$('.pl_index_ul li').click(function () {
+		$(this).addClass('on').siblings().removeClass('on');
+		var ind = $(this).index();
+		$('.pl_div2_box>div').eq(ind).addClass('show').siblings().removeClass('show');
+		/* var plW = - $('.pl_index_cov').width()/2;
+		$('.pl_index_cov').css('margin-left',plW); */
+	})
+	$('.pl_index_cov h3 .xxh').click(function () {
+		$('.pl_index_cover').hide();
+		$('.pl_index_cov').hide();
+    })
+    $('.shop_car_ip').click(function () {
+		$('.pl_index_cover').show();
+		$('.pl_index_cov').show();
+	})
+	/* var plW = - $('.pl_index_cov').width()/2;
+	$('.pl_index_cov').css('margin-left',plW); */
+</script>
+

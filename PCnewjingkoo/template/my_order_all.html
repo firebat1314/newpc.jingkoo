@@ -150,7 +150,15 @@
 													<div class="imsldd" ng-repeat="goods in order.goods" style="position: relative;"> 
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.original_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
-															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p> 
+															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">
+																{{goods.goods_name}}
+																<span style="display: block;margin-top: 2px;">
+																		<span style="margin-right: 5px;" ng-if="qiujing">{{goods.goods_attrs}}</span>
+																		<span style="margin-right: 5px;" ng-if="zhujing">{{goods.zhujing}}</span>
+																		<span style="margin-right: 5px;" ng-if="zhouwei">{{goods.zhouwei}}</span>
+																		<span style="margin-right: 5px;" ng-repeat="attr in goods.goods_attrs">{{attr}}</span>
+																</span>
+															</p>
 															<p class="gp-2">x{{goods.goods_number}}</p> 
 														</div> 
 														<div class="clear"></div> 

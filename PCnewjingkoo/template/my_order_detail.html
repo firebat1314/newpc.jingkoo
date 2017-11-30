@@ -194,9 +194,9 @@
 					<th width="179" class="lef" style="text-align: center;"><span class="shrk" ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2"><input type="checkbox" id="chea" ng-model="selectedAll" ng-change="chooseAll(selectedAll)"/><label for="chea"></label></span>商品编号</th>
 					<th width="179"><div class="c">商品图片</div></th>
 					<th width="409"><div class="c">商品名称</div></th>
-					<th width="90"><div class="c">价格</div></th>
-					<th width="90"><div class="c">优惠</div></th>
 					<th width="90"><div class="c">商品数量</div></th>
+					<th width="90"><div class="c">商品价格</div></th>
+					<th width="90"><div class="c">优惠金额</div></th>
 					<th><div class="c">提示</div></th>
 				</tr>
 				<tr ng-repeat="ord in orderDetail.goods_list">
@@ -213,9 +213,9 @@
 							</p>
 						</div>
 					</td>
-					<td><div class="c hsez">￥{{ord.goods_price}}</div></td>
-					<td><div class="c hsez">--</div></td>
 					<td><div class="c hsez">{{ord.goods_number}}</div></td>
+					<td><div class="c hsez">{{ord.shop_price}}</div></td>
+					<td><div class="c hsez">{{ord.reduce_price||'--'}}</div></td>
 					<td>
 						<div class="c aneni">
 							<a class="icon ico-1">
@@ -247,7 +247,7 @@
 
 <div class="total gird mb40">
 	<div class="totg-wrp">
-		<p class="total-p">商品总价：￥{{orderDetail.order.formated_goods_amount}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元  - 使用余额：￥{{orderDetail.order.surplus}}元 - 优惠券：￥{{orderDetail.order.bonus}}元 - 商品补贴：￥{{butie_price}}元</p>
+		<p class="total-p">商品总价：￥{{orderDetail.order.formated_goods_amount}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元  - 使用余额：￥{{orderDetail.order.surplus}}元 - 优惠券：￥{{orderDetail.order.bonus}}元 - 优惠金额：￥{{orderDetail.order.formated_reduce_amount}}元</p>
 		<span class="total-sp">应付总额：<em>¥{{orderDetail.order.formated_order_amount}}</em></span>
 	</div>
 </div>

@@ -153,8 +153,8 @@
                             </div>
                         </div>
                         <div class="saler_msg_box">
-                            <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price">
-                                <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">{{marketPriceFormated}}</span>
+                            <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
+                                <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
                             </div>
                             <div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
                                 <span class="saler_msg_sp1">原价批发</span><span class="saler_msg_sp3">{{oldShopPrice}}</span>
@@ -230,6 +230,8 @@
                                         </span>
                                         <p class="saler_p11"><span ng-if="is_fee>-1" class="saler_msg_sp6">满{{shopDetailData.goods_fee.free_money}}包邮</span></p>
                                     </div>
+                                    <div class="saler_msg_d3" style="line-height: 30px;">{{shopDetailData.supplier_info.shipping_rule}}</div>
+                                    <div class="saler_msg_d3" style="line-height: 30px;">由&nbsp;<span style="color: #e60000;">{{shopDetailData.supplier_info.name||'镜库'}}</span>&nbsp;负责发货,并提供售后服务.</div>
                                     <!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
                                 </div>
                             </div>
@@ -282,7 +284,7 @@
                                     <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
                                     <th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
                                     <th width="124" ng-if="is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
-                                    <th width="124">{{trItem.product_number}}</th>
+                                    <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                                     <th width="124">
                                         <div class="diy-right">
                                             <span class="wenb">

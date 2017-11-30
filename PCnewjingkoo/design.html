@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>镜库设计</title>
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+	 <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
+            }
+            links = null;
+        }, 0);
+
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
+
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
+
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+                return mua;
+            }());
+
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
+
+                document.location.href = 'http://m.jingku.cn/index_m.html';
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="/#/login" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="/#/register" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://supplier.jingku.cn/Suppliers/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://supplier.jingku.cn/Public/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="right_cbl">
+	<ul class="right_cbl_ul">
+		<li class="li1 on"><span class="wz">服务范围</span><span class="qq"></span><i></i></li>
+		<li class="li2"><span class="wz">业务展示</span><span class="qq"></span><i></i></li>
+		<li class="li3"><span class="wz">应用范围</span><span class="qq"></span><i></i></li>
+	</ul>
+</div>
+<div class="header all " id="header">
+	<div class="cle girds"> 
+		<div class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li class="on"><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html" class="on"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div>
+								<div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li> 
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li> 
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="carousel" id="carousel">
+	<!-- Swiper -->
+    <div class="swiper-container car-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background:url(images/sj_banner.jpg) center center no-repeat;background-size:auto 100%;">
+				<div class="swiper_wz">
+					<div class="p1" data-swiper-parallax-x data-swiper-parallax="-500">设计的根本乃是服务至上</div>
+					<!-- <div class="p2" data-swiper-parallax-x data-swiper-parallax="-2000"><em></em><i></i><em></em></div> -->
+					<div class="p4" data-swiper-parallax-x data-swiper-parallax="-5000">
+						<a href="#" class="xzpp">下载app<em></em></a>
+						<div class="erwm">
+							<div class="erwm-ico"></div>
+							<div class="erwm-dtu">
+								<img src="images/qrcode_1507789207.png" />
+								<p>扫二维码下载</p>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!-- Add Pagination 
+        <div class="swiper-pagination"></div>
+        -->
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+
+<div class="index_box">
+
+<div class="fwfwei_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">品牌服务设计</h3>
+		<!-- <div class="ggy-eko wow bounceInRight"><em></em><i style="background:#3f69a5;"></i><em></em></div> -->
+		<p class="ggy-ep wow bounceInLeft">用专业的态度提供优质服务，全平台统一品牌形象管理，打造专属设计效果</p>
+	</div>
+	
+	<div class="fwf-cont gird cle all wow fadeInUp" data-wow-delay=".2s">
+		<ul class="cle">
+			<li>
+				<div class="wrp">
+					<div class="icon co-1"></div>
+					<div class="txt">
+						<h2>眼镜零售店LOGO设计</h2>
+						<!-- <p>眼镜零售店LOGO设计</p> -->
+						<em></em>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon co-2"></div>
+					<div class="txt">
+						<h2>VI视觉识别设计</h2>
+						<em></em>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon co-3"></div>
+					<div class="txt">
+						<h2>店面设计</h2>
+						<em></em>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon co-4"></div>
+					<div class="txt">
+						<h2>网端应用UI设计</h2>
+						<em></em>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+<div class="exhi_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">设计展示</h3>
+		<!-- <div class="ggy-eko wow bounceInRight"><em></em><i style="background:#3f69a5;"></i><em></em></div> -->
+		<p class="ggy-ep wow bounceInLeft">与来自法国的LUZ深度合作，带来更多法国的时尚高端设计风格</p>
+	</div>
+	
+	<div class="exhi-cont gird all">
+		<div class="exhi-1 cle">
+			<div class="item wow fadeInUp" data-wow-delay=".1s">
+				<div class="img"><img src="images/design_img10.jpg"/></div>
+				<div class="txt">
+					<h3>店面设计展示</h3>
+					<p>充满法国元素的零售店店面</p>
+				</div>
+			</div>
+			<div class="item wow fadeInUp" data-wow-delay=".1s">
+				<div class="img"><img src="images/design_img11.jpg"/></div>
+				<div class="txt">
+					<h3>APP、网站UI界面设计展示</h3>
+					<p>简洁、清晰的应用界面，使用操作更加便捷</p>
+				</div>
+			</div>
+		</div>
+		<div class="exhi-2 cle">
+			<div class="item wow fadeInUp" data-wow-delay=".2s">
+				<img src="images/design_img6.jpg" />
+				<div class="title">VI 设计</div>
+			</div>
+			<div class="item wow fadeInUp" data-wow-delay=".2s">
+				<img src="images/design_img8.jpg" />
+				<div class="title">多折页设计</div>
+			</div>
+			<div class="item wow fadeInUp" data-wow-delay=".2s">
+				<img src="images/design_img9.jpg" />
+				<div class="title">名片设计</div>
+			</div>
+			<div class="item wow fadeInUp" data-wow-delay=".2s">
+				<img src="images/design_img12.jpg" />
+				<div class="title">详情页设计</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="yyong_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">设计服务应用</h3>
+		<!-- <div class="ggy-eko wow bounceInRight"><em></em><i style="background:#3f69a5;"></i><em></em></div> -->
+		<p class="ggy-ep wow bounceInLeft">针对不同需求提供量身定制的设计服务</p>
+	</div>
+	
+	<div class="yyong-cont gird all wow fadeInUp" data-wow-delay=".2s">
+		<ul class="cle ">
+			<li>
+				<div class="wrp">
+					<div class="icon n-1"></div>
+					<div class="txt">
+						<h2>LOGO设计</h2>
+						<p>统一识别、身份认证标签化</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon n-2"></div>
+					<div class="txt">
+						<h2>VI设计</h2>
+						<p>获取更高辨识度、记忆度</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon n-3"></div>
+					<div class="txt">
+						<h2>店面设计</h2>
+						<p>时尚大气的装修风格</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon n-4"></div>
+					<div class="txt">
+						<h2>网站页面UI设计</h2>
+						<p>一目了然的操作系统界面</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon n-5"></div>
+					<div class="txt">
+						<h2>广告设计</h2>
+						<p>提升产品和服务价值</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="wrp">
+					<div class="icon n-6"></div>
+					<div class="txt">
+						<h2>推广包装设计</h2>
+						<p>获得更高的宣传效益和关注度</p>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+</div>
+<!-- <div class="swiper-container jku-swiper wow fadeInUp">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide all"><img src="images/design_img1.jpg"/><div class="zz-opac"></div></div>
+        <div class="swiper-slide all"><img src="images/design_img2.jpg"/><div class="zz-opac"></div></div>
+        <div class="swiper-slide all"><img src="images/design_img3.jpg"/><div class="zz-opac"></div></div>
+        <div class="swiper-slide all"><img src="images/design_img4.jpg"/><div class="zz-opac"></div></div>
+        <div class="swiper-slide all"><img src="images/design_img5.jpg"/><div class="zz-opac"></div></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div> -->
+
+<div class="picMarquee-left move_all">
+	<div class="bd">
+		<ul class="picList">
+			<li class="move_one">
+				<div class="pic"><img src="images/design_img1.jpg" /></div>
+			</li>
+			<li class="move_one">
+				<div class="pic"><img src="images/design_img2.jpg" /></div>
+			</li>
+			<li class="move_one">
+				<div class="pic"><img src="images/design_img3.jpg" /></div>
+			</li>
+			<li class="move_one">
+				<div class="pic"><img src="images/design_img4.jpg" /></div>
+			</li>
+			<li class="move_one">
+				<div class="pic"><img src="images/design_img5.jpg" /></div>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2017 北京镜库科技 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+
+<script src="js/wow.js"></script>
+<script src="js/gat.js"></script>
+<script>
+	var swiper = new Swiper('.car-swiper', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 4000,
+        loop : true,
+        parallax : true,
+		speed: 1500,
+		nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    });
+	$('.car-swiper').mouseover(function(){
+		swiper.stopAutoplay();
+		})
+	$('.car-swiper').mouseleave(function(){
+		swiper.startAutoplay();
+	});
+    var wow = new WOW({
+	    boxClass: 'wow',
+	    animateClass: 'animated',
+	    offset: 0,
+	    mobile: true,
+	    live: true
+	});
+	wow.init();
+	
+	//var swiper = new Swiper('.jku-swiper', {
+      //  slidesPerView: 4,
+        //centeredSlides: true,
+        //paginationClickable: true,
+        //spaceBetween: 0,
+        //loop : true,
+        //nextButton: '.swiper-button-next',
+        //prevButton: '.swiper-button-prev',
+    //});
+	$(".j_f_top").click(function () {
+		$('body,html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+	
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 100){
+			$(".j_f_top").fadeIn();
+		}else{
+			$(".j_f_top").fadeOut();
+		}
+	});
+	
+
+	jQuery(".picMarquee-left").slide({mainCell:".bd ul",autoPlay:true,effect:"leftMarquee",vis:5,interTime:10,trigger:"click",mouseOverStop:false});
+
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 800){
+			$(".right_cbl").fadeIn();
+			if($(window).scrollTop()> 801 && $(window).scrollTop()< 1000){
+				$(".right_cbl .right_cbl_ul .li1").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 1001 && $(window).scrollTop()< 2400){ 
+				$(".right_cbl .right_cbl_ul .li2").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 2400 && $(window).scrollTop()< 3100){
+				$(".right_cbl .right_cbl_ul .li3").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 3100 && $(window).scrollTop()< 4000){
+				$(".right_cbl .right_cbl_ul .li4").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4000 && $(window).scrollTop()< 4750){
+				$(".right_cbl .right_cbl_ul .li5").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4750 && $(window).scrollTop()< 5056){
+				$(".right_cbl .right_cbl_ul .li6").addClass('on').siblings().removeClass('on');
+			}
+			var index=Math.floor($(document).scrollTop()/600) - 1;
+			$(".right_cbl .right_cbl_ul li").eq(index).addClass('on').siblings().removeClass('on');
+		}else{
+			$(".right_cbl").fadeOut();
+		}
+	});
+
+	var flags = true;
+    $('.right_cbl .right_cbl_ul li span.qq').click(function(e){
+        flags = false;
+        var sTop = $(".index_box>div").eq($(this).parent().index()).offset().top - 20;
+		$('html,body').animate(
+			{scrollTop: sTop }, 500  
+		)
+		
+    });
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			//$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			//$('body,html').css('overflow','auto');
+		})
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+</script>
+</body>
+</html>

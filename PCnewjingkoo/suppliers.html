@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>镜库供应商</title>
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+	 <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
+            }
+            links = null;
+        }, 0);
+
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
+
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
+
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+                return mua;
+            }());
+
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
+
+                document.location.href = 'http://m.jingku.cn/index_m.html';
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="/#/login" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="/#/register" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://supplier.jingku.cn/Suppliers/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://supplier.jingku.cn/Public/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="right_cbl">
+	<ul class="right_cbl_ul">
+		<li class="on"><span class="wz">分销好货</span><span class="qq"></span><i></i></li>
+		<li><span class="wz">服务范围</span><span class="qq"></span><i></i></li>
+		<li><span class="wz">成功案例</span><span class="qq"></span><i></i></li>
+	</ul>
+</div>
+<div class="header all " id="header">
+	<div class="cle girds">
+		<div class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li class="on"><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html" class="on"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div>
+								<div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li>
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li>
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="carousel" id="carousel">
+	<!-- Swiper -->
+    <div class="swiper-container car-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background: url(images/gys_banner.jpg) center center no-repeat;background-size:auto 100%;">
+				<div class="swiper_wz">
+					<div class="p1" data-swiper-parallax-x data-swiper-parallax="-500">店铺为您解忧 销售全程无忧</div>
+					<!-- <div class="p2" data-swiper-parallax-x data-swiper-parallax="-2000"><em></em><i></i><em></em></div> -->
+					<div class="p4" data-swiper-parallax-x data-swiper-parallax="-5000">
+						<a href="#" class="xzpp">下载app<em></em></a>
+						<div class="erwm">
+							<div class="erwm-ico"></div>
+							<div class="erwm-dtu">
+								<img src="images/qrcode_1507789207.png" />
+								<p>扫二维码下载</p>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!-- Add Pagination 
+        <div class="swiper-pagination"></div>
+        -->
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+
+<div class="index_box">
+
+<div class="ghs_ul_box">
+	<p class="ghs_ul_p1">数万优质店主分销您的好货</p>	
+	<p class="ghs_ul_p2">镜库网致力于打造成一个商品快速销售的流通的平台。供货商通过平台与眼镜店、电商建立合作关系，更好更快的销货。<br/>欢迎拥有优质货源支持一件代发的广大厂商、品牌商和渠道经销商入驻镜库网供货商平台</p>	
+	<ul class="ghs_u2">
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico1"></span>
+				<span class="ghs_sp2">价格管控</span>
+				<p class="ghs_p1">控制商品成本，限定批发价范围，保证品牌市场价值</p>
+			</div>
+		</li>
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico2"></span>
+				<span class="ghs_sp2">多渠道分销</span>
+				<p class="ghs_p1">有经营能力的分销商开启分销新渠道</p>
+			</div>
+		</li>
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico3"></span>
+				<span class="ghs_sp2">商品快速流通</span>
+				<p class="ghs_p1">商品管理、订单发货、物流跟踪、资金结算一站式处理</p>
+			</div>
+		</li>
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico4"></span>
+				<span class="ghs_sp2">客户管理</span>
+				<p class="ghs_p1">查看已入驻客户的销量数据</p>
+			</div>
+		</li>
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico5"></span>
+				<span class="ghs_sp2">ERP对接</span>
+				<p class="ghs_p1">减少铺货，实时查看库存情况</p>
+			</div>
+		</li>
+		<li>
+			<div class="ghs_u2_div">
+				<span class="ghs_sp1 ghs_sp_ico6"></span>
+				<span class="ghs_sp2">增值服务</span>
+				<p class="ghs_p1">设计、培训、科技、云仓</p>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div class="tuig-wrp">
+	<h1 class="wow bounceInLeft">数万优质店主分销您的好货</h1>
+	<a href="http://supplier.jingku.cn" target="_blank" class="tyn wow bounceInLeft" style="margin-top:50px;">立即体验<em></em></a>
+</div>
+<!-- <div class="ghs_ad_box">
+	<p class="ghs_ad_p1">数百万优质店主分销您的好货</p>
+	<p  class="wow bounceInRight">Millions of quality shopkeepers distribute your good stuff</p>
+	<a href="#" class="ghs_a1">立即体验<span class="ghs_sp1"></span></a> 
+</div> -->
+
+<div class="strong_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft">强大高效</h3>
+		<p class="crm-ep wow bounceInRight">整合全网资源，打造多平台、多渠道、多风格的互联网营销新模式</p>
+	</div>
+	
+	<div class="strong-cont j_strong_cont gird cle">
+		<div class="bd wow fadeInLeft">
+			<ul class="cle">
+				<li><img src="images/money_gk.png"/></li>
+				<li><img src="images/zy_gx.png"/></li>
+				<li><img src="images/dd_xl.png"/></li>
+			</ul>
+		</div>
+		<div class="hd wow fadeInRight">
+			<ul>
+				<li class="on">
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-1.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>价格管控</h4>
+							<p>公开透明，杜绝价格战。维护市场秩序，确保合作伙伴核心利益。在线收款，加速资金流动</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-2.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>共享资源</h4>
+							<p>镜库以开放的心态为您共享客户资源，共享业务员推广支持。减少行业内资源浪费，降低成本投入，共同开发维护客户</p> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-3.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>订货效率</h4>
+							<p>通过平台推广，商品快速流通，提高订货频率，所有业务环节实现信息全程同步，呈现有效内容。订货效率提升，自然带动销售业绩的提升</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+
+<div class="huob_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft">企业信赖的合作伙伴</h3>
+		<p class="crm-ep wow bounceInRight">整合全网资源，打造多平台、多渠道、多风格的互联网营销新模式</p>
+	</div>
+	
+	<div class="huob-cont j_strong_cont j_strong_cont1 gird cle">
+		<div class="hd wow fadeInLeft">
+			<ul>
+				<li class="on">
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-4.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>数据对接</h4>
+							<p>全面开放API，支持ERP系统集成，避免信息孤岛。客户订单、区域订单、商品订单数据实时统计对接，有效协助营销决策</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-5.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>降低铺货</h4>
+							<p>镜库致力于提供上下游的库存数据对接服务，打通信息通道，使得原有的委托代销方式能够尽量减少铺货库存，优化门店产品，解决库存堆积问题</p> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="wrp">
+						<div class="icon " style="background:url(images/gys-ico-6.png) no-repeat center;"></div>
+						<div class="txt">
+							<h4>专业服务</h4>
+							<p>镜库团队为您提供专业的客服，技术，设计，推广，运营协助等服务支持，为您有效节省人力投入，专注您的核心价值</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="bd wow fadeInRight">
+			<ul class="cle">
+				<li><img src="images/sj_dj.png"/></li>
+				<li><img src="images/jd_ph.png"/></li>
+				<li><img src="images/zy_fw.png"/></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+
+</div>
+
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2017 北京镜库科技 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+
+<script src="js/wow.js"></script>
+<script src="js/gat.js"></script>
+<script>
+	var swiper = new Swiper('.car-swiper', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 2000,
+        loop : true,
+        parallax : true,
+		speed: 1500, 
+		nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    });
+	$('.car-swiper').mouseover(function(){
+		swiper.stopAutoplay();
+		})
+	$('.car-swiper').mouseleave(function(){
+		swiper.startAutoplay();
+	});
+    var wow = new WOW({
+	    boxClass: 'wow',
+	    animateClass: 'animated',
+	    offset: 0,
+	    mobile: true,
+	    live: true
+	});
+	wow.init();
+	
+	$(".j_strong_cont").slide({titCell:".hd ul li",mainCell:".bd ul",effect:"top",trigger:"mouseover",autoPlay:true,delayTime:1000,});
+	$(".j_strong_cont1").slide({titCell:".hd ul li",mainCell:".bd ul",effect:"top",trigger:"mouseover",autoPlay:true,delayTime:1000,}); 
+
+	$(".j_f_top").click(function () {
+		$('body,html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 100){
+			$(".j_f_top").fadeIn();
+		}else{
+			$(".j_f_top").fadeOut();
+		}
+	});
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 780){
+			$(".right_cbl").fadeIn();
+			if($(window).scrollTop()> 750 && $(window).scrollTop()< 1000){
+				$(".right_cbl .right_cbl_ul .li1").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 1001 && $(window).scrollTop()< 2400){ 
+				$(".right_cbl .right_cbl_ul .li2").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 2400 && $(window).scrollTop()< 3100){
+				$(".right_cbl .right_cbl_ul .li3").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 3100 && $(window).scrollTop()< 4000){
+				$(".right_cbl .right_cbl_ul .li4").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4000 && $(window).scrollTop()< 4750){
+				$(".right_cbl .right_cbl_ul .li5").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4750 && $(window).scrollTop()< 5056){
+				$(".right_cbl .right_cbl_ul .li6").addClass('on').siblings().removeClass('on');
+			}
+			var index=Math.floor($(document).scrollTop()/700) - 1;
+			$(".right_cbl .right_cbl_ul li").eq(index).addClass('on').siblings().removeClass('on');
+		}else{
+			$(".right_cbl").fadeOut();
+		}
+	});
+
+	var flags = true;
+    $('.right_cbl .right_cbl_ul li span.qq').click(function(e){
+        flags = false;
+        var sTop = $(".index_box>div").eq($(this).parent().index()).offset().top - 20;
+		$('html,body').animate(
+			{scrollTop: sTop }, 500  
+		)
+		
+    });
+
+	
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			//$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			//$('body,html').css('overflow','auto');
+		})
+		/* 登录跳转到首页 */
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+</script>
+</body>
+</html>

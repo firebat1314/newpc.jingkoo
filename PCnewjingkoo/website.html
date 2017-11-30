@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>镜库建站</title>
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+	 <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
+            }
+            links = null;
+        }, 0);
+
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
+
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
+
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+                return mua;
+            }());
+
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
+
+                document.location.href = 'http://m.jingku.cn/index_m.html';
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="/#/login" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="/#/register" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://supplier.jingku.cn/Suppliers/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://supplier.jingku.cn/Public/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="right_cbl">
+	<ul class="right_cbl_ul">
+		<li class="on"><span class="wz">服务范围</span><span class="qq"></span><i></i></li>
+		<li><span class="wz">成功案例</span><span class="qq"></span><i></i></li>
+		<li><span class="wz">应用范围</span><span class="qq"></span><i></i></li>
+		<li><span class="wz">解决方案</span><span class="qq"></span><i></i></li>
+	</ul>
+</div>
+<div class="header all " id="header">
+	<div class="cle girds">
+		<div class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li class="on"><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html" class="on"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div>
+								<div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li>
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li>
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="carousel" id="carousel">
+	<!-- Swiper -->
+    <div class="swiper-container car-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background: url(images/jz_banner.jpg) center center no-repeat;background-size:auto 100%;">
+				<div class="swiper_wz">
+					<div class="p1" data-swiper-parallax-x data-swiper-parallax="-500">树起一座眼镜行业的“通天塔”</div>
+					<!-- <div class="p2" data-swiper-parallax-x data-swiper-parallax="-2000"><em></em><i></i><em></em></div> -->
+					<div class="p4" data-swiper-parallax-x data-swiper-parallax="-5000">
+						<a href="#" class="xzpp">下载app<em></em></a>
+						<div class="erwm">
+							<div class="erwm-ico"></div>
+							<div class="erwm-dtu">
+								<img src="images/qrcode_1507789207.png" />
+								<p>扫二维码下载</p>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!-- Add Pagination 
+        <div class="swiper-pagination"></div>
+        -->
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</div>
+
+<div class="jzhan_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft">帮助企业搭建一站式B2B订货平台</h3>
+		<p class="crm-ep wow bounceInRight">一站式专属B2B订货平台，聚焦眼镜零售行业，让互联网+更简单、高效、安全<!-- APP定制开发／电商平台开发／网站建设／业务系统定制／移动端开发 --></p>
+		<!-- <div class="crm-eko wow bounceInLeft"><em></em><i></i><em></em></div> -->
+	</div>
+	<div class="gird jzhan-cont cle all wow fadeInUp" style="padding-left:10px;"> 
+		<div class="item " >
+			<div class="img"><img src="images/jzhan.jpg" /></div>
+			<div class="txt">
+				<h3>更全面更专业的垂直服务平台</h3>
+				<p>专业的一站式B2B平台，电商化运营的新模式，订货无需后顾之忧，全方面服务省去繁琐流程。按需采购、营销策划、技术支持站内一键搞定。</p>
+			</div>
+			<div class="jz-ico c-1"></div>
+		</div>
+		<div class="item ">
+			<div class="img"><img src="images/jzhan1.jpg" /></div>
+			<div class="txt">
+				<h3>多端口一体化</h3>
+				<p>电脑+APP+微信的组合方式，让您随时随地与客户互动，自由操作自己掌控全局，随手获取实时行业一手资讯，实现全方位信息对等。</p>
+			</div>
+			<div class="jz-ico c-2"></div>
+		</div>
+		<div class="item ">
+			<div class="img"><img src="images/jzhan2.jpg" /></div>
+			<div class="txt">
+				<h3>完整的品牌形象</h3>
+				<p>完整的品牌官网资料做背书。可查证的官方真实内容，高端专业的VI设计全渠道为客户作展示，用可视的背景实力取得客户信赖。</p>
+			</div>
+			<div class="jz-ico c-3"></div>
+		</div>
+		<div class="item ">
+			<div class="img"><img src="images/jzhan3.jpg" /></div>
+			<div class="txt">
+				<h3>互动+营销+洞察</h3>
+				<p>讯息实时通知，订货行为追踪创造便捷的经营条件；会员分层管理以及上百种营销为管理作保障；全面的数据分析和洞察时刻提醒潜在隐患。</p>
+			</div>
+			<div class="jz-ico c-4"></div>
+		</div>
+	</div>
+</div>
+
+<div class="case_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft">深度互动营销</h3>
+		<p class="crm-ep wow bounceInRight">懂你的需求，更懂你要求，解决人工难题，工作效率快速提升</p>
+		<!-- <div class="crm-eko wow bounceInLeft"><em></em><i></i><em></em></div> -->
+	</div>
+	
+	<div class="case-cont cle all-5">
+		<!--
+		<div class="item wow fadeIn" data-wow-delay=".1s">
+			<img src="images/jzhan-2.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<em></em>
+					<p class="p1">爱尔康</p>
+					<p class="p2">ALCON</p>
+				</span>
+			</div>
+		</div>
+		-->
+		<div class="item wow fadeIn" data-wow-delay=".1s">
+			<img src="images/jzhan-2.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">业务</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".2s">
+			<img src="images/jzhan-3.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">运营</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".3s">
+			<img src="images/jzhan-4.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">订单</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".4s">
+			<img src="images/jzhan-5.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">财务</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".5s">
+			<img src="images/jzhan-6.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">选品</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".6s">
+			<img src="images/jzhan-7.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">支付</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".7s">
+			<img src="images/jzhan-8.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">资讯</p>
+				</span>
+			</div>
+		</div>
+		<div class="item wow fadeIn" data-wow-delay=".8s">
+			<img src="images/jzhan-9.jpg" />
+			<div class="txt">
+				<span class="cont">
+					<p class="p1">促销</p>
+				</span>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="range_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft">全网多平台无死角</h3>
+		<p class="crm-ep wow bounceInRight">建立营销多渠道、增加企业和用户间的互动，有效的提升业务效率</p>
+		<!-- <div class="crm-eko wow bounceInLeft"><em></em><i></i><em></em></div> -->
+	</div>
+	
+	<div class="range-cont gird all-5 cle">
+		<div class="item wow fadeInRight" data-wow-delay=".1s">
+			<div class="ran-ico r-1"></div>
+			<div class="txt">
+				<h3>PC电脑端</h3>
+				<!-- <p>移动端移动端移动端移动端移动端移动端</p> -->
+			</div>
+		</div>
+		<div class="item wow fadeInRight" data-wow-delay=".3s">
+			<div class="ran-ico r-2"></div>
+			<div class="txt">
+				<h3>手机移动端</h3>
+			</div>
+		</div>
+		<div class="item wow fadeInRight" data-wow-delay=".5s">
+			<div class="ran-ico r-3"></div>
+			<div class="txt">
+				<h3>微信电商端</h3>
+			</div>
+		</div>
+		<div class="item wow fadeInRight" data-wow-delay=".7s">
+			<div class="ran-ico r-4"></div>
+			<div class="txt">
+				<h3>APP端</h3>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="solve_wrp">
+	<div class="crm-bt">
+		<h3 class="crm-h3 wow bounceInLeft" style="color:#fff;">新分销&新零售</h3>
+		<p class="crm-ep wow bounceInRight" style="color:#fff;">以消费者体验为中心、数据驱动的“泛零售”，品牌商/代理商/经销商/零售商/电商随时实现“身份转换”。</p>
+		<!-- <div class="crm-eko wow bounceInLeft"><em></em><i></i><em></em></div> -->
+	</div>
+	
+	<div class="solve-cont cle gird all">
+		<div class="item">
+			<div class="icon ic-1"></div>
+			<div class="txt">
+				<h3>新分销的新格局</h3>
+				<p>利用互联网及大数据，围绕会员、流量、供应链 ，整合上下游资源、提高经营效率，打造B2B电商闭环。最终实现传统分销业务流程互联网化，B2B交易信息实时互联。</p>
+			</div>
+		</div>
+		<div class="item">
+			<div class="icon ic-2"></div>
+			<div class="txt">
+				<h3>分销方式的重构</h3>
+				<p>各类互联网IT技术的成熟与发展，智能手机移动应用的普及改变了传统分销的经营环境，由“货→场→人”到“人→货→场”的重构，消费方式逆向牵引产生变革，传统经销商生态体系转型升级为新的方向。</p>
+			</div>
+		</div>
+		<div class="item">
+			<div class="icon ic-3"></div>
+			<div class="txt">
+				<h3>会员体验带动消费</h3>
+				<p>生活方式的转变，使得消费场景无处不在，电脑+APP+微信的使用习惯改变人的思维方式。成为会员通过良好的智能消费体验，获得好的口碑，增强客户粘度，聚集人气，让会员成为一种身份和标签。</p>
+			</div>
+		</div>
+		<div class="item">
+			<div class="icon ic-4"></div>
+			<div class="txt">
+				<h3>多重身份让营销更专注</h3>
+				<p>互联网精准定位，实现平台上下数据互通，从数据分析入手，实施多种营销手段和品牌运营方式，做到全域营销、全渠营销。让您的身份不再局限于某单一渠道的固定类型，扩宽视野扩大格局。</p>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2017 北京镜库科技 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+
+<script src="js/wow.js"></script>
+<script src="js/gat.js"></script>
+<script>
+	var swiper = new Swiper('.car-swiper', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        autoplay: 4000,
+        loop : true,
+        parallax : true,
+		speed: 800,
+		nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+    });
+	$('.car-swiper').mouseover(function(){
+		swiper.stopAutoplay();
+		})
+	$('.car-swiper').mouseleave(function(){
+		swiper.startAutoplay();
+	});
+    var wow = new WOW({
+	    boxClass: 'wow',
+	    animateClass: 'animated',
+	    offset: 0,
+	    mobile: true,
+	    live: true
+	});
+	wow.init();
+	
+	
+	
+	
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 900){
+			$(".j_car_1").width("70%");
+			$(".j_car_2").width("40%");
+			$(".j_car_3").width("60%");
+			$(".j_car_4").width("90%");
+		};
+		if($(window).scrollTop() >= 100){
+			$(".j_f_top").fadeIn();
+		}else{
+			$(".j_f_top").fadeOut();
+		}
+	});
+	$(".j_f_top").click(function () {
+		$('body,html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 750){
+			$(".right_cbl").fadeIn();
+			if($(window).scrollTop()> 750 && $(window).scrollTop()< 1118){
+				$(".right_cbl .right_cbl_ul .li1").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 1118 && $(window).scrollTop()< 2400){ 
+				$(".right_cbl .right_cbl_ul .li2").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 2400 && $(window).scrollTop()< 3100){
+				$(".right_cbl .right_cbl_ul .li3").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 3100 && $(window).scrollTop()< 4000){
+				$(".right_cbl .right_cbl_ul .li4").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4000 && $(window).scrollTop()< 4750){
+				$(".right_cbl .right_cbl_ul .li5").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4750 && $(window).scrollTop()< 5056){
+				$(".right_cbl .right_cbl_ul .li6").addClass('on').siblings().removeClass('on');
+			}
+			var index=Math.floor($(document).scrollTop()/755) - 1;
+			$(".right_cbl .right_cbl_ul li").eq(index).addClass('on').siblings().removeClass('on');
+			console.log(index);
+		}else{
+			$(".right_cbl").fadeOut();
+		}
+	});
+
+	var flags = true;
+    $('.right_cbl .right_cbl_ul li span.qq').click(function(e){
+        flags = false;
+        var sTop = $(".index_box>div").eq($(this).parent().index()).offset().top - 20;
+		$('html,body').animate(
+			{scrollTop: sTop }, 500  
+		)
+		
+		
+    });
+
+	
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			//$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			//$('body,html').css('overflow','auto');
+		})
+		/* 登录跳转到首页 */
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+</script>
+</body>
+</html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>镜库采购商</title>
+	<link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+	<link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+	<script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+	<link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+	 <script>
+		setTimeout(function () {
+			var links = document.getElementsByTagName('link');
+			var linksLength = links.length;
+			for (var i = 0; i < linksLength; i++) {
+				if ('icon' === links[i].rel) {
+					links[i].type = 'image/x-icon';
+					links[i].href = 'img/applogoNew.ico';
+				}
+			}
+			links = null;
+		}, 0);
+
+		$(function () {
+			var MobileUA = (function () {
+				var ua = navigator.userAgent.toLowerCase();
+
+				var mua = {
+					IOS: /ipod|iphone|ipad/.test(ua), //iOS
+					IPHONE: /iphone/.test(ua), //iPhone
+					IPAD: /ipad/.test(ua), //iPad
+					ANDROID: /android/.test(ua), //Android Device
+					WINDOWS: /windows/.test(ua), //Windows Device
+					TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+					MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+					ANDROID_TABLET: false, //Android Tablet
+					WINDOWS_TABLET: false, //Windows Tablet
+					TABLET: false, //Tablet (iPad, Android, Windows)
+					SMART_PHONE: false //Smart Phone (iPhone, Android)
+				};
+
+				mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+				mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+				mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+				mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+				return mua;
+			}());
+
+			//SmartPhone
+			if (MobileUA.SMART_PHONE) {
+				// 移动端链接地址
+
+				document.location.href = 'http://m.jingku.cn';
+			}
+		});
+
+	</script>
+</head>
+<body>
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="/#/login" target="_blanck"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="/#/register" target="_blanck"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://supplier.jingku.cn/Suppliers/Public/login.html" target="_blanck"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="http://supplier.jingku.cn/Public/register.html" target="_blanck"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html" target="_blanck"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html" target="_blanck"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html" target="_blanck"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="right_cbl">
+	<ul class="right_cbl_ul">
+		<li class="li1 on"><span class="wz">关于我们</span><span class="qq"></span><i></i></li>
+		<li class="li2"><span class="wz">页面展示</span><span class="qq"></span><i></i></li>
+		<li class="li3"><span class="wz">我们的优势</span><span class="qq"></span><i></i></li>
+		<li class="li4"><span class="wz">全国影响力</span><span class="qq"></span><i></i></li>
+		<li class="li5"><span class="wz">发展历程</span><span class="qq"></span><i></i></li>
+		<li class="li6"><span class="wz">合作品牌</span><span class="qq"></span><i></i></li>
+	</ul>
+</div>
+<div class="header all " id="header">
+	<div class="cle girds">
+		<div id="logoogogogoo" class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li class="on"><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html" class="on"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div> -->
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li>
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li>
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="carousel" id="carousel">
+	<!-- Swiper -->
+	<div class="swiper-container car-swiper">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide" style="background: url(images/cg_banner.jpg) center center no-repeat;">
+				<div class="swiper_wz">
+					<div class="p1" data-swiper-parallax-x data-swiper-parallax="-500">眼光聚集专业，眼镜业的采购新焦点</div>
+					<!-- <div class="p2" data-swiper-parallax-x data-swiper-parallax="-2000"><em></em><i></i><em></em></div> -->
+					<div class="p4" data-swiper-parallax-x data-swiper-parallax="-5000">
+						<a href="#" class="xzpp">下载app<em></em></a>
+						<div class="erwm">
+							<div class="erwm-ico"></div>
+							<div class="erwm-dtu">
+								<img src="images/qrcode_1507789207.png" />
+								<p>扫二维码下载</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Add Pagination 
+		<div class="swiper-pagination"></div>
+		-->
+		<!-- Add Arrows -->
+		<div class="swiper-button-next"></div>
+		<div class="swiper-button-prev"></div>
+	</div>
+</div>
+
+<div class="index_box">
+
+<div class="about_us">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">用眼界认识新的眼镜业采购平台</h3>
+		<p class="ggy-ep wow bounceInLeft">开启眼镜业网络新格局，打造全网最全面的眼镜业采购批发专业平台</p>
+	</div>
+	<div class="about_slide wow bounceInUp">
+		<div class="usl j_about_slide">
+			<div class="bd">
+				<ul class="cle uspdo">
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c1"></div>
+							</div>
+							<div class="title">镜库采购商</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								九大优势全面提供各类采购相关服务，<br/> 细节面面俱到<!-- <br/> Lorem Ipsum has been the industry. -->
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c2"></div>
+							</div>
+							<div class="title">镜库供应商</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								全国大范围内保持充足资源，<br/> 随地满足销售需求<!-- <br/> Lorem Ipsum has been the industry. -->
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c3"></div>
+							</div>
+							<div class="title">镜库品牌商</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								树立专业品牌形象，<br/> 不担心渠道问题，让你省心、放心
+							</div>
+						</div>
+					</li>
+					<li >
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c4"></div>
+							</div>
+							<div class="title">镜库CRM</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								时代尖端的互联网企业管理系统，<br/> 简约方便的操作体验，显著提高工作效率
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c5"></div>
+							</div>
+							<div class="title">镜库微店</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								基于实体门店的零售升级，<br/> 带给客户更全面周到的体验式消费 <!-- <br/> Lorem Ipsum has been the industry. -->
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c6"></div>
+							</div>
+							<div class="title">镜库设计</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								根据需求提供优质的设计服务，<br/> 打造属于自己的品牌店面 <!-- <br/> Lorem Ipsum has been the industry. -->
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c7"></div>
+							</div>
+							<div class="title">镜库建站</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								搭建一站式B2B订货平台，<br/> 多端口全面实时同步数据，与客户做深度互动营销
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c8"></div>
+							</div>
+							<div class="title">镜库ERP</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								从供应链范围优化企业的资源，<br/> 跳出传统企业边界的新时代信息系统
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c9"></div>
+							</div>
+							<div class="title">镜库金融</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								基于对客户金融服务需求，<br/> 计划开通贷款、众筹保险等项目
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="uls-wrp all-5">
+							<div class="ico">
+								<div class="bg"></div>
+								<div class="co c10"></div>
+							</div>
+							<div class="title">镜库云仓</div>
+							<div class="xhx"></div>
+							<div class="neir">
+								远程加工、仓库租赁、代理发货等
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="hd">
+				<a href="javascript:;" class="prev"></a>
+				<a href="javascript:;" class="next"></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="hlw_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">互联网化的设计风格，全新的操作体验</h3>
+		<p class="ggy-ep wow bounceInLeft">国内视光学领域第一款独立移动订货应用。极简设计，迅速上手，同步和PC数据打通，<br/>随时随地下达订单，实时查看订单状态，提升供应链效率</p>
+	</div>
+	
+	<div class="com-w">
+		<img src="images/caig_img2.png" class="com-img1 wow bounceInLeft" />
+		<img src="images/com-2.png" class="com-img2 wow bounceInRight" />
+	</div>
+	
+</div>
+
+<div class="advantage"  >
+
+	<div class="adv-bt cle">
+		<span>我们的优势</span>
+	</div>
+	<div class="advantage-swiper2-box">
+		<div class="swiper-container advantage-swiper2">
+		  <div class="swiper-wrapper">
+			<div class="swiper-slide" style="background: url(./images/my_ys2.jpg) no-repeat left;"></div>
+			<div class="swiper-slide" style="background: url(./images/my_ys3.jpg) no-repeat left;"></div>
+			<div class="swiper-slide" style="background: url(./images/my_ys4.jpg) no-repeat left;"></div>
+		  </div>
+		</div>
+	</div>
+	<div class="adv-cont wow bounceInUp">
+		<div class="advc-wrp j_advc_wrp">
+			<ul class="swiper-container j_advc">
+				  <div class="swiper-wrapper">
+					<div class="swiper-slide">
+					<li data-swiper-parallax-x data-swiper-parallax="-1000">
+						<div class="wrp cle">
+							<div class="icon"><span style="background:#fff url(images/ys_ico1.png) no-repeat center;background-size: 40px;"></span></div>
+							<div class="txt">
+								<h2>品牌资源丰富</h2>
+								<p>国际一线品牌全面入驻，掌握市场新品动态与咨询，走在市场前沿</p>
+							</div>
+						</div>
+					</li>
+					<li data-swiper-parallax-x data-swiper-parallax="-2000">
+						<div class="wrp cle">
+							<div class="icon"><span style="background:#fff url(images/ys_ico2.png) no-repeat center;background-size: 40px;"></span></div>
+							<div class="txt">
+								<h2>提升订货效率</h2>
+								<p>通过平台系统快速处理订货及协作全过程，实时查看订单状态，降低沟通成本</p>
+							</div>
+						</div>
+					</li>
+					<li data-swiper-parallax-x data-swiper-parallax="-3000">
+						<div class="wrp cle">
+							<div class="icon"><span style="background:#fff url(images/ys_ico3.png) no-repeat center;background-size: 40px;"></span></div>
+							<div class="txt">
+								<h2>助力营销变革</h2>
+								<p>通过信息化手段强化供应链，同开启移动互联网新时代的B2B模式变革</p>
+							</div>
+						</div>
+					</li>
+					</div>
+					<div class="swiper-slide">
+						<li data-swiper-parallax-x data-swiper-parallax="-1000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico7.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>退换货申请</h2>
+									<p>在线提交退换货申请，镜库为供应商提供担保，即时协助完成售后服务相关支持</p>
+								</div>
+							</div>
+						</li>
+						<li data-swiper-parallax-x data-swiper-parallax="-2000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico8.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>技术安全</h2>
+									<p>强大的后台支持，国内行业领衔的技术团队全权掌舵，为平台保驾护航</p>
+								</div>
+							</div>
+						</li>
+						<li data-swiper-parallax-x data-swiper-parallax="-3000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico9.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>在线支付</h2>
+									<p>开通在线支付功能，在线付款，即时到账，安全便捷，订单收款准确清晰</p>
+								</div>
+							</div>
+						</li>
+					</div>
+					<div class="swiper-slide">
+						<li data-swiper-parallax-x data-swiper-parallax="-1000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico4.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>极速物流</h2>
+									<p>24小时快速发货，物流信息实时跟踪，确保货品及时送达</p>
+								</div>
+							</div>
+						</li>
+						<li data-swiper-parallax-x data-swiper-parallax="-2000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico5.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>减少纸张浪费</h2>
+									<p>减少传统纸质传真及订单，节约用纸，保护环境</p>
+								</div>
+							</div>
+						</li>
+						<li data-swiper-parallax-x data-swiper-parallax="-3000">
+							<div class="wrp cle">
+								<div class="icon"><span style="background:#fff url(images/ys_ico6.png) no-repeat center;background-size: 40px;"></span></div>
+								<div class="txt">
+									<h2>来镜加工</h2>
+									<p>将订单内任意镜片，镜架随意组合，由镜库专业人员为您贴心加工服务</p>
+								</div>
+							</div>
+						</li>
+					</div>
+				  </div>
+				
+				<!-- <div class="hd">
+					<a class="prevs"></a>
+					<a class="nexts"></a>
+				</div> -->
+				
+			</ul>
+	
+			
+		</div>
+	</div>
+	
+</div>
+
+<div class="map_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">全国影响力</h3>
+		<!-- <div class="ggy-eko wow bounceInRight"><em></em><i style="background:#3f69a5;"></i><em></em></div> -->
+		<p class="ggy-ep wow bounceInLeft">一个账号搜罗全国供应商货源</p>
+	</div>
+	
+	<div class="map wow fadeInUp">
+		<div class="point-area" style="top:73px;right:48px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;width:70px;font-size: 14px;">东北三省</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:150px;right:74px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;font-size: 14px;">天津</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:164px;right:113px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 55px; left: 65px;font-size: 14px;">北京</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:255px;right:126px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;font-size: 14px;">山东</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:242px;right:230px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;font-size: 14px;">陕西</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:372px;right:126px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;font-size: 14px;">江西</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+		<div class="point-area" style="top:320px;right:347px;width: 110px; height: 110px; visibility: visible; opacity: 1;">
+			<p class="point-name" style="position: absolute; top: 49px; left: 65px;font-size: 14px;">四川</p>
+			<a href="#" target="_blank" class="point point-dot"></a>
+			<div class="point point-10"></div>
+			<div class="point point-40"></div>
+			<div class="point point-shadow point-80"></div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="course_wrp" style="background:url(images/caig_img3.jpg) no-repeat center bottom;">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">发展历程</h3>
+		<p class="ggy-ep wow bounceInLeft">编织未来，造就梦想</p>
+	</div>
+	
+	<div class="course wow fadeIn" data-wow-duration="0" data-wow-delay=".3s">
+		<div class="course-cont">
+			<div class="prewv prewv1 all wow bounceInUp" data-wow-delay=".5s">
+				<div class="nshu">2012</div>
+				<div class="xie">
+					<div class="sxn"></div>
+					<b>2012</b>
+					<p>获得日本东京东海（TOKAI）<br/>光学产品华北，东北经销商</p>
+				</div>
+			</div>
+			<div class="prewv prewv2 all wow bounceInUp" data-wow-delay=".7s" style="left: 265px;bottom: 295px;">
+				<div class="nshu">2013</div>
+				<div class="xie">
+					<div class="sxn"></div>
+					<b>2013</b>
+					<p>成为视康、爱尔康全国一级<br/>代理商</p>
+				</div>
+			</div>
+			<div class="prewv prewv3 all wow bounceInUp" data-wow-delay=".9s" style="left: 495px;bottom: 305px;">
+				<div class="nshu">2014</div>
+				<div class="xie">
+					<div class="sxn"></div>
+					<b>2014</b>
+					<p>公司决定进军互联网<br/>开启眼镜业B2B网站建设</p>
+				</div>
+			</div>
+			<div class="prewv prewv4 all wow bounceInUp" data-wow-delay="1.1s" style="left: 730px;bottom: 275px;">
+				<div class="nshu">2015</div>
+				<div class="xie">
+					<div class="sxn"></div>
+					<b>2015</b>
+					<p>库博隐形华北5省2市代理商<br/>镜库网1.0版本上线</p>
+				</div>
+			</div>
+			<div class="prewv prewv5 all wow bounceInUp" data-wow-delay="1.3s" style="left: 955px;bottom: 267px;">
+				<div class="nshu">2016</div>
+				<div class="xie">
+					<div class="sxn"></div>
+					<b>2016</b>
+					<p>镜库2.0版本正式上线<br/>镜库科技正式成立</p>
+				</div>
+			</div>
+			<div class="prewv prewv6 all wow bounceInUp" data-wow-delay="1.5s" style="left: 1160px;bottom: 320px;">
+				<div class="nshu">2017</div>
+				<div class="xie ssxn">
+					<div class="sxn"></div>
+					<b>2017</b>
+					<p>镜库微店成功上线<br/>实现B2B2C转换</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div class="coop_wrp">
+	<div class="ggy-bt">
+		<h3 class="ggy-h3 wow bounceInLeft">部分合作品牌</h3>
+		<!-- <p class="ggy-ep wow bounceInLeft">一个账号搜罗全国供应商货源</p> -->
+	</div>
+	
+	<div class="coop-list">
+		<ul class="cle">
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (1).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (19).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".3s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (2).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (20).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (3).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (21).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".3s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (4).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (22).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".3s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (5).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (23).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (6).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (24).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="cle top20">
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (7).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (25).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (8).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (26).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (9).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (27).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (10).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (28).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (11).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (29).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (12).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (30).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="cle top40">
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (13).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (31).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".3s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (14).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (32).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".3s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (15).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (33).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".6s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (16).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (34).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".5s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (17).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (35).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="wow flipInY" data-wow-delay=".4s">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (18).png"/>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div class="cop-wrp">
+								<div class="gode">
+									<img src="images/pp_ico (36).png"/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+</div>
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2018 镜库网 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+<script src="js/wow.js"></script>
+<script src="js/gat.js"></script>
+<script>
+		var swiper = new Swiper('.car-swiper', {
+		 pagination: '.swiper-pagination',
+		 paginationClickable: true,
+		prevButton:'.prevs',
+		nextButton:'.nexts',
+		 autoplay: 2000,
+		 loop : true,
+		 parallax : true,
+		speed: 1500,
+		nextButton: '.swiper-button-next',
+		 prevButton: '.swiper-button-prev',
+	 });
+	 $('.car-swiper').mouseover(function(){
+		swiper.stopAutoplay();
+		})
+	$('.car-swiper').mouseleave(function(){
+		swiper.startAutoplay();
+	});
+	
+	var swiper1 = new Swiper('.j_advc', {
+		 pagination: '.swiper-pagination',
+		 paginationClickable: true,
+		prevButton:'.prevs',
+		nextButton:'.nexts',
+		 autoplay: 2000,
+		 loop : true,
+		 parallax : true,
+		speed: 1500,
+		direction : 'vertical',
+		simulateTouch:false
+	 });
+	var swiper2 = new Swiper('.advantage-swiper2', {
+		 pagination: '.swiper-pagination',
+		 paginationClickable: true,
+		 //autoplay: 2000,
+		 loop : true,
+		 parallax : true,
+		speed: 1500,
+		direction : 'vertical',
+		simulateTouch:false
+	 });
+ 
+	swiper1.params.control = swiper2;//需要在Swiper2初始化后，Swiper1控制Swiper2
+	//swiper2.params.control = swiper1;//需要在Swiper1初始化后，Swiper2控制Swiper1
+    $('.advantage').mouseover(function(){
+		swiper1.stopAutoplay();
+		//swiper2.stopAutoplay();
+		})
+	$('.advantage').mouseleave(function(){
+		swiper1.startAutoplay();
+		//swiper2.startAutoplay();
+	});
+
+
+	 var wow = new WOW({
+	boxClass: 'wow',
+	animateClass: 'animated',
+	offset: 0,
+	mobile: true,
+	live: true,
+	});
+	wow.init();
+	
+	$(".j_about_slide").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,scroll:3,vis:3});
+	//$(".j_advc_wrp").slide({titCell:".hd ul",mainCell:"ul",autoPage:true,effect:"topLoop",autoPlay:true,scroll:3,vis:3,delayTime:2000,interTime:5000,prevCell:".prevs",nextCell:".nexts"});
+	
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 100){
+			$(".j_f_top").fadeIn();
+		}else{
+			$(".j_f_top").fadeOut();
+		}
+	});
+	
+
+
+
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 750){
+			$(".right_cbl").fadeIn();
+			if($(window).scrollTop()> 750 && $(window).scrollTop()< 1000){
+				$(".right_cbl .right_cbl_ul .li1").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 1001 && $(window).scrollTop()< 2400){ 
+				$(".right_cbl .right_cbl_ul .li2").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 2400 && $(window).scrollTop()< 3100){
+				$(".right_cbl .right_cbl_ul .li3").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 3100 && $(window).scrollTop()< 4000){
+				$(".right_cbl .right_cbl_ul .li4").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4000 && $(window).scrollTop()< 4750){
+				$(".right_cbl .right_cbl_ul .li5").addClass('on').siblings().removeClass('on');
+			}else if($(window).scrollTop()> 4750 && $(window).scrollTop()< 5056){
+				$(".right_cbl .right_cbl_ul .li6").addClass('on').siblings().removeClass('on');
+			}
+			var index=Math.floor($(document).scrollTop()/700) - 1;
+			$(".right_cbl .right_cbl_ul li").eq(index).addClass('on').siblings().removeClass('on');
+		}else{
+			$(".right_cbl").fadeOut();
+		}
+	});
+
+	var flags = true;
+	$('.right_cbl .right_cbl_ul li span.qq').click(function(e){
+		flags = false;
+		var sTop = $(".index_box>div").eq($(this).parent().index()).offset().top - 20;
+		$('html,body').animate(
+			{scrollTop: sTop }, 500  
+		)
+		
+	});
+
+	$(".j_f_top").click(function () {
+		$('body,html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+	
+	//var li = document.querySelectorAll(".advc-wrp li");
+
+	//	for(var i = 0;i < li.length;i++){
+		//	li[i].onclick = function(e){
+		//		console.log(this)
+		//		var box = document.querySelector(".advantage");
+		//		box.style.background = this.dataset.bg;
+		//	}
+
+		//}
+		
+		$('.adv-cont .hd>a').click(function(){
+			//$('.adv-cont').style.background = '123';
+		})
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			//$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			//$('body,html').css('overflow','auto');
+		})
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+    function imgdragstart(){return false;}
+    for(i in document.images)document.images[i].ondragstart=imgdragstart;
+</script>
+</body>
+</html>

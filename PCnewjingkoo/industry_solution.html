@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>行业方案</title>
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+</head>
+<style>
+
+	.header .wel_logo{width:165px;height:40px;background-size:100% auto;}
+
+</style>
+	 <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
+            }
+            links = null;
+        }, 0);
+
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
+
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
+
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+                return mua;
+            }());
+
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
+
+                document.location.href = 'http://m.jingku.cn/index_m.html';
+            }
+        });
+
+    </script>
+<body>
+
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="/#/login" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="/#/register" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://supplier.jingku.cn/Suppliers/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://supplier.jingku.cn/Public/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html" target="_blank"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html" target="_blank"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="header all tgole" id="header">
+	<div class="cle girds">
+		<div class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div> -->
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li class="on"><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li>
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li>
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="help_ad3"></div>
+
+<div style="background-color:#f5f5f5;">
+	<ul class="solution_box_u1">
+		<li class="on">零售店行业</li>
+		<li>代理商行业</li>
+		<li>品牌商行业</li>
+	</ul>
+</div>
+<div class="all_industry_solution">
+	<div class="industry_solution_box show">
+		<p class="solution_box_p1">零售店行业</p>
+		<ul class="solution_box_u2">
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_jkwd.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">微店：面向线下实体门店和线上传统电商</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_erp.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">ERP：寻找合适的产品和支持，满足你的业务需求，并最大化投资回报</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_pos.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">POS：新零售时代，更好用的管理工具</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="industry_solution_box">
+		<p class="solution_box_p1">代理商行业</p>
+		<ul class="solution_box_u2">
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_dls_dhxt.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">订货系统：眼镜业采购批发专业平台</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_dls_erp.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">ERP：可帮助企业超越传统IT架构界限，推动企业转型与发展</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_dls_pos.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">POS：新零售时代，更好用的管理工具</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="industry_solution_box">
+		<p class="solution_box_p1">品牌商行业</p>
+		<ul class="solution_box_u2">
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_pps_pps.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">品牌商管理系统：以数字驱动，实现高价值管理</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_pps_erp.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">ERP：寻找合适的产品和支持，满足你的业务需求，并最大化投资回报</p>
+				</div>
+			</li>
+			<li>
+				<div class="solution_box_div">
+					<div class="box_div_top" style="background: url(images/industry_solution_pps_dsj.jpg) center no-repeat;"></div>
+					<p class="solution_box_p2">大数据分析系统：数据可视化分析的好帮手，助您脱离报表苦海</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2017 北京镜库科技 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+</body>
+</html>
+<script>
+var swiper = new Swiper('.car-swiper', {
+		 pagination: '.swiper-pagination',
+		 paginationClickable: true,
+		prevButton:'.prevs',
+		nextButton:'.nexts',
+		 autoplay: 2000,
+		 loop : true,
+		 parallax : true,
+		speed: 1500,
+		nextButton: '.swiper-button-next',
+		 prevButton: '.swiper-button-prev',
+	 });
+	 $('.help-dl .help-name').click(function () {
+		//var that = this;
+		$(this).next().toggleClass('show');
+
+		if ($(this).next().hasClass('show')) {
+			$(this).find('span').css({
+				background: 'url(images/down_arrow.png) center 100% no-repeat'
+			})
+		} else {
+			$(this).find('span').css({
+				background: 'url(images/up_arrow.png) center 100% no-repeat'
+			})
+		}
+	});
+	$('.help_box .help-left .help-dl dd a').click(function(){
+		$(this).addClass('select').parent().siblings().find('a').removeClass('select');
+	})
+	$('.help_box .help-left .help-dl dt').click(function(){
+		$(this).parent().siblings().find('div').removeClass('show');
+	})
+	
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			//$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			//$('body,html').css('overflow','auto');
+		})
+		$('.solution_box_u1 li').click(function(){
+			$(this).addClass('on').siblings().removeClass('on');
+			var iiid = $(this).index();
+			$('.all_industry_solution>div').eq(iiid).addClass('show').siblings().removeClass('show');
+		})
+		/* 登录跳转到首页 */
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+</script>

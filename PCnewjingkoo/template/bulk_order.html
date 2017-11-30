@@ -52,12 +52,12 @@
     .pl_index_tbbox table td{border:1px solid #e6e6e6;height: 40px;text-align: center;font-size: 12px;color: #808080;padding: 0 20px;}
     .pl_index_cov h3 .xh{display: inline-block;width: 14px;height: 15px;cursor: pointer;background: url(img/pl_xh.png) center no-repeat;background-size: 14px;position: absolute;right: 20px;top:22px;}
     .pl_div2_box .pl_index_tbbox.pl_index_tbbox2{height: 412px;overflow-y: auto;}
-    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1{height: 400px;overflow-y: auto;padding-top: 0;padding-bottom: 0;}
+    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1{height: 340px;overflow-y: auto;padding-top: 0;padding-bottom: 0;}
     .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table{border-bottom: 0;}
     .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table.goods_number.tb3{
         border-bottom: 1px solid #ccc;
     }
-    .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child,.pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child td{border-bottom: 0;}
+    /* .pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child,.pl_div2_box .pl_index_tbbox.pl_index_tbbox1 table tr:last-child td{border-bottom: 0;} */
     .pl_div2_box .pl_index_ul2{width: calc(100% - 40px);margin: 0 auto;height: 40px;font-size: 13px;color: #666666;}
     .pl_div2_box .pl_index_ul2 li{width:calc(50% - 1.5px);float: left;text-align: center;border: 1px solid #e6e6e6;height: 40px;line-height: 40px;}
     .pl_div2_box .pl_index_ul2 li:nth-child(1){border-right: none;}
@@ -177,12 +177,12 @@
                 <div class="pl_index_tbbox pl_index_tbbox1 batch_preview" id="person-process-preview-base64img" ng-bind-html="printPreviewHtml">
                     
                 </div>
-                <!-- <ul class="pl_index_ul2">
-                    <li>商品总数量：¥{{count_num}}</li>
+                <ul class="pl_index_ul2">
+                    <li>商品总数量：{{printPreviewData.goods_number}}</li>
                     <li>商品总金额：
-                        <span>¥{{count_pic}}</span>
+                        <span>{{printPreviewData.formated_goods_amount}}</span>
                     </li>
-                </ul> -->
+                </ul>
             </div>
             <div class="pl_index_div2">
                 <div class="pl_index_tbbox pl_index_tbbox2 batch_preview" id="person-process-preview-base64img" ng-bind-html="orderPreviewHtml">

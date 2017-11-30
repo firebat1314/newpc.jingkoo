@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="shop-list">
-        <div class="guess-you-like">
+        <div class="guess-you-like" ng-if="qxsjAd">
             <div class="guess-you-like-main">
                 <div class="fl like-main-tit">
                     <p>热卖推荐</p>
@@ -56,7 +56,7 @@
                         <!--分类：<span>{{fashionMonthSelect.cat_name}}</span>-->
                         <!--<i ng-click="closeFenlei($event)">×</i>-->
                     <!--</div>-->
-                    <div class="select-conditions" ng-if="ding">
+                    <div class="select-conditions" style="cursor: pointer;" ng-if="ding">
                         分类：<span>{{ding}}</span>
                         <!-- <i ng-click="closeFenlei($event)">×</i> -->
                     </div>

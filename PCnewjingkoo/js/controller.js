@@ -3440,6 +3440,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.ding = data.ding;
                     $scope.is_true = data.is_true;
                     $scope.listControl();
+                    $scope.qxsjFn();
 
                     // for(var i = 0;i<$scope.shopListData.goods_attr_arr.length;i++){
                     //     for(var j = 0;j<$scope.shopListData.goods_attr_arr[i].data.length;j++){
@@ -3504,7 +3505,22 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         $scope.InitList();
-
+        $scope.qxsjFn = function () {
+            $http({
+                method: "GET",
+                url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
+                params: {
+                    type: 'hot',
+                    is_return: 1,
+                    cats: $scope.shopListData.ding_id
+                },
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+                .success(function (data) {
+                    //console.log(data);
+                    $scope.qxsjAd = data;
+                });
+        };
 
         $scope.getGoods = function (data) {
             $scope.pagination = $('#Pagination').pagination(data.pages, $scope.options);
@@ -3859,23 +3875,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
 
 
-        $scope.qxsjFn = function () {
-            $http({
-                method: "GET",
-                url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
-                params: {
-                    type: 'hot',
-                    is_return: 1,
-                    cats: $stateParams.cat_id
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            })
-                .success(function (data) {
-                    //console.log(data);
-                    $scope.qxsjAd = data;
-                });
-        };
-        $scope.qxsjFn();
+
 
         $scope.itemFn = function () {
             setTimeout(function () {
@@ -5798,6 +5798,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 });
                                 if (is_true && nums > 0) {
                                     layer.msg('数量参数错误！');
+									layer.close(prompt_cool);
+									//清除样式
+									$("#table_111").find("td").css({ "border-bottom": "", "border-right": "" });
+									$("#table_111").find("th").css({ "border-bottom": "", "border-right": "" });
+									$(".f5").css('color', 'rgb(102, 102, 102)');
+									$(".f5").css('background', 'rgb(245, 245, 245)');
                                     return false;
                                 }
                                 //属性构建完成
@@ -6755,6 +6761,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         /* 打印单预览按钮 */
         $scope.printPreview = function () {
             if ($scope.goods) {
+                var cool = layer.load(0, { shade: [0.3, '#fff'] });
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/Goods/qz_batch_preview',
@@ -6764,8 +6771,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
+                    layer.close(cool);
                     if (data.status) {
-                        $scope.data = data;
+                        $scope.printPreviewData = data;
                         $scope.printPreviewHtml = ($sce.trustAsHtml(data.content));
 
                     }
@@ -6784,6 +6792,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.orderPreview = function () {
             if ($scope.goods) {
                 $scope.printPreview();
+                var cool = layer.load(0, { shade: [0.3, '#fff'] });
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/Goods/batch_preview',
@@ -6793,8 +6802,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
+                    layer.close(cool);
                     if (data.status) {
-                        $scope.data = data;
+                        $scope.orderPreviewData = data;
                         $scope.orderPreviewHtml = ($sce.trustAsHtml(data.content));
                         /* var js = document.createElement('script');
                         js.src = './plugins/js.js';

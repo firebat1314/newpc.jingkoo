@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>功能</title>
+	<link rel="Shortcut icon" type="image/x-icon" href="https://newpc.jingkoo.net/img/applogoNew.ico">
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+    <link type="text/css" rel="stylesheet" href="css/reset.css">
+    <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+	<link type="text/css" rel="stylesheet" href="css/small.css" media="screen and (max-width: 1200px)"> 
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.2.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="./images/jingku.ico">
+	 <script>
+        setTimeout(function () {
+            var links = document.getElementsByTagName('link');
+            var linksLength = links.length;
+            for (var i = 0; i < linksLength; i++) {
+                if ('icon' === links[i].rel) {
+                    links[i].type = 'image/x-icon';
+                    links[i].href = 'img/applogoNew.ico';
+                }
+            }
+            links = null;
+        }, 0);
+
+        $(function () {
+            var MobileUA = (function () {
+                var ua = navigator.userAgent.toLowerCase();
+
+                var mua = {
+                    IOS: /ipod|iphone|ipad/.test(ua), //iOS
+                    IPHONE: /iphone/.test(ua), //iPhone
+                    IPAD: /ipad/.test(ua), //iPad
+                    ANDROID: /android/.test(ua), //Android Device
+                    WINDOWS: /windows/.test(ua), //Windows Device
+                    TOUCH_DEVICE: ('ontouchstart' in window) || /touch/.test(ua), //Touch Device
+                    MOBILE: /mobile/.test(ua), //Mobile Device (iPad)
+                    ANDROID_TABLET: false, //Android Tablet
+                    WINDOWS_TABLET: false, //Windows Tablet
+                    TABLET: false, //Tablet (iPad, Android, Windows)
+                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                };
+
+                mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
+                mua.WINDOWS_TABLET = mua.WINDOWS && /tablet/.test(ua);
+                mua.TABLET = mua.IPAD || mua.ANDROID_TABLET || mua.WINDOWS_TABLET;
+                mua.SMART_PHONE = mua.MOBILE && !mua.TABLET;
+
+                return mua;
+            }());
+
+            //SmartPhone
+            if (MobileUA.SMART_PHONE) {
+                // 移动端链接地址
+
+                document.location.href = 'https://newm.jingkoo.net';
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+
+<div class="wel_box_cover"></div>
+<div class="wel_box">
+	<h2 class="wel_box_h2">
+		选择登录
+		<span class="wel_xh"></span>
+	</h2>
+	<div class="wel_div_box">
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top1"></div>
+			<p class="wel_p">镜库采购商</p>
+			<a href="http://newpc.jingkoo.net/#/login"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="http://newpc.jingkoo.net/#/register"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top2"></div>
+			<p class="wel_p">镜库供应商</p>
+			<a href="http://newsupplier.jingkoo.net/Suppliers/Public/login.html"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<a href="http://newsupplier.jingkoo.net/Public/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top3"></div>
+			<p class="wel_p">镜库CRM</p>
+			<a href="http://crm.jingku.cn/Public/login.html"><input type="button" value="立即登录" class="wel_div_btn"/>
+			<a href="http://crm.jingku.cn/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a>
+		</div>
+		<div class="wel_div">
+			<div class="wel_div_top wel_div_top4"></div>
+			<p class="wel_p">镜库微店</p>
+			<a href="http://v.jingku.cn/Shop/Public_sign.html"><input type="button" value="立即登录" class="wel_div_btn"/></a>
+			<!-- <a href="http://jing-ku.com/register.html"><span class="wel_div_sp">立即注册<span class="wel_arr"></span></span></a> -->
+		</div>
+	</div>
+</div>
+
+<div class="header all tgole" id="header">
+	<div class="cle girds">
+		<div class="wel_logo"></div>
+		<div class="wel_txt">
+			<div class="wel_nav">
+				<ul class="cle">
+					<li><div class="tixe"><a href="default.html">首页</a></div></li>
+					<li>
+						<div class="tixe"><a href="javascript:;">产品中心<em class="xsj"></em></a></div>
+						<div class="ti-cont">
+							<div class="tic-wrap cle">
+								<div class="item"><a href="default.html"><em class="ite-ico ite-1"></em>镜库采购商</a></div>
+								<div class="item"><a href="design.html"><em class="ite-ico ite-6"></em>镜库设计</a></div>
+								<div class="item"><a href="suppliers.html"><em class="ite-ico ite-2"></em>镜库供应商</a></div>
+								<div class="item"><a href="website.html"><em class="ite-ico ite-7"></em>镜库建站</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-3"></em>镜库品牌商</a></div> -->
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-8"></em>镜库ERP</a></div> -->
+								<div class="item"><a href="crm.html"><em class="ite-ico ite-4"></em>镜库CRM</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-9"></em>镜库金融</a></div> -->
+								<div class="item"><a href="micro_shop.html" class="on"><em class="ite-ico ite-5"></em>镜库微店</a></div>
+								<!-- <div class="item"><a href="#"><em class="ite-ico ite-10"></em>镜库云仓</a></div> -->
+							</div>
+						</div>
+					</li>
+					<li><div class="tixe"><a href="industry_solution.html">行业方案</a></div></li>
+					<li><div class="tixe"><a href="serve.html">服务支持</a></div></li>
+					<li><div class="tixe"><a href="help_center.html">帮助中心</a></div></li>
+				</ul>
+			</div>
+			<div class="re_login">
+				<a style="cursor:pointer;" class="zc">注册</a>
+				<a style="cursor:pointer;" class="dl">登录</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gneng-banner">
+	<div class="gng-nav all">
+		<ul class="cle">
+			<li><a href="#ac-zshi" class="ac-zshi acite">展示</a></li>
+			<li><a href="#ac-tuig" class="ac-tuig">推广</a></li>
+			<li><a href="#ac-yhui" class="ac-yhui">互动优惠</a></li>
+			<li><a href="#ac-mend" class="ac-mend">多门店</a></li>
+			<li><a href="#ac-gmai" class="ac-gmai">重复购买</a></li>
+			<li><a href="#ac-fenx" class="ac-fenx">分销</a></li>
+			<li><a href="#ac-zfu"  class="ac-zfu">支付</a></li>
+			<li><a href="#ac-sju"  class="ac-sju">数据</a></li>
+			<li><a href="#ac-spin" class="ac-spin">商品</a></li>
+			<li><a href="#ac-ddan" class="ac-ddan">订单</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-zshi">
+	<div class="coc-bt">展现</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/co-1.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>微店首页</h4>
+				<p>可以自定义首页展示方式</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/dh.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>店铺导航</h4>
+				<p>商品分门别类，一目了然</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/dpmb.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>店铺模板</h4>
+				<p>多样化模板供商家选择</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-tuig">
+	<div class="coc-bt">推广</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/wxgzh.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>微信公众号</h4>
+				<p>链接公众号，使用更方便</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/xxts.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>消息推送</h4>
+				<p>向客户发送消息，短信推送</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/xsy.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>销售员</h4>
+				<p>普通客户介绍顾客，获得积分奖品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/dsfcj.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>第三方插件</h4>
+				<p>第三方插件实现多元化运营</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/dcsewm.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>带参数二维码</h4>
+				<p>实现不同客户的进入渠道</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-yhui">
+	<div class="coc-bt">互动优惠</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/dkf.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>多客服</h4>
+				<p>店员及时响应顾客咨询</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/dhsssp.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>对话搜索商品</h4>
+				<p>搜索框输入关键字，显示商品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/qd.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>签到</h4>
+				<p>每日签到获得响应积分</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/xydzp.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>幸运大转盘</h4>
+				<p>积分兑换抽奖次数，抽取奖品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/ggk.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>刮刮卡</h4>
+				<p>通过支付获取刮刮卡次数</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/dllq.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>登录领券</h4>
+				<p>登录微商城领取优惠券</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/syzt.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>活动专题页</h4>
+				<p>假日活动商品促销</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/jfhq.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>积分换券</h4>
+				<p>用积分兑换商品优惠券</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/yhq.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>支付送优惠</h4>
+				<p>支付成功，按支付情况给予优惠券</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/yhql.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>优惠券</h4>
+				<p>通过优惠券实现商品优惠</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/mjs.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>满减/送</h4>
+				<p>消费一定金额享受优惠价格</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/xszk.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>限时折扣</h4>
+				<p>设置商品限时打折，促销</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/tc.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>优惠套餐</h4>
+				<p>把不同商品组合售卖</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/s.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>订单满减/送</h4>
+				<p>消费一定金额享受优惠价格</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="gnac-cont" id="ac-mend">
+	<div class="coc-bt">多门店</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/co-1.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>多门店</h4>
+				<p>实现多门店管理商品订单发货</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/dzhq.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>地址获取</h4>
+				<p>获取门店地址实时分析客户分布</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/yyyg.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>预约验光</h4>
+				<p>网上预约，线下验光</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/ygd.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>验光单</h4>
+				<p>查看所有门店验光数据</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/mddz.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>门店地址</h4>
+				<p>指引客户方便到店自提</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-gmai">
+	<div class="coc-bt">重复购物</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/jfsc	.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>积分商城</h4>
+				<p>实现多门店管理商品订单发货</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/zfyl.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>支付有礼</h4>
+				<p>支付后，引导客户领取礼品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/zp.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>赠品</h4>
+				<p>设置赠品，购买获得</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-fenx">
+	<div class="coc-bt">分销</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/dyfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>店员分销</h4>
+				<p>发动员工，分享推广</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/khfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>客户分销</h4>
+				<p>客户推荐好友获取积分以及礼品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/lkc.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>零库存</h4>
+				<p>门店无需囤货实现零库存</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-zfu">
+	<div class="coc-bt">支付</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/dyfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>微信支付</h4>
+				<p>支持微信支付</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/ddzt.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>到店自提</h4>
+				<p>线上下单，门店自提</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/jstx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>及时提现</h4>
+				<p>可自由提现至指定账户</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-sju">
+	<div class="coc-bt">数据</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/sscj.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>实时成交</h4>
+				<p>交易数据实时发布</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/fkxw.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>访客行为</h4>
+				<p>最终访客行为，了解客户习惯</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/hdqs.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>互动趋势</h4>
+				<p>根据趋势发现问题，调整运营</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/llfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>流量分析</h4>
+				<p>店铺流量一目了然</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/spfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>商品分析</h4>
+				<p>下单情况，交易转化更为清晰</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/jyfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>交易分析</h4>
+				<p>下单情况，交易转化更为清晰</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-spin">
+	<div class="coc-bt">商品</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/spgl.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>商品管理</h4>
+				<p>在售商品方便管理，一目了然</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/spdr.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>商品导入</h4>
+				<p>镜库商品库一键导入</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/mbgl.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>模板管理</h4>
+				<p>模板分类一一对应，上传商品方便快捷</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="gnac-cont" id="ac-ddan">
+	<div class="coc-bt">订单</div>
+	<div class="coc-neir cle">
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/sscj.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>订单概况</h4>
+				<p>展示7天内的订单概况以及趋势</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff5353 url(images/fkxw.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>订单管理</h4>
+				<p>订单列表一目了然</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/hdqs.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>订单打印</h4>
+				<p>打印订单，方便快捷分炼商品</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#ff842d url(images/pldc.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>批量导出</h4>
+				<p>针对实际段内的订单计算统计</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#0dcc6d url(images/spfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>返修退换</h4>
+				<p>客户可针对商品进行退换</p>
+			</div>
+		</div>
+		<div class="itme">
+			<div class="icon" style="background:#66a3ff url(images/jyfx.png) no-repeat center;"></div>
+			<div class="txt">
+				<h4>商品评价</h4>
+				<p>客户可针对购买的商品给予评级</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="bot-anniu">
+	<a href="" class="btn">立即体验</a>
+	<p class="dg-1">订购咨询：400-080-5118</p>
+	<p class="dg-2">周一至周日 09:00 ~ 18.00</p>
+</div>
+
+
+<div class="footer">
+	<div class="gird foot-1 cle">
+		<div class="item"><span style="background:url(images/foot-1.png) no-repeat center;"></span>www.jingku.cn</div>
+		<div class="item"><span style="background:url(images/foot-2.png) no-repeat center;"></span>400-080-5118</div>
+		<div class="item"><span style="background:url(images/foot-3.png) no-repeat center;"></span>2689553700</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-4.png) no-repeat center;"></span>下载APP
+				<div class="dow-erwm "><img src="images/foot-erwm.png"/></div>
+			</div>
+		</div>
+		<div class="item">
+			<div class="down_app">
+				<span style="background:url(images/foot-5.png) no-repeat center;"></span>关注微信公众号
+				<div class="dow-erwm "><img src="images/header_ewm.png"/></div>
+			</div>
+		</div>
+	</div>
+	<div class="gird foot-2">Copyright (c) 2014 - 2017 北京镜库科技 All Rights Reserved 京ICP备16016885号-2</div>
+</div>
+
+<div class="f-top j_f_top"></div>
+
+<script src="js/wow.js"></script>
+<script>
+
+    var wow = new WOW({
+	    boxClass: 'wow',
+	    animateClass: 'animated',
+	    offset: 0,
+	    mobile: true,
+	    live: true
+	});
+	wow.init();
+	
+	$(".j_strong_cont").slide({titCell:".hd ul li",mainCell:".bd ul",effect:"top",trigger:"click"});
+	
+	var ac_zshi = $("#ac-zshi").offset().top;
+	var ac_tuig = $("#ac-tuig").offset().top;
+	var ac_yhui = $("#ac-yhui").offset().top;
+	var ac_mend = $("#ac-mend").offset().top;
+	var ac_gmai = $("#ac-gmai").offset().top;
+	var ac_fenx = $("#ac-fenx").offset().top;
+	var ac_zfu = $("#ac-zfu").offset().top;
+	var ac_sju = $("#ac-sju").offset().top;
+	var ac_spin = $("#ac-spin").offset().top;
+	var ac_ddan = $("#ac-ddan").offset().top;
+
+	$(window).scroll(function(){
+		if($(window).scrollTop() >= 100){
+			$(".j_f_top").fadeIn();
+		}else{
+			$(".j_f_top").fadeOut();
+		}
+		if($(window).scrollTop() >= 352){
+			$(".gng-nav").addClass("fixe");
+		}else{
+			$(".gng-nav").removeClass("fixe");
+		}
+		if($(window).scrollTop() >= ac_zshi - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-zshi").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_tuig - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-tuig").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_yhui - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-yhui").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_mend - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-mend").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_gmai - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-gmai").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_fenx - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-fenx").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_zfu - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-zfu").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_sju - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-sju").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_spin - 130){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-spin").addClass("acite");
+		}
+		if($(window).scrollTop() >= ac_ddan - 230){
+			$(".gng-nav a").removeClass("acite");
+			$(".ac-ddan").addClass("acite");
+		}
+	});
+	$(".j_f_top").click(function () {
+		$('body,html').animate({ scrollTop: 0 }, 500);
+		return false;
+	});
+	
+	$(document).ready(function() {
+	  $(".gng-nav a").click(function() {
+	    $("html, body").animate({
+	      scrollTop: $($(this).attr("href")).offset().top - 130 + "px"
+	    }, {
+	      duration: 500,
+	      easing: "swing"
+	    });
+	    return false;
+	  });
+	});
+
+	
+		$('.re_login>a').click(function(){
+			$('.wel_box_cover').show();
+			$('.wel_box').show();
+			$('body,html').css('overflow','hidden');
+		})
+		$('.wel_box .wel_xh').click(function(){
+			$('.wel_box_cover').hide();
+			$('.wel_box').hide();
+			$('body,html').css('overflow','auto');
+		})
+		function getCookie(c_name)
+			{
+			if (document.cookie.length>0)
+			  {
+			  c_start=document.cookie.indexOf(c_name + "=")
+			  if (c_start!=-1)
+				{ 
+				c_start=c_start + c_name.length+1 
+				c_end=document.cookie.indexOf(";",c_start)
+				if (c_end==-1) c_end=document.cookie.length
+				return unescape(document.cookie.substring(c_start,c_end))
+				} 
+			  }
+			return ""
+			}
+		$('[href="/#/login"]').on('click',function(event){
+			event.preventDefault();
+			if(getCookie('has_login')){
+				window.open("/#/home");
+			}else{
+				window.open("/#/login");
+			}
+		})
+</script>
+</body>
+</html>

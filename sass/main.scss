@@ -5371,9 +5371,9 @@ $browser-default-font-size: 37.5px !default;
             &:first-child{
               position: absolute;
               left:12px;
-              top:24px;
+              bottom:8px;
             }
-            &:last-child{
+            &:last-child{ 
               position: absolute;
               right:12px;
               top:8px;

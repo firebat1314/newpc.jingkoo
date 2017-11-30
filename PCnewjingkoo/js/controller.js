@@ -61,6 +61,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         };
         $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
+		//$rootScope.ip = 'https://www.jingku.cn'; //当前域名
 
         $scope.loginOut = function () {
             $http({
@@ -1931,7 +1932,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
-                            //location.href="http://newpc.jingkoo.net2017/11/28/default.html";
+                            //location.href="http://jingkoo.net2017/11/28/default.html";
                         } else {
                             layer.msg('已取消关注');
                             $scope.shejiData.hot_goods.is_collect = 0;
@@ -5112,7 +5113,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                                     html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
                                     //obj.attr("data-zhu")
-                                    if (is_zhouwei == 1) {
+                                    if ($stateParams.zhouwei == 1) {
                                         html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
                                     }
                                     var spc = data.result[data_i].spc;
@@ -5148,7 +5149,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                                         html += '<td align="center" class="zhujing">' + data.result[data_i].zhu + '</td>';
                                         //obj.attr("data-zhu")
-                                        if (is_zhouwei == 1) {
+                                        if ($stateParams.zhouwei == 1) {
                                             html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;" value="' + data.result[data_i].zhouwei + '"></td>';
                                         }
                                         var spc = data.result[data_i].spc;
@@ -6250,6 +6251,56 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         }
         $(function () {
             setInterval(function () {
+				var is_true = false;
+				var i = 0;
+				var munber = new Array();//数量
+				var zhujing = new Array();//柱镜
+				var qiujing = new Array();//球镜
+				var arr_spec = new Array();//属性
+				var arr_attr = new Array();//属性
+				var zhouwei = new Array();//属性
+				var dataid = new Array();//属性
+				$(".attr_lists").each(function () {
+					munber[i] = parseInt($(this).find(".nums").text());
+					if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+						is_true = true;
+						return false;
+					}
+					dataid[i] = $(this).find(".nums").attr("id");
+					zhujing[i] = $(this).find(".zhujing").text();
+					qiujing[i] = $(this).find(".qiujing").text();
+					zhouwei[i] = $(this).find(".zhouwei").val();
+					var spec = new Array();//属性
+					var attr = new Array();//属性
+					//var spec = '';
+					//var attr = '';
+					$(this).find(".str_attr").each(function () {
+						//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+						//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+						spec.push($(this).find("input").val());
+						attr.push($(this).find("span").html());
+					})
+					arr_attr[i] = attr;
+					arr_spec[i] = spec;
+					i++;
+				});
+				//属性构建完成
+				var goods = new Object();
+				goods.quick = 1;
+				goods.goods_id = $(".add_to_cart").attr("data-id");
+
+				goods.member = munber;//数量
+				goods.spc = arr_spec;//属性
+				goods.qiujing = qiujing;//球镜
+				goods.zhujing = zhujing;//柱镜
+				goods.zhouwei = zhouwei;//轴位
+				goods.dataid = dataid;
+				goods.parent = 0;
+				goods.carttype = 0;
+				//goods.attr      = arr_attr;
+
+				$scope.goods = goods;
+				
                 if ($scope.goods) {
                     console.log("setInterval");
                     $http({
@@ -6601,6 +6652,60 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //加入购物车
         $scope.join = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
+			
+			var is_true = false;
+			var i = 0;
+			var munber = new Array();//数量
+			var zhujing = new Array();//柱镜
+			var qiujing = new Array();//球镜
+			var arr_spec = new Array();//属性
+			var arr_attr = new Array();//属性
+			var zhouwei = new Array();//属性
+			var dataid = new Array();//属性
+			$(".attr_lists").each(function () {
+				munber[i] = parseInt($(this).find(".nums").text());
+				if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
+					is_true = true;
+					return false;
+				}
+				dataid[i] = $(this).find(".nums").attr("id");
+				zhujing[i] = $(this).find(".zhujing").text();
+				qiujing[i] = $(this).find(".qiujing").text();
+				zhouwei[i] = $(this).find(".zhouwei").val();
+				var spec = new Array();//属性
+				var attr = new Array();//属性
+				//var spec = '';
+				//var attr = '';
+				$(this).find(".str_attr").each(function () {
+					//spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
+					//attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
+					spec.push($(this).find("input").val());
+					attr.push($(this).find("span").html());
+				})
+				arr_attr[i] = attr;
+				arr_spec[i] = spec;
+				i++;
+			});
+			if (is_true) {
+				layer.msg('数量参数错误！');
+				return false;
+			}
+			//属性构建完成
+			var goods = new Object();
+			goods.quick = 1;
+			goods.goods_id = $stateParams.goods_id;
+
+			goods.member = munber;//数量
+			goods.spc = arr_spec;//属性
+			goods.qiujing = qiujing;//球镜
+			goods.zhujing = zhujing;//柱镜
+			goods.zhouwei = zhouwei;//轴位
+			goods.parent = 0;
+			goods.carttype = 0;
+			//goods.attr      = arr_attr;
+
+			$scope.goods = goods;
+
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',

@@ -31,16 +31,16 @@
 						<div class="process_cont_c ng-scope <if condition="$key eq 1">con</if>" <if condition="$key neq 1"> style="display: none;"</if>>
 							<div class="process-goods-box" style="padding: 20px 0;margin-bottom:30px;">
 								<div class="process-goods-item" style="float:left;margin-right: 60px;">
-									<img style="width:70px;height:70px;display: block;float:left;margin-right:15px;border:1px solid #ccc;" title="{$vo.left_attr.goods_name}" alt="{$vo.left_attr.goods_name}" src="{$vo.left_attr.goods_img}">
-									<p style="width:185px;color:#666;overflow:hidden;text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; ">{$vo.left_attr.goods_name}</p>
-									<span style="color:#999;margin-top: 10px;display: block;">眼镜片 - 左眼</span>
-								</div>
-								<div class="process-goods-item" style="float:left;margin-right: 60px;">
 									<img style="width:70px;height:70px;display: block;float:left;margin-right:15px;border:1px solid #ccc;" title="{$vo.right_attr.goods_name}" alt="{$vo.right_attr.goods_name}" src="{$vo.right_attr.goods_img}">
 									<p style="width:185px;color:#666;overflow:hidden;text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; ">
 									{$vo.right_attr.goods_name}
 									</p>
 									<span style="color:#999;margin-top: 10px;display: block;">眼镜片 - 右眼</span>
+								</div>
+								<div class="process-goods-item" style="float:left;margin-right: 60px;">
+									<img style="width:70px;height:70px;display: block;float:left;margin-right:15px;border:1px solid #ccc;" title="{$vo.left_attr.goods_name}" alt="{$vo.left_attr.goods_name}" src="{$vo.left_attr.goods_img}">
+									<p style="width:185px;color:#666;overflow:hidden;text-overflow:ellipsis;display:-webkit-box; -webkit-box-orient:vertical;-webkit-line-clamp:2; ">{$vo.left_attr.goods_name}</p>
+									<span style="color:#999;margin-top: 10px;display: block;">眼镜片 - 左眼</span>
 								</div>
 								<div class="process-goods-item">
 									<if condition="$vo[jia_attr][goods_name]">
@@ -69,16 +69,6 @@
 								</tr>
 								<tr>
 									<td><input type="button" class="cont_tb1_ip" value="右眼"/></td>
-									<td>{$vo.lqiujing}</td>
-									<td>{$vo.lzhujing}</td>
-									<td>{$vo.lzhouxiang}</td>
-									<td>{$vo.ladd}</td>
-									<td>{$vo.ltongju}</td>
-									<td>{$vo.ltonggao}</td>
-									<td>{$vo.ljytj}</td>
-								</tr>
-								<tr>
-									<td><input type="button" class="cont_tb1_ip" value="右眼"/></td>
 									<td>{$vo.rqiujing}</td>
 									<td>{$vo.rzhujing}</td>
 									<td>{$vo.rzhouxiang}</td>
@@ -86,6 +76,16 @@
 									<td>{$vo.rtongju}</td>
 									<td>{$vo.rtonggao}</td>
 									<td>{$vo.rjytj}</td>
+								</tr>
+								<tr>
+									<td><input type="button" class="cont_tb1_ip" value="左眼"/></td>
+									<td>{$vo.lqiujing}</td>
+									<td>{$vo.lzhujing}</td>
+									<td>{$vo.lzhouxiang}</td>
+									<td>{$vo.ladd}</td>
+									<td>{$vo.ltongju}</td>
+									<td>{$vo.ltonggao}</td>
+									<td>{$vo.ljytj}</td>
 								</tr>
 							</table>
 							<table class="process_cont_tb2">

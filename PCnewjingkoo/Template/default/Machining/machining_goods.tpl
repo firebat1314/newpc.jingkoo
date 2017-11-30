@@ -87,7 +87,7 @@
                                             </li>
                                             <li>
                                                 <input name="is_zib" value="1" type="checkbox" class="choose_u1_inp" <if condition="$rec_id eq 0"> checked</if>/>
-                                                <label for="">是否客户自备</label>
+                                                <label for="">客户自备</label>
                                             </li>
                                         </ul>
                                     </div>

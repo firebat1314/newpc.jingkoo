@@ -436,6 +436,9 @@ html {
         height: 210px;
         background: #f2f2f2;
         overflow: hidden; }
+        .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .goods-items-img a img {
+          width: 210px !important;
+          height: 210px !important; }
       .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .hd ul {
         width: 220px;
         height: 45px;

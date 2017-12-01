@@ -1147,6 +1147,48 @@
 				window.open("/#/login");
 			}
 		})
+		/* 供应商 */
+		$('.wel_div_btn').eq(1).on('click',function(event){
+			event.preventDefault();
+			$.ajax({
+				url:'http://newsupplier.jingkoo.net/Public/loginInfo',
+				type:'get',
+			}).success(function(res){
+				if(res.admin_id>0){
+				location.href="http://newsupplier.jingkoo.net/Suppliers/Public/login.html"
+				}else{
+				location.href="http://newsupplier.jingkoo.net"
+				}
+			})
+		})
+		/* crm */
+		$('.wel_div_btn').eq(2).on('click',function(event){
+			event.preventDefault();
+			$.ajax({
+				url:'http://newcrm.jingkoo.net/Public/loginInfo',
+				type:'get',
+			}).success(function(res){
+				if (res.uid > 0) {
+					location.href = "http://newcrm.jingkoo.net/Public/login.html"
+				}else{
+					location.href = "http://newcrm.jingkoo.net"
+				}
+			})
+		})
+		/* 微店 */
+		$('.wel_div_btn').eq(3).on('click',function(event){
+			event.preventDefault();
+			$.ajax({
+				url:'http://vtest.jingkoo.net/Shop/Public_loginInfo.html',
+				type:'get',
+			}).success(function(res){
+				if(res.shopadminid>0){
+					location.href="http://vtest.jingkoo.net/Shop/Public_sign.html"
+				}else{
+					location.href="http://vtest.jingkoo.net/Shop"
+				}
+			})
+		})
     function imgdragstart(){return false;}
     for(i in document.images)document.images[i].ondragstart=imgdragstart;
 </script>

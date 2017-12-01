@@ -51,7 +51,11 @@
     					<span ng-click="getAllOrderHs(null)"><a class="cbt-wz on">来镜加工</a></span>
     					<!-- <span ng-click="getAllOrderHs('unpay')"><a href="javascript:0;" class="cbt-wz">待付款<em>{{orderpay}}</em></a></span>
     					<span ng-click="getAllOrderHs('collect')"><a href="javascript:0;" class="cbt-wz">待收货<em>{{orderDsh}}</em></a></span>
-    					<span ng-click=""><a href="javascript:0;" class="cbt-wz">积分兑换<em>10</em></a></span> -->
+						<span ng-click=""><a href="javascript:0;" class="cbt-wz">积分兑换<em>10</em></a></span> -->
+						<div class="sp_r">
+							<i class="sp_r_i" ng-click="repairFn(sn)"></i>
+							<input type="text" ng-model="sn" placeholder="输入商品名称或订单编号进行搜索" class="sp_r_ip"/>
+						</div>
     				</div>
     				<!-- <div class="shur-wrp ">
 						<input type="button" class="btna" ng-click="serchGoods()"/>
@@ -59,6 +63,15 @@
 					</div> -->
     			</div>
     			<div class="cont-bd">
+					<div class="detail_div_d1" style="width:auto;margin: 20px 20px 0;">
+						<div class="d1_div1_inp" style="margin-top:0;">
+							<input type="text" ngc-lay-date id="fpInpMin" ng-model="starttime" ng-change="changeStartTime(starttime)"  max-date="{{endTime}}" class="fp_inp" placeholder="下单时间">
+						</div>
+						<span>--</span>
+						<div class="d1_div1_inp" style="margin-top:0;">
+							<input type="text" ngc-lay-date id="fpInpMax" ng-model="endtime" ng-change="changeEndTime(endtime)" min-date="{{startTime}}" class="fp_inp" placeholder="下单时间">
+						</div>
+					</div>
     				<div class="contacts-wrap ddan integral">
     					<div class="sydd">
 							<div class="sydd-head">

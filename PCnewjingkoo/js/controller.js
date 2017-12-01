@@ -6644,14 +6644,27 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 update_cart_num();
             });
+			var wwinH = $(window).height() - 250;
+			console.log(wwinH);
             $(window).scroll(function () {
+				var tbtop = $('.bulk-order-total').offset().top;
                 var index = $(document).scrollTop();
                 var height = $("#table_111").height();
+				var shep = $('.shep_line').offset().top - 700;
                 if (index > 264 && index < (264 + height)) {
                     $(".fist").show();
                 } else {
                     $(".fist").hide();
                 }
+				
+				if(index > shep){
+					console.log('sha?')
+					$('.bulk-order-total').removeClass('tbfix');
+				}else{ 
+					//console.log(index)
+					//console.log(shep)
+					$('.bulk-order-total').addClass('tbfix'); 
+				}
                 //$(".gwc_sum").text(index);
             });
         });
@@ -14014,11 +14027,28 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
+
+        
         $scope.goto();
         $scope.machiningList = {
             page: 1,
             size: 10
         };
+
+        /* 12.1新增筛选 */
+        $scope.changeStartTime = function(time){
+            $scope.machiningList.min = time;
+            $scope.getData();
+        }
+        $scope.changeEndTime = function(time){
+            $scope.machiningList.max = time;
+            $scope.getData();
+        }
+        $scope.repairFn = function(sn){
+            $scope.machiningList.sn = sn;
+            $scope.getData();
+        }
+
 
         $scope.options = {
             num_edge_entries: 1, //边缘页数

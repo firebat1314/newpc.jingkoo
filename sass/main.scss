@@ -4205,7 +4205,7 @@ $browser-default-font-size: 37.5px !default;
               border-bottom: 1px solid #ccc;
               border-top: 1px solid #ccc;
               &:first-child{
-                width: 100px;
+                width: 200px;
               }
             }
             td {
@@ -9309,6 +9309,11 @@ width: 60px;
 .cont-hd .cbt-left span a:hover,.cont-hd .cbt-left span a.on{color:#0070c9;} 
 .cont-hd .cbt-left span:last-of-type{border-right:0;} 
 .cont-hd .cbt-left span em{display:inline-block;width: 20px;height:20px;background:#ff0000;color:#fff;text-align:center;line-height:21px;font-size:12px;margin-left:5px;border-radius:50%;transform: scale(0.8);}
+.cont-hd .sp_r{float: right;margin-top: 6.5px;position: relative;margin-right: 20px;}
+.cont-hd .sp_r .sp_r_ip{width: 240px;height: 25px;font-size: 12px;color: #808080;border: 1px solid #e6e6e6;border-radius: 2px;padding-left: 15px;position: relative;}
+.cont-hd .sp_r .sp_r_ip:focus{outline: none;}
+.cont-hd .sp_r .sp_r_i{display: inline-block;width: 25px;height: 25px;position: absolute;top: 1px;right: 1px;z-index: 10;background:#f4f4f4 url(../img/ser_bla.png) center center no-repeat;background-size: 16px 16px;cursor: pointer;}
+
 .cont-hd .shur-wrp{position:relative;float:right;margin-right:20px;margin-top:6.5px;border-radius:0;border:1px solid #e6e6e6;width:250px;height:25px;overflow:hidden;}
 .cont-hd .shur-wrp .btna{position:absolute;right:0;top:0;width:25px;height:25px;border:0;background:#f4f4f4 url(../img/ssr.png) no-repeat center;cursor:pointer;}
 .cont-hd .shur-wrp .txt{border:0;width:100%;height:25px;line-height:25px;padding-right:40px;padding-left:10px;color:#808080;font-size:12px;}

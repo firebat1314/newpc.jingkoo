@@ -3842,7 +3842,7 @@ span.a_arrow_r {
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta th:first-child {
-          width: 100px; }
+          width: 200px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta td {
         padding: 20px 0;
         text-align: center;
@@ -14608,6 +14608,37 @@ textarea {
   margin-left: 5px;
   border-radius: 50%;
   transform: scale(0.8); }
+
+.cont-hd .sp_r {
+  float: right;
+  margin-top: 6.5px;
+  position: relative;
+  margin-right: 20px; }
+
+.cont-hd .sp_r .sp_r_ip {
+  width: 240px;
+  height: 25px;
+  font-size: 12px;
+  color: #808080;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  padding-left: 15px;
+  position: relative; }
+
+.cont-hd .sp_r .sp_r_ip:focus {
+  outline: none; }
+
+.cont-hd .sp_r .sp_r_i {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  z-index: 10;
+  background: #f4f4f4 url(../img/ser_bla.png) center center no-repeat;
+  background-size: 16px 16px;
+  cursor: pointer; }
 
 .cont-hd .shur-wrp {
   position: relative;

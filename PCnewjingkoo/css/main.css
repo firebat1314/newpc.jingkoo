@@ -2999,6 +2999,9 @@ span.a_arrow_r {
           height: 260px;
           background: #f2f2f2;
           overflow: hidden; }
+          .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .goods-items-img a img {
+            width: 260px !important;
+            height: 260px !important; }
         .shopList-main .shop-list .shopList-goods .big-shopList-goods-items .shopList-goods-items .hd {
           position: relative;
           padding-top: 10px; }
@@ -3838,6 +3841,8 @@ span.a_arrow_r {
         color: #666;
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc; }
+        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta th:first-child {
+          width: 100px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta td {
         padding: 20px 0;
         text-align: center;
@@ -4774,7 +4779,8 @@ span.a_arrow_r {
     .bulk-order-main .bulk-order-table table th, .bulk-order-main .bulk-order-table table td {
       height: 40px;
       border: 1px solid #ccc;
-      text-align: center; }
+      text-align: center;
+      cursor: cell; }
     .bulk-order-main .bulk-order-table table th:first-child {
       position: relative; }
       .bulk-order-main .bulk-order-table table th:first-child span:first-child {

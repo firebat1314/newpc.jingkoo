@@ -1302,6 +1302,7 @@ html {
             opacity: .7; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .buy-button .piliang {
           padding-left: 0;
+          display: none;
           border: 1px solid #3f69a5;
           color: #3f69a5;
           background-color: #fff !important; }

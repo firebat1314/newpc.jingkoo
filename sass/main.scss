@@ -9303,12 +9303,17 @@ width: 60px;
 .im-panel .panel-right{float:right;width:978px; } 
 .im-panel .panel-right .control-wrp{min-height:641px;background:#fff;border:1px solid #d9d9d9;display:flow-root;}
 .cont-hd{height:40px;border-bottom:1px solid #e6e6e6;}
-.cont-hd .cbt-left{float:left;width: 100%;}
+.cont-hd .cbt-left{float:left;}
 .cont-hd .cbt-left span{float: left;display: block;width: 123px;height:30px;line-height:30px;text-align:center;margin-top:4px;border-right:1px solid #e6e6e6;}
 .cont-hd .cbt-left span a{color:#666;font-size:15px;}
 .cont-hd .cbt-left span a:hover,.cont-hd .cbt-left span a.on{color:#0070c9;} 
 .cont-hd .cbt-left span:last-of-type{border-right:0;} 
 .cont-hd .cbt-left span em{display:inline-block;width: 20px;height:20px;background:#ff0000;color:#fff;text-align:center;line-height:21px;font-size:12px;margin-left:5px;border-radius:50%;transform: scale(0.8);}
+.cont-hd .cbt-right {float:right; height: 100%;display: flex;align-items: center;}
+.cont-hd .cbt-right .goback{cursor: pointer;border: 1px solid #ccc;margin-right: 20px;}
+.cont-hd .cbt-right .goback a{display: block;width: 100%;height: 100%;padding: 4px 6px;}
+.cont-hd .cbt-right .goback:hover{border-color: #999;}
+
 .cont-hd .sp_r{float: right;margin-top: 6.5px;position: relative;margin-right: 20px;}
 .cont-hd .sp_r .sp_r_ip{width: 240px;height: 25px;font-size: 12px;color: #808080;border: 1px solid #e6e6e6;border-radius: 2px;padding-left: 15px;position: relative;}
 .cont-hd .sp_r .sp_r_ip:focus{outline: none;}

@@ -331,7 +331,8 @@
                                         </div>
                                         <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
                                     </td>
-                                    <td><input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing"  ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
+                                    <td>
+                                        <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing"  ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
                                         <div class="dushu-box">
                                             <div class="dushu-tit"><p>选择度数</p><img ng-click="hideDuShuBox($event)" src="img/cha.png" alt=""></div>
                                             <div class="dushu-content">
@@ -358,7 +359,7 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
+                                    <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
                                     <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]">
                                         <option value="" ng-selected="1">请选择</option><option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option></select></td>
                                     <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->

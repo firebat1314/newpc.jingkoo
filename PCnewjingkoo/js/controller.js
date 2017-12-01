@@ -4819,7 +4819,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.delTr = function (index) {
             console.log(index)
             if ($scope.arr.length == 1) {
-                layer.msg('客官,给留一件吧 = =');
+                layer.msg('客官，给留一件吧 = =');
             }
             else if (index >= 0) {
                 $scope.arr.splice(index, 1);
@@ -14028,7 +14028,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //控制header和footer显隐
         $rootScope.change = true;
 
-        
+
         $scope.goto();
         $scope.machiningList = {
             page: 1,

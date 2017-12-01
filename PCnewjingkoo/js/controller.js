@@ -4777,7 +4777,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                $scope.arr[index].price = data.data.price;
+                $scope.arr[index].price = data.data.price.toFixed(2);
+                $scope.arr[index].subprice = ($scope.arr[index].member*$scope.arr[index].price).toFixed(2);
+            
             })
 
 
@@ -4787,7 +4789,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         //设置一个空数组用来新增一行
         //用来存放镜片属性的数组
-        $scope.arr = [{ member: 1 }];
+        $scope.arr = [{ member: 1 ,subprice: '0.00' ,price:'0.00'}];
         //新增一行
         $scope.addTr = function () {
             $scope.goodsSpectaclesCarParams.goods.member = [];
@@ -4812,14 +4814,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
-                $scope.arr.push({ member: 1 });
+                $scope.arr.push({ member: 1 ,subprice: '0.00' ,price:'0.00'});
             }
         };
         //删除一行
         $scope.delTr = function (index) {
-            console.log(index)
             if ($scope.arr.length == 1) {
-                layer.msg('客官，给留一件吧 = =');
+                layer.msg('客官给留一件吧');
             }
             else if (index >= 0) {
                 $scope.arr.splice(index, 1);
@@ -4828,7 +4829,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
 
         };
-
+        /* 镜片价格小计 */
+        $scope.numChange = function(item){
+            item.subprice = (item.member*item.price).toFixed(2);
+        }
         //获取商品的各种属性值
         //传到购物车 镜片的数据
         $scope.goodsSpectaclesCarParams = {

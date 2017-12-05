@@ -1189,6 +1189,8 @@ html {
         color: #666;
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc; }
+        .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta th:first-child {
+          width: 150px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta td {
         padding: 20px 0;
         text-align: center;

@@ -152,10 +152,10 @@
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
 															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">
 																{{goods.goods_name}}
-																<span style="display: block;margin-top: 2px;">
-																		<span style="margin-right: 5px;" ng-if="qiujing">{{goods.goods_attrs}}</span>
-																		<span style="margin-right: 5px;" ng-if="zhujing">{{goods.zhujing}}</span>
-																		<span style="margin-right: 5px;" ng-if="zhouwei">{{goods.zhouwei}}</span>
+																<span style="display: block;margin-top: 2px;color:#c5c5c5;">
+																		<span style="margin-right: 5px;" ng-if="goods.qiujing">球镜：{{goods.qiujing}}</span>
+																		<span style="margin-right: 5px;" ng-if="goods.zhujing">柱镜：{{goods.zhujing}}</span>
+																		<span style="margin-right: 5px;" ng-if="goods.zhouwei">轴位：{{goods.zhouwei}}</span>
 																		<span style="margin-right: 5px;" ng-repeat="attr in goods.goods_attrs">{{attr}}</span>
 																</span>
 															</p>

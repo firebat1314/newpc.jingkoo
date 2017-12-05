@@ -1520,6 +1520,9 @@ $browser-default-font-size: 37.5px !default;
               color: #666;
               border-bottom: 1px solid #ccc;
               border-top: 1px solid #ccc;
+              &:first-child{
+                width: 150px;
+              }
             }
             td {
               padding: 20px 0;

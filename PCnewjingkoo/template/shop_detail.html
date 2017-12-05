@@ -318,20 +318,22 @@
                                     <th ng-if="is_promotion==0">单价</th>
                                     <th ng-if="is_promotion==1">原价</th>
                                     <th ng-if="is_promotion==1">促销价</th>
+                                    <th>小计</th>
                                     <th></th>
                                 </tr>
                                 <tr ng-repeat="item in arr">
                                     <td>
                                         <div class="diy-right">
                                             <span class="wenb">
-                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0)">－</a>
-                                                <input  type="number" class="fl c diyr-txt pick-text" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
-                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1">+</a>
+                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);numChange(item)">－</a>
+                                                <input  type="number" class="fl c diyr-txt pick-text" ng-change="numChange(item)" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
+                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1;numChange(item)">+</a>
                                             </span>
                                         </div>
                                         <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
                                     </td>
-                                    <td><input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing"  ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
+                                    <td>
+                                        <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing"  ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
                                         <div class="dushu-box">
                                             <div class="dushu-tit"><p>选择度数</p><img ng-click="hideDuShuBox($event)" src="img/cha.png" alt=""></div>
                                             <div class="dushu-content">
@@ -358,13 +360,14 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
+                                    <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
                                     <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]">
                                         <option value="" ng-selected="1">请选择</option><option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option></select></td>
                                     <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->
                                     <td ng-if="is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{oldShopPrice}}</td>
                                     <td ng-if="is_promotion==1" style="color:#ff3333;">{{cxPrcie}}</td>
+                                    <td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
                                     <td><img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt=""></td>
                                 </tr>
                             </tbody>

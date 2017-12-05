@@ -3207,7 +3207,8 @@ span.a_arrow_r {
     display: flex;
     align-items: center;
     padding-left: 270px;
-    border-bottom: 1px solid #ccc; }
+    border-bottom: 1px solid #ccc;
+    cursor: pointer; }
     .shopDetail-main .dushu-box .dushu-tit p {
       font-size: 20px;
       font-weight: bold;
@@ -3232,7 +3233,7 @@ span.a_arrow_r {
     border-radius: 0;
     background: rgba(0, 0, 0, 0.1); }
   .shopDetail-main .dushu-box .dushu-content {
-    padding: 0 25px;
+    padding: 0 25px 25px;
     overflow: hidden;
     min-height: 300px;
     max-height: 530px;
@@ -3241,12 +3242,10 @@ span.a_arrow_r {
       height: 55px;
       line-height: 55px;
       color: #ff3333;
-      text-align: left; }
+      text-align: center; }
     .shopDetail-main .dushu-box .dushu-content .dushu-table {
       width: 582px;
-      display: inline-block;
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc; }
+      display: inline-block; }
       .shopDetail-main .dushu-box .dushu-content .dushu-table .dushu-table-item {
         width: 96px;
         height: 38px;
@@ -3254,8 +3253,9 @@ span.a_arrow_r {
         float: left;
         line-height: 38px;
         text-align: center;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        border: 1px solid #ccc;
+        margin-right: -1px;
+        margin-bottom: -1px;
         cursor: pointer; }
 .shopDetail-main .dushuQiuJing-box {
   width: 630px;
@@ -3273,7 +3273,8 @@ span.a_arrow_r {
     display: flex;
     align-items: center;
     padding-left: 270px;
-    border-bottom: 1px solid #ccc; }
+    border-bottom: 1px solid #ccc;
+    cursor: pointer; }
     .shopDetail-main .dushuQiuJing-box .dushuQiuJing-tit p {
       font-size: 20px;
       font-weight: bold;
@@ -3298,7 +3299,7 @@ span.a_arrow_r {
     border-radius: 0;
     background: rgba(0, 0, 0, 0.1); }
   .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content {
-    padding: 0 25px;
+    padding: 0 25px 25px;
     overflow: hidden;
     min-height: 300px;
     max-height: 530px;
@@ -3309,9 +3310,7 @@ span.a_arrow_r {
       color: #ff3333; }
     .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content .dushuQiuJing-table {
       width: 582px;
-      display: inline-block;
-      border-left: 1px solid #ccc;
-      border-top: 1px solid #ccc; }
+      display: inline-block; }
       .shopDetail-main .dushuQiuJing-box .dushuQiuJing-content .dushuQiuJing-table .dushuQiuJing-table-item {
         width: 96px;
         height: 38px;
@@ -3319,9 +3318,10 @@ span.a_arrow_r {
         float: left;
         line-height: 38px;
         text-align: center;
-        border-right: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        cursor: pointer; }
+        border: 1px solid #ccc;
+        cursor: pointer;
+        margin-right: -1px;
+        margin-bottom: -1px; }
 .shopDetail-main .shopDetail-tit {
   width: 100%;
   background: #f5f6fa;
@@ -3842,7 +3842,7 @@ span.a_arrow_r {
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta th:first-child {
-          width: 100px; }
+          width: 164px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta td {
         padding: 20px 0;
         text-align: center;
@@ -14573,8 +14573,7 @@ textarea {
   border-bottom: 1px solid #e6e6e6; }
 
 .cont-hd .cbt-left {
-  float: left;
-  width: 100%; }
+  float: left; }
 
 .cont-hd .cbt-left span {
   float: left;
@@ -14608,6 +14607,57 @@ textarea {
   margin-left: 5px;
   border-radius: 50%;
   transform: scale(0.8); }
+
+.cont-hd .cbt-right {
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center; }
+
+.cont-hd .cbt-right .goback {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  margin-right: 20px; }
+
+.cont-hd .cbt-right .goback a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 4px 6px; }
+
+.cont-hd .cbt-right .goback:hover {
+  border-color: #999; }
+
+.cont-hd .sp_r {
+  float: right;
+  margin-top: 6.5px;
+  position: relative;
+  margin-right: 20px; }
+
+.cont-hd .sp_r .sp_r_ip {
+  width: 240px;
+  height: 25px;
+  font-size: 12px;
+  color: #808080;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+  padding-left: 15px;
+  position: relative; }
+
+.cont-hd .sp_r .sp_r_ip:focus {
+  outline: none; }
+
+.cont-hd .sp_r .sp_r_i {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  z-index: 10;
+  background: #f4f4f4 url(../img/ser_bla.png) center center no-repeat;
+  background-size: 16px 16px;
+  cursor: pointer; }
 
 .cont-hd .shur-wrp {
   position: relative;
@@ -16050,9 +16100,9 @@ textarea {
   text-align: center; }
 
 .sydd .sydd-body .sydd-ittem .neiro .noot-sp .le-dd {
-  max-height: 295px;
   overflow: hidden; }
 
+/* max-height:295px; */
 .sydd .sydd-body .sydd-ittem .neiro .noot-sp .le-dd .imsldd {
   padding: 15px 20px;
   border-bottom: 1px solid #ebebeb; }
@@ -16079,16 +16129,13 @@ textarea {
   color: #808080;
   font-size: 12px;
   line-height: 22px;
-  height: 46px;
+  min-height: 46px;
   width: 230px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; }
-
-.sydd .sydd-body .sydd-ittem .neiro .noot-sp.open .le-dd {
-  max-height: 495px; }
 
 .sydd .sydd-body .sydd-ittem .neiro .noot-sp .le-dd .imsldd .txt .gp-2 {
   color: #808080;

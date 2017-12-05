@@ -5945,7 +5945,19 @@ html {
     overflow: hidden; }
 
 .new_close {
-  width: 1000px;
+  width: 1000px !important;
   margin: 0 auto 20px; }
+
+.bulk-order-main {
+  width: 1000px !important;
+  margin: 0 auto; }
+
+.bulk-order-total.tbfix {
+  width: 974px;
+  margin-left: -500px;
+  overflow: hidden; }
+
+.bulk-order-total {
+  overflow: hidden; }
 
 /*# sourceMappingURL=elseSC.css.map */

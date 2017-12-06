@@ -10145,6 +10145,7 @@ span.a_arrow_r {
 .zfbt_box > span .round_qus .round_qusbox {
   width: 360px;
   padding: 10px;
+  overflow: hidden;
   text-align: left;
   min-height: 25px;
   line-height: 30px;
@@ -10187,8 +10188,16 @@ span.a_arrow_r {
 
 .zfbt_box > span .round_qusbox span {
   display: inline-block;
-  width: 75px;
-  text-align: left; }
+  min-width: 61px;
+  text-align: left;
+  max-width: 280px;
+  line-height: 26px;
+  float: left; }
+
+.zfbt_box > span .round_qusbox b {
+  font-weight: normal;
+  margin: 0 5px;
+  float: left; }
 
 /*商品清单*/
 .goods_table {

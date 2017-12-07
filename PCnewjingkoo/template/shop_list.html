@@ -1,5 +1,5 @@
 
-<div class="shopList-main">
+<div class="shopList-main" ng-if="shopListData">
     <div id="J_crumbsBar" class="crumbs-bar" style="position: relative;padding-top: 15px;margin-bottom: 5px;z-index: 6;">
         <div class="crumbs-nav gird">
             <div class="crumbs-nav-main clearfix">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="shop-list">
-        <div class="guess-you-like" ng-if="qxsjAd">
+        <div class="guess-you-like" ng-if="qxsjAd.data.length>0">
             <div class="guess-you-like-main">
                 <div class="fl like-main-tit">
                     <p>热卖推荐</p>
@@ -231,7 +231,7 @@
                 </div>
             </div>
 
-        <div class="hot-sale-tuijian">
+        <div class="hot-sale-tuijian" ng-if="YouLike">
             <div class="hot-sale-tit"><p>猜你喜欢</p></div>
             <div class="hot-sale-goods">
                 <a class="sPrev" href="javascript:void(0)"></a>

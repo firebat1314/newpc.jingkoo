@@ -85,8 +85,8 @@
         color: #fff;
     }
 </style>
-<div class="ad_box" ng-if="!ad_show&&ad_img">
-    <div class="img">
+<div class="ad_box" ng-show="ad_show&&ad_img">
+    <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
         <div class="close" ng-click="closeAd()">+</div>
         <img ng-click="bannerLi(link_type.type_name,link_type.type_value)" src="{{ad_img}}" alt="">
     </div>

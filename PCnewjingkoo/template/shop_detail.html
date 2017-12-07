@@ -236,13 +236,10 @@
                                 </div>
                             </div>
                             <!--膜层-->
-                            <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
+                            <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.specification">
                                 <span class="saler_msg_sp1">{{saler.name}}</span>
                                 <ul class="saler_msg_film">
                                     <li ng-repeat="salers in saler.values" ng-click="getAttrList(salers.id)" repeat-done="salerTable()">{{salers.label}}<i class="guanlianYes"></i></li>
-                                    <!--<li>纳米K+膜</li>-->
-                                    <!--<li>蓝盾膜</li>-->
-                                    <!--<li>纳米K膜</li>-->
                                 </ul>
                             </div>
                         </div>
@@ -286,13 +283,23 @@
                                     <th width="124" ng-if="is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
                                     <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                                     <th width="124">
-                                        <div class="diy-right">
+                                        <div class="diy-right" ng-if="data.data.isdingzhi!=1">
                                             <span class="wenb">
                                                 <a href="javascript:;" class="fl borr c" ng-class="{'fl borr c no':isReduce,'fl borr c':!isReduce}" ng-click="reduce($event,$index)">－</a>
-                                                <input id="Num" type="number" class="fl c diyr-txt" value="num" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
+                                                <input id="Num" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
                                                 <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="add($event,$index)">+</a>
                                             </span>
                                         </div>
+                                        <div class="dingzhi" ng-if="data.data.isdingzhi==1"><a class="dingzhi_btn" style="width: 135px;
+                                            width: 135px;
+                                            height: 40px;
+                                            background: #3f69a5;
+                                            color: #fff;
+                                            font-size: 12px;
+                                            border: none;
+                                            outline: none;
+                                            border-radius: 5px;
+                                            padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a></div>
                                     </th>
                                 </tr>
                                 </tbody>
@@ -389,7 +396,7 @@
                             <div class="fl list-bottom-selected" ng-class="{'select':topList}" ng-click="topList=!topList">已选清单</div>
                         </div>
                     </div>
-                    <div class="buy-button">
+                    <div class="buy-button" ng-if="data.data.isdingzhi!=1">
                         <button ng-click="joinCar()">加入购物车</button>
                         <button ng-click="buyNow()" class="buy">立即购买</button>
                         <button ng-if="isGlass" class="piliang" ng-click="goBulkOrder()">批量下单</button>

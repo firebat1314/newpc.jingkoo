@@ -15,7 +15,7 @@
 		<th>价格</th>
 	</tr>
 	<volist name="goods_spc" id="lists">
-		<tr id="trtr0_0" class="attr_lists">
+		<tr>
 			<td>{$lists.member}</td>
 			<td>{$lists.qiujing}</td>
 			<td>{$lists.zhujing}</td>

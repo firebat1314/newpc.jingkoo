@@ -74,7 +74,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         ipCookie.remove("token");
-                        location.href = $rootScope.ip + "/default.html";
+                        location.href = "/default.html";
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -326,7 +326,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         layer.msg(data.info);
                         ipCookie.remove("token");
                         ipCookie.remove("has_login");
-                        location.href = $rootScope.ip + "/default.html";
+                        location.href = "/default.html";
                     } else {
                         layer.msg(data.info);
                     }
@@ -367,7 +367,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     if (data.status == 0) {
                         ////layer.msg('用户失效，请重新登录');
                         // layer.close(cool);
-                        location.href = $rootScope.ip + "/default.html";
+                        location.href = "/default.html";
                     }
                 })
         };
@@ -1147,7 +1147,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = $rootScope.ip + "/default.html";
+                location.href = "/default.html";
                 layer.close(cool);
             }
         })
@@ -1165,7 +1165,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = $rootScope.ip + "/default.html";
+                location.href = "/default.html";
                 layer.close(cool);
             }
         })
@@ -1393,7 +1393,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = $rootScope.ip + "/default.html";
+                location.href = "/default.html";
                 layer.close(cool);
             }
         })
@@ -1554,7 +1554,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //console.log(data);
             if (data.status == 0) {
                 ////layer.msg('用户失效，请重新登录');
-                location.href = $rootScope.ip + "/default.html";
+                location.href = "/default.html";
                 layer.close(cool);
             }
         })
@@ -1621,7 +1621,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = $rootScope.ip + "/default.html";
+                    location.href = "/default.html";
                     layer.close(cool);
                 }
             })
@@ -1745,7 +1745,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = $rootScope.ip + "/default.html";
+                    location.href = "/default.html";
                     layer.close(cool);
                 }
             })
@@ -1873,7 +1873,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 //console.log(data);
                 if (data.status == 0) {
                     ////layer.msg('用户失效，请重新登录');
-                    location.href = $rootScope.ip + "/default.html";
+                    location.href = "/default.html";
                     layer.close(cool);
                 }
             })

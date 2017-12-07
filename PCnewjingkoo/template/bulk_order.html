@@ -20,9 +20,10 @@
 	.bulk-order-total .xj i{margin:0 10px;}
 	.bulk-order-total .xj .xj-sp1{font-size:16px;color:#ff3333;}
 	.bulk-order-total .xj .xj-sp2{font-size:14px;}
-	.bulk-order-total .look-detail{padding:15px;font-size:12px;color:#fff;background-color:#3f69a5;line-height:16px;text-align:center;width:50px;}
 	.zhouwei{border:1px solid #ccc;}
-
+	.bulk-order-total.tbfix{position:fixed;width:1174px;left:50%;margin-left:-600px;bottom:0;border-top:1px solid #ccc !important;}
+	.bulk-order-total{position:relative;}
+	.bulk-order-total .look-detail{position:fixed;padding:5px;font-size:12px;color:#fff;background-color:#3f69a5;line-height:16px;text-align:center;cursor:pointer;right: 100px;top:50%;margin-top:-21px;}
     .pl_index_cover{display: none;width: 100%;height: 100%;position: fixed;left: 0;top: 0;z-index: 10001;background-color: rgba(0,0,0,.4);}
     .pl_index_cov{/* display: none;min-width: 700px;height: 580px;max-width: 1400px;background-color: #fff;border-radius: 5px;z-index: 10002;position: fixed;margin-top: -290px;left: 0%;top: 0%;right: 0;bottom: 0;margin: 0 auto; */
         display: none;
@@ -125,20 +126,7 @@
     <div class="bulk-order-table" ng-bind-html="table">
        
     </div>
-    <div class="bulk-order-total" style="margin-top:0;border-top:none;">
-        <p>
-			<!-- <input type="button" value="保存" class="save"> -->
-			<!-- <input type="button" ng-click="printPreview()" value="打印单预览" class="look shop_car_ip"> -->
-			<input type="button" value="预览" ng-click="orderPreview()" class="look shop_car_ip">
-		<!-- 小计： <span class="count_num">0</span>件/<span>￥<font class="count_pic">0</font> </span> -->
-		</p>
-        <button ng-click="join()" class="add_to_cart" data-id={{goodsId}} style="background-color:#3f69a5;width:80px;height:30px;font-size:12px;margin-top:5px;margin-right:20px;">加入购物车</button>
-        <input type="hidden" class="shop_price" name="shop_price" value="">
-		<div class="xj">
-			总价：<span class="xj-sp1">￥<font class="count_pic">0.00</font></span> <i></i> 已节省：<span class="xj-sp2">￥<font class="count_pro_pic">0.00</font></span>
-		</div>
-    </div>
-    <div class="bulk-order-ano-table">
+    <div class="bulk-order-ano-table" style="margin-top:20px;" id="bulk-a">
         <table width="100%">
                 <tr>
                     <th>数量</th>
@@ -161,6 +149,22 @@
             <tbody id="order">
             </tbody>
         </table>
+    </div>
+	<div class="shep_line"></div>
+    <div class="bulk-order-total" style="margin-top:0;line-height:38px;">
+        <p style="float:right;">
+			<!-- <input type="button" value="保存" class="save"> -->
+			<!-- <input type="button" ng-click="printPreview()" value="打印单预览" class="look shop_car_ip"> -->
+			<input type="button" value="预览" ng-click="orderPreview()" class="look shop_car_ip" style="background:#3f69a5;color:#fff;">
+		<!-- 小计： <span class="count_num">0</span>件/<span>￥<font class="count_pic">0</font> </span> -->
+		</p>
+        <button ng-click="join()" class="add_to_cart" data-id={{goodsId}} style="background-color:#3f69a5;width:80px;height:30px;font-size:12px;margin-top:5px;margin-right:10px;">加入购物车</button>
+        <input type="hidden" class="shop_price" name="shop_price" value="">
+		<div class="xj">
+			数量：<span class="xj-sp1">123</span><i></i>
+			合计：<span class="xj-sp1">￥<font class="count_pic">0.00</font></span> <i></i> 已节省：<span class="xj-sp2">￥<font class="count_pro_pic">0.00</font></span>
+		</div>
+		<div class="look-detail">查 看<br />详 情</div>
     </div>
 </div>
 <div class="pl_index_cover"></div>
@@ -210,5 +214,20 @@
 	})
 	/* var plW = - $('.pl_index_cov').width()/2;
 	$('.pl_index_cov').css('margin-left',plW); */
+	//var wiH = $(window).height() - 240;
+	//var nowH = $(document).height();
+	//console.log(wiH + 'wiH');
+	////console.log(nowH);
+	//var ntb = $('.bulk-order-ano-table').offset().top;
+	
+	//var ntb1 = $('.bulk-order-total').offset().top;
+	var bkT = $('.bulk-order-ano-table').offset().top;
+	console.log(bkT);
+	$('.look-detail').click(function(){
+		var bkT = $('.bulk-order-ano-table').offset().top;
+		$('html,body').animate({
+			'scrollTop':bkT
+		},500) 
+	})
 </script>
 

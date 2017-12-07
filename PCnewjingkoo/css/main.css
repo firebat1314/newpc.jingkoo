@@ -10116,7 +10116,7 @@ span.a_arrow_r {
   float: left;
   padding-left: 20px; }
 
-.zfbt_box span {
+.zfbt_box > span {
   display: inline-block;
   background-color: #fff;
   text-align: center;
@@ -10130,7 +10130,7 @@ span.a_arrow_r {
   margin-right: 15px;
   min-width: 148px; }
 
-.zfbt_box span .round_qus {
+.zfbt_box > span .round_qus {
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -10142,9 +10142,10 @@ span.a_arrow_r {
   top: 2px;
   right: 10px; }
 
-.zfbt_box span .round_qus .round_qusbox {
+.zfbt_box > span .round_qus .round_qusbox {
   width: 360px;
   padding: 10px;
+  overflow: hidden;
   text-align: left;
   min-height: 25px;
   line-height: 30px;
@@ -10157,7 +10158,7 @@ span.a_arrow_r {
   left: -181px;
   display: none; }
 
-.zfbt_box span .round_qus .round_qusbox:before {
+.zfbt_box > span .round_qus .round_qusbox:before {
   content: "";
   display: block;
   width: 13px;
@@ -10168,13 +10169,13 @@ span.a_arrow_r {
   left: 50%;
   margin-left: -6.5px; }
 
-.zfbt_box span .round_qus:hover .round_qusbox {
+.zfbt_box > span .round_qus:hover .round_qusbox {
   display: block; }
 
-.zfbt_box span.onli {
+.zfbt_box > span.onli {
   border-color: #ff3333; }
 
-.zfbt_box span.onli:after {
+.zfbt_box > span.onli:after {
   content: "";
   display: inline-block;
   width: 14px;
@@ -10184,6 +10185,19 @@ span.a_arrow_r {
   position: absolute;
   right: 0;
   bottom: 0; }
+
+.zfbt_box > span .round_qusbox span {
+  display: inline-block;
+  min-width: 61px;
+  text-align: left;
+  max-width: 280px;
+  line-height: 26px;
+  float: left; }
+
+.zfbt_box > span .round_qusbox b {
+  font-weight: normal;
+  margin: 0 5px;
+  float: left; }
 
 /*商品清单*/
 .goods_table {

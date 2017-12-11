@@ -128,6 +128,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/shop_jiesuan.html',
                 controller: "shopJiesuan-control"
             })
+            //购物车结算页copy
+            .state("shop-jiesuan-copy", {
+                title:'结算页',
+                url: '/shop-jiesuan-copy/:sn',
+                templateUrl: 'template/shop_jiesuan_copy.html',
+                controller: "shopJiesuanCopy-control"
+            })
             //支付页路由
             .state("payment", {
                 title:'支付',

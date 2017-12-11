@@ -3904,8 +3904,8 @@ $browser-default-font-size: 37.5px !default;
                   border:1px solid #ccc;
                   &:hover{
                     border:1px solid #ff3333;
-                    color:#ff3333;
-                  }
+                    color:#ff3333; 
+                  } 
                 }
                 .diyr-txt{
                   width: 60px;
@@ -3916,6 +3916,8 @@ $browser-default-font-size: 37.5px !default;
                   border-left: 0;
                   outline: none;
                   position: relative;
+                  -moz-appearance: textfield;
+                  -webkit-appearance: textfield;  
                 }
                 .text-value{
                   display: none;
@@ -5908,6 +5910,8 @@ $browser-default-font-size: 37.5px !default;
                     border-left: 0;
                     outline: none;
                     position: relative;
+                    -moz-appearance: textfield;
+                    -webkit-appearance: textfield; 
                   }
                   .text-value{
                     display: none;

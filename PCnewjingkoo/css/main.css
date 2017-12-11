@@ -3623,7 +3623,9 @@ span.a_arrow_r {
               border-right: 0;
               border-left: 0;
               outline: none;
-              position: relative; }
+              position: relative;
+              -moz-appearance: textfield;
+              -webkit-appearance: textfield; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .sale-points-bigBox .sale-points-message .diy-right .text-value {
               display: none; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .sale-detailed-message {
@@ -5203,7 +5205,9 @@ span.a_arrow_r {
                 border-right: 0;
                 border-left: 0;
                 outline: none;
-                position: relative; }
+                position: relative;
+                -moz-appearance: textfield;
+                -webkit-appearance: textfield; }
               .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .diy-right .text-value {
                 display: none; }
             .shop-car-main .car-hasGoods-main .shop-hasGoods-item .hasGoods-item-content .hasGoods-check .hasGoods-check-right .hasGoods-check-message .check-li .check-li-del {

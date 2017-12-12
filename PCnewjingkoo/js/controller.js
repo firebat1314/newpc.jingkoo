@@ -30,7 +30,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         });
     }])
-    
+
     //主控制
     .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat) {
         this.$qimoChat = $qimoChat;
@@ -61,8 +61,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        // $rootScope.ip = 'http://newpc.jingkoo.net'; //当前域名
-        $rootScope.ip = 'https://www.jingku.cn'; //当前域名
+        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -202,7 +202,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         })
             .success(function (data) {
                 //console.log(data);
-                if(data.status){
+                if (data.status) {
                     $scope.userShData = data;
                     $scope.unpay = data.data.unpay;
                     $scope.send = data.data.send;
@@ -366,7 +366,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.totalNum = data.total.zong_goods_count;
                     $scope.totalPrice = data.total.goods_price;
                 })
-                .error(function (data,staus) {
+                .error(function (data, staus) {
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -703,7 +703,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.IndexData.list.getAreaList[index].selected = 1;
                 };
             })
-            .error(function (data,staus) {
+            .error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -1151,15 +1151,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
             }
         })
-        .error(function (data,staus) {
-            layer.close(cool);
-            if (staus == 401) {
-                ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
-                ipCookie.remove('token');
-                $state.go('login');
-            }
-        })
+            .error(function (data, staus) {
+                layer.close(cool);
+                if (staus == 401) {
+                    ////layer.msg('用户失效，请重新登录');
+                    ipCookie.remove('has_login');
+                    ipCookie.remove('token');
+                    $state.go('login');
+                }
+            })
         //品牌全部的数据
         $http({
             method: "POST",
@@ -1171,15 +1171,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.fashionHomeData = data;
             $scope.brandAd = data.big_banner[0].ad_img;
         })
-        .error(function (data,staus) {
-            layer.close(cool);
-            if (staus == 401) {
-                ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
-                ipCookie.remove('token');
-                $state.go('login');
-            }
-        })
+            .error(function (data, staus) {
+                layer.close(cool);
+                if (staus == 401) {
+                    ////layer.msg('用户失效，请重新登录');
+                    ipCookie.remove('has_login');
+                    ipCookie.remove('token');
+                    $state.go('login');
+                }
+            })
         //广告插件
         $scope.brandFn = function () {
             setTimeout(function () {
@@ -1401,15 +1401,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
         })
-        .error(function (data,staus) {
-            layer.close(cool);
-            if (staus == 401) {
-                ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
-                ipCookie.remove('token');
-                $state.go('login');
-            }
-        })
+            .error(function (data, staus) {
+                layer.close(cool);
+                if (staus == 401) {
+                    ////layer.msg('用户失效，请重新登录');
+                    ipCookie.remove('has_login');
+                    ipCookie.remove('token');
+                    $state.go('login');
+                }
+            })
     }])
     //闪购
     .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
@@ -1564,15 +1564,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
             }
         })
-        .error(function (data,staus) {
-            layer.close(cool);
-            if (staus == 401) {
-                ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
-                ipCookie.remove('token');
-                $state.go('login');
-            }
-        })
+            .error(function (data, staus) {
+                layer.close(cool);
+                if (staus == 401) {
+                    ////layer.msg('用户失效，请重新登录');
+                    ipCookie.remove('has_login');
+                    ipCookie.remove('token');
+                    $state.go('login');
+                }
+            })
     }])
     //新品专区
     .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
@@ -1633,15 +1633,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $('.pointsMall-sort-item:eq(2) .xiaoyuhao').addClass('selected');
                 }
             })
-            .error(function (data,staus) {
-                layer.close(cool);
-                if (staus == 401) {
-                    ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
-                    ipCookie.remove('token');
-                    $state.go('login');
-                }
-            })
+                .error(function (data, staus) {
+                    layer.close(cool);
+                    if (staus == 401) {
+                        ////layer.msg('用户失效，请重新登录');
+                        ipCookie.remove('has_login');
+                        ipCookie.remove('token');
+                        $state.go('login');
+                    }
+                })
         };
         $scope.pointsFn();
 
@@ -1758,7 +1758,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.yhqData = data;
                 $scope.getGoods(data);
                 $scope.totalSize = data.pages;
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -1887,7 +1887,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.sheji_pic = data.big_top[0].ad_img;
                 $scope.artOneName = data.article_list[13].article[0].title;
                 $scope.artOneDesc = data.article_list[13].article[0].desc;
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -3398,7 +3398,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $("body,html").animate({
                     "scrollTop": $('.shopList-main-tit').offset().top
                 }, 100)
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -3516,7 +3516,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $('.shopList-sort-tit .shopList-sort-item:eq(1) .dayuhao').addClass('selected');
                         $('.shopList-sort-tit .shopList-sort-item:eq(1) .xiaoyuhao').removeClass('selected');
                     }
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -4005,7 +4005,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.cat_desc = data.infos.cat_desc;
                 $scope.keywords = data.infos.keywords;
             }
-        }).error(function (data,staus) {
+        }).error(function (data, staus) {
             layer.close(cool);
             if (staus == 401) {
                 ////layer.msg('用户失效，请重新登录');
@@ -4543,7 +4543,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             });
                         })
                     };
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -5286,7 +5286,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.goods = goods;
                     }
 
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -6932,7 +6932,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             $scope.supll = data.total.suppliers_count;
                         }
                     }
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -7543,33 +7543,37 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //   $state.go('shop-car');
         // };
         /* —————————————— 保存用户备注信息 —————————————— */
-        $scope.saveNotes = function () {
+        $scope.getNotes = function(){
             var commentArr = [];
             var suppliers = [];
             var label = [];
 
-            for (var i in this.jiesuanData.suppliers_notes) {
-                commentArr.push(this.jiesuanData.suppliers_notes[i])
+            for (var i in $scope.jiesuanData.suppliers_notes) {
+                commentArr.push($scope.jiesuanData.suppliers_notes[i])
             }
-            for (var i = 0; i < this.jiesuanData.cart_goods_list.length; i++) {
+            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
                 var sArr = []
-                suppliers.push(this.jiesuanData.cart_goods_list[i].suppliers_id);
-                for (var j = 0; j < this.jiesuanData.cart_goods_list[i].order_label.length; j++) {
-                    if (this.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id);
+                for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                    if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
                         sArr.push(j)
                     }
                 }
                 label.push(sArr)
             }
+            return {
+                note: commentArr,
+                suppliers: suppliers,
+                label: label
+            }
+        }
+        $scope.saveNotes = function () {
+            
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Flow/write_notes',
                 data: {
-                    notes: {
-                        note: commentArr,
-                        suppliers: suppliers,
-                        label: label
-                    }
+                    notes: $scope.getNotes()
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -7585,9 +7589,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     //console.log(data);
-                    $scope.jiesuanData = data;
                     layer.close(cool);
                     if (data.status) {
+                        $scope.jiesuanData = data;
                         $scope.totalPrice = $scope.jiesuanData.total.formated_goods_price;
                         $scope.total = $scope.jiesuanData.total.amount_formated;
                         $scope.totalShip = $scope.jiesuanData.total.suppliers_shipping_fee_formated;
@@ -7600,9 +7604,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.yhqNum = data.total.bonus_nums;
                         $scope.yeTotal = data.total.surplus_formated;
                         $scope.yeIf = data.total.surplus;
-
-
                         $scope.exchange_integral = data.total.exchange_integral;
+                        //判断商品是否为积分商品
+                        $scope.isExchange = data.is_exchange;
+
                         /* 选中的收货方式 */
                         if (data.consignee_list.length == 0) {
                             $scope.defaultShipping = null;
@@ -7613,7 +7618,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 }
                             }
                         }
-                        console.log($scope.defaultShipping)
                         //个人信息面板信息
                         $http({
                             method: "POST",
@@ -7625,13 +7629,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
-                        //判断商品是否为积分商品
-                        $scope.isExchange = data.is_exchange;
                     } else {
                         layer.msg('购物车没有商品');
                         $state.go('shop-car');
                     }
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -7660,9 +7662,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -7685,9 +7686,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -7895,9 +7895,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -7916,9 +7915,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -7958,37 +7956,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
                 })
-        };
-        //商家备注存储
-        $scope.write = {
-            notes: {
-                note: [],
-                suppliers: []
-            }
-        }
-        $scope.noteCookie = function (note, id, index) {
-            // $scope.write.notes.note.splice(index,1);
-            // $scope.write.notes.suppliers.splice(index,1);
-            $scope.write.notes.note[index] = note;
-            $scope.write.notes.suppliers[index] = id;
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/Flow/write_notes',
-                data: $scope.write,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            })
-                .success(function (data) {
-                    //console.log(data);
-                    $scope.jiesuanFn();
-                })
-            //console.log($scope.write);
         };
 
         //个人信息面板信息
@@ -8038,30 +8011,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         };
 
-        //提交订单
-        $scope.notes = {
-            note: [],
-            suppliers: [],
-            label: null
-        };
         $scope.submitList = function (e, index) {
-            var commentArr = [];
-            var suppliers = [];
-
-            for (var i in this.jiesuanData.suppliers_notes) {
-                commentArr.push(this.jiesuanData.suppliers_notes[i])
-            }
-            var label = [];
-            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
-                var sArr = []
-                suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id)
-                for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
-                    if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
-                        sArr.push(j)
-                    }
-                }
-                label.push(sArr)
-            }
+            
             // console.log(commentArr,suppliers,label);
             // return false;
 
@@ -8081,11 +8032,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 method: "POST",
                                 url: '' + $rootScope.ip + '/Flow/done',
                                 data: {
-                                    notes: {
-                                        note: commentArr,
-                                        suppliers: suppliers,
-                                        label: label
-                                    }
+                                    notes: $scope.getNotes()
                                 },
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
@@ -8210,27 +8157,29 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         });
 
     }])
-    .controller('shopJiesuanCopy-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie,$stateParams) {
+    /* 定制片结算页 */
+    .controller('shopJiesuanCopy-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
         // $scope.returnCar = function(){
         //   $state.go('shop-car');
         // };
-        /* —————————————— 保存用户备注信息 —————————————— */
         $scope.sn = $stateParams.sn;
+
+        /* —————————————— 保存商家备注信息 —————————————— */
         $scope.saveNotes = function () {
             var commentArr = [];
             var suppliers = [];
             var label = [];
 
-            for (var i in this.jiesuanData.suppliers_notes) {
-                commentArr.push(this.jiesuanData.suppliers_notes[i])
+            for (var i in $scope.jiesuanData.suppliers_notes) {
+                commentArr.push($scope.jiesuanData.suppliers_notes[i])
             }
-            for (var i = 0; i < this.jiesuanData.cart_goods_list.length; i++) {
+            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
                 var sArr = []
-                suppliers.push(this.jiesuanData.cart_goods_list[i].suppliers_id);
-                for (var j = 0; j < this.jiesuanData.cart_goods_list[i].order_label.length; j++) {
-                    if (this.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id);
+                for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                    if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
                         sArr.push(j)
                     }
                 }
@@ -8238,36 +8187,43 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Flow/write_notes',
+                url: '' + $rootScope.ip + '/Frezz/write_notes',
                 data: {
-                    notes: {
-                        note: commentArr,
-                        suppliers: suppliers,
-                        label: label
-                    }
+                    notes: $scope.saveNotes()
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
         }
-        //结算页所有信息接口数据
+        $scope.saveNotes = function () {
+            
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Frezz/write_notes',
+                data: {
+                    notes: $scope.saveNotes()
+                },
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+        }
+        /* —————————————— 结算页所有信息接口数据 —————————————— */
         $scope.jiesuanFn = function () {
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "get",
                 url: $rootScope.ip + '/Frezz/checkout',
-                params: {sn:$scope.sn},
+                params: { sn: $scope.sn },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     //console.log(data);
-                    $scope.jiesuanData = data;
                     layer.close(cool);
                     if (data.status) {
-                        $scope.totalPrice = $scope.jiesuanData.total.formated_goods_price;
-                        $scope.total = $scope.jiesuanData.total.amount_formated;
-                        $scope.totalShip = $scope.jiesuanData.total.suppliers_shipping_fee_formated;
-                        $scope.shipIf = $scope.jiesuanData.total.shipping_fee;
-                        $scope.jifen = $scope.jiesuanData.total.will_get_give_rank_integral;
+                        $scope.jiesuanData = data;
+                        $scope.totalPrice = data.total.formated_goods_price;
+                        $scope.total = data.total.amount_formated;
+                        $scope.totalShip = data.total.suppliers_shipping_fee_formated;
+                        $scope.shipIf = data.total.shipping_fee;
+                        $scope.jifen = data.total.will_get_give_rank_integral;
                         $scope.subsidyPrice = data.total.formated_subsidy_price;
                         $scope.sub = Number(data.total.formated_subsidy_price);
                         $scope.yhqTotal = data.total.bonus_formated;
@@ -8275,9 +8231,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.yhqNum = data.total.bonus_nums;
                         $scope.yeTotal = data.total.surplus_formated;
                         $scope.yeIf = data.total.surplus;
-
-
                         $scope.exchange_integral = data.total.exchange_integral;
+                        //判断商品是否为积分商品
+                        $scope.isExchange = data.is_exchange;
                         /* 选中的收货方式 */
                         if (data.consignee_list.length == 0) {
                             $scope.defaultShipping = null;
@@ -8300,13 +8256,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
-                        //判断商品是否为积分商品
-                        $scope.isExchange = data.is_exchange;
                     } else {
-                        layer.msg('购物车没有商品');
                         $state.go('shop-car');
                     }
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -8326,7 +8279,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.flag = !$scope.flag;
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Flow/change_consignee',
+                url: '' + $rootScope.ip + '/Frezz/post_change_consignee',
                 data: {
                     address_id: id
                 },
@@ -8335,9 +8288,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -8570,9 +8522,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -8582,7 +8533,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.selectPay = function (id) {
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Flow/select_payment',
+                url: '' + $rootScope.ip + '/Frezz/select_payment',
                 data: {
                     pay_id: id
                 },
@@ -8591,9 +8542,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -8603,7 +8553,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.selectShip = function (storeId, id) {
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Flow/select_shippin_suppliers',
+                url: '' + $rootScope.ip + '/Frezz/select_shipping',
                 data: {
                     suppliers_id: storeId,
                     shipping: id
@@ -8633,39 +8583,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 .success(function (data) {
                     //console.log(data);
                     if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $scope.jiesuanFn();
-                        });
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
                     } else {
                         layer.msg(data.info, { time: 1000 });
                     }
                 })
         };
-        //商家备注存储
-        $scope.write = {
-            notes: {
-                note: [],
-                suppliers: []
-            }
-        }
-        $scope.noteCookie = function (note, id, index) {
-            // $scope.write.notes.note.splice(index,1);
-            // $scope.write.notes.suppliers.splice(index,1);
-            $scope.write.notes.note[index] = note;
-            $scope.write.notes.suppliers[index] = id;
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/Flow/write_notes',
-                data: $scope.write,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            })
-                .success(function (data) {
-                    //console.log(data);
-                    $scope.jiesuanFn();
-                })
-            //console.log($scope.write);
-        };
-
         //个人信息面板信息
         $http({
             method: "POST",
@@ -8712,14 +8636,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     })
             }
         };
-
-        //提交订单
-        $scope.notes = {
-            note: [],
-            suppliers: [],
-            label: null
-        };
-        $scope.submitList = function (e, index) {
+        function getNotes() {
             var commentArr = [];
             var suppliers = [];
 
@@ -8737,9 +8654,28 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }
                 label.push(sArr)
             }
+            return { commentArr, suppliers, label }
+        }
+        $scope.submitList = function (e, index) {
             // console.log(commentArr,suppliers,label);
             // return false;
+            var commentArr = [];
+            var suppliers = [];
 
+            for (var i in this.jiesuanData.suppliers_notes) {
+                commentArr.push(this.jiesuanData.suppliers_notes[i])
+            }
+            var label = [];
+            for (var i = 0; i < $scope.jiesuanData.cart_goods_list.length; i++) {
+                var sArr = []
+                suppliers.push($scope.jiesuanData.cart_goods_list[i].suppliers_id)
+                for (var j = 0; j < $scope.jiesuanData.cart_goods_list[i].order_label.length; j++) {
+                    if ($scope.jiesuanData.cart_goods_list[i].order_label[j].selected) {
+                        sArr.push(j)
+                    }
+                }
+                label.push(sArr)
+            }
             if ($scope.yeIf) {
                 $http({
                     method: "POST",
@@ -8754,7 +8690,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         if (data.status) {
                             $http({
                                 method: "POST",
-                                url: '' + $rootScope.ip + '/Flow/done',
+                                url: '' + $rootScope.ip + '/Frezz/done',
                                 data: {
                                     notes: {
                                         note: commentArr,
@@ -9038,7 +8974,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 } else {
                     layer.msg(data.info);
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 // layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -9487,7 +9423,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 } else {
                     layer.msg(data.info);
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -11065,7 +11001,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             }
                         }
                     }
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -11148,7 +11084,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 layer.close(cool);
                 //console.log(data);
                 $scope.data = $sce.trustAsHtml(data.data);
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -11966,7 +11902,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $("body,html").animate({
                     "scrollTop": 0
                 }, 500)
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -12039,7 +11975,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $('.shopList-sort-titnew .shopList-sort-itemnew:eq(1) .xiaoyuhaonew').removeClass('selected');
                     }
 
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -12265,7 +12201,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.invoicesData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -12298,7 +12234,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 }).success(function (data) {
                     layer.close(cool);
                     $scope.invoicesData = data;
-                }).error(function (data,staus) {
+                }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
@@ -12340,7 +12276,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.invSelectData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -12673,7 +12609,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             }
                         };
 
-                    }).error(function (data,staus) {
+                    }).error(function (data, staus) {
                         layer.close(cool);
                         if (staus == 401) {
                             ////layer.msg('用户失效，请重新登录');
@@ -12745,7 +12681,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 };
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 // layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -12947,7 +12883,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.repairData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -13748,7 +13684,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $state.go('person-return-repair');
                     layer.msg(data.info);
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -13815,7 +13751,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     // }
 
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14074,7 +14010,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.repairHistoryData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14232,7 +14168,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.repairRefundData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14393,7 +14329,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.islook = true;
                 layer.msg(data.info);
             }
-        }).error(function (data,staus) {
+        }).error(function (data, staus) {
             layer.close(cool);
             if (staus == 401) {
                 ////layer.msg('用户失效，请重新登录');
@@ -14430,7 +14366,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 $scope.totalSize = data.pages;
                 $scope.repairRefundData = data;
 
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14543,7 +14479,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.close(cool);
                     $scope.collectShop = data;
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14642,7 +14578,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.getGoods(data);
                     $scope.totalSize = data.pages;
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14824,7 +14760,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     layer.close(cool);
                 }
                 $scope.getGoods(res);
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
@@ -14987,7 +14923,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 } else {
                     layer.msg(data.info);
                 }
-            }).error(function (data,staus) {
+            }).error(function (data, staus) {
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');

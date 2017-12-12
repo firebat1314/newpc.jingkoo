@@ -147,7 +147,7 @@
 										<div class="nero n-1">
 											<div class="noot-sp">
 												<div class="le-dd"> 
-													<div class="imsldd" ng-repeat="goods in order.goods" style="position: relative;"> 
+													<div class="imsldd" ng-repeat="goods in order.goods" ng-if="order.showmorelist||$index<2" style="position: relative;"> 
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.original_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
 															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">
@@ -166,7 +166,7 @@
 														<span ng-click="qxSaleOver(goods.return_id)" style="cursor: pointer;width: 80px;height: 30px;color: #0070c9;font-size: 12px;position: absolute;top: 32px;right: 10px;line-height: 30px;text-align:  center;" ng-if="order.order_status==5 && order.pay_status == 2 && order.shipping_status == 2 &&  goods.is_repair == 0">取消售后</span>
 													</div> 
 												</div> 
-												<div class="cgend" ng-click="lookMore($index,$event)" ng-if="order.goods.length>3"><a style="cursor:pointer;">查看更多商品 ></a></div>
+												<div class="cgend" ng-click="order.showmorelist=!order.showmorelist" ng-if="order.goods.length>2"><a style="cursor:pointer;">查看更多商品 ></a></div>
 											</div>
 										</div> 
 										<div class="nero n-2 c">
@@ -191,7 +191,7 @@
 										</div>
 										<!--!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))-->
 										<div class="nero n-4 c">
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)">
+											<!-- <div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)">
 												<p class="small_fh"><span class="red">{{order.status}}</span></p>
 												<div class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">   
 													<em></em>跟踪<i style="display: none;"></i>
@@ -200,34 +200,15 @@
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
 											</div>  
-											<!--待发货--> 
-											<!--已完成-->
-											<!--
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0 && order.gq==0) ||  (order.order_status==1 && order.pay_status==0 && order.gq==0)"> 
-											-->
 											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0) ||  (order.order_status==1 && order.pay_status==0)"> 
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
 											</div>
-											<!--已过期-->
-											<!--
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==1) ||  (order.order_status==1 && order.pay_status==0 && order.gq==1)"> 
-												<p style="padding-top: 16px;"><span class="red">已过期</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
-												</p>
-											</div>
-											-->
-											<!--<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==0 && order.pay_status==0 && order.gq==0)">
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
-												</p>
-											</div>-->
-											
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)">
+											 -->
+											<!-- <div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)"> -->
+											<div class="n4-dsh" style="margin-top: 14px;">
 												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
@@ -292,7 +273,7 @@
     					
     				</div>
     			</div>
-    			
+    			<!-- —————————————————————————— 积分商品 —————————————————————————— -->
     			<div class="cont-bd"  ng-if="showJf==1" ng-init="showJf=1">
     				<div class="contacts-wrap ddan integral">
     					<div class="sydd">
@@ -371,19 +352,18 @@
 			                    <a href="javascript:;" class="page-btn" id="search">确定</a>
 			                </div> 
 			            </div>
-    					
-    					
     				</div>
     			</div>
 			</div>
+			
 			<div class="picScroll-left">
 				<div class="hd">
 					<span>猜你喜欢</span>
-					<!--<ul></ul>-->
+					<!-- <ul></ul> -->
 				</div>
-				<div class="bd" style="position: relative;left: 40px;">
+				<div class="bd">
 					<ul class="picList">
-						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" style="cursor: pointer;width: 157px;" ng-click="gessGoods(like.goods_id)">
+						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;">
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
 								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
@@ -392,6 +372,8 @@
 						</li>
 					</ul>
 				</div>
+				<a class="prev" href="javascript:void(0)"></a>
+				<a class="next" href="javascript:void(0)"></a>
 			</div>
 		</div>
 		<div class="clear"></div>

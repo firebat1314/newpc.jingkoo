@@ -1,5 +1,5 @@
 
-<div class="shopList-main" ng-if="shopListData">
+<div class="shopList-main" ng-show="shopListData">
     <div id="J_crumbsBar" class="crumbs-bar" style="position: relative;padding-top: 15px;margin-bottom: 5px;z-index: 6;">
         <div class="crumbs-nav gird">
             <div class="crumbs-nav-main clearfix">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="shop-list">
-        <div class="guess-you-like" ng-if="qxsjAd.data.length>0">
+        <div class="guess-you-like" ng-show="qxsjAd.data.length>0">
             <div class="guess-you-like-main">
                 <div class="fl like-main-tit">
                     <p>热卖推荐</p>

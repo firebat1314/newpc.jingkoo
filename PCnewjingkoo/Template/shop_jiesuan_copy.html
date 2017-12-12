@@ -22,7 +22,7 @@
     <div class="jiesuan-gd-div gird">填写并核对订单信息</div>
 </div>
 <div id="masks" class="masks"></div>
-<div class="pur_close_box gird">
+<div class="pur_close_box gird" ng-show="jiesuanData">
     <a href="" class="pur_close_a" ng-click="tianjia()">+ 新增收货地址</a>
     <div class="pur_zengjia">
         <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库科技</div>
@@ -149,7 +149,7 @@
             <span ng-class="{'more_addr':!flag,'more_addrr':flag}" ng-click="flag=!flag">{{flag?'收起地址':'更多地址'}}</span>
         </div>
         <!--支付方式-->
-        <div class="pur_close_d" ng-show="isExchange==0">
+        <div class="pur_close_d" ng-show="!isExchange">
             <span class="pur_close_sp">支付方式 : </span>
             <div class="zfbt_box">
                 <span ng-click="selectPay(payment.pay_id)" ng-class="{'onli':payment.selected}" ng-repeat="payment in jiesuanData.payment_list">{{payment.pay_name}}<i class="round_qus"><div class="round_qusbox" ng-bind-html="payment.pay_desc"></div></i></span>
@@ -177,32 +177,32 @@
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.suppliers_free==1">已免运费</span>
                 </p>
                 <div class="table_bottom">
-                    <div class="table_b1" ng-repeat="cartGoodsList in cartGoods.goods_list">
+                    <div class="table_b1" ng-repeat="cartGoodsList in cartGoods.list">
                         <div class="table_b1_left">
                             <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                <img ng-src={{cartGoodsList.goods_img}} width="80" height="80" style="border: 1px solid #e6e6e6;"/>
+                                <img ng-src={{cartGoodsList.img}} width="80" height="80" style="border: 1px solid #e6e6e6;"/>
                             </a>
                         </div>
                         <div class="table_b1_rightbox">
-                            <div class="rightbox_more" ng-repeat="cartGoodsAttr in cartGoodsList.attrs" style="min-height: 80px;height: auto;">
+                            <div class="rightbox_more" style="min-height: 80px;height: auto;">
                                 <div class="table_b1_right">
                                     <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                        <p>{{cartGoodsAttr.goods_name}}</p>
+                                        <p>{{cartGoodsList.goods_name}}</p>
                                     </a>
                                     <ul class="b1_right_u1">
                                         <li>
-                                            <span ng-if="cartGoodsAttr.qiujing">球镜：{{cartGoodsAttr.qiujing}}</span>
-                                            <span ng-if="cartGoodsAttr.zhujing">柱镜：{{cartGoodsAttr.zhujing}}</span>
-                                            <span ng-if="cartGoodsAttr.zhouwei">轴位：{{cartGoodsAttr.zhouwei}}</span>
+                                            <span ng-if="cartGoodsList.qiujing">球镜：{{cartGoodsList.qiujing}}</span>
+                                            <span ng-if="cartGoodsList.zhujing">柱镜：{{cartGoodsList.zhujing}}</span>
+                                            <span ng-if="cartGoodsList.zhouwei">轴位：{{cartGoodsList.zhouwei}}</span>
+                                            <span ng-repeat="carGoodsAttrs in cartGoodsList.attr">{{carGoodsAttrs}}</span>
                                         </li>
-                                        <li><span ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span></li>
                                     </ul>
                                 </div>
                                 <div class="table_b2_box">
-                                    <div class="table_b2">{{cartGoodsAttr.goods_number}}</div>
-                                    <div class="table_b2">{{cartGoodsAttr.goods_price}}</div>
-                                    <div class="table_b2">{{cartGoodsAttr.cha_price||'--'}}</div>
-                                    <div class="table_b2">{{cartGoodsAttr.formated_subtotal}}</div>
+                                    <div class="table_b2">{{cartGoodsList.goods_number||'--'}}</div>
+                                    <div class="table_b2">{{cartGoodsList.goods_price||'--'}}</div>
+                                    <div class="table_b2">{{cartGoodsList.reduce_price||'无'}}</div>
+                                    <div class="table_b2">{{cartGoodsList.subtotal||'--'}}</div>
                                 </div>
                             </div>
                         </div>
@@ -233,19 +233,18 @@
                             </div>
                         </div>
                         <div class="remark_right" style="float: right;">
-                            <p ng-if="isExchange==0">购物金额小计 : <span>{{cartGoods.goods_subtotal}}</span></p>
-                            <p class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
-                            <p class="p2">+ 获赠积分 : {{cartGoods.will_get_integral}}</p>
+                            <p ng-if="!isExchange">购物金额小计 :<span>{{cartGoods.goods_subtotal}}</span></p>
+                            <p class="p2">+ 配送费用 :<span>{{cartGoods.shipping_free}}</span></p>
+                            <p class="p2">+ 获赠积分 :<span>{{cartGoods.will_get_integral}}</span></p>
                             <!-- <p class="p2" ng-if="cartGoods.subsidy_subtotal">+ 镜库补贴 : {{cartGoods.subsidy_subtotal}}</p> -->
                         </div>
                     </div>
-                    <!--商家备注-->
                 </div>
             </div>
         </div>
 
         <!--使用优惠券-->
-        <div class="use_oupon" ng-show="isExchange==0">
+        <div class="use_oupon" ng-show="!isExchange">
             <!--<h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券/余额</h2>-->
             <h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券</h2>
             <div class="use_oupon_cont">
@@ -280,34 +279,6 @@
                                                 <p class="oupon_top_p3">店铺 : {{yhqUse.suppliers_name}}</p>
                                             </div>
                                         </div>
-
-                                        <!--<div class="oupon_top_d needcli">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--</div>-->
-                                        <!--<div class="oupon_top_d needcli">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--</div>-->
-                                        <!--<div class="oupon_top_d needcli">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--</div>-->
                                     </div>
 
                                     <div class="goods_oupon_top gray">
@@ -323,112 +294,8 @@
                                                 <p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>
                                             </div>
                                         </div>
-                                        <!--<div class="oupon_top_d gray_bg">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                        <!--</div>-->
-                                        <!--<div class="oupon_top_d gray_bg">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                        <!--</div>-->
-                                        <!--<div class="oupon_top_d gray_bg">-->
-                                        <!--<p class="oupon_top_p1">-->
-                                        <!--<span class="top_p1_sp1">￥</span>-->
-                                        <!--<span class="top_p1_sp2">20</span>-->
-                                        <!--<span class="top_p1_sp3">满200</span>-->
-                                        <!--</p>-->
-                                        <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                        <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                        <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                        <!--</div>-->
                                     </div>
-
-                                    <!--<div class="goods_oupon_top gray">-->
-                                    <!--<div class="oupon_top_d gray_bg">-->
-                                    <!--<p class="oupon_top_p1">-->
-                                    <!--<span class="top_p1_sp1">￥</span>-->
-                                    <!--<span class="top_p1_sp2">20</span>-->
-                                    <!--<span class="top_p1_sp3">满200</span>-->
-                                    <!--</p>-->
-                                    <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                    <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                    <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="oupon_top_d gray_bg">-->
-                                    <!--<p class="oupon_top_p1">-->
-                                    <!--<span class="top_p1_sp1">￥</span>-->
-                                    <!--<span class="top_p1_sp2">20</span>-->
-                                    <!--<span class="top_p1_sp3">满200</span>-->
-                                    <!--</p>-->
-                                    <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                    <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                    <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="oupon_top_d gray_bg">-->
-                                    <!--<p class="oupon_top_p1">-->
-                                    <!--<span class="top_p1_sp1">￥</span>-->
-                                    <!--<span class="top_p1_sp2">20</span>-->
-                                    <!--<span class="top_p1_sp3">满200</span>-->
-                                    <!--</p>-->
-                                    <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                    <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                    <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="oupon_top_d gray_bg">-->
-                                    <!--<p class="oupon_top_p1">-->
-                                    <!--<span class="top_p1_sp1">￥</span>-->
-                                    <!--<span class="top_p1_sp2">20</span>-->
-                                    <!--<span class="top_p1_sp3">满200</span>-->
-                                    <!--</p>-->
-                                    <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                    <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                    <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                    <!--</div>-->
-                                    <!--<div class="oupon_top_d gray_bg">-->
-                                    <!--<p class="oupon_top_p1">-->
-                                    <!--<span class="top_p1_sp1">￥</span>-->
-                                    <!--<span class="top_p1_sp2">20</span>-->
-                                    <!--<span class="top_p1_sp3">满200</span>-->
-                                    <!--</p>-->
-                                    <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                    <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                    <!--<p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>-->
-                                    <!--</div>-->
-                                    <!--</div>-->
                                 </div>
-
-                                <!--运费券-->
-                                <!--<div class="freight_q">-->
-                                <!--<div class="goods_oupon_top gray">-->
-                                <!--<div class="oupon_top_d green">-->
-                                <!--<p class="oupon_top_p1">-->
-                                <!--<span class="top_p1_sp5">免运费券</span>-->
-                                <!--</p>-->
-                                <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                <!--</div>-->
-                                <!--<div class="oupon_top_d gray_bg">-->
-                                <!--<p class="oupon_top_p1">-->
-                                <!--<span class="top_p1_sp5">免运费券</span>-->
-                                <!--</p>-->
-                                <!--<p class="oupon_top_p2">有效期至2016-08.04</p>-->
-                                <!--<p class="oupon_top_p3">店铺 : 镜库科技有限公司</p>-->
-                                <!--</div>-->
-                                <!--</div>-->
-                                <!--</div>-->
-
                                 <!--优惠券兑换-->
                                 <div class="yhq_exchange">
                                     <div class="yhq_div">
@@ -457,11 +324,11 @@
         </div>
         <!--使用优惠券-->
         <!--小计-->
-        <div ng-if="isExchange==1" class="count_div" style="background: #fff;">
+        <div ng-if="isExchange" class="count_div" style="background: #fff;">
             <p class="count_p1">使用积分 :{{exchange_integral}}</p>
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
-        <div ng-if="isExchange==0" class="count_div" style="background: #fff;">
+        <div ng-if="!isExchange" class="count_div" style="background: #fff;">
             <p class="count_p1">订单总金额 : <span>{{totalPrice}}</span></p>
             <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>{{yhqTotal}}</span></p>
             <p class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
@@ -492,12 +359,12 @@
         <!--订单金额-->
         <div class="refer_order">
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
-            <div class="refer_order_d" ng-if="isExchange==0">
+            <div class="refer_order_d" ng-if="!isExchange">
                     
                 <p class="refer_order_p"><!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
                         value="提交订单" class="refer_order_btn" /></p>
             </div>
-            <div class="refer_order_d" ng-if="isExchange==1">
+            <div class="refer_order_d" ng-if="isExchange">
                 <p class="refer_order_p">订单总积分 : <span class="refer_order_sp1">{{exchange_integral}}</span><input ng-click="submitList($event,$index)"
                         type="button" value="提交订单" class="refer_order_btn" /></p>
             </div>

@@ -22,7 +22,7 @@
     <div class="jiesuan-gd-div gird">填写并核对订单信息</div>
 </div>
 <div id="masks" class="masks"></div>
-<div class="pur_close_box gird">
+<div class="pur_close_box gird" ng-show="jiesuanData">
     <a href="" class="pur_close_a" ng-click="tianjia()">+ 新增收货地址</a>
     <div class="pur_zengjia">
         <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库科技</div>
@@ -194,8 +194,8 @@
                                             <span ng-if="cartGoodsAttr.qiujing">球镜：{{cartGoodsAttr.qiujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhujing">柱镜：{{cartGoodsAttr.zhujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhouwei">轴位：{{cartGoodsAttr.zhouwei}}</span>
+                                            <span ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span>
                                         </li>
-                                        <li><span ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span></li>
                                     </ul>
                                 </div>
                                 <div class="table_b2_box">
@@ -218,7 +218,6 @@
                             <!--商家备注-->
                             <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                                 <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]"
-                                ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)"
                                     type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
                             <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;margin-top: 10px;">
@@ -245,7 +244,7 @@
         </div>
 
         <!--使用优惠券-->
-        <div class="use_oupon" ng-show="isExchange==0">
+        <div class="use_oupon" ng-show="!isExchange">
             <!--<h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券/余额</h2>-->
             <h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券</h2>
             <div class="use_oupon_cont">

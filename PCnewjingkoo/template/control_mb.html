@@ -48,7 +48,7 @@
 				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
 			</div>
 		</div>
-		<div class="panel-right">
+		<div class="panel-right" ng-show="peopleData">
 			<div class="control-wrp" style="min-height: auto;">
 				<div class="cont-hd cle">    
     				<div class="cbt-left"> 
@@ -61,7 +61,7 @@
 							<div class="pic fl" style="cursor: pointer;" ng-click="goPersonLogo()"><img ng-src="{{peopleData.avatar}}"/></div>
 							<h1 class="pal-h1">{{peopleData.username}}</h1>
 							<div class="grade-1"><img ng-src="{{peopleData.rank_icon}}" style="width: 20px;height: 20px;"/>{{peopleData.rank_name}}</div>
-							<div class="grade-2">{{peopleData.rank_name}}<span><em style="width: {{Wid}};min-width: 2%;"></em></span>{{peopleData.next_rank_name}}</div>
+							<div class="grade-2">{{peopleData.rank_name}}<span><em ng-style="{width:Wid}" style="min-width: 2%;"></em></span>{{peopleData.next_rank_name}}</div>
 							<div class="grade-3">({{peopleData.rank_points}}/{{peopleData.next_points}})</div>
 						</div>
 						<div class="panel-right fr">

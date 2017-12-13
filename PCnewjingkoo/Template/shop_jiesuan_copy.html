@@ -79,10 +79,10 @@
         <div class="pur_close_d pur_address">
             <span class="pur_close_sp">收货信息 : </span> 
             <div class="pur_close_dlbox">
-                <div class="pur_close_dl" ng-class="{'pur_close_dl pur_close_don':address.selected,'pur_close_dl noEvent':address.is_show==0}"
-                    ng-init="flag=true" ng-if="flag||address.selected==1" ng-repeat="address in jiesuanData.consignee_list">
+                <P ng-if="!defaultShipping&&!flag" style="font-size: 14px;margin: -3px 0 8px;">请选择收货地址</P>
+                <div class="pur_close_dl" ng-class="{'pur_close_don':address.selected,'pur_close_dl noEvent':address.is_show==0}" ng-init="flag=true" ng-if="flag||address.selected==1" ng-repeat="address in jiesuanData.consignee_list">
                     <span class="pur_close_sp1" ng-click="selectAddress(address.address_id)">{{address.consignee}}</span>
-                      <input type="button" value="可选地址" ng-if="address.is_show==1"  style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
+                    <input type="button" value="可选地址" ng-if="address.is_show==1"  style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
                     <input type="button" value="不可选地址" ng-if="address.is_show==0" style="height: 26px;padding: 0 15px;border-radius: 3px;background-color: #ccc;color: #fff;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
                     <span class="pur_close_sp2">{{address.consignee}}</span>
                     <span class="pur_close_sp3 "><i>{{address.region}}</i><i>{{address.address}}</i><i>{{address.mobile}}</i></span> 
@@ -172,7 +172,7 @@
                 </tr>
             </table>
             <div class="goods_table_item" ng-repeat="cartGoods in jiesuanData.cart_goods_list">
-                <p class="p_titl">{{cartGoods.title}}<span style="cursor: pointer;" class="per_lo" onclick="qimoChatClick();"></span>
+                <p class="p_titl">{{jiesuanData.suppliers_info.suppliers_name}}<span style="cursor: pointer;" class="per_lo" ng-click="qimoChatClick(jiesuanData.suppliers_info.access_id);"></span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.free_price&&cartGoods.free_price!=0">购满{{cartGoods.free_price}}免运费</span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.suppliers_free==1">已免运费</span>
                 </p>
@@ -212,31 +212,23 @@
                         <div class="send_way_l" style="float: left;">
                             <span class="sent_sp1">配送方式 : </span>
                             <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1'}" ng-class="{'send_way_sp selected':sent.selected}"
-                                ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
-                            <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
+                                ng-repeat="sent in jiesuanData.shipping_list">{{sent.shipping_name}}</span>
+                            <span ng-if="(!jiesuanData.shipping_list.length)&&defaultShipping">该供应商暂无配送方式</span>
                             <span ng-if="!defaultShipping">请选择收货地址</span>
                             <!--商家备注-->
                             <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
-                                <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]"
-                                ng-blur="noteCookie(jiesuanData.suppliers_notes[cartGoods.suppliers_id],cartGoods.suppliers_id,$index)"
-                                    type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
+                                <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.postscript" type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
                             <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;margin-top: 10px;">
                                 <span class="sent_sp1" style="float: left;">商家备注 : </span>
                                 <div class="texbox_d">
-                                    <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()" ></textarea>
+                                    <textarea class="bz_text" ng-model="jiesuanData.postscript" ng-blur="saveNotes()" ></textarea>
                                     <ul class="bz_ul">
-                                        <li ng-class="order_label.selected?'on':''" ng-repeat="order_label in cartGoods.order_label" ng-click="order_label.selected = !order_label.selected;saveNotes()">{{order_label.value}}</li>
+                                        <li ng-class="order_label.is_select?'on':''" ng-repeat="order_label in jiesuanData.order_label" ng-click="order_label.is_select = !order_label.is_select;saveNotes()">{{order_label.name}}</li>
                                     </ul>
                                     <!-- <p class="bz_p">若您需改变订单内容或另有特殊要求，请务必联系卖家达成一致。否则，该填写内容将视为无效。</p> -->
                                 </div>
                             </div>
-                        </div>
-                        <div class="remark_right" style="float: right;">
-                            <p ng-if="!isExchange">购物金额小计 :<span>{{cartGoods.goods_subtotal}}</span></p>
-                            <p class="p2">+ 配送费用 :<span>{{cartGoods.shipping_free}}</span></p>
-                            <p class="p2">+ 获赠积分 :<span>{{cartGoods.will_get_integral}}</span></p>
-                            <!-- <p class="p2" ng-if="cartGoods.subsidy_subtotal">+ 镜库补贴 : {{cartGoods.subsidy_subtotal}}</p> -->
                         </div>
                     </div>
                 </div>
@@ -266,33 +258,28 @@
                             <div class="oupon_u2_dbox">
                                 <div class="goods_oupon show">
                                     <div class="goods_oupon_top">
-                                        <p ng-if="jiesuanData.yes_bonus==0">暂无可用优惠券</p>
-                                        <div ng-repeat="parentYhqUse in jiesuanData.cart_goods_list">
-                                            <div class="oupon_top_d needcli" ng-class="{'oupon_top_d needcli oncli':yhqUse.selected}" ng-repeat="yhqUse in parentYhqUse.use_bonus"
-                                                ng-click="useYhq(yhqUse.suppliers_id,yhqUse.bonus_id)">
-                                                <p class="oupon_top_p1">
-                                                    <span class="top_p1_sp1"></span>
-                                                    <span class="top_p1_sp2">{{yhqUse.bonus_money_formated | number:0}}</span>
-                                                    <span class="top_p1_sp3">满{{yhqUse.min_goods_amount | number:0}}</span>
-                                                </p>
-                                                <p class="oupon_top_p2">有效期至{{yhqUse.use_end_date}}</p>
-                                                <p class="oupon_top_p3">店铺 : {{yhqUse.suppliers_name}}</p>
-                                            </div>
+                                        <p ng-if="!jiesuanData.yes_bonus" style="margin-bottom: 20px;">暂无可用优惠券</p>
+                                        <div class="oupon_top_d needcli" ng-class="{'oncli':yhqUse.selected}" ng-repeat="yhqUse in jiesuanData.yes_bonus" ng-click="useYhq(yhqUse,$event)">
+                                            <p class="oupon_top_p1">
+                                                <span class="top_p1_sp1"></span>
+                                                <span class="top_p1_sp2">{{yhqUse.bonus_money_formated | number:0}}</span>
+                                                <span class="top_p1_sp3">满{{yhqUse.min_goods_amount | number:0}}</span>
+                                            </p>
+                                            <p class="oupon_top_p2">有效期至{{yhqUse.use_end_date}}</p>
+                                            <p class="oupon_top_p3">店铺 : {{yhqUse.suppliers_name}}</p>
                                         </div>
                                     </div>
 
-                                    <div class="goods_oupon_top gray">
-                                        <div ng-repeat="parentYhqNoUse in jiesuanData.cart_goods_list">
-                                            <div class="oupon_top_d gray_bg" ng-repeat="yhqNoUse in parentYhqNoUse.no_use_bonus">
-                                                <p class="oupon_top_p1">
-                                                    <span class="top_p1_sp1"></span>
-                                                    <span class="top_p1_sp2">{{yhqNoUse.bonus_money_formated | number:0}}</span>
-                                                    <span class="top_p1_sp3">满{{yhqNoUse.min_goods_amount | number:0}}</span>
-                                                </p>
-                                                <p class="oupon_top_p2">有效期至{{yhqNoUse.use_end_date}}</p>
-                                                <p class="oupon_top_p3">店铺 : {{yhqNoUse.suppliers_name}}</p>
-                                                <p class="oupon_top_p4"><span class="top_p4_sp"></span>所结算商品中没有符合条件的商品</p>
-                                            </div>
+                                    <div class="goods_oupon_top gray" ng-if="jiesuanData.no_bonus.length">
+                                        <div class="oupon_top_d gray_bg" ng-repeat="yhqNoUse in jiesuanData.no_bonus">
+                                            <p class="oupon_top_p1">
+                                                <span class="top_p1_sp1"></span>
+                                                <span class="top_p1_sp2">{{yhqNoUse.bonus_money_formated | number:0}}</span>
+                                                <span class="top_p1_sp3">满{{yhqNoUse.min_goods_amount | number:0}}</span>
+                                            </p>
+                                            <p class="oupon_top_p2">有效期至{{yhqNoUse.use_end_date}}</p>
+                                            <p class="oupon_top_p3">店铺 : {{yhqNoUse.suppliers_name}}</p>
+                                            <p class="oupon_top_p4"><span class="top_p4_sp"></span>没有符合条件的商品</p>
                                         </div>
                                     </div>
                                 </div>
@@ -301,15 +288,15 @@
                                     <div class="yhq_div">
                                         <p class="yhq_p1">请输入优惠券兑换码 : </p>
                                         <p class="yhq_p2">
-                                            <input type="text" class="yhq_ip" placeholder="优惠券序列号" />
-                                            <input type="button" value="兑换" class="yhq_btn" />
+                                            <input type="text" class="yhq_ip" ng-model="code" placeholder="优惠券序列号" />
+                                            <input type="button" value="兑换" ng-click="getYhqByCode(code,$event)" class="yhq_btn" />
                                         </p>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <p ng-if="yhqIf" class="goods_oupon_p" ng-class="{'goods_oupon_p show':yhqIf,'goods_oupon_p':!yhqIf}"><span style="padding-left: 25px;">金额抵用 </span><span class="oupon_p_sp">{{yhqTotal}}</span></p>
+                        <p ng-if="jiesuanData.order.bonus_id>0" class="goods_oupon_p" ng-class="{'goods_oupon_p show':jiesuanData.order.bonus_id>0,'goods_oupon_p':!jiesuanData.order.bonus_id>0}"><span style="padding-left: 25px;">金额抵用 </span><span class="oupon_p_sp">¥{{jiesuanData.order.formated_bonus}}</span></p>
                     </div>
                     <!--余额-->
                     <!--<div class="surplus_box">-->
@@ -329,17 +316,16 @@
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
         <div ng-if="!isExchange" class="count_div" style="background: #fff;">
-            <p class="count_p1">订单总金额 : <span>{{totalPrice}}</span></p>
-            <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>{{yhqTotal}}</span></p>
-            <p class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
-            <p class="count_p1">+获赠积分 : {{jifen}}</p>
-            <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p>
-            <p ng-if="sub" class="count_p1">-镜库补贴 : <span>{{subsidyPrice}}</span></p>
+            <p class="count_p1">订单总金额 : <span>¥{{jiesuanData.order.formated_order_amount}}</span></p>
+            <p class="count_p1" ng-if="jiesuanData.order.bonus_id>0">-优惠券 : <span>¥{{jiesuanData.order.formated_bonus}}</span></p>
+            <p class="count_p1">+配送费用 : <span>¥{{jiesuanData.order.formated_shipping_fee}}</span></p>
+            <p class="count_p1">-商品优惠 : <span>¥{{jiesuanData.order.formated_reduce_amount}}</span></p>
+            <p class="count_p1">+获赠积分 : {{jiesuanData.order.integral_to_give}}</p>
+            <!-- <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p> -->
         </div>
 
         <div ng-show="yeIf" class="top_center_bott" style="overflow: hidden;">
-            <form style="display: inline-block;float: right;padding-right: 100px;padding-left: 100px;" class="alieditContainer" name="pass_form"
-                novalidate>
+            <form style="display: inline-block;float: right;padding-right: 100px;padding-left: 100px;" class="alieditContainer" name="pass_form" novalidate>
                 <span class="close_p6" style="position: relative;top: 26px;left: -62px;margin-bottom: 10px;">支付密码：</span>
                 <label for="pass">
                     <input style="opacity: 0;" minlength="6" maxlength="6" id="pass" name="pass" class="ui-input i-text" ng-model="pass" ng-value="pass" type="tel" autocomplete="off"/>
@@ -361,7 +347,7 @@
             <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
             <div class="refer_order_d" ng-if="!isExchange">
                     
-                <p class="refer_order_p"><!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
+                <p class="refer_order_p"><!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) : <span class="refer_order_sp1">¥{{jiesuanData.order.goods_amount}}</span><input ng-click="submitList($event,$index)" type="button"
                         value="提交订单" class="refer_order_btn" /></p>
             </div>
             <div class="refer_order_d" ng-if="isExchange">

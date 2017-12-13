@@ -189,32 +189,19 @@
 												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><span>{{order.pay_name}}</span></p> 
 											</div>
 										</div>
-										<!--!((order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)||(order.order_status==0 && order.pay_status==0 && order.gq==0))-->
 										<div class="nero n-4 c">
-											<!-- <div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)">
-												<p class="small_fh"><span class="red">{{order.status}}</span></p>
-												<div class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">   
+											
+											<div class="n4-dsh" style="margin-top: 14px;">
+												<p style="padding-top: 8px;">
+													<span class="red">{{order.status}}</span>
+												</p>
+												<div  ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)" class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">   
 													<em></em>跟踪<i style="display: none;"></i>
 												</div>
 												<p>
 													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
 												</p>
-											</div>  
-											<div class="n4-dsh" style="margin-top: 14px;" ng-if="((order.order_status==1 || order.shipping_status==5) && order.pay_status==2) || (order.order_status==0 && order.pay_status==0) ||  (order.order_status==1 && order.pay_status==0)"> 
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
-												</p>
 											</div>
-											 -->
-											<!-- <div class="n4-dsh" style="margin-top: 14px;" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status == 0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status == 0)"> -->
-											<div class="n4-dsh" style="margin-top: 14px;">
-												<p style="padding-top: 16px;"><span class="red">{{order.status}}</span></p>
-												<p>
-													<a style="cursor:pointer;" class="hse" ng-click="goOrderDetail1(order.order_id)">订单详情</a>
-												</p>
-											</div>
-											
 											
 										</div>
 										<div class="nero n-5 c">
@@ -251,6 +238,10 @@
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==1)||(order.order_status==0 && order.pay_status==0 && order.gq==1)">
 												<a class="ako4" ng-click="buyAgain(order.order_id)" style="margin-top: 32px;">立即购买</a> 
 											</div>
+											<!--定制待完善-->
+											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.order_status==7">
+													<a class="ako4" ng-click="goDingZhiPage(order.order_sn)" href="#/shop-jiesuan-copy/{{order.order_sn}}" style="margin-top: 32px;">完善定案</a> 
+												</div>
 										</div>
 										<div class="clear"></div>
 									</div> 		

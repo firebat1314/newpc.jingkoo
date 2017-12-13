@@ -60,6 +60,7 @@ angular.module('myApp.services', [])
 	.factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function ($http, $window, $timeout, ipCookie) {
 		// var ip = 'http://v401app.jingkoo.net'; //测试
 		var ip = 'http://newpc.jingkoo.net'; //正式
+		// var ip = 'https://www.jingku.cn'; //测试
 		return {
 			//7)获取商品价格优惠区间
 			getPriceSection: function (data) {
@@ -175,7 +176,7 @@ angular.module('myApp.services', [])
 					method: 'get',
 					cache: false,
 					url: ip + '/User/accountLog',
-					parmas: data,
+					params: data,
 					timeout: 5000,
 					headers: {
 						'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')

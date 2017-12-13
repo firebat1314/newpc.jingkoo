@@ -237,7 +237,7 @@
                                         <div class="title-text" ng-repeat="allItemChild in allItem.child"> 
                                         	<span style="margin-left:0;color:#598eca;display: block;float: none;font-size: 13px;width: calc(100% - 30px);text-align: left;height: 30px;line-height: 30px;border-bottom: 1px dashed #e5e5e5;">{{allItemChild.name}}</span>
                                             <div class="line-con" style="float: none;display: block;">    
-                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word" style="color:{{allItemChilds.style}}">{{allItemChilds.name}}</a>
+                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word"  ng-style="{color:allItemChilds.style}">{{allItemChilds.name}}</a>
                                             </div>
                                         </div>
                                     </div>

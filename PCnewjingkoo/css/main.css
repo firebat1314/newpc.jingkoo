@@ -10549,12 +10549,12 @@ span.a_arrow_r {
 
 /*切换*/
 .goods_oupon {
-  padding: 0 25px 25px; }
+  padding: 0 25px 0; }
 
 .goods_oupon_top {
   width: 100%;
   overflow: hidden;
-  padding: 20px 0;
+  padding: 20px 0 0;
   border-bottom: 1px solid #e5e5e5; }
 
 .goods_oupon_top .oupon_top_d {
@@ -10618,31 +10618,33 @@ span.a_arrow_r {
   right: 0;
   bottom: 0; }
 
-/*灰色*/
-.goods_oupon_top.gray {
+.goods_oupon_top:last-child {
   border: none; }
 
+/*灰色*/
 .goods_oupon_top.gray .gray_bg {
   position: relative;
   background: url(../img/cg_ico5.png) center center no-repeat;
   background-size: 100% 100%; }
 
 .goods_oupon_top.gray .gray_bg .oupon_top_p3 {
-  color: #b2b2b2; }
+  color: #b2b2b2;
+  padding-top: 18px; }
 
 .goods_oupon_top.gray .gray_bg .oupon_top_p4 {
   font-size: 12px;
   color: #b2b2b2;
-  position: relative;
-  top: -7px; }
+  display: flex;
+  align-items: center;
+  padding: 0;
+  text-align: center;
+  justify-content: center; }
 
 .oupon_top_p4 .top_p4_sp {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background: url(../img/cg_ico6.png) center center no-repeat;
-  position: relative;
-  top: 5px; }
+  background: url(../img/cg_ico6.png) center center no-repeat; }
 
 .use_oupon_cont .goods_oupon_p {
   width: 100%;

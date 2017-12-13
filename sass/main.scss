@@ -8217,8 +8217,8 @@ display: -webkit-flex;
 .use_oupon_u2>li{width: 80px;height: 38px;line-height: 38px;float: left;text-align: center;cursor: pointer;} 
 .use_oupon_u2>li.onc{border-bottom: 2px solid #0070c9;color: #0070c9;}  
 /*切换*/ 
-.goods_oupon{padding: 0 25px 25px;}
-.goods_oupon_top{width: 100%;overflow: hidden;padding: 20px 0;border-bottom: 1px solid #e5e5e5;}
+.goods_oupon{padding: 0 25px 0;}
+.goods_oupon_top{width: 100%;overflow: hidden;padding: 20px 0 0;border-bottom: 1px solid #e5e5e5;}
 .goods_oupon_top .oupon_top_d{width: 200px;height: 120px;background: url(../img/cg_ico4.png) center center no-repeat;background-size: 100% 100%;float: left;margin-right: 22px;border: 1px solid transparent;cursor: pointer;margin-bottom: 20px;}
 .goods_oupon_top .oupon_top_d:nth-child(5n+5){margin-right: 0;}   
 .oupon_top_p1{text-align: center;padding-top: 5px;} 
@@ -8229,14 +8229,13 @@ display: -webkit-flex;
 .oupon_top_p3{color: #ff8a66;font-size: 12px;text-align: center;padding-top: 25px;} 
 .goods_oupon_top .needcli.oncli{border: 1px solid #ff8a66;position:relative;}
 .goods_oupon_top .needcli.oncli:after{content: "";display: inline-block;width: 17px;height: 17px;background:url(../img/cg_ico7.png) center center no-repeat;background-size: 100%;position: absolute;right: 0;bottom: 0;}
-
+.goods_oupon_top:last-child{border: none;}
 
 /*灰色*/ 
-.goods_oupon_top.gray{border: none;}
 .goods_oupon_top.gray .gray_bg{position: relative;background: url(../img/cg_ico5.png) center center no-repeat;background-size: 100% 100%;}
-.goods_oupon_top.gray .gray_bg .oupon_top_p3{color: #b2b2b2;}
-.goods_oupon_top.gray .gray_bg .oupon_top_p4{font-size: 12px;color: #b2b2b2;position: relative;top: -7px;} 
-.oupon_top_p4 .top_p4_sp{display: inline-block;width: 20px;height: 20px;background: url(../img/cg_ico6.png) center center no-repeat;position: relative;top: 5px;}
+.goods_oupon_top.gray .gray_bg .oupon_top_p3{color: #b2b2b2;padding-top:18px;}
+.goods_oupon_top.gray .gray_bg .oupon_top_p4{font-size: 12px;color: #b2b2b2;display: flex;align-items: center;padding: 0;text-align: center;justify-content: center;} 
+.oupon_top_p4 .top_p4_sp{display: inline-block;width: 20px;height: 20px;background: url(../img/cg_ico6.png) center center no-repeat;}
 .use_oupon_cont .goods_oupon_p{width: 100%;height: 40px;line-height: 40px;background-color: #f5f5f5;font-size: 14px;border-top: 1px solid #e6e6e6;display: none;}
 .use_oupon_cont .goods_oupon_p.show{display: block;}
 .goods_oupon_p .oupon_p_sp{color: #fe7e57;}

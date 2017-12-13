@@ -13,8 +13,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		};
 		$scope.goto();
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		// $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-		$rootScope.ip = 'https://www.jingku.cn'; //正式
+		$rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+		// $rootScope.ip = 'https://www.jingku.cn'; //正式
 
 		$scope.getUserMsgHs = function () {
 			$data.getUserMsg().success(function (data) {
@@ -1687,33 +1687,46 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//控制header和footer显隐
 		$rootScope.change = true;
 		$scope.goto();
-		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		$data.GetMoneyDetial({
-			account_type: 'user_money'
-		}).success(function (data) {
-			layer.close(cool);
-			if (data.count == 0) {
-				$scope.no_dd = true;
-			} else {
-				$scope.no_dd = false;
-				$scope.MoneyDetial = data;
-				$scope.getIntegral(data);
-			}
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				$state.go('login');
-			}
-		})
 
 		$scope.ListPage = {
 			page: 1,
 			size: 10,
 			account_type: 'user_money',
 		};
+		$scope.getData = function(List){
+			var cool = layer.load(0, { shade: [0.3, '#fff'] });
+			$data.GetMoneyDetial(List).success(function (data) {
+				layer.close(cool);
+				if (data.count == 0) {
+					$scope.no_dd = true;
+				} else {
+					$scope.no_dd = false;
+					$scope.MoneyDetial = data;
+				}
+			}).error(function (data, staus) {
+				layer.close(cool);
+				if (staus == 401) {
+					////layer.msg('用户失效，请重新登录');
+					ipCookie.remove('has_login');
+					ipCookie.remove('token');
+					$state.go('login');
+				}
+			})
+		}
+		$scope.getData($scope.ListPage);
+		$scope.up_page = function(){
+			if($scope.MoneyDetial.has_more){
+				$scope.ListPage.page++
+				$scope.getData($scope.ListPage);
+			}
+		}
+		$scope.down_page = function(){
+			if($scope.ListPage.page>1){
+				$scope.ListPage.page--
+				$scope.getData($scope.ListPage);
+			}
+		}
+		
 
 		$scope.getIntegral = function (data) {
 			$('#Pagination').pagination(data.pages, $scope.options)

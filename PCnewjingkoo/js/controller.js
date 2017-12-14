@@ -270,7 +270,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     cat_id: categoryId,
                     filter: filterId,
                     brand_id: '',
-                    keywords: ''
+                    keywords: '',
+                    random: '',
                 });
                 window.open(url, '_blank');
             }
@@ -454,23 +455,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //搜索
         $scope.searchKey = function () {
-            if ($scope.keywords == undefined || $scope.keywords == '') {
-                //console.log($scope.keywords);
-                layer.msg('请输入关键字！');
-            } else {
-                var newOpens = window.open();
-                //console.log($scope.keywords);
-                var url = $state.href('shop-list', {
-                    keywords: $scope.keywords,
-                    brand_id: '',
-                    cat_id: '',
-                    random: Math.random()
-                })
+            var newOpens = window.open();
+            //console.log($scope.keywords);
+            var url = $state.href('shop-list', {
+                keywords: $scope.keywords,
+            })
 
-                setTimeout(function () {
-                    newOpens.location = url;
-                }, 200)
-            }
+            setTimeout(function () {
+                newOpens.location = url;
+            }, 200)
+            /* $state.go('shop-list', {
+                keywords: $scope.keywords,
+            }) */
         };
 
         $scope.keywords = $stateParams.keywords;
@@ -3343,12 +3339,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.keyFn = function (id) {
             $state.go('shop-list', {
                 cat_id: id,
-                keywords: ''
+                keywords: null,
+                brand_id: null,
+                filter: null,
+                random: null,
             })
         };
 
+        $scope.brand_id = $stateParams.brand_id;
+        $scope.cat_id = $stateParams.cat_id;
+        $scope.filter = $stateParams.filter;
         $scope.keywords = $stateParams.keywords;
-
+        $scope.random = $stateParams.random;
+        $scope.page = $stateParams.page||1;
+        
         //控制收起和更多选项
         $scope.shouQi = false;
         $scope.moreXx = true;
@@ -3359,6 +3363,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.shouQiFn = function () {
             $scope.shouQi = false;
             $scope.moreXx = true;
+        };
+        
+        //console.log($scope.filter);
+        $scope.ListPage = {
+            brand_id: $scope.brand_id,
+            cat_id: $scope.cat_id,
+            filter: $scope.filter,
+            order: '',
+            stort: '',
+            max_price: '',
+            min_price: '',
+            keywords: $scope.keywords,
+            page: $scope.page,
+            size: 20
         };
         $('.nav-bar ul a:eq(0)').addClass('active');
         // $rootScope.res = ipCookie('token');
@@ -3375,10 +3393,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             link_to: 'javascript:;',
             prev_show_always: false,
             next_show_always: false,
-            current_page: 0,
+            current_page: $scope.page-1,
             callback: pageIndex
         };
         function pageIndex(index) {
+            // $state.go('shop-list',{page:index + 1});
             $scope.ListPage.page = index + 1;
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
@@ -3390,9 +3409,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 layer.close(cool);
                 if (data.status) {
                     $scope.shopListData = data;
-                    $scope.totalSize = data.pages;
-                    $scope.ye = data.page;
-                    $scope.count = data.count;
                 }
                 $scope.listControl();
                 $("body,html").animate({
@@ -3407,19 +3423,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $state.go('login');
                 }
             })
-        };
-        //console.log($stateParams.filter);
-        $scope.ListPage = {
-            brand_id: $stateParams.brand_id,
-            cat_id: $stateParams.cat_id,
-            filter: $stateParams.filter,
-            order: '',
-            stort: '',
-            max_price: '',
-            min_price: '',
-            keywords: $stateParams.keywords,
-            page: 1,
-            size: 20
+            
         };
         //价格筛选
         $scope.enterPrice = function () {
@@ -3442,6 +3446,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
 
         $scope.InitList = function () {
+            $scope.ListPage.page = 1;
+            
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "POST",
@@ -3451,30 +3457,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
                 .success(function (data) {
                     //console.log(data);
+                    layer.close(cool);
                     if (data.status) {
-                        layer.close(cool);
-                    }
                     $scope.shopListData = data;
                     $scope.getGoods(data);
-                    $scope.words = $scope.ListPage.keywords;
-                    $scope.ding = data.ding;
-                    $scope.is_true = data.is_true;
-                    $scope.listControl();
+                    $scope.listControl();//图像延迟加载
                     $scope.qxsjFn();
-
-                    // for(var i = 0;i<$scope.shopListData.goods_attr_arr.length;i++){
-                    //     for(var j = 0;j<$scope.shopListData.goods_attr_arr[i].data.length;j++){
-                    //         if($scope.shopListData.goods_attr_arr[i].data[j].selected==1){
-                    //             //console.log(1)
-                    //             $scope.delectHide = true;
-                    //         }else{
-                    //             //console.log(2)
-                    //             $scope.delectHide = false;
-                    //         }
-                    //     }
-                    // }
-
-
+                    
                     if ($scope.shopListData.goods_attr_arr[3].data.length == 0) {
                         $scope.shouQi = false;
                         $scope.moreXx = false;
@@ -3482,40 +3471,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.shouQi = false;
                         $scope.moreXx = true;
                     }
-                    $scope.totalSize = data.pages;
-                    $scope.ye = data.page;
-                    $scope.count = data.count;
                     $scope.fashionAllName = data.goods_attr_arr[0].name;
                     $scope.fashionPriceName = data.goods_attr_arr[2].name;
                     $scope.fashionMonthName = data.goods_attr_arr[1].name;
 
-                    //商品排序
-                    if (data.order == "g.goods_id" && data.stort == "DESC") {
-                        $('.shopList-sort-tit .shopList-sort-item .dayuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item .xiaoyuhao').removeClass('selected');
-                    }
-                    else if (data.order == "g.goods_id" && data.stort == "ASC") {
-                        $('.shopList-sort-tit .shopList-sort-item .xiaoyuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item .dayuhao').removeClass('selected');
-                    } else if (data.order == "g.shop_price" && data.stort == "DESC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(3) .dayuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(3) .xiaoyuhao').removeClass('selected');
-                    } else if (data.order == "g.shop_price" && data.stort == "ASC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(3) .xiaoyuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(3) .dayuhao').removeClass('selected');
-                    } else if (data.order == "g.add_time" && data.stort == "DESC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(2) .dayuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(2) .xiaoyuhao').removeClass('selected');
-                    } else if (data.order == "g.add_time" && data.stort == "ASC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(2) .xiaoyuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(2) .dayuhao').removeClass('selected');
-                    } else if (data.order == "g.sales_num" && data.stort == "ASC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(1) .xiaoyuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(1) .dayuhao').removeClass('selected');
-                    } else if (data.order == "g.sales_num" && data.stort == "DESC") {
-                        $('.shopList-sort-tit .shopList-sort-item:eq(1) .dayuhao').addClass('selected');
-                        $('.shopList-sort-tit .shopList-sort-item:eq(1) .xiaoyuhao').removeClass('selected');
-                    }
+                }
+                
                 }).error(function (data, staus) {
                     // layer.close(cool);
                     if (staus == 401) {
@@ -3528,6 +3489,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.InitList();
         $scope.qxsjFn = function () {
+            $scope.qxsjAd = null;
             $http({
                 method: "GET",
                 url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
@@ -3543,7 +3505,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.qxsjAd = data;
                 });
         };
-
+        $scope.itemFn = function () {
+            $(".likeTui").slide({ mainCell: "ul", vis: 4, prevCell: ".sPrev", nextCell: ".sNext", effect: "leftLoop", autoPlay: true });
+        };
         $scope.getGoods = function (data) {
             $scope.pagination = $('#Pagination').pagination(data.pages, $scope.options);
         };
@@ -3577,17 +3541,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             // });
             $scope.ListPage.brand_id = '';
             // $scope.ListPage.cat_id = '';
-            $stateParams.brand_id = '';
-            $stateParams.cat_id = '';
+            $scope.brand_id = '';
             $scope.ListPage.min_price = '';
             $scope.ListPage.max_price = '';
             $scope.ListPage.filter = '';
+
+            $scope.ListPage.cat_id = '';
+            $scope.cat_id = '';
             $scope.ListPage.keywords = '';
-            $stateParams.keywords = '';
-
-
-
             $scope.keywords = '';
+            $scope.keywords = '';
+
+
             $scope.price = false;
             $scope.InitList();
 
@@ -3596,9 +3561,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.closeFashion = function (e) {
             $scope.fashion = false;
             $scope.ListPage.brand_id = '';
-            $stateParams.brand_id = '';
+            $scope.brand_id = '';
             $scope.ListPage.keywords = '';
-            $stateParams.keywords = '';
+            $scope.keywords = '';
             $scope.keywords = '';
             //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
             $scope.InitList();
@@ -3608,7 +3573,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.getAllValue = function (value, id) {
             $scope.brand_name = value;
             $scope.ListPage.brand_id = id;
-            $stateParams.brand_id = id;
+            $scope.brand_id = id;
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
@@ -3683,9 +3648,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.closeFenlei = function (e) {
             $scope.fenlei = false;
             $scope.ListPage.cat_id = '';
-            $stateParams.cat_id = '';
+            $scope.cat_id = '';
             $scope.ListPage.keywords = '';
-            $stateParams.keywords = '';
+            $scope.keywords = '';
             $scope.keywords = '';
             //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
             $scope.InitList();
@@ -3713,11 +3678,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+id+'/'+$scope.ListPage.keywords+'';
             $scope.fenlei = true;
             $scope.ListPage.cat_id = id;
-            $stateParams.cat_id = id;
+            $scope.cat_id = id;
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.InitList();
-            $('.shopList-select-conditions .more-fashion:first').prev().css({
+           /*  $('.shopList-select-conditions .more-fashion:first').prev().css({
                 height: '62'
             })
             $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
@@ -3725,7 +3690,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
             $("body,html").animate({
                 "scrollTop": $('.shopList-main-tit').offset().top
-            }, 100)
+            }, 100) */
 
             $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
             $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
@@ -3742,7 +3707,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.InitList();
-            $('.shopList-select-conditions .more-fashion:first').prev().css({
+            /* $('.shopList-select-conditions .more-fashion:first').prev().css({
                 height: '62'
             })
             $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
@@ -3750,7 +3715,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
             $("body,html").animate({
                 "scrollTop": $('.shopList-main-tit').offset().top
-            }, 100)
+            }, 100) */
 
             $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
             $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
@@ -3760,7 +3725,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //商品综合排序
         $scope.allOrder = function () {
-            $scope.ListPage.order = 'goods_id';
+            $scope.ListPage.order = '';
             $scope.ListPage.stort = 'DESC';
             $scope.ListPage.page = 1;
             $scope.InitList();
@@ -3768,19 +3733,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //商品推荐排序
         $scope.tuijianOrder = function () {
             $scope.ListPage.order = 'sales_num';
-            $scope.ListPage.page = 1;
-            $scope.InitList();
-        };
-        //推荐升序
-        $scope.tuijianAsOrder = function () {
-            $scope.ListPage.stort = 'ASC';
-            $scope.ListPage.order = 'sales_num';
-            $scope.InitList();
-        };
-        //推荐降序
-        $scope.tuijianDsOrder = function () {
             $scope.ListPage.stort = 'DESC';
-            $scope.ListPage.order = 'sales_num';
             $scope.ListPage.page = 1;
             $scope.InitList();
         };
@@ -3894,15 +3847,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             setTimeout(function () {
                 $(".hot-sale-goods").slide({ mainCell: "ul", vis: 6, prevCell: ".sPrev", nextCell: ".sNext", effect: "leftLoop" });
             }, 200)
-        };
-
-
-
-
-        $scope.itemFn = function () {
-            setTimeout(function () {
-                $(".likeTui").slide({ mainCell: "ul", vis: 4, prevCell: ".sPrev", nextCell: ".sNext", effect: "leftLoop", autoPlay: true });
-            }, 100)
         };
 
 
@@ -7516,23 +7460,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //搜索
         $scope.searchKey = function () {
-            if ($scope.carkeywords == undefined || $scope.carkeywords == '') {
-                //console.log($scope.carkeywords);
-                layer.msg('请输入关键字！');
-            } else {
-                var newOpens = window.open();
-                //console.log($scope.carkeywords);
-                var url = $state.href('shop-list', {
-                    keywords: $scope.carkeywords,
-                    brand_id: '',
-                    cat_id: '',
-                    random: Math.random()
-                })
+            
+            var newOpens = window.open();
+            //console.log($scope.carkeywords);
+            var url = $state.href('shop-list', {
+                keywords: $scope.carkeywords,
+                random: Math.random()
+            })
 
-                setTimeout(function () {
-                    newOpens.location = url;
-                }, 200)
-            }
+            setTimeout(function () {
+                newOpens.location = url;
+            }, 200)
+            
         };
     }])
     //购物车结算页
@@ -14834,9 +14773,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.buyAgain = function (goods_id) {
             //console.log(goods_id);
             $state.go('paymentNew', { log_id: goods_id, type: 'mach' })
-        }
-        $scope.goDingZhiPage = function(sn){
-            console.log(sn)
         }
         //输入框查询
         $scope.serchGoods = function () {

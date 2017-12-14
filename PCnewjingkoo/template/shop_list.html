@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="shop-list">
-        <div class="guess-you-like" ng-show="qxsjAd.data.length>0">
+        <div class="guess-you-like" ng-if="qxsjAd&&qxsjAd.data.length">
             <div class="guess-you-like-main">
                 <div class="fl like-main-tit">
                     <p>热卖推荐</p>
@@ -47,15 +47,15 @@
             </div>
         </div>
         <!--<div style="margin-top: 10px;" ng-show="!price"></div>-->
-            <div class="shopList-main-tit" ng-if="shopListData.goods.length!=0">
+            <div class="shopList-main-tit" ng-if="shopListData.goods.length!=0" style="clear: both;">
                  <!--当前位置：<a href="#/home">首页</a> > - -->
                 <!--<p>{{ding}}</p>-->
-                <p ng-if="is_true==1">已选条件：</p>
+                <p ng-if="shopListData.is_true==1" style="color:#808080;">已选条件：</p>
                 <div style="width:950px;">
-                    <!--<div ng-repeat="fashionMonthSelect in shopListData.goods_attr_arr[1].data" class="select-conditions" ng-if="fashionMonthSelect.selected">-->
-                        <!--分类：<span>{{fashionMonthSelect.cat_name}}</span>-->
-                        <!--<i ng-click="closeFenlei($event)">×</i>-->
-                    <!--</div>-->
+                    <div ng-repeat="fashionMonthSelect in shopListData.goods_attr_arr[1].data" class="select-conditions" ng-if="fashionMonthSelect.selected">
+                        分类：<span>{{fashionMonthSelect.cat_name}}</span>
+                        <i ng-click="closeFenlei($event)">×</i>
+                    </div>
                     <div class="select-conditions" style="cursor: pointer;" ng-if="ding">
                         分类：<span>{{ding}}</span>
                         <!-- <i ng-click="closeFenlei($event)">×</i> -->
@@ -64,10 +64,10 @@
                         品牌：<span>{{fashionSelect.brand_name}}</span>
                         <i ng-click="closeFashion($event)">×</i>
                     </div>
-                    <div class="select-conditions" ng-if="price">
+                    <!-- <div class="select-conditions" ng-if="price">
                         价格：<span><em>{{min_price}}</em>-<em>{{max_price}}</em></span>
                         <i ng-click="closePrice($event)">×</i>
-                    </div>
+                    </div> -->
                     <div ng-repeat="fashion_attr in shopListData.goods_attr_arr[4].data" class="select-conditions">
                         <span>{{fashion_attr.attr_name}}</span>
                         <i ng-click="closeShuxing(fashion_attr.filter)">×</i>
@@ -89,7 +89,7 @@
                 <div class="more-ano-conditions" ng-if="shouQi" ng-click="shouQiFn()">
                     <p>收起</p>
                 </div>
-                <div class="shopList-fashion shopList-price" ng-if="shopListData.cat_is_show">
+                <div class="shopList-fashion shopList-price">
                     <div class="shopList-fashion-tit">{{fashionMonthName}}：</div>
                     <div class="shopList-fashion-content">
                         <div class="shopList-fashion-item" ng-repeat="fashionMonthItem in shopListData.goods_attr_arr[1].data" ng-click="getMonthValue(fashionMonthItem.cat_name,fashionMonthItem.cat_id)">{{fashionMonthItem.cat_name}}</div>
@@ -123,33 +123,35 @@
                         <!--<i>+</i>-->
                     <!--</div>-->
                 <!--</div>-->
-                <div class="moreAttr">
                     <div class="shopList-fashion shopList-price" ng-if="shouQi?true:$index<2" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data" repeat-done="clickMore()">
                         <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>
                         <!--<div class="shopList-fashion-item-one">全部</div>-->
                         <div class="shopList-fashion-content">
                             <div class="shopList-fashion-item" ng-repeat="fashionWaterItem in fashionAttr.values" ng-click="getAttrValue(fashionWaterItem.value,fashionWaterItem.filter)">{{fashionWaterItem.value}}</div>
                         </div>
-                        <div class="more-fashion" ng-show="shopListData.goods_attr_arr[3].data.length > 5">
+                        <div class="more-fashion" ng-show="fashionAttr.values.length > 5">
                             <p>更多</p>
                             <i>+</i>
                         </div>
                     </div>
-                </div>
             </div>
-            <div ng-show="shopListData.goods.length==0" class="ns-wrap clearfix info" style="padding: 10px 50px;">
+            <div ng-show="shopListData.goods.length==0" class="ns-wrap clearfix info" style="padding: 10px 0px;clear:both;">
                 <span class="ns-icon" style="float: left;display: block;width: 32px;height: 32px;background: url(//misc.360buyimg.com/product/search/1.0.7/css/i/search.notice.png) no-repeat 0 2px;"></span>
                 <div class="ns-content" style="margin-left: 32px;line-height: 32px;padding-left: 10px;font-size: 14px;font-weight: 700;color: #f60;">
                     <span>抱歉，没有找到与“<em style="color: #333;font-weight: 700;">{{words}}</em>”相关的商品</span></div>
             </div>
             <div ng-hide="shopListData.goods.length==0">
                 <div class="shopList-sort-tit" style="position: relative;">
-                    <div class="shopList-sort-item"><p ng-click="allOrder()">综合排序</p></div>
+                    <div class="shopList-sort-item" ng-class="{'selected':ListPage.order==''}" ng-click="allOrder()"><p>综合</p></div>
                     <!--<div ng-click="tuijianAsOrder()" class="xiaoyuhao"></div>-->
                     <!--<div ng-click="tuijianDsOrder()" class="dayuhao"></div>-->
-                    <div class="shopList-sort-item"><p ng-click="tuijianOrder()">推荐</p></div>
+                    <div class="shopList-sort-item" ng-class="{'selected':ListPage.order=='sales_num'}" ng-click="tuijianOrder()"><p>销量</p></div>
                     <!--<div class="shopList-sort-item"><p style="position: relative;left:-10px;" ng-click="timeOrder()">时间</p><div ng-click="timeAsOrder()" class="xiaoyuhao"></div><div ng-click="timeDsOrder()" class="dayuhao"></div></div>-->
-                    <div class="shopList-sort-item"><p style="position: relative;left:-10px;" ng-click="priceOrder()">价格</p><div ng-click="PriceAsOrder()" class="xiaoyuhao"></div><div ng-click="PriceDsOrder()" class="dayuhao"></div></div>
+                    <div class="shopList-sort-item" ng-class="{'selected':ListPage.order=='shop_price'}" ng-click="priceOrder()">
+                        <p style="position: relative;left:-10px;">价格</p>
+                        <div class="xiaoyuhao" ng-class="{'selected':ListPage.order=='shop_price'&&ListPage.stort=='ASC'}"></div>
+                        <div class="dayuhao" ng-class="{'selected':ListPage.order=='shop_price'&&ListPage.stort=='DESC'}"></div>
+                    </div>
 
                     <div class="chose_box">
                         <div class="chose_box_top">
@@ -167,7 +169,7 @@
 
 
                     <div style="position: absolute;right: 90px;top: 10px;font-size: 14px;color: #666;">
-                        共<span style="color:#FF3333;">{{count}}</span>件商品 <span style="color:#FF3333;">{{ye}}</span>/<span>{{totalSize}}</span>页
+                        共<span style="color:#FF3333;">{{shopListData.count}}</span>件商品 <span style="color:#FF3333;">{{shopListData.page}}</span>/<span>{{shopListData.pages}}</span>页
                     </div>
                     <div class="sort-toggle">
                         <div class="arrow-left" ng-click="prevList()"></div>
@@ -223,7 +225,7 @@
                     <div class="pages" style="float:left">
                         <div id="Pagination"></div>
                         <div class="searchPage">
-                            <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                            <span class="page-sum">共<strong class="allPage">{{shopListData.pages}}</strong>页</span>
                             <span class="page-go">到第<input type="text" value="1">页</span>
                             <a href="javascript:;" class="page-btn">确定</a>
                         </div>

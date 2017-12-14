@@ -2831,24 +2831,26 @@ span.a_arrow_r {
       color: #666;
       float: left;
       font-size: 12px;
-      position: relative; }
+      position: relative;
+      cursor: pointer; }
+      .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item.selected {
+        color: #0070c9; }
       .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item p {
-        display: inline-block;
-        cursor: pointer; }
+        display: inline-block; }
       .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item p:hover {
         color: #0070c9; }
       .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item .xiaoyuhao {
         width: 13px;
         height: 8px;
         position: absolute;
-        left: 71px;
-        top: 2px;
+        left: 61px;
+        top: 3px;
         background: url(../img/xiaoyuhao.png) no-repeat;
         background-size: 10px;
-        cursor: pointer; }
-        .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item .xiaoyuhao:hover {
-          background: url(../img/xiaoyuhao_.png) no-repeat;
-          background-size: 10px; }
+        /* &:hover{
+          background:url(../img/xiaoyuhao_.png) no-repeat;
+          background-size: 10px;
+        } */ }
         .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item .xiaoyuhao.selected {
           background: url(../img/xiaoyuhao_.png) no-repeat;
           background-size: 10px; }
@@ -2856,14 +2858,14 @@ span.a_arrow_r {
         width: 13px;
         height: 8px;
         position: absolute;
-        left: 71px;
-        top: 11px;
+        left: 61px;
+        top: 10px;
         background: url(../img/dayuhao.png) no-repeat;
         background-size: 11px;
-        cursor: pointer; }
-        .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item .dayuhao:hover {
-          background: url(../img/dayuhao_.png) no-repeat;
-          background-size: 11px; }
+        /* &:hover{
+          background:url(../img/dayuhao_.png) no-repeat;
+          background-size: 11px;
+        } */ }
         .shopList-main .shop-list .shopList-sort-tit .shopList-sort-item .dayuhao.selected {
           background: url(../img/dayuhao_.png) no-repeat;
           background-size: 11px; }
@@ -3127,9 +3129,9 @@ span.a_arrow_r {
       .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap {
         overflow: hidden;
         position: relative;
-        width: 1080px;
-        padding: 5px 54px 0 15px;
-        margin-left: 10px; }
+        margin-left: 10px;
+        margin: 0 auto;
+        padding-top: 12px; }
         .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li {
           width: 165px;
           height: 236px;
@@ -17037,9 +17039,7 @@ textarea {
 
 .sen-table .s-t td .sr-txt .srt-p2 {
   padding: 5px 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap; }
+  overflow: hidden; }
 
 .sen-table .s-t td .sr-txt .srt-p2 span {
   color: #999;

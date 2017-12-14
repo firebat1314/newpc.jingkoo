@@ -2985,9 +2985,12 @@ $browser-default-font-size: 37.5px !default;
         float:left;
         font-size: 12px;
         position:relative;
+          cursor: pointer;
+          &.selected{
+          color:#0070c9;
+        }
         p{
           display: inline-block;
-          cursor: pointer;
         }
         & p:hover{
           color:#0070c9;
@@ -2996,15 +2999,14 @@ $browser-default-font-size: 37.5px !default;
           width:13px;
           height:8px;
           position: absolute;
-          left:71px;
-          top:2px;
+          left: 61px;
+          top: 3px;
           background:url(../img/xiaoyuhao.png) no-repeat;
           background-size: 10px;
-          cursor: pointer;
-          &:hover{
+          /* &:hover{
             background:url(../img/xiaoyuhao_.png) no-repeat;
             background-size: 10px;
-          }
+          } */
           &.selected{
             background:url(../img/xiaoyuhao_.png) no-repeat;
             background-size: 10px;
@@ -3014,15 +3016,14 @@ $browser-default-font-size: 37.5px !default;
           width:13px;
           height:8px;
           position: absolute;
-          left:71px; 
-          top:11px; 
+          left: 61px;
+          top: 10px; 
           background:url(../img/dayuhao.png) no-repeat;
           background-size: 11px;
-          cursor: pointer;
-          &:hover{
+          /* &:hover{
             background:url(../img/dayuhao_.png) no-repeat;
             background-size: 11px;
-          }
+          } */
           &.selected{
             background:url(../img/dayuhao_.png) no-repeat;
             background-size: 11px;
@@ -3335,9 +3336,9 @@ $browser-default-font-size: 37.5px !default;
         .tempWrap{
           overflow: hidden;
           position: relative;
-          width: 1080px;
-          padding: 5px 54px 0 15px;
           margin-left: 10px;
+          margin: 0 auto;
+          padding-top: 12px;
           li{
             width:165px;
             height:236px;
@@ -9945,7 +9946,7 @@ width: 60px;
 .sen-table .s-t td .sr-img img{display:block;width:68px;height:68px;}
 .sen-table .s-t td .sr-txt{width:345px;margin:0 auto;}
 .sen-table .s-t td .sr-txt .srt-p1{padding:5px 0;color:#4c4c4c;font-size:12px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
-.sen-table .s-t td .sr-txt .srt-p2{padding:5px 0;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;}
+.sen-table .s-t td .sr-txt .srt-p2{padding:5px 0;overflow: hidden;}
 .sen-table .s-t td .sr-txt .srt-p2 span{color:#999;font-size:12px;}
 .sen-table .s-t .hsez{color:#999;font-size:12px;}
 .sen-table .s-t td .aneni .icon{position:relative;display:inline-block;width:22px;height:22px;margin:0 10px;}

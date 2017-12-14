@@ -150,8 +150,8 @@
 													<div class="imsldd" ng-repeat="goods in order.goods" ng-if="order.showmorelist||$index<2" style="position: relative;"> 
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.original_img}}"/></div>
 														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
-															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">
-																{{goods.goods_name}}
+															<p class="gp-1">
+																<span ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</span>
 																<span style="display: block;margin-top: 2px;color:#c5c5c5;">
 																		<span style="margin-right: 5px;" ng-if="goods.qiujing">球镜：{{goods.qiujing}}</span>
 																		<span style="margin-right: 5px;" ng-if="goods.zhujing">柱镜：{{goods.zhujing}}</span>
@@ -240,7 +240,7 @@
 											</div>
 											<!--定制待完善-->
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.order_status==7">
-													<a class="ako4" ng-click="goDingZhiPage(order.order_sn)" href="#/shop-jiesuan-copy/{{order.order_sn}}" style="margin-top: 32px;">完善定案</a> 
+													<a class="ako4" href="#/shop-jiesuan-copy/{{order.order_sn}}" style="margin-top: 32px;">完善定案</a> 
 												</div>
 										</div>
 										<div class="clear"></div>

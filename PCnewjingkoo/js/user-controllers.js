@@ -33,7 +33,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -166,7 +166,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			});
 
@@ -209,7 +209,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				});
@@ -236,7 +236,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -347,7 +347,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 
@@ -457,7 +457,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -478,7 +478,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -500,7 +500,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -541,7 +541,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -622,7 +622,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -676,7 +676,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -723,7 +723,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -755,7 +755,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 
@@ -884,7 +884,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -978,7 +978,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -1409,7 +1409,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -1443,7 +1443,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -1693,7 +1693,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			size: 10,
 			account_type: 'user_money',
 		};
-		$scope.getData = function(List){
+		$scope.getData = function (List) {
 			var cool = layer.load(0, { shade: [0.3, '#fff'] });
 			$data.GetMoneyDetial(List).success(function (data) {
 				layer.close(cool);
@@ -1709,24 +1709,24 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
 		$scope.getData($scope.ListPage);
-		$scope.up_page = function(){
-			if($scope.MoneyDetial.has_more){
+		$scope.up_page = function () {
+			if ($scope.MoneyDetial.has_more) {
 				$scope.ListPage.page++
 				$scope.getData($scope.ListPage);
 			}
 		}
-		$scope.down_page = function(){
-			if($scope.ListPage.page>1){
+		$scope.down_page = function () {
+			if ($scope.ListPage.page > 1) {
 				$scope.ListPage.page--
 				$scope.getData($scope.ListPage);
 			}
 		}
-		
+
 
 		$scope.getIntegral = function (data) {
 			$('#Pagination').pagination(data.pages, $scope.options)
@@ -1762,7 +1762,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -2437,7 +2437,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -2532,7 +2532,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -2556,7 +2556,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 
@@ -2944,7 +2944,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 500)
 				}).error(function (data) {
 					if (data.status == 0) {
-						$state.go('login');
+						location.href = "/default.html";
 						layer.close(cool);
 					}
 				})
@@ -2969,7 +2969,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					////layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
-					$state.go('login');
+					location.href = "/default.html";
 				}
 			})
 		}
@@ -3021,7 +3021,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 		//得到物流信息
@@ -3062,7 +3062,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 
@@ -3232,7 +3232,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 
@@ -3276,7 +3276,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				////layer.msg('用户失效，请重新登录');
 				ipCookie.remove('has_login');
 				ipCookie.remove('token');
-				$state.go('login');
+				location.href = "/default.html";
 			}
 		})
 

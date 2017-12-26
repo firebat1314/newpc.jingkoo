@@ -43,70 +43,7 @@
                     </div>
                 </div>
                 <div class="fl sp-nrright" ng-if="data&&!data.data.exchange_info">
-                    <!--<h2>{{goodsName}}</h2>-->
-                    <!--<div class="model">-->
-                        <!--<div class="fl goods-number">商品编号：<span>{{goodsSn}}</span></div>-->
-                        <!--<div class="fl goods-number">计价单位：<span>{{unit}}</span></div>-->
-                    <!--</div>-->
-                    <!--<div ng-if="shopDetailData.promotion.length>0||shopDetailData.bonus.length>0" class="sale-promotion-message">-->
-                        <!--<div class="promotion-message-top promotion-message-bottom">-->
-                            <!--<ul ng-if="shopDetailData.bonus.length>0" class="lingquan">-->
-                                <!--<li class="message-top-price">领券</li>-->
-                                <!--<div ng-repeat="bonus in shopDetailData.bonus" style="display: flex;justify-content: center;align-items: center;font-size:12px;color:#fff;background: url(img/border_03.png) no-repeat;float: left;background-size: 100% 100%;margin-right: 15px;">-->
-                                    <!--<span style="padding: 5px 10px;">满{{bonus.min_goods_amount}}减{{bonus.type_money}}</span>-->
-                                <!--</div>-->
-                                <!--<li class="more"><a href="#/yhq">更多 》</a></li>-->
-                            <!--</ul>-->
-                            <!--<ul  ng-if="shopDetailData.promotion.length>0" class="cuxiao">-->
-                                <!--<li class="message-top-price">促销</li>-->
-                                <!--<div class="zengpin-box">-->
-                                    <!--<div class="zengpin" ng-repeat="zp in shopDetailData.promotion">-->
-                                        <!--<button>{{zp.type_name}}</button>-->
-                                        <!--<p ng-bind-html="zp.title"></p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="sale-detailed-message">-->
-                        <!--<div class="detailed-message-item">-->
-                            <!--<p>建议零售价</p>-->
-                            <!--<span>{{marketPriceFormated}}</span>-->
-                        <!--</div>-->
-                        <!--<div ng-if="shopDetailData.promotion.length>0" class="detailed-message-item">-->
-                            <!--<p>原价批发</p>-->
-                            <!--<span>{{oldShopPrice}}</span>-->
-                        <!--</div>-->
-                        <!--<div class="detailed-message-item">-->
-                            <!--<p>发货时间</p>-->
-                            <!--<span>卖家保证72小时内发货</span>-->
-                        <!--</div>-->
-                        <!--<div class="detailed-message-item">-->
-                            <!--<p>配送</p>-->
-                            <!--<span class="select-takeGoods-area">至 <i ng-if="saleCityName.selected" ng-repeat="saleCityName in shopDetailData.sale_city">{{saleCityName.region_name}}</i></span>-->
-                            <!--<div class="takeGoods-area-box">-->
-                                <!--<div class="takeGoods-area-tit">-->
-                                    <!--<p>卖家保证72小时内发货</p>-->
-                                    <!--<i>×</i>-->
-                                <!--</div>-->
-                                <!--<div class="takeGoods-area-content">-->
-                                    <!--<select ng-change="regionTable(cityss)" ng-model="cityss" name="">-->
-                                        <!--<option value="">省/市</option>-->
-                                        <!--<option ng-repeat="city in shopDetailData.sale_city" repeat-done="selectArea()"  ng-value="{{city.region_id}}" ng-selected="{{city.selected}}">{{city.region_name}}</option>-->
-                                    <!--</select>-->
-                                    <!--<button id="save" ng-click="saveArea($event)">保存</button>-->
-                                    <!--<button  ng-click="saveArea($event)">取消</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods">-->
-                            <!--<p>关联商品</p>-->
-                            <!--<ul>-->
-                                <!--<li ng-repeat="glLi in shopDetailData.linked_goods"><a href="#/shop-detail/{{glLi.goods_id}}"><img ng-src={{glLi.goods_img}} alt=""></a><i class="guanlianYes"></i></li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
+                    
                     <div class="new_shop_detail_top">
                         <h2 class="new_shop_h2">{{goodsName}}</h2>
                         <p class="new_shop_p1">
@@ -120,18 +57,12 @@
                                     <li ng-repeat="proPrice in shopDetailData.promotion[0].value">
                                         <span class="rmb_sp">￥</span>{{proPrice.price}}
                                     </li>
-                                    <!--<li><span class="rmb_sp">￥</span>52.00</li>-->
-                                    <!--<li><span class="rmb_sp">￥</span>52.00</li>-->
-                                    <!--<li><span class="rmb_sp">￥</span>52.00</li>-->
                                 </ul>
                             </div>
                             <div class="money_cg_d1">
                                 <span class="new_shop_sp3">采购量</span>
                                 <ul class="money_cg_u2">
                                     <li ng-repeat="proTit in shopDetailData.promotion[0].value">{{proTit.title}}{{unit}}</li>
-                                    <!--<li>3-9副</li>-->
-                                    <!--<li>3-9副</li>-->
-                                    <!--<li>3-9副</li>-->
                                 </ul>
                             </div>
                         </div>
@@ -266,7 +197,7 @@
                                     <th width="124" ng-if="is_promotion==1">原价</th>
                                     <th width="124" ng-if="is_promotion==1">促销价</th>
                                     <th width="124">库存</th>
-                                    <th width="124">数量</th>
+                                    <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                                 </tr>
                                 <tr ng-repeat="trItem in goodsData.data">
                                     <th class="img-th" width="72">
@@ -433,11 +364,11 @@
                         <div class="sale-points-message">
                             <ul class="price">
                                 <li class="message-top-price">已兑量</li>
-                                <li><span class="jf-num">5</span>件</li>
+                                <li><span class="jf-num">{{shopDetailData.data.sales_num}}</span>件</li>
                             </ul>
                             <ul class="caigou">
                                 <li class="message-top-price">可供量</li>
-                                <li>12</li>
+                                <li>{{shopDetailData.data.goods_number}}</li>
                             </ul>
                             <ul>
                                 <li>购买数量</li>

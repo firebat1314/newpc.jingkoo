@@ -61,8 +61,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-        // $rootScope.ip = 'https://www.jingku.cn'; //正式
+        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({

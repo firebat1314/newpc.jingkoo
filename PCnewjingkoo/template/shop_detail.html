@@ -118,42 +118,9 @@
                 									</div>
 
                 								</div>
-                                                <!--选择新地址-->
-                								<!--<div class="sp1_dzbox_d1">-->
-                									<!--<p class="sp1_dzbox_d1p1">-->
-                										<!--<span class="sp1_d1p1_l">选择新地址</span>-->
-                										<!--<span class="sp1_d1p1_r"></span>-->
-                									<!--</p>-->
-                									<!--<div class="chose_new_dz">-->
-                										<!--<ul class="chose_new_dzu1" style="border-bottom: none;">-->
-                											<!--<li class="on">北京</li>-->
-                											<!--<li>朝阳区</li>-->
-                											<!--<li>三环以内</li>-->
-                										<!--</ul>-->
-                										<!--<div style="border-top:2px solid #FF3333;margin-top: -2px;" class="chose_new_dzbox">-->
-                											<!--<div class="chose_new_dzd1 show">-->
-                												<!--<ul class="chose_new_dzd1u1">-->
-                													<!--<li>四环到五环之间</li>-->
-                													<!--<li>管庄</li>-->
-                													<!--<li>北苑</li>-->
-                													<!--<li>定福庄</li>-->
-                													<!--<li>三环以内</li>-->
-                													<!--<li>五环到六环之间</li>-->
-                													<!--<li>三环到四环之间</li>-->
-                												<!--</ul>-->
-                											<!--</div>-->
-                											<!--<div class="chose_new_dzd1">-->
-
-                											<!--</div>-->
-                											<!--<div class="chose_new_dzd1">-->
-
-                											<!--</div>-->
-                										<!--</div>-->
-                									<!--</div>-->
-                								<!--</div>-->
+                                               
                 							</div>
                 						</span>
-                                        <!--<span ng-if="shopDetailData.goods_fee.consignee_list.length==0" class="saler_msg_d3_sp2">无货，此商品暂时售完</span>-->
                                         <span class="saler_msg_d3_sp2">
                                             <strong ng-if="shopDetailData.goods_fee.goods_number>0" style="color:#999;">有货</strong>
                                             <strong ng-if="shopDetailData.goods_fee.goods_number==0" style="color:#999;">无货</strong>
@@ -167,10 +134,10 @@
                                 </div>
                             </div>
                             <!--膜层-->
-                            <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.specification">
+                            <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                                 <span class="saler_msg_sp1">{{saler.name}}</span>
                                 <ul class="saler_msg_film">
-                                    <li ng-repeat="salers in saler.values" ng-click="getAttrList(salers.id)" repeat-done="salerTable()">{{salers.label}}<i class="guanlianYes"></i></li>
+                                    <li ng-repeat="salers in saler.values" ng-click="getAttrList(salers.id);attrNumber=salers.number" repeat-done="salerTable()">{{salers.label}}<i class="guanlianYes"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -193,15 +160,15 @@
                                 <tr class="first-line">
                                     <th width="72"></th>
                                     <th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
-                                    <th width="124" ng-if="is_promotion==0">单价</th>
-                                    <th width="124" ng-if="is_promotion==1">原价</th>
-                                    <th width="124" ng-if="is_promotion==1">促销价</th>
+                                    <th width="124" ng-if="!is_promotion">单价</th>
+                                    <th width="124" ng-if="is_promotion">原价</th>
+                                    <th width="124" ng-if="is_promotion">促销价</th>
                                     <th width="124">库存</th>
                                     <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                                 </tr>
                                 <tr ng-repeat="trItem in goodsData.data">
                                     <th class="img-th" width="72">
-                                        <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;" ng-mousemove="trItem.event = $event">
+                                        <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;" ng-mousemove="trItem.event = $event">
                                             <img ng-src={{trItem.img_path}} alt="">
                                         </div>
                                         <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
@@ -217,7 +184,7 @@
                                         <div class="diy-right" ng-if="data.data.isdingzhi!=1">
                                             <span class="wenb">
                                                 <a href="javascript:;" class="fl borr c" ng-class="{'fl borr c no':isReduce,'fl borr c':!isReduce}" ng-click="reduce($event,$index)">－</a>
-                                                <input id="Num" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
+                                                <input id="Num" ng-disabled="attrNumber" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
                                                 <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="add($event,$index)">+</a>
                                             </span>
                                         </div>

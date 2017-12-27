@@ -4637,7 +4637,7 @@ $browser-default-font-size: 37.5px !default;
                                   height: 30px;   
                                   line-height: 30px;   
                                   position: relative;   
-                                  padding: 0 10px 0 0;     
+                                  padding: 0 10px;     
                                   .arrow_down{   
                                       display: inline-block;  
                                       width: 11px;   
@@ -4809,8 +4809,6 @@ $browser-default-font-size: 37.5px !default;
                                             transition: all .3s;
                                       }  
                                           position: relative;
-                                        left: -10px;
-                                        padding-left: 10px;
                                   }
                               }
                               .saler_msg_d3_sp2{

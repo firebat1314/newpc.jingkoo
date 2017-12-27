@@ -4197,7 +4197,7 @@ span.a_arrow_r {
               height: 30px;
               line-height: 30px;
               position: relative;
-              padding: 0 10px 0 0; }
+              padding: 0 10px; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .new_shop_detail_top .saler_msg_box .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 .saler_msg_d3_sp1 .arrow_down {
                 display: inline-block;
                 width: 11px;
@@ -4335,9 +4335,7 @@ span.a_arrow_r {
                 -webkit-box-shadow: 0 0 15px rgba(99, 99, 99, 0.4);
                 -moz-box-shadow: 0 0 15px rgba(99, 99, 99, 0.4);
                 -ms-box-shadow: 0 0 15px rgba(99, 99, 99, 0.4);
-                position: relative;
-                left: -10px;
-                padding-left: 10px; }
+                position: relative; }
                 .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .new_shop_detail_top .saler_msg_box .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 .saler_msg_d3_sp1:hover .heng_line {
                   display: block; }
                 .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .new_shop_detail_top .saler_msg_box .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 .saler_msg_d3_sp1:hover .d3_sp1_dzbox {

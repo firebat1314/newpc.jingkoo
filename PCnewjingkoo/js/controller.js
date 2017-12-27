@@ -62,6 +62,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         };
         // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
+        // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
         $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
@@ -118,9 +120,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $rootScope.qimoChatClick = function (access_id) {
             //this.native.showLoading();
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
-            if (!access_id) {
-                // this.native.showToast('该店铺暂无客服');
-            }
+
             var old = document.getElementsByClassName('qimo')[0]
             //console.log(old);
             if (old) {
@@ -132,17 +132,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             qimo.className = 'qimo';
             document.getElementsByTagName('body')[0].appendChild(qimo);
             var that = this;
-            qimo.onload = qimo['onreadystatechange'] = function () {
-                //that.native.hideLoading();
-                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-                    setTimeout(function () {
-                        //console.log('客服加载完成');
-                        layer.close(cool);
+            var timer = setInterval(() => {
+                if (qimoChatClick) {
+                    layer.close(cool);
+                    setTimeout(() => {
+
                         qimoChatClick();
-                    }, 800);
-                    qimo.onload = qimo['onreadystatechange'] = null;
+                    }, 500);
                 }
-            };
+            }, 20)
+
         }
     }])
     //首页头部
@@ -3351,8 +3350,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.filter = $stateParams.filter;
         $scope.keywords = $stateParams.keywords;
         $scope.random = $stateParams.random;
-        $scope.page = $stateParams.page||1;
-        
+        $scope.page = $stateParams.page || 1;
+
         //控制收起和更多选项
         $scope.shouQi = false;
         $scope.moreXx = true;
@@ -3364,7 +3363,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.shouQi = false;
             $scope.moreXx = true;
         };
-        
+
         //console.log($scope.filter);
         $scope.ListPage = {
             brand_id: $scope.brand_id,
@@ -3393,7 +3392,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             link_to: 'javascript:;',
             prev_show_always: false,
             next_show_always: false,
-            current_page: $scope.page-1,
+            current_page: $scope.page - 1,
             callback: pageIndex
         };
         function pageIndex(index) {
@@ -3423,7 +3422,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     location.href = "/default.html";
                 }
             })
-            
+
         };
         //价格筛选
         $scope.enterPrice = function () {
@@ -3447,7 +3446,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         $scope.InitList = function () {
             $scope.ListPage.page = 1;
-            
+
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "POST",
@@ -3459,24 +3458,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     //console.log(data);
                     layer.close(cool);
                     if (data.status) {
-                    $scope.shopListData = data;
-                    $scope.getGoods(data);
-                    $scope.listControl();//图像延迟加载
-                    $scope.qxsjFn();
-                    
-                    if ($scope.shopListData.goods_attr_arr[3].data.length == 0) {
-                        $scope.shouQi = false;
-                        $scope.moreXx = false;
-                    } else {
-                        $scope.shouQi = false;
-                        $scope.moreXx = true;
-                    }
-                    $scope.fashionAllName = data.goods_attr_arr[0].name;
-                    $scope.fashionPriceName = data.goods_attr_arr[2].name;
-                    $scope.fashionMonthName = data.goods_attr_arr[1].name;
+                        $scope.shopListData = data;
+                        $scope.getGoods(data);
+                        $scope.listControl();//图像延迟加载
+                        $scope.qxsjFn();
 
-                }
-                
+                        if ($scope.shopListData.goods_attr_arr[3].data.length == 0) {
+                            $scope.shouQi = false;
+                            $scope.moreXx = false;
+                        } else {
+                            $scope.shouQi = false;
+                            $scope.moreXx = true;
+                        }
+                        $scope.fashionAllName = data.goods_attr_arr[0].name;
+                        $scope.fashionPriceName = data.goods_attr_arr[2].name;
+                        $scope.fashionMonthName = data.goods_attr_arr[1].name;
+
+                    }
+
                 }).error(function (data, staus) {
                     // layer.close(cool);
                     if (staus == 401) {
@@ -3682,15 +3681,15 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.InitList();
-           /*  $('.shopList-select-conditions .more-fashion:first').prev().css({
-                height: '62'
-            })
-            $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-                height: '30'
-            })
-            $("body,html").animate({
-                "scrollTop": $('.shopList-main-tit').offset().top
-            }, 100) */
+            /*  $('.shopList-select-conditions .more-fashion:first').prev().css({
+                 height: '62'
+             })
+             $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
+                 height: '30'
+             })
+             $("body,html").animate({
+                 "scrollTop": $('.shopList-main-tit').offset().top
+             }, 100) */
 
             $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
             $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
@@ -4009,7 +4008,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
     }])
     //商品详情
-    .controller('shopDetail-control', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', function ($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll) {
+    .controller('shopDetail-control', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', '$sce', function ($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll, $sce) {
         $rootScope.isShow = false;
         $rootScope.change = true;
         $scope.goto = function () {
@@ -4064,16 +4063,16 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
                 //如果主属性存在，获取主属性的每次需要加减的数量
                 $scope.attrNumber = '';
-                if ($scope.spectaclesData.specification) {
-                    for (var i = 0; i < $scope.spectaclesData.specification.length; i++) {
-                        if ($scope.spectaclesData.specification[i].is_main == 1) {
+                if ($scope.spectaclesData.data) {
+                    for (var i = 0; i < $scope.spectaclesData.data.length; i++) {
+                        if ($scope.spectaclesData.data[i].is_main == 1) {
                             setTimeout(function () {
                                 $scope.$apply(function () {
                                     $scope.hasMainAttr = true;
                                 })
                             }, 0)
-                            $scope.attrNumber = $scope.spectaclesData.specification[i].values[0].number;
-                            $scope.attrId = $scope.spectaclesData.specification[i].values[0].id;
+                            $scope.attrNumber = $scope.spectaclesData.data[i].values[0].number;
+                            $scope.attrId = $scope.spectaclesData.data[i].values[0].id;
                         }
                     }
                 }
@@ -4167,14 +4166,20 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                             }
                                         })
                                 };
-                                $scope.numberChange();
+                                // $scope.numberChange();
                                 $scope.isCarParams = false;
                                 $scope.isReduce = true;
                                 //增加
                                 //$scope.numArr = [{}];
                                 $scope.add = function (e, index) {
+                                    var product_number = $scope.goodsData.data[index].product_number;
                                     if ($scope.attrNumber != '') {
-                                        $scope.goodsData.data[index].num += Number($scope.attrNumber);
+                                        if ((product_number - $scope.goodsData.data[index].num) >= $scope.attrNumber) {
+                                            $scope.goodsData.data[index].num += Number($scope.attrNumber);
+                                            angular.element(e.target).prev().prev().removeClass('no');
+                                        } else {
+                                            angular.element(e.target).addClass('no');
+                                        }
                                     } else {
                                         $scope.goodsData.data[index].num++;
                                     }
@@ -4187,17 +4192,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     if ($scope.goodsData.data[index].num > 0) {
                                         $scope.isCarParams = true;
                                         //$scope.isReduce = false;
-                                        angular.element(e.target).prev().prev().removeClass('no');
                                     } else {
                                         //$scope.isCarParams = false;
-                                    }
-
-                                    if ($scope.goodsData.data[index].num == $scope.goodsData.data[index].product_number) {
-                                        //$scope.isAdd = true;
-                                        angular.element(e.target).addClass('no');
-                                    } else if ($scope.goodsData.data[index].num > $scope.goodsData.data[index].product_number) {
-                                        $scope.goodsData.data[index].num = $scope.goodsData.data[index].product_number;
-                                        angular.element(e.target).addClass('no');
                                     }
                                 };
                                 //减少
@@ -4343,7 +4339,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.successed = false;
                     }
                     //图文详情
-                    $scope.goodsDesc = data.data.goods_desc;
+                    $scope.goodsDesc = $sce.trustAsHtml(data.data.goods_desc);
                     //控制配送区域显隐
                     $scope.selectArea = function () {
                         $('.select-takeGoods-area').click(function () {
@@ -6949,21 +6945,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         //监控购物车商品数量
-        $scope.change = function (e, index, pIndex, ppIndex, num) {
-            //console.log(num);
-            $scope.cgCarNumber.rec_id = $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].rec_id;
+        $scope.change = function (e, goods_properties, carArr) {
+            $scope.cgCarNumber.rec_id = carArr.rec_id;
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Flow/change_num_cart',
                 data: {
                     rec_id: $scope.cgCarNumber.rec_id,
-                    number: num
+                    number: carArr.goods_number
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //$scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
-                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -6978,7 +6971,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 } else {
                                     $scope.Goods = true;
                                 }
-                                $rootScope.$broadcast('upCarList');
+                                // $rootScope.$broadcast('upCarList');
                                 $scope.shopCarData = data;
                                 $scope.isSelect = data.total.is_select;
                                 $scope.totalPrice = data.total.goods_price;
@@ -6995,8 +6988,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //$scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
-                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -7011,7 +7002,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                             } else {
                                                 $scope.Goods = true;
                                             }
-                                            $rootScope.$broadcast('upCarList');
+                                            // $rootScope.$broadcast('upCarList');
                                             $scope.shopCarData = data;
                                             $scope.isSelect = data.total.is_select;
                                             $scope.totalPrice = data.total.goods_price;
@@ -7023,12 +7014,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
 
         //购物车商品增加
-        $scope.addCarArr = function (e, index, pIndex, ppIndex, num) {
-            $scope.cgCarNumber.rec_id = $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].rec_id;
-            $scope.number = Number(num);
-            if ($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties) {
-                if ($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.is_main == 1) {
-                    $scope.number += Number($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.number);
+        $scope.addCarArr = function (e, goods_properties, carArr) {
+            $scope.cgCarNumber.rec_id = carArr.rec_id;
+            $scope.number = Number(carArr.goods_number);
+            if (goods_properties) {
+                if (goods_properties.is_main == 1) {
+                    $scope.number += Number(goods_properties.number);
                 }
             } else {
                 $scope.number += 1;
@@ -7044,36 +7035,34 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = num;
+                    carArr.goods_number = carArr.goods_number;
                     //console.log(data);
                     if (data.status) {
                         $scope.carFn();
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
                     } else {
                         layer.msg(data.info, { icon: 2 });
                     }
                 })
         };
         //购物车商品减少
-        $scope.reduceCarArr = function (e, index, pIndex, ppIndex, num) {
-            $scope.number = Number(num);
+        $scope.reduceCarArr = function (e, goods_properties, carArr) {
+            $scope.number = Number(carArr.goods_number);
 
-            // if($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.is_main==1){
-            //     $scope.number -= Number($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.number);
-            // }else{
-            //     $scope.number -= 1;
-            // }
-
-            if ($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties) {
-                if ($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.is_main == 1) {
-                    $scope.number -= Number($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].goods_properties.number);
+            if (goods_properties) {
+                if (goods_properties.is_main == 1) {
+                    if ($scope.number > goods_properties.number) {
+                        $scope.number -= Number(goods_properties.number);
+                    } else {
+                        return
+                    }
                 }
             } else {
                 $scope.number -= 1;
             }
 
-            if ($scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number > 1) {
-                $scope.cgCarNumber.rec_id = $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].rec_id;
+            if (carArr.goods_number > 1) {
+                $scope.cgCarNumber.rec_id = carArr.rec_id;
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/Flow/change_num_cart',
@@ -7086,10 +7075,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     .success(function (data) {
                         //console.log(data);
                         $scope.carFn();
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
                     })
             } else {
-                $scope.shopCarData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].goods_number = 1;
+                carArr.goods_number = 1;
             }
         };
         //取消和选中供应商
@@ -7460,7 +7449,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
 
         //搜索
         $scope.searchKey = function () {
-            
+
             var newOpens = window.open();
             //console.log($scope.carkeywords);
             var url = $state.href('shop-list', {
@@ -7471,7 +7460,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             setTimeout(function () {
                 newOpens.location = url;
             }, 200)
-            
+
         };
     }])
     //购物车结算页
@@ -7482,7 +7471,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         //   $state.go('shop-car');
         // };
         /* —————————————— 保存用户备注信息 —————————————— */
-        $scope.getNotes = function(){
+        $scope.getNotes = function () {
             var commentArr = [];
             var suppliers = [];
             var label = [];
@@ -7507,7 +7496,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             }
         }
         $scope.saveNotes = function () {
-            
+
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Flow/write_notes',
@@ -7903,31 +7892,31 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 })
         };
         //兑换优惠卷
-        $scope.getYhqByCode = function (code,event) {
-    
-                event.target.style.pointerEvents = 'none';
-                event.target.style.opacity = '.7';
-                 
-                $http({
-                    method: "POST",
-                    url: '' + $rootScope.ip + '/Frezz/validate_bonus',
-                    data: {
-                        bonus_sn: code
-                    },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        $scope.getYhqByCode = function (code, event) {
+
+            event.target.style.pointerEvents = 'none';
+            event.target.style.opacity = '.7';
+
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Frezz/validate_bonus',
+                data: {
+                    bonus_sn: code
+                },
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            })
+                .success(function (data) {
+                    //console.log(data);
+                    event.target.style.pointerEvents = 'auto';
+                    event.target.style.opacity = '1';
+                    if (data.status) {
+                        layer.msg(data.info, { time: 1000 });
+                        $scope.jiesuanFn();
+                    } else {
+                        layer.msg(data.info, { time: 1000 });
+                    }
                 })
-                    .success(function (data) {
-                        //console.log(data);
-                        event.target.style.pointerEvents = 'auto';
-                        event.target.style.opacity = '1';
-                        if (data.status) {
-                            layer.msg(data.info, { time: 1000 });
-                            $scope.jiesuanFn();
-                        } else {
-                            layer.msg(data.info, { time: 1000 });
-                        }
-                    })
-            }
+        }
         //个人信息面板信息
         $http({
             method: "POST",
@@ -7976,7 +7965,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
 
         $scope.submitList = function (e, index) {
-            
+
             // console.log(commentArr,suppliers,label);
             // return false;
 
@@ -8127,10 +8116,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         $scope.sn = $stateParams.sn;
 
         /* —————————————— 保存商家备注信息 —————————————— */
-        
+
         $scope.saveNotes = function () {
             var label = [];
-            for (var j = 0,item = $scope.jiesuanData.order_label; j < item.length; j++) {
+            for (var j = 0, item = $scope.jiesuanData.order_label; j < item.length; j++) {
                 if (item[j].is_select) {
                     label.push(j);
                 }
@@ -8139,9 +8128,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Frezz/write_notes',
                 data: {
-                    postscript:$scope.jiesuanData.postscript||null,
-                    label:label,
-                    order_id:$scope.jiesuanData.order.order_id
+                    postscript: $scope.jiesuanData.postscript || null,
+                    label: label,
+                    order_id: $scope.jiesuanData.order.order_id
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -8223,7 +8212,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Frezz/post_change_consignee',
                 data: {
                     address_id: id,
-                    order_id:$scope.jiesuanData.order.order_id
+                    order_id: $scope.jiesuanData.order.order_id
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -8478,7 +8467,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                 url: '' + $rootScope.ip + '/Frezz/select_payment',
                 data: {
                     payment: id,
-                    order_id:$scope.jiesuanData.order.order_id
+                    order_id: $scope.jiesuanData.order.order_id
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -8492,38 +8481,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     }
                 })
         };
-        //选择配送方式
-        $scope.selectShip = function (storeId, id) {
-            $http({
-                method: "POST",
-                url: '' + $rootScope.ip + '/Frezz/select_shipping',
-                data: {
-                    suppliers_id: storeId,
-                    shipping: id,
-                    order_id:$scope.jiesuanData.order.order_id
-                },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            })
-                .success(function (data) {
-                    //console.log(data);
-                    if (data.status) {
-                        $scope.jiesuanFn();
-                    } else {
-                        layer.msg(data.info, { time: 1000 });
-                    }
-                })
-        };
+
         //使用优惠券
-        $scope.useYhq = function (item,event) {
-            function suppliers_bouns(type){
+        $scope.useYhq = function (item, event) {
+            function suppliers_bouns(type) {
                 event.target.style.pointerEvents = 'none';
                 $http({
                     method: "POST",
                     url: '' + $rootScope.ip + '/Frezz/select_bonus',
                     data: {
-                        order_id:$scope.jiesuanData.order.order_id,
+                        order_id: $scope.jiesuanData.order.order_id,
                         bonus_id: item.bonus_id,
-                        type:type
+                        type: type
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
@@ -8538,23 +8507,23 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         }
                     })
             }
-            if(item.selected){
+            if (item.selected) {
                 suppliers_bouns(1)
-            }else{
+            } else {
                 suppliers_bouns(0)
             }
         };
         //兑换优惠卷
-        $scope.getYhqByCode = function (code,event) {
+        $scope.getYhqByCode = function (code, event) {
 
             event.target.style.pointerEvents = 'none';
             event.target.style.opacity = '.7';
-             
+
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Frezz/validate_bonus',
                 data: {
-                    order_id:$scope.jiesuanData.order.order_id,
+                    order_id: $scope.jiesuanData.order.order_id,
                     bonus_sn: code
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
@@ -8619,7 +8588,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
         };
         $scope.submitList = function (e, index) {
             var label = [];
-            for (var j = 0,item = $scope.jiesuanData.order_label; j < item.length; j++) {
+            for (var j = 0, item = $scope.jiesuanData.order_label; j < item.length; j++) {
                 if (item[j].is_select) {
                     label.push(j);
                 }
@@ -8640,9 +8609,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 method: "POST",
                                 url: '' + $rootScope.ip + '/Frezz/done',
                                 data: {
-                                    postscript:$scope.jiesuanData.postscript||null,
-                                    label:label,
-                                    order_id:$scope.jiesuanData.order.order_id
+                                    postscript: $scope.jiesuanData.postscript || null,
+                                    label: label,
+                                    order_id: $scope.jiesuanData.order.order_id
                                 },
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
@@ -8686,9 +8655,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     method: "POST",
                     url: '' + $rootScope.ip + '/Frezz/done',
                     data: {
-                        postscript:$scope.jiesuanData.postscript||null,
-                        label:label,
-                        order_id:$scope.jiesuanData.order.order_id
+                        postscript: $scope.jiesuanData.postscript || null,
+                        label: label,
+                        order_id: $scope.jiesuanData.order.order_id
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })

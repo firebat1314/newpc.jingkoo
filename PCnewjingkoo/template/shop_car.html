@@ -158,9 +158,9 @@
                                 </ul>
                                 <div class="diy-right c">
                                     <span class="wenb">
-                                        <a href="" class="fl borr c" ng-click="reduceCarArr($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">－</a>
-                                        <input type="text" class="fl c diyr-txt" ng-model="carArr.goods_number" value="goods_number" ng-blur="change($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">
-                                        <a href="" class="fl borl c" ng-click="addCarArr($event,$index,$parent.$index,$parent.$parent.$index,carArr.goods_number)">+</a>
+                                        <a href="" class="fl borr c" ng-click="reduceCarArr($event,carList.goods_properties,carArr)">－</a>
+                                        <input type="text" class="fl c diyr-txt" ng-disabled="carList.goods_properties.number" ng-model="carArr.goods_number" value="goods_number" ng-blur="change($event,carList.goods_properties,carArr)">
+                                        <a href="" class="fl borl c" ng-click="addCarArr($event,carList.goods_properties,carArr)">+</a>
                                     </span>
                                     <span class="text-value">{{carArr.goods_number}}</span>
                                 </div>

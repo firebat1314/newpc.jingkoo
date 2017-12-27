@@ -135,13 +135,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             var timer = setInterval(() => {
                 if (qimoChatClick) {
                     layer.close(cool);
+                    clearInterval(timer)
                     setTimeout(() => {
-
                         qimoChatClick();
                     }, 500);
                 }
             }, 20)
-
         }
     }])
     //首页头部

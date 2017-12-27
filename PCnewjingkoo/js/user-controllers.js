@@ -13,8 +13,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		};
 		$scope.goto();
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		// $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-		$rootScope.ip = 'https://www.jingku.cn'; //正式
+		$rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+		// $rootScope.ip = 'https://www.jingku.cn'; //正式
 
 		$scope.getUserMsgHs = function () {
 			$data.getUserMsg().success(function (data) {
@@ -102,7 +102,16 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			qimo.className = 'qimo';
 			document.getElementsByTagName('body')[0].appendChild(qimo);
 			var that = this;
-			qimo.onload = qimo['onreadystatechange'] = function () {
+			var timer = setInterval(function() {
+				if (typeof qimoChatClick != "undefined") {
+					 layer.close(cool);
+					 clearInterval(timer)
+					 setTimeout(function() {
+						  qimoChatClick();
+					 }, 500);
+				}
+		  }, 500)
+		  /* qimo.onload = qimo['onreadystatechange'] = function () {
 				//that.native.hideLoading();
 				if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
 					setTimeout(function () {
@@ -112,7 +121,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}, 800);
 					qimo.onload = qimo['onreadystatechange'] = null;
 				}
-			};
+			}; */
 		}
 
 	}])

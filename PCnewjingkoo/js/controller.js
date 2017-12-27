@@ -61,10 +61,10 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
-        $rootScope.ip = 'https://www.jingku.cn'; //正式
+        // $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -132,15 +132,24 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             qimo.className = 'qimo';
             document.getElementsByTagName('body')[0].appendChild(qimo);
             var that = this;
-            var timer = setInterval(() => {
-                if (qimoChatClick) {
+            var timer = setInterval(function() {
+                if (typeof qimoChatClick != "undefined") {
                     layer.close(cool);
                     clearInterval(timer)
-                    setTimeout(() => {
+                    setTimeout(function() {
                         qimoChatClick();
                     }, 500);
                 }
-            }, 20)
+            }, 500)
+            /* qimo.onload = qimo['onreadystatechange'] = function () {
+                    layer.close(cool);
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+                  setTimeout(function () {
+                    qimoChatClick();
+                  }, 1000);
+                  qimo.onload = qimo['onreadystatechange'] = null;
+                }
+              }; */
         }
     }])
     //首页头部

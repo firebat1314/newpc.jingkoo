@@ -251,7 +251,7 @@
                     <a ui-sref="home"  ui-sref-active="active"><li>首页</li></a>
                     <a ui-sref="fashion" ui-sref-active="active"><li>品牌</li></a>
                     <!-- <a ui-sref="waitingSale" ui-sref-active="active"><li>预售</li></a> -->
-                    <!-- <a ui-sref="newGoods" ui-sref-active="active"><li>新品专区</li></a> -->
+                    <a ui-sref="newGoods" ui-sref-active="active"><li>新品专区</li></a>
                     <a ui-sref="flashSale" ui-sref-active="active"><li>闪购</li></a>
                     <a ui-sref="pointsMall" ui-sref-active="active"><li>积分商城</li></a>
                     <a ui-sref="yhq" ui-sref-active="active"><li>优惠券</li></a>
@@ -301,19 +301,21 @@
 	            </div>
 	            <div class="big-carNone" ng-if="!carRight">
 	                <p>您的购物车暂时还没有商品哦</p>
-	            </div>
+                </div>
 	            <div class="car-right-goods" ng-if="carRight">
                     <div ng-repeat="carRight in shopCarHomeData.suppliers_goods_list">
                         <div class="car-right-goods-item">
-                            <!--<div class="manjian">-->
-                            <!--<span>购满2000元，即可享受满减优惠</span>-->
-                            <!--</div>-->
                             <div ng-repeat="carRightItem in carRight.goods_list">
                                 <div class="goods-item" ng-repeat="carRightAttr in carRightItem.attrs">
                                     <a href="#/shop-detail/{{carRightItem.goods_id}}" target="_blank">
                                         <img ng-src={{carRightItem.goods_thumb}} alt="">
-                                        <p ng-attr-title="{{carRightItem.goods_name}}">{{carRightItem.goods_name}}</p>
-                                        <p class="attr"><em ng-repeat="attrAr in carRightAttr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em></p>
+                                        <p class="goods_name" ng-attr-title="{{carRightItem.goods_name}}">{{carRightItem.goods_name}}</p>
+                                        <p class="attr">
+                                            <em ng-repeat="attrAr in carRightAttr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
+                                            <em ng-if="carRightAttr.qiujing">球镜：{{carRightAttr.qiujing}}</em>
+                                            <em ng-if="carRightAttr.zhujing">柱镜：{{carRightAttr.zhujing}}</em>
+                                            <em ng-if="carRightAttr.zhouwei">轴位：{{carRightAttr.zhouwei}}</em>
+                                        </p>
                                     </a>
                                     <i>{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
                                     <div class="black-cha" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)"></div>
@@ -357,7 +359,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="has-lingQuan" ng-if="personYhq.data.length!=0">
+                <div class="has-lingQuan" ng-if="personYhq.data.length>0">
                     <h2>已领取的券</h2>
                     <div class="no-lingQuan-item" ng-repeat="noYhq in personYhq.data">
                         <div class="ling-message">
@@ -405,8 +407,8 @@
 
     $('.right-bar').height($(window).height());
     $('.right-bar_box').height($(window).height());
-    $('.white-car-right-content').height($(window).height());
-    $('.youhuiquan-right-content').height($(window).height());
+    // $('.white-car-right-content').height($(window).height());
+    // $('.youhuiquan-right-content').height($(window).height());
     $('.goTop').css('top',$(window).height() - 50);
     $('.goTop').click(function(){
         $("body,html").animate({

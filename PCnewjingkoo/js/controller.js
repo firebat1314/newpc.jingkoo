@@ -61,9 +61,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             $state.go('login');
 
         };
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
+        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
         // $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
@@ -132,11 +132,11 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             qimo.className = 'qimo';
             document.getElementsByTagName('body')[0].appendChild(qimo);
             var that = this;
-            var timer = setInterval(function() {
+            var timer = setInterval(function () {
                 if (typeof qimoChatClick != "undefined") {
                     layer.close(cool);
                     clearInterval(timer)
-                    setTimeout(function() {
+                    setTimeout(function () {
                         qimoChatClick();
                     }, 500);
                 }
@@ -1578,11 +1578,48 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
             })
     }])
     //新品专区
-    .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
+    .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $data) {
         //控制首页会员中心显隐
         $rootScope.isShow = false;
         //控制header和footer显隐
         $rootScope.change = true;
+
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Index/newArea',
+            data: '',
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            $scope.data = data;
+        })
+        $scope.clickAds = function (link_type) {
+            console.log(link_type)
+            if (link_type.type_name == 'category') {
+                window.open($state.href('shop-list', {
+                    cat_id: link_type.type_value,
+                    keywords: ''
+                }), '_blank');
+            } else if (link_type.type_name == 'goods') {
+                window.open($state.href('shop-detail', {
+                    goods_id: link_type.type_value,
+                    keywords: ''
+                }), '_blank');
+            } else if (link_type.type_name == "brand") {
+                var url = $state.href('shop-list', {
+                    brand_id: link_type.type_value,
+                    keywords: ''
+                });
+                window.open($state.href('shop-list', {
+                    brand_id: link_type.type_value,
+                    keywords: ''
+                }), '_blank');
+            } else if (link_type.type_name == "search") {
+
+            }
+        }
+        $scope.goShopDetails = function(goods_id){
+            $state.go('shop-detail',{goods_id: goods_id,keywords: ''});
+        }
     }])
     //积分商城
     .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
@@ -4068,9 +4105,8 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $window.history.back();
                 }
                 $scope.spectaclesData = data;
-
+                $scope.attrNumber = 1;
                 //如果主属性存在，获取主属性的每次需要加减的数量
-                $scope.attrNumber = '';
                 if ($scope.spectaclesData.data) {
                     for (var i = 0; i < $scope.spectaclesData.data.length; i++) {
                         if ($scope.spectaclesData.data[i].is_main == 1) {
@@ -4079,13 +4115,12 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                     $scope.hasMainAttr = true;
                                 })
                             }, 0)
-                            $scope.attrNumber = $scope.spectaclesData.data[i].values[0].number;
+                            $scope.attrNumber = $scope.spectaclesData.data[i].values[0].number || 1;
                             $scope.attrId = $scope.spectaclesData.data[i].values[0].id;
                         }
                     }
                 }
 
-                //console.log($scope.attrNumber);
 
 
                 //根据商品初始类型选择情况
@@ -4097,14 +4132,9 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                     $scope.isPointsMall = true;
                     $scope.pointsMall = false;
                     //商品属性为goods时调用这个接口
-                    $scope.salerTable = function () {
-                        $('.saler_msg_film li').eq(0).addClass('on');
-                        $('.saler_msg_film li').click(function (e) {
-                            $('.saler_msg_film li').removeClass('on');
-                            $(e.target).addClass('on');
-                        })
-                    };
-                    $scope.getAttrList = function (attrId) {
+
+                    $scope.getAttrList = function (attrId, attrNumber) {
+                        $scope.attrNumber = attrNumber;
                         $http({
                             method: "POST",
                             url: '' + $rootScope.ip + '/Goods/get_attr_list',
@@ -4181,16 +4211,7 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 //$scope.numArr = [{}];
                                 $scope.add = function (e, index) {
                                     var product_number = $scope.goodsData.data[index].product_number;
-                                    if ($scope.attrNumber != '') {
-                                        if ((product_number - $scope.goodsData.data[index].num) >= $scope.attrNumber) {
-                                            $scope.goodsData.data[index].num += Number($scope.attrNumber);
-                                            angular.element(e.target).prev().prev().removeClass('no');
-                                        } else {
-                                            angular.element(e.target).addClass('no');
-                                        }
-                                    } else {
-                                        $scope.goodsData.data[index].num++;
-                                    }
+                                    $scope.goodsData.data[index].num += Number($scope.attrNumber);
                                     $scope.isZk = false;
                                     $scope.zk = false;
                                     $('.tableZk').css({
@@ -4206,33 +4227,13 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                                 };
                                 //减少
                                 $scope.reduce = function (e, index) {
-                                    if ($scope.goodsData.data[index].num > 1) {
-                                        if ($scope.attrNumber != '') {
-                                            $scope.goodsData.data[index].num -= Number($scope.attrNumber);
-                                        } else {
-                                            $scope.goodsData.data[index].num--;
-                                        }
-                                        $scope.numberChange();
-                                        //$scope.isAdd = false;
-                                        angular.element(e.target).next().next().removeClass('no');
-                                    } else {
-                                        $scope.goodsData.data[index].num = 0;
-                                        //$scope.isCarParams = false;
-                                        //$scope.isReduce = true;
-                                        //$scope.isAdd = false;
-                                        angular.element(e.target).addClass('no');
-                                        angular.element(e.target).next().next().removeClass('no');
-                                        $scope.numberChange();
-                                    }
+                                    $scope.goodsData.data[index].num -= Number($scope.attrNumber);
 
-                                    if ($scope.goodsData.data[index].num == 0) {
-                                        angular.element(e.target).addClass('no');
-                                        angular.element(e.target).next().next().removeClass('no');
-                                    }
+                                    $scope.numberChange();
                                 };
                             })
                     };
-                    $scope.getAttrList($scope.attrId);
+                    $scope.getAttrList($scope.attrId, $scope.attrNumber);
 
                 }
                 else if (data.goods_type == "goods_spectacles") {

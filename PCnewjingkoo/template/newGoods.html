@@ -1,40 +1,18 @@
-<div class="newGoods_box">
+<div class="newGoods_box" ng-if="data">
 	<div class="newGoods_box_top gird">
 		<div class="newGoods_div1">
-			<div class="newGoods_div1_img">
-				<img src="img/newgoods_img2.jpg"/>
+			<div class="newGoods_div1_img"  ng-click="clickAds(item.link_type)" style="cursor: pointer;" ng-repeat="item in data.bannerone">
+				<img src="{{item.ad_img}}"/>
 			</div>
 			<ul class="newGoods_div1_ul">
-				<li>
+				<li  ng-click="clickAds(item.link_type)" ng-repeat="item in data.new_goods">
 					<div class="newGoods_div1_uldiv">
 						<div class="div1_uldiv_img">
-							<img src="img/newgoods_img3.jpg"/>
+							<img src="{{item.ad_img}}"/>
 						</div>
 						<div class="div1_uldiv_pbox">
-							<p class="div1_p1">2017冬季畅销新品</p>
-							<p class="div1_p2">时髦单品  为不一般的你</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="newGoods_div1_uldiv">
-						<div class="div1_uldiv_img">
-							<img src="img/newgoods_img3.jpg"/>
-						</div>
-						<div class="div1_uldiv_pbox">
-							<p class="div1_p1">冬季折扣精选</p>
-							<p class="div1_p2">清爽打卡绚丽冬季</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="newGoods_div1_uldiv">
-						<div class="div1_uldiv_img">
-							<img src="img/newgoods_img3.jpg"/>
-						</div>
-						<div class="div1_uldiv_pbox">
-							<p class="div1_p1">每周 二 /  五上新</p>
-							<p class="div1_p2">时髦单品  为不一般的你</p>
+							<p class="div1_p1">{{item.ad_name}}</p>
+							<p class="div1_p2">{{item.link_man}}</p>
 						</div>
 					</div>
 				</li>
@@ -53,14 +31,9 @@
 				</ul>
 			</div>
 			<ul class="box_top1_u1">
-				<li>
+				<li  ng-click="clickAds(item.link_type)" style="cursor: pointer;" ng-repeat="item in data.hot_brand">
 					<div class="img_box">
-						<img src="img/newgoods_img4.jpg"/>
-					</div>
-				</li>
-				<li>
-					<div class="img_box">
-						<img src="img/newgoods_img5.jpg"/>
+						<img src="{{item.ad_img}}"/>
 					</div>
 				</li>
 			</ul>
@@ -78,57 +51,12 @@
 				</ul>
 			</div>
 			<ul class="box_top1_u2">
-				<li>
+				<li  ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;" ng-repeat="item in data.top_tui">
 					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
+						<div class="img_a"><img src="{{item.original_img}}"/></div>
 						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap1">海昌EYE100%月抛隐形眼镜2片装昌EYE100%月…</p>
-							<p class="wz_ap2">￥520.00 <span>/ NEW /</span></p>
+							<p class="wz_ap1">{{item.goods_name}}</p>
+							<p class="wz_ap2">{{item.shop_price}}<span>/ NEW /</span></p>
 						</div>
 					</div>
 				</li>
@@ -138,8 +66,8 @@
 	<!--第四部分-->
 	<div class="newGoods_box_top3 gird">
 		<div class="newGoods_box_top3_div">
-			<div class="img_box3">
-				<img src="img/newgoods_img7.jpg"/>
+			<div class="img_box3"  ng-click="clickAds(item.link_type)" ng-repeat="item in data.bannertwo">
+				<img src="{{item.ad_img}}"/>
 			</div>
 		</div>
 	</div>
@@ -147,7 +75,7 @@
 	<div class="newGoods_box_top1 newGoods_box_top2 gird">
 		<div class="newGoods_box_top1_div">
 			<div class="box_top1_div">
-				<p class="top1_divp1">11月11日新品</p>
+				<p class="top1_divp1">2018新品</p>
 				<ul class="top1_divu1">
 					<li>最新品牌</li>
 					<li>劲爆来袭</li>
@@ -155,62 +83,12 @@
 				</ul>
 			</div>
 			<ul class="box_top1_u2">
-				<li>
+				<li  ng-repeat="item in data.new_tui" ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;">
 					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
+						<div class="img_a"><img src="{{item.original_img}}"/></div>
 						<div class="wz_a">
 							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
-							</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="box_top1_u2div">
-						<div class="img_a"><img src="img/newgoods_img6.jpg"/></div>
-						<div class="wz_a">
-							<p class="wz_ap3">
-								<span class="sp1">/ NEW /</span><span class="sp2">海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼海昌EYE100%月抛隐形眼</span><span class="sp3">￥520.00</span>
+								<span class="sp1">/ NEW /</span><span class="sp2">{{item.goods_name}}</span><span class="sp3">¥{{item.shop_price}}</span>
 							</p>
 						</div>
 					</div>

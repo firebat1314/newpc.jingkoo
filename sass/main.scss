@@ -1428,6 +1428,9 @@ $browser-default-font-size: 37.5px !default;
   overflow-y: auto;
   overflow-x: hidden;
   z-index:10000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   .car-right-tit{
     height:44px;
     background:url(../img/blackCar.png) no-repeat 20px #fff;
@@ -1462,13 +1465,11 @@ $browser-default-font-size: 37.5px !default;
     text-align:center;
   }
   .car-right-goods{
-    padding-top:10px;
-    height: calc(100% - 110px);       
+    flex: 1;  
     overflow-y: auto;               
     .car-right-goods-item{
       background: #fff;
-      padding:10px 10px;
-      margin-bottom: 5px;
+      padding:0px 10px;
       position: relative;
       .manjian{
         height:30px;
@@ -1483,7 +1484,7 @@ $browser-default-font-size: 37.5px !default;
         width:100%;
         padding: 15px 0;
         display: inline-block;
-        border-top: 1px dashed #ccc;
+        border-bottom: 1px dashed #ccc;
         position: relative;
         &:hover{
           .black-cha{
@@ -1515,19 +1516,22 @@ $browser-default-font-size: 37.5px !default;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          //display: -webkit-box;
-          //-webkit-line-clamp: 3;
-          //-webkit-box-orient: vertical;
-          //word-break: break-all;
           cursor: pointer;
           font-size: 13px;
-          //float:left;
           &:hover{
             color:#0070c9;  
           }
         }
+        .goods_name{
+          /* display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          word-break: break-all; */
+        }
         .attr{
           color:#808080;
+          margin: 4px 0;
+          font-size: 12px;
           em{
             margin-right:5px;
           }

@@ -1369,7 +1369,10 @@ span.a_arrow_r {
   top: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 10000; }
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  height: 100%; }
   .white-car-right-content .car-right-tit {
     height: 44px;
     background: url(../img/blackCar.png) no-repeat 20px #fff;
@@ -1399,13 +1402,11 @@ span.a_arrow_r {
     padding-top: 100px;
     text-align: center; }
   .white-car-right-content .car-right-goods {
-    padding-top: 10px;
-    height: calc(100% - 110px);
+    flex: 1;
     overflow-y: auto; }
     .white-car-right-content .car-right-goods .car-right-goods-item {
       background: #fff;
-      padding: 10px 10px;
-      margin-bottom: 5px;
+      padding: 0px 10px;
       position: relative; }
       .white-car-right-content .car-right-goods .car-right-goods-item .manjian {
         height: 30px;
@@ -1418,7 +1419,7 @@ span.a_arrow_r {
         width: 100%;
         padding: 15px 0;
         display: inline-block;
-        border-top: 1px dashed #ccc;
+        border-bottom: 1px dashed #ccc;
         position: relative; }
         .white-car-right-content .car-right-goods .car-right-goods-item .goods-item:hover .black-cha {
           display: block; }
@@ -1448,8 +1449,15 @@ span.a_arrow_r {
           font-size: 13px; }
           .white-car-right-content .car-right-goods .car-right-goods-item .goods-item p:hover {
             color: #0070c9; }
+        .white-car-right-content .car-right-goods .car-right-goods-item .goods-item .goods_name {
+          /* display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          word-break: break-all; */ }
         .white-car-right-content .car-right-goods .car-right-goods-item .goods-item .attr {
-          color: #808080; }
+          color: #808080;
+          margin: 4px 0;
+          font-size: 12px; }
           .white-car-right-content .car-right-goods .car-right-goods-item .goods-item .attr em {
             margin-right: 5px; }
         .white-car-right-content .car-right-goods .car-right-goods-item .goods-item span {

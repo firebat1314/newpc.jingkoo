@@ -137,7 +137,7 @@
                             <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                                 <span class="saler_msg_sp1">{{saler.name}}</span>
                                 <ul class="saler_msg_film">
-                                    <li ng-repeat="salers in saler.values" ng-click="getAttrList(salers.id);attrNumber=salers.number" repeat-done="salerTable()">{{salers.label}}<i class="guanlianYes"></i></li>
+                                    <li ng-repeat="salers in saler.values" ng-class="{'on':attrNumber==salers.number}" ng-click="getAttrList(salers.id,salers.number);">{{salers.label}}<i class="guanlianYes"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -183,9 +183,9 @@
                                     <th width="124">
                                         <div class="diy-right" ng-if="data.data.isdingzhi!=1">
                                             <span class="wenb">
-                                                <a href="javascript:;" class="fl borr c" ng-class="{'fl borr c no':isReduce,'fl borr c':!isReduce}" ng-click="reduce($event,$index)">－</a>
-                                                <input id="Num" ng-disabled="attrNumber" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
-                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="add($event,$index)">+</a>
+                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce($event,$index)">－</a>
+                                                <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
+                                                <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="add($event,$index)">+</a>
                                             </span>
                                         </div>
                                         <div class="dingzhi" ng-if="data.data.isdingzhi==1"><a class="dingzhi_btn" style="width: 135px;

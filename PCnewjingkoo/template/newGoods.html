@@ -2,13 +2,13 @@
 	<div class="newGoods_box_top gird">
 		<div class="newGoods_div1">
 			<div class="newGoods_div1_img"  ng-click="clickAds(item.link_type)" style="cursor: pointer;" ng-repeat="item in data.bannerone">
-				<img src="{{item.ad_img}}"/>
+				<img img-lazy-load="{{item.ad_img}}"/>
 			</div>
 			<ul class="newGoods_div1_ul">
 				<li  ng-click="clickAds(item.link_type)" ng-repeat="item in data.new_goods">
 					<div class="newGoods_div1_uldiv">
 						<div class="div1_uldiv_img">
-							<img src="{{item.ad_img}}"/>
+							<img img-lazy-load="{{item.ad_img}}"/>
 						</div>
 						<div class="div1_uldiv_pbox">
 							<p class="div1_p1">{{item.ad_name}}</p>
@@ -33,7 +33,7 @@
 			<ul class="box_top1_u1">
 				<li  ng-click="clickAds(item.link_type)" style="cursor: pointer;" ng-repeat="item in data.hot_brand">
 					<div class="img_box">
-						<img src="{{item.ad_img}}"/>
+						<img img-lazy-load="{{item.ad_img}}"/>
 					</div>
 				</li>
 			</ul>
@@ -43,7 +43,7 @@
 	<div class="newGoods_box_top1 newGoods_box_top2 gird">
 		<div class="newGoods_box_top1_div">
 			<div class="box_top1_div">
-				<p class="top1_divp1">秋冬新品TOP推荐</p>
+				<p class="top1_divp1">{{data.top_tui.info.name}}</p>
 				<ul class="top1_divu1">
 					<li>最新品牌</li>
 					<li>劲爆来袭</li>
@@ -51,9 +51,9 @@
 				</ul>
 			</div>
 			<ul class="box_top1_u2">
-				<li  ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;" ng-repeat="item in data.top_tui">
+				<li  ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;" ng-repeat="item in data.top_tui.list">
 					<div class="box_top1_u2div">
-						<div class="img_a"><img src="{{item.original_img}}"/></div>
+						<div class="img_a"><img img-lazy-load="{{item.original_img}}"/></div>
 						<div class="wz_a">
 							<p class="wz_ap1">{{item.goods_name}}</p>
 							<p class="wz_ap2">{{item.shop_price}}<span>/ NEW /</span></p>
@@ -67,7 +67,7 @@
 	<div class="newGoods_box_top3 gird">
 		<div class="newGoods_box_top3_div">
 			<div class="img_box3"  ng-click="clickAds(item.link_type)" ng-repeat="item in data.bannertwo">
-				<img src="{{item.ad_img}}"/>
+				<img img-lazy-load="{{item.ad_img}}"/>
 			</div>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 	<div class="newGoods_box_top1 newGoods_box_top2 gird">
 		<div class="newGoods_box_top1_div">
 			<div class="box_top1_div">
-				<p class="top1_divp1">2018新品</p>
+				<p class="top1_divp1">{{data.new_tui.info.name}}</p>
 				<ul class="top1_divu1">
 					<li>最新品牌</li>
 					<li>劲爆来袭</li>
@@ -83,9 +83,9 @@
 				</ul>
 			</div>
 			<ul class="box_top1_u2">
-				<li  ng-repeat="item in data.new_tui" ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;">
+				<li  ng-repeat="item in data.new_tui.list" ng-click="goShopDetails(item.goods_id)" style="cursor: pointer;">
 					<div class="box_top1_u2div">
-						<div class="img_a"><img src="{{item.original_img}}"/></div>
+						<div class="img_a"><img img-lazy-load="{{item.original_img}}"/></div>
 						<div class="wz_a">
 							<p class="wz_ap3">
 								<span class="sp1">/ NEW /</span><span class="sp2">{{item.goods_name}}</span><span class="sp3">¥{{item.shop_price}}</span>

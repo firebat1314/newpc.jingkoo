@@ -3936,7 +3936,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } else {
                             //layer.msg('关注成功',{time:100});
                             $scope.shopListData.goods[index].is_collect = 1;
-                            $scope.InitList();
                         }
                     })
             } else {
@@ -3956,7 +3955,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } else {
                             //layer.msg('取消关注成功',{time:100});
                             $scope.shopListData.goods[index].is_collect = 0;
-                            $scope.InitList();
                         }
                     })
             }
@@ -12056,7 +12054,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } else {
                             //layer.msg('关注成功',{time:100});
                             $scope.hotGoodsData.goods[index].is_collect = 1;
-                            $scope.getHotGoods();
                         }
                     })
             } else {
@@ -12076,7 +12073,6 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         } else {
                             //layer.msg('取消关注成功',{time:100});
                             $scope.hotGoodsData.goods[index].is_collect = 0;
-                            $scope.getHotGoods();
                         }
                     })
             }

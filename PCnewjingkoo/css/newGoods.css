@@ -7,7 +7,7 @@
 .newGoods_div1 .newGoods_div1_ul:after{content: "";display: block;width: 0;height: 0;clear: both;}
 .newGoods_div1 .newGoods_div1_ul li{margin-right: 30px;width: calc(33.3% - 20px);float: left;transition: all .3s;position: relative;top: 0;cursor: pointer;}
 .newGoods_div1 .newGoods_div1_ul li:last-child{margin-right: 0;}
-.newGoods_div1 .newGoods_div1_ul li .div1_uldiv_img{width: 100%;max-height: 250px;min-height: 100px; text-align: center;}
+.newGoods_div1 .newGoods_div1_ul li .div1_uldiv_img{width: 100%;max-height: 250px;min-height: 100px; text-align: center;height: 250px;overflow: hidden;}
 .newGoods_div1 .newGoods_div1_ul li .div1_uldiv_img img{max-width: 100%;height: auto;object-fit:cover;}
 .newGoods_div1 .newGoods_div1_ul .div1_uldiv_pbox{width: 100%;text-align: center;}
 .newGoods_div1_ul .div1_uldiv_pbox p.div1_p1{font-size: 20px;color: #333333;padding-top: 20px;font-weight: 700;}

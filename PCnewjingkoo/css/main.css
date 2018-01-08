@@ -2771,7 +2771,8 @@ span.a_arrow_r {
             display: none; }
           .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .shopList-fashion-content .shopList-fashion-item img {
             width: 100%;
-            height: 100%; }
+            max-width: 100%;
+            max-height: 100%; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .brand-item .shopList-fashion-item {
         background: #fff; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .more-fashion {
@@ -16825,6 +16826,18 @@ textarea {
   border-bottom: 1px solid #e5e5e5;
   color: #4c4c4c;
   font-size: 14px; }
+
+.track .track-bt .ant {
+  float: right;
+  display: block;
+  margin: 5px 0;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #3f69a5;
+  color: #fff;
+  font-size: 12px; }
 
 .track .track-nr .track-left {
   float: left;

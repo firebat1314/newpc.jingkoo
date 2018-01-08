@@ -533,6 +533,12 @@ angular.module("myApp.router", ["ui.router"])
             	templateUrl:'template/my_order_detail.html',
             	controller:"orderDetail-control"
             })
+            .state("order-print",{
+            	title:'订单打印',
+            	url:'/order-print/:orderId',
+            	templateUrl:'template/order/order-print.html',
+            	controller:"order-print-control"
+            })
             //			收藏的商品
             .state("myCollect",{
                 title:'收藏的商品',

@@ -1166,7 +1166,49 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				})
 			};
 		}
-
+		$scope.medicalPhoto = function (e) {
+			console.log(11)
+			//判断是否支持FileReader
+			if (window.FileReader) {
+				var reader = new FileReader();
+			} else {
+				alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+			}
+			//获取文件
+			//var file = angular.element(e.target).files[0];
+			var file = document.getElementById("img3").files[0];
+			var imageType = /^image\//;
+			//是否是图片
+			if (!imageType.test(file.type)) {
+				alert("请选择图片！");
+				return;
+			}
+			//转码
+			reader.readAsDataURL(file);
+			//读取完成
+			reader.onload = function (e) {
+				//获取图片dom
+				var img = document.getElementById("img33");
+				//图片路径设置为读取的图片
+				img.src = e.target.result;
+				$scope.medical = e.target.result;
+				$data.changeQyMsg({
+					medical: $scope.medical
+				}).success(function (data) {
+					if (data.status == 0) {
+						layer.msg(data.info, {
+							icon: 2,
+							time: 500
+						});
+					} else {
+						layer.msg(data.info, {
+							icon: 1,
+							time: 500
+						});
+					}
+				})
+			};
+		}
 		//编辑企业信息
 		$scope.saveQyName = function (e, company) {
 			$data.changeQyMsg({
@@ -3046,15 +3088,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//控制header和footer显隐
 		$rootScope.change = true;
 
-		$scope.goto();
-		$scope.goto = function () {
-			$location.hash('');
-			$anchorScroll.yOffset = 1;
-			$anchorScroll();
-		};
-
-		$scope.goto();
-
 		//搜索框显隐
 		$scope.jf = 2;
 		//		接收id
@@ -3215,6 +3248,36 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			})
 		};
 
+	}])
+	.controller('order-print-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location','$sce', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location,$sce) {
+		$rootScope.isShow = false;
+        $rootScope.change = false;
+		$scope.orderid = $stateParams.orderid
+		var cool = layer.load(0, { shade: [0.3, '#fff'] });
+		$http({
+			method: "POST",
+			url: '' + $rootScope.ip + '/Machining/update_make',
+			data: {
+				 mid: $stateParams.mid,
+				 lj_shipping_sn: $scope.wlsn
+			},
+			headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+	  }).success(function (data) {
+			$data.getOrderInfo({ order_id: $scope.orderid,type:1 }).success(function (data) {
+				layer.close(cool);
+
+				$scope.html = ($sce.trustAsHtml(data.content));
+				
+			}).error(function (data, staus) {
+				layer.close(cool);
+				if (staus == 401) {
+					////layer.msg('用户失效，请重新登录');
+					ipCookie.remove('has_login');
+					ipCookie.remove('token');
+					location.href = "/default.html";
+				}
+			})
+	  })
 	}])
 	//订单详情取消的订单	
 	.controller('orderCancel-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {

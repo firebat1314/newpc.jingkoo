@@ -26,12 +26,6 @@
                         <div class="items">
                             <ul>
                                 <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom()"><img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);"></li>
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
-                                <!--<li><img bimg="img/b1.jpg" src="img/s1.jpg" onmousemove="preview(this);"></li>-->
                             </ul>
                         </div>
                         <div class="clear"></div>
@@ -172,8 +166,7 @@
                                             <img ng-src={{trItem.img_path}} alt="">
                                         </div>
                                         <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
-                                            <!-- ng-style="{'left':trItem.event.clientY+5,'top':trItem.event.clientX+5,}" --> 
-                                                <img src="{{trItem.img_path}}" alt="" style="width: 100%;height: 100%;"> 
+                                                <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;"> 
                                             </div>
                                     </th>
                                     <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>

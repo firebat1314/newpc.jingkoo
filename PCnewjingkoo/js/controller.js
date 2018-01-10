@@ -12402,7 +12402,18 @@ angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
                         $scope.piaoArr.suppliers_id = data.suppliers_id;
                         $scope.getAddress();
                     } else {
-                        layer.msg(data.info);
+                        if(data.info == '没有可选发票资质'){
+                            var cool = layer.confirm('没有可选发票资质，是否前往申请', {
+                                btn: ['确定', '取消'] //按钮
+                            }, function () {
+                                $state.go('person-inv-message');
+                                layer.close(cool);
+                            }, function () {
+                                
+                            });
+                        }else{
+                            layer.msg(data.info);
+                        }
                     }
                 })
             }

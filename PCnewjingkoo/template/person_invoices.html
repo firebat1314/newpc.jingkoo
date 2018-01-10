@@ -89,30 +89,6 @@
                                         <th>物流单号</th>
                                         <th width="100px">状态</th>
                                     </tr>
-                                    <!--<tr>-->
-                                        <!--<td>-->
-                                            <!--<span>北京沙福隆<br/>眼镜有限公司</span>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<span>￥520.00</span>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<span>2017-02-10 10：45：45</span></td>-->
-                                        <!--<td>-->
-                                            <!--<span>北京爱维时空 <br/>科技有限公司</span></td>-->
-                                        <!--<td>-->
-                                            <!--<span>快递</span>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<span>45465644</span>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<span>45465644</span>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<span>未开票</span>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
                                     <tr ng-repeat="tb in invoicesData.data">
                                         <td>
                                             <span>{{tb.suppliers_name}}</span></td>
@@ -134,17 +110,6 @@
                                         </td>
                                         <td>
                                             <span>{{tb.status}}</span>
-                                            <!--<span class="have_send">已寄出<i class="send_ico"></i>-->
-                                                <!--<div class="have_send_msg">-->
-                                                    <!--<div class="have_wrp">-->
-                                                        <!--<span style="font-size: 14px;color: #808080;">挂号信单号：4645454564545</span>-->
-                                                        <!--<h2>2017-8-10 10：24：26   <span style="color: #4d4d4d;display: inline-block;">发票已寄出</span></h2>-->
-                                                        <!--<p class="redvs"><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
-                                                        <!--<p><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
-                                                        <!--<p><b>●</b>快件已从 杭州中转部 发出 <br>2017-7-26  13：31：27</p>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-    									    <!--</span>-->
                                         </td>
                                     </tr>
                                     <tr ng-hide="invoicesData.data">
@@ -153,7 +118,7 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="pages" style="float:left">
+                                <div class="pages" style="float:left" ng-show="invoicesData.data.length">
                                     <div id="Pagination"></div>
                                     <div class="searchPage">
                                         <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>

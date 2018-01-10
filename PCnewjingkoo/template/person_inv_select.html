@@ -86,100 +86,7 @@
                                 <input type="button" class="fp_btn" ng-click="searchSelect()" value="搜索">
                             </div>
                             <div class="invoice_ask_tb">
-                                <!--<table class="ask_tb">-->
-                                    <!--<tbody><tr>-->
-                                        <!--<th width="180px">订单编号</th>-->
-                                        <!--<th width="190px">产品名称</th>-->
-                                        <!--<th width="100px">类型</th>-->
-                                        <!--<th>订单实付金额</th>-->
-                                        <!--<th>可开票金额 </th>-->
-                                        <!--<th>订单支付时间</th>-->
-                                    <!--</tr>-->
-                                    <!--<tr style="background-color: #f9f9f9;">-->
-                                        <!--<td colspan="3">-->
-                                            <!--<div class="ask_tb_d1">-->
-                                                <!--<input type="checkbox" class="ask_tb_ip">-->
-                                                <!--<div class="tb_d1_div">-->
-                                                    <!--<p class="d1_div_p">镜库网供货商<span class="d1_div_sp1">普</span></p>-->
-                                                    <!--<p class="d1_div_p1">已总选金额 : <span class="d1_div_sp2">￥0.00</span></p>-->
-                                                    <!--<p class="d1_div_p2">（可开票总金额：￥163.00）</p>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                        <!--<td colspan="3" style="padding-left: 40px;">-->
-                                            <!--<div class="ask_tb_d2">-->
-                                                <!--<div class="tb_d2_l">-->
-                                                    <!--<p class="tb_d2_lp">待开票金额 : <span>￥0.00</span></p>-->
-                                                    <!--<p class="tb_d2_lp2">（最小可开票金额：￥200.00）</p>-->
-                                                    <!--<div class="tb_d2_lp3">无法开票原因<i></i>-->
-                                                        <!--<div class="needshow_box">-->
-                                                            <!--<p>1.待开发票金额小于等于0</p>-->
-                                                            <!--<p>2.没有有效的发票抬头信息</p>-->
-                                                            <!--<p>3.开票前需先选择下方订单，否则索取发票按钮为灰</p>-->
-                                                            <!--<p>4.被总部或者分销商禁用了开票资格</p>-->
-                                                        <!--</div>-->
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                                <!--<div class="tb_d2_r">-->
-                                                    <!--<input type="button" value="索取发票" class="tb_d2_rip">-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-
-                                    <!--<tr>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<div class="ask_tb_d3">-->
-                                                <!--<input type="checkbox" class="tb_d3_ip">-->
-                                                <!--<span class="tb_d3_sp">45445645645645</span>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<div class="ask_tb_d4">-->
-                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp1">订单</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp3">2016-01-20</span>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-
-                                    <!--<tr>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<div class="ask_tb_d3">-->
-                                                <!--<input type="checkbox" class="tb_d3_ip">-->
-                                                <!--<span class="tb_d3_sp">45445645645645</span>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                        <!--<td>-->
-                                            <!--<div class="ask_tb_d4">-->
-                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
-                                                <!--<p class="tb_d4_p1">蔡司1.800玻璃单光滤光多层膜 （SFET）（10%茶色）镜片 <span style="color: #ff3333;">×2</span></p>-->
-                                            <!--</div>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp1">订单</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp2">￥99.00</span>-->
-                                        <!--</td>-->
-                                        <!--<td class="ned_po">-->
-                                            <!--<span class="ask_tb_sp3">2016-01-20</span>-->
-                                        <!--</td>-->
-                                    <!--</tr>-->
-                                    <!--</tbody></table>-->
+                                
                                 <table ng-if="invSelectData.data.length!=0" class="ask_tb">
                                     <tbody ng-repeat="tb in invSelectData.data">
                                     <tr style="background-color: #fff;">
@@ -345,7 +252,7 @@
 
                             <div class="fp_btnbox">
                                 <input type="button" ng-click="sure()" class="qd_btn" value="确定"/>
-                                <input type="button" class="qx_btn" value="取消"/>
+                                <input type="button" class="qx_btn" ng-click="hasKaiPiao = true" value="取消"/>
                             </div>
 
 

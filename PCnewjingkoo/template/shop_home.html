@@ -107,7 +107,7 @@
         <p>HOT BRANDS<span class="sell_sp">【热销品牌】</span></p>
         <ul class="hot_sell_u1">
             <li ng-repeat="list in shopHomeData.data.brand_list">
-                <a href="#/shop-list/{{list.brand_id}}//" target="_blank">
+                <a ng-click="goShopListPage(list.brand_id)" target="_blank">
                     <div class="hot_sell_div">
                         <img ng-src={{list.brand_logo}}>
                     </div>

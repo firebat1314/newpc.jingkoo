@@ -3407,7 +3407,9 @@ span.a_arrow_r {
           padding: 0px;
           cursor: pointer;
           margin: 0px;
-          display: block; }
+          display: block;
+          display: flex;
+          align-items: center; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-preview .jqzoom img {
             width: 420px;
             height: 420px; }
@@ -3467,11 +3469,16 @@ span.a_arrow_r {
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-scroll .items ul li {
               float: left;
               text-align: center;
-              margin-right: 10px; }
+              margin-right: 10px;
+              display: flex;
+              align-items: center;
+              width: 58px;
+              height: 58px;
+              border: 1px solid #CCC; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-scroll .items ul li img {
-                border: 1px solid #CCC;
-                width: 58px;
-                height: 58px; }
+                max-width: 100%;
+                max-height: 100%;
+                margin: 0 auto; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .qita {
         padding: 10px 0; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .qita a {

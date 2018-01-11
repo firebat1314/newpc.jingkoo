@@ -95,7 +95,7 @@ angular.module("myApp.router", ["ui.router"])
             }) */
             .state("shop-list", {
                 title:'商品列表',
-                url: '/shop-list/:brand_id/:cat_id/:filter/:keywords/:page/:random',
+                url: '/shop-list/:params',
                 templateUrl: 'template/shop-list/shop-list.html',
                 controller: "ShopListControl"
             })

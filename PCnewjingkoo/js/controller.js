@@ -274,31 +274,30 @@ angular.module('myApp.controllers', ['ShopListModule'])
             if (category == "category" && !brand && !zeiss) {
                 //console.log(1)
                 var url = $state.href('shop-list', {
-                    cat_id: categoryId,
-                    filter: filterId,
-                    brand_id: '',
-                    keywords: '',
-                    random: '',
+                    params:JSON.stringify({
+                        cat_id: categoryId,
+                        filter: filterId,
+                    })
                 });
+                
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && !category && !zeiss) {
                 //console.log(2)
                 var url = $state.href('shop-list', {
-                    brand_id: brandId,
-                    cat_id: '',
-                    filter: '',
-                    keywords: ''
+                    params:JSON.stringify({
+                        brand_id: brandId,
+                    })
                 })
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && category == "category" && !zeiss) {
                 //console.log(3)
                 var url = $state.href('shop-list', {
-                    brand_id: brandId,
-                    cat_id: categoryId,
-                    filter: '',
-                    keywords: ''
+                    params:JSON.stringify({
+                        cat_id: categoryId,
+                        brand_id: brandId,
+                    })
                 })
                 window.open(url, '_blank');
             }
@@ -307,10 +306,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
             if (filter == "filter" && category == "category") {
                 //console.log(4)
                 var url = $state.href('shop-list', {
-                    brand_id: '',
-                    cat_id: categoryId,
-                    filter: filterId,
-                    keywords: ''
+                    params:JSON.stringify({
+                        cat_id: categoryId,
+                        filter: filterId,
+                    })
                 })
                 window.open(url, '_blank');
             }
@@ -462,22 +461,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         //搜索
         $scope.searchKey = function () {
-            var newOpens = window.open();
-            //console.log($scope.keywords);
             var url = $state.href('shop-list', {
-                keywords: $scope.keywords,
+                params:JSON.stringify({
+                    keywords: $scope.keywords,
+                })
             })
-
-            setTimeout(function () {
-                newOpens.location = url;
-            }, 200)
-            /* $state.go('shop-list', {
-                keywords: $scope.keywords,
-            }) */
+				window.open(url);
         };
-
-        $scope.keywords = $stateParams.keywords;
-
         //控制分类菜单显隐
         //$scope.allFenLei = true;
         //金融页面提示
@@ -574,9 +564,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //去列表
         $scope.quList = function (suppliers_name) {
             var url = $state.href('shop-list', {
-                cat_id: '',
-                brand_id: '',
-                keywords: suppliers_name
+                params:JSON.stringify({
+                    keywords: suppliers_name,
+                })                
             });
             window.open(url, '_blank');
         };
@@ -614,21 +604,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
     //首页
     .controller('index_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', function ($scope, $rootScope, $state, $http, ipCookie, $window) {
 
-        // $scope.$on('$destroy',function(){
-        //     $(window).scroll(function(){
-        //         //console.log('$destroy');
-        //         return null;
-        //     });
-        //     //console.log($(window))
-        // })
-
         //控制首页会员中心显隐
         $rootScope.isShow = true;
         //控制header和footer显隐
         $rootScope.change = true;
-        $scope.goShopList = function () {
-            $state.go('shop-list');
-        };
         //首页接口
         // $rootScope.res = ipCookie('token');
         $http({
@@ -795,56 +774,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }, 100)
         };
 
-        //轮播广告跳转
-        $scope.bannerLi = function (type, id) {
-            if (type == "category") {
-                var url = $state.href('shop-list', {
-                    cat_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            } else if (type == "goods") {
-                var url = $state.href('shop-detail', {
-                    goods_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            } else if (type == "brand") {
-                var url = $state.href('shop-list', {
-                    brand_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            }
-        };
-        //品牌广告跳转
-        $scope.adLi = function (type, id) {
-            if (type == "category") {
-                var url = $state.href('shop-list', {
-                    cat_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            } else if (type == "goods") {
-                var url = $state.href('shop-detail', {
-                    goods_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            } else if (type == "brand") {
-                var url = $state.href('shop-list', {
-                    brand_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            }
-        };
         //菜单广告跳转
-        $scope.adDiv = function (type, id) {
+        $scope.adsClick = function (type, id) {
             if (type == "category") {
                 var url = $state.href('shop-list', {
-                    cat_id: id,
-                    keywords: ''
+                    params:JSON.stringify({
+                        cat_id: id,
+                    })  
                 });
                 window.open(url, '_blank');
             } else if (type == "goods") {
@@ -855,8 +791,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 window.open(url, '_blank');
             } else if (type == "brand") {
                 var url = $state.href('shop-list', {
-                    brand_id: id,
-                    keywords: ''
+                    params:JSON.stringify({
+                        brand_id: id,
+                    })  
                 });
                 window.open(url, '_blank');
             }
@@ -955,9 +892,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //品牌跳列表
         $scope.goBrandList = function (id) {
             $state.go('shop-list', {
-                cat_id: '',
-                brand_id: id,
-                keywords: ''
+					 params:JSON.stringify({
+						brand_id: id,
+					})
             })
         };
 
@@ -1193,7 +1130,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.adLi = function (type, id) {
             if (type == "category") {
                 var url = $state.href('shop-list', {
-                    cat_id: id
+						  params:JSON.stringify({
+						  cat_id: id
+					  })
                 });
                 window.open(url, '_blank');
             } else if (type == "goods") {
@@ -1203,7 +1142,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 window.open(url, '_blank');
             } else if (type == "brand") {
                 var url = $state.href('shop-list', {
-                    brand_id: id
+						  params:JSON.stringify({
+							brand_id: id
+					  })
                 });
                 window.open(url, '_blank');
             }
@@ -1214,8 +1155,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //logo去列表
         $scope.goList = function (id) {
             $state.go('shop-list', {
-                cat_id: '',
-                brand_id: id
+					 params:JSON.stringify({
+					 brand_id: id
+				})
             })
         };
 
@@ -1596,8 +1538,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
             console.log(link_type)
             if (link_type.type_name == 'category') {
                 window.open($state.href('shop-list', {
-                    cat_id: link_type.type_value,
-                    keywords: ''
+						  params:JSON.stringify({
+							cat_id: link_type.type_value,
+					})
                 }), '_blank');
             } else if (link_type.type_name == 'goods') {
                 window.open($state.href('shop-detail', {
@@ -1605,13 +1548,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     keywords: ''
                 }), '_blank');
             } else if (link_type.type_name == "brand") {
-                var url = $state.href('shop-list', {
-                    brand_id: link_type.type_value,
-                    keywords: ''
-                });
                 window.open($state.href('shop-list', {
-                    brand_id: link_type.type_value,
-                    keywords: ''
+						  params:JSON.stringify({
+							brand_id: link_type.type_value,
+					})
                 }), '_blank');
             } else if (link_type.type_name == "search") {
 
@@ -1883,9 +1823,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //去列表
         $scope.quList = function (suppliers_name) {
             var url = $state.href('shop-list', {
+					 params:JSON.stringify({
                 keywords: suppliers_name,
-                cat_id: '',
-                brand_id: ''
+					 })
             });
             window.open(url, '_blank');
         };
@@ -3382,11 +3322,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.keyFn = function (id) {
             $state.go('shop-list', {
+                params:JSON.stringify({
                 cat_id: id,
-                keywords: null,
-                brand_id: null,
-                filter: null,
-                random: null,
+				  })
             })
         };
 
@@ -3441,7 +3379,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             callback: pageIndex
         };
         function pageIndex(index) {
-            // $state.go('shop-list',{page:index + 1});
             $scope.ListPage.page = index + 1;
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
@@ -4439,8 +4376,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                     $scope.goBack = function (category, categoryId) {
                         $state.go('shop-list', {
-                            cat_id: categoryId,
-                            keywords: ''
+									 params:JSON.stringify({
+											cat_id: categoryId,
+									})
                         });
                     };
                     //是否有促销价格
@@ -7460,8 +7398,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
             var newOpens = window.open();
             //console.log($scope.carkeywords);
             var url = $state.href('shop-list', {
-                keywords: $scope.carkeywords,
-                random: Math.random()
+                params:JSON.stringify({
+                    keywords: $scope.carkeywords,
+                })
             })
 
             setTimeout(function () {
@@ -11554,6 +11493,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $rootScope.isShow = false;
         $rootScope.change = true;
 
+		  $scope.goShopListPage = function(brand_id){
+			$state.go('shop-list', {
+				params:JSON.stringify({
+					brand_id: brand_id
+				})
+			})
+		  }
         //店铺信息
         $scope.shopMessage = function () {
             $http({

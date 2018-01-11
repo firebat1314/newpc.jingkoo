@@ -88,18 +88,15 @@
 <div class="ad_box" ng-show="ad_show&&ad_img">
     <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
         <div class="close" ng-click="closeAd()">+</div>
-        <img ng-click="bannerLi(link_type.type_name,link_type.type_value)" src="{{ad_img}}" alt="">
+        <img ng-click="adsClick(link_type.type_name,link_type.type_value)" src="{{ad_img}}" alt="">
     </div>
 </div>
 <div class="scroll-area" style="margin-bottom: 50px;">
     <div class="pic">
         <div class="slider" style="width:100%;margin: 0 auto;">
             <ul>
-                <li ng-repeat="slide in IndexData.list.ads_banner" ng-click="bannerLi(slide.link_type.type_name,slide.link_type.type_value)"
+                <li ng-repeat="slide in IndexData.list.ads_banner" ng-click="adsClick(slide.link_type.type_name,slide.link_type.type_value)"
                     repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
-                    <!--<a style="cursor:pointer;">-->
-                    <!--<img ng-src="{{slide.ad_img}}">-->
-                    <!--</a>-->
                 </li>
             </ul>
         </div>
@@ -193,7 +190,7 @@
                 <a class="sPrev" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
                 <div class="tempWrap">
                     <ul>
-                        <li ng-click="adLi(item.link_type.type_name,item.link_type.type_value)" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
+                        <li ng-click="adsClick(item.link_type.type_name,item.link_type.type_value)" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
                             <img ng-src={{item.ad_img}} alt="">
                         </li>
                     </ul>
@@ -212,14 +209,6 @@
                         </div>
                     </li>
                 </div>
-                <!--<div class="ulWrap swaplist">-->
-                <!--<li ng-repeat="fashion in IndexData.list.brand_list">-->
-                <!--<img ng-src={{fashion.brand_logo}} alt="">-->
-                <!--<div class="fashion-tit">-->
-                <!--<p>{{fashion.brand_name}}</p><button>点击进入</button>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--</div>-->
             </div>
             <div class="hd">
                 <div class="line-box">
@@ -238,31 +227,16 @@
         <div class="selected-topics cool-eye-world">
             <div class="selected-topics-tit">
                 <h2>清新视界</h2>
-                <!--<a href="">查看全部 <span class="a_arrow_r">&gt;</span></a>-->
-                <!--<ul>-->
-                <!--<li>普通隐形眼镜</li>-->
-                <!--<li>散光隐形眼镜</li>-->
-                <!--<li>护理液</li>-->
-                <!--<li>润眼液</li>-->
-                <!--</ul>-->
             </div>
             <div class="cool-eye-content">
-                <!--<div class="coolEye-left">-->
-                <!--<div class="left-ad">-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--</div>-->
-                <!--<img ng-src={{qxsjImg}} alt="">-->
-                <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item1" ng-click="adDiv(qxsj.link_type.type_name,qxsj.link_type.type_value)" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                    <div class="coolEye-center-item center-item1" ng-click="adsClick(qxsj.link_type.type_name,qxsj.link_type.type_value)" ng-repeat="qxsj in IndexData.list.ads_qxsj">
                         <img ng-src={{qxsj.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adLi('category','1')">隐形</button>
-                        <button ng-click="adLi('category','2')">美瞳</button>
-                        <button ng-click="adLi('category','3')">护理液</button>
+                        <button ng-click="adsClick('category','1')">隐形</button>
+                        <button ng-click="adsClick('category','2')">美瞳</button>
+                        <button ng-click="adsClick('category','3')">护理液</button>
                     </div>
                 </div>
                 <div class="coolEye-right">
@@ -279,52 +253,22 @@
                             <p>{{qxsj.shop_price}}</p>
                         </a>
                     </div>
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
         <div class="selected-topics cool-eye-world">
             <div class="selected-topics-tit jingshang">
                 <h2>镜尚镜美</h2>
-                <!--<a href="">查看全部 <span class="a_arrow_r">&gt;</span></a>-->
-                <!--<ul>-->
-                <!--<li>普通隐形眼镜</li>-->
-                <!--<li>散光隐形眼镜</li>-->
-                <!--<li>护理液</li>-->
-                <!--<li>润眼液</li>-->
-                <!--</ul>-->
             </div>
             <div class="cool-eye-content">
-                <!--<div class="coolEye-left">-->
-                <!--<div class="left-ad">-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--</div>-->
-                <!--<img ng-src={{jsjmImg}} alt="">-->
-                <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item2" ng-click="adDiv(jsjm.link_type.type_name,jsjm.link_type.type_value)" ng-repeat="jsjm in IndexData.list.ads_jsjm">
+                    <div class="coolEye-center-item center-item2" ng-click="adsClick(jsjm.link_type.type_name,jsjm.link_type.type_value)" ng-repeat="jsjm in IndexData.list.ads_jsjm">
                         <img ng-src={{jsjm.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adLi('category','6')">眼镜片</button>
-                        <button ng-click="adLi('category','4')">镜架</button>
-                        <button ng-click="adLi('category','5')">太阳镜</button>
+                        <button ng-click="adsClick('category','6')">眼镜片</button>
+                        <button ng-click="adsClick('category','4')">镜架</button>
+                        <button ng-click="adsClick('category','5')">太阳镜</button>
                     </div>
                 </div>
                 <div class="coolEye-right">
@@ -341,52 +285,22 @@
                             <p>{{jsjm.shop_price}}</p>
                         </a>
                     </div>
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
         <div class="selected-topics cool-eye-world">
             <div class="selected-topics-tit jizhi">
                 <h2>极简主义</h2>
-                <!--<a href="">查看全部 <span class="a_arrow_r">&gt;</span></a>-->
-                <!--<ul>-->
-                <!--<li>普通隐形眼镜</li>-->
-                <!--<li>散光隐形眼镜</li>-->
-                <!--<li>护理液</li>-->
-                <!--<li>润眼液</li>-->
-                <!--</ul>-->
             </div>
             <div class="cool-eye-content">
-                <!--<div class="coolEye-left">-->
-                <!--<div class="left-ad">-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--<button>隐形眼镜</button>-->
-                <!--</div>-->
-                <!--<img ng-src={{jjzyImg}} alt="">-->
-                <!--</div>-->
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item3" ng-click="adDiv(jjzy.link_type.type_name,jjzy.link_type.type_value)" ng-repeat="jjzy in IndexData.list.ads_jjzy">
+                    <div class="coolEye-center-item center-item3" ng-click="adsClick(jjzy.link_type.type_name,jjzy.link_type.type_value)" ng-repeat="jjzy in IndexData.list.ads_jjzy">
                         <img ng-src={{jjzy.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adLi('category','7')">功能眼镜</button>
-                        <button ng-click="adLi('category','8')">配件</button>
-                        <button ng-click="adLi('category','9')">工具</button>
+                        <button ng-click="adsClick('category','7')">功能眼镜</button>
+                        <button ng-click="adsClick('category','8')">配件</button>
+                        <button ng-click="adsClick('category','9')">工具</button>
                     </div>
                 </div>
                 <div class="coolEye-right">
@@ -403,21 +317,6 @@
                             <p>{{jjzy.shop_price}}</p>
                         </a>
                     </div>
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
-                    <!--<div class="coolEye-right-content">-->
-                    <!--<img src="" alt="">-->
-                    <!--<p>月球神翼系列-1.5非非 球面1V加硬防月非球月球神翼系列-1.5非非 球面1V加硬防月非球</p>-->
-                    <!--<p>￥520.00</p>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -442,24 +341,7 @@
 
     //控制首页楼梯效果
     $(window).scroll(function () {
-        //  	var windowHeight = $(window).height();
         var scrT = $(document).scrollTop();
-        //var leftWidth = $('.selected-topics-tit').offset().left;
-        //$('.floor-select').offset({left:leftWidth - 100});
-        //console.log($(document).scrollTop());
-        //      if($(document).scrollTop() > $(window).height()*0.3){
-        //          $('.floor-select').show();
-        //          $('.goTop').show();
-        //      }else{
-        //          $('.floor-select').hide();
-        //          $('.goTop').hide();
-        //      }
-        //		
-        //        if (flags) {
-        //          var index=Math.floor($(document).scrollTop()/400) - 1;
-        //          $('.floor-select .floor-select-item').removeClass('selected');
-        //          $('.floor-select .floor-select-item:eq('+index+')').addClass('selected');
-        //        }
         if (scrT < 500) {
             $('.floor-select').hide();
             $('.goTop').hide();

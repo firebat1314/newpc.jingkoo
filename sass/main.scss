@@ -2627,7 +2627,7 @@ $browser-default-font-size: 37.5px !default;
           &:hover>a{display: block;}
         }
         .sPrev{
-          color: #ccc;
+          color: #e0e0e0;
           position: absolute;
           left: 0;
           top: 47px;
@@ -2638,7 +2638,7 @@ $browser-default-font-size: 37.5px !default;
           display: none;
         }
         .sNext{
-          color: #ccc;
+          color: #e0e0e0;
           position: absolute;
           right:19px;
           top: 47px;
@@ -2674,7 +2674,7 @@ $browser-default-font-size: 37.5px !default;
             height:30px;
             line-height: 30px;
             text-align: center;
-            background: #ccc;
+            background: #e0e0e0;
             color:#fff;
             border:none;
             outline: none;
@@ -2748,7 +2748,7 @@ $browser-default-font-size: 37.5px !default;
         height:30px;
         line-height: 27px;
         color:#0070c9;
-        border:1px solid #ccc; 
+        border:1px solid #e0e0e0; 
         float:left;
         padding-left: 10px;
         padding-right: 10px;
@@ -2786,13 +2786,13 @@ $browser-default-font-size: 37.5px !default;
     }
     .shopList-select-conditions{ 
       //height:390px;
-      border: 1px solid #ccc; 
+      border: 1px solid #e0e0e0; 
       border-left: none; 
       border-right: none;
       margin-bottom: 40px;    
       position: relative;
       .more-conditions{ 
-        border:1px solid #ccc;  
+        border:1px solid #e0e0e0;  
         border-top-color:#fff;  
         position: absolute; 
         bottom: -29px;    
@@ -2831,7 +2831,7 @@ $browser-default-font-size: 37.5px !default;
         width:1167px;   
         padding:10px 20px 10px 10px;     
         display: inline-block;   
-        border-bottom: 1px dashed #cccccc;  
+        border-bottom: 1px dashed #e0e0e0;  
         position: relative;  
         &:last-child{  
           border-bottom: none;   
@@ -2892,7 +2892,7 @@ $browser-default-font-size: 37.5px !default;
         .more-fashion{
           width:60px;
           height:24.5px;
-          border: 1px solid #ccc;
+          border: 1px solid #e0e0e0;
           float: left;
           line-height: 25px;
           padding-left: 10px;
@@ -2977,7 +2977,7 @@ $browser-default-font-size: 37.5px !default;
     }
     .shopList-sort-tit{
       height:20px;
-      border:1px solid #ccc;
+      border:1px solid #e0e0e0;
       padding:9px 0;
       border-left: none; 
       border-right:none;  
@@ -2986,7 +2986,7 @@ $browser-default-font-size: 37.5px !default;
         height:20px;
         line-height: 20px;
         text-align: center;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid #e0e0e0;
         color:#666;
         float:left;
         font-size: 12px;
@@ -3107,14 +3107,14 @@ $browser-default-font-size: 37.5px !default;
       .sort-toggle{
         width:41px;
         height:20px;
-        border:1px solid #ccc;
+        border:1px solid #e0e0e0;
         float:right;
         margin-right: 20px;
         margin-top: -1px;
         .arrow-left{
           width:20px;
           height:20px;      
-          border-right:1px solid #ccc;
+          border-right:1px solid #e0e0e0;
           cursor: pointer;
           float:left;
           background: url(../img/saojiao_r.png) no-repeat center;

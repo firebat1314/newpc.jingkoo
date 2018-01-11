@@ -1,5 +1,5 @@
 
-angular.module('myApp.controllers', ['ipCookie', 'ngSanitize'])
+angular.module('myApp.controllers', ['ShopListModule'])
     // 路由监听事件 每个页面标题
     .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {

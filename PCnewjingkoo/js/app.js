@@ -31,14 +31,14 @@
 }(angular));
 
 angular.module('myApp', [
+    'ipCookie',
+    'ngSanitize',
     'myApp.services',
     'myApp.controllers',
     'myApp.user-controllers',
     'myApp.router',
     'myApp.directives',
     'ngLoadScript',
-    'ipCookie',
-    'ngSanitize',
     'afkl.lazyImage'
 ])
 // function get_html(html){

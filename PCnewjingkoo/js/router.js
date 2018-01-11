@@ -87,11 +87,17 @@ angular.module("myApp.router", ["ui.router"])
                 controller: "recharge-control"
             })
             //商品列表路由
-            .state("shop-list", {
+            /* .state("shop-list", {
                 title:'商品列表',
                 url: '/shop-list/:brand_id/:cat_id/:filter/:keywords/:page/:random',
                 templateUrl: 'template/shop_list.html',
                 controller: "shopList-control"
+            }) */
+            .state("shop-list", {
+                title:'商品列表',
+                url: '/shop-list/:brand_id/:cat_id/:filter/:keywords/:page/:random',
+                templateUrl: 'template/shop-list/shop-list.html',
+                controller: "ShopListControl"
             })
             //商品列表路由
             .state("shop-list-ano", {

@@ -2559,7 +2559,7 @@ span.a_arrow_r {
         .shopList-main .shop-list .guess-you-like .guess-you-like-main .likeTui:hover > a {
           display: block; }
       .shopList-main .shop-list .guess-you-like .guess-you-like-main .sPrev {
-        color: #ccc;
+        color: #e0e0e0;
         position: absolute;
         left: 0;
         top: 47px;
@@ -2569,7 +2569,7 @@ span.a_arrow_r {
         z-index: 999;
         display: none; }
       .shopList-main .shop-list .guess-you-like .guess-you-like-main .sNext {
-        color: #ccc;
+        color: #e0e0e0;
         position: absolute;
         right: 19px;
         top: 47px;
@@ -2602,7 +2602,7 @@ span.a_arrow_r {
           height: 30px;
           line-height: 30px;
           text-align: center;
-          background: #ccc;
+          background: #e0e0e0;
           color: #fff;
           border: none;
           outline: none;
@@ -2661,7 +2661,7 @@ span.a_arrow_r {
       height: 30px;
       line-height: 27px;
       color: #0070c9;
-      border: 1px solid #ccc;
+      border: 1px solid #e0e0e0;
       float: left;
       padding-left: 10px;
       padding-right: 10px;
@@ -2691,13 +2691,13 @@ span.a_arrow_r {
         color: #ff3333;
         cursor: pointer; }
   .shopList-main .shop-list .shopList-select-conditions {
-    border: 1px solid #ccc;
+    border: 1px solid #e0e0e0;
     border-left: none;
     border-right: none;
     margin-bottom: 40px;
     position: relative; }
     .shopList-main .shop-list .shopList-select-conditions .more-conditions, .shopList-main .shop-list .shopList-select-conditions .more-ano-conditions {
-      border: 1px solid #ccc;
+      border: 1px solid #e0e0e0;
       border-top-color: #fff;
       position: absolute;
       bottom: -29px;
@@ -2730,7 +2730,7 @@ span.a_arrow_r {
       width: 1167px;
       padding: 10px 20px 10px 10px;
       display: inline-block;
-      border-bottom: 1px dashed #cccccc;
+      border-bottom: 1px dashed #e0e0e0;
       position: relative; }
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion:last-child {
         border-bottom: none; }
@@ -2778,7 +2778,7 @@ span.a_arrow_r {
       .shopList-main .shop-list .shopList-select-conditions .shopList-fashion .more-fashion {
         width: 60px;
         height: 24.5px;
-        border: 1px solid #ccc;
+        border: 1px solid #e0e0e0;
         float: left;
         line-height: 25px;
         padding-left: 10px;
@@ -2828,7 +2828,7 @@ span.a_arrow_r {
           color: #E4393C; }
   .shopList-main .shop-list .shopList-sort-tit {
     height: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #e0e0e0;
     padding: 9px 0;
     border-left: none;
     border-right: none; }
@@ -2837,7 +2837,7 @@ span.a_arrow_r {
       height: 20px;
       line-height: 20px;
       text-align: center;
-      border-right: 1px solid #ccc;
+      border-right: 1px solid #e0e0e0;
       color: #666;
       float: left;
       font-size: 12px;
@@ -2940,14 +2940,14 @@ span.a_arrow_r {
     .shopList-main .shop-list .shopList-sort-tit .sort-toggle {
       width: 41px;
       height: 20px;
-      border: 1px solid #ccc;
+      border: 1px solid #e0e0e0;
       float: right;
       margin-right: 20px;
       margin-top: -1px; }
       .shopList-main .shop-list .shopList-sort-tit .sort-toggle .arrow-left, .shopList-main .shop-list .shopList-sort-tit .sort-toggle .arrow-right {
         width: 20px;
         height: 20px;
-        border-right: 1px solid #ccc;
+        border-right: 1px solid #e0e0e0;
         cursor: pointer;
         float: left;
         background: url(../img/saojiao_r.png) no-repeat center;

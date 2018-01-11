@@ -3688,7 +3688,6 @@ $browser-default-font-size: 37.5px !default;
               position: relative;
               width: 375px;
               height: 60px;
-              margin-left: 5px;
               overflow: hidden;
               ul {
                 position: absolute;
@@ -3696,8 +3695,8 @@ $browser-default-font-size: 37.5px !default;
                 height: 56px;
                 li {
                   float: left;
-                  width: 75px;
                   text-align: center;
+                  margin-right: 10px;
                   img {
                     border: 1px solid #CCC;
                     width: 58px;

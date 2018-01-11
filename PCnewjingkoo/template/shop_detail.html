@@ -24,8 +24,8 @@
                     <!--缩图开始-->
                     <div class="spec-scroll"> <a ng-if="shopDetailData.gallery.length>5" class="prev"></a> <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
                         <div class="items">
-                            <ul>
-                                <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom()"><img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);"></li>
+                            <ul ng-init="shopDetailData.indexss=0">
+                                <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom();shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index">{{indexss}}<img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);" ng-style="{'border-color':shopDetailData.indexss == $index?'red':'#e0e0e0'}"></li>
                             </ul>
                         </div>
                         <div class="clear"></div>

@@ -3459,7 +3459,6 @@ span.a_arrow_r {
           position: relative;
           width: 375px;
           height: 60px;
-          margin-left: 5px;
           overflow: hidden; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-scroll .items ul {
             position: absolute;
@@ -3467,8 +3466,8 @@ span.a_arrow_r {
             height: 56px; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-scroll .items ul li {
               float: left;
-              width: 75px;
-              text-align: center; }
+              text-align: center;
+              margin-right: 10px; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrleft .spec-scroll .items ul li img {
                 border: 1px solid #CCC;
                 width: 58px;

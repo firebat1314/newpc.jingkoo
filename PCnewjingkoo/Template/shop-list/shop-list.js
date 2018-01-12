@@ -1,11 +1,13 @@
 
 angular.module('ShopListModule', [])
 
-	.controller('ShopListControl', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', '$timeout', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state, $timeout) {
+	.controller('ShopListControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
 		$rootScope.isShow = false;
 		$rootScope.change = true;
-		$scope.params = JSON.parse($stateParams.params || {})
+		$scope.params = JSON.parse(decodeURIComponent($stateParams.params) || {})
 		console.log($scope.params)
+		$rootScope.keywords = $scope.params.keywords;
+		
 		$scope.stateGo = function (data) {
 			$state.go('shop-list', {
 				params: data ? JSON.stringify(Object.assign($scope.params, data)) : {}
@@ -152,8 +154,8 @@ angular.module('ShopListModule', [])
 				page: 1,
 				keywords: null,
 				cat_id: null,
-				filter:null,
-				brand_id:null,
+				filter: null,
+				brand_id: null,
 			})
 		};
 		//取消商品品牌筛选的内容
@@ -161,7 +163,7 @@ angular.module('ShopListModule', [])
 			$scope.stateGo({
 				page: 1,
 				// keywords: null,
-				brand_id:null,
+				brand_id: null,
 			})
 		};
 		//获取商品品牌筛选的内容
@@ -169,7 +171,7 @@ angular.module('ShopListModule', [])
 			$scope.stateGo({
 				page: 1,
 				// keywords: null,
-				brand_id:id,
+				brand_id: id,
 			})
 			$('.shopList-select-conditions .more-fashion:first').prev().css({
 				height: '62'
@@ -188,8 +190,8 @@ angular.module('ShopListModule', [])
 		$scope.getPriceValue = function (value1, value2) {
 			$scope.stateGo({
 				page: 1,
-				min_price:value1,
-				max_price:value2,
+				min_price: value1,
+				max_price: value2,
 			})
 			$('.shopList-select-conditions .more-fashion:first').prev().css({
 				height: '62'
@@ -208,14 +210,14 @@ angular.module('ShopListModule', [])
 		$scope.closeFenlei = function (e) {
 			$scope.stateGo({
 				page: 1,
-				keywords:null,
-				cat_id:null,
+				keywords: null,
+				cat_id: null,
 			})
 		};
 		$scope.cateAll = function () {
 			$scope.stateGo({
 				page: 1,
-				cat_id:0,
+				cat_id: 0,
 			})
 			$('.shopList-select-conditions .more-fashion:first').prev().css({
 				height: '62'
@@ -234,7 +236,7 @@ angular.module('ShopListModule', [])
 		$scope.getMonthValue = function (value, id) {
 			$scope.stateGo({
 				page: 1,
-				cat_id:id,
+				cat_id: id,
 			})
 			$('.shopList-select-conditions .more-fashion:first').find('i').html('+');
 			$('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
@@ -243,14 +245,14 @@ angular.module('ShopListModule', [])
 		$scope.closeShuxing = function (filter) {
 			$scope.stateGo({
 				page: 1,
-				filter:filter,
+				filter: filter,
 			})
 		};
 		//获取商品属性筛选的内容
 		$scope.getAttrValue = function (value, id) {
 			$scope.stateGo({
 				page: 1,
-				filter:id,
+				filter: id,
 			})
 			$('.shopList-select-conditions .more-fashion:first').find('i').html('+');
 			$('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
@@ -262,16 +264,16 @@ angular.module('ShopListModule', [])
 		$scope.allOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'',
-				stort:'DESC',
+				order: '',
+				stort: 'DESC',
 			})
 		};
 		//商品推荐排序
 		$scope.tuijianOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'sales_num',
-				stort:'DESC',
+				order: 'sales_num',
+				stort: 'DESC',
 			})
 		};
 		//商品价格排序
@@ -292,39 +294,39 @@ angular.module('ShopListModule', [])
 		$scope.PriceAsOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'shop_price',
-				stort:'ASC',
+				order: 'shop_price',
+				stort: 'ASC',
 			})
 		};
 		//价格降序
 		$scope.PriceDsOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'shop_price',
-				stort:'DESC',
+				order: 'shop_price',
+				stort: 'DESC',
 			})
 		};
 		//商品时间排序
 		$scope.timeOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'add_time',
+				order: 'add_time',
 			})
 		};
 		//时间升序
 		$scope.timeAsOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'add_time',
-				stort:'ASC',
+				order: 'add_time',
+				stort: 'ASC',
 			})
 		};
 		//时间降序
 		$scope.timeDsOrder = function () {
 			$scope.stateGo({
 				page: 1,
-				order:'add_time',
-				stort:'DESC',
+				order: 'add_time',
+				stort: 'DESC',
 			})
 		};
 		//图片处理函数
@@ -442,4 +444,4 @@ angular.module('ShopListModule', [])
 					})
 			}
 		};
-	}])
+	})

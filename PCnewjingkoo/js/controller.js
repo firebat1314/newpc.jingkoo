@@ -92,7 +92,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.shopCarHomeData = data;
                     if (data.suppliers_goods_list.length == 0) {
                         $scope.carRight = false;
@@ -103,7 +102,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     $scope.totalPrice = data.total.goods_price;
                 })
             //     .error(function(data){
-            //     //console.log(data);
             //     if(data.status == 0){
             //         //layer.msg('用户失效，请重新登录');
             //         location.href=$rootScope.ip + "/default.html";
@@ -122,7 +120,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
 
             var old = document.getElementsByClassName('qimo')[0]
-            //console.log(old);
             if (old) {
                 old.parentNode.removeChild(old);
             }
@@ -163,7 +160,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.IndexData = data;
 
                 //get_html(document.getElementsByTagName('header')[0].cloneNode(true));
@@ -193,7 +189,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.userData = data;
                 $scope.username = data.user_info.user_name;
                 $scope.userImg = data.user_info.avatar;
@@ -208,7 +203,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $scope.userShData = data;
                     $scope.unpay = data.data.unpay;
@@ -226,7 +220,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             },
         })
             .success(function (data) {
-                //console.log(data)
                 $scope.msgNumber = data.count;
             })
         //首页头部地区切换接口
@@ -241,7 +234,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     layer.close(cool);
                     if (data.status) {
                         // layer.msg('玩命加载中', {
@@ -272,44 +264,40 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId) {
 
             if (category == "category" && !brand && !zeiss) {
-                //console.log(1)
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         cat_id: categoryId,
                         filter: filterId,
-                    })
+                    }))
                 });
-                
+
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && !category && !zeiss) {
-                //console.log(2)
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         brand_id: brandId,
-                    })
+                    }))
                 })
                 window.open(url, '_blank');
             }
             else if (brand == "brand" && category == "category" && !zeiss) {
-                //console.log(3)
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         cat_id: categoryId,
                         brand_id: brandId,
-                    })
+                    }))
                 })
                 window.open(url, '_blank');
             }
 
 
             if (filter == "filter" && category == "category") {
-                //console.log(4)
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         cat_id: categoryId,
                         filter: filterId,
-                    })
+                    }))
                 })
                 window.open(url, '_blank');
             }
@@ -363,7 +351,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.shopCarHomeData = data;
                     if (data.suppliers_goods_list.length == 0) {
                         $scope.carRight = false;
@@ -410,7 +397,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { icon: 1 });
                         $scope.carFn();
@@ -440,7 +426,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { icon: 1 });
                         $scope.carFn();
@@ -458,15 +443,15 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.Index = function (index) {
             $scope.num = index;
         };
-
+        
         //搜索
         $scope.searchKey = function () {
             var url = $state.href('shop-list', {
-                params:JSON.stringify({
-                    keywords: $scope.keywords,
-                })
+                params: encodeURIComponent(JSON.stringify({
+                    keywords: $rootScope.keywords,
+                }))
             })
-				window.open(url);
+            window.open(url);
         };
         //控制分类菜单显隐
         //$scope.allFenLei = true;
@@ -493,7 +478,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $data.getYhqData({
                 bonus_type: bonus_type
             }).success(function (data) {
-                //console.log(data);
                 if (data.data.length == 0) {
                     $scope.yhq_show = true;
                 } else {
@@ -515,7 +499,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.yhqList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 $scope.yhqData = data;
                 $scope.isGet = false;
                 for (var i = 0; i < data.list.length; i++) {
@@ -544,7 +527,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.yhqFn();
@@ -564,15 +546,14 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //去列表
         $scope.quList = function (suppliers_name) {
             var url = $state.href('shop-list', {
-                params:JSON.stringify({
+                params: encodeURIComponent(JSON.stringify({
                     keywords: suppliers_name,
-                })                
+                }))
             });
             window.open(url, '_blank');
         };
 
 
-        //console.log(get_html);
     }])
     //首页尾部
     .controller('index_footer_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
@@ -586,7 +567,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.helpData = data;
                 })
         };
@@ -667,7 +647,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 layer.close(cool);
 
                 $scope.IndexData = data;
@@ -718,7 +697,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.yushouData = data;
             });
         //闪购
@@ -731,7 +709,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.flashData = data;
             });
 
@@ -778,9 +755,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.adsClick = function (type, id) {
             if (type == "category") {
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         cat_id: id,
-                    })  
+                    }))
                 });
                 window.open(url, '_blank');
             } else if (type == "goods") {
@@ -791,9 +768,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 window.open(url, '_blank');
             } else if (type == "brand") {
                 var url = $state.href('shop-list', {
-                    params:JSON.stringify({
+                    params: encodeURIComponent(JSON.stringify({
                         brand_id: id,
-                    })  
+                    }))
                 });
                 window.open(url, '_blank');
             }
@@ -811,7 +788,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.logoFashionData = data;
                 })
         };
@@ -834,67 +810,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $scope.logoFashion();
             }
         };
-        // $scope.fashionLogo = function(){
-        //     linum = $('.mainlist li').length;//图片数量
-        //     w = linum/2 * 232;//ul宽度
-        //     $('.ulWrap').css('width', w + 'px');//ul宽度
-        //     //$('.swaplist').html($('.mainlist').html());//复制内容
-        //
-        //     $('.line-box .sNext').click(function(){
-        //
-        //         if($('.swaplist,.mainlist').is(':animated')){
-        //             $('.swaplist,.mainlist').stop(true,true);
-        //         }
-        //
-        //         if($('.mainlist li').length>5){//多于4张图片
-        //             ml = parseInt($('.mainlist').css('left'));//默认图片ul位置
-        //             sl = parseInt($('.swaplist').css('left'));//交换图片ul位置
-        //             if(ml<=0 && ml>w*-1){//默认图片显示时
-        //                 $('.swaplist').css({left: '1160px'});//交换图片放在显示区域右侧
-        //                 $('.mainlist').animate({left: ml - 1160 + 'px'},'slow');//默认图片滚动
-        //                 if(ml==(w-1160)*-1){//默认图片最后一屏时
-        //                     $('.swaplist').animate({left: '0px'},'slow');//交换图片滚动
-        //                 }
-        //             }else{//交换图片显示时
-        //                 $('.mainlist').css({left: '1160px'})//默认图片放在显示区域右
-        //                 $('.swaplist').animate({left: sl - 1160 + 'px'},'slow');//交换图片滚动
-        //                 if(sl==(w-1160)*-1){//交换图片最后一屏时
-        //                     $('.mainlist').animate({left: '0px'},'slow');//默认图片滚动
-        //                 }
-        //             }
-        //         }
-        //     })
-        //     $('.line-box .sPrev').click(function(){
-        //
-        //         if($('.swaplist,.mainlist').is(':animated')){
-        //             $('.swaplist,.mainlist').stop(true,true);
-        //         }
-        //
-        //         if($('.mainlist li').length>5){
-        //             ml = parseInt($('.mainlist').css('left'));
-        //             sl = parseInt($('.swaplist').css('left'));
-        //             if(ml<=0 && ml>w*-1){
-        //                 $('.swaplist').css({left: w * -1 + 'px'});
-        //                 $('.mainlist').animate({left: ml + 1160 + 'px'},'slow');
-        //                 if(ml==0){
-        //                     $('.swaplist').animate({left: (w - 1160) * -1 + 'px'},'slow');
-        //                 }
-        //             }else{
-        //                 $('.mainlist').css({left: (w - 1160) * -1 + 'px'});
-        //                 $('.swaplist').animate({left: sl + 1160 + 'px'},'slow');
-        //                 if(sl==0){
-        //                     $('.mainlist').animate({left: '0px'},'slow');
-        //                 }
-        //             }
-        //         }
-        //     });
-        // }
+      
         //品牌跳列表
         $scope.goBrandList = function (id) {
             $state.go('shop-list', {
-					 params:JSON.stringify({
-						brand_id: id,
-					})
+                params: encodeURIComponent(JSON.stringify({
+                    brand_id: id,
+                }))
             })
         };
 
@@ -910,7 +832,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.qxsjAd = data;
                 });
         };
@@ -931,7 +852,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.jsjmAd = data;
                 });
         };
@@ -952,7 +872,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.jjzyAd = data;
                 });
         };
@@ -978,7 +897,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             layer.close(cool);
             $scope.fashionData = data;
 
@@ -998,7 +916,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         data: '',
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         layer.close(cool);
                         $scope.fashionHomeData = data;
                     })
@@ -1015,7 +932,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1033,7 +949,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1052,7 +967,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     $scope.all = true;
             //     $scope.anoAll = false;
             //     $scope.index = i;
-            //     //console.log(i);
             //     $('.xd-hd li').removeClass('on');
             //     $('.xd-hd li').eq(i+1).addClass('on');
             // };
@@ -1083,7 +997,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1107,7 +1020,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             $scope.fashionHomeData = data;
             $scope.brandAd = data.big_banner[0].ad_img;
         })
@@ -1130,9 +1042,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.adLi = function (type, id) {
             if (type == "category") {
                 var url = $state.href('shop-list', {
-						  params:JSON.stringify({
-						  cat_id: id
-					  })
+                    params: encodeURIComponent(JSON.stringify({
+                        cat_id: id
+                    }))
                 });
                 window.open(url, '_blank');
             } else if (type == "goods") {
@@ -1142,22 +1054,21 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 window.open(url, '_blank');
             } else if (type == "brand") {
                 var url = $state.href('shop-list', {
-						  params:JSON.stringify({
-							brand_id: id
-					  })
+                    params: encodeURIComponent(JSON.stringify({
+                        brand_id: id
+                    }))
                 });
                 window.open(url, '_blank');
             }
             // else{
-            //     //console.log('error');
             // }
         };
         //logo去列表
         $scope.goList = function (id) {
             $state.go('shop-list', {
-					 params:JSON.stringify({
-					 brand_id: id
-				})
+                params: encodeURIComponent(JSON.stringify({
+                    brand_id: id
+                }))
             })
         };
 
@@ -1174,7 +1085,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.logoFashionData = data;
                 })
         };
@@ -1206,7 +1116,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -1229,7 +1138,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1248,7 +1156,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1266,7 +1173,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1289,7 +1195,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1319,7 +1224,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1337,7 +1241,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1370,7 +1273,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             if (data.status) {
                 layer.close(cool);
             }
@@ -1393,7 +1295,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1412,7 +1313,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1430,7 +1330,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1453,7 +1352,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -1483,7 +1381,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1500,7 +1397,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         },
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -1535,12 +1431,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $scope.data = data;
         })
         $scope.clickAds = function (link_type) {
-            console.log(link_type)
             if (link_type.type_name == 'category') {
                 window.open($state.href('shop-list', {
-						  params:JSON.stringify({
-							cat_id: link_type.type_value,
-					})
+                    params: encodeURIComponent(JSON.stringify({
+                        cat_id: link_type.type_value,
+                    }))
                 }), '_blank');
             } else if (link_type.type_name == 'goods') {
                 window.open($state.href('shop-detail', {
@@ -1549,16 +1444,16 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }), '_blank');
             } else if (link_type.type_name == "brand") {
                 window.open($state.href('shop-list', {
-						  params:JSON.stringify({
-							brand_id: link_type.type_value,
-					})
+                    params: encodeURIComponent(JSON.stringify({
+                        brand_id: link_type.type_value,
+                    }))
                 }), '_blank');
             } else if (link_type.type_name == "search") {
 
             }
         }
-        $scope.goShopDetails = function(goods_id){
-            $state.go('shop-detail',{goods_id: goods_id,keywords: ''});
+        $scope.goShopDetails = function (goods_id) {
+            $state.go('shop-detail', { goods_id: goods_id, keywords: '' });
         }
     }])
     //积分商城
@@ -1584,7 +1479,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.ponitsList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1731,7 +1625,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.yhqList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1809,7 +1702,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $rootScope.$broadcast('uploadCoupon')
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
@@ -1823,9 +1715,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //去列表
         $scope.quList = function (suppliers_name) {
             var url = $state.href('shop-list', {
-					 params:JSON.stringify({
-                keywords: suppliers_name,
-					 })
+                params: encodeURIComponent(JSON.stringify({
+                    keywords: suppliers_name,
+                }))
             });
             window.open(url, '_blank');
         };
@@ -1850,7 +1742,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.hotList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -1908,7 +1799,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             layer.msg('关注失败');
                             //location.href=$rootScope.ip + "/default.html";
@@ -1928,7 +1818,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             layer.msg('取消关注失败');
                             //location.href="http://jingkoo.net2017/11/28/default.html";
@@ -1951,7 +1840,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     })
         //         .success(function(data) {
-        //             //console.log(data);
         //             $scope.qxsjAd = data;
         //         });
         // };
@@ -2011,7 +1899,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -2038,7 +1925,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -2079,9 +1965,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
 
         $scope.loginClick = function () {
-            //console.log($scope.geeteTrue1);
             //var validate1 = $scope.geeteTrue1.getValidate();
-            //console.log(validate1);
             //validate1 != undefined
             if (true) {
                 //$scope.user.geetest_challenge = validate1.geetest_challenge;
@@ -2100,7 +1984,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //     return str.join("&");
                     // }   request-payload转为form-data格式的传输方式
                 }).success(function (data) {
-                    //console.log(data);
                     $scope.userData = data;
                     if (data.status) {
                         layer.msg(data.info, { time: 2000 }, function () {
@@ -2110,7 +1993,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $scope.geeteTrue1.reset();
                         layer.msg(data.info, { time: 2000 });
                         $scope.codeFn();
-                        //console.log($scope.user);
                     }
                     // $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
@@ -2128,7 +2010,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //键盘登录获取token验证 获取首页全局数据
         $scope.login = function (e) {
             var validate1 = $scope.geeteTrue1.getValidate();
-            //console.log(validate1);
             if (e.keyCode != 13) {
                 return;
             } else {
@@ -2149,7 +2030,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //     return str.join("&");
                         // }   request-payload转为form-data格式的传输方式
                     }).success(function (data) {
-                        //console.log(data);
                         $scope.userData = data;
                         if (data.status) {
                             layer.msg(data.info, { time: 1000 }, function () {
@@ -2205,7 +2085,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //     return str.join("&");
                     // }   request-payload转为form-data格式的传输方式
                 }).success(function (data) {
-                    //console.log(data);
                     $scope.userData = data;
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
@@ -2239,7 +2118,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     return str.join("&");
                 // }   request-payload转为form-data格式的传输方式
             }).success(function (data) {
-                //console.log(data);
                 $scope.userData = data;
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
@@ -2268,7 +2146,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     useNoise: true
                 }
             }).success(function (data) {
-                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2287,7 +2164,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     skey: $scope.code
                 }
             }).success(function (data) {
-                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2307,7 +2183,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         $scope.info = function () {
             var validate2 = $scope.geeteTrue2.getValidate();
-            //console.log(validate2);
 
             if (validate2 != undefined) {
                 $scope.infogeetest_challenge = validate2.geetest_challenge;
@@ -2328,7 +2203,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         geetest_seccode: $scope.infogeetest_seccode
                     }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $scope.geeteTrue2.reset();
                         layer.msg(data.info);
@@ -2357,7 +2231,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         $scope.anoinfo = function () {
             var validate2 = $scope.geeteTrue2.getValidate();
-            //console.log(validate2);
 
             if (validate2 != undefined) {
                 $scope.anoInfogeetest_challenge = validate2.geetest_challenge;
@@ -2378,7 +2251,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         geetest_seccode: $scope.anoInfogeetest_seccode
                     }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -2441,7 +2313,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 method: 'GET',
                 params: '',
             }).success(function (data) {
-                //console.log(data);
                 initGeetest({
                     // 以下配置参数来自服务端 SDK
                     gt: data.gt,
@@ -2468,7 +2339,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             params: ''
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.rgProvinceData = data;
             })
 
@@ -2488,7 +2358,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.isUserChange = function (user) {
             var res = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{0,20}$/;
-            //console.log(user.length)
             if (res.test(user) && user.length != 0) {
                 $scope.isUser = true;
                 $scope.userRight = true;
@@ -2501,7 +2370,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == 0) {
                             $scope.validate_user = data;
                             $scope.isLife = false;
@@ -2512,7 +2380,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     })
             } else {
                 $scope.isUser = false;
-                //console.log(111);
                 $scope.isLife = true;
                 $scope.userRight = false;
                 $scope.userShow = false;
@@ -2592,7 +2459,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
             if ($scope.registerList.cpassword == '') {
-                //console.log(2);
                 $scope.isCpwd = true;
                 $scope.cpwdRight = false;
                 $scope.cpwdShow = false;
@@ -2610,7 +2476,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
             if ($scope.registerList.cpassword == '') {
-                //console.log(2);
                 $scope.isCpwd = true;
                 $scope.cpwdRight = false;
                 $scope.cpwdShow = false;
@@ -2629,7 +2494,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         });
         //验证手机号
         $scope.isPhone = function (phone) {
-            //console.log(phone.length);
             var res = /^[1][3,4,5,7,8][0-9]{9}$/;
             if (!res.test(phone)) {
                 $scope.isTel = false;
@@ -2641,7 +2505,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
             if ($scope.registerList.mobile_phone == '') {
-                //console.log(2);
                 $scope.isTel = true;
                 $scope.phoneRight = false;
                 $scope.phoneShow = false;
@@ -2658,7 +2521,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.cityData = data;
                     $scope.disData = [];
                     $scope.selectCity(pid);
@@ -2676,7 +2538,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.disData = data;
                 })
         };
@@ -2703,7 +2564,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     useNoise: true
                 }
             }).success(function (data) {
-                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2722,7 +2582,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     skey: $scope.code
                 }
             }).success(function (data) {
-                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2743,7 +2602,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.info = function () {
             var validate = $scope.geeteTrue.getValidate();
-            //console.log(validate);
 
             if (validate != undefined) {
                 $scope.reggeetest_challenge = validate.geetest_challenge;
@@ -2764,7 +2622,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         geetest_seccode: $scope.reggeetest_seccode
                     }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -2827,7 +2684,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             url: '' + $rootScope.ip + '/Login/user_agreement',
             data: ''
         }).success(function (data) {
-            //console.log(data);
             $scope.xieyi = $sce.trustAsHtml(data.data.content);
         })
 
@@ -2857,7 +2713,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg(data.info);
                     }
                 })
-                //console.log($scope.registerList);
             } else {
                 layer.msg('请先阅读并同意用户协议');
             }
@@ -2884,7 +2739,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotOneOption
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $scope.isPhone = data.phone;
                     $scope.forgotTwoOption.phone = data.phone;
@@ -2897,7 +2751,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             method: 'GET',
                             params: '',
                         }).success(function (data) {
-                            //console.log(data);
                             initGeetest({
                                 // 以下配置参数来自服务端 SDK
                                 gt: data.gt,
@@ -2941,7 +2794,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     useNoise: true
                 }
             }).success(function (data) {
-                //console.log(data);
                 $scope.code = data.data.skey;
                 $scope.getKey();
             })
@@ -2959,7 +2811,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     codeSet: $scope.code
                 }
             }).success(function (data) {
-                //console.log(data);
                 setTimeout(function () {
                     $scope.$apply(function () {
                         $scope.codeMa = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
@@ -2982,7 +2833,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.info = function () {
             var validate = $scope.geeteTrue.getValidate();
-            //console.log(validate);
 
             if (validate != undefined) {
                 $scope.Twogeetest_challenge = validate.geetest_challenge;
@@ -3003,7 +2853,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         geetest_seccode: $scope.Twogeetest_seccode
                     }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $scope.vm.kedian = true;
@@ -3037,8 +2886,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotTwoOption
             }).success(function (data) {
-                //console.log(data);
-                //console.log($scope.forgotTwoOption);
                 if (data.status) {
                     $scope.forgotThreeOption.phone = data.phone;
                     $scope.forgotThreeOption.verify = data.verify;
@@ -3063,7 +2910,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 url: '' + $rootScope.ip + '/Login/forgotPwd',
                 data: $scope.forgotThreeOption
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $scope.one = false;
                     $scope.two = false;
@@ -3120,7 +2966,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3132,7 +2977,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3143,7 +2987,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3152,7 +2995,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                                                 })
                                                 pingpp.createPayment(data.pingxx, function (result, err) {
-                                                    //console.log(result, err);
                                                     if (result == "success") {
                                                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                                     } else if (result == "fail") {
@@ -3181,7 +3023,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3193,7 +3034,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3204,7 +3044,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3225,7 +3064,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                             //
                                             //     })
                                             //     pingpp.createPayment(data.pingxx, function(result, err) {
-                                            //         //console.log(result, err);
                                             //         if (result == "success") {
                                             //             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                             //         } else if (result == "fail") {
@@ -3254,7 +3092,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $http({
                             method: "POST",
@@ -3266,7 +3103,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     $http({
                                         method: "POST",
@@ -3277,7 +3113,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            //console.log(data);
                                             if (data.status) {
                                                 layer.msg('玩命加载中', {
                                                     icon: 16
@@ -3286,7 +3121,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                                                 })
                                                 pingpp.createPayment(data.pingxx, function (result, err) {
-                                                    //console.log(result, err);
                                                     if (result == "success") {
                                                         // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                                                     } else if (result == "fail") {
@@ -3322,9 +3156,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.keyFn = function (id) {
             $state.go('shop-list', {
-                params:JSON.stringify({
-                cat_id: id,
-				  })
+                params: encodeURIComponent(JSON.stringify({
+                    cat_id: id,
+                }))
             })
         };
 
@@ -3347,7 +3181,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $scope.moreXx = true;
         };
 
-        //console.log($scope.filter);
         $scope.ListPage = {
             brand_id: $scope.brand_id,
             cat_id: $scope.cat_id,
@@ -3437,7 +3270,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     layer.close(cool);
                     if (data.status) {
                         $scope.shopListData = data;
@@ -3482,7 +3314,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.qxsjAd = data;
                 });
         };
@@ -3495,9 +3326,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         /*        //goto
                 $(".page-btn").one("click",function() {
                     var allPage = $(".allPage").text();
-                    //console.log(allPage);
                     var goPage = $(".page-go input").val() - 1; //跳转页数
-                    //console.log(goPage)
         
                     if (goPage > -1 && goPage < allPage) {
                         $scope.options.current_page = 2;
@@ -3513,13 +3342,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         // };
         //清空所有已选条件
         $scope.deleteSelect = function () {
-            // layer.msg('请稍后', {
-            //     icon: 16,
-            //     shade: 0.3,
-            //     time:500
-            // },function(){
-            //  $window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+''+'/'+''+'/'+''+'';
-            // });
+
             $scope.ListPage.brand_id = '';
             // $scope.ListPage.cat_id = '';
             $scope.brand_id = '';
@@ -3546,7 +3369,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.keywords = '';
-            //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
             $scope.InitList();
         };
         //获取商品品牌筛选的内容
@@ -3557,9 +3379,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $scope.brand_id = id;
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
-            //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
-            // //console.log($location.search('fashion='+value+''));
-            // //console.log($location.$$search.fashion);
             $scope.InitList();
             $scope.fashion = true;
             $('.shopList-select-conditions .more-fashion:first').prev().css({
@@ -3604,7 +3423,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.price = false;
         $scope.getPriceValue = function (value1, value2) {
             $scope.min_price = value1;
-            // $window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'';
             $scope.max_price = value2;
             $scope.ListPage.min_price = value1;
             $scope.ListPage.max_price = value2;
@@ -3633,7 +3451,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.keywords = '';
-            //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+$scope.ListPage.cat_id+'/'+$scope.ListPage.keywords+'';
             $scope.InitList();
         };
         $scope.cateAll = function () {
@@ -3656,23 +3473,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.fenlei = false;
         $scope.getMonthValue = function (value, id) {
             $scope.cat_name = value;
-            //$window.location.href = 'http://localhost:63342/newjingkoo/index.html?_ijt=t3lil9amqvpqbs8669ga0g8taf#/shop-list/'+$scope.ListPage.brand_id+'/'+id+'/'+$scope.ListPage.keywords+'';
             $scope.fenlei = true;
             $scope.ListPage.cat_id = id;
             $scope.cat_id = id;
             $scope.ListPage.keywords = '';
             $scope.keywords = '';
             $scope.InitList();
-            /*  $('.shopList-select-conditions .more-fashion:first').prev().css({
-                 height: '62'
-             })
-             $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-                 height: '30'
-             })
-             $("body,html").animate({
-                 "scrollTop": $('.shopList-main-tit').offset().top
-             }, 100) */
-
             $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
             $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
         };
@@ -3783,7 +3589,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //点击更多展开
         $scope.clickMore = function () {
             var more = true;
-            console.log($('.shopList-select-conditions .more-fashion:not(:first)'))
 
             $('.shopList-select-conditions .more-fashion:not(:first)').click(function () {
                 if (more) {
@@ -3821,7 +3626,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //猜你喜欢
         $data.guessYouLike().success(function (data) {
             $scope.YouLike = data;
-            //console.log(data);
         });
 
         $scope.likeGoodsFn = function () {
@@ -3866,7 +3670,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('关注失败',{time:100});
                             //$state.go('login');
@@ -3885,7 +3688,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('取消关注失败',{time:100});
                             //$state.go('login');
@@ -3919,7 +3721,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             layer.close(cool);
             if (data.status) {
                 $scope.anoListData = data;
@@ -3962,7 +3763,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.getZeissGoods = function (box, i1, ii, iii) {
             $scope.zeissList = [];
-            //console.log(box)
             if (box.cat_id == []) {
                 return;
             }
@@ -3975,7 +3775,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log($scope.anoListData.category.cat_id[ii].cat_id[i1])
                     setTimeout(function () {
                         $scope.$apply(function () {
                             $scope.anoListData.category.cat_id[iii].cat_id[ii].cat_id[i1]['zeissList'] = data.data;
@@ -4005,7 +3804,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
 
         $scope.mouseenter = function (e) {
-            console.log(e)
         }
 
         //点击展开
@@ -4034,7 +3832,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status == 0 && data.info == "商品信息不存在") {
                     layer.msg(data.info);
                     $window.history.back();
@@ -4080,7 +3877,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 $scope.goodsData = data;
                                 if (data.data.length > 3) {
                                     setTimeout(function () {
@@ -4119,7 +3915,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         $scope.goodsCarParams.goods.spec.push(attrs);
                                         $scope.goodsCarParams.goods.attr.push(sAttr);
                                     }
-                                    //console.log($scope.goodsCarParams);
                                     //每次更新获取商品数量改变价格 接口
                                     //var cool = layer.load(0, { shade: [0.3, '#fff'] });
                                     $http({
@@ -4130,7 +3925,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                     })
                                         .success(function (data) {
                                             //layer.close(cool);
-                                            //console.log(data);
                                             if (data.status) {
                                                 $scope.listTotalNumber = data.number;
                                                 $scope.listTotalPrice = data.goods_total;
@@ -4200,8 +3994,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             angular.element(e.target).focus().select();
         };
         $scope.change = function (e, pIndex, index, num) {
-            console.log(e)
-            //console.log($scope.goodsData.data[index].num);
             if ($scope.goodsData.data[index].num > 0) {
                 $scope.isCarParams = true;
                 //$scope.isReduce = false;
@@ -4228,7 +4020,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
             $scope.numberChange();
             // if(angular.element(e.target).value >=1){
-            //     //console.log($scope.num);
             // }else{
             //     angular.element(e.target).value = 1;
             // }
@@ -4244,7 +4035,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -4262,7 +4052,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                     } else {
@@ -4328,7 +4117,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    //console.log(data);
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 }, function () {
                                             $scope.shopDetailFn();
@@ -4348,7 +4136,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    //console.log(data);
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 }, function () {
                                             $scope.shopDetailFn();
@@ -4376,9 +4163,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                     $scope.goBack = function (category, categoryId) {
                         $state.go('shop-list', {
-									 params:JSON.stringify({
-											cat_id: categoryId,
-									})
+                            params: encodeURIComponent(JSON.stringify({
+                                cat_id: categoryId,
+                            }))
                         });
                     };
                     //是否有促销价格
@@ -4412,7 +4199,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    //console.log(data);
                                     if (data.status) {
                                         $state.go('shop-jiesuan');
                                         layer.msg(data.info, { icon: 1, time: 1000 });
@@ -4451,7 +4237,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
                         $scope.shopDetailFn();
@@ -4488,7 +4273,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status == '0') {
                         layer.msg('关注失败', { time: 1000 });
                         //$state.go('login');
@@ -4517,7 +4301,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status == '0') {
                         layer.msg('取消关注失败', { time: 1000 });
                         //$state.go('login');
@@ -4548,7 +4331,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $scope.regionArr.region_id = region;
                         $http({
@@ -4558,7 +4340,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 $rootScope.$broadcast('uploadCity');
                                 layer.msg('更换地址成功', { icon: 1, time: 1000 }, function () {
                                     $scope.shopDetailFn();
@@ -4587,7 +4368,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('更换地区成功', { icon: 1, time: 500 });
                         $rootScope.$broadcast('uploadCity');
@@ -4624,7 +4404,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (e, dsItem, index) {
-            //console.log(index);
 
             $scope.arr[index].qiujing = dsItem;
 
@@ -4642,8 +4421,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
              }).success(function(data){
                  $scope.arr[index].price = data.data.price;
              }) */
-            //console.log(dsItem);
-            //console.log(angular.element(e.target).parent().parent().parent().parent().prev());
             angular.element(e.target).parent().parent().parent().parent().prev()[0].value = dsItem;
             //获取柱镜的数据
             $http({
@@ -4656,7 +4433,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.zhujingData = data;
                     var arrs = [];
                     for (var i in data.data) {
@@ -4672,7 +4448,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //点击柱镜数据来给当前的柱镜给度数值
         $scope.getDsZj = function (e, dsItems, index) {
 
-            //console.log(dsItems);
             $scope.arr[index].zhujing = dsItems;
 
             $http({
@@ -4718,9 +4493,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     arr2.push(attr);
                 }
                 $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
-                //console.log($scope.arr);
             }
-            //console.log($scope.goodsSpectaclesCarParams);
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 layer.msg('商品球镜柱镜属性不能为空', { time: 1000 });
             } else {
@@ -4783,8 +4556,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }
                 $scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
             }
-            //console.log($scope.arr, arr2);
-            //console.log($scope.goodsSpectaclesCarParams);
             if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
                 //layer.msg('商品球镜柱镜属性不能为空',{time:1000});
             }
@@ -4796,7 +4567,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     success ? success(data) : null;
                 })
         }
@@ -4810,7 +4580,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     success ? success(data) : null;
 
                 })
@@ -4857,7 +4626,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     }
                 //     $scope.goodsCarParams.goods.spec.push(arr1);
                 // }
-                // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
                 $scope.add_to_cart_spec(function (data) {
                     if (data.status == -1) {
@@ -4922,7 +4690,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     }
                 //     $scope.goodsCarParams.goods.spec.push(arr1);
                 // }
-                // //console.log($scope.goodsCarParams);
                 //普通商品加入购物车接口
                 $scope.add_to_cart_spec(function (data) {
                     if (data.status == -1) {
@@ -4948,7 +4715,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             for (var h = 0; h < $scope.shopDetailData.history.length; h++) {
                 $scope.historyItem.goods_ids.push($scope.shopDetailData.history[h].goods_id);
             }
-            //console.log($scope.historyItem);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/user/del_watch',
@@ -4956,7 +4722,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.shopDetailFn();
@@ -5089,7 +4854,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                                         html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                                     }
-                                    //console.log(data.result[data_i].qiu+"|||"+data.result[data_i].zhu+"|||"+data_id+"|||"+nums);
                                     $("#tr" + data_id).html(html);
                                 } else {
                                     $("#tr" + data_id).remove();
@@ -5218,10 +4982,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         (function () {
             function myBrowser() {
                 var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-                //console.log(navigator);
-                console.log(userAgent);
                 var isOpera = userAgent.indexOf("Opera") > -1;
-                //console.log(isOpera);
                 if (isOpera) {
                     return "Opera"
                 };//判断是否Opera浏览器
@@ -5297,7 +5058,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 var table_l = $("#table_111").offset().left, table_t = $("#table_111").offset().top;
                 var table_w = table_obj.offsetWidth, table_h = table_obj.offsetHeight;
                 //事件会在鼠标指针移动时发生
-                console.log(mb);
                 document.onmousemove = function () {
                     evt = window.event || arguments[0];
                     if (isSelect) {
@@ -5309,7 +5069,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //_y = (evt.y || evt.clientY);
                         _x = mb == 'IE' ? evt.clientX : evt.x;
                         _y = mb == 'IE' ? evt.clientY : evt.y;
-                        //console.log(evt,_x,_y);
 
                         if (mousemove_left > left_) {
                             div_width = Math.abs(_x - (mousemove_left - startX - left_));
@@ -5358,7 +5117,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 if (selList[i].className.indexOf("seled") == -1 && $(selList[i]).attr("name") != 'desa') {
                                     //selList[i].attr("name")
                                     //改变柱镜显示颜色
-                                    //console.log($(selList[i]).index());
                                     $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
                                     $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#dee9fa');
                                     //改变柱镜显示颜色
@@ -5370,7 +5128,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                     selList[i].className = selList[i].className + " seled";
                                 } else if (selList[i].className.indexOf("seled") > -1) {
                                     //改变柱镜显示颜色
-                                    //console.log($(selList[i]).index());
                                     $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#dee9fa');
                                     $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('color', '#3f69a5');
 
@@ -5386,7 +5143,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                     selList[i].className = "bs_bg";
                                     //
                                     //改变柱镜显示颜色
-                                    //console.log($(selList[i]).index());
                                     $(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
                                     //改变柱镜显示颜色
                                     $(".fist").find("th").eq($(selList[i]).index()).css('background', '#f5f5f5');
@@ -5397,7 +5153,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 								/*
 								else if(selList[i].className.indexOf("seled") > -1){
 									//改变柱镜显示颜色
-									//console.log($(selList[i]).index());
 									$(selList[i]).parents("#table_111").find("tr").eq(0).find("th").eq($(selList[i]).index()).css('background', 'red');
 									//改变柱镜显示颜色
 									$(".fist").find("th").eq($(selList[i]).index()).css('background', 'red');
@@ -5463,7 +5218,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
             $('#table_111 tr td').live("mouseover", function () {
-                //console.log('hh');
                 //$(this).siblings().eq(0).css('background','#fedede');
                 $(this).parent().find("td").eq(0).css('background', '#dee9fa');
                 $(this).parent().find("td").eq(0).css('color', '#3f69a5');
@@ -5480,7 +5234,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             });
             $('#table_111 tr td').live("mouseout", function () {
                 /*
-                //console.log($(this).siblings().eq(0).css('background'));
                 $(this).siblings().eq(0).css('background','#f5f5f5');
                 $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
                 */
@@ -5522,7 +5275,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }
                 if (count > 0) {
                     is_prompt = false;
-                    // //console.log(is_prompt);
                     var layer_index = layer.prompt({
                         title: '共选择' + count + "种,请填写数量", zIndex: 1260, formType: 0, cancel: function (index, layero) {
                             //if(confirm('确定要关闭么')){
@@ -5651,7 +5403,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                                 html += '<td align="center" class="">' + pic_count.toFixed(2) + '</td>';
                                                 html += '<td align="center"><a href="javascript:;" class="del_td" data-val="' + data_id + '">删除</a></td>';
                                             }
-                                            console.log(data.data[data_i].qiu + "|||" + data.data[data_i].zhu + "|||" + data_id + "|||" + nums);
                                             $("#tr" + data_id).html(html);
                                         } else {
                                             $("#tr" + data_id).remove();
@@ -5980,7 +5731,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 pro_picc += parseFloat(pro_price) * parseInt(members);
 
 
-                //console.log(picc);
                 int_counts = parseInt(int_counts) + parseInt(members);
             });
             count = int_counts;
@@ -6008,7 +5758,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $(".attr_val").each(function () {
                 tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                 spec.push(tr_val_id);
-                //console.log(tr_val_id);
                 $scope.trid = tr_val_id;
             });
 
@@ -6164,10 +5913,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
             if ($scope.trid) {
                 // $('.bulk-order-ano-table').show();
-                //console.log($scope.trid);
             } else {
                 // $('.bulk-order-ano-table').hide();
-                //console.log($scope.trid);
             }
         }
         $(function () {
@@ -6223,7 +5970,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $scope.goods = goods;
 
                 if ($scope.goods) {
-                    console.log("setInterval");
                     $http({
                         method: "POST",
                         url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
@@ -6234,9 +5980,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            console.log("cache_goods_batch_success");
                         }).error(function (data) {
-                            console.log("cache_goods_batch_error");
                         })
                 }
             }, 10000);
@@ -6287,7 +6031,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $(".attr_val").each(function () {
                     tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                     spec.push(tr_val_id);
-                    //console.log(tr_val_id);
                     $scope.trid = tr_val_id;
                 });
 
@@ -6301,7 +6044,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     async: false,
                     data: { 'id': $stateParams.goods_id, 'qiu': qiu, 'zhu': zhu, spc: spec, token: token },
                     success: function (data) {
-                        //console.log(data);
                         $("input[name=shop_price]").val(data.data.price);
                         $("input[name=shop_price]").attr("pro_price", data.data.pro_price);
                     }
@@ -6439,23 +6181,18 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                 if ($scope.trid) {
                     // $('.bulk-order-ano-table').show();
-                    //console.log($scope.trid);
                 } else {
                     // $('.bulk-order-ano-table').hide();
-                    //console.log($scope.trid);
                 }
             });
 
             if ($scope.trid) {
                 // $('.bulk-order-ano-table').show();
-                //console.log($scope.trid);
             } else {
                 // $('.bulk-order-ano-table').hide();
-                //console.log($scope.trid);
             }
             //加入购物车
             //$(".add_to_cart").live("click",function (){
-            // //console.log(document.cookie);
             // var arr,reg=new RegExp("(^| )token=([^;]*)(;|$)");
             // arr = document.cookie.match(reg);
             // var token = arr[2];
@@ -6468,7 +6205,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //});
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
-                console.log(k_code);
                 if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                     var w_index = $(this).parent().index();//横向
                     var h_index = $(this).parent().parent().index();//纵向
@@ -6560,7 +6296,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 update_cart_num();
             });
             var wwinH = $(window).height() - 250;
-            console.log(wwinH);
             $(window).scroll(function () {
                 var tbtop = $('.bulk-order-total').offset().top;
                 var index = $(document).scrollTop();
@@ -6573,11 +6308,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }
 
                 if (index > shep) {
-                    console.log('sha?')
                     $('.bulk-order-total').removeClass('tbfix');
                 } else {
-                    //console.log(index)
-                    //console.log(shep)
                     $('.bulk-order-total').addClass('tbfix');
                 }
                 //$(".gwc_sum").text(index);
@@ -6650,7 +6382,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status == -1) {
                         layer.close(cool);
                         layer.msg(data.info);
@@ -6671,9 +6402,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    console.log("cache_goods_batch_success");
                                 }).error(function (data) {
-                                    console.log("cache_goods_batch_error");
                                 });
                             layer.close(cool);
                             location.reload()
@@ -6862,7 +6591,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -6886,7 +6614,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                 })
         };
         //监控购物车商品数量
@@ -6910,7 +6637,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.suppliers_goods_list.length == 0) {
                                     $scope.Goods = false;
                                 } else {
@@ -6941,7 +6667,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
-                                            //console.log(data);
                                             if (data.suppliers_goods_list.length == 0) {
                                                 $scope.Goods = false;
                                             } else {
@@ -6981,7 +6706,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             })
                 .success(function (data) {
                     carArr.goods_number = carArr.goods_number;
-                    //console.log(data);
                     if (data.status) {
                         $scope.carFn();
                         // $rootScope.$broadcast('upCarList');
@@ -7018,7 +6742,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                         // $rootScope.$broadcast('upCarList');
                     })
@@ -7040,7 +6763,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -7055,7 +6777,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -7074,7 +6795,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -7089,7 +6809,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -7107,7 +6826,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -7121,7 +6839,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -7139,7 +6856,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             } else {
@@ -7153,7 +6869,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.carFn();
                     })
             }
@@ -7193,7 +6908,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -7227,7 +6941,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -7259,7 +6972,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000, icon: 1 });
                         //$scope.carFn();
@@ -7290,7 +7002,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('删除成功', { time: 1000, icon: 1 }, function () {
                             $scope.carFn();
@@ -7328,7 +7039,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $state.go('shop-jiesuan');
                         $rootScope.$broadcast('upCarList');
@@ -7396,11 +7106,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.searchKey = function () {
 
             var newOpens = window.open();
-            //console.log($scope.carkeywords);
             var url = $state.href('shop-list', {
-                params:JSON.stringify({
+                params: encodeURIComponent(JSON.stringify({
                     keywords: $scope.carkeywords,
-                })
+                }))
             })
 
             setTimeout(function () {
@@ -7462,7 +7171,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     layer.close(cool);
                     if (data.status) {
                         $scope.jiesuanData = data;
@@ -7500,7 +7208,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                     } else {
@@ -7534,7 +7241,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -7558,7 +7264,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -7605,7 +7310,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         //编辑提交收货地址
         $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
-            //console.log($scope.editData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/edit_address',
@@ -7613,7 +7317,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -7643,7 +7346,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.bianjiData.city_list = data.data;
                     $scope.disDatas = [];
                     $scope.changeCity(pid);
@@ -7662,7 +7364,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.disDatas = data;
                     $scope.bianjiData.district_list = data.data;
                 })
@@ -7670,10 +7371,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.addSetMoren = function (mor) {
             if (mor == true) {
                 $scope.eeditData.default = 1;
-                //console.log($scope.eeditData);
             } else {
                 $scope.eeditData.default = 0;
-                //console.log($scope.eeditData);
             }
         };
         //添加收货地址
@@ -7687,7 +7386,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.tianjiaData = data;
 
                     //添加收货地址参数
@@ -7700,7 +7398,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //提交添加收货地址
         $scope.tianjiaAddress = function () {
             $scope.eeditData.default = $scope.isMor ? 1 : 0;
-            //console.log($scope.eeditData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/add_address',
@@ -7708,7 +7405,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $('.masks').hide();
@@ -7733,7 +7429,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.cityData = data;
                     $scope.disData = [];
                     $scope.selectCity(pid);
@@ -7752,7 +7447,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.disData = data;
                 })
         };
@@ -7767,7 +7461,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -7787,7 +7480,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -7808,7 +7500,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $scope.jiesuanFn();
                     } else {
@@ -7828,7 +7519,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -7852,7 +7542,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     event.target.style.pointerEvents = 'auto';
                     event.target.style.opacity = '1';
                     if (data.status) {
@@ -7871,7 +7560,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.userMoney = data.user_info.user_money;
             })
 
@@ -7887,7 +7575,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -7902,7 +7589,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -7912,7 +7598,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         $scope.submitList = function (e, index) {
 
-            // console.log(commentArr,suppliers,label);
             // return false;
 
             if ($scope.yeIf) {
@@ -7925,7 +7610,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $http({
                                 method: "POST",
@@ -7936,7 +7620,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    //console.log(data);
                                     // if(data.status&&$scope.jiesuanData.is_exchange==0){
                                     //     layer.msg(data.info);
                                     //     $rootScope.$broadcast('upCarList');
@@ -7980,7 +7663,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         // if(data.status&&$scope.jiesuanData.is_exchange==0){
                         //     layer.msg(data.info);
                         //     $rootScope.$broadcast('upCarList');
@@ -8091,7 +7773,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     layer.close(cool);
                     if (data.status) {
                         $scope.jiesuanData = data;
@@ -8120,7 +7801,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 }
                             }
                         }
-                        console.log($scope.defaultShipping)
                         //个人信息面板信息
                         $http({
                             method: "POST",
@@ -8129,7 +7809,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                     } else {
@@ -8163,7 +7842,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -8187,7 +7865,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -8235,7 +7912,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         //编辑提交收货地址
         $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
-            //console.log($scope.editData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/edit_address',
@@ -8243,7 +7919,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $scope.jiesuanFn();
@@ -8273,7 +7948,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.bianjiData.city_list = data.data;
                     $scope.disDatas = [];
                     $scope.changeCity(pid);
@@ -8292,7 +7966,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.disDatas = data;
                     $scope.bianjiData.district_list = data.data;
                 })
@@ -8300,10 +7973,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.addSetMoren = function (mor) {
             if (mor == true) {
                 $scope.eeditData.default = 1;
-                //console.log($scope.eeditData);
             } else {
                 $scope.eeditData.default = 0;
-                //console.log($scope.eeditData);
             }
         };
         //添加收货地址
@@ -8317,7 +7988,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.tianjiaData = data;
 
                     //添加收货地址参数
@@ -8330,7 +8000,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //提交添加收货地址
         $scope.tianjiaAddress = function () {
             $scope.eeditData.default = $scope.isMor ? 1 : 0;
-            //console.log($scope.eeditData);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/add_address',
@@ -8338,7 +8007,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 }, function () {
                             $('.masks').hide();
@@ -8363,7 +8031,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.cityData = data;
                     $scope.disData = [];
                     $scope.selectCity(pid);
@@ -8382,7 +8049,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.disData = data;
                 })
         };
@@ -8397,7 +8063,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -8418,7 +8083,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { time: 1000 });
                         $scope.jiesuanFn();
@@ -8443,7 +8107,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         event.target.style.pointerEvents = 'auto';
                         if (data.status) {
                             layer.msg(data.info, { time: 1000 });
@@ -8475,7 +8138,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     event.target.style.pointerEvents = 'auto';
                     event.target.style.opacity = '1';
                     if (data.status) {
@@ -8494,7 +8156,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.userMoney = data.user_info.user_money;
             })
 
@@ -8510,7 +8171,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -8525,7 +8185,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $scope.jiesuanFn();
                         }
@@ -8549,7 +8208,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $http({
                                 method: "POST",
@@ -8562,7 +8220,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    //console.log(data);
                                     // if(data.status&&$scope.jiesuanData.is_exchange==0){
                                     //     layer.msg(data.info);
                                     //     $rootScope.$broadcast('upCarList');
@@ -8608,7 +8265,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         // if(data.status&&$scope.jiesuanData.is_exchange==0){
                         //     layer.msg(data.info);
                         //     $rootScope.$broadcast('upCarList');
@@ -8696,7 +8352,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.codeData = data;
                 $scope.isPay = data.is_pay;
                 $scope.type = data.type;
@@ -8714,7 +8369,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         // })
                         //     .success(function(data) {
-                        //         //console.log(data);
                         //         if(data.status){
                         //             $http({
                         //                 method:"GET",
@@ -8725,7 +8379,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         //             })
                         //                 .success(function(data) {
-                        //                     //console.log(data);
                         //                     if(data.status){
                         //                         layer.msg(data.info, {
                         //                             icon: 1,
@@ -8751,7 +8404,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, {
                                         icon: 1,
@@ -8777,7 +8429,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         // })
                         //     .success(function(data) {
-                        //         //console.log(data);
                         //         if(data.status){
                         //             $http({
                         //                 method:"GET",
@@ -8788,7 +8439,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                         //             })
                         //                 .success(function(data) {
-                        //                     //console.log(data);
                         //                     if(data.status){
                         //                         layer.msg(data.info,{icon:1});
                         //                         var url = $state.href('glassMachining',{
@@ -8813,7 +8463,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, { icon: 1 });
                                     var url = $state.href('glassMachining', {
@@ -8864,7 +8513,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     // })
                     //     .success(function(data) {
-                    //         //console.log(data);
                     //         if(data.status){
                     //             $http({
                     //                 method:"GET",
@@ -8875,7 +8523,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     //             })
                     //                 .success(function(data) {
-                    //                     //console.log(data);
                     //                     if(data.status){
                     //                         layer.msg(data.info, {
                     //                             icon: 1,
@@ -8901,7 +8548,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -8927,7 +8573,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     // })
                     //     .success(function(data) {
-                    //         //console.log(data);
                     //         if(data.status){
                     //             $http({
                     //                 method:"GET",
@@ -8938,7 +8583,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                     //             })
                     //                 .success(function(data) {
-                    //                     //console.log(data);
                     //                     if(data.status){
                     //                         layer.msg(data.info,{icon:1});
                     //                         var url = $state.href('glassMachining',{
@@ -8963,7 +8607,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -8977,7 +8620,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 };
 
             } else if ($('.zfs-pic').eq(1).hasClass('on')) {
-                //console.log(1);
                 var newTab = window.open();
                 $http({
                     method: "POST",
@@ -8988,7 +8630,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg('玩命加载中', {
                                 icon: 16,
@@ -9011,7 +8652,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //         ,shade: 0.3
                         //     },function(){
                         //         pingpp.createPayment(data.pingxx, function(result, err) {
-                        //             //console.log(result, err);
                         //             if (result == "success") {
                         //                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         //             } else if (result == "fail") {
@@ -9035,7 +8675,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -9063,7 +8702,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -9093,7 +8731,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, {
                                     icon: 1,
@@ -9121,7 +8758,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info, { icon: 1 });
                                 var url = $state.href('glassMachining', {
@@ -9141,14 +8777,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // })
                 // .success(function(data) {
-                //     //console.log(data);
                 //     if(data.status){
                 //         layer.msg('玩命加载中', {
                 //             icon: 16
                 //             ,shade: 0.3
                 //         },function(){
                 //             pingpp.createPayment(data.pingxx, function(result, err) {
-                //                 //console.log(result, err);
                 //                 if (result == "success") {
                 //                     // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                 //                 } else if (result == "fail") {
@@ -9174,7 +8808,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.is_glass = data.order_id;
             })
     }])
@@ -9192,7 +8825,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.userMoney = data.user_info.user_money;
                 $scope.payPass = data.user_info.is_pay_pass;
             })
@@ -9209,7 +8841,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $rootScope.$broadcast('upCarList');
                 $scope.codeData = data;
                 $scope.isPay = data.is_pay;
@@ -9234,7 +8865,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, {
                                         icon: 1,
@@ -9261,7 +8891,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
-                                //console.log(data);
                                 if (data.status) {
                                     layer.msg(data.info, { icon: 1 });
                                     var url = $state.href('glassMachining', {
@@ -9344,7 +8973,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         $scope.is_glass = data.order_id;
                         if (data.order_id < 0 || data.status < 0) {
                             clearInterval(is_machining_goods_timer)
@@ -9362,7 +8990,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, {
                                 icon: 1,
@@ -9387,7 +9014,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, {
                                 icon: 1,
@@ -9414,7 +9040,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info, { icon: 1 });
                             var url = $state.href('glassMachining', {
@@ -9434,16 +9059,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.pass = '';
         $scope.passyes = '';
         $scope.yzPass = function (pass) {
-            //console.log($scope.password);
             if ($scope.codeData.pay_salt != '' && $scope.codeData.pay_salt != null) {
-                //console.log($.md5($.md5(pass) + $scope.codeData.pay_salt));
                 if ($.md5($.md5(pass) + $scope.codeData.pay_salt) == $scope.password) {
                     $scope.passyes = true;
                 } else {
                     $scope.passyes = false;
                 }
             } else {
-                //console.log($.md5(pass));
                 if ($.md5(pass) == $scope.password) {
                     $scope.passyes = true;
                 } else {
@@ -9464,7 +9086,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
 
         $scope.pay = function () {
-            //console.log($scope.balance);
 
             if ((!$scope.yuE) && !$scope.paymentType) {
                 layer.msg('请至少选择一种支付方式');
@@ -9492,12 +9113,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
             if ($scope.yuE) {
 
                 if ($scope.pass == '') {
-                    //console.log(1)
                 } else if ($scope.pass != '' && $scope.passyes == true) {
-                    //console.log(2)
                     var newOpens = window.open();
                 } else {
-                    //console.log(3);
                     //var newOpens = window.open();
                 }
 
@@ -9513,7 +9131,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             //$scope.$broadcast('passYes');
                             //$scope.passyes=true;
@@ -9532,7 +9149,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 $scope.showShadow();
 
                             } else {
-                                //console.log('组合');
                                 //使用组合支付
 
                                 //z直接调插件传pingXX
@@ -9560,7 +9176,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
 
                                 } else if ($('.onlinePay .close_check').eq(1).attr("checked")) {
-                                    //console.log('wx');
 
 
                                     var url = $state.href('erweimaNew', {
@@ -9594,7 +9209,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         }
                     })
                 // }).then(function(url){
-                //     //console.log(url)
                 //     window.open(url)
                 // })
 
@@ -9618,8 +9232,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
 
                 } else if ($('.onlinePay .close_check').eq(1).attr("checked")) {
-                    //console.log('wx');
-                    //console.log($stateParams.log_id);
 
                     var url = $state.href('erweima', {
                         url: $scope.codeData.weixin,
@@ -9662,7 +9274,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     })
         //         .success(function(data) {
-        //             //console.log(data);
         //
         //
         //             if(data.status){
@@ -9677,7 +9288,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -9692,7 +9302,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -9719,7 +9328,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -9739,7 +9347,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -9754,7 +9361,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -9781,7 +9387,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -9801,7 +9406,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                     newOpen.location.href=url;
         //
         //
-        //                     //console.log('余额选中');
         //                     $('#masks').show();
         //                     $('.payToLj').show();
         //
@@ -9816,7 +9420,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -9843,7 +9446,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -9873,7 +9475,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -9900,7 +9501,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -9914,7 +9514,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                     };
         //
         //                 }else if($('.onlinePay .close_check').eq(1).attr("checked")&&$scope.balance==0){
-        //                     //console.log('wx');
         //
         //
         //                     var url = $state.href('erweimaNew',{
@@ -9931,7 +9530,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                     })
         //                         .success(function(data) {
-        //                             //console.log(data);
         //                             if(data.status){
         //                                 layer.msg('玩命加载中', {
         //                                     icon: 16,
@@ -9970,7 +9568,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -9998,7 +9595,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -10028,7 +9624,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info, {
         //                                         icon: 1,
@@ -10056,7 +9651,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg(data.info,{icon:1});
         //                                     var url = $state.href('glassMachining',{
@@ -10069,7 +9663,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             })
         //                     };
         //                 }else{
-        //                     //console.log('没有选中');
         //
         //
         //                     $('#masks').show();
@@ -10091,7 +9684,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -10118,7 +9710,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -10132,7 +9723,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                         };
         //
         //                     }else if($('.onlinePay .close_check').eq(1).attr("checked")){
-        //                         //console.log(1);
         //                         //var newTab=window.open();
         //
         //                         var url = $state.href('erweimaNew',{
@@ -10149,7 +9739,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                             headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                         })
         //                             .success(function(data) {
-        //                                 //console.log(data);
         //                                 if(data.status){
         //                                     layer.msg('玩命加载中', {
         //                                         icon: 16,
@@ -10179,7 +9768,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -10207,7 +9795,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -10221,7 +9808,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                         };
         //
         //                     }else if($('.onlinePay .close_check').eq(2).attr("checked")){
-        //                         //console.log(2)
         //                         var url = $state.href('unionPay',{
         //                             url:$scope.codeData.upacp
         //                         });
@@ -10238,7 +9824,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info, {
         //                                             icon: 1,
@@ -10266,7 +9851,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //                                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //                             })
         //                                 .success(function(data) {
-        //                                     //console.log(data);
         //                                     if(data.status){
         //                                         layer.msg(data.info,{icon:1});
         //                                         var url = $state.href('glassMachining',{
@@ -10297,7 +9881,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         // $scope.pass='';
         // $scope.tijiao = function(){
-        //     //console.log($scope.pass);
         // };
 
         $scope.forgot = function () {
@@ -10320,8 +9903,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
-                //console.log($stateParams.type)
                 if (data.status) {
                     //判断是否能来镜加工
                     $http({
@@ -10333,7 +9914,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.order_id) {
                                 layer.confirm('订单已支付成功', {
                                     shade: 0.3,
@@ -10398,7 +9978,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status == 0) {
                     layer.msg(data.info)
                 }
@@ -10414,7 +9993,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             //$scope.wxurl = data;
                             //$scope.wxurl = $stateParams.url;
@@ -10435,7 +10013,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -10465,7 +10042,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     if (data.type == 'jump') {
                         $state.go('control-mb');
@@ -10476,7 +10052,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         , shade: 0.3
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -10502,7 +10077,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -10511,7 +10085,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -10544,7 +10117,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.ermData = data;
                 $scope.wxurl = data.wx_url;
                 $scope.res = ipCookie('token');
@@ -10563,7 +10135,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 $scope.url = data;
                                 //$scope.wxurl = $stateParams.url;
@@ -10586,7 +10157,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -10613,7 +10183,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -10626,7 +10195,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $state.go('order-all');
                     } else if (data.type == "pay") {
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -10657,7 +10225,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -10670,7 +10237,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $state.go('order-all');
                     } else if (data.type == "pay") {
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -10706,7 +10272,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.wxData = data;
                 $scope.wxurl = data.wx_url;
                 $scope.res = ipCookie('token');
@@ -10720,7 +10285,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     })
                         .success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 $scope.url = data;
                                 $scope.wxurl = $scope.wxData.wx_url;
@@ -10744,7 +10308,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info, { icon: 1 });
                         if ($stateParams.type == 'mach') {
@@ -10771,7 +10334,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -10780,7 +10342,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }, function () {
 
                         pingpp.createPayment(data.pingxx, function (result, err) {
-                            //console.log(result, err);
                             if (result == "success") {
                                 // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                             } else if (result == "fail") {
@@ -10811,7 +10372,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg('玩命加载中', {
                         icon: 16
@@ -10820,7 +10380,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                     })
                     pingpp.createPayment(data.pingxx, function (result, err) {
-                        //console.log(result, err);
                         if (result == "success") {
                             // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                         } else if (result == "fail") {
@@ -10850,7 +10409,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             })
                 .success(function (data) {
                     layer.close(cool);
-                    //console.log(data);
                     $scope.helpData = data;
 
                     for (var i = 0; i < data.data.length; i++) {
@@ -10882,7 +10440,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.tit = data.data.title;
                 $scope.content = $sce.trustAsHtml(data.data.content);
             })
@@ -10941,7 +10498,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         })
             .success(function (data) {
                 layer.close(cool);
-                //console.log(data);
                 $scope.data = $sce.trustAsHtml(data.data);
             }).error(function (data, staus) {
                 layer.close(cool);
@@ -10963,8 +10519,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //点击显示左右眼显示框
         $scope.showLeft = function (e) {
             // angular.element(e.target).attr('data-id');
-            // //console.log(angular.element(e.target).html());
-            // //console.log(angular.element(e.target).attr("data-id"));
             $('.leftBox').show();
             //默认框里所有的数据
             $http({
@@ -10979,7 +10533,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.pianList = data;
                     $scope.lengths = $scope.liArr.length;
 
@@ -11000,7 +10553,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.pianList = data;
 
                     $scope.lengths = $scope.liArr.length;
@@ -11021,7 +10573,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.pianList = data;
 
                     $scope.lengths = $scope.liArr.length;
@@ -11069,7 +10620,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //确认选择左眼获取左眼数据
 
         $scope.leftSelect = function (id) {
-            //console.log(id);
             $scope.leftArr.goods_rec = id;
         };
 
@@ -11089,7 +10639,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         //$scope.leftEyeData = data;
                         $scope.liArr[index].left = data;
@@ -11106,8 +10655,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //     $.each($scope.liArr[i].left.spec_info.goods_attr,function(k,v){
                         //         arr.push(v);
                         //     });
-                        //     //console.log(arr);
-                        //     //console.log(typeof $scope.liArr[i].left.spec_info.goods_attr); object
                         //
                         //     for(var j = 0;j<arr.length;j++){
                         //         //$scope.liArrParams.ladd.push($scope.liArr[i][arr[j].attr_name]);
@@ -11115,9 +10662,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         //          leftLiArr.push(attr);
                         //          $scope.liArrParams.ladd.push(arr[j].goods_attr_id);
                         //     }
-                        //     //console.log($scope.liArrParams);
-                        //     //console.log(leftLiArr);
-                        //     //console.log($scope.liArr);
                         // }
                         if ($scope.liArrParams.lqiujing.indexOf($scope.liArr[index].left.spec_info.qiujing) == -1) {
                             $scope.liArrParams.lqiujing.push($scope.liArr[index].left.spec_info.qiujing);
@@ -11134,13 +10678,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         if ($scope.eyeglassArr.indexOf($scope.liArr[index].left.spec_info.rec_id) == -1) {
                             $scope.eyeglassArr.push($scope.liArr[index].left.spec_info.rec_id);
                         }
-                        //console.log($scope.liArrParams);
                         $('.leftBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            //console.log($scope.leftArr);
         };
 
 
@@ -11169,7 +10711,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.right_goods_rec = null;
 
         $scope.rightSelect = function (id) {
-            //console.log(id);
             $scope.rightArr.goods_rec = id;
         };
         //确认选择右眼获取右眼数据
@@ -11189,7 +10730,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         //$scope.rightEyeData = data;
                         $scope.liArr[index].right = data;
@@ -11213,13 +10753,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         if ($scope.eyeglassArr.indexOf($scope.liArr[index].right.spec_info.rec_id) == -1) {
                             $scope.eyeglassArr.push($scope.liArr[index].right.spec_info.rec_id);
                         }
-                        //console.log($scope.liArrParams);
                         $('.rightBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            //console.log($scope.liArr);
         };
 
 
@@ -11248,7 +10786,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.jia_goods_rec = null;
 
         $scope.jiaSelect = function (id) {
-            //console.log(id);
             $scope.jiaArr.goods_rec = id;
         };
         //确认镜架数据
@@ -11268,7 +10805,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if ($scope.goods_rec_arr.indexOf(data.spec_info.rec_id) == -1) {
                         $scope.goods_rec_arr.push(data.spec_info.rec_id);
                     }
@@ -11281,13 +10817,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         } else {
                             $scope.liArrParams.frame_from.push($scope.liArr[index].jia.spec_info.rec_id);
                         }
-                        //console.log($scope.liArr);
                         $('.jiaBox').hide();
                     } else {
                         layer.msg(data.info);
                     }
                 })
-            //console.log($scope.liArr);
 
 
             if ($scope.liArrParams.mach_type == 1) {
@@ -11344,8 +10878,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             } else {
                 //$scope.eyeglassArr = [];
                 $scope.liArr.push({});
-                //console.log($scope.liArr);
-                //console.log($scope.goods_rec_arr);
                 $scope.show = true;
                 $scope.shows = false;
 
@@ -11367,19 +10899,16 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
 
                         $scope.leftArr.goods_rec = '';
                         $scope.rightArr.goods_rec = '';
                         $scope.jiaArr.goods_rec = '';
-                        //console.log($scope.leftArr);
                         $scope.goods_rec_arr = [];
 
                         if (data.status) {
 
                         }
                     })
-                // //console.log(angular.element(e.target).parent().prev().find('.bd li'));
                 // for(var i=0;i<$scope.liArr.length;i++){
                 //     $(this).index = i;
                 //    $('.picScroll-left li').eq(i).addClass('con');
@@ -11417,8 +10946,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         //确认信息
         $scope.submit = function () {
-            //console.log($scope.liArr);
-            //console.log($scope.liArrParams);
             $scope.liArrParams.eyeglass_from.push($scope.eyeglassArr);
             $http({
                 method: "POST",
@@ -11427,7 +10954,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg(data.info);
                         $state.go('person-process');
@@ -11451,7 +10977,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.content = $sce.trustAsHtml(data.data);
             })
 
@@ -11466,7 +10991,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         if (data.paid) {
                             $state.go('person-process'); return;
@@ -11493,13 +11017,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $rootScope.isShow = false;
         $rootScope.change = true;
 
-		  $scope.goShopListPage = function(brand_id){
-			$state.go('shop-list', {
-				params:JSON.stringify({
-					brand_id: brand_id
-				})
-			})
-		  }
+        $scope.goShopListPage = function (brand_id) {
+            $state.go('shop-list', {
+                params: encodeURIComponent(JSON.stringify({
+                    brand_id: brand_id
+                }))
+            })
+        }
         //店铺信息
         $scope.shopMessage = function () {
             $http({
@@ -11511,7 +11035,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.shopHomeData = data;
                     $scope.shopLogo = data.data.logo;
                     $scope.name = data.data.name;
@@ -11529,7 +11052,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.shopHotGoods = data;
                 $scope.getHotGoods($scope.shopHotGoods.suppliers_cat_list[0].cat_id);
             })
@@ -11567,7 +11089,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -11586,7 +11107,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -11618,7 +11138,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.hotGoodsData = data;
                 })
         };
@@ -11652,7 +11171,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.yhqFn();
@@ -11680,7 +11198,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.shopHomeData = data;
                     $scope.shopLogo = data.data.logo;
                     $scope.name = data.data.name;
@@ -11702,7 +11219,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -11721,7 +11237,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.shopMessage();
@@ -11801,7 +11316,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.close(cool);
                     }
@@ -11993,7 +11507,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('关注失败',{time:100});
                             //$state.go('login');
@@ -12012,7 +11525,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status == '0') {
                             //layer.msg('取消关注失败',{time:100});
                             //$state.go('login');
@@ -12057,7 +11569,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.invoicesList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12132,7 +11643,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.invSelectList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12189,9 +11699,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         var sum = 0;
         //全选
         $scope.isCheck = function (index, check, id, e) {
-            //console.log($scope.invSelectData);
             if (!$scope.invSelectData.data[index].allCheck) {
-                //console.log(1);
                 for (var j = 0; j < $scope.invSelectData.data[index].order.length; j++) {
                     $scope.invSelectData.data[index].order[j].check = true;
                     if ($scope.invSelectData.data[index].order[j].check == false) {
@@ -12213,14 +11721,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().find('.d1_div_sp2').html(data.float);
                 // })
 
                 angular.element(e).parent().find('.d1_div_sp2').html('¥' + sum.toFixed(2));
                 angular.element(e).parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
-                //console.log($scope.orderIdArr);
             } else {
                 for (var j = 0; j < $scope.invSelectData.data[index].order.length; j++) {
                     $scope.invSelectData.data[index].order[j].check = false;
@@ -12233,7 +11739,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().find('.d1_div_sp2').html(data.float);
                 // })
@@ -12241,7 +11746,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                 angular.element(e).parent().find('.d1_div_sp2').html('¥' + sum.toFixed(2));
                 angular.element(e).parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
-                //console.log($scope.orderIdArr);
             }
         };
 
@@ -12253,7 +11757,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //选中改变价格
         $scope.selectInv = function (index, pIndex, ck, id, e) {
             if (!ck) {
-                //console.log(index);
                 $scope.orderIdArr.order_ids.splice($.inArray(index, $scope.orderIdArr.order_ids), 0, $scope.invSelectData.data[pIndex].order[index].order_id);
                 sum += parseFloat($scope.invSelectData.data[pIndex].order[index].old_amount);
                 $scope.orderIdArr.suppliers_id = id;
@@ -12264,7 +11767,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().parent().parent().siblings().eq(1).find('.d1_div_sp2').html(data.float);
                 // })
@@ -12274,7 +11776,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 angular.element(e).parent().parent().parent().siblings().find('.tb_d2_lp span').html('¥' + sum.toFixed(2));
             }
             else {
-                //console.log(index);
                 //$scope.orderIdArr.order_ids.splice(index,1);
                 //angular删除数组
                 $scope.orderIdArr.order_ids.splice($.inArray(index, $scope.orderIdArr.order_ids), 1);
@@ -12284,7 +11785,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //     data:$scope.orderIdArr,
                 //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
                 // }).success(function(data) {
-                //     //console.log(data);
                 //     //$scope.price = data.float;
                 //     angular.element(e).parent().parent().parent().siblings().eq(1).find('.d1_div_sp2').html(data.float);
                 // })
@@ -12301,7 +11801,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //         data:$scope.orderIdArr,
         //         headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
         //     }).success(function(data) {
-        //         //console.log(data);
         //         $scope.price = data.float;
         //     })
         // };
@@ -12322,13 +11821,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: '',
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 $scope.addressData = data;
             })
         };
         //索取发票
         $scope.sq = function () {
-            //console.log($scope.orderIdArr);
             if ($scope.orderIdArr.suppliers_id == "") {
                 layer.msg('请选择正确的开票金额！');
             } else {
@@ -12338,7 +11835,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     data: $scope.orderIdArr,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $scope.hasKaiPiao = false;
                         $scope.kaiPiaoData = data;
@@ -12348,16 +11844,16 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $scope.piaoArr.suppliers_id = data.suppliers_id;
                         $scope.getAddress();
                     } else {
-                        if(data.info == '没有可选发票资质'){
+                        if (data.info == '没有可选发票资质') {
                             var cool = layer.confirm('没有可选发票资质，是否前往申请', {
                                 btn: ['确定', '取消'] //按钮
                             }, function () {
                                 $state.go('person-inv-message');
                                 layer.close(cool);
                             }, function () {
-                                
+
                             });
-                        }else{
+                        } else {
                             layer.msg(data.info);
                         }
                     }
@@ -12373,7 +11869,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.piaoArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $state.go('person-invoices');
@@ -12381,7 +11876,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.msg(data.info);
                 }
             })
-            //console.log($scope.piaoArr);
         };
 
 
@@ -12399,7 +11893,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.msg(data.info);
                             $scope.getAddress();
@@ -12444,7 +11937,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         data: $scope.invMessageList,
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             layer.close(cool);
                         }
@@ -12460,7 +11952,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $scope.type = false;
                         $scope.zzType = false;
                         $scope.changeType = function () {
-                            //console.log($scope.zizhiArr);
                             if ($scope.zizhiArr.type == 2) {
                                 $scope.type = true;
                                 $scope.zzType = true;
@@ -12516,7 +12007,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.invMessageList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12532,7 +12022,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $scope.type = false;
                 $scope.zzType = false;
                 $scope.changeType = function () {
-                    //console.log($scope.zizhiArr);
                     if ($scope.zizhiArr.type == 2) {
                         $scope.type = true;
                         $scope.zzType = true;
@@ -12689,7 +12178,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.zizhiArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.invMessageFn();
@@ -12697,7 +12185,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.msg(data.info);
                 }
             })
-            //console.log($scope.zizhiArr);
         };
     }])
     //个人中心-返修退换货-返修/退换货
@@ -12750,7 +12237,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.repairList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -12814,7 +12300,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     $scope.allGoods.orders.goods_ids.push(arr1);
             //
             // }
-            // //console.log($scope.allGoods);
 
 
             // $scope.allGoods.orders.rec_ids = [];
@@ -12822,7 +12307,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //
             // $scope.allGoods.orders.order_ids.push($scope.repairData.list[index].goods_id);
             // $scope.allGoods.orders.rec_ids.push($scope.repairData.list[index].rec_id);
-            // //console.log($scope.allGoods);
 
             //其中一个不选，取消全选
             for (var i = 0, item1 = $scope.repairData.list; i < item1.length; i++) {
@@ -12900,7 +12384,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     $scope.allGoods.orders.rec_ids.push($scope.repairData.list[i].rec_id);
                 }
             }
-            //console.log($scope.allGoods);
 
             $http({
                 method: "POST",
@@ -12908,7 +12391,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.allGoods,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $state.go('return-repair-content', {
                         id: '',
@@ -12928,7 +12410,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     //console.log(data);
             //     if(data.status) {
             //         $scope.isSubmit = false;
             //         $scope.lotsSubmit = true;
@@ -12946,7 +12427,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     //console.log(data);
             //     if(data.status) {
             //         $scope.lotsSubmit = true;
             //         $scope.isSubmit = false;
@@ -12962,7 +12442,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
             //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
             //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-            //                     //console.log($scope.subArr);
             //                 }
             //             }
             //         }
@@ -13014,7 +12493,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $state.go('return-repair-content', {
                         id: id
@@ -13031,7 +12509,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     data:$scope.allGoods,
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     //console.log(data);
             //     if(data.status){
             //         $scope.isSubmit = false;
             //         $scope.lotsSubmit = true;
@@ -13064,7 +12541,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
             //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
             //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-            //                     //console.log($scope.subArr);
             //                 }
             //             }
             //         }
@@ -13078,7 +12554,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //             }else{
             //                 $scope.shopGoods.push($scope.sqshData.goodslist[index].rec_id);
             //             }
-            //             //console.log($scope.shopGoods);
             //
             //             //其中一个不选，取消全选
             //             if($scope.shopGoods.length<$scope.sqshData.goodslist.length){
@@ -13095,14 +12570,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
             //                     $scope.sqshData.goodslist[i].selects = false;
             //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),1);
-            //                     //console.log($scope.shopGoods);
             //                 }
             //
             //             }else{
             //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
             //                     $scope.sqshData.goodslist[i].selects = true;
             //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),0,$scope.sqshData.goodslist[i].rec_id);
-            //                     //console.log($scope.shopGoods);
             //                 }
             //             }
             //         };
@@ -13122,7 +12595,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             params: ''
         })
             .success(function (data) {
-                //console.log(data);
                 $scope.bianjiData = data;
             })
         $scope.editData = {
@@ -13140,10 +12612,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.bianjiData.city_list = data.data;
                     $scope.changeCity(pid);
-                    //console.log($scope.editData);
                 })
         };
         //编辑市切换
@@ -13158,9 +12628,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
-                    //console.log(data);
                     $scope.bianjiData.district_list = data.data;
-                    //console.log($scope.editData);
                 })
         };
 
@@ -13176,7 +12644,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 order_id: $scope.sqshData.order_info.order_id,
                 rec_ids: $scope.shopGoods
             };
-            //console.log($scope.tjsqArr);
             if ($scope.tjsqArr.rec_ids.length == 0) {
                 layer.msg('请先勾选一个商品');
             } else {
@@ -13186,7 +12653,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     data: $scope.tjsqArr,
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         $scope.lotsSubmit = true;
                         $scope.isLotsSubmit = false;
@@ -13240,7 +12706,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.goodslist[pIndex][index].rec_id);
             // $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
 
-            //console.log($scope.subArr);
             if (num > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().removeClass('reduce');
@@ -13260,18 +12725,15 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
 
-            //console.log(num);
             $scope.subArr.rec_ids.member[index] = num;
         };
 
         //增加
         //$scope.numArr = [{}];
         $scope.add = function (e, index, pIndex) {
-            // //console.log(angular.element(e.target).parent().parent().prev().html());
             // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
-            //console.log($scope.subArr);
             $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
             //$scope.numberChange();
@@ -13288,7 +12750,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 angular.element(e.target).addClass('add');
             }
 
-            //console.log($scope.subArr);
 
         };
         //减少
@@ -13299,7 +12760,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             // $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
             // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
             // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
-            //console.log($scope.subArr);
             if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
                 $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
@@ -13316,7 +12776,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //$scope.numberChange();
             }
 
-            //console.log($scope.subArr);
         };
 
         //修改返修信息
@@ -13349,7 +12808,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
         })
 
         $scope.xg = function () {
-            //console.log($scope.xgArr);
 
             $http({
                 method: "POST",
@@ -13357,7 +12815,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.xgArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 $scope.return_pay_way = data.data.return_pay_way;
                 $scope.is_fapiao = data.data.is_fapiao;
                 $scope.return_way = data.data.return_way;
@@ -13424,7 +12881,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
             //获取文件
             //var file = angular.element(e.target).files[0];
-            //console.log(e);
             var file = document.getElementsByClassName("file")[index].files[0];
             var img = document.getElementsByClassName("preview")[index];
             var imageType = /^image\//;
@@ -13440,7 +12896,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //图片路径设置为读取的图片
                 $scope.img_ava = e.target.result;
                 $scope.subArr.return_img[index] = $scope.img_ava;
-                //console.log($scope.subArr);
                 img.src = $scope.img_ava;
             };
             reader.readAsDataURL(file);
@@ -13454,14 +12909,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg('该商品不可售后');
                     } else {
                         //$scope.subArr.return_type = $scope.afterSaleData.type;
-                        //console.log($scope.subArr);
                         if ($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[i][j].order_id) == -1) {
                             $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-                            //console.log($scope.subArr);
                         }
                         if ($scope.subArr.rec_ids.rec_id.indexOf($scope.afterSaleData.order_goods[i][j].rec_id) == -1) {
                             $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-                            //console.log($scope.subArr);
                         }
                         $http({
                             method: "POST",
@@ -13469,7 +12921,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             data: $scope.subArr,
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         }).success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 layer.msg(data.info);
                                 $scope.isSuccess = true;
@@ -13504,7 +12955,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     // $scope.lotsSubmit = true;
                     // $scope.isSubmit = false;
@@ -13521,7 +12971,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
                                 $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
                                 $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-                                //console.log($scope.subArr);
                             }
                         }
                     }
@@ -13582,7 +13031,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     // $scope.lotsSubmit = true;
                     // $scope.isSubmit = false;
@@ -13599,7 +13047,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 $scope.subArr.order_ids.push(item2[j].order_id);
                                 $scope.subArr.rec_ids.rec_id.push(item2[j].rec_id);
                                 $scope.subArr.rec_ids.member.push(item2[j].goods_number);
-                                //console.log($scope.subArr);
                             }
                         }
                     }
@@ -13664,7 +13111,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.goodslist[pIndex][index].rec_id);
             // $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
 
-            //console.log($scope.subArr);
             if (num > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().removeClass('reduce');
@@ -13689,17 +13135,14 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
             $scope.subArr.rec_ids.member[index] = $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number;
-            //console.log(num);
         };
 
         //增加
         //$scope.numArr = [{}];
         $scope.add = function (e, index, pIndex) {
-            // //console.log(angular.element(e.target).parent().parent().prev().html());
             // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
             // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
-            //console.log($scope.subArr);
             $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
             //$scope.numberChange();
@@ -13716,7 +13159,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 angular.element(e.target).addClass('add');
             }
 
-            //console.log($scope.subArr);
 
         };
         //减少
@@ -13732,7 +13174,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             // $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
             // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
             // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
-            //console.log($scope.subArr);
             if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number > 1) {
                 $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
@@ -13743,13 +13184,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $scope.subArr.rec_ids.member[index] = 0;
                 //$scope.isReduce = true;
                 //$scope.isAdd = false;
-                console.log(angular.element(e.target))
                 angular.element(e.target).addClass('reduce');
                 angular.element(e.target).next().next().removeClass('');
                 //$scope.numberChange();
             }
 
-            //console.log($scope.subArr);
         };
 
         $('.fx_th_btn input').click(function (e) {
@@ -13757,13 +13196,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
             $(e.target).addClass('bt1');
 
             // if($('.fx_th_btn input').eq(0).hasClass('bt1')){
-            //     //console.log(1)
             //     $scope.subArr.return_type=1;
             // }else if($('.fx_th_btn input').eq(1).hasClass('bt1')){
-            //     //console.log(2)
             //     $scope.subArr.return_type=2;
             // }else if($('.fx_th_btn input').eq(2).hasClass('bt1')){
-            //     //console.log(3)
             //     $scope.subArr.return_type=3;
             // }
         })
@@ -13783,7 +13219,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
             //获取文件
             //var file = angular.element(e.target).files[0];
-            //console.log(e);
             var file = document.getElementsByClassName("file")[index].files[0];
             var img = document.getElementsByClassName("preview")[index];
             var imageType = /^image\//;
@@ -13799,7 +13234,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //图片路径设置为读取的图片
                 $scope.img_ava = e.target.result;
                 $scope.subArr.return_img[index] = $scope.img_ava;
-                //console.log($scope.subArr);
                 img.src = $scope.img_ava;
             };
             reader.readAsDataURL(file);
@@ -13818,14 +13252,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             $scope.subArr.return_type = $scope.afterSaleData.type;
                         }
 
-                        //console.log($scope.subArr);
                         if ($scope.subArr.order_ids.indexOf(item2[j].order_id) == -1 && item2[j].server_end == 1) {
                             $scope.subArr.order_ids.push(item2[j].order_id);
-                            //console.log($scope.subArr);
                         }
                         if ($scope.subArr.rec_ids.rec_id.indexOf(item2[j].rec_id) == -1 && item2[j].server_end == 1) {
                             $scope.subArr.rec_ids.rec_id.push(item2[j].rec_id);
-                            //console.log($scope.subArr);
                         }
                     }
                 }
@@ -13838,7 +13269,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.subArr,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info);
                     $scope.isSuccess = true;
@@ -13877,7 +13307,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.repairHistroyList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -13939,7 +13368,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $scope.islook = false;
                     $scope.lookContentData = data;
@@ -13966,7 +13394,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             data: $scope.returnArr,
                             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         }).success(function (data) {
-                            //console.log(data);
                             if (data.status) {
                                 $scope.isSubmit = false;
                             } else {
@@ -14002,7 +13429,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     },
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
-                    //console.log(data);
                     if (data.status) {
                         layer.msg('取消成功', { time: 1000 }, function () {
                             $scope.repairHistroyFn();
@@ -14035,7 +13461,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.repairRefundList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.close(cool);
                 }
@@ -14099,7 +13524,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     },
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     //console.log(data);
             //     if(data.status){
             //         $scope.islook = false;
             //         $scope.lookContentData = data;
@@ -14126,7 +13550,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //                 data:$scope.returnArr,
             //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             //             }).success(function(data) {
-            //                 //console.log(data);
             //                 if(data.status){
             //                     $scope.isSubmit = false;
             //                 }else{
@@ -14163,7 +13586,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             },
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
-            //console.log(data);
             if (data.status) {
                 //$scope.islook = false;
                 layer.close(cool);
@@ -14191,7 +13613,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         data: $scope.returnArr,
                         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
-                        //console.log(data);
                         if (data.status) {
                             $scope.isSubmit = false;
                         } else {
@@ -14236,7 +13657,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 data: $scope.repairRefundList,
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 $scope.getGoods(data);
                 $scope.totalSize = data.pages;
                 $scope.repairRefundData = data;
@@ -14292,7 +13712,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //     },
             //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             // }).success(function(data) {
-            //     //console.log(data);
             //     if(data.status){
             //         $scope.islook = false;
             //         $scope.lookContentData = data;
@@ -14319,7 +13738,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //                 data:$scope.returnArr,
             //                 headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
             //             }).success(function(data) {
-            //                 //console.log(data);
             //                 if(data.status){
             //                     $scope.isSubmit = false;
             //                 }else{
@@ -14390,14 +13808,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }else{
                     $scope.ids.push(item.rec_id);
                 }
-                //console.log($scope.ids)
             } */
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                 if (item[i].selected) {
                     $scope.ids.push(item[i].rec_id);
                 }
             }
-            //console.log($scope.ids)
             $scope.delCollectionGoods($scope.ids)
         }
         /* 全选按钮 */
@@ -14520,14 +13936,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 }else{
                     $scope.ids.push(item.rec_id);
                 }
-                //console.log($scope.ids)
             } */
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                 if (item[i].selected) {
                     $scope.ids.push(item[i].rec_id);
                 }
             }
-            //console.log($scope.ids)
             $scope.delCollectionGoods($scope.ids)
         }
         /* 全选按钮 */
@@ -14610,7 +14024,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 $scope.getDatas = function () {
                     $data.machiningList($scope.machiningList).success(function (res) {
                         $scope.data = res;
-                        //console.log(res);
                         if (res.status) {
                             layer.close(cool);
                             $("body,html").animate({
@@ -14630,7 +14043,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $data.machiningList($scope.machiningList).success(function (res) {
                 $scope.data = res;
-                //console.log(res);
                 if (res.status) {
                     layer.close(cool);
                 }
@@ -14667,7 +14079,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         //		查看更多
         $scope.lookMore = function (index, event) {
-            //console.log('more');
             $(event.currentTarget).prev().css({
                 'height': 'auto',
                 'overflow': 'auto'
@@ -14702,7 +14113,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
         //付款
         $scope.buyAgain = function (goods_id) {
-            //console.log(goods_id);
             $state.go('paymentNew', { log_id: goods_id, type: 'mach' })
         }
         //输入框查询
@@ -14712,13 +14122,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }).success(function (data) {
                 if (data.status == 0) {
                     layer.msg('请确定输入是否正确', { icon: 2, time: 1000 })
-                    //console.log($scope.order_number)
                 } else {
                     $scope.AllDetial = data.list;
                     $scope.AllDetialLength = data.list.length;
                     $scope.AllOrder = data;
                     $scope.getOrd(data);
-                    //console.log($scope.order_number)
                 }
             })
         }
@@ -14733,7 +14141,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     $scope.getData();
                     layer.msg(data.info, { icon: 1 })
@@ -14763,7 +14170,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     // layer.close(cool);
                     $scope.machInfo = data;
@@ -14831,7 +14237,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                         $scope.personProcessContentFn();
@@ -14852,7 +14257,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
-                //console.log(data);
                 if (data.status) {
                     layer.msg(data.info, { time: 1000, icon: 1 }, function () {
                         $scope.personProcessContentFn();

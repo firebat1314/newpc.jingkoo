@@ -3252,7 +3252,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 	.controller('order-print-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location','$sce', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location,$sce) {
 		$rootScope.isShow = false;
         $rootScope.change = false;
-		$scope.orderid = $stateParams.orderid
+		$scope.orderid = $stateParams.orderId;
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
 		$http({
 			method: "POST",

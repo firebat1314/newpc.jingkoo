@@ -361,6 +361,7 @@
     $(function () {
         function float() {//卧槽
             var ele = $('.shop-hasGoods-item-box');
+            console.log(ele.offset().top,ele.height(),$(window).scrollTop())
             var needH = ele.offset().top + ele.height() - $(window).scrollTop();
             var winH = $(window).height() - 75;
             if (needH < winH) {
@@ -369,7 +370,9 @@
                 $('.car-hasGoods-main .wholebox').addClass('add');
             }
         }
-        float()
-        $(window).scroll(float)
+        setTimeout(function() {
+            float();
+        }, 1000);
+        $(window).resize(float);$(window).scroll(float);
     })
 </script>

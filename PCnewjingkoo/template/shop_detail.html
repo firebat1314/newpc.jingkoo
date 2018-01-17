@@ -7,7 +7,7 @@
     <div class="shopDetail-tit">
         <div class="shop-detail-tit">
             <!--<p style="float:left;">当前位置：<a href="#/home">首页</a> > <em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>-->
-            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="detailTitle"></em></p>
+            <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="data.data.goods_name"></em></p>
             <div class="top_conbox"> 
                 <span class="shop_top_sp1" ng-click="goStore()" style="cursor: pointer;"><span class="join_dp"></span>{{name}}</span>
                 <span ng-if="!shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
@@ -56,7 +56,7 @@
                             <div class="money_cg_d1">
                                 <span class="new_shop_sp3">采购量</span>
                                 <ul class="money_cg_u2">
-                                    <li ng-repeat="proTit in shopDetailData.promotion[0].value">{{proTit.title}}{{unit}}</li>
+                                    <li ng-repeat="proTit in shopDetailData.promotion[0].value">{{proTit.title}}{{data.data.unit}}</li>
                                 </ul>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                 <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
                             </div>
                             <div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
-                                <span class="saler_msg_sp1">原价批发</span><span class="saler_msg_sp3">{{oldShopPrice}}</span>
+                                <span class="saler_msg_sp1">原价批发</span><span class="saler_msg_sp3">{{data.data.old_shop_price}}</span>
                             </div>
                             <div class="saler_msg_d1" ng-if="shopDetailData.data.dingzhitime">
                                 <span class="saler_msg_sp1">发货时间</span><span class="saler_msg_sp3">卖家保证{{shopDetailData.data.dingzhitime}}内发货</span>
@@ -120,18 +120,18 @@
                                             <strong ng-if="shopDetailData.goods_fee.goods_number==0" style="color:#999;">无货</strong>
                                             <em ng-if="shopDetailData.goods_fee.is_diqu==1">,本地区暂不销售</em>
                                         </span>
-                                        <p class="saler_p11"><span ng-if="is_fee>-1" class="saler_msg_sp6">满{{shopDetailData.goods_fee.free_money}}包邮</span></p>
+                                        <p class="saler_p11"><span ng-if="data.goods_fee.free_money>-1" class="saler_msg_sp6">满{{shopDetailData.goods_fee.free_money}}包邮</span></p>
                                     </div>
                                     <div class="saler_msg_d3" style="line-height: 30px;">{{shopDetailData.supplier_info.shipping_rule}}</div>
                                     <div class="saler_msg_d3" style="line-height: 30px;">由&nbsp;<span style="color: #e60000;">{{shopDetailData.supplier_info.name||'镜库'}}</span>&nbsp;负责发货，并提供售后服务</div>
                                     <!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
                                 </div>
                             </div>
-                            <!--膜层-->
+                            <!--商品主属性-->
                             <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                                 <span class="saler_msg_sp1">{{saler.name}}</span>
                                 <ul class="saler_msg_film">
-                                    <li ng-repeat="salers in saler.values" ng-class="{'on':attrNumber==salers.number}" ng-click="getAttrList(salers.id,salers.number);">{{salers.label}}<i class="guanlianYes"></i></li>
+                                    <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="getAttrList(salers.id,salers.number);">{{salers.label}}<i class="guanlianYes"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -154,9 +154,9 @@
                                 <tr class="first-line">
                                     <th width="72"></th>
                                     <th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
-                                    <th width="124" ng-if="!is_promotion">单价</th>
-                                    <th width="124" ng-if="is_promotion">原价</th>
-                                    <th width="124" ng-if="is_promotion">促销价</th>
+                                    <th width="124" ng-if="!data.data.is_promotion">单价</th>
+                                    <th width="124" ng-if="data.data.is_promotion">原价</th>
+                                    <th width="124" ng-if="data.data.is_promotion">促销价</th>
                                     <th width="124">库存</th>
                                     <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                                 </tr>
@@ -171,14 +171,14 @@
                                     </th>
                                     <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
                                     <th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
-                                    <th width="124" ng-if="is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
+                                    <th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
                                     <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                                     <th width="124">
                                         <div class="diy-right" ng-if="data.data.isdingzhi!=1">
                                             <span class="wenb">
-                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce($event,$index)">－</a>
-                                                <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);$event=$event" ng-change="change($event,$parent.$index,$index,trItem.num)">
-                                                <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="add($event,$index)">+</a>
+                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
+                                                <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);" ng-change="change(trItem)">
+                                                <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="add(trItem)">+</a>
                                             </span>
                                         </div>
                                         <div class="dingzhi" ng-if="data.data.isdingzhi==1"><a class="dingzhi_btn" style="width: 135px;
@@ -209,13 +209,9 @@
                                     <th>柱镜</th>
                                     <th ng-if="data.data.zhouwei">轴位</th>
                                     <th ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
-                                    <!--<th>通道</th>-->
-                                    <!--<th>ADD</th>-->
-                                    <!--<th>颜色</th>-->
-                                    <!--<th>左/右</th>-->
-                                    <th ng-if="is_promotion==0">单价</th>
-                                    <th ng-if="is_promotion==1">原价</th>
-                                    <th ng-if="is_promotion==1">促销价</th>
+                                    <th ng-if="data.data.is_promotion==0">单价</th>
+                                    <th ng-if="data.data.is_promotion==1">原价</th>
+                                    <th ng-if="data.data.is_promotion==1">促销价</th>
                                     <th>小计</th>
                                     <th></th>
                                 </tr>
@@ -223,9 +219,9 @@
                                     <td>
                                         <div class="diy-right">
                                             <span class="wenb">
-                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);numChange(item)">－</a>
-                                                <input  type="number" class="fl c diyr-txt pick-text" ng-change="numChange(item)" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
-                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1;numChange(item)">+</a>
+                                                <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);priceChange(item)">－</a>
+                                                <input  type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
+                                                <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1;priceChange(item)">+</a>
                                             </span>
                                         </div>
                                         <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
@@ -239,32 +235,32 @@
                                                     <p>度数范围：<span>{{high}}</span>  至 <span>{{low}}</span> </p>
                                                 </div>
                                                 <div class="dushu-table">
-                                                    <div class="dushu-table-item" ng-repeat="dushuItem in spectaclesData.spectacles_properties.list"><p ng-click="getDs($event,dushuItem,$parent.$index)">{{dushuItem}}</p></div>
+                                                    <div class="dushu-table-item" ng-repeat="dushuItem in spectaclesData.spectacles_properties.list"><p ng-click="item.qiujing=dushuItem;getDs(item);">{{dushuItem}}</p></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <input id="pick-text" class="pick-text" ng-model="item.zhujasdadsing"  ng-click="openDsZj($event)" placeholder="请选择" type="text"><div class="select-error">请先选择球镜</div>
-                                        <div class="dushuQiuJing-box" ng-if="zhujingData.data">
+                                        <input id="pick-text" class="pick-text" ng-model="item.zhujing"  ng-click="openDsZj($event)" placeholder="请选择" type="text"><div class="select-error">请先选择球镜</div>
+                                        <div class="dushuQiuJing-box">
                                             <div class="dushuQiuJing-tit"><p>选择度数</p><img ng-click="hideDuShuBox($event)" src="img/cha.png" alt=""></div>
                                             <div class="dushuQiuJing-content">
                                                 <div class="dushuQiuJing-fanwei">
                                                     <p>度数范围：<span>{{highs}}</span>  至 <span>{{lows}}</span> </p>
                                                 </div>
                                                 <div class="dushuQiuJing-table">
-                                                    <div class="dushuQiuJing-table-item" ng-repeat="dushuItems in zhujingData.data"><p ng-click="getDsZj($event,dushuItems,$parent.$index);">{{dushuItems}}</p></div>
+                                                    <div class="dushuQiuJing-table-item" ng-repeat="dushuItems in zhujingData.data"><p ng-click="item.zhujing=dushuItems;getDsZj(item);">{{dushuItems}}</p></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
                                     <td ng-if="data.data.zhouwei"><input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text"></td>
-                                    <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]">
+                                    <td ng-repeat="zhouwei in spectaclesData.specification"><select class="pick-selt" ng-model="item[zhouwei.name]" ng-change="priceChange(item)" >
                                         <option value="" ng-selected="1">请选择</option><option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option></select></td>
                                     <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->
-                                    <td ng-if="is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
-                                    <td ng-if="is_promotion==1" style="color:#ff3333;">{{oldShopPrice}}</td>
-                                    <td ng-if="is_promotion==1" style="color:#ff3333;">{{cxPrcie}}</td>
+                                    <td ng-if="data.data.is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+                                    <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+                                    <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
                                     <td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
                                     <td><img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt=""></td>
                                 </tr>
@@ -279,11 +275,11 @@
                         <div class="pick-list-top-box" ng-if="topList">
                             <div class="pick-list-top" ng-repeat="specAttr in goodsCarParams.goods.attr" ng-if="goodsCarParams.goods.member[$index]">
                                 <div class="fl list-top-color">{{specAttr}}</div>
-                                <div class="fl list-top-number"><span>{{goodsCarParams.goods.member[$index]}}</span>{{unit}}</div>
+                                <div class="fl list-top-number"><span>{{goodsCarParams.goods.member[$index]}}</span>{{data.data.unit}}</div>
                             </div>
                         </div>
                         <div class="pick-list-bottom" ng-show="isCarParams">
-                            <div class="fl list-bottom-total"><span>{{listTotalNumber}}</span>{{unit}}    |    <span>{{listTotalPrice}}</span>元</div>
+                            <div class="fl list-bottom-total"><span>{{listTotalNumber}}</span>{{data.data.unit}}    |    <span>{{listTotalPrice}}</span>元</div>
                             <div class="fl list-bottom-selected" ng-class="{'select':topList}" ng-click="topList=!topList">已选清单</div>
                         </div>
                     </div>
@@ -294,21 +290,16 @@
                     </div>
                     <div class="zhic">
                         <div>服务支持：</div>
-                        <div ng-if="zhengpin"><img src="img/zzpz.png" title="正品保证">正品保证</div>
-                        <div ng-if="huodao"><img src="img/thfw.png" title="退换服务">退换服务</div>
-                        <div ng-if="tui"><img src="img/sdps.png" title="闪电配送">闪电配送</div>
+                        <div ng-if="data.data.additional.is_true"><img src="img/zzpz.png" title="正品保证">正品保证</div>
+                        <div ng-if="data.data.additional.is_hdfk"><img src="img/thfw.png" title="退换服务">退换服务</div>
+                        <div ng-if="data.data.additional.is_inv"><img src="img/sdps.png" title="闪电配送">闪电配送</div>
                     </div>
                 </div>
                 <div class="fl sp-nrright" ng-if="data&&data.data.exchange_info">
                     <h2>{{goodsName}}</h2>
-                        <!-- <p class="new_shop_p1" style="    font-size: 12px;"> -->
-                            <!-- <span class="new_shop_sp1" style="    color: #FF3333;">{{shopDetailData.data.goods_brief}}</span> -->
-                            <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
-                        <!-- </p> -->
                     <div class="model">
-                        <div class="fl goods-number">商品编号：<span>{{goodsSn}}</span></div>
-                        <!-- <div class="fl goods-number">型号：<span>MR1523-04</span></div> -->
-                        <div class="fl goods-number">计价单位：<span>{{unit}}</span></div>
+                        <div class="fl goods-number">商品编号：<span>{{data.data.goods_sn}}</span></div>
+                        <div class="fl goods-number">计价单位：<span>{{data.data.unit}}</span></div>
                     </div>
                     <div class="sale-points-bigBox">
                         <div class="promotion-message-top">
@@ -335,9 +326,7 @@
                                 <li>
                                     <div class="diy-right">
                                         <span class="wenb">
-                                            <!--<a href="javascript:;" class="fl borr c" ng-click="reduce($event,$index)">－</a>-->
                                             <input type="text" id="pointNum" class="fl c diyr-txt" ng-model="pointsNum" ng-change="change($event,$parent.$index,$index)">
-                                            <!--<a href="javascript:;" class="fl borl c" ng-click="add($event,$index)">+</a>-->
                                         </span>
                                     </div>
                                 </li>
@@ -348,76 +337,14 @@
                     <div class="buy-button">
                         <button ng-click="buyNow()" ng-model="isExchange" ng-disabled="!isExchange" ng-class="{'disable':!isExchange}" class="buy">立即兑换</button>
                     </div>
-                    <div class="zhic" ng-if="zhengpin||huodao||tui">
+                    <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
                         <div>服务支持：</div>
-                        <div ng-if="zhengpin"><img src="img/zzpz.png" title="正品保证">正品保证</div>
-                        <div ng-if="huodao"><img src="img/thfw.png" title="退换服务">退换服务</div>
-                        <div ng-if="tui"><img src="img/sdps.png" title="闪电配送">闪电配送</div>
+                        <div ng-if="data.data.additional.is_true"><img src="img/zzpz.png" title="正品保证">正品保证</div>
+                        <div ng-if="data.data.additional.is_hdfk"><img src="img/thfw.png" title="退换服务">退换服务</div>
+                        <div ng-if="data.data.additional.is_inv"><img src="img/sdps.png" title="闪电配送">闪电配送</div>
                     </div>
                 </div>
             </div>
-            <!--<div class="goods-recommended">-->
-                <!--<div class="goods-recommended-tit">-->
-                    <!--<div class="fl recommended active">商品推荐</div>-->
-                    <!--<div class="fl recommended">组合套餐</div>-->
-                <!--</div>-->
-                <!--<div class="goods-recommended-content active">-->
-                    <!--<a class="sPrev" href="javascript:void(0)"></a>-->
-                    <!--<div class="tempWrap">-->
-                        <!--<ul>-->
-                            <!--<li ng-repeat="tuijianLi in shopDetailData.linked_goods" repeat-done="tuijianFn()">-->
-                                <!--<a href="">-->
-                                    <!--<img ng-src={{tuijianLi.goods_img}} alt="">-->
-                                <!--</a>-->
-                                <!--<p>{{tuijianLi.goods_name}}</p>-->
-                                <!--<i>{{tuijianLi.shop_price}}</i>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                    <!--<a class="sNext" href="javascript:void(0)"></a>-->
-                <!--</div>-->
-                <!--<div class="goods-recommended-content">-->
-                    <!--<div class="goods-combination">-->
-                        <!--<div class="goods-combination-item">-->
-                            <!--<img src="img/combinationImg.png" alt="">-->
-                            <!--<div class="goods-combination-message">-->
-                                <!--<div class="fl goods-combination-select selected"></div>-->
-                                <!--<div class="fr goods-combination-price">￥520.00</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="goods-combination-add"></div>-->
-                        <!--<div class="goods-combination-item">-->
-                            <!--<img src="img/combinationImg.png" alt="">-->
-                            <!--<div class="goods-combination-message">-->
-                                <!--<div class="fl goods-combination-select"></div>-->
-                                <!--<div class="fr goods-combination-price">￥520.00</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="goods-combination-add"></div>-->
-                        <!--<div class="goods-combination-item">-->
-                            <!--<img src="img/combinationImg.png" alt="">-->
-                            <!--<div class="goods-combination-message">-->
-                                <!--<div class="fl goods-combination-select"></div>-->
-                                <!--<div class="fr goods-combination-price">￥520.00</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="goods-combination-add"></div>-->
-                        <!--<div class="goods-combination-item">-->
-                            <!--<img src="img/combinationImg.png" alt="">-->
-                            <!--<div class="goods-combination-message">-->
-                                <!--<div class="fl goods-combination-select"></div>-->
-                                <!--<div class="fr goods-combination-price">￥520.00</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="goods-combination-dengyu"></div>-->
-                        <!--<div class="goods-combination-total">-->
-                            <!--<p>已选择<span>20</span>个商品</p>-->
-                            <!--<p class="goods-combination-price">组合价：<span>￥5200.00</span></p>-->
-                            <!--<button>立即购买</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
             <div class="goods-mainly">
                 <div class="fl goods-mainly-left">
                     <div class="mainly-left-store">

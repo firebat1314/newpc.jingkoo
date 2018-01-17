@@ -3866,7 +3866,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //商品属性为goods时调用这个接口
 
                     $scope.getAttrList = function (attrId, attrNumber) {
-                        $scope.attrNumber = attrNumber;
+                        $scope.attrNumber = attrNumber || 1;
+                        $scope.attrId = attrId;
                         $http({
                             method: "POST",
                             url: '' + $rootScope.ip + '/Goods/get_attr_list',
@@ -3900,6 +3901,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 //使得输入框中初始值为0
                                 for (var i = 0; i < $scope.goodsData.data.length; i++) {
                                     $scope.goodsData.data[i].num = 0;
+                                    console.log($scope.goodsData)
                                 }
                                 $scope.numberChange = function () {
                                     //每次更新商品数量获取的数据
@@ -3933,37 +3935,28 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                             }
                                         })
                                 };
-                                // $scope.numberChange();
-                                $scope.isCarParams = false;
                                 $scope.isReduce = true;
                                 //增加
-                                //$scope.numArr = [{}];
-                                $scope.add = function (e, index) {
-                                    var product_number = $scope.goodsData.data[index].product_number;
-                                    $scope.goodsData.data[index].num += Number($scope.attrNumber);
+                                $scope.add = function (trItem) {
+                                    trItem.num += Number($scope.attrNumber);
                                     $scope.isZk = false;
                                     $scope.zk = false;
                                     $('.tableZk').css({
                                         height: 'auto'
                                     })
-                                    $scope.numberChange();
-                                    if ($scope.goodsData.data[index].num > 0) {
+                                    if (trItem.num > 0) {
                                         $scope.isCarParams = true;
-                                        //$scope.isReduce = false;
-                                    } else {
-                                        //$scope.isCarParams = false;
-                                    }
+                                    } 
+                                    $scope.numberChange();
                                 };
                                 //减少
-                                $scope.reduce = function (e, index) {
-                                    $scope.goodsData.data[index].num -= Number($scope.attrNumber);
-
+                                $scope.reduce = function (item) {
+                                    item.num -= Number($scope.attrNumber);
                                     $scope.numberChange();
                                 };
                             })
                     };
                     $scope.getAttrList($scope.attrId, $scope.attrNumber);
-
                 }
                 else if (data.goods_type == "goods_spectacles") {
                     var arr = [];
@@ -3993,36 +3986,14 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
             angular.element(e.target).focus().select();
         };
-        $scope.change = function (e, pIndex, index, num) {
-            if ($scope.goodsData.data[index].num > 0) {
-                $scope.isCarParams = true;
-                //$scope.isReduce = false;
-                angular.element(e.target).prev().removeClass('no');
-            } else if ($scope.goodsData.data[index].num == 0) {
-                //$scope.isCarParams = false;
-                //$scope.isReduce = true;
-                //$scope.isAdd = false;
-                angular.element(e.target).prev().addClass('no');
-                angular.element(e.target).next().removeClass('no');
+        $scope.change = function (trItem) {
+            console.log(trItem.num)
+            if (Number(trItem.num) > Number(trItem.product_number)) {
+                trItem.num = Number(trItem.product_number);
+            }else if (Number(trItem.num) < 0 || Number(trItem.num) == '') {
+                trItem.num = 0;
             }
-
-
-            if (Number($scope.goodsData.data[index].num) > Number($scope.goodsData.data[index].product_number)) {
-                $scope.goodsData.data[index].num = Number($scope.goodsData.data[index].product_number);
-                angular.element(e.target).next().addClass('no');
-            }
-            else if (Number($scope.goodsData.data[index].num) < 0 || Number($scope.goodsData.data[index].num) == '') {
-                $scope.goodsData.data[index].num = 0;
-            }
-            else {
-                angular.element(e.target).next().removeClass('no');
-            }
-
             $scope.numberChange();
-            // if(angular.element(e.target).value >=1){
-            // }else{
-            //     angular.element(e.target).value = 1;
-            // }
         };
 
         //商品详情接口
@@ -4040,8 +4011,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }
                     $scope.data = data;
                     document.title = data.data.goods_name;
-                    $scope.detailTitle = data.data.goods_name;
-                    //积分详情页
+                    //积分详情页data.data.goods_name
                     if (data.data.exchange_info) {
                         //控制积分商城商品和普通商品和镜片的区别
                         //个人信息面板信息
@@ -4058,10 +4028,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $scope.isPointsMall = true;
                         $scope.pointsMall = false;
                     }
-                    //正品 退换货 货到付款
-                    $scope.zhengpin = data.data.additional.is_true;
-                    $scope.huodao = data.data.additional.is_hdfk;
-                    $scope.tui = data.data.additional.is_inv;
                     //商品是否收藏
                     if (data.data.is_collect) {
                         //商品关注两个状态的控制
@@ -4091,13 +4057,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     //商品详情详细信息
                     $scope.shopDetailData = data;
                     $scope.shopId = data.data.suppliers_id;
-                    //进入店铺
-                    // $scope.goStore = function(){
-                    //     var url = $state.href('shopHome',{
-                    //         shopId:$scope.shopId
-                    //     });
-                    //     window.open(url,'_blank');
-                    // };
                     $scope.goStore = function () {
                         var url = $state.href('shopHomeNew', {
                             shopId: $scope.shopId
@@ -4152,15 +4111,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     } else {
                         $scope.isGlass = true;
                     }
-                    $scope.marketPriceFormated = data.data.market_price_formated;
-                    $scope.oldShopPrice = data.data.old_shop_price;
-                    $scope.cxPrcie = data.data.shop_price_formated;
-                    $scope.unit = data.data.unit;
-                    $scope.goodsSn = data.data.goods_sn;
-                    $scope.listID = data.data.cat_id;
-                    $scope.is_fee = data.goods_fee.free_money;
-
-
                     $scope.goBack = function (category, categoryId) {
                         $state.go('shop-list', {
                             params: encodeURIComponent(JSON.stringify({
@@ -4403,32 +4353,14 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
 
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
-        $scope.getDs = function (e, dsItem, index) {
-
-            $scope.arr[index].qiujing = dsItem;
-
-            /*  $http({
-                 method: "POST",
-                 url: '' + $rootScope.ip + '/Goods/changeprice',
-                 data: {
-                     goods_id: $scope.detailOption.goods_id,
-                       attr:[],
-                         qiujing:dsItem,
-                           zhujing:$scope.arr[index].zhujing,
- 
-                 },
-                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-             }).success(function(data){
-                 $scope.arr[index].price = data.data.price;
-             }) */
-            angular.element(e.target).parent().parent().parent().parent().prev()[0].value = dsItem;
+        $scope.getDs = function (item) {
             //获取柱镜的数据
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/get_zhujing',
                 data: {
                     goods_id: $scope.detailOption.goods_id,
-                    item: angular.element(e.target).parent().parent().parent().parent().prev()[0].value
+                    item: item.qiujing
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -4442,36 +4374,49 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     $scope.lows = Math.min.apply(null, arrs).toFixed(2);
                 })
             //$scope.pickTaList = dsItem;
+            $scope.priceChange(item);
+
             $('#masks').hide();
             $('.dushu-box').hide();
         };
         //点击柱镜数据来给当前的柱镜给度数值
-        $scope.getDsZj = function (e, dsItems, index) {
+        $scope.getDsZj = function (item) {
+            $scope.priceChange(item);
 
-            $scope.arr[index].zhujing = dsItems;
-
+            $('#masks').hide();
+            $('.dushuQiuJing-box').hide();
+        };
+        /* 属性价格改变 */
+        $scope.priceChange = function(item){
+            var spcArr = [];
+            for (var j = 0; j < $scope.spectaclesData.specification.length; j++) {
+                var attr = item[$scope.spectaclesData.specification[j].name];
+                if (attr) {
+                    spcArr.push(item[$scope.spectaclesData.specification[j].name])
+                }
+            }
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/changeprice',
                 data: {
                     goods_id: $scope.detailOption.goods_id,
-                    attr: [],
-                    qiujing: $scope.arr[index].qiujing,
-                    zhujing: dsItems,
-
+                    attr: spcArr,
+                    qiujing: item.qiujing,
+                    zhujing: item.zhujing
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-            }).success(function (data) {
-                $scope.arr[index].price = data.data.price.toFixed(2);
-                $scope.arr[index].subprice = ($scope.arr[index].member * $scope.arr[index].price).toFixed(2);
-
+            }).success(function (res) {
+                if (res.status) {
+                    item.price = res.data.price.toFixed(2);
+                    if (res.data.promotion_id > 0) {
+                        item.youhui = (res.data.promotion_price.substr(1));
+                        item.subprice = (item.member * item.youhui).toFixed(2);
+                    } else {
+                        item.subprice = (item.member * item.price).toFixed(2);
+                    }
+                }
             })
-
-
-            angular.element(e.target).parent().parent().parent().parent().prev().prev()[0].value = dsItems;
-            $('#masks').hide();
-            $('.dushuQiuJing-box').hide();
-        };
+        }
         //设置一个空数组用来新增一行
         //用来存放镜片属性的数组
         $scope.arr = [{ member: 1, subprice: '0.00', price: '0.00' }];
@@ -4512,10 +4457,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
 
         };
-        /* 镜片价格小计 */
-        $scope.numChange = function (item) {
-            item.subprice = (item.member * item.price).toFixed(2);
-        }
         //获取商品的各种属性值
         //传到购物车 镜片的数据
         $scope.goodsSpectaclesCarParams = {
@@ -4615,29 +4556,13 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
             //普通商品加入购物车
             else if ($scope.spectaclesData.goods_type == "goods") {
-                // $scope.goodsCarParams.goods.member = [];
-                // $scope.goodsCarParams.goods.spec = [];
-                // for(var t = 0;t<$scope.goodsData.data.length;t++) {
-                //     $scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
-                //     var arr1 = [];
-                //     for (var y = 0; y < $scope.goodsData.data[0].goods_attr.length; y++) {
-                //         var attrs = $scope.goodsData.data[0].goods_attr[y].attr_val;
-                //         arr1.push(attrs);
-                //     }
-                //     $scope.goodsCarParams.goods.spec.push(arr1);
-                // }
                 //普通商品加入购物车接口
                 $scope.add_to_cart_spec(function (data) {
                     if (data.status == -1) {
                         layer.msg(data.info, { time: 1000 });
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
-                        // for(var i = 0;i<$scope.goodsData.data.length;i++){
-                        //     $scope.goodsData.data[i].num = 0;
-                        // }
-                        /* for (var s = 0; s < $scope.goodsData.data.length; s++) {
-                            $scope.goodsData.data[s].num=0;
-                        } */
+                
                         layer.confirm('商品已添加至购物车', {
                             btn: ['去结算', '继续选购'], //按钮
                             title: '提示', btnAlign: 'c',
@@ -4679,17 +4604,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }
             //普通商品购买
             else if ($scope.spectaclesData.goods_type == "goods") {
-                // $scope.goodsCarParams.goods.member = [];
-                // $scope.goodsCarParams.goods.spec = [];
-                // for(var t = 0;t<$scope.goodsData.data.length;t++) {
-                //     $scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
-                //     var arr1 = [];
-                //     for (var y = 0; y < $scope.goodsData.data[0].goods_attr.length; y++) {
-                //         var attrs = $scope.goodsData.data[0].goods_attr[y].attr_val;
-                //         arr1.push(attrs);
-                //     }
-                //     $scope.goodsCarParams.goods.spec.push(arr1);
-                // }
                 //普通商品加入购物车接口
                 $scope.add_to_cart_spec(function (data) {
                     if (data.status == -1) {
@@ -12402,71 +12316,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.msg(data.info);
                 }
             })
-
-
-            // $http({
-            //     method:"POST",
-            //     url:''+$rootScope.ip+'/User/one_goods_repair',
-            //     data:$scope.allGoods,
-            //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
-            // }).success(function(data) {
-            //     if(data.status) {
-            //         $scope.isSubmit = false;
-            //         $scope.lotsSubmit = true;
-            //     }else{
-            //         $scope.isSubmit = true;
-            //         $scope.lotsSubmit = false;
-            //     }
-            // })
-
-
-
-            // $http({
-            //     method:"POST",
-            //     url:''+$rootScope.ip+'/User/more_goods_repair',
-            //     data:$scope.allGoods,
-            //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
-            // }).success(function(data) {
-            //     if(data.status) {
-            //         $scope.lotsSubmit = true;
-            //         $scope.isSubmit = false;
-            //         $scope.afterSaleData = data;
-            //         $scope.shop = data.suppliers_name;
-            //
-            //
-            //         for(var i = 0;i<$scope.afterSaleData.order_goods.length;i++){
-            //             for(var j = 0;j<$scope.afterSaleData.order_goods[i].length;j++){
-            //                 if($scope.afterSaleData.order_goods[i][j].goods_number == $scope.afterSaleData.order_goods[i][j].return_number){
-            //                     $scope.isAdd = true;
-            //                     $scope.isReduce = false;
-            //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-            //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-            //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-            //                 }
-            //             }
-            //         }
-            //
-            //
-            //         for(var i = 0;i<$scope.afterSaleData.order_goods.length;i++){
-            //             for(var j = 0;j<$scope.afterSaleData.order_goods[i].length;j++) {
-            //                 if(data.type == 1 && data.order_goods[i][j].server_end == 0) {
-            //                     $scope.tui = 1;
-            //                 }
-            //                 if(data.type == 2 && data.order_goods[i][j].server_end == 0) {
-            //                     $scope.huan = 1;
-            //                 }
-            //                 if(data.type == 3 && data.order_goods[i][j].server_end == 0) {
-            //                     $scope.xiu = 1;
-            //                 }
-            //             }
-            //         }
-            //
-            //     }else{
-            //         layer.msg(data.info);
-            //         $scope.lotsSubmit = false;
-            //         $scope.isSubmit = true;
-            //     }
-            // })
         };
 
         //是否提交申请
@@ -12692,20 +12541,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $scope.imgArr = [{ img: 'img/up.jpg' }, { img: 'img/up.jpg' }, { img: 'img/up.jpg' }, { img: 'img/up.jpg' }, { img: 'img/up.jpg' }];
         $scope.isReduce = true;
 
-
-        // for(var i = 0;i<$scope.afterSaleData.order_goods.length;i++) {
-        //     for (var j = 0; j < $scope.afterSaleData.order_goods[i].length; j++) {
-        //         $scope.num = $scope.afterSaleData.order_goods[i][j].goods_number;
-        //     }
-        // }
         $scope.change = function (e, num, index, pIndex) {
-            // $scope.subArr.order_ids = [];
-            // $scope.subArr.rec_ids.rec_id = [];
-            // $scope.subArr.rec_ids.member = [];
-            // $scope.subArr.order_ids.push($scope.afterSaleData.goodslist[pIndex][index].order_id);
-            // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.goodslist[pIndex][index].rec_id);
-            // $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
-
             if (num > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().removeClass('reduce');
@@ -12731,12 +12567,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //增加
         //$scope.numArr = [{}];
         $scope.add = function (e, index, pIndex) {
-            // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
-            // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
-            //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
             $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
-            //$scope.numberChange();
             if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().prev().removeClass('reduce');
@@ -12754,16 +12586,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         //减少
         $scope.reduce = function (e, index, pIndex) {
-            // if($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id)>-1){
-            //     $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
-            // }
-            // $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
-            // $scope.subArr.rec_ids.rec_id.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].rec_id),1);
-            // $scope.subArr.rec_ids.member.splice($scope.subArr.rec_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].goods_number),1);
+
             if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
                 $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
-                //$scope.numberChange();
                 $scope.isAdd = false;
             } else {
                 $scope.afterSaleData.order_goods[pIndex][index].goods_number = 0;
@@ -12773,7 +12599,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
 
                 angular.element(e.target).addClass('reduce');
                 angular.element(e.target).next().next().removeClass('add');
-                //$scope.numberChange();
             }
 
         };
@@ -13145,7 +12970,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
             $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number++;
             $scope.subArr.rec_ids.member[index]++;
-            //$scope.numberChange();
             if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number > 0) {
                 //$scope.isReduce = false;
                 angular.element(e.target).prev().prev().removeClass('reduce');
@@ -13177,7 +13001,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             if ($scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number > 1) {
                 $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number--;
                 $scope.subArr.rec_ids.member[index]--;
-                //$scope.numberChange();
                 $scope.isAdd = false;
             } else {
                 $scope.afterSaleData.arr_order_goods[pIndex].goods_list[index].goods_number = 0;
@@ -13186,7 +13009,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 //$scope.isAdd = false;
                 angular.element(e.target).addClass('reduce');
                 angular.element(e.target).next().next().removeClass('');
-                //$scope.numberChange();
             }
 
         };

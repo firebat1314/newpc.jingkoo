@@ -4218,7 +4218,7 @@ $browser-default-font-size: 37.5px !default;
               border-bottom: 1px solid #ccc;
               border-top: 1px solid #ccc;
               &:first-child{
-                width: 164px;
+                width: 144px;
               }
             }
             td {
@@ -4261,6 +4261,7 @@ $browser-default-font-size: 37.5px !default;
               background: #fff;
               color: #808080;
               cursor:pointer;
+              outline: none;
             }
             .diy-right {
               height: 30px;
@@ -4308,6 +4309,8 @@ $browser-default-font-size: 37.5px !default;
               border: 1px solid #e6e6e6;
               background: #fff;
               color: #808080;
+              box-sizing: unset;
+              border-radius: 0;
             }
             .zjhang{
               height: 35px;

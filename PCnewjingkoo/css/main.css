@@ -3860,7 +3860,7 @@ span.a_arrow_r {
         border-bottom: 1px solid #ccc;
         border-top: 1px solid #ccc; }
         .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta th:first-child {
-          width: 164px; }
+          width: 144px; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta td {
         padding: 20px 0;
         text-align: center;
@@ -3897,7 +3897,8 @@ span.a_arrow_r {
         border: 1px solid #e6e6e6;
         background: #fff;
         color: #808080;
-        cursor: pointer; }
+        cursor: pointer;
+        outline: none; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .diy-right {
         height: 30px;
         margin: 0 auto;
@@ -3942,7 +3943,9 @@ span.a_arrow_r {
         height: 30px;
         border: 1px solid #e6e6e6;
         background: #fff;
-        color: #808080; }
+        color: #808080;
+        box-sizing: unset;
+        border-radius: 0; }
       .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .pick-ta .zjhang {
         height: 35px;
         line-height: 35px;

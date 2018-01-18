@@ -88,15 +88,14 @@
 <div class="ad_box" ng-show="ad_show&&ad_img">
     <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
         <div class="close" ng-click="closeAd()">+</div>
-        <img ng-click="adsClick(link_type.type_name,link_type.type_value)" src="{{ad_img}}" alt="">
+        <img ads-click type-name="{{link_type.type_name}}" type-value="{{link_type.type_value}}" src="{{ad_img}}" alt="">
     </div>
 </div>
 <div class="scroll-area" style="margin-bottom: 50px;">
     <div class="pic">
         <div class="slider" style="width:100%;margin: 0 auto;">
             <ul>
-                <li ng-repeat="slide in IndexData.list.ads_banner" ng-click="adsClick(slide.link_type.type_name,slide.link_type.type_value)"
-                    repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
+                <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
                 </li>
             </ul>
         </div>
@@ -190,7 +189,7 @@
                 <a class="sPrev" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
                 <div class="tempWrap">
                     <ul>
-                        <li ng-click="adsClick(item.link_type.type_name,item.link_type.type_value)" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
+                        <li ads-click type-name="{{item.link_type.type_name}}" type-value="{{item.link_type.type_value}}" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
                             <img ng-src={{item.ad_img}} alt="">
                         </li>
                     </ul>
@@ -230,13 +229,13 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item1" ng-click="adsClick(qxsj.link_type.type_name,qxsj.link_type.type_value)" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
                         <img ng-src={{qxsj.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adsClick('category','1')">隐形</button>
-                        <button ng-click="adsClick('category','2')">美瞳</button>
-                        <button ng-click="adsClick('category','3')">护理液</button>
+                        <button ads-click type-name="category" type-value="1">隐形</button>
+                        <button ads-click type-name="category" type-value="2">美瞳</button>
+                        <button ads-click type-name="category" type-value="3">护理液</button>
                     </div>
                 </div>
                 <div class="coolEye-right">
@@ -262,13 +261,13 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item2" ng-click="adsClick(jsjm.link_type.type_name,jsjm.link_type.type_value)" ng-repeat="jsjm in IndexData.list.ads_jsjm">
+                    <div class="coolEye-center-item center-item2" ads-click type-name="{{jsjm.link_type.type_name}}" type-value="{{jsjm.link_type.type_value}}" ng-repeat="jsjm in IndexData.list.ads_jsjm">
                         <img ng-src={{jsjm.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adsClick('category','6')">眼镜片</button>
-                        <button ng-click="adsClick('category','4')">镜架</button>
-                        <button ng-click="adsClick('category','5')">太阳镜</button>
+                        <button ads-click type-name="category" type-value="6">眼镜片</button>
+                        <button ads-click type-name="category" type-value="4">镜架</button>
+                        <button ads-click type-name="category" type-value="5">太阳镜</button>
                     </div>
                 </div>
                 <div class="coolEye-right">
@@ -294,13 +293,13 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item3" ng-click="adsClick(jjzy.link_type.type_name,jjzy.link_type.type_value)" ng-repeat="jjzy in IndexData.list.ads_jjzy">
+                    <div class="coolEye-center-item center-item3" ads-click type-name="{{jjzy.link_type.type_name}}" type-value="{{jjzy.link_type.type_value}}" ng-repeat="jjzy in IndexData.list.ads_jjzy">
                         <img ng-src={{jjzy.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
-                        <button ng-click="adsClick('category','7')">功能眼镜</button>
-                        <button ng-click="adsClick('category','8')">配件</button>
-                        <button ng-click="adsClick('category','9')">工具</button>
+                        <button ads-click type-name="category" type-value="7">功能眼镜</button>
+                        <button ads-click type-name="category" type-value="8">配件</button>
+                        <button ads-click type-name="category" type-value="9">工具</button>
                     </div>
                 </div>
                 <div class="coolEye-right">

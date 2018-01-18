@@ -256,4 +256,45 @@ angular.module('myApp.directives', [])
             }
         }
     })
+    .directive('adsClick', function ($state) {
+        return {
+            restrict: 'A',
+            scope: {
+                typeName: '@',
+                typeValue:'@'
+            },
+            link: function (scope, element, attrs) {
+                $(element).on('click', function () {
+                    console.log(scope.typeName,scope.typeValue)
+                    if (scope.typeName == "category") {
+                        var url = $state.href('shop-list', {
+                            params: encodeURIComponent(JSON.stringify({
+                                cat_id: scope.typeValue,
+                            }))
+                        });
+                        window.open(url, '_blank');
+                    } else if (scope.typeName == "goods") {
+                        var url = $state.href('shop-detail', {
+                            goods_id: scope.typeValue,
+                        });
+                        window.open(url, '_blank');
+                    } else if (scope.typeName == "brand") {
+                        var url = $state.href('shop-list', {
+                            params: encodeURIComponent(JSON.stringify({
+                                brand_id: scope.typeValue,
+                            }))
+                        });
+                        window.open(url, '_blank');
+                    } else if (scope.typeName == "search") {
+                        var url = $state.href('shop-list', {
+                            params: encodeURIComponent(JSON.stringify({
+                                keywords: scope.typeValue,
+                            }))
+                        });
+                        window.open(url, '_blank');
+                    }
+                })
+            }
+        }    
+    })
 

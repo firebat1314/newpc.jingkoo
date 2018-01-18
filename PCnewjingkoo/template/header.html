@@ -230,14 +230,14 @@
                     <div class="all-fenlei" ng-class="{'all-fenlei show':allFenLei==1,'all-fenlei':allFenLei==0}">
                         <div ng-mouseover="Index($index)" ng-repeat="allItem in IndexData.list.fastnav" class="all-fenlei-item" repeat-done="glassLiBox()">
                             <img style="width:25px;height:25px;" ng-src={{allItem.img}} alt="">
-                            <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val)">{{allItem.name}}</span>
+                            <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val,allItem.search_name,allItem.search_val)">{{allItem.name}}</span>
                             <div class="glass-li-box">
                                 <div class="hot-word-line">
                                     <div class="line-title"> 
                                         <div class="title-text" ng-repeat="allItemChild in allItem.child"> 
                                         	<span style="margin-left:0;color:#598eca;display: block;float: none;font-size: 13px;width: calc(100% - 30px);text-align: left;height: 30px;line-height: 30px;border-bottom: 1px dashed #e5e5e5;">{{allItemChild.name}}</span>
                                             <div class="line-con" style="float: none;display: block;">    
-                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word"  ng-style="{color:allItemChilds.style}">{{allItemChilds.name}}</a>
+                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val,allItemChilds.search_name,allItemChilds.search_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word"  ng-style="{color:allItemChilds.style}">{{allItemChilds.name}}</a>
                                             </div>
                                         </div>
                                     </div>

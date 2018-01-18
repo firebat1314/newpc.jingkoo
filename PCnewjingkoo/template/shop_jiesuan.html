@@ -212,7 +212,7 @@
                     <div class="send_way">
                         <div class="send_way_l" style="float: left;">
                             <span class="sent_sp1">配送方式 : </span>
-                            <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1'}" ng-class="{'send_way_sp selected':sent.selected}"
+                            <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1','display':sent.disabled?'none':'inline-block'}" ng-class="{'send_way_sp selected':sent.selected}"
                                 ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
                             <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
                             <span ng-if="!defaultShipping">请选择收货地址</span>

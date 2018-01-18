@@ -2528,12 +2528,16 @@ $browser-default-font-size: 37.5px !default;
     flex-direction: row;
     flex-wrap: wrap;
     .pointsMall-item{
-      width:280px;
       height:400px;
       background: #fff;
       border: 1px solid #ebebeb;
       margin-bottom: 25px;
       cursor: pointer;
+      box-sizing: border-box;
+      width: 24%;
+      margin-right: 0.5%;
+      margin-left: 0.5%;
+      margin-bottom: 1%;
       &:hover{
         box-shadow: 0 0 10px 0 rgba(155,155,155,.4);  
       }
@@ -8317,7 +8321,7 @@ textarea{
 }
 .pages {
     float: none !important; 
-  margin: 10px 0 0 0;
+  margin: 10px 0 10px 0;
   width:100%;
   text-align: right;
   #Pagination {     

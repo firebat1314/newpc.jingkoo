@@ -63,8 +63,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-        // $rootScope.ip = 'https://www.jingku.cn'; //正式
+        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -261,27 +261,20 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 })
         };
         //获取商品分类id
-        $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId) {
-
-            if (category == "category" && !brand && !zeiss) {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        cat_id: categoryId,
-                        filter: filterId,
-                    }))
-                });
-
-                window.open(url, '_blank');
-            }
-            else if (brand == "brand" && !category && !zeiss) {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        brand_id: brandId,
-                    }))
-                })
-                window.open(url, '_blank');
-            }
-            else if (brand == "brand" && category == "category" && !zeiss) {
+        $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId,search_name,search_val) {
+            console.log(filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId)
+            /* filter_name,
+            filter_val,
+            zeiss_name,
+            zeiss_val,
+            brand_name,
+            brand_val,
+            cate_name,
+            cate_val 
+            search_name
+            search_val */
+            
+            if (brand == "brand" && category == "category") {
                 var url = $state.href('shop-list', {
                     params: encodeURIComponent(JSON.stringify({
                         cat_id: categoryId,
@@ -289,9 +282,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }))
                 })
                 window.open(url, '_blank');
-            }
-
-
+            }else
             if (filter == "filter" && category == "category") {
                 var url = $state.href('shop-list', {
                     params: encodeURIComponent(JSON.stringify({
@@ -300,17 +291,37 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }))
                 })
                 window.open(url, '_blank');
-            }
-
-
-            if (zeiss == "zeiss" && category == "category") {
+            }else
+            if (zeiss == "zeiss") {
                 var url = $state.href('shop-list-ano', {
                     cat_id: zeissId,
-                    keywords: ''
+                })
+                window.open(url, '_blank');
+            }else 
+            if (category == "category") {
+                var url = $state.href('shop-list', {
+                    params: encodeURIComponent(JSON.stringify({
+                        cat_id: categoryId,
+                    }))
+                });
+                window.open(url, '_blank');
+            } else 
+            if (brand == "brand") {
+                var url = $state.href('shop-list', {
+                    params: encodeURIComponent(JSON.stringify({
+                        brand_id: brandId,
+                    }))
+                })
+                window.open(url, '_blank');
+            } else
+            if(search_name == "search"){
+                var url = $state.href('shop-list', {
+                    params: encodeURIComponent(JSON.stringify({
+                        keywords: search_val,
+                    }))
                 })
                 window.open(url, '_blank');
             }
-
         };
         $scope.loginOut = function () {
             $http({
@@ -751,30 +762,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             }, 100)
         };
 
-        //菜单广告跳转
-        $scope.adsClick = function (type, id) {
-            if (type == "category") {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        cat_id: id,
-                    }))
-                });
-                window.open(url, '_blank');
-            } else if (type == "goods") {
-                var url = $state.href('shop-detail', {
-                    goods_id: id,
-                    keywords: ''
-                });
-                window.open(url, '_blank');
-            } else if (type == "brand") {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        brand_id: id,
-                    }))
-                });
-                window.open(url, '_blank');
-            }
-        };
         /*品牌街区logo*/
         $scope.logoList = {
             page: 1,
@@ -1037,31 +1024,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             setTimeout(function () {
                 $(".brand-block-ad").slide({ mainCell: "ul", vis: 3, prevCell: ".sPrev", nextCell: ".sNext", effect: "leftLoop" });
             }, 300)
-        };
-        //广告跳转
-        $scope.adLi = function (type, id) {
-            if (type == "category") {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        cat_id: id
-                    }))
-                });
-                window.open(url, '_blank');
-            } else if (type == "goods") {
-                var url = $state.href('shop-detail', {
-                    goods_id: id
-                });
-                window.open(url, '_blank');
-            } else if (type == "brand") {
-                var url = $state.href('shop-list', {
-                    params: encodeURIComponent(JSON.stringify({
-                        brand_id: id
-                    }))
-                });
-                window.open(url, '_blank');
-            }
-            // else{
-            // }
         };
         //logo去列表
         $scope.goList = function (id) {
@@ -1464,7 +1426,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         $rootScope.change = true;
         $scope.ponitsList = {
             page: 1,
-            size: 8,
+            size: 16,
             order: '',
             sort: '',
             min_exchange: '',

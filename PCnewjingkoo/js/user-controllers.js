@@ -1167,7 +1167,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			};
 		}
 		$scope.medicalPhoto = function (e) {
-			console.log(11)
 			//判断是否支持FileReader
 			if (window.FileReader) {
 				var reader = new FileReader();
@@ -1194,6 +1193,49 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$scope.medical = e.target.result;
 				$data.changeQyMsg({
 					medical: $scope.medical
+				}).success(function (data) {
+					if (data.status == 0) {
+						layer.msg(data.info, {
+							icon: 2,
+							time: 500
+						});
+					} else {
+						layer.msg(data.info, {
+							icon: 1,
+							time: 500
+						});
+					}
+				})
+			};
+		}
+		$scope.brankPermitPhoto = function (e) {
+			console.log(e)
+			//判断是否支持FileReader
+			if (window.FileReader) {
+				var reader = new FileReader();
+			} else {
+				alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+			}
+			//获取文件
+			//var file = angular.element(e.target).files[0];
+			var file = document.getElementById("img4").files[0];
+			var imageType = /^image\//;
+			//是否是图片
+			if (!imageType.test(file.type)) {
+				alert("请选择图片！");
+				return;
+			}
+			//转码
+			reader.readAsDataURL(file);
+			//读取完成
+			reader.onload = function (e) {
+				//获取图片dom
+				var img = document.getElementById("img44");
+				//图片路径设置为读取的图片
+				img.src = e.target.result;
+				$scope.brank_permit = e.target.result;
+				$data.changeQyMsg({
+					brank_permit: $scope.brank_permit
 				}).success(function (data) {
 					if (data.status == 0) {
 						layer.msg(data.info, {

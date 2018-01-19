@@ -355,7 +355,7 @@ angular.module('myApp.services', [])
 					cache: false,
 					url: ip + '/User/edit_company',
 					data: data,
-					timeout: 5000,
+					timeout: 15000,
 					headers: {
 						'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
 					}

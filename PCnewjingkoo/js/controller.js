@@ -63,8 +63,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
         };
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
-        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-        $rootScope.ip = 'https://www.jingku.cn'; //正式
+        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        // $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -3863,7 +3863,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 //使得输入框中初始值为0
                                 for (var i = 0; i < $scope.goodsData.data.length; i++) {
                                     $scope.goodsData.data[i].num = 0;
-                                    console.log($scope.goodsData)
                                 }
                                 $scope.numberChange = function () {
                                     //每次更新商品数量获取的数据
@@ -4095,8 +4094,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     $scope.tell = data.supplier_info.mobile;
                     //积分商城信息
                     $scope.pointsNum = 1;
-                    $scope.needJf = data.data.exchange_info.exchange_integral;
-                    $scope.isExchange = data.data.exchange_info.is_exchange;
+                    $scope.needJf = data.data.exchange_info?data.data.exchange_info.exchange_integral:null;
+                    $scope.isExchange = data.data.exchange_info?data.data.exchange_info.is_exchange:null;
                     //立即兑换积分商品
                     $scope.buyNow = function () {
                         layer.confirm('确定要兑换么？', {

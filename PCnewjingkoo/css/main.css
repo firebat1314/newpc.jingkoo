@@ -2471,7 +2471,6 @@ span.a_arrow_r {
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
-  justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap; }
   .pointsMall-main .pointsMall-content .pointsMall-item {

@@ -10,8 +10,7 @@
             <p style="float:left;"><em style="cursor: pointer;" ng-repeat="tit in shopDetailData.catInfos"><a ng-click="goBack(tit.cat_name,tit.cat_id)">{{tit.cat_name}}</a> > </em><em ng-bind="data.data.goods_name"></em></p>
             <div class="top_conbox"> 
                 <span class="shop_top_sp1" ng-click="goStore()" style="cursor: pointer;"><span class="join_dp"></span>{{name}}</span>
-                <span ng-if="!shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>加关注</span>
-                <span ng-if="shopDetailData.supplier_info.is_select" style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>已关注店铺</span>
+                <span style="cursor: pointer;" class="shop_top_sp2" ng-click="shopGz()"><span class="join_gz"></span>{{shopDetailData.supplier_info.is_select?'取消关注':'关注店铺'}}</span>
                 <span ng-click="qimoChatClick(shopDetailData.supplier_info.access_id);" style="cursor: pointer;" class="shop_top_sp3"><i class="lx_saler"></i>联系卖家</span> 
             </div>  
         </div>
@@ -32,8 +31,8 @@
                     </div>
                     <div class="qita">
                         <a href="javascript:;" class="fenx share" data-params="{{shopDetailData.gallery[0].img_url}}">分享</a>
-                        <a ng-click="goodsNotCollect()" href="javascript:;" class="souc" ng-show="successed">收藏商品</a>
-                        <a ng-click="goodsCollect()" href="javascript:;" class="souc_" ng-show="success">收藏商品</a>
+                        <a ng-click="goodsNotCollect()" href="javascript:;" class="souc" ng-show="shopDetailData.data.is_collect">收藏商品</a>
+                        <a ng-click="goodsCollect()" href="javascript:;" class="souc_" ng-show="!shopDetailData.data.is_collect">收藏商品</a>
                     </div>
                 </div>
                 <div class="fl sp-nrright" ng-if="data&&!data.data.exchange_info">
@@ -42,9 +41,8 @@
                         <h2 class="new_shop_h2">{{goodsName}}</h2>
                         <p class="new_shop_p1">
                             <span class="new_shop_sp1">{{shopDetailData.data.goods_brief}}</span>
-                            <!--<span class="new_shop_sp2">【正品保障 极速达】正宗北京三禾稻香村月饼</span>-->
                         </p>
-                        <div class="money_cg_box" ng-if="shopDetailData.promotion.length!=0 && shopDetailData.promotion[0].is_jti == 1 && shopDetailData.promotion[0].type == 0">
+                        <div class="money_cg_box" style="margin-top: 10px;" ng-if="shopDetailData.promotion.length!=0 && shopDetailData.promotion[0].is_jti == 1 && shopDetailData.promotion[0].type == 0">
                             <div class="money_cg_d1">
                                 <span class="new_shop_sp3">价格</span>
                                 <ul class="money_cg_u1">
@@ -60,7 +58,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="new_shop_yhqbox" style="margin-top: 5px;" ng-if="shopDetailData.promotion.length>0||shopDetailData.bonus.length>0">
+                        <div class="new_shop_yhqbox" style="margin-top: 10px;" ng-if="shopDetailData.promotion.length>0||shopDetailData.bonus.length>0">
                             <div ng-if="shopDetailData.bonus.length>0" class="yhq_box_d1">
                                 <span class="yhq_sp1">领券</span>
                                 <ul class="yhq_u1" ng-if="shopDetailData.bonus.length>0">
@@ -77,7 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="saler_msg_box">
+                        <div class="saler_msg_box" style="padding-left: 0;">
                             <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
                                 <span class="saler_msg_sp1">建议零售价</span><span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
                             </div>
@@ -127,20 +125,20 @@
                                     <!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
                                 </div>
                             </div>
+                            <!--关联商品-->
+                            <div class="sale-detailed-message" style="margin-left: 17px;padding-top: 10px;"> 
+                                <div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods" style="margin-bottom: 0;">
+                                    <p style="color:#666;padding-left: 0;">关联商品</p>
+                                    <ul>
+                                        <li ng-repeat="glLi in shopDetailData.linked_goods"><a href="#/shop-detail/{{glLi.goods_id}}"><img ng-src={{glLi.goods_img}} alt=""></a><i class="guanlianYes"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <!--商品主属性-->
                             <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                                 <span class="saler_msg_sp1">{{saler.name}}</span>
                                 <ul class="saler_msg_film">
                                     <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="getAttrList(salers.id,salers.number);">{{salers.label}}<i class="guanlianYes"></i></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!--关联商品-->
-                        <div class="sale-detailed-message" style="margin-left: 17px;padding-top: 10px;"> 
-                            <div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods">
-                                <p style="color:#666;">关联商品</p>
-                                <ul>
-                                    <li ng-repeat="glLi in shopDetailData.linked_goods"><a href="#/shop-detail/{{glLi.goods_id}}"><img ng-src={{glLi.goods_img}} alt=""></a><i class="guanlianYes"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -220,7 +218,7 @@
                                         <div class="diy-right">
                                             <span class="wenb">
                                                 <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);priceChange(item)">－</a>
-                                                <input  type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);$event=$event">
+                                                <input  type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);">
                                                 <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1;priceChange(item)">+</a>
                                             </span>
                                         </div>
@@ -335,7 +333,7 @@
                         </div>
                     </div>
                     <div class="buy-button">
-                        <button ng-click="buyNow()" ng-model="isExchange" ng-disabled="!isExchange" ng-class="{'disable':!isExchange}" class="buy">立即兑换</button>
+                        <button ng-click="buyNow_jf()" ng-model="isExchange" ng-disabled="!isExchange" ng-class="{'disable':!isExchange}" class="buy">立即兑换</button>
                     </div>
                     <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
                         <div>服务支持：</div>
@@ -387,8 +385,7 @@
                             <p>联系方式：{{tell}}</p>
                             <!--<button>留言咨询</button>-->
                             <button class="goStore" ng-click="goStore()">进入店铺</button>
-                            <button ng-if="!shopDetailData.supplier_info.is_select" class="goStore" ng-click="shopGz()">关注店铺</button>
-                            <button ng-if="shopDetailData.supplier_info.is_select" class="goStore" ng-click="shopGz()">取消关注</button>
+                            <button class="goStore" ng-click="shopGz()">{{shopDetailData.supplier_info.is_select?'取消关注':'关注店铺'}}</button>
                             <div ng-if="invType!=0" class="service-zhichi">
                                 <p class="fl">服务支持：</p>
                                 <img ng-if="invType==1" class="fl" src="img/smrz.png" alt="" title="实名认证">

@@ -93,11 +93,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             })
                 .success(function (data) {
                     $scope.shopCarHomeData = data;
-                    if (data.suppliers_goods_list.length == 0) {
-                        $scope.carRight = false;
-                    } else {
-                        $scope.carRight = true;
-                    }
                     $scope.totalNum = data.total.zong_goods_count;
                     $scope.totalPrice = data.total.goods_price;
                 })
@@ -109,10 +104,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             // })
         };
         $scope.carFn();
-        //购物车更新同步
-        $rootScope.$on('upCarList', function () {
-            $scope.carFn();
-        });
         //pc 手机客服，支付微信只有微信跳URL 
         /* 新增客服功能 */
         $rootScope.qimoChatClick = function (access_id) {
@@ -261,7 +252,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 })
         };
         //获取商品分类id
-        $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId,search_name,search_val) {
+        $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId,search_name,search_val,is_url,url) {
             console.log(filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId)
             /* filter_name,
             filter_val,
@@ -273,7 +264,10 @@ angular.module('myApp.controllers', ['ShopListModule'])
             cate_val 
             search_name
             search_val */
-            
+            if(is_url){
+                window.open(url);
+                return;
+            }
             if (brand == "brand" && category == "category") {
                 var url = $state.href('shop-list', {
                     params: encodeURIComponent(JSON.stringify({
@@ -363,11 +357,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
             })
                 .success(function (data) {
                     $scope.shopCarHomeData = data;
-                    if (data.suppliers_goods_list.length == 0) {
-                        $scope.carRight = false;
-                    } else {
-                        $scope.carRight = true;
-                    }
                     $scope.totalNum = data.total.zong_goods_count;
                     $scope.totalPrice = data.total.goods_price;
                 })
@@ -416,11 +405,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg('删除失败', { icon: 2 });
                     }
                 })
-            // },function(){
-            //     layer.msg('点完这个可就全没了，在考虑考虑吧~', {
-            //         time: 2000, //2s后自动关闭
-            //     });
-            // });
         };
 
         //删除购物车单独一行商品
@@ -1708,15 +1692,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                 }
                 $scope.shejiData = data;
-                //商品是否收藏
-                if (data.hot_goods.is_collect) {
-                    //商品关注两个状态的控制
-                    $scope.success = false;
-                    $scope.successed = true;
-                } else {
-                    $scope.success = true;
-                    $scope.successed = false;
-                }
                 $scope.sheji_pic = data.big_top[0].ad_img;
                 $scope.artOneName = data.article_list[13].article[0].title;
                 $scope.artOneDesc = data.article_list[13].article[0].desc;
@@ -3989,15 +3964,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         $scope.isPointsMall = true;
                         $scope.pointsMall = false;
                     }
-                    //商品是否收藏
-                    if (data.data.is_collect) {
-                        //商品关注两个状态的控制
-                        $scope.success = false;
-                        $scope.successed = true;
-                    } else {
-                        $scope.success = true;
-                        $scope.successed = false;
-                    }
                     //图文详情
                     $scope.goodsDesc = $sce.trustAsHtml(data.data.goods_desc);
                     //控制配送区域显隐
@@ -4026,7 +3992,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     };
                     //店铺关注
                     $scope.shopGz = function () {
-                        if ($scope.shopDetailData.supplier_info.is_select) {
+                        if($scope.shopDetailData.supplier_info.is_select){
                             $http({
                                 method: "POST",
                                 url: '' + $rootScope.ip + '/Goods/CollectShop',
@@ -4037,15 +4003,12 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
+                                    layer.msg(data.info, { time: 1000 });
                                     if (data.status) {
-                                        layer.msg(data.info, { time: 1000 }, function () {
-                                            $scope.shopDetailFn();
-                                        });
-                                    } else {
-                                        layer.msg(data.info, { time: 1000 });
+                                        $scope.shopDetailData.supplier_info.is_select = 0;
                                     }
                                 })
-                        } else {
+                        }else{
                             $http({
                                 method: "POST",
                                 url: '' + $rootScope.ip + '/Goods/CollectShop',
@@ -4056,12 +4019,9 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
+                                    layer.msg(data.info, { time: 1000 });
                                     if (data.status) {
-                                        layer.msg(data.info, { time: 1000 }, function () {
-                                            $scope.shopDetailFn();
-                                        });
-                                    } else {
-                                        layer.msg(data.info, { time: 1000 });
+                                        $scope.shopDetailData.supplier_info.is_select = 1;
                                     }
                                 })
                         }
@@ -4096,35 +4056,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     $scope.pointsNum = 1;
                     $scope.needJf = data.data.exchange_info?data.data.exchange_info.exchange_integral:null;
                     $scope.isExchange = data.data.exchange_info?data.data.exchange_info.is_exchange:null;
-                    //立即兑换积分商品
-                    $scope.buyNow = function () {
-                        layer.confirm('确定要兑换么？', {
-                            btn: ['确定', '取消'] //按钮
-                        }, function () {
-                            $http({
-                                method: "POST",
-                                url: '' + $rootScope.ip + '/Flow/exchangebuy',
-                                data: {
-                                    goods_id: $scope.shopDetailData.data.exchange_info.goods_id
-                                },
-                                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-                            })
-                                .success(function (data) {
-                                    if (data.status) {
-                                        $state.go('shop-jiesuan');
-                                        layer.msg(data.info, { icon: 1, time: 1000 });
-                                        $rootScope.$broadcast('upCarList');
-                                    } else {
-                                        layer.msg(data.info, { icon: 2, time: 1000 });
-                                    }
-                                })
-                        }, function () {
-                            layer.msg('这个不满意么？再换一个看看吧~', {
-                                icon: 3,
-                                time: 2000, //2s后自动关闭
-                            });
-                        })
-                    };
+                    // console.log(data.data.exchange_info,$scope.needJf,$scope.isExchange)
+                    
                 }).error(function (data, staus) {
                     layer.close(cool);
                     if (staus == 401) {
@@ -4176,7 +4109,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
             timeoutflag = 1;
             timeoutflagfn = setTimeout(function () {
                 timeoutflag = 0;
-            }, 1000);
+            }, 500);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/get_goods_collect',
@@ -4190,8 +4123,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     } else {
                         layer.msg('关注成功', { time: 1000 });
                         $scope.shopDetailData.data.is_collect = 1;
-                        $scope.successed = true;
-                        $scope.success = false;
                     }
                 })
         };
@@ -4204,7 +4135,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
             timeoutflag = 1;
             timeoutflagfn = setTimeout(function () {
                 timeoutflag = 0;
-            }, 1000);
+            }, 500);
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/collect_del',
@@ -4218,8 +4149,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     } else {
                         layer.msg('已取消关注', { time: 1000 });
                         $scope.shopDetailData.data.is_collect = 0;
-                        $scope.successed = false;
-                        $scope.success = true;
                     }
                 })
         };
@@ -4409,7 +4338,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
         //删除一行
         $scope.delTr = function (index) {
             if ($scope.arr.length == 1) {
-                layer.msg('客官给留一件吧');
+                layer.msg('给留一件吧亲');
             }
             else if (index >= 0) {
                 $scope.arr.splice(index, 1);
@@ -4495,10 +4424,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg(data.info, { time: 1000 });
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
-                        $scope.arr = [{}];
+                        $scope.arr = [{member:1}];
                         layer.confirm('商品已添加至购物车', {
                             btn: ['去结算', '继续选购'], //按钮
-                            title: '提示', btnAlign: 'c',
+                            title: '提示', 
+                            btnAlign: 'c',
                             yes: function (index) {
                                 $state.go('shop-car');
                                 layer.close(index);
@@ -4509,7 +4439,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             }
                             // closeBtn: 0
                         });
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
                     }
@@ -4537,7 +4467,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             }
                             // closeBtn: 0
                         });
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
 
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -4556,7 +4486,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg(data.info, { time: 1000 });
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
                         $state.go('shop-car');
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -4571,7 +4501,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg(data.info, { time: 1000 });
                     } else if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });
-                        $rootScope.$broadcast('upCarList');
+                        // $rootScope.$broadcast('upCarList');
                         $state.go('shop-car');
                     } else if (data.status == 0) {
                         layer.msg(data.info, { time: 1000 });
@@ -4581,7 +4511,35 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 })
             }
         };
-
+        //立即兑换积分商品
+        $scope.buyNow_jf = function () {
+            layer.confirm('确认兑换？', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/Flow/exchangebuy',
+                    data: {
+                        goods_id: $scope.shopDetailData.data.exchange_info.goods_id
+                    },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                })
+                    .success(function (data) {
+                        if (data.status) {
+                            $state.go('shop-jiesuan');
+                            layer.msg(data.info, { icon: 1, time: 1000 });
+                            // $rootScope.$broadcast('upCarList');
+                        } else {
+                            layer.msg(data.info, { icon: 2, time: 1000 });
+                        }
+                    })
+            }, function () {
+                /* layer.msg('这个不满意么？再换一个看看吧~', {
+                    icon: 3,
+                    time: 2000, //2s后自动关闭
+                }); */
+            })
+        };
         //清除浏览记录
         $scope.historyItem = {
             goods_ids: []
@@ -4606,9 +4564,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     }
                 })
         }
-        //$scope.joinCar();
-
-
         $scope.goBulkOrder = function () {
             window.open($state.href('bulk-order', {
                 goods_id: $stateParams.goods_id,
@@ -6022,11 +5977,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     zhouwei[i] = $(this).find(".zhouwei").val();
                     var spec = new Array();//属性
                     var attr = new Array();//属性
-                    //var spec = '';
-                    //var attr = '';
                     $(this).find(".str_attr").each(function () {
-                        //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
-                        //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                         spec.push($(this).find("input").val());
                         attr.push($(this).find("span").html());
                     })
@@ -6050,34 +6001,11 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 goods.zhouwei = zhouwei;//轴位
                 goods.parent = 0;
                 goods.carttype = 0;
-                //goods.attr      = arr_attr;
 
                 $scope.goods = goods;
 
-                if ($scope.trid) {
-                    // $('.bulk-order-ano-table').show();
-                } else {
-                    // $('.bulk-order-ano-table').hide();
-                }
             });
 
-            if ($scope.trid) {
-                // $('.bulk-order-ano-table').show();
-            } else {
-                // $('.bulk-order-ano-table').hide();
-            }
-            //加入购物车
-            //$(".add_to_cart").live("click",function (){
-            // var arr,reg=new RegExp("(^| )token=([^;]*)(;|$)");
-            // arr = document.cookie.match(reg);
-            // var token = arr[2];
-            // var layer_index=layer.msg('加载中', {icon: 16});
-            //
-            // $.post("{:U('add_to_cart_spec_jp')}",{goods_id:goods.goods_id , goods:JSON.stringify(goods), t:Math.random(), token : token}, function(data){
-            //     layer.close(layer_index);
-            //     addToCartResponse(data);
-            // }, 'json');
-            //});
             $(".text_inp").live("keydown", function () {
                 var k_code = event.keyCode;
                 if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
@@ -6262,10 +6190,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                         layer.msg(data.info);
                     } else if (data.status == 1) {
                         layer.msg(data.info);
-                        // $rootScope.$broadcast('upCarList');
-                        // $scope.getdata();
-                        // $("#order").html('');
-
                         setTimeout(function () {
                             $http({
                                 method: "POST",
@@ -6419,6 +6343,22 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             $scope.typeCount = data.total.goods_type_count;
                             $scope.supp = data.total.select_supp_count;
                             $scope.supll = data.total.suppliers_count;
+
+                            function float() {//emmm
+                                var ele = $('.shop-hasGoods-item-box');
+                                // console.log(ele.offset().top,ele.height(),$(window).scrollTop())
+                                var needH = ele.offset().top + ele.height() - $(window).scrollTop();
+                                var winH = $(window).height() - 75;
+                                if (needH < winH) {
+                                    $('.car-hasGoods-main .wholebox').removeClass('add');
+                                } else {
+                                    $('.car-hasGoods-main .wholebox').addClass('add');
+                                }
+                            }
+                            setTimeout(function() {
+                                float();
+                            }, 1000);
+                            angular.element(window).resize(float);angular.element(window).scroll(float);
                         }
                     }
                 }).error(function (data, staus) {
@@ -7086,7 +7026,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 $scope.payPoints = data.user_info.pay_points;
                             })
                     } else {
-                        layer.msg('购物车没有商品');
+                        layer.msg(data.info);
                         $state.go('shop-car');
                     }
                 }).error(function (data, staus) {
@@ -7495,23 +7435,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    // if(data.status&&$scope.jiesuanData.is_exchange==0){
-                                    //     layer.msg(data.info);
-                                    //     $rootScope.$broadcast('upCarList');
-                                    //     $state.go('paymentNew',{
-                                    //         order_id:data.order_id,
-                                    //         type:'order'
-                                    //     });
-                                    // }
-                                    // else if(data.status&&$scope.jiesuanData.is_exchange==1){
-                                    //     layer.msg(data.info, {
-                                    //         icon: 1,
-                                    //         shade: 0.3,
-                                    //         time:2000
-                                    //     },function() {
-                                    //         $state.go('order-all');
-                                    //     })
-                                    // }
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 });
                                         $rootScope.$broadcast('upCarList');
@@ -7538,26 +7461,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        // if(data.status&&$scope.jiesuanData.is_exchange==0){
-                        //     layer.msg(data.info);
-                        //     $rootScope.$broadcast('upCarList');
-                        //     $state.go('paymentNew',{
-                        //         order_id:data.order_id,
-                        //         type:'order'
-                        //     });
-                        // }
-                        // else if(data.status&&$scope.jiesuanData.is_exchange==1){
-                        //     layer.msg(data.info, {
-                        //         icon: 1,
-                        //         shade: 0.3,
-                        //         time:2000
-                        //     },function() {
-                        //         $state.go('order-all');
-                        //     })
-                        // }
                         if (data.status) {
                             layer.msg(data.info, { time: 1000 });
-                            //$rootScope.$broadcast('upCarList');
                             $state.go('paymentNew', {
                                 order_id: data.order_id,
                                 type: 'order'
@@ -8095,23 +8000,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
-                                    // if(data.status&&$scope.jiesuanData.is_exchange==0){
-                                    //     layer.msg(data.info);
-                                    //     $rootScope.$broadcast('upCarList');
-                                    //     $state.go('paymentNew',{
-                                    //         order_id:data.order_id,
-                                    //         type:'order'
-                                    //     });
-                                    // }
-                                    // else if(data.status&&$scope.jiesuanData.is_exchange==1){
-                                    //     layer.msg(data.info, {
-                                    //         icon: 1,
-                                    //         shade: 0.3,
-                                    //         time:2000
-                                    //     },function() {
-                                    //         $state.go('order-all');
-                                    //     })
-                                    // }
                                     if (data.status) {
                                         layer.msg(data.info, { time: 1000 });
                                         $rootScope.$broadcast('upCarList');
@@ -8140,23 +8028,6 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
-                        // if(data.status&&$scope.jiesuanData.is_exchange==0){
-                        //     layer.msg(data.info);
-                        //     $rootScope.$broadcast('upCarList');
-                        //     $state.go('paymentNew',{
-                        //         order_id:data.order_id,
-                        //         type:'order'
-                        //     });
-                        // }
-                        // else if(data.status&&$scope.jiesuanData.is_exchange==1){
-                        //     layer.msg(data.info, {
-                        //         icon: 1,
-                        //         shade: 0.3,
-                        //         time:2000
-                        //     },function() {
-                        //         $state.go('order-all');
-                        //     })
-                        // }
                         if (data.status) {
                             layer.msg(data.info, { time: 1000 });
                             //$rootScope.$broadcast('upCarList');

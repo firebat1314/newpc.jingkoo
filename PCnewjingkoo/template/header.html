@@ -156,11 +156,11 @@
                     <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
                     <div class="white-line"></div>
                     <div class="carGoods">
-                        <div class="carNoGoods" ng-if="!carRight">
+                        <div class="carNoGoods" ng-if="!shopCarHomeData.suppliers_goods_list.length">
                             <img class="carNone" src="img/carNone.png" alt="">
                             <p>您的购物车暂时还没有商品，赶紧选购吧！</p>
                         </div>
-                        <div class="carHasGoods" ng-if="carRight">
+                        <div class="carHasGoods" ng-if="shopCarHomeData.suppliers_goods_list.length">
                             <h2>最近加入的商品</h2>
                             <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
                                 <div ng-repeat="goods in goodsItem.goods_list">
@@ -230,14 +230,14 @@
                     <div class="all-fenlei" ng-class="{'all-fenlei show':allFenLei==1,'all-fenlei':allFenLei==0}">
                         <div ng-mouseover="Index($index)" ng-repeat="allItem in IndexData.list.fastnav" class="all-fenlei-item" repeat-done="glassLiBox()">
                             <img style="width:25px;height:25px;" ng-src={{allItem.img}} alt="">
-                            <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val,allItem.search_name,allItem.search_val)">{{allItem.name}}</span>
+                            <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val,allItem.search_name,allItem.search_val,allItem.is_url,allItem.url)">{{allItem.name}}</span>
                             <div class="glass-li-box">
                                 <div class="hot-word-line">
                                     <div class="line-title"> 
                                         <div class="title-text" ng-repeat="allItemChild in allItem.child"> 
                                         	<span style="margin-left:0;color:#598eca;display: block;float: none;font-size: 13px;width: calc(100% - 30px);text-align: left;height: 30px;line-height: 30px;border-bottom: 1px dashed #e5e5e5;">{{allItemChild.name}}</span>
                                             <div class="line-con" style="float: none;display: block;">    
-                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val,allItemChilds.search_name,allItemChilds.search_val)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word"  ng-style="{color:allItemChilds.style}">{{allItemChilds.name}}</a>
+                                                <a ng-click="goShopList(allItemChilds.filter_name,allItemChilds.filter_val,allItemChilds.zeiss_name,allItemChilds.zeiss_val,allItemChilds.brand_name,allItemChilds.brand_val,allItemChilds.cate_name,allItemChilds.cate_val,allItemChilds.search_name,allItemChilds.search_val,allItemChilds.is_url,allItemChilds.url)" ng-repeat="allItemChilds in allItemChild.child" class="hot-word"  ng-style="{color:allItemChilds.style}">{{allItemChilds.name}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -299,10 +299,10 @@
 	                <p>购物车</p>
 	                <i style="background: url(img/delete.png) no-repeat;width:20px;height:20px;margin-top: 11px;"></i>
 	            </div>
-	            <div class="big-carNone" ng-if="!carRight">
+	            <div class="big-carNone" ng-if="!shopCarHomeData.suppliers_goods_list.length">
 	                <p>您的购物车暂时还没有商品哦</p>
                 </div>
-	            <div class="car-right-goods" ng-if="carRight">
+	            <div class="car-right-goods" ng-if="shopCarHomeData.suppliers_goods_list.length">
                     <div ng-repeat="carRight in shopCarHomeData.suppliers_goods_list">
                         <div class="car-right-goods-item">
                             <div ng-repeat="carRightItem in carRight.goods_list">
@@ -324,7 +324,7 @@
                         </div>
                     </div>
 	            </div>
-	            <div class="jdm-tbar-checkout" style="height: 40px;padding: 5px 5px 5px;position: relative;" ng-if="carRight">
+	            <div class="jdm-tbar-checkout" style="height: 40px;padding: 5px 5px 5px;position: relative;" ng-if="shopCarHomeData.suppliers_goods_list.length">
 	                <div class="jtc-number" style="line-height: 20px;">
 	                    <strong style="font-family: verdana;color: #c81623;" class="J-count">{{totalNum}}</strong>件商品
 	                </div>

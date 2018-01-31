@@ -91,11 +91,11 @@
                 <span ng-click="goCar()">购物车<i>{{totalNum}}</i></span>
                 <div class="white-line"></div>
                 <div class="carGoods">
-                    <div class="carNoGoods" ng-if="!carRight">
+                    <div class="carNoGoods" ng-if="!shopCarHomeData.suppliers_goods_list.length">
                         <img class="carNone" src="img/carNone.png" alt="">
                         <p>您的购物车暂时还没有商品，赶紧选购吧！</p>
                     </div>
-                    <div class="carHasGoods" ng-if="carRight">
+                    <div class="carHasGoods" ng-if="shopCarHomeData.suppliers_goods_list.length">
                         <h2>最近加入的商品</h2>
                         <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
                             <div ng-repeat="goods in goodsItem.goods_list">

@@ -364,8 +364,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -663,8 +663,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -979,8 +979,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -998,8 +998,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -1199,8 +1199,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -1355,8 +1355,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -1457,8 +1457,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -1581,8 +1581,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -1699,8 +1699,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -3169,8 +3169,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -3231,8 +3231,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -3670,8 +3670,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
             layer.close(cool);
             if (staus == 401) {
                 ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
                 ipCookie.remove('token');
+                ipCookie.remove('has_login');
                 location.href = "/default.html";
             }
         })
@@ -4062,8 +4062,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -4769,8 +4769,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -6365,8 +6365,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -7033,8 +7033,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -7598,8 +7598,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -8232,8 +8232,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 // layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -8661,8 +8661,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -10168,8 +10168,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -10249,8 +10249,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -11033,8 +11033,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -11105,8 +11105,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     // layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -11326,8 +11326,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -11359,8 +11359,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                     layer.close(cool);
                     if (staus == 401) {
                         ////layer.msg('用户失效，请重新登录');
-                        ipCookie.remove('has_login');
                         ipCookie.remove('token');
+                        ipCookie.remove('has_login');
                         location.href = "/default.html";
                     }
                 })
@@ -11400,8 +11400,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -11727,6 +11727,7 @@ angular.module('myApp.controllers', ['ShopListModule'])
                             ////layer.msg('用户失效，请重新登录');
                             ipCookie.remove('has_login');
                             ipCookie.remove('token');
+                            ipCookie.remove('has_login');
                             location.href = "/default.html";
                         }
                     })
@@ -11795,8 +11796,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 // layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -11994,8 +11995,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -12669,8 +12670,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -12734,8 +12735,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -12972,8 +12973,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13126,8 +13127,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13283,8 +13284,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
             layer.close(cool);
             if (staus == 401) {
                 ////layer.msg('用户失效，请重新登录');
-                ipCookie.remove('has_login');
                 ipCookie.remove('token');
+                ipCookie.remove('has_login');
                 location.href = "/default.html";
             }
         })
@@ -13319,8 +13320,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13430,8 +13431,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13527,8 +13528,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13705,8 +13706,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })
@@ -13861,8 +13862,8 @@ angular.module('myApp.controllers', ['ShopListModule'])
                 layer.close(cool);
                 if (staus == 401) {
                     ////layer.msg('用户失效，请重新登录');
-                    ipCookie.remove('has_login');
                     ipCookie.remove('token');
+                    ipCookie.remove('has_login');
                     location.href = "/default.html";
                 }
             })

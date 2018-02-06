@@ -3822,7 +3822,6 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                           //增加
                           $scope.add = function (trItem) {
                              trItem.num += Number($scope.attrNumber);
-                             $scope.Zk = true;
                              if (trItem.num > 0) {
                                 $scope.isCarParams = true;
                              }

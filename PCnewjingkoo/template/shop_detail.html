@@ -196,7 +196,8 @@
                      </div>
                   </div>
                </div>
-
+               <!-- loading组件 -->
+               <div ng-if="pickTable&&!goodsData.data" style="text-align: center;margin: 10px 0 20px;"><my-loading></my-loading></div>
                <div style="min-height: 0;" class="pick-table">
                   <div class="tableZk" style="height: auto;" ng-show="pickTable&&goodsData.data">
                      <table width="100%">
@@ -210,7 +211,7 @@
                               <th width="124">库存</th>
                               <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                            </tr>
-                           <tr ng-repeat="trItem in goodsData.data" ng-if="Zk?$index<goodsData.data.length:$index<3">
+                           <tr ng-repeat="trItem in goodsData.data" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3">
                               <th class="img-th" width="72">
                                  <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;"
                                     ng-mousemove="trItem.event = $event">
@@ -230,7 +231,7 @@
                                        <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
                                        <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
                                           ng-change="change(trItem)">
-                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="add(trItem)">+</a>
+                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
                                     </span>
                                  </div>
                                  <div class="dingzhi" ng-if="data.data.isdingzhi==1">
@@ -251,10 +252,11 @@
                      </table>
                   </div>
                   <div ng-show="goodsData.data.length>3">
-                     <div class="zhankai" ng-class="{'sq':Zk}" style="bottom: -21px !important;" ng-click="Zk = !Zk"></div>
+                     <div class="zhankai" ng-class="{'sq':goodsData.Zk}" style="bottom: -21px !important;" ng-click="goodsData.Zk = !goodsData.Zk"></div>
                   </div>
                </div>
                <div ng-show="pickTa" class="pick-ta">
+
                   <table width="100%" class="pick-table mb20">
                      <tbody>
                         <tr>

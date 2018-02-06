@@ -63,8 +63,8 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         };
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-        // $rootScope.ip = 'https://www.jingku.cn'; //正式
+        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -4406,6 +4406,9 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                        btn2: function (index) {
                           layer.close(index);
                           $scope.getAttrList();
+                          $("body,html").animate({
+                            "scrollTop": 0
+                        }, 500)
                        }
                        // closeBtn: 0
                     });

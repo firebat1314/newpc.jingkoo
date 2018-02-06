@@ -99,6 +99,20 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/shop-list/shop-list.html',
                 controller: "ShopListControl"
             })
+            //切边镜片商品列表
+            .state("shop-list-cut", {
+                title:'商品列表',
+                url: '/shop-list-cut/:params',
+                templateUrl: 'template/shop-list-cut/shop-list-cut.html',
+                controller: "ShopListCutControl"
+            })
+            //切边镜片商品详情路由
+            .state("shop-detail-cut", {
+                title:'',
+                url: '/shop-detail-cut/:goods_id/:cutting_id',
+                templateUrl: 'template/shop-detail-cut/shop-detail-cut.html',
+                controller: "shopDetailCutControl"
+            })
             //商品列表路由
             .state("shop-list-ano", {
                 title:'商品列表',

@@ -4433,7 +4433,6 @@ $browser-default-font-size: 37.5px !default;
           }
           //2017.920add
           .new_shop_detail_top{
-//            padding-bottom: 10px; 
               .new_shop_h2{
                   font: 700 16px Arial,"microsoft yahei";
                   color: #666;
@@ -4581,306 +4580,8 @@ $browser-default-font-size: 37.5px !default;
               } 
               .saler_msg_box{   
                   padding: 5px 0 0 20px; 
-                  width: calc(100% - 20px);   
-//                .saler_msg_d1:last-child{ 
-//                     display: none;   
-//                 }  
-                  .saler_msg_d1{
-                      padding:2px 0;   
-                       &:after{
-                          content: " ";
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          visibility: hidden;
-                          clear: both;  
-                       } 
-                      .saler_msg_sp1{
-                          display: inline-block;
-                          width: 80px;
-                          height: 30px;
-                          line-height: 30px;
-                          text-align: left;
-                          float: left;
-                      }
-                      .saler_msg_sp2{
-                          display:inline-block;
-                          height: 30px;
-                          line-height: 30px;
-                          font-size: 20px;
-                          color: #FF3333;
-                          i{
-                              font-size: 12px;
-                          }
-                      }
-                      .saler_msg_sp3{
-                          display: inline-block;
-                          height: 30px;
-                          line-height: 30px;
-                          color:#4c4c4c;
-                          font-size: 14px;
-                      }
-                      .saler_msg_d2{
-                          float: left;
-                          .saler_p1{
-                              font-size: 14px;
-                              color:#808080; 
-                              height: 30px;
-                              line-height: 30px;
-                              .saler_msg_sp4{
-                                  display: inline-block;
-                                  padding: 0 10px; 
-                                  color: #FF3333; 
-                              }
-                          }
-                          .saler_p11{
-                              font-size: 14px; 
-                              .saler_msg_sp5{
-                                  display: inline-block;
-                                  height: 30px;
-                                  line-height: 30px;
-                                  width: 50px;
-                                  text-align: left;
-                              }
-                              .saler_msg_sp6{
-                                  display: inline-block;
-                                  color: #0070c9;
-                              }
-                          }
-                          .saler_msg_d3{
-                              .saler_msg_d3_sp1{ 
-                                  display: inline-block;  
-                                  height: 30px;   
-                                  line-height: 30px;   
-                                  position: relative;   
-                                  padding: 0 10px;     
-                                  .arrow_down{   
-                                      display: inline-block;  
-                                      width: 11px;   
-                                      height: 8px; 
-                                      background: url(../img/cle_jt.png) center no-repeat;
-                                      background-size:11px;  
-                                      margin: 0 10px;       
-                                      transform: rotate(0);   
-                                      transition: all .3s;      
-                                  }
-                                  .d3_sp1_dzbox{ 
-                                      width: 345px;   
-                                      padding: 10px 20px; 
-                                      min-height:100px; 
-                                      background-color: #fff;   
-                                      z-index: 500; 
-                                      position: absolute; 
-                                      top: 30px; 
-                                      left: 0; 
-                                      border-top: 1px solid #e6e6e6;
-                                      box-shadow: 0 9px 15px rgba(99,99,99,.4); 
-                                      -webkit-box-shadow: 0 9px 15px rgba(99,99,99,.4);
-                                      -moz-box-shadow: 0 9px 15px rgba(99,99,99,.4);
-                                      -ms-box-shadow: 0 9px 15px rgba(99,99,99,.4);  
-                                      display: none;          
-                                      .sp1_dzbox_d1{
-                                          .sp1_dzbox_d1p1{
-                                              height: 30px;
-                                              line-height: 30px;
-                                              width: 100%;
-                                              cursor: pointer; 
-                                              .sp1_d1p1_l{
-                                                   height: 30px;
-                                                    line-height: 30px; 
-                                                  float: left;
-                                              }
-                                              .sp1_d1p1_r{
-                                                  float: right;
-                                                  display: inline-block;
-                                                  width: 13px;
-                                                  height: 7px;
-                                                  background: url(../img/dayuhao.png) center no-repeat;
-                                                  background-size:100%;  
-                                                  margin-top: 11.5px; 
-                                              }
-                                              .sp1_d1p1_r.cheon{
-                                                  float: right;
-                                                  display: inline-block;
-                                                  width: 13px;
-                                                  height: 7px;
-                                                  background: url(../img/xiaoyuhao.png) center no-repeat;
-                                                  background-size:100%;  
-                                                  margin-top: 11.5px; 
-                                              } 
-                                          }
-                                          .dzbox_d1p1_p1.hide{
-                                              display: none;
-                                          } 
-                                          .dzbox_d1p1_p1{  
-                                              .dzbox_d1p1_p11{
-                                                  width: 100%;
-                                                  overflow: hidden;
-                                                  font-size: 12px;
-                                                  color: #808080;
-                                                   &:hover{
-                                                      color: #FF3333;
-                                                  } 
-                                                  &.red{
-                                                     color: #FF3333 !important;
-                                                  }
-                                                  .d1p1_p1_sp1{
-                                                      display: inline-block;
-                                                      width: 70px;
-                                                      height: 30px;
-                                                      line-height: 30px;
-                                                      text-align: left; 
-                                                      float: left;
-                                                      text-overflow:ellipsis; white-space:nowrap; overflow:hidden; 
-                                                  }
-                                                  .d1p1_p1_sp2{
-                                                      display: inline-block;
-                                                      width: calc(100% - 70px);
-                                                      float: left;
-                                                      text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
-                                                  }
-                                              }
-                                          }
-                                          //新地址
-                                          .chose_new_dz{
-                                              .chose_new_dzu1{
-                                                  border-bottom:1px solid #ff3333; 
-                                                   &:after{
-                                                      content: " ";
-                                                      display: block;
-                                                      width: 0;
-                                                      height: 0;
-                                                      visibility: hidden;
-                                                      clear: both;  
-                                                   }   
-                                                  li{
-                                                      padding: 0 10px;
-                                                      font-size: 14px;
-                                                      color: #3f69a5;
-                                                      height: 26px;
-                                                      line-height: 26px;
-                                                      float: left;
-                                                      margin-right: 10px; 
-                                                      border:1px solid #e6e6e6; 
-                                                      cursor: pointer;
-                                                      &:hover{
-                                                          border-left-color:#ff3333 ;
-                                                          border-right-color:#ff3333 ;
-                                                          border-top-color:#ff3333 ;
-                                                          border:1px solid #ff3333;
-                                                          border-bottom: none;       
-                                                      }         
-                                                  }
-                                                  li.on{
-                                                       border-left-color:#ff3333 ;
-                                                      border-right-color:#ff3333 ;
-                                                      border-top-color:#ff3333 ;
-                                                      border:1px solid #ff3333;
-                                                      border-bottom: none;        
-                                                  }
-                                              }
-                                              .chose_new_dzbox{
-                                                  .chose_new_dzd1{
-                                                      display: none;
-                                                      .chose_new_dzd1u1{
-                                                          overflow: hidden;
-                                                          li{
-                                                              display: inline-block;
-                                                              float: left;
-                                                              margin-right: 59px;  
-                                                              font-size: 12px;
-                                                              color: #808080;
-                                                              height: 30px;
-                                                              line-height: 30px;
-                                                              cursor: pointer;
-                                                          }
-                                                      }
-                                                  }
-                                                  .chose_new_dzd1.show{
-                                                      display: block !important; 
-                                                  }
-                                              }
-                                          }
-                                      }
-                                  }
-                                  .heng_line{
-                                      position: absolute; 
-                                      display: inline-block; 
-                                      width:calc(100% - 1px); 
-                                      border-top:3px solid #fff; 
-                                      z-index: 520; 
-                                      top: 29px; 
-                                      left: 1px; 
-                                      display: none; 
-                                  }
-                                  &:hover{ 
-                                     box-shadow: 0 0 15px rgba(99,99,99,.4);
-                                      -webkit-box-shadow: 0 0 15px rgba(99,99,99,.4);
-                                      -moz-box-shadow: 0 0 15px rgba(99,99,99,.4);
-                                      -ms-box-shadow: 0 0 15px rgba(99,99,99,.4); 
-                                      .heng_line{display: block;} 
-                                      .d3_sp1_dzbox{display: block;}   
-                                      .arrow_down{
-                                            transform: rotate(180deg);          
-                                            transition: all .3s;
-                                      }  
-                                          position: relative;
-                                  }
-                              }
-                              .saler_msg_d3_sp2{
-                                  display: inline-block; 
-                                  height: 30px; 
-                                  line-height: 30px; 
-                                  padding-left: 5px; 
-                              }
-                              .saler_p11{
-                                  display: inline-block; 
-                                  padding-left: 15px; 
-                              }
-                          }
-                      }
-                      //膜层
-                      .saler_msg_film{
-                          float: left; 
-                          width: calc(100% - 80px);
-                          overflow: hidden;
-                          li{
-                              height: 30px;
-                              line-height: 31px; 
-                              border: 1px solid #d9d9d9;
-                              min-width: 48px; 
-                              float:left; 
-                              margin-right:10px;   
-                              margin-bottom:10px;    
-                              text-align:center; 
-                                padding: 0 15px; 
-                                position:relative; 
-                                i.guanlianYes{
-                                    display: inline-block; 
-                                    width: 17px;
-                                    height: 17px;
-                                    position: absolute;  
-                                    bottom: 0; 
-                                    right: 0; 
-                                    display: none;  
-                                    background: url(../img/guanlianYes.png) no-repeat center; 
-                                }
-                              &:hover{
-                                 border: 1px solid #ff3333;  
-                                 cursor: pointer; 
-                                 i.guanlianYes{
-                                     display: block;
-                                 }
-                              }
-                          }  
-                          li.on{
-                              border: 1px solid #ff3333;
-                              i.guanlianYes{
-                                     display: block; 
-                             }
-                          }
-                      }
-                  }
+                  width: calc(100% - 20px);
+                  
               }
               //关联商品
               .connet_goods_box{
@@ -4916,7 +4617,302 @@ $browser-default-font-size: 37.5px !default;
               }
           }
           //2017.920add
-          
+          .saler_msg_d1{
+            padding:2px 0;   
+             &:after{
+                content: " ";
+                display: block;
+                width: 0;
+                height: 0;
+                visibility: hidden;
+                clear: both;  
+             } 
+            .saler_msg_sp1{
+                display: inline-block;
+                width: 80px;
+                height: 30px;
+                line-height: 30px;
+                text-align: left;
+                float: left;
+            }
+            .saler_msg_sp2{
+                display:inline-block;
+                height: 30px;
+                line-height: 30px;
+                font-size: 20px;
+                color: #FF3333;
+                i{
+                    font-size: 12px;
+                }
+            }
+            .saler_msg_sp3{
+                display: inline-block;
+                height: 30px;
+                line-height: 30px;
+                color:#4c4c4c;
+                font-size: 14px;
+            }
+            .saler_msg_d2{
+                float: left;
+                .saler_p1{
+                    font-size: 14px;
+                    color:#808080; 
+                    height: 30px;
+                    line-height: 30px;
+                    .saler_msg_sp4{
+                        display: inline-block;
+                        padding: 0 10px; 
+                        color: #FF3333; 
+                    }
+                }
+                .saler_p11{
+                    font-size: 14px; 
+                    .saler_msg_sp5{
+                        display: inline-block;
+                        height: 30px;
+                        line-height: 30px;
+                        width: 50px;
+                        text-align: left;
+                    }
+                    .saler_msg_sp6{
+                        display: inline-block;
+                        color: #0070c9;
+                    }
+                }
+                .saler_msg_d3{
+                    .saler_msg_d3_sp1{ 
+                        display: inline-block;  
+                        height: 30px;   
+                        line-height: 30px;   
+                        position: relative;   
+                        padding: 0 10px;     
+                        .arrow_down{   
+                            display: inline-block;  
+                            width: 11px;   
+                            height: 8px; 
+                            background: url(../img/cle_jt.png) center no-repeat;
+                            background-size:11px;  
+                            margin: 0 10px;       
+                            transform: rotate(0);   
+                            transition: all .3s;      
+                        }
+                        .d3_sp1_dzbox{ 
+                            width: 345px;   
+                            padding: 10px 20px; 
+                            min-height:100px; 
+                            background-color: #fff;   
+                            z-index: 500; 
+                            position: absolute; 
+                            top: 30px; 
+                            left: 0; 
+                            border-top: 1px solid #e6e6e6;
+                            box-shadow: 0 9px 15px rgba(99,99,99,.4); 
+                            -webkit-box-shadow: 0 9px 15px rgba(99,99,99,.4);
+                            -moz-box-shadow: 0 9px 15px rgba(99,99,99,.4);
+                            -ms-box-shadow: 0 9px 15px rgba(99,99,99,.4);  
+                            display: none;          
+                            .sp1_dzbox_d1{
+                                .sp1_dzbox_d1p1{
+                                    height: 30px;
+                                    line-height: 30px;
+                                    width: 100%;
+                                    cursor: pointer; 
+                                    .sp1_d1p1_l{
+                                         height: 30px;
+                                          line-height: 30px; 
+                                        float: left;
+                                    }
+                                    .sp1_d1p1_r{
+                                        float: right;
+                                        display: inline-block;
+                                        width: 13px;
+                                        height: 7px;
+                                        background: url(../img/dayuhao.png) center no-repeat;
+                                        background-size:100%;  
+                                        margin-top: 11.5px; 
+                                    }
+                                    .sp1_d1p1_r.cheon{
+                                        float: right;
+                                        display: inline-block;
+                                        width: 13px;
+                                        height: 7px;
+                                        background: url(../img/xiaoyuhao.png) center no-repeat;
+                                        background-size:100%;  
+                                        margin-top: 11.5px; 
+                                    } 
+                                }
+                                .dzbox_d1p1_p1.hide{
+                                    display: none;
+                                } 
+                                .dzbox_d1p1_p1{  
+                                    .dzbox_d1p1_p11{
+                                        width: 100%;
+                                        overflow: hidden;
+                                        font-size: 12px;
+                                        color: #808080;
+                                         &:hover{
+                                            color: #FF3333;
+                                        } 
+                                        &.red{
+                                           color: #FF3333 !important;
+                                        }
+                                        .d1p1_p1_sp1{
+                                            display: inline-block;
+                                            width: 70px;
+                                            height: 30px;
+                                            line-height: 30px;
+                                            text-align: left; 
+                                            float: left;
+                                            text-overflow:ellipsis; white-space:nowrap; overflow:hidden; 
+                                        }
+                                        .d1p1_p1_sp2{
+                                            display: inline-block;
+                                            width: calc(100% - 70px);
+                                            float: left;
+                                            text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+                                        }
+                                    }
+                                }
+                                //新地址
+                                .chose_new_dz{
+                                    .chose_new_dzu1{
+                                        border-bottom:1px solid #ff3333; 
+                                         &:after{
+                                            content: " ";
+                                            display: block;
+                                            width: 0;
+                                            height: 0;
+                                            visibility: hidden;
+                                            clear: both;  
+                                         }   
+                                        li{
+                                            padding: 0 10px;
+                                            font-size: 14px;
+                                            color: #3f69a5;
+                                            height: 26px;
+                                            line-height: 26px;
+                                            float: left;
+                                            margin-right: 10px; 
+                                            border:1px solid #e6e6e6; 
+                                            cursor: pointer;
+                                            &:hover{
+                                                border-left-color:#ff3333 ;
+                                                border-right-color:#ff3333 ;
+                                                border-top-color:#ff3333 ;
+                                                border:1px solid #ff3333;
+                                                border-bottom: none;       
+                                            }         
+                                        }
+                                        li.on{
+                                             border-left-color:#ff3333 ;
+                                            border-right-color:#ff3333 ;
+                                            border-top-color:#ff3333 ;
+                                            border:1px solid #ff3333;
+                                            border-bottom: none;        
+                                        }
+                                    }
+                                    .chose_new_dzbox{
+                                        .chose_new_dzd1{
+                                            display: none;
+                                            .chose_new_dzd1u1{
+                                                overflow: hidden;
+                                                li{
+                                                    display: inline-block;
+                                                    float: left;
+                                                    margin-right: 59px;  
+                                                    font-size: 12px;
+                                                    color: #808080;
+                                                    height: 30px;
+                                                    line-height: 30px;
+                                                    cursor: pointer;
+                                                }
+                                            }
+                                        }
+                                        .chose_new_dzd1.show{
+                                            display: block !important; 
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .heng_line{
+                            position: absolute; 
+                            display: inline-block; 
+                            width:calc(100% - 1px); 
+                            border-top:3px solid #fff; 
+                            z-index: 520; 
+                            top: 29px; 
+                            left: 1px; 
+                            display: none; 
+                        }
+                        &:hover{ 
+                           box-shadow: 0 0 15px rgba(99,99,99,.4);
+                            -webkit-box-shadow: 0 0 15px rgba(99,99,99,.4);
+                            -moz-box-shadow: 0 0 15px rgba(99,99,99,.4);
+                            -ms-box-shadow: 0 0 15px rgba(99,99,99,.4); 
+                            .heng_line{display: block;} 
+                            .d3_sp1_dzbox{display: block;}   
+                            .arrow_down{
+                                  transform: rotate(180deg);          
+                                  transition: all .3s;
+                            }  
+                                position: relative;
+                        }
+                    }
+                    .saler_msg_d3_sp2{
+                        display: inline-block; 
+                        height: 30px; 
+                        line-height: 30px; 
+                        padding-left: 5px; 
+                    }
+                    .saler_p11{
+                        display: inline-block; 
+                        padding-left: 15px; 
+                    }
+                }
+            }
+            //膜层
+            .saler_msg_film{
+                float: left; 
+                width: calc(100% - 80px);
+                overflow: hidden;
+                li{
+                    height: 30px;
+                    line-height: 31px; 
+                    border: 1px solid #d9d9d9;
+                    min-width: 48px; 
+                    float:left; 
+                    margin-right:10px;   
+                    margin-bottom:10px;    
+                    text-align:center; 
+                      padding: 0 15px; 
+                      position:relative; 
+                      i.guanlianYes{
+                          display: inline-block; 
+                          width: 17px;
+                          height: 17px;
+                          position: absolute;  
+                          bottom: 0; 
+                          right: 0; 
+                          display: none;  
+                          background: url(../img/guanlianYes.png) no-repeat center; 
+                      }
+                    &:hover{
+                       border: 1px solid #ff3333;  
+                       cursor: pointer; 
+                       i.guanlianYes{
+                           display: block;
+                       }
+                    }
+                }  
+                li.on{
+                    border: 1px solid #ff3333;
+                    i.guanlianYes{
+                           display: block; 
+                   }
+                }
+            }
+        }
         }
       }
       .goods-recommended{

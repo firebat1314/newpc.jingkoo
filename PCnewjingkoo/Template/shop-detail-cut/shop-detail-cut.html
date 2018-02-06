@@ -189,7 +189,7 @@
                      <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                         <span class="saler_msg_sp1">{{saler.name}}</span>
                         <ul class="saler_msg_film">
-                           <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="getAttrList(salers.id,salers.number);">{{salers.label}}
+                           <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="attrId = salers.id;attrNumber = salers.number;getAttrList();">{{salers.label}}
                               <i class="guanlianYes"></i>
                            </li>
                         </ul>
@@ -197,8 +197,17 @@
                   </div>
                </div>
 
-               <div style="min-height: 0;" class="pick-table">
-                  <div class="tableZk" style="height: auto;" ng-show="pickTable&&goodsData.data">
+               <div ng-if="cutting_info.cutting_info.is_frame==1" class="saler_msg_d1">
+                  <span class="saler_msg_sp1">镜架</span>
+                  <ul class="saler_msg_film">
+                     <li ng-class="{'on':true}" ng-click="getAttrList(cutting_info.cutting_info.default_info.goods_id);">{{cutting_info.cutting_info.default_info.goods_name}}
+                        <i class="guanlianYes"></i>
+                     </li>
+                  </ul>
+               </div>
+               <div ng-if="cutting_info.cutting_info.is_frame==1&&!goodsData.data" style="text-align: center;margin: 10px 0 20px;"><my-loading></my-loading></div>
+               <div style="min-height: 0;" class="pick-table" ng-if="goodsData.data">
+                  <div class="tableZk" style="height: auto;">
                      <table width="100%">
                         <tbody>
                            <tr class="first-line">
@@ -210,9 +219,9 @@
                               <th width="124">库存</th>
                               <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                            </tr>
-                           <tr ng-repeat="trItem in goodsData.data" ng-if="Zk?$index<goodsData.data.length:$index<3">
+                           <tr ng-repeat="trItem in goodsData.data" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3">
                               <th class="img-th" width="72">
-                                 <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;"
+                                 <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;box-sizing: border-box;"
                                     ng-mousemove="trItem.event = $event">
                                     <img ng-src={{trItem.img_path}} alt="">
                                  </div>
@@ -225,12 +234,12 @@
                               <th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
                               <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                               <th width="124">
-                                 <div class="diy-right" ng-if="data.data.isdingzhi!=1">
+                                 <div class="diy-right" ng-show="data.data.isdingzhi!=1">
                                     <span class="wenb">
                                        <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
                                        <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
                                           ng-change="change(trItem)">
-                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="add(trItem)">+</a>
+                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
                                     </span>
                                  </div>
                                  <div class="dingzhi" ng-if="data.data.isdingzhi==1">
@@ -251,14 +260,22 @@
                      </table>
                   </div>
                   <div ng-show="goodsData.data.length>3">
-                     <div class="zhankai" ng-class="{'sq':Zk}" style="bottom: -21px !important;" ng-click="Zk = !Zk"></div>
+                     <div class="zhankai" ng-class="{'sq':goodsData.Zk}" style="bottom: -21px !important;" ng-click="goodsData.Zk = !goodsData.Zk"></div>
                   </div>
                </div>
-               <div ng-show="pickTa" class="pick-ta">
+               <div ng-if="cutting_info.cutting_list" class="saler_msg_d1">
+                  <span class="saler_msg_sp1">镜片</span>
+                  <ul class="saler_msg_film">
+                     <li ng-repeat="item in cutting_info.cutting_list" ng-class="{'on':cutting_info.jingpianListGoodsId==item.goods_id}" ng-click="cutting_info.jingpianListGoodsId=item.goods_id;getAttrList(item.goods_id);">{{item.goods_name}}
+                        <i class="guanlianYes"></i>
+                     </li>
+                  </ul>
+               </div>
+               <div class="pick-ta">
                   <table width="100%" class="pick-table mb20">
                      <tbody>
                         <tr>
-                           <th>数量</th>
+                           <th ng-if="spectaclesData.is_zuoyou==1">左/右</th>
                            <th>球镜</th>
                            <th>柱镜</th>
                            <th ng-if="data.data.zhouwei">轴位</th>
@@ -267,18 +284,17 @@
                            <th ng-if="data.data.is_promotion==1">原价</th>
                            <th ng-if="data.data.is_promotion==1">促销价</th>
                            <th>小计</th>
-                           <th></th>
                         </tr>
                         <tr ng-repeat="item in arr">
-                           <td>
-                              <div class="diy-right">
+                           <td ng-if="spectaclesData.is_zuoyou==1">
+                              <!-- <div class="diy-right">
                                  <span class="wenb">
                                     <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);priceChange(item)">－</a>
                                     <input type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);">
                                     <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}"
                                        ng-click="item.member=item.member+1;priceChange(item)">+</a>
                                  </span>
-                              </div>
+                              </div> -->
                               <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
                            </td>
                            <td>
@@ -341,18 +357,15 @@
                            <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                            <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
                            <td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
-                           <td>
-                              <img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt="">
-                           </td>
                         </tr>
                      </tbody>
                   </table>
-                  <div class="zjhang mb20">
+                  <!-- <div class="zjhang mb20">
                      <a href="javascript:;" ng-click="addTr()">点击新增一行 +</a>
                      <a href="javascript:;" class="fab24" ng-click="delTr()">点击删除一行 -</a>
-                  </div>
+                  </div> -->
                </div>
-               <div class="pick-list" ng-if="isList">
+               <!-- <div class="pick-list" ng-if="isList">
                   <div class="pick-list-top-box" ng-if="topList">
                      <div class="pick-list-top" ng-repeat="specAttr in goodsCarParams.goods.attr" ng-if="goodsCarParams.goods.member[$index]">
                         <div class="fl list-top-color">{{specAttr}}</div>
@@ -366,7 +379,7 @@
                         <span>{{listTotalPrice}}</span>元</div>
                      <div class="fl list-bottom-selected" ng-class="{'select':topList}" ng-click="topList=!topList">已选清单</div>
                   </div>
-               </div>
+               </div> -->
                <div class="buy-button" ng-if="data.data.isdingzhi!=1">
                   <button ng-click="joinCar()">加入购物车</button>
                   <button ng-click="buyNow()" class="buy">立即购买</button>

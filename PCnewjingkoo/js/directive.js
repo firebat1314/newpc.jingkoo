@@ -235,7 +235,7 @@ angular.module('myApp.directives', [])
             },
             link: function (scope, element, attrs) {
                 // console.log(scope, element, attrs)
-                element[0].src = scope.defaultSrc||'../img/150-39.jpg';
+                element[0].src = scope.defaultSrc || '../img/150-39.jpg';
                 element[0].style.width = 'auto';
                 element[0].style.display = 'inline-block';
                 element[0].style.verticalAlign = 'middle';
@@ -252,7 +252,7 @@ angular.module('myApp.directives', [])
                 span.style.display = 'inline-block';
                 span.style.height = '100%';
                 span.style.verticalAlign = 'middle';
-                element[0].parentNode.insertBefore(span,element[0])
+                element[0].parentNode.insertBefore(span, element[0])
             }
         }
     })
@@ -261,11 +261,11 @@ angular.module('myApp.directives', [])
             restrict: 'A',
             scope: {
                 typeName: '@',
-                typeValue:'@'
+                typeValue: '@'
             },
             link: function (scope, element, attrs) {
                 $(element).on('click', function () {
-                    console.log(scope.typeName,scope.typeValue)
+                    console.log(scope.typeName, scope.typeValue)
                     if (scope.typeName == "category") {
                         var url = $state.href('shop-list', {
                             params: encodeURIComponent(JSON.stringify({
@@ -295,6 +295,18 @@ angular.module('myApp.directives', [])
                     }
                 })
             }
-        }    
+        }
+    })
+    .directive('myLoading', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            template: '<div class="loader loader--style5" title="4"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve"><rect x="0" y="0" width="4" height="10" fill="#666666"><animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0" dur="0.6s" repeatCount="indefinite" /></rect><rect x="10" y="0" width="4" height="10" fill="#666666"><animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.2s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="20" y="0" width="4" height="10" fill="#666666"> <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.4s" dur="0.6s" repeatCount="indefinite" /></rect></svg></div>',
+            //transclude是必须的。
+            // transclude:true,
+            link: function (scope, element, attrs) {
+
+            }
+        }
     })
 

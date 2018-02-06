@@ -357,7 +357,7 @@
 <!-- 
 <script type="text/javascript">
     $(function () {
-        function float() {//emmm
+         function float() {//emmm
             var ele = $('.shop-hasGoods-item-box');
             // console.log(ele.offset().top,ele.height(),$(window).scrollTop())
             var needH = ele.offset().top + ele.height() - $(window).scrollTop();
@@ -368,9 +368,9 @@
                 $('.car-hasGoods-main .wholebox').addClass('add');
             }
         }
-        setTimeout(function() {
+        setTimeout(function () {
             float();
         }, 1000);
-        $(window).resize(float);$(window).scroll(float);
+        angular.element(window).resize(float); angular.element(window).scroll(float);
     })
 </script> -->

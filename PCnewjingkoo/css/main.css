@@ -4245,26 +4245,29 @@ span.a_arrow_r {
             -ms-flex-align: center;
             align-items: center; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 > .ship_tips {
-              width: 23px;
-              height: 23px;
+              width: 21px;
+              height: 21px;
               background: url(../img/tips.png) no-repeat right center/100%;
               cursor: pointer;
               position: relative; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 > .ship_tips:hover .shipping_rule {
                 display: block; }
               .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 > .ship_tips > .shipping_rule {
-                display: none;
+                width: 360px;
+                padding: 10px;
+                overflow: hidden;
+                text-align: left;
+                min-height: 25px;
+                line-height: 30px;
                 position: absolute;
-                top: 27px;
-                left: -13px;
-                box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
-                -webkit-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
-                -moz-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
-                -ms-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
-                white-space: nowrap;
-                padding: 10px 20px;
-                background: #fff;
-                border-radius: 33px; }
+                background-color: #fff;
+                font-size: 12px;
+                color: #666666;
+                box-shadow: 0 0 10px 0 rgba(150, 150, 150, 0.4);
+                top: 35px;
+                left: -151px;
+                display: none;
+                z-index: 1000; }
                 .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 > .ship_tips > .shipping_rule::before {
                   display: block;
                   position: absolute;

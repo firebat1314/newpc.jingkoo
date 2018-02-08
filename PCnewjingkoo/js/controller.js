@@ -3762,7 +3762,6 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
               if (data.goods_type == "goods") {
                  //$scope.isGlass = false;
                  $scope.pickTable = true;
-                 $scope.isList = true;
                  //控制积分商城商品和普通商品和镜片的区别
                  $scope.isPointsMall = true;
                  $scope.pointsMall = false;
@@ -3771,7 +3770,8 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                  $scope.getAttrList = function (attrId, attrNumber) {
                     $scope.attrNumber = attrNumber || 1;
                     $scope.attrId = attrId;
-                    $http({
+                    $scope.isList = false;
+                 $http({
                        method: "POST",
                        url: '' + $rootScope.ip + '/Goods/get_attr_list',
                        data: {
@@ -3823,7 +3823,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                           $scope.add = function (trItem) {
                              trItem.num += Number($scope.attrNumber);
                              if (trItem.num > 0) {
-                                $scope.isCarParams = true;
+                                $scope.isList = true;
                              }
                              $scope.numberChange();
                           };
@@ -3859,7 +3859,11 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
               }
            })
   
-  
+        $scope.scrollTopTop = function(){
+            $('body,html').animate({
+                'scrollTop': 0
+          }, 500)
+        }
         $scope.NumSelect = function (e) {
   
            angular.element(e.target).focus().select();

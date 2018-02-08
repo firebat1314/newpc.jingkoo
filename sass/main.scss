@@ -4680,11 +4680,46 @@ $browser-default-font-size: 37.5px !default;
                     }
                 }
                 .saler_msg_d3{
+                  display: -webkit-box;
+                  display: -webkit-flex;
+                  display: -ms-flexbox;
+                  display: flex;
+                  -webkit-box-align: center;
+                  -webkit-align-items: center;
+                  -ms-flex-align: center;
+                  align-items: center;
                   >.ship_tips{
-                    width: 30px;
-                    height: 30px;
+                    width: 23px;
+                    height: 23px;
                     background: url(../img/tips.png) no-repeat right center/100%;
                     cursor:pointer;
+                    position: relative;
+                    &:hover .shipping_rule{
+                      display: block;
+                    }
+                    >.shipping_rule{
+                      display: none;
+                      position: absolute;
+                      top: 27px;
+                      left: -13px;
+                      box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
+                      -webkit-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
+                      -moz-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
+                      -ms-box-shadow: 0 9px 15px rgba(99, 99, 99, 0.4);
+                      white-space: nowrap;
+                      padding: 10px 20px;
+                      background: #fff;
+                      border-radius: 33px;
+                      &::before{
+                        display: block;
+                        position: absolute;
+                        top: -10px;
+                        left: 0px;
+                        width: 10px;
+                        height: 10px;
+                        content:'';
+                      }
+                    }
                   }
                     .saler_msg_d3_sp1{ 
                         display: inline-block;  

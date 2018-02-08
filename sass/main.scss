@@ -1977,7 +1977,7 @@ $browser-default-font-size: 37.5px !default;
               .down-time{
                 width:200px;
                 height:30px;
-                background: rgba(127,127,127,.5);
+                background: #e60000;
                 color:#fff;
                 line-height: 30px;
                 text-align: center;
@@ -1997,8 +1997,8 @@ $browser-default-font-size: 37.5px !default;
               justify-content: center;
               align-items: center;
               p{
-                color:#333;
-                font-size: 14px;
+                color:#e60000;
+                font-size: 15px;
                 margin-right: 10px;
                 float:left;
               }
@@ -3320,37 +3320,37 @@ $browser-default-font-size: 37.5px !default;
   }  
     }
     .hot-sale-tuijian{
-      height:285px; 
       border:1px solid #ccc; 
       margin-bottom: 25px;
-      .hot-sale-tit{
-        height:20px;
+        position: relative;
+        .hot-sale-tit{
         line-height: 35px;
         padding-left: 10px;    
         font-size: 14px;
 //      border-bottom: 1px solid #ccc; 
       }
       .hot-sale-goods{
-        padding-top: 8px;
-        position: relative;
-        a{
+        margin: 7px 40px;
+        overflow: hidden;
+        >a{
           img{
             width:100%;
+            max-width: 100%;
             border:1px solid #ccc;
             display: inline-block;
           }
         }
-        .tempWrap{
-          overflow: hidden;
-          position: relative;
-          margin-left: 10px;
-          margin: 0 auto;
-          padding-top: 12px;
+        ul{
           li{
             width:165px;
             height:236px;
             margin-right: 20px;
             float: left; 
+            >a{
+              img{
+                max-width: 100%;
+              }
+            }
             p{
               width:100%;
               text-overflow: ellipsis;
@@ -3373,7 +3373,7 @@ $browser-default-font-size: 37.5px !default;
           color: #ccc;
           position: absolute;
           left: 0;
-          top: 100px;
+          top: 128px;
           width: 40px;
           height: 40px;
           background: url(../img/spre.png) no-repeat center;
@@ -3386,7 +3386,7 @@ $browser-default-font-size: 37.5px !default;
           color: #ccc;
           position: absolute;
           right: 0;
-          top: 105px;
+          top: 128px;
           width: 40px;
           height: 40px;
           background: url(../img/snext.png) no-repeat center;
@@ -4680,12 +4680,20 @@ $browser-default-font-size: 37.5px !default;
                     }
                 }
                 .saler_msg_d3{
+                  >.ship_tips{
+                    width: 30px;
+                    height: 30px;
+                    background: url(../img/tips.png) no-repeat right center/100%;
+                    cursor:pointer;
+                  }
                     .saler_msg_d3_sp1{ 
                         display: inline-block;  
                         height: 30px;   
                         line-height: 30px;   
                         position: relative;   
-                        padding: 0 10px;     
+                        padding: 0 10px; 
+                        margin-left: -10px;    
+                        cursor: pointer;     
                         .arrow_down{   
                             display: inline-block;  
                             width: 11px;   
@@ -9714,7 +9722,7 @@ width: 60px;
 .picScroll-left a{position: absolute;z-index: 100;display: inline-block;width: 30px;height: 55px;cursor: pointer;top: 50%;margin-top:-27.5px;}          
 .picScroll-left a.next{position: absolute;right: 10px;background:#fff url(../img/snext.png) center center no-repeat;background-size: 50%;}
 .picScroll-left a.prev{position: absolute;left: 10px;background:#fff url(../img/spre.png) center center no-repeat;background-size: 50%;}
-.picScroll-left .bd{ padding:10px; }  
+.picScroll-left .bd{ margin:10px 40px; }  
 .picScroll-left .bd ul{ overflow:hidden; zoom:1; }  
 .picScroll-left .bd ul li{ margin:0 9px; float:left; _display:inline; overflow:hidden; text-align:center;  }
 

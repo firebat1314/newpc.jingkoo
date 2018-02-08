@@ -226,8 +226,6 @@
                 <p>猜你喜欢</p>
             </div>
             <div class="hot-sale-goods">
-                <a class="sPrev" href="javascript:void(0)"></a>
-                <div class="tempWrap">
                     <ul>
                         <li ng-repeat="like in YouLike.goods_list" repeat-done="likeGoodsFn()">
                             <a href="#/shop-detail/{{like.goods_id}}">
@@ -237,7 +235,7 @@
                             <i>{{like.shop_price}}</i>
                         </li>
                     </ul>
-                </div>
+                <a class="sPrev" href="javascript:void(0)"></a>
                 <a class="sNext" href="javascript:void(0)"></a>
             </div>
         </div>

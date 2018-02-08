@@ -45,7 +45,7 @@ $browser-default-font-size: 37.5px !default;
     .header-top-content-right{  
       padding-left: 0;
       float:right;
-      padding-right: 50px;   
+      padding-right: 30px;   
       .qycg{
         height: 40px;
         background: url(../img/cg_.png) no-repeat left;
@@ -772,7 +772,6 @@ $browser-default-font-size: 37.5px !default;
                 opacity: 0;  
             }
           }
-
           .page-btn {
             margin: 9px 0 5px 5px;
             padding: 6px 4px;  
@@ -785,83 +784,9 @@ $browser-default-font-size: 37.5px !default;
             text-decoration: none;
           }
         }
-
-
       }
     }
     .hot-sale-tuijian{
-      .hot-sale-tit{
-        height:20px;
-        line-height: 35px;
-        padding-left: 10px;  
-        font-size: 14px;
-//      border-bottom: 1px solid #ccc;
-      }
-      .hot-sale-goods{
-        padding-top: 8px;
-        position: relative;
-        a{
-          img{
-            width:100%;
-            border:1px solid #ccc;
-            display: inline-block;
-          }
-        }
-        .tempWrap{
-          overflow: hidden;
-          position: relative;
-          width: 880px; 
-          padding: 5px 54px 0 15px; 
-          margin-left: 7.5px;  
-          li{
-            width:165px;
-            height:236px;
-            margin-right: 20px;
-            p{
-              width:100%;
-              text-overflow: ellipsis;
-              overflow: hidden;
-              white-space: nowrap;
-              text-align: center;
-              height: 25px;
-              line-height: 25px;
-            }
-            i{
-              width:100%;
-              font-size: 14px;
-              color:#ff3333;
-              display: inline-block;
-              text-align: center;
-            }
-          }
-        }
-        .sPrev{
-          color: #ccc;
-          position: absolute;
-          left: 0;
-          top: 100px;
-          width: 40px;
-          height: 40px;
-          background: url(../img/spre.png) no-repeat center;
-          z-index: 999;
-          &:hover{
-            background:url(../img/spre_.png) no-repeat center rgba(148,148,148,0.5);
-          }
-        }
-        .sNext{
-          color: #ccc;
-          position: absolute;
-          right: 0;
-          top: 105px;
-          width: 40px;
-          height: 40px;
-          background: url(../img/snext.png) no-repeat center;
-          z-index: 999;
-          &:hover{
-            background:url(../img/snext_.png) no-repeat center rgba(148,148,148,0.5);
-          }
-        }
-      }
     }
   }
 
@@ -1896,7 +1821,7 @@ $browser-default-font-size: 37.5px !default;
                                   height: 30px; 
                                   line-height: 30px; 
                                   position: relative; 
-                                  padding: 0 10px 0 0;   
+                                  padding: 0 10px;   
                                   cursor: pointer;     
                                   .arrow_down{ 
                                       display: inline-block; 
@@ -3515,7 +3440,7 @@ $browser-default-font-size: 37.5px !default;
 .picScroll-left .hd ul li{ float:left;  width:23px; height:23px; text-align:center;line-height:23px; color:#808080;overflow:hidden; margin-right:7px; cursor:pointer; background:#fff; border:1px solid #e6e6e6;border-radius:50%; }
 .picScroll-left .hd ul li.on{ background:#ff3333; color:#fff;}
 
-.picScroll-left .bd{ padding:10px;}  
+.picScroll-left .bd{ margin:10px 40px;}  
 .picScroll-left .bd .tempWrap{margin: auto;}  
 .picScroll-left .bd ul{ overflow:hidden; zoom:1; }
 .picScroll-left .bd ul li{ margin:0 9px; float:left; _display:inline; overflow:hidden; text-align:center;  width: 120px !important;}

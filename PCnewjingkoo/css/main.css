@@ -2055,7 +2055,7 @@ span.a_arrow_r {
               .home-main .selected-topics .selected-topics-goods .tempWrap ul li a .down-time {
                 width: 200px;
                 height: 30px;
-                background: rgba(127, 127, 127, 0.5);
+                background: #e60000;
                 color: #fff;
                 line-height: 30px;
                 text-align: center;
@@ -2072,8 +2072,8 @@ span.a_arrow_r {
               justify-content: center;
               align-items: center; }
               .home-main .selected-topics .selected-topics-goods .tempWrap ul li .selected-topics-goods-price p {
-                color: #333;
-                font-size: 14px;
+                color: #e60000;
+                font-size: 15px;
                 margin-right: 10px;
                 float: left; }
               .home-main .selected-topics .selected-topics-goods .tempWrap ul li .selected-topics-goods-price i {
@@ -3122,51 +3122,47 @@ span.a_arrow_r {
           display: block;
           width: 100%; }
   .shopList-main .shop-list .hot-sale-tuijian {
-    height: 285px;
     border: 1px solid #ccc;
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    position: relative; }
     .shopList-main .shop-list .hot-sale-tuijian .hot-sale-tit {
-      height: 20px;
       line-height: 35px;
       padding-left: 10px;
       font-size: 14px; }
     .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods {
-      padding-top: 8px;
-      position: relative; }
-      .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods a img {
+      margin: 7px 40px;
+      overflow: hidden; }
+      .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods > a img {
         width: 100%;
+        max-width: 100%;
         border: 1px solid #ccc;
         display: inline-block; }
-      .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap {
-        overflow: hidden;
-        position: relative;
-        margin-left: 10px;
-        margin: 0 auto;
-        padding-top: 12px; }
-        .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li {
-          width: 165px;
-          height: 236px;
-          margin-right: 20px;
-          float: left; }
-          .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li p {
-            width: 100%;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            text-align: center;
-            height: 25px;
-            line-height: 25px; }
-          .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .tempWrap li i {
-            width: 100%;
-            font-size: 14px;
-            color: #ff3333;
-            display: inline-block;
-            text-align: center; }
+      .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods ul li {
+        width: 165px;
+        height: 236px;
+        margin-right: 20px;
+        float: left; }
+        .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods ul li > a img {
+          max-width: 100%; }
+        .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods ul li p {
+          width: 100%;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          text-align: center;
+          height: 25px;
+          line-height: 25px; }
+        .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods ul li i {
+          width: 100%;
+          font-size: 14px;
+          color: #ff3333;
+          display: inline-block;
+          text-align: center; }
       .shopList-main .shop-list .hot-sale-tuijian .hot-sale-goods .sPrev {
         color: #ccc;
         position: absolute;
         left: 0;
-        top: 100px;
+        top: 128px;
         width: 40px;
         height: 40px;
         background: url(../img/spre.png) no-repeat center;
@@ -3177,7 +3173,7 @@ span.a_arrow_r {
         color: #ccc;
         position: absolute;
         right: 0;
-        top: 105px;
+        top: 128px;
         width: 40px;
         height: 40px;
         background: url(../img/snext.png) no-repeat center;
@@ -4239,12 +4235,19 @@ span.a_arrow_r {
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_p11 .saler_msg_sp6 {
               display: inline-block;
               color: #0070c9; }
+          .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 > .ship_tips {
+            width: 30px;
+            height: 30px;
+            background: url(../img/tips.png) no-repeat right center/100%;
+            cursor: pointer; }
           .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 .saler_msg_d3_sp1 {
             display: inline-block;
             height: 30px;
             line-height: 30px;
             position: relative;
-            padding: 0 10px; }
+            padding: 0 10px;
+            margin-left: -10px;
+            cursor: pointer; }
             .shopDetail-main .goods-detail-nrBox .goods-detail-content .sp-box .sp-nrright .saler_msg_d1 .saler_msg_d2 .saler_msg_d3 .saler_msg_d3_sp1 .arrow_down {
               display: inline-block;
               width: 11px;
@@ -16380,7 +16383,7 @@ textarea {
   background-size: 50%; }
 
 .picScroll-left .bd {
-  padding: 10px; }
+  margin: 10px 40px; }
 
 .picScroll-left .bd ul {
   overflow: hidden;

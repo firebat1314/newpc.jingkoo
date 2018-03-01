@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>镜库服务</title>
     <link type="text/css" rel="stylesheet" href="css/animate.css">
-	<link rel="Shortcut icon" type="image/x-icon" href="http://www.jingku.cn/img/applogoNew.ico">
+	<link rel="Shortcut icon" type="image/x-icon" href="https://www.jingku.cn/img/applogoNew.ico">
     <link type="text/css" rel="stylesheet" href="css/reset.css">
     <link type="text/css" rel="stylesheet" href="css/swiper-3.4.2.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
@@ -62,7 +62,7 @@
             if (MobileUA.SMART_PHONE) {
                 // 移动端链接地址
 
-                document.location.href = 'http://m.jingku.cn/index_m.html';
+                document.location.href = 'https://m.jingku.cn/index_m.html';
             }
         });
 
@@ -348,47 +348,5 @@ var swiper = new Swiper('.car-swiper', {
 			}else{
 				window.open("/#/login");
 			}
-		})
-		/* 供应商 */
-		$('.wel_div_btn').eq(1).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newsupplier.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.admin_id > 0) {
-					window.open("http://newsupplier.jingkoo.net/Suppliers/Public/login.html")
-				} else {
-					window.open("http://newsupplier.jingkoo.net")
-				}
-			})
-		})
-		/* crm */
-		$('.wel_div_btn').eq(2).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newcrm.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.uid > 0) {
-					window.open("http://newcrm.jingkoo.net/Public/login.html")
-				} else {
-					window.open("http://newcrm.jingkoo.net")
-				}
-			})
-		})
-		/* 微店 */
-		$('.wel_div_btn').eq(3).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://vtest.jingkoo.net/Shop/Public_loginInfo.html',
-				type: 'get',
-			}).success(function (res) {
-				if (res.shopadminid > 0) {
-					window.open("http://vtest.jingkoo.net/Shop/Public_sign.html")
-				} else {
-					window.open("http://vtest.jingkoo.net/Shop")
-				}
-			})
 		})
 </script>

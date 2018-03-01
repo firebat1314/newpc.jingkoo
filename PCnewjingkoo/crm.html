@@ -410,6 +410,54 @@
 				window.open("/#/login");
 			}
 		})
+		/* 供应商 */
+		/*
+		$('.wel_div_btn').eq(1).on('click', function (event) {
+			event.preventDefault();
+			$.ajax({
+				url: 'http://supplier.jingku.cn/Public/loginInfo',
+				type: 'get',
+			}).success(function (res) {
+				if (res.admin_id > 0) {
+					window.open("http://supplier.jingku.cn/Suppliers/Public/login.html")
+				} else {
+					window.open("http://supplier.jingku.cn")
+				}
+			})
+		})
+		*/
+		/* crm */
+		/*
+		$('.wel_div_btn').eq(2).on('click', function (event) {
+			event.preventDefault();
+			$.ajax({
+				url: 'http://crm.jingku.cn/Public/loginInfo',
+				type: 'get',
+			}).success(function (res) {
+				if (res.uid > 0) {
+					window.open("http://crm.jingku.cn/Public/login.html")
+				} else {
+					window.open("http://crm.jingku.cn")
+				}
+			})
+		})
+		*/
+		/* 微店 */
+		/*
+		$('.wel_div_btn').eq(3).on('click', function (event) {
+			event.preventDefault();
+			$.ajax({
+				url: 'http://v.jingku.cn/Shop/Public_loginInfo.html',
+				type: 'get',
+			}).success(function (res) {
+				if (res.shopadminid > 0) {
+					window.open("http://v.jingku.cn/Shop/Public_sign.html")
+				} else {
+					window.open("http://v.jingku.cn/Shop")
+				}
+			})
+		})
+		*/
 </script>
 </body>
 </html>

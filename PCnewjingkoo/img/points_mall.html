@@ -1,0 +1,44 @@
+<div class="pointsMall-main">
+    <div class="pointsMall-pic">
+        <img src="img/pointsMallBigPic.jpg" alt="">
+    </div>
+    <div class="pointsMall-main-content gird">
+        <div class="pointsMall-bar">
+            <div class="pointsMall-sort-item"><p ng-click="morenOrder()">默认排序</p></div>
+            <div class="pointsMall-sort-item"><p ng-click="duihuanOrder()">兑换量</p><div ng-click="duihuanliangAsOrder()" class="xiaoyuhao"></div><div ng-click="duihuanliangDsOrder()" class="dayuhao"></div></div>
+            <div class="pointsMall-sort-item"><p ng-click="pointsOrder()">积分值</p><div ng-click="pointsAsOrder()" class="xiaoyuhao"></div><div ng-click="pointsDsOrder()" class="dayuhao"></div></div>
+            <div class="pointsMall-sort-item"><p>积分范围</p></div>
+            <div class="pointsMall-sort-search">
+                <input ng-model="minPoint" type="text">
+                <div class="search-line"></div>
+                <input ng-model="maxPoint" type="text">
+                <button ng-click="minAndmax()">搜索</button>
+                <label>
+                    <input type="checkbox" ng-click="isBuy()" style="display: none;">
+                    <div class="check-box" ng-class="{'selected':is_buy}"></div>
+                </label>
+                <p>只看我能兑换</p>
+            </div>
+        </div>
+        <div class="pointsMall-content">
+            <div class="pointsMall-item" ng-repeat="item in pointsData.list">
+                <a href="#/shop-detail/{{item.goods_id}}" target="_blank">
+                    <div class="pointsMall-item-img">
+                        <img ng-src={{item.goods_img}} alt="">
+                    </div>
+                    <h2>{{item.goods_name}}</h2>
+                    <p><i>{{item.exchange_integral}}积分</i><span>市场价：￥{{item.shop_price}}</span></p>
+                    <button>立即兑换</button>
+                </a>
+            </div>
+            <div class="pages" style="float:left">
+                <div id="Pagination"></div>
+                <div class="searchPage">
+                    <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                    <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
+                    <!--<a href="javascript:;" class="page-btn">确定</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

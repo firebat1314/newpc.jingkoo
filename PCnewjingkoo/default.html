@@ -56,7 +56,7 @@
 			if (MobileUA.SMART_PHONE) {
 				// 移动端链接地址
 
-				document.location.href = 'http://m.jingku.cn';
+				document.location.href = 'https://m.jingku.cn';
 			}
 		});
 
@@ -154,7 +154,7 @@
 					<div class="p1" data-swiper-parallax-x data-swiper-parallax="-500">眼光聚集专业，眼镜业的采购新焦点</div>
 					<!-- <div class="p2" data-swiper-parallax-x data-swiper-parallax="-2000"><em></em><i></i><em></em></div> -->
 					<div class="p4" data-swiper-parallax-x data-swiper-parallax="-5000">
-						<a href="#" class="xzpp">下载app<em></em></a>
+						<a href="#" class="xzpp" style="background: #a62626;">下载app<em></em></a>
 						<div class="erwm">
 							<div class="erwm-ico"></div>
 							<div class="erwm-dtu">
@@ -1146,48 +1146,6 @@
 			}else{
 				window.open("/#/login");
 			}
-		})
-		/* 供应商 */
-		$('.wel_div_btn').eq(1).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newsupplier.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.admin_id > 0) {
-					window.open("http://newsupplier.jingkoo.net/Suppliers/Public/login.html")
-				} else {
-					window.open("http://newsupplier.jingkoo.net")
-				}
-			})
-		})
-		/* crm */
-		$('.wel_div_btn').eq(2).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newcrm.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.uid > 0) {
-					window.open("http://newcrm.jingkoo.net/Public/login.html")
-				} else {
-					window.open("http://newcrm.jingkoo.net")
-				}
-			})
-		})
-		/* 微店 */
-		$('.wel_div_btn').eq(3).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://vtest.jingkoo.net/Shop/Public_loginInfo.html',
-				type: 'get',
-			}).success(function (res) {
-				if (res.shopadminid > 0) {
-					window.open("http://vtest.jingkoo.net/Shop/Public_sign.html")
-				} else {
-					window.open("http://vtest.jingkoo.net/Shop")
-				}
-			})
 		})
     function imgdragstart(){return false;}
     for(i in document.images)document.images[i].ondragstart=imgdragstart;

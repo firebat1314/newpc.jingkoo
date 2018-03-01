@@ -56,7 +56,7 @@
             if (MobileUA.SMART_PHONE) {
                 // 移动端链接地址
 
-                document.location.href = 'http://m.jingku.cn/index_m.html';
+                document.location.href = 'https://m.jingku.cn/index_m.html';
             }
         });
 
@@ -522,48 +522,6 @@
 			}else{
 				window.open("/#/login");
 			}
-		})
-		/* 供应商 */
-		$('.wel_div_btn').eq(1).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newsupplier.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.admin_id > 0) {
-					window.open("http://newsupplier.jingkoo.net/Suppliers/Public/login.html")
-				} else {
-					window.open("http://newsupplier.jingkoo.net")
-				}
-			})
-		})
-		/* crm */
-		$('.wel_div_btn').eq(2).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://newcrm.jingkoo.net/Public/loginInfo',
-				type: 'get',
-			}).success(function (res) {
-				if (res.uid > 0) {
-					window.open("http://newcrm.jingkoo.net/Public/login.html")
-				} else {
-					window.open("http://newcrm.jingkoo.net")
-				}
-			})
-		})
-		/* 微店 */
-		$('.wel_div_btn').eq(3).on('click', function (event) {
-			event.preventDefault();
-			$.ajax({
-				url: 'http://vtest.jingkoo.net/Shop/Public_loginInfo.html',
-				type: 'get',
-			}).success(function (res) {
-				if (res.shopadminid > 0) {
-					window.open("http://vtest.jingkoo.net/Shop/Public_sign.html")
-				} else {
-					window.open("http://vtest.jingkoo.net/Shop")
-				}
-			})
 		})
 </script>
 </body>

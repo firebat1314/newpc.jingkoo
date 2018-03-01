@@ -2799,7 +2799,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 })
+					layer.msg(data.info, { icon: 2, time: 3000 })
 				} else {
 					$rootScope.$broadcast('upCarList');
 					$state.go('shop-car');

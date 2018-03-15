@@ -6,7 +6,9 @@
 <div class="shop-jiesuan-changetop">
     <div class="shop-jiesuan-changet gird">
         <div class="shop-jiesuan-changetl">
-            <a href="#/home"><img src="img/logo.png" class="jiesuan-changetlimg" width="177px"/></a>
+            <a href="#/home">
+                <img src="img/logo.png" class="jiesuan-changetlimg" width="177px" />
+            </a>
             <span class="jiesuan-changetlsp">结算页</span>
         </div>
         <div class="shop-jiesuan-changetr">
@@ -30,46 +32,68 @@
             <tbody>
                 <tr>
                     <td width="172">
-                        <div class="dzhita-r r"><em class="red">*</em> 收货人：</div>
-                    </td>
-                    <td><input placeholder="请输入收货人姓名" type="text" class="dzhi-text" ng-model="eeditData.consignee"></td>
-                </tr>
-                <tr>
-                    <td width="172">
-                        <div class="dzhita-r r"><em class="red">*</em> 所在地区：</div>
+                        <div class="dzhita-r r">
+                            <em class="red">*</em> 收货人：</div>
                     </td>
                     <td>
-                        <select class="dzhi-selt" ng-model="eeditData.province" ng-change="selectProvince(eeditData.province)"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjProvince in tianjiaData.province_list" value="{{zjProvince.region_id}}">{{zjProvince.region_name}}</option></select>
-                        <select class="dzhi-selt" ng-model="eeditData.city" ng-change="selectCity(eeditData.city)"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjCity in cityData.data" value="{{zjCity.region_id}}">{{zjCity.region_name}}</option></select>
-                        <select class="dzhi-selt" ng-model="eeditData.district"><option ng-selected="1" value="">请选择</option><option ng-repeat="zjDistrict in disData.data" value="{{zjDistrict.region_id}}">{{zjDistrict.region_name}}</option></select>
+                        <input placeholder="请输入收货人姓名" type="text" class="dzhi-text" ng-model="eeditData.consignee">
                     </td>
                 </tr>
                 <tr>
                     <td width="172">
-                        <div class="dzhita-r r"><em class="red">*</em> 详细地址：</div>
+                        <div class="dzhita-r r">
+                            <em class="red">*</em> 所在地区：</div>
                     </td>
-                    <td><input placeholder="请输入详细地址" type="text" class="dzhi-text w1" ng-model="eeditData.address"></td>
+                    <td>
+                        <select class="dzhi-selt" ng-model="eeditData.province" ng-change="selectProvince(eeditData.province)">
+                            <option ng-selected="1" value="">请选择</option>
+                            <option ng-repeat="zjProvince in tianjiaData.province_list" value="{{zjProvince.region_id}}">{{zjProvince.region_name}}</option>
+                        </select>
+                        <select class="dzhi-selt" ng-model="eeditData.city" ng-change="selectCity(eeditData.city)">
+                            <option ng-selected="1" value="">请选择</option>
+                            <option ng-repeat="zjCity in cityData.data" value="{{zjCity.region_id}}">{{zjCity.region_name}}</option>
+                        </select>
+                        <select class="dzhi-selt" ng-model="eeditData.district">
+                            <option ng-selected="1" value="">请选择</option>
+                            <option ng-repeat="zjDistrict in disData.data" value="{{zjDistrict.region_id}}">{{zjDistrict.region_name}}</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td width="172">
-                        <div class="dzhita-r r"><em class="red">*</em> 手机号码：</div>
+                        <div class="dzhita-r r">
+                            <em class="red">*</em> 详细地址：</div>
                     </td>
-                    <td><input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="eeditData.mobile"></td>
+                    <td>
+                        <input placeholder="请输入详细地址" type="text" class="dzhi-text w1" ng-model="eeditData.address">
+                    </td>
+                </tr>
+                <tr>
+                    <td width="172">
+                        <div class="dzhita-r r">
+                            <em class="red">*</em> 手机号码：</div>
+                    </td>
+                    <td>
+                        <input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="eeditData.mobile">
+                    </td>
                 </tr>
                 <tr>
                     <td width="172">
                         <div class="dzhita-r r"> 固定电话：</div>
                     </td>
-                    <td><input placeholder="请输入您的固定电话" type="text" class="dzhi-text"></td>
+                    <td>
+                        <input placeholder="请输入您的固定电话" type="text" class="dzhi-text">
+                    </td>
                 </tr>
                 <tr>
                     <td width="172">
                         <div class="dzhita-r r">&nbsp;</div>
                     </td>
                     <td>
-                        <input class="dzhi-btn org mr20" ng-click="tianjiaAddress()" type="button" value="确认地址"><input class="dzhi-btn qx mr20"
-                            ng-click="quxiao()" type="button" value="取消">
-                        <span class="dzhi-mor"><input type="checkbox" class="dzhi-check" ng-model="isMor" ng-change="addSetMoren(isMor)">设为默认</span>
+                        <input class="dzhi-btn org mr20" ng-click="tianjiaAddress()" type="button" value="确认地址">
+                        <input class="dzhi-btn qx mr20" ng-click="quxiao()" type="button" value="取消">
+                        <span class="dzhi-mor">
+                            <input type="checkbox" class="dzhi-check" ng-model="isMor" ng-change="addSetMoren(isMor)">设为默认</span>
                     </td>
                 </tr>
             </tbody>
@@ -77,54 +101,82 @@
     </div>
     <div class="pur_close_top">
         <div class="pur_close_d pur_address">
-            <span class="pur_close_sp">收货信息 : </span> 
+            <span class="pur_close_sp">收货信息 : </span>
             <P ng-if="!defaultShipping&&!flag" style="font-size: 14px;margin: -3px 0 8px;">请选择收货地址</P>
             <div class="pur_close_dlbox">
                 <div class="pur_close_dl" ng-class="{'pur_close_dl pur_close_don':address.selected,'pur_close_dl noEvent':address.is_show==0}"
                     ng-init="flag=true" ng-if="flag||address.selected==1" ng-repeat="address in jiesuanData.consignee_list">
                     <span class="pur_close_sp1" ng-click="selectAddress(address.address_id)">{{address.consignee}}</span>
-                      <input type="button" value="可选地址" ng-if="address.is_show==1"  style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
-                    <input type="button" value="不可选地址" ng-if="address.is_show==0" style="height: 26px;padding: 0 15px;border-radius: 3px;background-color: #ccc;color: #fff;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"/>  
+                    <input type="button" value="可选地址" ng-if="address.is_show==1" style="height: 26px;padding: 0 15px;border-radius: 3px;color: #fff;background: #3f69a5;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"
+                    />
+                    <input type="button" value="不可选地址" ng-if="address.is_show==0" style="height: 26px;padding: 0 15px;border-radius: 3px;background-color: #ccc;color: #fff;font-size: 12px;border:none;margin:0 15px;margin-top: 2px;float: left;"
+                    />
                     <span class="pur_close_sp2">{{address.consignee}}</span>
-                    <span class="pur_close_sp3 "><i>{{address.region}}</i><i>{{address.address}}</i><i>{{address.mobile}}</i></span> 
-                    <input type="button" value="默认地址" ng-class="{'pur_close_btn block':address.is_default}" class="pur_close_btn" style="width:auto;padding: 0 15px;background-color: #ff3333;color: #fff;border: none;margin-right: 10px;"/>         
-                    <div class="pur_bianji">  
+                    <span class="pur_close_sp3 ">
+                        <i>{{address.region}}</i>
+                        <i>{{address.address}}</i>
+                        <i>{{address.mobile}}</i>
+                    </span>
+                    <input type="button" value="默认地址" ng-class="{'pur_close_btn block':address.is_default}" class="pur_close_btn" style="width:auto;padding: 0 15px;background-color: #ff3333;color: #fff;border: none;margin-right: 10px;"
+                    />
+                    <div class="pur_bianji">
                         <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库科技</div>
-                        <table class="dzhi-table" width="100%"> 
+                        <table class="dzhi-table" width="100%">
                             <tbody>
                                 <tr>
                                     <td width="172">
-                                        <div class="dzhita-r r"><em class="red">*</em> 收货人：</div>
-                                    </td>
-                                    <td><input placeholder="请输入收货人姓名" type="text" class="dzhi-text" ng-model="editData.consignee"></td>
-                                </tr>
-                                <tr>
-                                    <td width="172">
-                                        <div class="dzhita-r r"><em class="red">*</em> 所在地区：</div>
+                                        <div class="dzhita-r r">
+                                            <em class="red">*</em> 收货人：</div>
                                     </td>
                                     <td>
-                                        <select class="dzhi-selt" ng-model="editData.province" ng-change="changeProvince(editData.province)"><option   ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected" value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option></select>
-                                        <select class="dzhi-selt" ng-model="editData.city" ng-change="changeCity(editData.city)"><option  ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected" value="{{bjCity.region_id}}">{{bjCity.region_name}}</option></select>
-                                        <select class="dzhi-selt" ng-model="editData.district" ng-change="changeDis(editData.district)"><option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected" value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option></select>
+                                        <input placeholder="请输入收货人姓名" type="text" class="dzhi-text" ng-model="editData.consignee">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td width="172">
-                                        <div class="dzhita-r r"><em class="red">*</em> 详细地址：</div>
+                                        <div class="dzhita-r r">
+                                            <em class="red">*</em> 所在地区：</div>
                                     </td>
-                                    <td><input placeholder="请输入详细地址" type="text" class="dzhi-text w1" ng-model="editData.address"></td>
+                                    <td>
+                                        <select class="dzhi-selt" ng-model="editData.province" ng-change="changeProvince(editData.province)">
+                                            <option ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected"
+                                                value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option>
+                                        </select>
+                                        <select class="dzhi-selt" ng-model="editData.city" ng-change="changeCity(editData.city)">
+                                            <option ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected"
+                                                value="{{bjCity.region_id}}">{{bjCity.region_name}}</option>
+                                        </select>
+                                        <select class="dzhi-selt" ng-model="editData.district" ng-change="changeDis(editData.district)">
+                                            <option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected"
+                                                value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td width="172">
-                                        <div class="dzhita-r r"><em class="red">*</em> 手机号码：</div>
+                                        <div class="dzhita-r r">
+                                            <em class="red">*</em> 详细地址：</div>
                                     </td>
-                                    <td><input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="editData.mobile"></td>
+                                    <td>
+                                        <input placeholder="请输入详细地址" type="text" class="dzhi-text w1" ng-model="editData.address">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="172">
+                                        <div class="dzhita-r r">
+                                            <em class="red">*</em> 手机号码：</div>
+                                    </td>
+                                    <td>
+                                        <input placeholder="请输入您的手机号码" type="text" class="dzhi-text" ng-model="editData.mobile">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td width="172">
                                         <div class="dzhita-r r"> 固定电话：</div>
                                     </td>
-                                    <td><input placeholder="请输入您的固定电话" type="text" class="dzhi-text"></td>
+                                    <td>
+                                        <input placeholder="请输入您的固定电话" type="text" class="dzhi-text">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td width="172">
@@ -132,9 +184,10 @@
                                     </td>
                                     <td>
                                         <input class="dzhi-btn org mr20" ng-click="enterAddress($event,province_id,city_id,dis_id,$index)" type="button" value="确认地址">
-                                        <input
-                                            class="dzhi-btn qx mr20" ng-click="quxiao()" type="button" value="取消">
-                                            <span class="dzhi-mor"><input type="checkbox" class="dzhi-check" ng-model="isMor" ng-change="setMoren(isMor)" value="isMor" ng-checked="editData.default">设为默认</span>
+                                        <input class="dzhi-btn qx mr20" ng-click="quxiao()" type="button" value="取消">
+                                        <span class="dzhi-mor">
+                                            <input type="checkbox" class="dzhi-check" ng-model="isMor" ng-change="setMoren(isMor)"
+                                                value="isMor" ng-checked="editData.default">设为默认</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -153,7 +206,11 @@
         <div class="pur_close_d" ng-show="isExchange==0">
             <span class="pur_close_sp">支付方式 : </span>
             <div class="zfbt_box">
-                <span ng-click="selectPay(payment.pay_id)" ng-class="{'onli':payment.selected}" ng-repeat="payment in jiesuanData.payment_list">{{payment.pay_name}}<i class="round_qus"><div class="round_qusbox" ng-bind-html="payment.pay_desc"></div></i></span>
+                <span ng-click="selectPay(payment.pay_id)" ng-class="{'onli':payment.selected}" ng-repeat="payment in jiesuanData.payment_list">{{payment.pay_name}}
+                    <i class="round_qus">
+                        <div class="round_qusbox" ng-bind-html="payment.pay_desc"></div>
+                    </i>
+                </span>
                 <!--<span class="sp_btn2">银行汇款/转账</span>-->
                 <!--<span class="sp_btn3">货到付款</span>-->
             </div>
@@ -173,7 +230,8 @@
                 </tr>
             </table>
             <div class="goods_table_item" ng-repeat="cartGoods in jiesuanData.cart_goods_list">
-                <p class="p_titl">{{cartGoods.title}}<span style="cursor: pointer;" class="per_lo" ng-click="qimoChatClick(cartGoods.access_id);"></span>
+                <p class="p_titl">{{cartGoods.title}}
+                    <span style="cursor: pointer;" class="per_lo" ng-click="qimoChatClick(cartGoods.access_id);"></span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.free_price&&cartGoods.free_price!=0">购满{{cartGoods.free_price}}免运费</span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.suppliers_free==1">已免运费</span>
                 </p>
@@ -181,21 +239,26 @@
                     <div class="table_b1" ng-repeat="cartGoodsList in cartGoods.goods_list">
                         <div class="table_b1_left">
                             <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                <img ng-src={{cartGoodsList.goods_img}} width="80" height="80" style="border: 1px solid #e6e6e6;"/>
+                                <img ng-src={{cartGoodsList.goods_img}} width="80" height="80" style="border: 1px solid #e6e6e6;" />
                             </a>
                         </div>
                         <div class="table_b1_rightbox">
                             <div class="rightbox_more" ng-repeat="cartGoodsAttr in cartGoodsList.attrs" style="min-height: 80px;height: auto;">
                                 <div class="table_b1_right">
                                     <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                        <p>{{cartGoodsAttr.goods_name}}</p>
+                                        <p ng-attr-title="{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}"> {{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}</p>
                                     </a>
                                     <ul class="b1_right_u1">
                                         <li>
                                             <span ng-if="cartGoodsAttr.qiujing">球镜：{{cartGoodsAttr.qiujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhujing">柱镜：{{cartGoodsAttr.zhujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhouwei">轴位：{{cartGoodsAttr.zhouwei}}</span>
-                                            <span ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span>
+                                            <span ng-if="!(cartGoodsList.cutting_id>0)" ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span>
+                                        </li>
+                                        <li ng-if="cartGoodsList.cutting_id>0" ng-repeat="carGoodsAttrs in cartGoodsAttr.cutting_attr">
+                                            <span style="float:initial;">
+                                                <span ng-repeat="_attrAr in carGoodsAttrs">{{_attrAr}}</span>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>
@@ -212,19 +275,20 @@
                     <div class="send_way">
                         <div class="send_way_l" style="float: left;">
                             <span class="sent_sp1">配送方式 : </span>
-                            <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1','display':sent.disabled?'none':'inline-block'}" ng-class="{'send_way_sp selected':sent.selected}"
-                                ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
+                            <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1','display':sent.disabled?'none':'inline-block'}"
+                                ng-class="{'send_way_sp selected':sent.selected}" ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
                             <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
                             <span ng-if="!defaultShipping">请选择收货地址</span>
                             <!--商家备注-->
                             <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
-                                <span class="sent_sp1">商家备注 : </span><input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]"
-                                    type="text" placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
+                                <span class="sent_sp1">商家备注 : </span>
+                                <input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" type="text"
+                                    placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
-                            <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true"  style="overflow: hidden;margin-top: 10px;">
+                            <div class="remark_left remark_left2" ng-if="cartGoods.input_show == true" style="overflow: hidden;margin-top: 10px;">
                                 <span class="sent_sp1" style="float: left;">商家备注 : </span>
                                 <div class="texbox_d">
-                                    <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()" ></textarea>
+                                    <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()"></textarea>
                                     <ul class="bz_ul">
                                         <li ng-class="order_label.selected?'on':''" ng-repeat="order_label in cartGoods.order_label" ng-click="order_label.selected = !order_label.selected;saveNotes()">{{order_label.value}}</li>
                                     </ul>
@@ -233,8 +297,12 @@
                             </div>
                         </div>
                         <div class="remark_right" style="float: right;">
-                            <p ng-if="isExchange==0">购物金额小计 : <span>{{cartGoods.goods_subtotal}}</span></p>
-                            <p class="p2">+ 配送费用 : <span>{{cartGoods.shipping_free}}</span></p>
+                            <p ng-if="isExchange==0">购物金额小计 :
+                                <span>{{cartGoods.goods_subtotal}}</span>
+                            </p>
+                            <p class="p2">+ 配送费用 :
+                                <span>{{cartGoods.shipping_free}}</span>
+                            </p>
                             <p class="p2">+ 获赠积分 : {{cartGoods.will_get_integral}}</p>
                             <!-- <p class="p2" ng-if="cartGoods.subsidy_subtotal">+ 镜库补贴 : {{cartGoods.subsidy_subtotal}}</p> -->
                         </div>
@@ -247,7 +315,8 @@
         <!--使用优惠券-->
         <div class="use_oupon" ng-show="!isExchange">
             <!--<h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券/余额</h2>-->
-            <h2 class="use_oupon_h2"><span class="use_oupon_sp1"></span>使用优惠券</h2>
+            <h2 class="use_oupon_h2">
+                <span class="use_oupon_sp1"></span>使用优惠券</h2>
             <div class="use_oupon_cont">
                 <ul class="use_oupon_u1">
                     <li class="lion">优惠券</li>
@@ -293,7 +362,8 @@
                                                 </p>
                                                 <p class="oupon_top_p2">有效期至{{yhqNoUse.use_end_date}}</p>
                                                 <p class="oupon_top_p3">店铺 : {{yhqNoUse.suppliers_name}}</p>
-                                                <p class="oupon_top_p4"><span class="top_p4_sp"></span>没有符合条件的商品</p>
+                                                <p class="oupon_top_p4">
+                                                    <span class="top_p4_sp"></span>没有符合条件的商品</p>
                                             </div>
                                         </div>
                                     </div>
@@ -313,7 +383,10 @@
 
                             </div>
                         </div>
-                        <p ng-if="yhqIf" class="goods_oupon_p" ng-class="{'goods_oupon_p show':yhqIf,'goods_oupon_p':!yhqIf}"><span style="padding-left: 25px;">金额抵用 </span><span class="oupon_p_sp">{{yhqTotal}}</span></p>
+                        <p ng-if="yhqIf" class="goods_oupon_p" ng-class="{'goods_oupon_p show':yhqIf,'goods_oupon_p':!yhqIf}">
+                            <span style="padding-left: 25px;">金额抵用 </span>
+                            <span class="oupon_p_sp">{{yhqTotal}}</span>
+                        </p>
                     </div>
                     <!--余额-->
                     <!--<div class="surplus_box">-->
@@ -333,12 +406,22 @@
             <p class="count_p1">可用积分 :{{payPoints}}</p>
         </div>
         <div ng-if="isExchange==0" class="count_div" style="background: #fff;">
-            <p class="count_p1">订单总金额 : <span>{{totalPrice}}</span></p>
-            <p ng-if="yhqIf" class="count_p1">-优惠券 : <span>{{yhqTotal}}</span></p>
-            <p class="count_p1">+配送费用 : <span>{{totalShip}}</span></p>
+            <p class="count_p1">订单总金额 :
+                <span>{{totalPrice}}</span>
+            </p>
+            <p ng-if="yhqIf" class="count_p1">-优惠券 :
+                <span>{{yhqTotal}}</span>
+            </p>
+            <p class="count_p1">+配送费用 :
+                <span>{{totalShip}}</span>
+            </p>
             <p class="count_p1">+获赠积分 : {{jifen}}</p>
-            <p ng-if="yeIf" class="count_p1">-余额 : <span>{{yeTotal}}</span></p>
-            <p ng-if="sub" class="count_p1">-镜库补贴 : <span>{{subsidyPrice}}</span></p>
+            <p ng-if="yeIf" class="count_p1">-余额 :
+                <span>{{yeTotal}}</span>
+            </p>
+            <p ng-if="sub" class="count_p1">-镜库补贴 :
+                <span>{{subsidyPrice}}</span>
+            </p>
         </div>
 
         <div ng-show="yeIf" class="top_center_bott" style="overflow: hidden;">
@@ -346,14 +429,27 @@
                 novalidate>
                 <span class="close_p6" style="position: relative;top: 26px;left: -62px;margin-bottom: 10px;">支付密码：</span>
                 <label for="pass">
-                    <input style="opacity: 0;" minlength="6" maxlength="6" id="pass" name="pass" class="ui-input i-text" ng-model="pass" ng-value="pass" type="tel" autocomplete="off"/>
+                    <input style="opacity: 0;" minlength="6" maxlength="6" id="pass" name="pass" class="ui-input i-text" ng-model="pass" ng-value="pass"
+                        type="tel" autocomplete="off" />
                     <div class="sixDigitPassword" tabindex="0">
-                        <i><b></b></i>
-                        <i><b></b></i>
-                        <i><b></b></i>
-                        <i><b></b></i>
-                        <i><b></b></i>
-                        <i><b></b></i>
+                        <i>
+                            <b></b>
+                        </i>
+                        <i>
+                            <b></b>
+                        </i>
+                        <i>
+                            <b></b>
+                        </i>
+                        <i>
+                            <b></b>
+                        </i>
+                        <i>
+                            <b></b>
+                        </i>
+                        <i>
+                            <b></b>
+                        </i>
                         <span class="guangbiao" style="left:0px;"></span>
                     </div>
                     <span class="close_sp7" style="cursor: pointer;left:310px;" ng-click="forgot()">忘记支付密码？</span>
@@ -362,15 +458,24 @@
         </div>
         <!--订单金额-->
         <div class="refer_order">
-            <a href="#/shop-car"><span class="refer_order_sp">返回购物车</span></a>
+            <a href="#/shop-car">
+                <span class="refer_order_sp">返回购物车</span>
+            </a>
             <div class="refer_order_d" ng-if="isExchange==0">
-                    
-                <p class="refer_order_p"><!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) : <span class="refer_order_sp1">{{total}}</span><input ng-click="submitList($event,$index)" type="button"
-                        value="提交订单" class="refer_order_btn" /></p>
+
+                <p class="refer_order_p">
+                    <!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) :
+                    <span class="refer_order_sp1">{{total}}</span>
+                    <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn"
+                    />
+                </p>
             </div>
             <div class="refer_order_d" ng-if="isExchange==1">
-                <p class="refer_order_p">订单总积分 : <span class="refer_order_sp1">{{exchange_integral}}</span><input ng-click="submitList($event,$index)"
-                        type="button" value="提交订单" class="refer_order_btn" /></p>
+                <p class="refer_order_p">订单总积分 :
+                    <span class="refer_order_sp1">{{exchange_integral}}</span>
+                    <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn"
+                    />
+                </p>
             </div>
         </div>
 

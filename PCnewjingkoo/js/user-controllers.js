@@ -24,7 +24,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				} else {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				}
 			}).error(function (data, staus) {
@@ -71,12 +71,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 					}
 				})
@@ -310,13 +310,13 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$data.postRegionApply($scope.addressFm).success(function (res) {
 				if (res.status == 0) {
 					layer.msg(res.info, {
-						time: 500,
+						time: 3000,
 						icon: 2
 					})
 				} else {
 					$scope.getRegionApplyPar();
 					layer.msg(res.info, {
-						time: 500,
+						time: 3000,
 						icon: 1
 					})
 					$scope.reason = '';
@@ -362,7 +362,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 
 		$data.getUsercount().success(function (data) {
 			if (data.status == 0) {
-				layer.msg(data.info, { icon: 2, time: 500 })
+				layer.msg(data.info, { icon: 2, time: 3000 })
 			} else {
 				$scope.unpay = data.data.unpay;
 				$scope.send = data.data.send;
@@ -680,7 +680,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					} else {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						})
 					}
 				}).error(function (data) {
@@ -787,9 +787,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				amount: $scope.amount,
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				} else {
-					layer.msg(data.data, { icon: 1, time: 500 });
+					layer.msg(data.data, { icon: 1, time: 3000 });
 				}
 			})
 		}
@@ -846,7 +846,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				}).success(function (data) {
 					$scope.log_id = data.log_id;
 					if (data.status != 1) {
-						layer.msg(data.info, { icon: 2, time: 500 })
+						layer.msg(data.info, { icon: 2, time: 3000 })
 						return;
 					} else {
 						if ($scope.payment_id == 'alipay_pc_direct') {
@@ -912,12 +912,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -933,12 +933,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -954,12 +954,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1070,12 +1070,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 					}
 				})
@@ -1112,12 +1112,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 					}
 				})
@@ -1155,12 +1155,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 					}
 				})
@@ -1197,12 +1197,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 4000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 4000
 						});
 					}
 				})
@@ -1240,12 +1240,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					if (data.status == 0) {
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 					}
 				})
@@ -1265,12 +1265,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1285,12 +1285,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1307,12 +1307,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1328,12 +1328,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1349,12 +1349,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1370,12 +1370,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1391,12 +1391,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1412,12 +1412,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1433,12 +1433,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else if (data.status == 1) {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$(e.currentTarget).parent().parent().removeClass("show");
 					$(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
@@ -1599,13 +1599,13 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}
 					layer.msg(res.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					});
 					$scope.addList();
 				} else {
 					layer.msg(res.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					});
 				}
 
@@ -1648,12 +1648,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$scope.addList();
 				}
@@ -1715,7 +1715,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 
 				//				getCityList();
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 })
+					layer.msg(data.info, { icon: 2, time: 3000 })
 				} else {
 					$scope.neShow = 1;
 					$('.changeMsgBox').show();
@@ -1750,9 +1750,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$scope.addParamsDataA.default ? $scope.addParamsDataA.default = 1 : $scope.addParamsDataA.default = 0
 			$data.PosteditAddress($scope.addParamsDataA).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 })
+					layer.msg(data.info, { icon: 2, time: 3000 })
 				} else {
-					layer.msg(data.info, { icon: 1, time: 500 })
+					layer.msg(data.info, { icon: 1, time: 3000 })
 					$('.changeMsgBox').hide();
 					$scope.addList();
 				}
@@ -1879,12 +1879,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					})
 				} else {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					})
 					$state.go('save-teltwo', {
 						phone: data.mobile
@@ -1977,14 +1977,14 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						$scope.geeteTrue.reset();
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						})
 					}
 
 				})
 
 			} else {
-				layer.msg('请先完成验证', { icon: 2, time: 500 });
+				layer.msg('请先完成验证', { icon: 2, time: 3000 });
 			}
 
 			$scope.$on('$destroy', function () {
@@ -2056,12 +2056,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				if (data.status == 0) {
 					layer.msg(data.info, {
 						icon: 2,
-						time: 500
+						time: 3000
 					});
 				} else {
 					layer.msg(data.info, {
 						icon: 1,
-						time: 500
+						time: 3000
 					});
 					$state.go('save-passtwo');
 				}
@@ -2118,12 +2118,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						$scope.geeteTrue.reset();
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 						$state.go('save-passthree');
 					}
@@ -2301,7 +2301,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					}
 				})
 			} else {
-				layer.msg('请先完成验证', { icon: 2, time: 500 });
+				layer.msg('请先完成验证', { icon: 2, time: 3000 });
 			}
 		};
 
@@ -2431,12 +2431,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						$scope.geeteTrue.reset();
 						layer.msg(data.info, {
 							icon: 2,
-							time: 500
+							time: 3000
 						});
 					} else {
 						layer.msg(data.info, {
 							icon: 1,
-							time: 500
+							time: 3000
 						});
 						$state.go('save-emailtwo', {
 							email: $scope.email
@@ -2661,9 +2661,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				order_id: order_id
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				} else {
-					layer.msg(data.info, { icon: 1, time: 500 });
+					layer.msg(data.info, { icon: 1, time: 3000 });
 					$scope.getOrderLength();
 					$scope.getAllOrderHs();
 				}
@@ -2765,7 +2765,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						orderId: id
 					});
 				} else {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				}
 			})
 		}
@@ -2776,7 +2776,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						orderId: id
 					});
 				} else {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				}
 			})
 		}
@@ -2799,7 +2799,18 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 3000 })
+						layer.confirm('需要医疗器械许可证，是否上传', {
+							 btn: ['确定', '取消'], //按钮
+							 btnAlign: 'c',
+							 yes: function (index) {
+								 $state.go('person-qy-msg');
+								 layer.close(index);
+							 },
+							 btn2: function (index) {
+								 layer.close(index);
+							 }
+							 // closeBtn: 0
+						 });
 				} else {
 					$rootScope.$broadcast('upCarList');
 					$state.go('shop-car');
@@ -2893,7 +2904,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				type: $scope.ListPage.type
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg('请确定输入是否正确', { icon: 2, time: 500 })
+					layer.msg('请确定输入是否正确', { icon: 2, time: 3000 })
 				} else {
 					$scope.AllDetial = data.list;
 					$scope.AllDetialLength = data.list.length;
@@ -2944,7 +2955,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 									orderId: e.target.dataset.order
 								});
 							} else {
-								layer.msg(data.info, { icon: 2, time: 500 });
+								layer.msg(data.info, { icon: 2, time: 3000 });
 							}
 						})
 					}
@@ -3050,7 +3061,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$data.IntegralOrder().success(function (data) {
 				layer.close(cool);
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				} else {
 					$scope.InOrd = data;
 					$scope.InOrdList = data.list;
@@ -3072,7 +3083,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				order_sn: order_sn
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg('请确定输入是否正确', { icon: 2, time: 500 })
+					layer.msg('请确定输入是否正确', { icon: 2, time: 3000 })
 				} else {
 					$scope.InOrd = data;
 					$scope.InOrdList = data.list;
@@ -3164,7 +3175,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 })
+					layer.msg(data.info, { icon: 2, time: 3000 })
 				} else {
 					$rootScope.$broadcast('upCarList');
 					$state.go('shop-car');
@@ -3199,7 +3210,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			if (order_id) {
 				$state.go('paymentNew', { order_id: order_id, log_id: '', type: 'order' });
 			} else {
-				layer.msg('请检查商品是否存在', { icon: 1, time: 500 });
+				layer.msg('请检查商品是否存在', { icon: 1, time: 3000 });
 			}
 		}
 
@@ -3209,9 +3220,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				order_id: order_id
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 });
+					layer.msg(data.info, { icon: 2, time: 3000 });
 				} else {
-					layer.msg(data.info, { icon: 1, time: 500 });
+					layer.msg(data.info, { icon: 1, time: 3000 });
 					$state.go('order-all', { type: '' })
 				}
 			})
@@ -3358,7 +3369,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
-					layer.msg(data.info, { icon: 2, time: 500 })
+					layer.msg(data.info, { icon: 2, time: 3000 })
 				} else {
 					$rootScope.$broadcast('upCarList');
 					$state.go('shop-car');

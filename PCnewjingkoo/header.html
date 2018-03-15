@@ -167,8 +167,11 @@
                                     <div class="has-car-goods" ng-repeat="attr in goods.attrs">
                                         <a href="#/shop-detail/{{attr.goods_id}}">
                                             <img ng-src={{goods.goods_thumb}} alt="">
-                                            <p class="goodsName" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p>
-                                            <p class="attr"><em ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em></p>
+                                            <p class="goodsName" ng-attr-title="{{carList.cutting_id>0?goods.cutting_name:goods.goods_name}}">{{carList.cutting_id>0?goods.cutting_name:goods.goods_name}}</p>
+                                            <p class="attr">
+                                                <em ng-if="!carList.cutting_id>0" ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
+                                                <em ng-if="carList.cutting_id>0" ng-repeat="attrAr in attr.cutting_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
+                                            </p>
                                         </a>
                                         <div class="price-del">
                                             <div class="price">{{goods.goods_price}}×{{attr.goods_number}}</div>
@@ -214,7 +217,7 @@
                 </div>
                 <a href="#/flashSale" target="_blank">
                     <div class="summer-hot-box" ng-if="isShow">
-                        <h2>冬季热卖</h2>
+                        <h2>季度热卖</h2>
                         <p>热销经典快来抢购</p>
                         <div class="summer-hot-goods-box">
                             <div class="summer-hot-goods"></div>

@@ -223,7 +223,7 @@
                                 </a>
                             </div>
                             <div style="position: relative;" class="newmore-p">
-                                <a href="#/shop-detail/{{carList.goods_id}}">{{carList.goods_name}}</a>
+                                <a href="#/shop-detail/{{carList.goods_id}}">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
                                 <!--
                         		<div class="canfxbox"  ng-if="carList.is_inv==1">
                         			<span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>
@@ -244,18 +244,19 @@
                             </div>
                             <div class="hasGoods-check-message">
                                 <div class="check-li" ng-repeat="carArr in carList.attrs">
-                                    <label>
+                                    <label ng-if="!(carList.cutting_id>0)">
                                         <input type="checkbox" ng-click="changeAttrCheck(carArr,carArr.rec_id)" style="display: none;">
                                         <div style="width:15px;height:15px;margin-top: 8px;margin-left: 30px;" class="all-check" ng-class="{'checked':carArr.is_select}"></div>
                                     </label>
-                                    <ul ng-hide="carArr.qiujing==''&&carArr.zhujing==''&&carArr.zhouwei==''&&carArr.arr_attr==false">
+                                    <ul ng-hide="carArr.qiujing==''&&carArr.zhujing==''&&carArr.zhouwei==''&&carArr.arr_attr==false" style="height: auto;">
                                         <li ng-if="carArr.qiujing">球镜：{{carArr.qiujing}}</li>
                                         <li ng-if="carArr.zhujing">柱镜：{{carArr.zhujing}}</li>
                                         <li ng-if="carArr.zhouwei">轴位：{{carArr.zhouwei}}</li>
-                                        <li ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
+                                        <li ng-if="!(carList.cutting_id>0)" ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
+                                        <li ng-if="(carList.cutting_id>0)" ng-repeat="carAttr in carArr.cutting_attr" ng-attr-title="{{carAttr}}" style="float:initial;"><span ng-repeat="_carAttr in carAttr">{{_carAttr}}</span></li>
                                     </ul>
                                     <ul ng-show="carArr.qiujing==''&&carArr.zhujing==''&&carArr.zhouwei==''&&carArr.arr_attr==false">
-                                        <li>{{carList.goods_name}}</li>
+                                        <li>{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</li>
                                     </ul>
                                     <div class="diy-right c">
                                         <span class="wenb">

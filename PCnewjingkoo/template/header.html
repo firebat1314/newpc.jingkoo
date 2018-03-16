@@ -190,12 +190,14 @@
                             <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
                                 <div ng-repeat="goods in goodsItem.goods_list">
                                     <div class="has-car-goods" ng-repeat="attr in goods.attrs">
-                                        <a href="#/shop-detail/{{attr.goods_id}}">
+                                        <a ng-href="{{!(goods.cutting_id>0)?'#/shop-detail/'+goods.goods_id:'#/shop-detail-cut/'+goods.goods_id+'/'+goods.cutting_id}}">
                                             <img ng-src={{goods.goods_thumb}} alt="">
                                             <p class="goodsName" ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}</p>
                                             <p class="attr">
                                                 <em ng-if="!(goods.cutting_id>0)" ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
-                                                <em ng-if="goods.cutting_id>0" ng-repeat="attrAr in attr.cutting_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
+                                                <em ng-if="goods.cutting_id>0" ng-repeat="attrAr in goods.cutting_attr" ng-attr-title="{{attrAr}}">
+                                                <em ng-repeat="_attrAr in attrAr">{{_attrAr}}</em>
+                                                </em>
                                             </p>
                                         </a>
                                         <div class="price-del">
@@ -308,6 +310,9 @@
                     <a ui-sref="sheji" ui-sref-active="active">
                         <li>镜库设计</li>
                     </a>
+                    <a ui-sref="shop-list-cut({params:1})" ui-sref-active="active">
+                        <li>切边</li>
+                    </a>
                     <!--<li ng-click="jqqd()">镜库金融</li>-->
                 </ul>
 
@@ -357,7 +362,7 @@
                         <div class="car-right-goods-item">
                             <div ng-repeat="carRightItem in carRight.goods_list">
                                 <div class="goods-item" ng-repeat="carRightAttr in carRightItem.attrs" style="padding: 15px 0 24px;">
-                                    <a href="#/shop-detail/{{carRightItem.goods_id}}" target="_blank">
+                                    <a ng-href="{{!(carRightItem.cutting_id>0)?'#/shop-detail/'+carRightItem.goods_id:'#/shop-detail-cut/'+carRightItem.goods_id+'/'+carRightItem.cutting_id}}" target="_blank">
                                         <img ng-src={{carRightItem.goods_thumb}} alt="">
                                         <p class="goodsName" style="width: 160px;" ng-attr-title="{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}">{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}</p>
                                         <p class="attr" style="width: 160px;">

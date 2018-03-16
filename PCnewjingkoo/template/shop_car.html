@@ -218,12 +218,12 @@
                         </div>
                         <div class="fl hasGoods-check-right">
                             <div class="hasGoods-check-img">
-                                <a href="#/shop-detail/{{carList.goods_id}}">
+                                <a ng-href="{{!(carList.cutting_id>0)?'#/shop-detail/'+carList.goods_id:'#/shop-detail-cut/'+carList.goods_id+'/'+carList.cutting_id}}">
                                     <img ng-src={{carList.goods_thumb}} alt="">
                                 </a>
                             </div>
                             <div style="position: relative;" class="newmore-p">
-                                <a href="#/shop-detail/{{carList.goods_id}}">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
+                                <a ng-href="{{!(carList.cutting_id>0)?'#/shop-detail/'+carList.goods_id:'#/shop-detail-cut/'+carList.goods_id+'/'+carList.cutting_id}}">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
                                 <!--
                         		<div class="canfxbox"  ng-if="carList.is_inv==1">
                         			<span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>

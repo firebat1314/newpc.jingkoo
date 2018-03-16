@@ -20,6 +20,23 @@
       top: 4px;
       margin-right: 5px;
    }
+      .check {
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 3px;
+            position: relative;
+            left: -4px;
+            border: 1px solid #e6e6e6;
+            margin: auto;
+            margin-top: 23px;
+      }
+
+      .check.checked {
+            background: url(./img/yes.png) no-repeat center #3f69a5;
+            background-size: 10px;
+            border-color: #3F69A5;
+      }
 </style>
 <div class="shopDetail-main" ng-show="data">
    <div id="masks" class="masks"></div>
@@ -235,12 +252,17 @@
                               <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                               <th width="124">
                                  <div class="diy-right" ng-show="data.data.isdingzhi!=1">
-                                    <span class="wenb">
+                                    <!-- <span class="wenb">
                                        <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
                                        <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
                                           ng-change="change(trItem)">
                                        <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
-                                    </span>
+                                    </span> -->
+                                    
+                                    <label>
+                                          <input ng-style="{'cursor':'not-allowed':'pointer','pointer-events': 'none':''}" type="checkbox" ng-model="trItem.select" ng-change="change1(trItem)" style="display: none;">
+                                          <div class="check" ng-class="{'checked':trItem.select}"></div>
+                                      </label>
                                  </div>
                                  <div class="dingzhi" ng-if="data.data.isdingzhi==1">
                                     <a class="dingzhi_btn" style="width: 135px;

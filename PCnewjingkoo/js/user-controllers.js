@@ -2782,11 +2782,17 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 
 		//去商品详情页
-		$scope.goGoodsDetail = function (goods_id) {
-			var url = $state.href('shop-detail', {
-				goods_id: goods_id
-			});
-			window.open(url, '_blank');
+		$scope.goGoodsDetail = function (goods_id, cutting_id) {
+			if (cutting_id > 0) {
+				window.open($state.href('shop-detail-cut', {
+					goods_id: goods_id,
+					cutting_id: cutting_id
+				}), '_blank');
+			} else {
+				window.open($state.href('shop-detail', {
+					goods_id: goods_id
+				}), '_blank');
+			}
 		}
 
 
@@ -3230,10 +3236,17 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//删除订单
 
 		//		去商品详情
-		$scope.goGoodsDetail = function (goods_id) {
-			$state.go('shop-detail', {
-				goods_id: goods_id
-			});
+		$scope.goGoodsDetail = function (goods_id, cutting_id) {
+			if (cutting_id > 0) {
+				window.open($state.href('shop-detail-cut', {
+					goods_id: goods_id,
+					cutting_id: cutting_id
+				}), '_blank');
+			} else {
+				window.open($state.href('shop-detail', {
+					goods_id: goods_id
+				}), '_blank');
+			}
 		}
 		//详情返修
 

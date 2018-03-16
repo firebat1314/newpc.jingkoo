@@ -201,17 +201,34 @@
 				</tr>
 				<tr ng-repeat="ord in orderDetail.goods_list">
 					<td style="text-align: center;"><span class="shrk" ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2"><input type="checkbox" id="{{ord.rec_id}}" ng-model="ord.select"/><label for="{{ord.rec_id}}"></label></span>{{ord.goods_sn}}</td>
-					<td><div class="sr-img" style="cursor: pointer;" ng-click="goGoodsDetail(ord.goods_id)"><img ng-src="{{ord.thumb}}" /></div></td>
+					<td><div class="sr-img" style="cursor: pointer;" ng-click="goGoodsDetail(ord.goods_id,ord.cutting_id)"><img ng-src="{{ord.thumb}}" /></div></td>
 					<td>
 						<div class="sr-txt">
-							<p class="srt-p1">{{ord.goods_name}}</p>
+							<p class="srt-p1" style="white-space:initial;" ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">
+									{{ord.cutting_id>0?ord.cutting_name:ord.goods_name}}</p>
 							<p class="srt-p2">
 								<span style="margin-right: 10px;" ng-if="ord.qiujing">球镜 : {{ord.qiujing}}</span>
 								<span style="margin-right: 10px;" ng-if="ord.zhujing">柱镜 : {{ord.zhujing}}</span>
 								<span style="margin-right: 10px;" ng-if="ord.zhouwei">轴位 : {{ord.zhouwei}}</span>
-								<span style="margin-right: 10px;" ng-if="ord.goods_attr">{{ord.goods_attr}}</span>
+								<span ng-if="!(ord.cutting_id>0)" style="margin-right: 5px;" ng-repeat="attr in ord.goods_attrs">{{attr}}</span>
+									<span ng-if="(ord.cutting_id>0)" style="display:block;margin-right: 5px;" ng-repeat="attr in ord.cutting_attr">
+										<span ng-repeat="_attrAr in attr">{{_attrAr}}</span>
+									</span>
 							</p>
 						</div>
+
+						<span ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">
+								{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}
+							</span>
+							<span style="display: block;margin-top: 2px;color:#c5c5c5;">
+									<span style="margin-right: 5px;" ng-if="goods.qiujing">球镜：{{goods.qiujing}}</span>
+									<span style="margin-right: 5px;" ng-if="goods.zhujing">柱镜：{{goods.zhujing}}</span>
+									<span style="margin-right: 5px;" ng-if="goods.zhouwei">轴位：{{goods.zhouwei}}</span>
+									<span ng-if="!(goods.cutting_id>0)" style="margin-right: 5px;" ng-repeat="attr in goods.goods_attrs">{{attr}}</span>
+									<span ng-if="(goods.cutting_id>0)" style="display:block;margin-right: 5px;" ng-repeat="attr in goods.cutting_attr">
+										<span ng-repeat="_attrAr in attr">{{_attrAr}}</span>
+									</span>
+							</span>
 					</td>
 					<td><div class="c hsez">{{ord.goods_number}}</div></td>
 					<td><div class="c hsez">{{ord.shop_price}}</div></td>

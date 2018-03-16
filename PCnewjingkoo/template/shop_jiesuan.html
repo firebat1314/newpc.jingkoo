@@ -246,7 +246,7 @@
                             <div class="rightbox_more" ng-repeat="cartGoodsAttr in cartGoodsList.attrs" style="min-height: 80px;height: auto;">
                                 <div class="table_b1_right">
                                     <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
-                                        <p ng-attr-title="{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}"> {{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}</p>
+                                        <p ng-attr-title="{{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}"> {{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}</p>
                                     </a>
                                     <ul class="b1_right_u1">
                                         <li>

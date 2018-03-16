@@ -121,8 +121,8 @@
 											<div class="noot-sp">
 												<div class="le-dd">
 													<div class="imsldd" ng-repeat="goods in order.pian_goods">
-														<div class="img" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;"><img src="{{goods.goods_img}}"/></div>
-														<div class="txt" ng-click="goGoodsDetail(goods.goods_id)" style="cursor: pointer;">
+														<div class="img" ng-click="goGoodsDetail(goods.goods_id,goods.cutting_id)" style="cursor: pointer;"><img src="{{goods.goods_img}}"/></div>
+														<div class="txt" ng-click="goGoodsDetail(goods.goods_id,goods.cutting_id)" style="cursor: pointer;">
 															<p class="gp-1" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p>
 															<p class="gp-2">x{{goods.goods_number}}</p>
 														</div>

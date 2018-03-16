@@ -143,8 +143,8 @@ angular.module('ShopDetailCutModule', [])
 
 			angular.element(e.target).focus().select();
 		};
-		$scope.change = function (trItem) {
-			console.log(trItem.num)
+		$scope.change1 = function (trItem) {
+			trItem.select?trItem.num=1:trItem.num=0;
 			if (Number(trItem.num) > Number(trItem.product_number)) {
 				trItem.num = Number(trItem.product_number);
 			} else if (Number(trItem.num) < 0 || Number(trItem.num) == '') {
@@ -159,7 +159,7 @@ angular.module('ShopDetailCutModule', [])
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Goods/goods_infos',
-				data: { cut: 'cut', goods_id: $scope.goods_id },
+				data: { type: 'cut', goods_id: $scope.goods_id },
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
@@ -563,16 +563,20 @@ angular.module('ShopDetailCutModule', [])
 				$scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
 				$scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
 				$scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
-				$scope.goodsSpectaclesCarParams.goods.spc.push($scope.spectaclesData.zuoyou_spe.values[i].id);
+				$scope.spectaclesData.is_zuoyou ? $scope.goodsSpectaclesCarParams.goods.spc.push($scope.spectaclesData.zuoyou_spe.values[i].id) : null;
 			}
-			if (!$scope.goodsSpectaclesCarParams.goods.zhujing[$scope.arr.length - 1] && !$scope.goodsSpectaclesCarParams.goods.qiujing[$scope.arr.length - 1]) {
-				//layer.msg('商品球镜柱镜属性不能为空',{time:1000});
+			for (let i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
+				var element = $scope.goodsSpectaclesCarParams.goods.zhujing[i];
+				if(!element){
+					layer.msg('商品球镜柱镜属性不能为空',{time:1000});
+					return;
+				}
 			}
 			//镜片加入购物车接口
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/add_to_cart_spec_cutting',
-				data: { cutting_id: $scope.cutting_id, arr_goods_id: [ $scope.goodsCarParams.goods_id,$scope.goodsSpectaclesCarParams.goods_id], arr_goods: [ $scope.goodsCarParams.goods,$scope.goodsSpectaclesCarParams.goods] },
+				data: { cutting_id: $scope.cutting_id, arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id], arr_goods: [$scope.goodsCarParams.goods, $scope.goodsSpectaclesCarParams.goods] },
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
@@ -581,12 +585,11 @@ angular.module('ShopDetailCutModule', [])
 				})
 		}
 		$scope.joinCar = function () {
-			$scope.add_to_cart_spec(function () {
+			$scope.add_to_cart_spec(function (data) {
 				if (data.status == -1) {
 					layer.msg(data.info, { time: 1000 });
 				} else if (data.status == 1) {
 					layer.msg(data.info, { time: 1000 });
-					$scope.arr = [{ member: 1 }];
 					layer.confirm('商品已添加至购物车', {
 						btn: ['去结算', '继续选购'], //按钮
 						title: '提示',
@@ -597,7 +600,7 @@ angular.module('ShopDetailCutModule', [])
 						},
 						btn2: function (index) {
 							layer.close(index);
-							$scope.getAttrList();
+							$scope.getAttrList($scope.cutting_info.cutting_info.default_info.goods_id);
 						}
 						// closeBtn: 0
 					});
@@ -609,7 +612,7 @@ angular.module('ShopDetailCutModule', [])
 		}
 		//立即购买
 		$scope.buyNow = function () {
-			$scope.add_to_cart_spec_jp(function (data) {
+			$scope.add_to_cart_spec(function (data) {
 				if (data.status == -1) {
 					layer.msg(data.info, { time: 1000 });
 				} else if (data.status == 1) {

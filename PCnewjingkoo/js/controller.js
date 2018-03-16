@@ -13804,10 +13804,17 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         }
 
         //去商品详情页
-        $scope.goGoodsDetail = function (goods_id) {
-            $state.go('shop-detail', {
-                goods_id: goods_id
-            });
+        $scope.goGoodsDetail = function (goods_id,cutting_id) {
+            if(cutting_id>0){
+                $state.go('shop-detail-cut', {
+                    goods_id: goods_id,
+                    cutting_id: cutting_id
+                });
+            }else{
+                $state.go('shop-detail', {
+                    goods_id: goods_id
+                });
+            }
         }
 
 

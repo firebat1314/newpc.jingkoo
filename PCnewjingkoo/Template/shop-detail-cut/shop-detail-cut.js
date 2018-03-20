@@ -94,14 +94,19 @@ angular.module('ShopDetailCutModule', [])
 						$scope.goodsCarParams.goods.spec = [];
 						$scope.goodsCarParams.goods.attr = [];
 						for (var t = 0; t < $scope.goodsData.data.length; t++) {
-							if($scope.goodsData.data[t].num>0){
-								$scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
-								var arr1 = [];
-								var attrs = $scope.goodsData.data[t].goods_attr_id;
-								var sAttr = $scope.goodsData.data[t].str_goods_attr;
-								//arr1.push(attrs);
-								$scope.goodsCarParams.goods.spec.push(attrs);
-								$scope.goodsCarParams.goods.attr.push(sAttr);
+							if ($scope.goodsData.selectID == $scope.goodsData.data[t].goods_attr_id) {
+								if ($scope.goodsData.data[t].product_number > 0) {
+									$scope.goodsCarParams.goods.member.push(1);
+									var arr1 = [];
+									var attrs = $scope.goodsData.data[t].goods_attr_id;
+									var sAttr = $scope.goodsData.data[t].str_goods_attr;
+									//arr1.push(attrs);
+									$scope.goodsCarParams.goods.spec.push(attrs);
+									$scope.goodsCarParams.goods.attr.push(sAttr);
+								} else {
+									layer.msg('商品库存不足', { time: 1000 });
+									return;
+								}
 							}
 						}
 						//每次更新获取商品数量改变价格 接口
@@ -140,16 +145,16 @@ angular.module('ShopDetailCutModule', [])
 		};
 
 		$scope.NumSelect = function (e) {
-
 			angular.element(e.target).focus().select();
 		};
+
 		$scope.change1 = function (trItem) {
-			trItem.select?trItem.num=1:trItem.num=0;
+			/* trItem.select?trItem.num=1:trItem.num=0;
 			if (Number(trItem.num) > Number(trItem.product_number)) {
 				trItem.num = Number(trItem.product_number);
 			} else if (Number(trItem.num) < 0 || Number(trItem.num) == '') {
 				trItem.num = 0;
-			}
+			} */
 			$scope.numberChange();
 		};
 

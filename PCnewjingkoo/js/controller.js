@@ -181,6 +181,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         })
             .success(function (data) {
                 $scope.userData = data;
+                $rootScope.userData = data;
                 $scope.username = data.user_info.user_name;
                 $scope.userImg = data.user_info.avatar;
                 $scope.userMoney = data.user_info.user_money;

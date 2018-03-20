@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <div class="selected-topics brand-block">
+        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics brand-block">
             <div class="selected-topics-tit">
                 <h2>品牌街区</h2>
                 <a href="#/fashion">查看全部
@@ -210,7 +210,7 @@
                 <a class="sNext" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
             </div>
         </div>
-        <div class="brand-block-fashion">
+        <div ng-if="userData&&userData.user_info.is_test!=1" class="brand-block-fashion">
             <div class="bd">
                 <div class="ulWrap mainlist">
                     <li ng-repeat="fashion in logoFashionData.data">
@@ -236,7 +236,7 @@
                 </div>
             </div>
         </div>
-        <div class="selected-topics cool-eye-world">
+        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
             <div class="selected-topics-tit">
                 <h2>清新视界</h2>
             </div>
@@ -268,7 +268,7 @@
                 </div>
             </div>
         </div>
-        <div class="selected-topics cool-eye-world">
+        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
             <div class="selected-topics-tit jingshang">
                 <h2>镜尚镜美</h2>
             </div>

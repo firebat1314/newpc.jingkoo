@@ -251,17 +251,9 @@
                               <th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
                               <th width="124">{{trItem.product_number}} {{data.data.unit}}</th>
                               <th width="124">
-                                 <div class="diy-right" ng-show="data.data.isdingzhi!=1">
-                                    <!-- <span class="wenb">
-                                       <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
-                                       <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
-                                          ng-change="change(trItem)">
-                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
-                                    </span> -->
-                                    
+                                 <div class="diy-right" ng-show="data.data.isdingzhi!=1" >
                                     <label>
-                                          <input ng-style="{'cursor':'not-allowed':'pointer','pointer-events': 'none':''}" type="checkbox" ng-model="trItem.select" ng-change="change1(trItem)" style="display: none;">
-                                          <div class="check" ng-class="{'checked':trItem.select}"></div>
+                                          <div ng-style="{'cursor':'pointer'}" ng-click="goodsData.selectID=trItem.goods_attr_id;change1(trItem)" class="check" ng-class="{'checked':trItem.goods_attr_id == goodsData.selectID}"></div>
                                       </label>
                                  </div>
                                  <div class="dingzhi" ng-if="data.data.isdingzhi==1">

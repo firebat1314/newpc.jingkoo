@@ -287,14 +287,14 @@
                     <a ui-sref="home" ui-sref-active="active">
                         <li>首页</li>
                     </a>
-                    <a ui-sref="fashion" ui-sref-active="active">
+                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="fashion" ui-sref-active="active">
                         <li>品牌</li>
                     </a>
                     <!-- <a ui-sref="waitingSale" ui-sref-active="active"><li>预售</li></a> -->
-                    <a ui-sref="newGoods" ui-sref-active="active">
-                        <li>新品专区</li>
+                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="newGoods" ui-sref-active="active">
+                        <li>新品</li>
                     </a>
-                    <a ui-sref="flashSale" ui-sref-active="active">
+                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="flashSale" ui-sref-active="active">
                         <li>闪购</li>
                     </a>
                     <a ui-sref="pointsMall" ui-sref-active="active">
@@ -315,7 +315,6 @@
                     </a>
                     <!--<li ng-click="jqqd()">镜库金融</li>-->
                 </ul>
-
             </div>
         </div>
         <div class="right-bar_box" style="background: #F7F7F7;position: fixed;top: 0;right: -270px;z-index: 1200;width: 270px;">

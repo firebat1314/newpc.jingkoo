@@ -120,10 +120,10 @@
                     <span>精选专题</span>
                 </div>
                 <!--<div class="floor-select-item shangou"><div class="item-img"></div><span>闪购</span></div>-->
-                <div class="floor-select-item pinpai">
+                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item pinpai">
                     <span>品牌街区</span>
                 </div>
-                <div class="floor-select-item yinxing">
+                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item yinxing">
                     <span>清新世界</span>
                 </div>
                 <div class="floor-select-item meitong">
@@ -268,7 +268,7 @@
                 </div>
             </div>
         </div>
-        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
+        <div class="selected-topics cool-eye-world">
             <div class="selected-topics-tit jingshang">
                 <h2>镜尚镜美</h2>
             </div>

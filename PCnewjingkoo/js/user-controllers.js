@@ -30,7 +30,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			}).error(function (data, staus) {
 				layer.close(cool);
 				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
+					// layer.msg('用户失效，请重新登录');
 					ipCookie.remove('has_login');
 					ipCookie.remove('token');
 					location.href = "/default.html";

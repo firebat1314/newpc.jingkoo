@@ -139,10 +139,6 @@
                         <span class="saler_msg_sp1">原价批发</span>
                         <span class="saler_msg_sp3">{{data.data.old_shop_price}}</span>
                      </div>
-                     <div class="saler_msg_d1" ng-if="shopDetailData.data.dingzhitime">
-                        <span class="saler_msg_sp1">发货时间</span>
-                        <span class="saler_msg_sp3">卖家保证{{shopDetailData.data.dingzhitime}}内发货</span>
-                     </div>
                      <div class="saler_msg_d1">
                         <span class="saler_msg_sp1">配送至</span>
                         <div class="saler_msg_d2">
@@ -213,17 +209,21 @@
                      </div>
                   </div>
                </div>
-
-               <div ng-if="cutting_info.cutting_info.is_frame==1" class="saler_msg_d1">
-                  <span class="saler_msg_sp1">镜架</span>
+               <div ng-if="cutting_info.cutting_list" class="saler_msg_d1">
+                  <span class="saler_msg_sp1">请选择</span>
                   <ul class="saler_msg_film">
-                     <li ng-class="{'on':true}" ng-click="getAttrList(cutting_info.cutting_info.default_info.goods_id);">{{cutting_info.cutting_info.default_info.goods_name}}
-                        <i class="guanlianYes"></i>
-                     </li>
+                        <li  ng-if="cutting_info.cutting_info.is_frame==1" ng-class="{'on':jingpianListGoodsId==cutting_info.cutting_info.default_info.goods_id}" ng-click="getAttrList(cutting_info.cutting_info.default_info.goods_id);"  ng-attr-title="{{cutting_info.cutting_info.default_info.goods_name}}">
+									样品<!-- {{cutting_info.cutting_info.default_info.goods_name}} -->
+                              <i class="guanlianYes"></i>
+                        </li>
+                        <li ng-repeat="item in cutting_info.cutting_list" ng-class="{'on':jingpianListGoodsId==item.goods_id}" ng-click="get_goods_attribute(item.goods_id);" ng-attr-title="{{item.goods_name}}">{{item.goods_name}}
+                              <i class="guanlianYes"></i>
+                        </li>
                   </ul>
-               </div>
-               <div ng-if="cutting_info.cutting_info.is_frame==1&&!goodsData.data" style="text-align: center;margin: 10px 0 20px;"><my-loading></my-loading></div>
-               <div style="min-height: 0;" class="pick-table" ng-if="goodsData.data">
+                  </div>
+					<!-- <div style="min-height: 0;" class="pick-table" ng-if="cutting_info.cutting_info.is_frame==1&&
+					jingpianListGoodsId==cutting_info.cutting_info.default_info.goods_id&&
+					goodsData.data">
                   <div class="tableZk" style="height: auto;">
                      <table width="100%">
                         <tbody>
@@ -276,28 +276,24 @@
                   <div ng-show="goodsData.data.length>3">
                      <div class="zhankai" ng-class="{'sq':goodsData.Zk}" style="bottom: -21px !important;" ng-click="goodsData.Zk = !goodsData.Zk"></div>
                   </div>
-               </div>
-               <div ng-if="cutting_info.cutting_list" class="saler_msg_d1">
-                  <span class="saler_msg_sp1">镜片</span>
-                  <ul class="saler_msg_film">
-                     <li ng-repeat="item in cutting_info.cutting_list" ng-class="{'on':cutting_info.jingpianListGoodsId==item.goods_id}" ng-click="get_goods_attribute(item.goods_id);">{{item.goods_name}}
-                        <i class="guanlianYes"></i>
-                     </li>
-                  </ul>
-               </div>
-               <div class="pick-ta">
-                  <table width="100%" class="pick-table mb20">
+					</div> -->
+					<div ng-if="jingpianListGoodsId&&(cutting_info.cutting_info.is_frame==1&&
+					jingpianListGoodsId!=cutting_info.cutting_info.default_info.goods_id)&&!spectaclesData" style="text-align: center;margin: 10px 0 20px;"><my-loading></my-loading></div>
+               <div class="pick-ta" style="min-height: 150px;">
+                  <table width="100%" class="pick-table mb20" ng-if="(cutting_info.cutting_info.is_frame==1&&
+						jingpianListGoodsId!=cutting_info.cutting_info.default_info.goods_id)&&spectaclesData">
                      <tbody>
                         <tr>
-                           <th ng-if="spectaclesData.is_zuoyou==1">左/右</th>
-                           <th>球镜</th>
-                           <th>柱镜</th>
-                           <th ng-if="data.data.zhouwei">轴位</th>
-                           <th ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
-                           <th ng-if="data.data.is_promotion==0">单价</th>
-                           <th ng-if="data.data.is_promotion==1">原价</th>
-                           <th ng-if="data.data.is_promotion==1">促销价</th>
-                           <th>小计</th>
+                           <th style="width: 100px;" ng-if="spectaclesData.is_zuoyou==1">左/右</th>
+                           <th style="width: 100px;">球镜</th>
+                           <th style="width: 100px;">柱镜</th>
+                           <th style="width: 100px;" ng-if="data.data.zhouwei">轴位</th>
+                           <th style="width: 130px;" ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
+                           <th style="width: 130px;" ngIf="shipTime">定制周期</th>
+                           <th style="width: 100px;" ng-if="data.data.is_promotion==0">单价</th>
+                           <th style="width: 100px;" ng-if="data.data.is_promotion==1">原价</th>
+                           <th style="width: 100px;" ng-if="data.data.is_promotion==1">促销价</th>
+                           <!-- <th>小计</th> -->
                         </tr>
                         <tr ng-repeat="item in arr">
                            <td ng-if="spectaclesData.is_zuoyou==1">
@@ -353,16 +349,17 @@
                               <input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text">
                            </td>
                            <td ng-repeat="zhouwei in spectaclesData.specification">
-                              <select class="pick-selt" ng-model="item[zhouwei.name]" ng-change="priceChange(item)">
+                              <select class="pick-selt" style="width: 120px;" ng-model="item[zhouwei.name]" ng-change="priceChange(item)">
                                  <option value="" ng-selected="1">请选择</option>
                                  <option ng-repeat="subzhouwei in zhouwei.values" ng-value="subzhouwei.id">{{subzhouwei.label}}</option>
                               </select>
                            </td>
                            <!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->
+                           <td ngIf="shipTime">{{shipTime || shopDetailData.data.dingzhitime}}</td>
                            <td ng-if="data.data.is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                            <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
                            <td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
-                           <td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
+                           <!-- <td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td> -->
                         </tr>
                      </tbody>
                   </table>

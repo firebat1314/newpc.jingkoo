@@ -17,16 +17,30 @@ angular.module('ShopDetailCutModule', [])
 			if (res.status) {
 				$scope.cutting_info = res;
 				if (res.cutting_info.is_frame == 1) {
-					$scope.getAttrList(res.cutting_info.default_info.goods_id);
+					// $scope.getAttrList(res.cutting_info.default_info.goods_id);
+					$scope.jingpianListGoodsId = res.cutting_info.default_info.goods_id;
 				}
 				//默认选中的镜片商品ID
-				$scope.cutting_info.jingpianListGoodsId = res.cutting_list[0].goods_id;
-				$scope.get_goods_attribute($scope.cutting_info.jingpianListGoodsId);
+				// $scope.jingpianListGoodsId = res.cutting_list[0].goods_id;
+				// $scope.get_goods_attribute($scope.jingpianListGoodsId);
 			}
 		})
 		$scope.get_goods_attribute = function (goods_id) {
-			$scope.cutting_info.jingpianListGoodsId = goods_id;
+			$scope.jingpianListGoodsId = goods_id;
 			$scope.goodsSpectaclesCarParams.goods_id = goods_id;
+			var cool = layer.load(0, { shade: [0.3, '#fff'] });
+			$http({
+				method: "POST",
+				url: '' + $rootScope.ip + '/Goods/goods_infos',
+				data: { type: 'cut', goods_id: goods_id },
+				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+			})
+			.success(function (data) {
+				layer.close(cool)
+				if(data.status){
+					$scope.shipTime = data.data.dingzhitime;
+				}
+			})
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/get_goods_attribute',
@@ -58,7 +72,7 @@ angular.module('ShopDetailCutModule', [])
 
 					//商品属性为goods时调用这个接口
 
-					$scope.getAttrList(goods_id);
+					// $scope.getAttrList(goods_id);
 				}
 				else if (data.goods_type == "goods_spectacles") {
 					var arr = [];
@@ -74,6 +88,7 @@ angular.module('ShopDetailCutModule', [])
 		}
 
 		$scope.getAttrList = function (goods_id) {
+			$scope.jingpianListGoodsId = goods_id;
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Goods/get_attr_list',
@@ -470,12 +485,13 @@ angular.module('ShopDetailCutModule', [])
 
 		//点击球镜数据给当前球镜设置度数，同时请求柱镜数据
 		$scope.getDs = function (item) {
+			item.zhujing = '';
 			//获取柱镜的数据
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Goods/get_zhujing',
 				data: {
-					goods_id: $scope.cutting_info.jingpianListGoodsId,
+					goods_id: $scope.jingpianListGoodsId,
 					item: item.qiujing
 				},
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
@@ -515,7 +531,7 @@ angular.module('ShopDetailCutModule', [])
 				method: "POST",
 				url: '' + $rootScope.ip + '/Goods/changeprice',
 				data: {
-					goods_id: $scope.cutting_info.jingpianListGoodsId,
+					goods_id: $scope.jingpianListGoodsId,
 					attr: spcArr,
 					qiujing: item.qiujing,
 					zhujing: item.zhujing
@@ -570,23 +586,32 @@ angular.module('ShopDetailCutModule', [])
 				$scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
 				$scope.spectaclesData.is_zuoyou ? $scope.goodsSpectaclesCarParams.goods.spc.push($scope.spectaclesData.zuoyou_spe.values[i].id) : null;
 			}
-			for (let i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
+			/* for (let i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
 				var element = $scope.goodsSpectaclesCarParams.goods.zhujing[i];
 				if(!element){
 					layer.msg('商品球镜柱镜属性不能为空',{time:1000});
 					return;
 				}
-			}
+			} */
 			//镜片加入购物车接口
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/add_to_cart_spec_cutting',
-				data: { cutting_id: $scope.cutting_id, arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id], arr_goods: [$scope.goodsCarParams.goods, $scope.goodsSpectaclesCarParams.goods] },
+				data: {
+					cutting_id: $scope.cutting_id,
+					arr_goods_id: [
+						$scope.goodsCarParams.goods_id,
+						$scope.goodsSpectaclesCarParams.goods_id
+					],
+					arr_goods: [
+						$scope.goodsCarParams.goods,
+						$scope.goodsSpectaclesCarParams.goods
+					]
+				},
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
 					success ? success(data) : null;
-
 				})
 		}
 		$scope.joinCar = function () {
@@ -605,7 +630,25 @@ angular.module('ShopDetailCutModule', [])
 						},
 						btn2: function (index) {
 							layer.close(index);
-							$scope.getAttrList($scope.cutting_info.cutting_info.default_info.goods_id);
+							// $scope.getAttrList($scope.cutting_info.cutting_info.default_info.goods_id);
+							$scope.goodsSpectaclesCarParams = {
+								goods_id: '',
+								goods: {
+									member: [],
+									qiujing: [],
+									zhujing: [],
+									zhouwei: [],
+									spc: []
+								}
+							};
+							$scope.goodsCarParams = {
+								goods_id: $stateParams.goods_id,
+								goods: {
+									member: [],
+									spec: [],
+									attr: []
+								}
+							};
 						}
 						// closeBtn: 0
 					});

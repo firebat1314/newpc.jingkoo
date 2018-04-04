@@ -123,11 +123,11 @@
                 <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item pinpai">
                     <span>品牌街区</span>
                 </div>
-                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item yinxing">
-                    <span>清新世界</span>
-                </div>
-                <div class="floor-select-item meitong">
+                <div class="floor-select-item  yinxing">
                     <span>镜尚镜美</span>
+                </div>
+                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item meitong">
+                    <span>清新视界</span>
                 </div>
                 <div class="floor-select-item huli">
                     <span>极简主义</span>
@@ -236,38 +236,6 @@
                 </div>
             </div>
         </div>
-        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
-            <div class="selected-topics-tit">
-                <h2>清新视界</h2>
-            </div>
-            <div class="cool-eye-content">
-                <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
-                        <img ng-src={{qxsj.ad_img}} alt="">
-                    </div>
-                    <div class="left-ad">
-                        <button ads-click type-name="category" type-value="1">隐形</button>
-                        <button ads-click type-name="category" type-value="2">美瞳</button>
-                        <button ads-click type-name="category" type-value="3">护理液</button>
-                    </div>
-                </div>
-                <div class="coolEye-right">
-                    <div class="coolEye-right-tit">
-                        <p>大家都在买</p>
-                        <p ng-click="qxsjTrans()">
-                            <span>换一批</span>
-                        </p>
-                    </div>
-                    <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
-                        <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
-                            <img ng-src={{qxsj.goods_img}} alt="">
-                            <p ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
-                            <p>{{qxsj.shop_price}}</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="selected-topics cool-eye-world">
             <div class="selected-topics-tit jingshang">
                 <h2>镜尚镜美</h2>
@@ -295,6 +263,38 @@
                             <img ng-src={{jsjm.goods_img}} alt="">
                             <p ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
                             <p>{{jsjm.shop_price}}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
+            <div class="selected-topics-tit">
+                <h2>清新视界</h2>
+            </div>
+            <div class="cool-eye-content">
+                <div class="coolEye-center">
+                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                        <img ng-src={{qxsj.ad_img}} alt="">
+                    </div>
+                    <div class="left-ad">
+                        <button ads-click type-name="category" type-value="1">隐形</button>
+                        <button ads-click type-name="category" type-value="2">美瞳</button>
+                        <button ads-click type-name="category" type-value="3">护理液</button>
+                    </div>
+                </div>
+                <div class="coolEye-right">
+                    <div class="coolEye-right-tit">
+                        <p>大家都在买</p>
+                        <p ng-click="qxsjTrans()">
+                            <span>换一批</span>
+                        </p>
+                    </div>
+                    <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
+                        <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
+                            <img ng-src={{qxsj.goods_img}} alt="">
+                            <p ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
+                            <p>{{qxsj.shop_price}}</p>
                         </a>
                     </div>
                 </div>

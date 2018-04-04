@@ -1,5 +1,5 @@
 
-angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'ShopListCutModule', 'ShopDetailCutModule'])
+angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'ShopListCutModule', 'ShopDetailCutModule','JumpModule'])
     // 路由监听事件 每个页面标题
     .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -144,6 +144,13 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
     .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat) {
         $scope.$qimoChat = $qimoChat;
 
+        $scope.goListPage = function(){
+            $state.go('shop-list', {
+                params: encodeURIComponent(JSON.stringify({
+                    cat_id: 1042,
+                }))
+            });
+        }
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
@@ -4234,6 +4241,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
         $scope.getDs = function (item) {
             //获取柱镜的数据
+            item.zhujing = '';
             $http({
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/get_zhujing',
@@ -6647,7 +6655,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 url: '' + $rootScope.ip + '/Flow/select_change_price',
                 data: {
                     id: goods.cutting_id>0?goods.g_parent_id:goods.goods_id,
-                    type: 3,
+                    type: goods.cutting_id>0?3:goods.goods_id,
                     is_select: goods.is_select?0:1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }

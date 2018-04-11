@@ -2439,7 +2439,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         });
         //验证手机号
         $scope.isPhone = function (phone) {
-            var res = /^[1][3,4,5,7,8][0-9]{9}$/;
+            var res = /^[1][3,4,5,6,7,8][0-9]{9}$/;
             if (!res.test(phone)) {
                 $scope.isTel = false;
                 $scope.phoneRight = false;
@@ -6655,7 +6655,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 url: '' + $rootScope.ip + '/Flow/select_change_price',
                 data: {
                     id: goods.cutting_id>0?goods.g_parent_id:goods.goods_id,
-                    type: goods.cutting_id>0?3:goods.goods_id,
+                    type: goods.cutting_id>0?3:0,
                     is_select: goods.is_select?0:1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }

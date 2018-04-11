@@ -35,12 +35,12 @@ angular.module('ShopDetailCutModule', [])
 				data: { type: 'cut', goods_id: goods_id },
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
-			.success(function (data) {
-				layer.close(cool)
-				if(data.status){
-					$scope.shipTime = data.data.dingzhitime;
-				}
-			})
+				.success(function (data) {
+					layer.close(cool)
+					if (data.status) {
+						$scope.shipTime = data.data.dingzhitime;
+					}
+				})
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/get_goods_attribute',
@@ -520,11 +520,26 @@ angular.module('ShopDetailCutModule', [])
 		};
 		/* 属性价格改变 */
 		$scope.priceChange = function (item) {
+			console.log(item)
 			var spcArr = [];
-			for (var j = 0; j < $scope.spectaclesData.specification.length; j++) {
-				var attr = item[$scope.spectaclesData.specification[j].name];
-				if (attr) {
-					spcArr.push(item[$scope.spectaclesData.specification[j].name])
+			for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
+				var attr = item[items[j].name];
+				if (attr) spcArr.push(item[items[j].name]);
+				
+				for (var i = 0; i < items[j].values.length; i++) {
+					var element = items[j].values[i];
+					if (element.id == attr) {
+						if (element.vid == '678' || element.label == '来架定制送样品') {
+							$scope.isLjdz = true;
+						} else {
+							$scope.isLjdz = false;
+						}
+					}
+				}
+				if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
+					for (var i = 0; i < $scope.arr.length; i++) {
+						$scope.arr[i][items[j].name] = item[items[j].name];
+					}
 				}
 			}
 			$http({
@@ -574,17 +589,25 @@ angular.module('ShopDetailCutModule', [])
 			}
 		};
 		$scope.add_to_cart_spec = function (success) {
-			$scope.goodsSpectaclesCarParams.goods.member = [];
-			$scope.goodsSpectaclesCarParams.goods.qiujing = [];
-			$scope.goodsSpectaclesCarParams.goods.zhujing = [];
-			$scope.goodsSpectaclesCarParams.goods.zhouwei = [];
-			$scope.goodsSpectaclesCarParams.goods.spc = [];
-			for (var i = 0; i < $scope.arr.length; i++) {
-				$scope.goodsSpectaclesCarParams.goods.qiujing.push($scope.arr[i].qiujing);
-				$scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
-				$scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
-				$scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
-				$scope.spectaclesData.is_zuoyou ? $scope.goodsSpectaclesCarParams.goods.spc.push($scope.spectaclesData.zuoyou_spe.values[i].id) : null;
+			if ($scope.jingpianListGoodsId != $scope.goods_id) {
+				$scope.goodsSpectaclesCarParams.goods.member = [];
+				$scope.goodsSpectaclesCarParams.goods.qiujing = [];
+				$scope.goodsSpectaclesCarParams.goods.zhujing = [];
+				$scope.goodsSpectaclesCarParams.goods.zhouwei = [];
+				$scope.goodsSpectaclesCarParams.goods.spc = [];
+				for (var i = 0; i < $scope.arr.length; i++) {
+					$scope.goodsSpectaclesCarParams.goods.qiujing.push($scope.arr[i].qiujing);
+					$scope.goodsSpectaclesCarParams.goods.zhujing.push($scope.arr[i].zhujing);
+					$scope.goodsSpectaclesCarParams.goods.member.push($scope.arr[i].member);
+					$scope.goodsSpectaclesCarParams.goods.zhouwei.push($scope.arr[i].zhouwei);
+					var arr2 = [];
+					for (var s = 0; s < $scope.spectaclesData.specification.length; s++) {
+						var attr = $scope.arr[i][$scope.spectaclesData.specification[s].name];
+						$scope.spectaclesData.is_zuoyou ? arr2.push($scope.spectaclesData.zuoyou_spe.values[i].id) : null;
+						arr2.push(attr);
+					}
+					$scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
+				}
 			}
 			/* for (let i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
 				var element = $scope.goodsSpectaclesCarParams.goods.zhujing[i];
@@ -594,20 +617,37 @@ angular.module('ShopDetailCutModule', [])
 				}
 			} */
 			//镜片加入购物车接口
+			var parmas;
+			if ($scope.jingpianListGoodsId == $scope.goods_id) {
+				parmas = {
+					arr_goods: [{ member: [1] }],
+					arr_goods_id: [$scope.goodsCarParams.goods_id],
+					cutting_id: $scope.cutting_id
+				}
+			} else {
+				if ($scope.isLjdz) {
+					parmas = {
+						arr_goods: [
+							$scope.goodsSpectaclesCarParams.goods
+						],
+						arr_goods_id: [$scope.goodsSpectaclesCarParams.goods_id],
+						cutting_id: $scope.cutting_id
+					}
+				} else {
+					parmas = {
+						arr_goods: [
+							{ member: [1] },
+							$scope.goodsSpectaclesCarParams.goods
+						],
+						arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id],
+						cutting_id: $scope.cutting_id
+					}
+				}
+			}
 			$http({
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/add_to_cart_spec_cutting',
-				data: {
-					cutting_id: $scope.cutting_id,
-					arr_goods_id: [
-						$scope.goodsCarParams.goods_id,
-						$scope.goodsSpectaclesCarParams.goods_id
-					],
-					arr_goods: [
-						$scope.goodsCarParams.goods,
-						$scope.goodsSpectaclesCarParams.goods
-					]
-				},
+				data: parmas,
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
@@ -632,7 +672,7 @@ angular.module('ShopDetailCutModule', [])
 							layer.close(index);
 							// $scope.getAttrList($scope.cutting_info.cutting_info.default_info.goods_id);
 							$scope.goodsSpectaclesCarParams = {
-								goods_id: '',
+								// goods_id: '',
 								goods: {
 									member: [],
 									qiujing: [],
@@ -642,7 +682,7 @@ angular.module('ShopDetailCutModule', [])
 								}
 							};
 							$scope.goodsCarParams = {
-								goods_id: $stateParams.goods_id,
+								// goods_id: $stateParams.goods_id,
 								goods: {
 									member: [],
 									spec: [],

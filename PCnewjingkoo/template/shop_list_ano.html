@@ -61,17 +61,17 @@
     .cuntab .bd .item-list1 li .ls1h3:hover .ls1sp,.cuntab .bd .item-list1 li .ls1h3.attr .ls1sp{color:#598eca;}
     .cuntab .bd .item-list1 li .box-tcd{display:none;}
     .cuntab .bd .item-list1 li .box-tcd .tcd-h2{height:50px;font-size:22px;color:#333;text-align:center;line-height:50px;background:#f5f5f5;border-bottom:1px solid #e0e0e0;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm{}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis{height:65px;line-height:65px;overflow:hidden;padding:0 30px;color:#666;font-size:12px;border-bottom:1px solid #e0e0e0;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-1{width:60%;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-2{width:55%;text-align:left;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-3{width:20%;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-3 i{color:#598eca;font-size:20px;font-style:normal;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4{width:20%;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a{display:inline-block;width:120px;height:35px;line-height:35px;text-align:center;color:#fff;border-radius:3px;background:#598eca;}
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a b{position:relative;top:3px;margin-right:10px;display:inline-block;width:20px;height:17px;background:url(img/pzpt-7.png) no-repeat center;}
+    .cuntab .tcd-itm{}
+    .cuntab .tcd-itm .lis{height:65px;line-height:65px;overflow:hidden;padding:0 30px;color:#666;font-size:12px;border-bottom:1px solid #e0e0e0;}
+    .cuntab .tcd-itm .lis .lis-1{width:60%;}
+    .cuntab .tcd-itm .lis .lis-2{width:55%;text-align:left;}
+    .cuntab .tcd-itm .lis .lis-3{width:20%;}
+    .cuntab .tcd-itm .lis .lis-3 i{color:#598eca;font-size:20px;font-style:normal;}
+    .cuntab .tcd-itm .lis .lis-4{width:20%;}
+    .cuntab .tcd-itm .lis .lis-4 a{display:inline-block;width:120px;height:35px;line-height:35px;text-align:center;color:#fff;border-radius:3px;background:#598eca;}
+    .cuntab .tcd-itm .lis .lis-4 a b{position:relative;top:3px;margin-right:10px;display:inline-block;width:20px;height:17px;background:url(img/pzpt-7.png) no-repeat center;}
     /*.cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis .lis-4 a:hover{background:#65a1e6;}*/
-    .cuntab .bd .item-list1 li .box-tcd .tcd-itm .lis:hover{background:#fafafa;box-shadow:2px 2px 7px rgba(0,0,0,0.1);}
+    .cuntab .tcd-itm .lis:hover{background:#fafafa;box-shadow:2px 2px 7px rgba(0,0,0,0.1);}
 
 </style>
 
@@ -98,12 +98,18 @@
             </div>
             <div class="bd">
                 <div ng-repeat="cate in anoListData.category.cat_id"  repeat-done="catFn()" ng-if="cate">
-                    <div class="item" ng-repeat="item in cate.cat_id">
+                    <div class="tcd-itm" ng-if="cate.cat_id.length<=0">
+                        <div class="lis" ng-repeat="lis in cate.goods_list">
+                            <div class="lis-2 fl c">{{lis.name}}</div>
+                            <div class="lis-3 fl c"><i>{{lis.shop_price}}</i>起/片</div>
+                            <div class="lis-4 fl r"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                        </div>
+                    </div>
+                    <div class="item" ng-if="cate.cat_id.length>0" ng-repeat="item in cate.cat_id">
                         <div class="item-list1">
                             <ul>
                                 <li>
                                     <h3 class="ls1h3"><span class="ls1sp">{{item.name}}</span>{{}}<em class="bjtou" ng-if="item.cat_id.length||item.goods_list.length"></em></h3>
-                                    
                                     <div class="box-tcd">  
                                          <div class="tcd-itm">
                                             <div class="lis" ng-repeat="lis in item.goods_list">
@@ -114,8 +120,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div class="box-tcd" ng-repeat="box in item.cat_id">                                            
+                                    <div class="box-tcd" ng-repeat="box in item.cat_id">
                                         <h2 class="tcd-h2">{{box.name}}</h2>
                                         <div class="tcd-itm">
                                             <div class="lis" ng-repeat="lis in box.goods_list">
@@ -133,8 +138,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 </div>

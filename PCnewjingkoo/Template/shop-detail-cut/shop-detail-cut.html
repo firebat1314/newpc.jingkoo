@@ -298,7 +298,7 @@
 											<input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text">
 										</td>
 										<td ng-repeat="zhouwei in spectaclesData.specification">
-											<select class="pick-selt" style="width: 120px;" ng-model="item[zhouwei.name]" ng-change="priceChange(item)">
+											<select class="pick-selt" style="width: 120px;" ng-model="item[zhouwei.name]" ng-change="priceChange(item,zhouwei.name)">
 												<option value="">请选择</option>
 												<option ng-repeat="subzhouwei in zhouwei.values" value="{{subzhouwei.id}}">{{subzhouwei.label}}</option>
 											</select>

@@ -249,11 +249,11 @@
                                         <p ng-attr-title="{{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}"> {{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}</p>
                                     </a>
                                     <ul class="b1_right_u1">
-                                        <li>
+                                        <li ng-if="!(cartGoodsList.cutting_id>0)">
                                             <span ng-if="cartGoodsAttr.qiujing">球镜：{{cartGoodsAttr.qiujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhujing">柱镜：{{cartGoodsAttr.zhujing}}</span>
                                             <span ng-if="cartGoodsAttr.zhouwei">轴位：{{cartGoodsAttr.zhouwei}}</span>
-                                            <span ng-if="!(cartGoodsList.cutting_id>0)" ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span>
+                                            <span ng-repeat="carGoodsAttrs in cartGoodsAttr.attrs">{{carGoodsAttrs}}</span>
                                         </li>
                                         <li ng-if="cartGoodsList.cutting_id>0" ng-repeat="carGoodsAttrs in cartGoodsAttr.cutting_attr">
                                             <span style="float:initial;">

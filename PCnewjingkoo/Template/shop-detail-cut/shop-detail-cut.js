@@ -16,6 +16,8 @@ angular.module('ShopDetailCutModule', [])
 		}).success(function (res) {
 			if (res.status) {
 				$scope.cutting_info = res;
+				$scope.goods_id = res.cutting_info.goods_id;
+				$scope.shopDetailFn();
 				if (res.cutting_info.is_frame == 1) {
 					// $scope.getAttrList(res.cutting_info.default_info.goods_id);
 					$scope.jingpianListGoodsId = res.cutting_info.default_info.goods_id;
@@ -309,7 +311,6 @@ angular.module('ShopDetailCutModule', [])
 					}
 				})
 		};
-		$scope.shopDetailFn();
 
 
 		//领取优惠券
@@ -519,50 +520,95 @@ angular.module('ShopDetailCutModule', [])
 			$('.dushuQiuJing-box').hide();
 		};
 		/* 属性价格改变 */
-		$scope.priceChange = function (item) {
-			console.log(item)
-			var spcArr = [];
-			for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
-				var attr = item[items[j].name];
-				if (attr) spcArr.push(item[items[j].name]);
+		$scope.priceChange = function (item,key) {
+			if(key == '定制类型'){
 				
-				for (var i = 0; i < items[j].values.length; i++) {
-					var element = items[j].values[i];
-					if (element.id == attr) {
-						if (element.vid == '678' || element.label == '来架定制送样品') {
-							$scope.isLjdz = true;
-						} else {
-							$scope.isLjdz = false;
+				for (var k = 0; k < $scope.arr.length; k++) {
+					$scope.arr[k][key] = item[key];
+					var spcArr = [];
+					for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
+						var attr = item[items[j].name];
+						if (attr) spcArr.push(item[items[j].name]);
+						for (var i = 0; i < items[j].values.length; i++) {
+							var element = items[j].values[i];
+							if (element.id == attr) {
+								if (element.vid == '678' || element.label == '来架定制送样品') {
+									$scope.isLjdz = true;
+								} else {
+									$scope.isLjdz = false;
+								}
+							}
 						}
 					}
+					
+					(function(k){
+						$http({
+							method: "POST",
+							url: '' + $rootScope.ip + '/Goods/changeprice',
+							data: {
+								goods_id: $scope.jingpianListGoodsId,
+								attr: spcArr,
+								qiujing: $scope.arr[k].qiujing,
+								zhujing: $scope.arr[k].zhujing
+							},
+							headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+						}).success(function (res) {
+							if (res.status) {
+								$scope.arr[k].price = res.data.price.toFixed(2);
+								if (res.data.promotion_id > 0) {
+									$scope.arr[k].youhui = (res.data.promotion_price.substr(1));
+									$scope.arr[k].subprice = ($scope.arr[k].member * $scope.arr[k].youhui).toFixed(2);
+								} else {
+									$scope.arr[k].subprice = ($scope.arr[k].member * $scope.arr[k].price).toFixed(2);
+								}
+							}
+						})
+					})(k)
 				}
-				if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
-					for (var i = 0; i < $scope.arr.length; i++) {
-						$scope.arr[i][items[j].name] = item[items[j].name];
+			}else{
+				var spcArr = [];
+				for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
+					var attr = item[items[j].name];
+					if (attr) spcArr.push(item[items[j].name]);
+					
+					for (var i = 0; i < items[j].values.length; i++) {
+						var element = items[j].values[i];
+						if (element.id == attr) {
+							if (element.vid == '678' || element.label == '来架定制送样品') {
+								$scope.isLjdz = true;
+							} else {
+								$scope.isLjdz = false;
+							}
+						}
 					}
+					/* if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
+						for (var k = 0; k < $scope.arr.length; k++) {
+							$scope.arr[k][items[j].name] = item[items[j].name];
+						}
+					} */
 				}
+				$http({
+					method: "POST",
+					url: '' + $rootScope.ip + '/Goods/changeprice',
+					data: {
+						goods_id: $scope.jingpianListGoodsId,
+						attr: spcArr,
+						qiujing: item.qiujing,
+						zhujing: item.zhujing
+					},
+					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+				}).success(function (res) {
+					if (res.status) {
+						item.price = res.data.price.toFixed(2);
+						if (res.data.promotion_id > 0) {
+							item.youhui = (res.data.promotion_price.substr(1));
+							item.subprice = (item.member * item.youhui).toFixed(2);
+						} else {
+							item.subprice = (item.member * item.price).toFixed(2);
+						}
+					}
+				})
 			}
-			$http({
-				method: "POST",
-				url: '' + $rootScope.ip + '/Goods/changeprice',
-				data: {
-					goods_id: $scope.jingpianListGoodsId,
-					attr: spcArr,
-					qiujing: item.qiujing,
-					zhujing: item.zhujing
-				},
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-			}).success(function (res) {
-				if (res.status) {
-					item.price = res.data.price.toFixed(2);
-					if (res.data.promotion_id > 0) {
-						item.youhui = (res.data.promotion_price.substr(1));
-						item.subprice = (item.member * item.youhui).toFixed(2);
-					} else {
-						item.subprice = (item.member * item.price).toFixed(2);
-					}
-				}
-			})
 		}
 		//设置一个空数组用来新增一行
 		//用来存放镜片属性的数组
@@ -670,9 +716,11 @@ angular.module('ShopDetailCutModule', [])
 						},
 						btn2: function (index) {
 							layer.close(index);
-							// $scope.getAttrList($scope.cutting_info.cutting_info.default_info.goods_id);
+							$scope.getAttrList($scope.goods_id);
+							$scope.arr = [{ member: 1, subprice: '0.00', price: '0.00' }, { member: 1, subprice: '0.00', price: '0.00' }];
+							
 							$scope.goodsSpectaclesCarParams = {
-								// goods_id: '',
+								// goods_id: $stateParams.goods_id,
 								goods: {
 									member: [],
 									qiujing: [],
@@ -682,7 +730,7 @@ angular.module('ShopDetailCutModule', [])
 								}
 							};
 							$scope.goodsCarParams = {
-								// goods_id: $stateParams.goods_id,
+								goods_id: $stateParams.goods_id,
 								goods: {
 									member: [],
 									spec: [],

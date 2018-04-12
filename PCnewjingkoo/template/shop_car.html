@@ -249,9 +249,9 @@
                                         <div style="width:15px;height:15px;margin-top: 8px;margin-left: 30px;" class="all-check" ng-class="{'checked':carArr.is_select}"></div>
                                     </label>
                                     <ul style="height: auto;">
-                                        <li ng-if="carArr.qiujing">球镜：{{carArr.qiujing}}</li>
-                                        <li ng-if="carArr.zhujing">柱镜：{{carArr.zhujing}}</li>
-                                        <li ng-if="carArr.zhouwei">轴位：{{carArr.zhouwei}}</li>
+                                        <li ng-if="carArr.qiujing&&!(carList.cutting_id>0)">球镜：{{carArr.qiujing}}</li>
+                                        <li ng-if="carArr.zhujing&&!(carList.cutting_id>0)">柱镜：{{carArr.zhujing}}</li>
+                                        <li ng-if="carArr.zhouwei&&!(carList.cutting_id>0)">轴位：{{carArr.zhouwei}}</li>
                                         <li ng-if="!(carList.cutting_id>0)" ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
                                         <li ng-if="(carList.cutting_id>0)" ng-repeat="carAttr in carArr.cutting_attr" ng-attr-title="{{carAttr}}" style="float:initial;"><span ng-repeat="_carAttr in carAttr">{{_carAttr}}</span></li>
                                     </ul>

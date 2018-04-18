@@ -6,6 +6,7 @@ angular.module('ShopDetailCutModule', [])
 
 		$scope.goods_id = $stateParams.goods_id;
 		$scope.cutting_id = $stateParams.cutting_id;
+		$scope.attrNumber = 1;
 		//点击展开
 		//商品详情获取商品初始类型接口
 		$http({
@@ -19,7 +20,7 @@ angular.module('ShopDetailCutModule', [])
 				$scope.goods_id = res.cutting_info.goods_id;
 				$scope.shopDetailFn();
 				if (res.cutting_info.is_frame == 1) {
-					// $scope.getAttrList(res.cutting_info.default_info.goods_id);
+					$scope.getAttrList(res.cutting_info.default_info.goods_id);
 					$scope.jingpianListGoodsId = res.cutting_info.default_info.goods_id;
 				}
 				//默认选中的镜片商品ID
@@ -88,7 +89,9 @@ angular.module('ShopDetailCutModule', [])
 				}
 			})
 		}
-
+		$scope.checkAttrList  = function(goods_id){
+			$scope.jingpianListGoodsId = goods_id;
+		}
 		$scope.getAttrList = function (goods_id) {
 			$scope.jingpianListGoodsId = goods_id;
 			$http({
@@ -111,19 +114,10 @@ angular.module('ShopDetailCutModule', [])
 						$scope.goodsCarParams.goods.spec = [];
 						$scope.goodsCarParams.goods.attr = [];
 						for (var t = 0; t < $scope.goodsData.data.length; t++) {
-							if ($scope.goodsData.selectID == $scope.goodsData.data[t].goods_attr_id) {
-								if ($scope.goodsData.data[t].product_number > 0) {
-									$scope.goodsCarParams.goods.member.push(1);
-									var arr1 = [];
-									var attrs = $scope.goodsData.data[t].goods_attr_id;
-									var sAttr = $scope.goodsData.data[t].str_goods_attr;
-									//arr1.push(attrs);
-									$scope.goodsCarParams.goods.spec.push(attrs);
-									$scope.goodsCarParams.goods.attr.push(sAttr);
-								} else {
-									layer.msg('商品库存不足', { time: 1000 });
-									return;
-								}
+							if ($scope.goodsData.data[t].num > 0) {
+								$scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
+								$scope.goodsCarParams.goods.spec.push($scope.goodsData.data[t].goods_attr_id);
+								$scope.goodsCarParams.goods.attr.push($scope.goodsData.data[t].str_goods_attr);
 							}
 						}
 						//每次更新获取商品数量改变价格 接口
@@ -520,9 +514,9 @@ angular.module('ShopDetailCutModule', [])
 			$('.dushuQiuJing-box').hide();
 		};
 		/* 属性价格改变 */
-		$scope.priceChange = function (item,key) {
-			if(key == '定制类型'){
-				
+		$scope.priceChange = function (item, key) {
+			if (key == '定制类型') {
+
 				for (var k = 0; k < $scope.arr.length; k++) {
 					$scope.arr[k][key] = item[key];
 					var spcArr = [];
@@ -540,8 +534,8 @@ angular.module('ShopDetailCutModule', [])
 							}
 						}
 					}
-					
-					(function(k){
+
+					(function (k) {
 						$http({
 							method: "POST",
 							url: '' + $rootScope.ip + '/Goods/changeprice',
@@ -565,12 +559,12 @@ angular.module('ShopDetailCutModule', [])
 						})
 					})(k)
 				}
-			}else{
+			} else {
 				var spcArr = [];
 				for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
 					var attr = item[items[j].name];
 					if (attr) spcArr.push(item[items[j].name]);
-					
+
 					for (var i = 0; i < items[j].values.length; i++) {
 						var element = items[j].values[i];
 						if (element.id == attr) {
@@ -665,8 +659,13 @@ angular.module('ShopDetailCutModule', [])
 			//镜片加入购物车接口
 			var parmas;
 			if ($scope.jingpianListGoodsId == $scope.goods_id) {
+				
+				if (!$scope.goodsCarParams.goods.member.length) {
+					layer.msg('请添加样品商品数量', { time: 1500 });
+					return
+				}
 				parmas = {
-					arr_goods: [{ member: [1] }],
+					arr_goods: [{ member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec }],
 					arr_goods_id: [$scope.goodsCarParams.goods_id],
 					cutting_id: $scope.cutting_id
 				}
@@ -680,9 +679,13 @@ angular.module('ShopDetailCutModule', [])
 						cutting_id: $scope.cutting_id
 					}
 				} else {
+					if (!$scope.goodsCarParams.goods.member.length) {
+						layer.msg('请添加样品商品数量', { time: 1500 });
+						return
+					}
 					parmas = {
 						arr_goods: [
-							{ member: [1] },
+							{ member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec },
 							$scope.goodsSpectaclesCarParams.goods
 						],
 						arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id],
@@ -718,7 +721,7 @@ angular.module('ShopDetailCutModule', [])
 							layer.close(index);
 							$scope.getAttrList($scope.goods_id);
 							$scope.arr = [{ member: 1, subprice: '0.00', price: '0.00' }, { member: 1, subprice: '0.00', price: '0.00' }];
-							
+
 							$scope.goodsSpectaclesCarParams = {
 								// goods_id: $stateParams.goods_id,
 								goods: {

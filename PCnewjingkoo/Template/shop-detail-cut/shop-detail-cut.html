@@ -214,7 +214,7 @@
 						<span class="saler_msg_sp1">请选择</span>
 						<ul class="saler_msg_film">
 							<li ng-if="cutting_info.cutting_info.is_frame==1" ng-class="{'on':jingpianListGoodsId==cutting_info.cutting_info.default_info.goods_id}"
-							 ng-click="getAttrList(cutting_info.cutting_info.default_info.goods_id);" ng-attr-title="{{cutting_info.cutting_info.default_info.goods_name}}">
+							 ng-click="checkAttrList(cutting_info.cutting_info.default_info.goods_id);" ng-attr-title="{{cutting_info.cutting_info.default_info.goods_name}}">
 								样品
 								<!-- {{cutting_info.cutting_info.default_info.goods_name}} -->
 								<i class="guanlianYes"></i>
@@ -228,9 +228,66 @@
 					jingpianListGoodsId!=cutting_info.cutting_info.default_info.goods_id)&&!spectaclesData" style="text-align: center;margin: 10px 0 20px;">
 							<my-loading></my-loading>
 						</div>
-						<div class="pick-ta" style="min-height: 150px;">
-							<table width="100%" class="pick-table mb20" ng-if="(cutting_info.cutting_info.is_frame==1&&
+						<div style="min-height: 0;clear: both;" class="pick-table" ng-show="jingpianListGoodsId==cutting_info.cutting_info.default_info.goods_id&&goodsData.data">
+							<div class="tableZk" style="height: auto;" >
+								<table width="100%">
+									<tbody>
+										<tr class="first-line">
+											<th width="72"></th>
+											<th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
+											<th width="124" ng-if="!data.data.is_promotion">单价</th>
+											<th width="124" ng-if="data.data.is_promotion">原价</th>
+											<th width="124" ng-if="data.data.is_promotion">促销价</th>
+											<th width="124">库存</th>
+											<th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
+										</tr>
+										<tr ng-repeat="trItem in goodsData.data" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3">
+											<th class="img-th" width="72">
+												<div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;"
+												 ng-mousemove="trItem.event = $event">
+													<img ng-src={{trItem.img_path}} alt="">
+												</div>
+												<div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
+													<img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
+												</div>
+											</th>
+											<th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
+											<th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
+											<th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
+											<th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
+											<th width="124">
+												<div class="diy-right" ng-if="data.data.isdingzhi!=1">
+													<span class="wenb">
+														<a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
+														<input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
+														 ng-change="change(trItem)">
+														<a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
+													</span>
+												</div>
+												<div class="dingzhi" ng-if="data.data.isdingzhi==1">
+													<a class="dingzhi_btn" style="width: 135px;
+                                            width: 135px;
+                                            height: 40px;
+                                            background: #3f69a5;
+                                            color: #fff;
+                                            font-size: 12px;
+                                            border: none;
+                                            outline: none;
+                                            border-radius: 5px;
+                                            padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a>
+												</div>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div ng-show="goodsData.data.length>3">
+								<div class="zhankai" ng-class="{'sq':goodsData.Zk}" style="bottom: -21px !important;" ng-click="goodsData.Zk = !goodsData.Zk;!goodsData.Zk?scrollTopTop():null;"></div>
+							</div>
+						</div>
+						<div class="pick-ta" ng-if="(cutting_info.cutting_info.is_frame==1&&
 						jingpianListGoodsId!=cutting_info.cutting_info.default_info.goods_id)&&spectaclesData">
+							<table width="100%" class="pick-table mb20">
 								<tbody>
 									<tr>
 										<th style="width: 100px;" ng-if="spectaclesData.is_zuoyou==1">左/右</th>

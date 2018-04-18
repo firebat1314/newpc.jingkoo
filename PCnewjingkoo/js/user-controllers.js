@@ -3439,3 +3439,21 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				})
 		}, 3000);
 	}])
+	// 员工管理
+	.controller('EmployeeM-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+		//控制首页会员中心显隐
+		$rootScope.isShow = false;
+		//控制header和footer显隐
+		$rootScope.change = true;
+		$scope.goto();
+		
+		$(".js_adbtn").click(function () {
+			$(".js_adbr").slideDown();
+			$(".js_adbr").next().hide();
+		});
+
+		$('.ix.js_querg').click(function () {
+			$(".js_adbr").slideUp();
+		})
+		
+	}])

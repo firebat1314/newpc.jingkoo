@@ -679,13 +679,10 @@ angular.module('ShopDetailCutModule', [])
 						cutting_id: $scope.cutting_id
 					}
 				} else {
-					if (!$scope.goodsCarParams.goods.member.length) {
-						layer.msg('请添加样品商品数量', { time: 1500 });
-						return
-					}
 					parmas = {
 						arr_goods: [
-							{ member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec },
+							// { member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec },
+							{ member: [1] },
 							$scope.goodsSpectaclesCarParams.goods
 						],
 						arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id],

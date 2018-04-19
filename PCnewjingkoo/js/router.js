@@ -635,6 +635,13 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/newGoods.html',
                 controller: "newgoods-control"
             })
+            //员工管理
+            .state("EmployeeM", {
+                title: '员工管理',
+                url: '/EmployeeM',
+                templateUrl: 'template/Employee-mana.html',
+                controller: "EmployeeM-control"
+            })
         // $locationProvider.html5Mode(true);y
 
     })

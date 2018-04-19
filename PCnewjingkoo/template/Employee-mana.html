@@ -1,0 +1,242 @@
+<style>
+	.emp_box{padding: 0 20px;}
+	.an-right .yz_text{width: 288px;padding: 0 10px !important;height: 40px;
+    line-height: 38px;
+    border: 1px solid #d9d9d9;
+    color: #666;
+    font-size: 14px;float: left;}
+    .an-right .yz_img{width: 120px;height: 40px;border:1px solid #d9d9d9;text-align: center;float: left;margin-left: 10px;background: #fff;cursor: pointer;}
+    .an-right .yz_img img{height: 38px;width: auto;max-width: 100%;}
+    .an-right .yz_btn{width: 122px;height: 42px;background: #4169a3;color: #fff;font-size: 14px;margin-left: 10px;border: none;cursor: pointer;}
+    .an-right .an-job{width: 100%;overflow: hidden;height: 40px;margin-bottom: 10px;padding-top: 5px;}
+    .an-right .an-job .an-job-d{width: 100px;height: 35px;line-height: 35px;text-align: center;position:relative;float:left;margin-right: 15px;}
+    .an-job .an-job-d input{position: absolute;top:0;left: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;}
+    .an-job .an-job-d label{display: block;width: 100%;height: 100%;font-size: 14px;color: #ffffff;background: #cccccc;}
+    .an-job .an-job-d input:checked + label{background-color: #4169a3;}
+    .an-job1{overflow: hidden;}
+    .an-job1 .an-job-d{width: 100px;height: 35px;line-height: 35px;text-align: center;position:relative;float:left;margin-right: 15px;}
+    .an-job1 .an-job-d input{position: absolute;top:0;left: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;}
+    .an-job1 .an-job-d label{display: block;width: 100%;height: 100%;font-size: 14px;color: #ffffff;background: #cccccc;}
+    .an-job1 .an-job-d input:checked + label{background-color: #4169a3;}
+    .location .add-nr .addn-t td{padding: 10px 0;}
+    .an-job1 .sent-job{width: 280px;padding:0 15px;font-size: 14px;color: #999999;height: 33px;border: 1px solid #e5e5e5;}
+    .an-right .an-qx{width: 100%;height: 40px;overflow: hidden;line-height: 40px;}
+    .an-right .an-qx li{width: 130px;height: 40px;line-height: 40px;font-size: 12px;color: #666666;float: left;}
+    .an-right .an-qx li input{width: 17px;height: 17px;border: 1px solid #e5e5e5;border-radius: 3px;background-color: #fff;cursor: pointer;margin-right: 10px;position: relative;top: -1px;}
+    .an-right .an-qx li input:checked{background: #4169a3 url(../img/duih.png) no-repeat center;
+    background-size: 10px;border-color:#4169a3;}
+    .emp_tab table{width: 100%;border:1px solid #e5e5e5;}
+    .emp_tab tr{border:1px solid #e5e5e5;}
+    .emp_tab th{height: 40px;text-align: center;font-size: 14px;color: #4c4c4c;}
+    .emp_tab td{padding: 20px 0;text-align: center;font-size: 12px;color: #808080;}
+    .emp_tab td a{font-size: 12px;color: #4169a3;}
+</style>
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div>
+</div>
+
+<div class="msg-center-main" style="margin-bottom: 25px;">
+	<div class="im-panel gird cle">
+        <div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+			<div class="control-list aotms">
+				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<div class="control-nr">
+					<p><a href="#/order-all/">我的订单</a></p>
+					<p><a href="#/myCollect">我的收藏</a></p>
+					<p><a href="#/person-integral">积分管理</a></p>
+					<p><a href="#/person-yhq">优惠券管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<div class="control-nr">
+					<p><a href="#/person-process" >来镜加工</a></p>
+					<p><a href="#/person-return-repair">返修退换货</a></p>
+					<p><a href="#/parson-msg-center">消息中心</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<div class="control-nr">
+					<p><a href="#/zijin-mana">资金管理</a></p>
+					<p><a href="#/person-invoices">发票管理</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<div class="control-nr">
+					<p class="onp"><a href="#/EmployeeM">员工管理</a></p>
+					<p><a href="#/person-qy-lxrmsg">企业信息</a></p>
+					<p><a href="#/person-save-center">安全中心</a></p>
+					<p><a href="#/person-mana-addr">管理收货地址</a></p>
+				</div>
+			</div>
+			<div class="control-list">
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+			</div>
+        </div>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-bd">
+    				<div class="contacts-wrap czhi">
+    					<div class="location mb20">  
+							<div class="addc"><a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn">添加员工</a></div>
+							<div class="add-nr js_adbr" style="display: block;">
+								<table class="addn-t">
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 姓名：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="text" type="text" placeholder="请输入姓名"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 手机号：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="text" type="text" placeholder="请输入手机号"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入验证码：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="yz_text" type="text" placeholder="请输入验证码"/>
+												<div class="yz_img"><img src="../img/yanzm-1.jpg"/></div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入手机验证码：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="yz_text" type="text" placeholder="请输入验证码"/>
+												<input type="button" value="发送验证码" class="yz_btn"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 登录账号：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="text" type="text" placeholder="请输入账号"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入密码：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="text" type="text" placeholder="请输入密码"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 确认密码：</div></td>
+										<td>
+											<div class="an-right">
+												<input class="text" type="text" placeholder="请再次密码"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 职位：</div></td>
+										<td>
+											<div class="an-right">
+												<div class="an-job">
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">老板</label>
+													</div>
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">店长</label>
+													</div>
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">店员</label>
+													</div>
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">采购经理</label>
+													</div>
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">财务</label>
+													</div>
+												</div>
+												<div class="an-job1">
+													<div class="an-job-d">
+														<input type="radio" />
+														<label for="">财务</label>
+													</div>
+													<input type="text" placeholder="填写职位" class="sent-job"/>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 权限：</div></td>
+										<td>
+											<div class="an-right">
+												<ul class="an-qx">
+													<li><input type="checkbox" class="an-qx-che"/>允许查看价格</li>
+													<li><input type="checkbox" class="an-qx-che"/>允许结算</li>
+													<li><input type="checkbox" class="an-qx-che"/>允许添加账号</li>
+													<li><input type="checkbox" class="an-qx-che"/>允许查看员工信息</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td width="170" valign="top" ><div class="an-left"><em>*</em> 状态：</div></td>
+										<td>
+											<div class="an-right">
+												<ul class="an-qx mb10">
+													<li><input type="checkbox" class="an-qx-che"/>启用</li>
+													<li><input type="checkbox" class="an-qx-che"/>禁用</li>
+												</ul>
+												<div class="olp-anniu">
+													<a style="cursor:pointer;" class="he js_querg" ng-click="onsubmit()">确认地址</a>
+													<a style="cursor:pointer;" class="ix js_querg">取消</a>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<!--编辑框-->
+    					</div>
+    					<div class="emp_tab">
+    						<table>
+    							<tr>
+    								<th>会员账号</th>
+    								<th>姓名</th>
+    								<th>手机号</th>
+    								<th>职位</th>
+    								<th>状态</th>
+    								<th>操作</th>
+    							</tr>
+    							<tr>
+    								<td>sunshanbin</td>
+    								<td>荆佳琦</td>
+    								<td>213213213</td>
+    								<td>采购</td>
+    								<td><span class="red">启用</span></td>
+    								<td><a href="javascript:;" class="cz_a">编辑</a></td>
+    							</tr>
+    						</table>
+    					</div>
+    				</div>
+    			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+

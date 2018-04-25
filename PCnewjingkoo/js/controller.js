@@ -449,12 +449,22 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
 
         //搜索
         $scope.searchKey = function () {
-            var url = $state.href('shop-list', {
-                params: encodeURIComponent(JSON.stringify({
-                    keywords: $rootScope.keywords,
-                }))
-            })
-            window.open(url);
+            console.log($state)
+            if($state.current.name == 'shop-list-cut'){
+                var url = $state.href('shop-list-cut', {
+                    params: encodeURIComponent(JSON.stringify({
+                        keywords: $rootScope.keywords,
+                    }))
+                })
+                window.open(url);
+            }else{
+                var url = $state.href('shop-list', {
+                    params: encodeURIComponent(JSON.stringify({
+                        keywords: $rootScope.keywords,
+                    }))
+                })
+                window.open(url);
+            }
         };
         //控制分类菜单显隐
         //$scope.allFenLei = true;

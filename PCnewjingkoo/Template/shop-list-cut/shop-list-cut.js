@@ -38,7 +38,7 @@ angular.module('ShopListCutModule', [])
 					configurable: true
 				});
 			}
-			$state.go('shop-list', {
+			$state.go('shop-list-cut', {
 				params: data ? JSON.stringify(Object.assign($scope.params, data)) : {}
 			})
 		}
@@ -86,17 +86,6 @@ angular.module('ShopListCutModule', [])
 						$scope.getGoods(data);
 						$scope.listControl();//图像延迟加载
 						$scope.qxsjFn();
-
-						if ($scope.shopListData.goods_attr_arr[3].data.length == 0) {
-							$scope.shouQi = false;
-							$scope.moreXx = false;
-						} else {
-							$scope.shouQi = false;
-							$scope.moreXx = true;
-						}
-						$scope.fashionAllName = data.goods_attr_arr[0].name;
-						$scope.fashionPriceName = data.goods_attr_arr[2].name;
-						$scope.fashionMonthName = data.goods_attr_arr[1].name;
 
 					}
 

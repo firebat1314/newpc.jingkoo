@@ -93,10 +93,10 @@
         <div class="cuntab mb60">
             <div class="hd">
                 <ul>
-                    <li ng-repeat="cate in anoListData.category.cat_id" repeat-done="anoSlideFn()">{{cate.name}}<em></em></li>
+                    <li style="min-width: 200px;" ng-repeat="cate in anoListData.category.cat_id" repeat-done="anoSlideFn()">{{cate.name}}<em></em></li>
                 </ul>
             </div>
-            <div class="bd">
+            <div class="bd" style="clear: both;">
                 <div ng-repeat="cate in anoListData.category.cat_id"  repeat-done="catFn()" ng-if="cate">
                     <div class="tcd-itm" ng-if="cate.cat_id.length<=0">
                         <div class="lis" ng-repeat="lis in cate.goods_list">

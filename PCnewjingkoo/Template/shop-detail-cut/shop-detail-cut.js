@@ -523,16 +523,6 @@ angular.module('ShopDetailCutModule', [])
 					for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
 						var attr = item[items[j].name];
 						if (attr) spcArr.push(item[items[j].name]);
-						for (var i = 0; i < items[j].values.length; i++) {
-							var element = items[j].values[i];
-							if (element.id == attr) {
-								if (element.vid == '678' || element.label == '来架定制送样品') {
-									$scope.isLjdz = true;
-								} else {
-									$scope.isLjdz = false;
-								}
-							}
-						}
 					}
 
 					(function (k) {
@@ -564,22 +554,6 @@ angular.module('ShopDetailCutModule', [])
 				for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
 					var attr = item[items[j].name];
 					if (attr) spcArr.push(item[items[j].name]);
-
-					for (var i = 0; i < items[j].values.length; i++) {
-						var element = items[j].values[i];
-						if (element.id == attr) {
-							if (element.vid == '678' || element.label == '来架定制送样品') {
-								$scope.isLjdz = true;
-							} else {
-								$scope.isLjdz = false;
-							}
-						}
-					}
-					/* if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
-						for (var k = 0; k < $scope.arr.length; k++) {
-							$scope.arr[k][items[j].name] = item[items[j].name];
-						}
-					} */
 				}
 				$http({
 					method: "POST",
@@ -649,13 +623,6 @@ angular.module('ShopDetailCutModule', [])
 					$scope.goodsSpectaclesCarParams.goods.spc.push(arr2);
 				}
 			}
-			/* for (let i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
-				var element = $scope.goodsSpectaclesCarParams.goods.zhujing[i];
-				if(!element){
-					layer.msg('商品球镜柱镜属性不能为空',{time:1000});
-					return;
-				}
-			} */
 			//镜片加入购物车接口
 			var parmas;
 			if ($scope.jingpianListGoodsId == $scope.goods_id) {
@@ -670,23 +637,37 @@ angular.module('ShopDetailCutModule', [])
 					cutting_id: $scope.cutting_id
 				}
 			} else {
-				if ($scope.isLjdz) {
-					parmas = {
-						arr_goods: [
-							$scope.goodsSpectaclesCarParams.goods
-						],
-						arr_goods_id: [$scope.goodsSpectaclesCarParams.goods_id],
-						cutting_id: $scope.cutting_id
+				for (var i = 0; i < $scope.goodsSpectaclesCarParams.goods.zhujing.length; i++) {
+					var element = $scope.goodsSpectaclesCarParams.goods.zhujing[i];
+					if(!element){
+						layer.msg('商品球镜柱镜属性不能为空',{time:1000});
+						return;
 					}
-				} else {
-					parmas = {
-						arr_goods: [
-							// { member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec },
-							{ member: [1] },
-							$scope.goodsSpectaclesCarParams.goods
-						],
-						arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id],
-						cutting_id: $scope.cutting_id
+				}
+				for (var j = 0, items = $scope.spectaclesData.specification; j < items.length; j++) {
+					if (items[j].name.indexOf('定制类型') > -1) {//左右眼镜片定制类型同步设置
+						for (var i = 0; i < items[j].values.length; i++) {
+							var element = items[j].values[i];
+							if($scope.arr[0]['定制类型']==element.id&&(element.vid==678 || element.label == '来架定制送样品')){
+								parmas = {
+									arr_goods: [
+										$scope.goodsSpectaclesCarParams.goods
+									],
+									arr_goods_id: [$scope.goodsSpectaclesCarParams.goods_id],
+									cutting_id: $scope.cutting_id
+								}
+							} else {
+								parmas = {
+									arr_goods: [
+										// { member: $scope.goodsCarParams.goods.member, spec: $scope.goodsCarParams.goods.spec },
+										{ member: [1] },
+										$scope.goodsSpectaclesCarParams.goods
+									],
+									arr_goods_id: [$scope.goodsCarParams.goods_id, $scope.goodsSpectaclesCarParams.goods_id],
+									cutting_id: $scope.cutting_id
+								}
+							}
+						}
 					}
 				}
 			}

@@ -101,7 +101,7 @@
 <div class="ad_box" ng-show="ad_show&&ad_img">
     <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
         <div class="close" ng-click="closeAd()">+</div>
-        <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" src="{{ad_img}}" alt="">
+        <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{link_type.ad_link}}" src="{{ad_img}}" alt="">
     </div>
 </div>
 <div class="scroll-area" style="margin-bottom: 50px;">
@@ -242,7 +242,7 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item2" ads-click type-name="{{jsjm.link_type.type_name}}" type-value="{{jsjm.link_type.type_value}}" ng-repeat="jsjm in IndexData.list.ads_jsjm">
+                    <div class="coolEye-center-item center-item2" ads-click type-name="{{jsjm.link_type.type_name}}" type-value="{{jsjm.link_type.type_value}}" type-link="{{jsjm.link_type.ad_link}}" ng-repeat="jsjm in IndexData.list.ads_jsjm">
                         <img ng-src={{jsjm.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
@@ -274,7 +274,7 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" type-link="{{qxsj.link_type.ad_link}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
                         <img ng-src={{qxsj.ad_img}} alt="">
                     </div>
                     <div class="left-ad">
@@ -306,7 +306,7 @@
             </div>
             <div class="cool-eye-content">
                 <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item3" ads-click type-name="{{jjzy.link_type.type_name}}" type-value="{{jjzy.link_type.type_value}}" ng-repeat="jjzy in IndexData.list.ads_jjzy">
+                    <div class="coolEye-center-item center-item3" ads-click type-name="{{jjzy.link_type.type_name}}" type-value="{{jjzy.link_type.type_value}}" type-link="{{jjzy.link_type.ad_link}}" ng-repeat="jjzy in IndexData.list.ads_jjzy">
                         <img ng-src={{jjzy.ad_img}} alt="">
                     </div>
                     <div class="left-ad">

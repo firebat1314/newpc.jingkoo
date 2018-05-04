@@ -461,6 +461,11 @@
 			  }
 			return ""
 			}
+			if (getCookie('has_login')) {
+				$('.wel_div_btn').eq(0).val('立即进入')
+			} else {
+				$('.wel_div_btn').eq(0).val('立即登录')
+			}
 		$('[href="/#/login"]').on('click',function(event){
 			event.preventDefault();
 			if(getCookie('has_login')){

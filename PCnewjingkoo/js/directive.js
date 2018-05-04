@@ -261,11 +261,15 @@ angular.module('myApp.directives', [])
             restrict: 'A',
             scope: {
                 typeName: '@',
-                typeValue: '@'
+                typeValue: '@',
+                typeLink: '@'
             },
             link: function (scope, element, attrs) {
                 $(element).on('click', function () {
                     console.log(scope.typeName, scope.typeValue)
+                    if (!scope.typeName || !scope.typeValue) {
+                        return location = scope.typeLink;
+                    }
                     if (scope.typeName == "category") {
                         var url = $state.href('shop-list', {
                             params: encodeURIComponent(JSON.stringify({

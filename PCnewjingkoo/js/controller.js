@@ -1,5 +1,5 @@
 
-angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'ShopListCutModule', 'ShopDetailCutModule','JumpModule'])
+angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'ShopListCutModule', 'ShopDetailCutModule', 'JumpModule'])
     // 路由监听事件 每个页面标题
     .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
         $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
@@ -144,7 +144,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
     .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat) {
         $scope.$qimoChat = $qimoChat;
 
-        $scope.goListPage = function(){
+        $scope.goListPage = function () {
             $state.go('shop-list', {
                 params: encodeURIComponent(JSON.stringify({
                     cat_id: 1042,
@@ -450,14 +450,14 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         //搜索
         $scope.searchKey = function () {
             console.log($state)
-            if($state.current.name == 'shop-list-cut'){
+            if ($state.current.name == 'shop-list-cut') {
                 var url = $state.href('shop-list-cut', {
                     params: encodeURIComponent(JSON.stringify({
                         keywords: $rootScope.keywords,
                     }))
                 })
                 window.open(url);
-            }else{
+            } else {
                 var url = $state.href('shop-list', {
                     params: encodeURIComponent(JSON.stringify({
                         keywords: $rootScope.keywords,
@@ -1917,101 +1917,78 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             $scope.user.remember = true;
             $scope.user.username = ipCookie('username');
         }
-
-
         $scope.loginClick = function () {
-            //var validate1 = $scope.geeteTrue1.getValidate();
-            //validate1 != undefined
-            if (true) {
-                //$scope.user.geetest_challenge = validate1.geetest_challenge;
-                //$scope.user.geetest_validate = validate1.geetest_validate;
-                //$scope.user.geetest_seccode = validate1.geetest_seccode;
-                $http({
-                    url: '' + $rootScope.ip + '/Login/index',
-                    method: 'POST',
-                    data: $scope.user,
-                    // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-                    // transformRequest: function(obj) {
-                    //     var str = [];
-                    //     for(var p in obj){
-                    //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    //     }
-                    //     return str.join("&");
-                    // }   request-payload转为form-data格式的传输方式
-                }).success(function (data) {
+            $scope.fulllogin($scope.user)
+        };
+        $scope.fulllogin = function (params) {
+            $http({
+                url: '' + $rootScope.ip + '/Login/loginCompany',
+                method: 'POST',
+                data: params
+            }).success(function (data) {
+                if (data.status) {
+                    $scope.company = data.company;
+                    $scope.companylayer = layer.open({
+                        type: 1,
+                        title: '请选择公司',
+                        skin: 'layui-layer-rim', //加上边框
+                        area: '420px', //宽高
+                        content: $('#clooseCompany'),
+                        resize: false,
+                        move: false,
+                        shade: 0.4,
+                        shadeClose: true
+                    });
+                } else {
+                    layer.msg(data.info, { time: 2000 });
+                }
+            });
+        }
+        $scope.loginByCompany = function (cid) {
+            layer.close($scope.companylayer)
+            if ($scope.isPhone) {
+                var params = $scope.userPhone;
+            } else {
+                var params = $scope.user;
+            }
+            $http({
+                url: '' + $rootScope.ip + '/Login/index',
+                method: 'POST',
+                data: Object.assign({ cid: cid }, params)
+            }).success(function (data) {
+                if (data.status == 1) {
                     $scope.userData = data;
-                    if (data.status) {
-                        layer.msg(data.info, { time: 2000 }, function () {
-                            $state.go('home');
-                        });
-                    } else {
-                        $scope.geeteTrue1.reset();
-                        layer.msg(data.info, { time: 2000 });
-                        $scope.codeFn();
-                    }
+                    layer.msg(data.info, { time: 500 }, function () {
+                        $state.go('home');
+                    });
                     // $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
                     ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     ipCookie("login_by_phone", false, { expires: 21 });
                     ipCookie("has_login", true, { expires: 21 });
-                });
-            } else {
-                layer.msg('请先完成验证', { icon: 2, time: 800 });
-            }
-
-
-        };
-        //键盘登录获取token验证 获取首页全局数据
-        $scope.login = function (e) {
-            var validate1 = $scope.geeteTrue1.getValidate();
-            if (e.keyCode != 13) {
-                return;
-            } else {
-                if (validate1 != undefined) {
-                    $scope.user.geetest_challenge = validate1.geetest_challenge;
-                    $scope.user.geetest_validate = validate1.geetest_validate;
-                    $scope.user.geetest_seccode = validate1.geetest_seccode;
-                    $http({
-                        url: '' + $rootScope.ip + '/Login/index',
-                        method: 'POST',
-                        data: $scope.user,
-                        // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-                        // transformRequest: function(obj) {
-                        //     var str = [];
-                        //     for(var p in obj){
-                        //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                        //     }
-                        //     return str.join("&");
-                        // }   request-payload转为form-data格式的传输方式
-                    }).success(function (data) {
-                        $scope.userData = data;
-                        if (data.status) {
-                            layer.msg(data.info, { time: 1000 }, function () {
-                                $state.go('home');
-                            });
-                        } else {
-                            $scope.geeteTrue1.reset();
-                            layer.msg(data.info, { time: 1000 });
-                            $scope.codeFn();
-                        }
-                        // $rootScope.res = data.data.token;
-                        ipCookie("token", data.data.token, { expires: 21 });
-                        ipCookie("username", data.data.user_name, { expires: 21 });
-                        ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                        ipCookie("login_by_phone", false, { expires: 21 });
+                } else if (data.status == -2) {
+                    layer.confirm('请绑定企业信息', {
+                        btn: ['绑定', '取消'] //按钮
+                    }, function (index) {
+                        $state.go('registerCompany');
+                        layer.close(index)
+                    }, function () {
+                        layer.msg('请绑定企业信息后登陆', {
+                            time: 20000, //20s后自动关闭
+                            btn: ['知道了']
+                          });
                     });
                 } else {
-                    layer.msg('请先完成验证', { icon: 2, time: 500 });
+                    // $scope.geeteTrue1.reset();
+                    layer.msg(data.info, { time: 2000 });
+                    // $scope.codeFn();
                 }
-            }
-        };
+            });
+        }
         //手机验证码键盘登录
         $scope.userPhone = {
             type: 'phone',
-            // username:$scope.usernamePhone,
-            // str_verify:$scope.phoneVcode,
-            // mobile_code:$scope.mobile_verify,
             is_verify: 1,
             remember: true
         };
@@ -2021,73 +1998,9 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             $scope.userPhone.userphone = ipCookie('phone_number');
         }
 
-        $scope.anoLogin = function (e) {
-
-            if (e.keyCode != 13) {
-                return;
-            } else {
-
-                $http({
-                    url: '' + $rootScope.ip + '/Login/index',
-                    method: 'POST',
-                    data: $scope.userPhone,
-                    // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-                    // transformRequest: function(obj) {
-                    //     var str = [];
-                    //     for(var p in obj){
-                    //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    //     }
-                    //     return str.join("&");
-                    // }   request-payload转为form-data格式的传输方式
-                }).success(function (data) {
-                    $scope.userData = data;
-                    if (data.status) {
-                        layer.msg(data.info, { time: 1000 }, function () {
-                            $state.go('home');
-                        });
-                    } else {
-                        layer.msg(data.info, { time: 1000 });
-                        $scope.codeFn();
-                    }
-                    // $rootScope.res = data.data.token;
-                    ipCookie("token", data.data.token, { expires: 21 });
-                    ipCookie("username", data.data.user_name, { expires: 21 });
-                    ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                    ipCookie("login_by_phone", true, { expires: 21 });
-                });
-            }
-
-        };
         //手机验证码手动登录
         $scope.anoLoginClick = function () {
-            $http({
-                url: '' + $rootScope.ip + '/Login/index',
-                method: 'POST',
-                data: $scope.userPhone,
-                // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
-                // transformRequest: function(obj) {
-                //     var str = [];
-                //     for(var p in obj){
-                //         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                //     }
-                //     return str.join("&");
-                // }   request-payload转为form-data格式的传输方式
-            }).success(function (data) {
-                $scope.userData = data;
-                if (data.status) {
-                    layer.msg(data.info, { time: 1000 }, function () {
-                        $state.go('home');
-                    });
-                } else {
-                    layer.msg(data.info, { time: 1000 });
-                    $scope.codeFn();
-                }
-                // $rootScope.res = data.data.token;
-                ipCookie("token", data.data.token, { expires: 21 });
-                ipCookie("username", data.data.user_name, { expires: 21 });
-                ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
-                ipCookie("login_by_phone", true, { expires: 21 });
-            });
+            $scope.fulllogin($scope.userPhone)
         };
         //获取验证码接口
         $scope.codeFn = function () {
@@ -2256,12 +2169,9 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-
         $scope.registerList = {
-
+            step: 'one'
         };
-
-
         $scope.geeteInitFn1 = function () {
             $http({
                 url: '' + $rootScope.ip + '/Login/geeTestinit',
@@ -2287,18 +2197,6 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             })
         };
         $scope.geeteInitFn1();
-
-        $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Login/region_list',
-            params: ''
-        })
-            .success(function (data) {
-                $scope.rgProvinceData = data;
-            })
-
-
-
 
         $('.userInput').focus(function () {
             $scope.$apply(function () {
@@ -2602,6 +2500,109 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             }
 
         };
+
+        //调用户协议
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Login/user_agreement',
+            data: ''
+        }).success(function (data) {
+            $scope.xieyi = $sce.trustAsHtml(data.data.content);
+        })
+
+        //判断协议是否同意
+        $scope.continue = function () {
+            $scope.isCheck = true;
+        };
+
+        //注册提交
+        $scope.register = function () {
+            console.log($scope.registerList)
+            if ($scope.isCheck) {
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/Login/new_register',
+                    data: $scope.registerList
+                }).success(function (data) {
+                    if (data.status) {
+                        layer.confirm('您已提交申请，请耐心等待客服审核，如有疑问，请联系客服电话：400-080-5118', {
+                            btn: ['确定'], //按钮
+                            title: '提示',
+                            closeBtn: 0
+                        }, function (index) {
+                            layer.close(index);
+                            $state.go('login');
+                        });
+                    } else {
+                        layer.msg(data.info);
+                    }
+                })
+            } else {
+                layer.msg('请先阅读并同意用户协议');
+            }
+        };
+    }])
+    //注册公司
+    .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce) {
+        $rootScope.isShow = false;
+        $rootScope.change = false;
+
+
+        $scope.registerList = {
+            step: 'two'
+        };
+
+        $http({
+            method: "GET",
+            url: '' + $rootScope.ip + '/Login/region_list',
+            params: ''
+        })
+            .success(function (data) {
+                $scope.rgProvinceData = data;
+            })
+
+        $('.userInput').focus(function () {
+            $scope.$apply(function () {
+                $scope.userShow = true;
+            })
+        }).blur(function () {
+            $scope.$apply(function () {
+                $scope.userShow = false;
+            })
+        });
+
+        //注册里省切换
+        $scope.selectProvince = function (pid) {
+            $http({
+                method: "GET",
+                url: '' + $rootScope.ip + '/Login/change_region',
+                params: {
+                    type: 2,
+                    parent_id: pid
+                }
+            })
+                .success(function (data) {
+                    $scope.cityData = data;
+                    $scope.disData = [];
+                    $scope.selectCity(pid);
+                    $scope.registerList.city = $scope.registerList.district = '';
+                })
+        };
+        //注册里市切换
+        $scope.selectCity = function (pid) {
+            $http({
+                method: "GET",
+                url: '' + $rootScope.ip + '/Login/change_region',
+                params: {
+                    type: 3,
+                    parent_id: pid
+                }
+            })
+                .success(function (data) {
+                    $scope.disData = data;
+                })
+        };
+
         //获取img base64编码
         $scope.imgPreview = function (event) {
             //判断是否支持FileReader
@@ -2694,7 +2695,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             if ($scope.isCheck) {
                 $http({
                     method: "POST",
-                    url: '' + $rootScope.ip + '/Login/register',
+                    url: '' + $rootScope.ip + '/Login/new_register',
                     data: $scope.registerList
                 }).success(function (data) {
                     if (data.status) {
@@ -2840,7 +2841,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                     method: "POST",
                     url: '' + $rootScope.ip + '/Login/getMobileCode',
                     data: {
-                        type: 'mind',
+                        type: 'member',
                         mobile: $scope.isPhone,
                         verify: $scope.forgotTwoOption.verify,
                         skey: $scope.code,
@@ -6664,9 +6665,9 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 method: "POST",
                 url: '' + $rootScope.ip + '/Flow/select_change_price',
                 data: {
-                    id: goods.cutting_id>0?goods.g_parent_id:goods.goods_id,
-                    type: goods.cutting_id>0?3:0,
-                    is_select: goods.is_select?0:1
+                    id: goods.cutting_id > 0 ? goods.g_parent_id : goods.goods_id,
+                    type: goods.cutting_id > 0 ? 3 : 0,
+                    is_select: goods.is_select ? 0 : 1
                 },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
@@ -13823,13 +13824,13 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         }
 
         //去商品详情页
-        $scope.goGoodsDetail = function (goods_id,cutting_id) {
-            if(cutting_id>0){
+        $scope.goGoodsDetail = function (goods_id, cutting_id) {
+            if (cutting_id > 0) {
                 $state.go('shop-detail-cut', {
                     goods_id: goods_id,
                     cutting_id: cutting_id
                 });
-            }else{
+            } else {
                 $state.go('shop-detail', {
                     goods_id: goods_id
                 });

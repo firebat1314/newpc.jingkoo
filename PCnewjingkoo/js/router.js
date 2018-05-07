@@ -5,13 +5,13 @@ angular.module("myApp.router", ["ui.router"])
 
         //location.href = 'http://newwww.jingkoo.net/';
 
-        $urlRouterProvider.otherwise('/jump');
+        $urlRouterProvider.otherwise('/jump/');
         //一级栏目
         //首页
         $stateProvider
             .state("jump", {
                 title: '转跳中...',
-                url: '/jump',
+                url: '/jump/:token',
                 templateUrl: 'template/jump/jump.html',
                 controller: "jumpControl"
             })
@@ -77,6 +77,13 @@ angular.module("myApp.router", ["ui.router"])
                 url: '/register',
                 templateUrl: 'template/register.html',
                 controller: "register-control"
+            })
+            //注册路由
+            .state("registerCompany", {
+                title: '注册',
+                url: '/register-company',
+                templateUrl: 'template/register-company.html',
+                controller: "register-company-control"
             })
             //忘记密码路由
             .state("forgotPassword", {

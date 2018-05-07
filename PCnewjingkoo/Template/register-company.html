@@ -3,12 +3,12 @@
     <div class="reg-top p5 gird">
         <div class="re-logo">
             <a href="http://www.jingku.cn/default.html">
-                <span></span>采购商注册</a>
+                <span></span>企业认证</a>
             </a>
         </div>
-        <div class="regi-qdl">已有账号
+        <!-- <div class="regi-qdl">已有账号
             <a href="#/login">请登录</a>
-        </div>
+        </div> -->
     </div>
     <!--头部  E-->
 
@@ -18,246 +18,110 @@
             <span style="color: #0070c9;cursor: pointer;" ng-click="qimoChatClick();">在线咨询</span>
         </p>
         <div class="g-wrp">
-            <h1 class="re-bt">账户信息</h1>
-            <div class="re-t">
-                <ul class="cle">
-                    <li>
-                        <div class="wrp new_user_name">
-                            <div class="label">
-                                <em>*</em>用户名：</div>
-                            <div class="ret-nr">
-                                <div class="qvyu">
-                                    <input maxlength="20" placeholder="您的账户名" ng-model="registerList.user_name" ng-change="isUserChange(registerList.user_name,$event.target)"
-                                        class="ret-txt userInput" ng-class="{'error':isUser==false}" type="text" autocomplete="off">
-                                    <!--<div class="zhury" ng-class="{'zhury hso':isUser}"><em></em>请输入正确的用户名</div>-->
-                                    <i class="i-status" ng-class="{'right':userRight==true}"></i>
-                                </div>
-                            </div>
-                            <i class="userTip" ng-if="userShow&&!registerList.user_name.length">支持中文、字母、数字、“-”“_”的组合,1-20个字符</i>
-                            <i class="errorTip" ng-class="{'error':isUser==false}">格式错误，仅支持中文、字母、数字、“-”“_”的组合,1-20个字符</i>
-                            <i class="errorTip" ng-class="{'error':isLife==false}">{{validate_user.info}}</i>
-
-                        </div>
-                    </li>
-
-
-                    <li style="float: none;">
-                        <div class="wrp">
-                            <div class="label">
-                                <em>*</em>请设置密码：</div>
-                            <div class="ret-nr">
-                                <div class="qvyu">
-                                    <input maxlength="20" placeholder="建议至少使用两种字符组合" ng-model="registerList.password" ng-change="isPassWordChange(registerList.password)"
-                                        ng-blur="isPassWord(registerList.password)" class="ret-txt userPwd" ng-class="{'error':isPwd==false}"
-                                        style="width:283px;" type="password" autocomplete="new-password" />
-                                    <!--<div class="zhury" ng-class="{'zhury hso':isPwd}"><em></em>登录密码不能少于6个字符</div>-->
-                                    <i class="i-status" style="right:340px;" ng-class="{'right':pwdRight==true}"></i>
-                                </div>
-                                <i class="userTip" ng-if="registerList.password.length<=6">建议使用字母、数字和符号两种及以上的组合，6-20个字符</i>
-                                <!-- <i class="errorTip" ng-class="{'errorTip error':isPwd==false,'errorTip':isPwd==true}">长度只能在6-20个字符之间</i> -->
-                                <!-- <i class="ruoTip" ng-class="{'error':isRuo==true}">有被盗风险,建议使用字母、数字和符号两种及以上组合</i> -->
-                                <!-- <i class="zhongTip" ng-class="{'error':isZhong==true}">安全强度适中，可以使用三种以上的组合来提高安全强度</i> -->
-                                <!-- <i class="qiangTip" ng-class="{'error':isQiang==true}">你的密码很安全</i> -->
-                                <!-- ———————————————————————— 密码强度样式 ———————————————————————— -->
-                                <style>
-                                    .ps_qd_wrap * {
-                                        box-sizing: border-box;
-                                    }
-
-                                    .ps_qd_wrap {
-                                        display: -webkit-box;
-                                        display: -webkit-flex;
-                                        display: -ms-flexbox;
-                                        display: flex;
-                                        /* 
-                                -webkit-justify-content: space-around;
-                                -ms-flex-pack: distribute;
-                                justify-content: space-around; */
-                                        -webkit-box-align: center;
-                                        -webkit-align-items: center;
-                                        -ms-flex-align: center;
-                                        margin-top: 10px;
-                                    }
-
-                                    .ps_qd {
-                                        width: 180px;
-                                        background: #f5f5f5;
-                                        overflow: hidden;
-                                        border-radius: 10px;
-                                        padding: 4px;
-                                        margin-right: 12px;
-                                    }
-
-                                    .ps_qd>div {
-                                        width: 33.333%;
-                                        height: 10px;
-                                        float: left;
-                                        box-sizing: border-box;
-                                        background: #e0e0e0;
-                                        border-right: 3px solid #f5f5f5;
-                                    }
-
-                                    .ps_qd>div:last-child {
-                                        margin: 0;
-                                        border-radius: 0 10px 10px 0;
-                                        border: none;
-                                    }
-
-                                    .ps_qd>div:first-child {
-                                        border-radius: 10px 0 0 10px;
-                                    }
-
-                                    .ruo>div:nth-child(1) {
-                                        background: #e94822 !important;
-                                    }
-
-                                    .zhong>div:nth-child(1) {
-                                        background: #f6d11c !important;
-                                    }
-
-                                    .zhong>div:nth-child(2) {
-                                        background: #f6d11c !important;
-                                    }
-
-                                    .qiang>div:nth-child(1) {
-                                        background: #4bc13b !important;
-                                    }
-
-                                    .qiang>div:nth-child(2) {
-                                        background: #4bc13b !important;
-                                    }
-
-                                    .qiang>div:nth-child(3) {
-                                        background: #4bc13b !important;
-                                    }
-
-                                    .ps_qd_t {
-                                        height: 22px;
-                                        width: 22px;
-                                        border-radius: 50%;
-                                        position: relative;
-                                        background: #4bc13b;
-                                        border-color: #4bc13b;
-                                        font-size: 12px;
-                                        text-align: center;
-                                        color: #fff;
-                                        line-height: 22px;
-                                    }
-
-                                    .ps_qd_t:before {
-                                        content: "";
-                                        position: absolute;
-                                        top: 4px;
-                                        left: -11px;
-                                        display: block;
-                                        border: 7px solid transparent;
-                                        border-right-color: inherit;
-                                    }
-                                </style>
-                                <div class="ps_qd_wrap">
-                                    <div class="ps_qd" ng-class="{'ruo':isRuo,'zhong':isZhong,'qiang':isQiang}" ng-If="isRuo||isZhong||isQiang">
-                                        <div></div>
-                                        <div></div>
-                                        <div></div>
-                                    </div>
-                                    <div class="ps_qd_t" ng-if="isRuo" style="background: #e94822;border-color: #e94822;">低</div>
-                                    <div class="ps_qd_t" ng-if="isZhong" style="background: #f6d11c;border-color: #f6d11c;">中</div>
-                                    <div class="ps_qd_t" ng-if="isQiang" style="background: #4bc13b;border-color: #4bc13b;">高</div>
-                                </div>
-                                <!-- ———————————————————————— 密码强度 ———————————————————————— -->
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="wrp">
-                            <div class="label">
-                                <em>*</em>请确认密码：</div>
-                            <div class="ret-nr">
-                                <div class="qvyu">
-                                    <input maxlength="20" placeholder="请再次输入密码" ng-model="registerList.cpassword" ng-change="isCpassWordChange(registerList.cpassword)"
-                                        ng-blur="isCpassWord(registerList.cpassword)" class="ret-txt userCpwd" type="password"
-                                        ng-class="{'error':isCpwd==false}" style="width:283px;" autocomplete="new-password" />
-                                    <!--<div class="zhury" ng-class="{'zhury hso':isCpwd}"><em></em>请确认两次密码是否一致</div>-->
-                                    <i class="i-status" ng-class="{'right':cpwdRight==true}"></i>
-                                </div>
-                                <i class="userTip" ng-if="cpwdShow&&!registerList.cpassword.length">请再次输入密码</i>
-                                <i class="errorTip" ng-class="{'error':isCpwd==false}">两次密码输入不一致</i>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <h1 class="re-bt">个人信息</h1>
+            <h1 class="re-bt">企业信息</h1>
             <div class="re-t">
                 <ul class="cle">
                     <li>
                         <div class="wrp">
                             <div class="label">
-                                <em>*</em>姓名：</div>
+                                <em>*</em>公司名称：</div>
                             <div class="ret-nr">
-                                <input placeholder="请输入您的真实姓名" ng-model="registerList.true_name" class="ret-txt jsto" type="text" value="" />
+                                <input placeholder="请输入公司名称" ng-model="registerList.company" class="ret-txt jsto" type="text" value="" />
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="wrp">
                             <div class="label">
-                                <em>*</em>手机号码：</div>
+                                <em>*</em>所在城市：</div>
                             <div class="ret-nr">
-                                <div class="qvyu">
-                                    <input placeholder="建议使用常用手机" ng-model="registerList.mobile_phone" ng-change="isPhone(registerList.mobile_phone)" class="ret-txt userPhone"
-                                        ng-class="{'error':isTel==false}" type="text" value="" autocomplete="off" />
-                                    <!--<div class="zhury" ng-class="{'zhury hso':isTel}"><em></em>请输入正确的手机号</div>-->
-                                    <i class="i-status" ng-class="{'right':phoneRight==true}"></i>
+                                <select ng-model="registerList.province" ng-change="selectProvince(registerList.province)" class="ret-selt mr19">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgProvince in rgProvinceData.province_list" value="{{rgProvince.region_id}}">{{rgProvince.region_name}}</option>
+                                </select>
+                                <select ng-model="registerList.city" ng-change="selectCity(registerList.city)" class="ret-selt mr19">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgCity in cityData.data" value="{{rgCity.region_id}}">{{rgCity.region_name}}</option>
+                                </select>
+                                <select ng-model="registerList.district" class="ret-selt">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgDistrict in disData.data" value="{{rgDistrict.region_id}}">{{rgDistrict.region_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>公司地址：</div>
+                            <div class="ret-nr">
+                                <input placeholder="请输入公司地址" ng-model="registerList.address" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>营业执照号：</div>
+                            <div class="ret-nr">
+                                <input placeholder="请输入营业执照号" ng-model="registerList.zz_number" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp cle pt20">
+                            <div class="label fl pt0" style="min-width: 130px;">
+                                <em>*</em>营业执照：
+                            </div>
+                            <div class="ret-nr fl">
+                                <div class="ret-up fl">
+                                    <img id="preview" src="img/re-up.jpg">
+                                    <input ng-change="imgPreview($event)" id="file" ng-model="registerList.zhizhao" class="up-file" type="file">
                                 </div>
-                                <i class="userTip" ng-if="phoneShow&&!registerList.mobile_phone.length">完成验证后，你可以用该手机登录和找回密码</i>
-                                <i class="errorTip" ng-class="{'error':isTel==false}">格式有误</i>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="wrp">
-                            <div class="label">
-                                <em>*</em>验证码：</div>
-                            <!--<div class="ret-nr">-->
-                            <!--<div class="txyzm">-->
-                            <!--<input placeholder="请输入验证码" ng-model="registerList.str_verify" class="ret-txt userCode" type="text" value="" style="width:283px;" autocomplete="off" />-->
-                            <!--<div class="txy-img"><img ng-click="codeAgain()" ng-src={{codeMa}}/></div>-->
-                            <!--</div>-->
-                            <!--<i class="userTip" ng-if="codeShow&&!registerList.str_verify.length">看不清？点击图片更换验证码</i>-->
-                            <!--</div>-->
-                            <div style="height:34px;" class="GeetestCaptchaView1"></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="wrp">
-                            <div class="label">
-                                <em>*</em>短信验证码：</div>
-                            <div class="ret-nr">
-                                <div class="dxyzm">
-                                    <input placeholder="请输入短信验证码" ng-model="registerList.mobile_verify" class="ret-txt" type="text" value="" style="width:283px;"
-                                    />
-                                    <div class="dxy-anniu">
-                                        <!--<input class="yzms" ng-click="info()" type="button" value="{{vm.data}}" />-->
-                                        <button class="yzms" ng-click="info()" ng-disabled="vm.kedian">{{vm.data}}</button>
-                                    </div>
+                                <div class="ret-sli fl">
+                                    <img src="img/zz.jpg" />
+                                    <div class="sli-fdj ">
+                                        <span></span>示例</div>
+                                </div>
+                                <div class="muke hidden"></div>
+                                <div class="zzc ">
+                                    <img src="img/zz.jpg">
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <div class="wrp">
-                            <div class="label">邮箱：</div>
-                            <div class="ret-nr">
-                                <input placeholder="建议使用常用邮箱" class="ret-txt" type="text" value="" style="width:283px;" />
+                        <div class="wrp cle pt20">
+                            <div class="label fl pt0" style="min-width: 130px;">
+                                医疗器械许可证：
                             </div>
+                            <div class="ret-nr fl">
+                                <div class="ret-up fl">
+                                    <img ng-src="{{registerList.medical || 'img/up.jpg'}}" id="img33" />
+                                    <input id="img3" class="up-file cursor" type="file" ng-model="registerList.medical" ng-change="medicalPhoto($event)" />
+                                </div>
+                                <div class="ret-sli fl">
+                                    <img src="img/xkz_yl.jpg" />
+                                    <div class="sli-fdj ">
+                                        <span></span>示例</div>
+                                </div>
+                                <div class="muke hidden"></div>
+                                <div class="zzc ">
+                                    <img src="img/xkz_yl.jpg">
+                                </div>
+                            </div>
+                            <!-- <div style="    clear: both;
+                            padding-top: 12px;
+                            font-size: 12px;
+                            margin-left: 150px;
+                            color: #e68c00;">如需购买护理液、美瞳、隐形产品，请上传医疗器械许可证。</div> -->
                         </div>
                     </li>
                     <li>
                         <div class="wrp">
-                            <div class="label">QQ：</div>
+                            <div class="label">区域编号：</div>
                             <div class="ret-nr">
-                                <input placeholder="建议使用常用QQ" ng-model="registerList.qq" class="ret-txt" type="text" value="" style="width:283px;" />
+                                <input ng-model="registerList.parent_id" class="ret-txt jsto" type="text" value="" />
                             </div>
                         </div>
                     </li>

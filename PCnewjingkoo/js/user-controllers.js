@@ -102,26 +102,26 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			qimo.className = 'qimo';
 			document.getElementsByTagName('body')[0].appendChild(qimo);
 			var that = this;
-			var timer = setInterval(function() {
+			var timer = setInterval(function () {
 				if (typeof qimoChatClick != "undefined") {
-					 layer.close(cool);
-					 clearInterval(timer)
-					 setTimeout(function() {
-						  qimoChatClick();
-					 }, 500);
-				}
-		  }, 500)
-		  /* qimo.onload = qimo['onreadystatechange'] = function () {
-				//that.native.hideLoading();
-				if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+					layer.close(cool);
+					clearInterval(timer)
 					setTimeout(function () {
-						//console.log('客服加载完成');
-						layer.close(cool);
 						qimoChatClick();
-					}, 800);
-					qimo.onload = qimo['onreadystatechange'] = null;
+					}, 500);
 				}
-			}; */
+			}, 500)
+			/* qimo.onload = qimo['onreadystatechange'] = function () {
+				 //that.native.hideLoading();
+				 if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
+					 setTimeout(function () {
+						 //console.log('客服加载完成');
+						 layer.close(cool);
+						 qimoChatClick();
+					 }, 800);
+					 qimo.onload = qimo['onreadystatechange'] = null;
+				 }
+			 }; */
 		}
 
 	}])
@@ -2805,18 +2805,18 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
-						layer.confirm('需要医疗器械许可证，是否上传', {
-							 btn: ['确定', '取消'], //按钮
-							 btnAlign: 'c',
-							 yes: function (index) {
-								 $state.go('person-qy-msg');
-								 layer.close(index);
-							 },
-							 btn2: function (index) {
-								 layer.close(index);
-							 }
-							 // closeBtn: 0
-						 });
+					layer.confirm('需要医疗器械许可证，是否上传', {
+						btn: ['确定', '取消'], //按钮
+						btnAlign: 'c',
+						yes: function (index) {
+							$state.go('person-qy-msg');
+							layer.close(index);
+						},
+						btn2: function (index) {
+							layer.close(index);
+						}
+						// closeBtn: 0
+					});
 				} else {
 					$rootScope.$broadcast('upCarList');
 					$state.go('shop-car');
@@ -3315,25 +3315,25 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		};
 
 	}])
-	.controller('order-print-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location','$sce', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location,$sce) {
+	.controller('order-print-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', '$sce', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location, $sce) {
 		$rootScope.isShow = false;
-        $rootScope.change = false;
+		$rootScope.change = false;
 		$scope.orderid = $stateParams.orderId;
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
 		$http({
 			method: "POST",
 			url: '' + $rootScope.ip + '/Machining/update_make',
 			data: {
-				 mid: $stateParams.mid,
-				 lj_shipping_sn: $scope.wlsn
+				mid: $stateParams.mid,
+				lj_shipping_sn: $scope.wlsn
 			},
 			headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
-	  }).success(function (data) {
-			$data.getOrderInfo({ order_id: $scope.orderid,type:1 }).success(function (data) {
+		}).success(function (data) {
+			$data.getOrderInfo({ order_id: $scope.orderid, type: 1 }).success(function (data) {
 				layer.close(cool);
 
 				$scope.html = ($sce.trustAsHtml(data.content));
-				
+
 			}).error(function (data, staus) {
 				layer.close(cool);
 				if (staus == 401) {
@@ -3343,7 +3343,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					location.href = "/default.html";
 				}
 			})
-	  })
+		})
 	}])
 	//订单详情取消的订单	
 	.controller('orderCancel-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {
@@ -3445,15 +3445,300 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$rootScope.isShow = false;
 		//控制header和footer显隐
 		$rootScope.change = true;
-		$scope.goto();
-		
-		$(".js_adbtn").click(function () {
-			$(".js_adbr").slideDown();
-			$(".js_adbr").next().hide();
-		});
 
-		$('.ix.js_querg').click(function () {
-			$(".js_adbr").slideUp();
-		})
+		$scope.createFormdata = function () {
+			$scope.userInfo = null;
+			$scope.userId = null;
+			$scope.type = null;
+			$scope.formData = {
+				true_name: null,
+				position: null,
+				user_name: null,
+				mobile_phone: null,
+				str_verify: null,
+				phone_code: null,
+				password: null,
+				cpassword: null,
+				authority: [],
+				staff_status: false
+			}
+			$scope.authority = [
+				{ 'label': '允许查看价格', 'value': '1', checked: false },
+				{ 'label': '允许结算', 'value': '2', checked: false },
+				{ 'label': '允许添加员工', 'value': '3', checked: false },
+				{ 'label': '允许查看员工信息', 'value': '4', checked: false },
+			]
+		}
+		$scope.createFormdata();
 		
+		$scope.addStaff = function () {
+			layer.confirm('请选择添加员工', {
+				btn: ['注册新账号', '添加已有账号，立即验证'] //按钮
+			}, function (index) {
+				$scope.createFormdata();
+				$scope.openStaffEditor('new', '注册新账号');
+				layer.close(index);
+			}, function (index) {
+				$scope.createFormdata();
+				$scope.openStaffEditor('yet', '添加已有账号')
+			});
+		}
+		$scope.editorStaff = function (userId) {
+			$scope.createFormdata();
+			$scope.userId = userId;
+			var index = layer.load(2, { shade: [0.1, '#000'], time: 10 * 1000 });
+			$http({
+				url: '' + $rootScope.ip + '/Staff/edit_user',
+				method: 'GET',
+				params: { user_id: userId },
+				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+			}).success(function (data) {
+				layer.close(index);
+				if (data.status == 1) {
+					$scope.userInfo = data;
+					$scope.formData.mobile_phone = data.data.mobile_phone;
+					$scope.formData.position = data.data.position;
+					$scope.formData.true_name = data.data.true_name;
+					$scope.formData.user_name = data.data.user_name;
+					$scope.formData.authority = data.data.authority || [];
+					$scope.formData.staff_status = data.data.is_checks==1?true:false;
+					for (var j = 0; j < data.data.authority.length; j++) {
+						for (var i = 0; i < $scope.authority.length; i++) {
+							var item = $scope.authority[i];
+							if (data.data.authority[j] == item.value) {
+								item.checked = true;
+							}
+						}
+					}
+					setTimeout(function() {
+						$scope.openStaffEditor(null, '编辑')
+					}, 300);
+				}
+			})
+		}
+		$scope.openStaffEditor = function (type, title) {
+			$scope.type = type;
+			$scope.$apply(function () {$scope.type = type;});
+			$scope.staffEditor = layer.open({
+				type: 1,
+				title: title, //不显示标题
+				area: '1000px',
+				maxmin: true, //开启最大化最小化按钮
+				shadeClose: true,
+				content: $('.js_adbr'), //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+				cancel: function () {
+					// layer.msg('关闭', { time: 2000, icon: 6 });
+				}
+			});
+		}
+		$scope.cancelStaffEditor = function(){
+			layer.close($scope.staffEditor);
+		}
+		$scope.getStaffList = function () {
+			// var index = layer.load(2, { shade: [0.1, '#000'], time: 10 * 1000 });
+			$http({
+				url: '' + $rootScope.ip + '/Staff/index',
+				method: 'POST',
+				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+			}).success(function (data) {
+				// layer.close(index);
+				if (data.status == 1) {
+					$scope.staffList = data.list;
+				}
+			})
+		}
+		$scope.getStaffList();
+		$scope.deleteItem = function (user_id) {
+			layer.msg('也可以这样', {
+				time: 20000, //20s后自动关闭
+				btn: ['删除', '取消'],
+				yes: function (i) {
+					var index = layer.load(2, { shade: [0.1, '#000'], time: 10 * 1000 });
+					$http({
+						url: '' + $rootScope.ip + '/Staff/del_user',
+						method: 'POST',
+						headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
+						data: { user_id: user_id }
+					}).success(function (data) {
+						layer.close(index);
+						layer.close(i);
+						if (data.status == 1) {
+							$scope.getStaffList();
+						} else {
+							layer.msg(data.info);
+						}
+					})
+				}
+			});
+		}
+		$scope.changeAccess = function () {
+			$scope.formData.authority = [];
+			for (let i = 0; i < $scope.authority.length; i++) {
+				if ($scope.authority[i].checked) {
+					$scope.formData.authority.push($scope.authority[i].value)
+				}
+			}
+		}
+		$scope.save = function(){
+			if ($scope.userId > 0) {
+				$http({
+					url: '' + $rootScope.ip + '/Staff/edit_user',
+					method: 'POST',
+					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
+					data: {
+						user_id: $scope.userId,
+						mobile_phone: $scope.formData.mobile_phone,
+						position: $scope.formData.position,
+						true_name: $scope.formData.true_name,
+						user_name: $scope.formData.user_name,
+						authority: $scope.formData.authority,
+						staff_status: $scope.formData.staff_status
+					}
+				}).success(function (data) {
+					layer.msg(data.info, { time: 2000 });
+					if (data.status == 1) {
+						$scope.cancelStaffEditor();
+						$scope.getStaffList();
+					}
+				})
+			} else if ($scope.type == 'new') {
+				$http({
+					url: '' + $rootScope.ip + '/Staff/add_user',
+					method: 'POST',
+					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
+					data: $scope.formData
+				}).success(function (data) {
+					layer.msg(data.info, { time: 2000 });
+					if (data.status == 1) {
+						$scope.cancelStaffEditor();
+						$scope.getStaffList();
+					}
+				})
+			} else if ($scope.type == 'yet') {
+				$http({
+					url: '' + $rootScope.ip + '/Staff/add_now',
+					method: 'POST',
+					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
+					data: {
+						user_id: $scope.userInfo.data.user_id,
+						step: 'two',
+						mobile_phone: $scope.formData.mobile_phone,
+						position: $scope.formData.position,
+						true_name: $scope.formData.true_name,
+						user_name: $scope.formData.user_name,
+						authority: $scope.formData.authority,
+						str_verify: $scope.formData.str_verify,
+						phone_code: $scope.formData.phone_code,
+						staff_status: $scope.formData.staff_status
+					}
+				}).success(function (data) {
+					layer.msg(data.info, { time: 2000 });
+					if (data.status == 1) {
+						$scope.cancelStaffEditor();
+						$scope.getStaffList();
+					}
+				})
+			}
+		}
+		$scope.getNext = function(){
+			var index = layer.load(2, { shade: [0.1, '#000'], time: 10 * 1000 });
+			$http({
+				url: '' + $rootScope.ip + '/Staff/add_now',
+				method: 'POST',
+				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
+				data: { step: 'one', user_name: $scope.formData.user_name }
+			}).success(function (data) {
+				layer.close(index);
+				if (data.status == 1) {
+					layer.close($scope.staffEditor);
+					setTimeout(function(){
+						$scope.userInfo = data;
+						$scope.formData.mobile_phone = data.data.mobile_phone;
+						$scope.formData.true_name = data.data.true_name;
+						$scope.formData.user_name = data.data.user_name;
+						$scope.openStaffEditor('yet', '添加已有账号');
+					}, 500);
+				}else{
+					layer.msg(data.info, { time: 2000 });
+				}
+			})
+		}
+		$http({
+			method: "POST",
+			url: '' + $rootScope.ip + '/Login/verify',
+			data: {
+				fontSize: 32,
+				length: 4,
+				useNoise: true
+			}
+		}).success(function (data) {
+			$scope.skey = data.data.skey;
+			$scope.codeFn();
+		})
+		//回调一次验证码接口获取图片
+		$scope.codeFn = function () {
+			 $http({
+				  method: "POST",
+				  url: '' + $rootScope.ip + '/Login/verify',
+				  data: {
+						/* fontSize: 32,
+						length: 4,
+						useNoise: true,
+						codeSet: $scope.code */
+						fontSize: 32,
+						length: 4,
+						useNoise: 0,
+						codeSet: 0,
+						skey: $scope.skey
+				  }
+			 }).success(function (data) {
+				 if (data.status == 1) {
+					 $scope.skey = data.data.skey;
+						 $scope.verifyImg = data.data.captcha + '?' + Math.random();  //增加随机参数时间可强制刷新
+				 }
+			 })
+		};
+		$scope.vwait = 60;
+		$scope.vdisabled = false;
+		$scope.vvalue = '发送验证码';
+		$scope.vtimer;
+		$scope.vtime = function () {
+			if ($scope.vwait == 0) {
+				$scope.vdisabled = false;
+				$scope.vtimer = null;
+				$scope.$apply(function () {
+					$scope.vvalue = "发送验证码";
+				});
+				$scope.vwait = 60;
+				return;
+			} else {
+				$scope.vdisabled = true;
+				$scope.$apply(function () {
+					$scope.vvalue = "(" + $scope.vwait + ")秒后重新发送";
+				});
+				$scope.vtimer = setTimeout(function () {
+					$scope.vtime();
+					$scope.vwait--;
+				}, 1000)
+			}
+		}
+		$scope.getMobileCode = function () {
+			$http({
+				method: "POST",
+				url: '' + $rootScope.ip + '/Login/getMobileCode',
+				data: {
+					type: $scope.type=='yet'?'member':'changeM',
+					mobile: $scope.formData.mobile_phone,
+					verify: $scope.formData.str_verify,
+					skey: $scope.skey
+				}
+			}).success(function (data) {
+				if (data.status == 1) {
+					$scope.vtime();
+				} else {
+					$scope.codeFn();
+					layer.msg(data.info);
+				}
+			})
+		}
 	}])

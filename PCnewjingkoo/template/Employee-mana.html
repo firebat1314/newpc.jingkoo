@@ -18,6 +18,12 @@
     .an-job1 .an-job-d input{position: absolute;top:0;left: 0;width: 100%;height: 100%;opacity: 0;cursor: pointer;}
     .an-job1 .an-job-d label{display: block;width: 100%;height: 100%;font-size: 14px;color: #ffffff;background: #cccccc;}
     .an-job1 .an-job-d input:checked + label{background-color: #4169a3;}
+	 .location .add-nr{
+		min-height: 100%;
+	 }
+	 .location .add-nr .addn-t{
+		margin: auto;
+	}
     .location .add-nr .addn-t td{padding: 10px 0;}
     .an-job1 .sent-job{width: 280px;padding:0 15px;font-size: 14px;color: #999999;height: 33px;border: 1px solid #e5e5e5;}
     .an-right .an-qx{width: 100%;height: 40px;overflow: hidden;line-height: 40px;}
@@ -36,174 +42,257 @@
 		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
 	</div>
 </div>
-
 <div class="msg-center-main" style="margin-bottom: 25px;">
 	<div class="im-panel gird cle">
-        <div class="panel-left">
-			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
+		<div class="panel-left">
+			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;">
+				<em class="ico"></em>控制面板</div>
 			<div class="control-list aotms">
-				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
+				<h3 class="control-h3">
+					<em class="coe-1"></em>交易管理</h3>
 				<div class="control-nr">
-					<p><a href="#/order-all/">我的订单</a></p>
-					<p><a href="#/myCollect">我的收藏</a></p>
-					<p><a href="#/person-integral">积分管理</a></p>
-					<p><a href="#/person-yhq">优惠券管理</a></p>
+					<p>
+						<a href="#/order-all/">我的订单</a>
+					</p>
+					<p>
+						<a href="#/myCollect">我的收藏</a>
+					</p>
+					<p>
+						<a href="#/person-integral">积分管理</a>
+					</p>
+					<p>
+						<a href="#/person-yhq">优惠券管理</a>
+					</p>
 				</div>
 			</div>
 			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
+				<h3 class="control-h3">
+					<em class="coe-2"></em>服务中心</h3>
 				<div class="control-nr">
-					<p><a href="#/person-process" >来镜加工</a></p>
-					<p><a href="#/person-return-repair">返修退换货</a></p>
-					<p><a href="#/parson-msg-center">消息中心</a></p>
+					<p>
+						<a href="#/person-process">来镜加工</a>
+					</p>
+					<p>
+						<a href="#/person-return-repair">返修退换货</a>
+					</p>
+					<p>
+						<a href="#/parson-msg-center">消息中心</a>
+					</p>
 				</div>
 			</div>
 			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
+				<h3 class="control-h3">
+					<em class="coe-3"></em>资产中心</h3>
 				<div class="control-nr">
-					<p><a href="#/zijin-mana">资金管理</a></p>
-					<p><a href="#/person-invoices">发票管理</a></p>
+					<p>
+						<a href="#/zijin-mana">资金管理</a>
+					</p>
+					<p>
+						<a href="#/person-invoices">发票管理</a>
+					</p>
 				</div>
 			</div>
 			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
+				<h3 class="control-h3">
+					<em class="coe-4"></em>个人设置</h3>
 				<div class="control-nr">
-					<p class="onp"><a href="#/EmployeeM">员工管理</a></p>
-					<p><a href="#/person-qy-lxrmsg">企业信息</a></p>
-					<p><a href="#/person-save-center">安全中心</a></p>
-					<p><a href="#/person-mana-addr">管理收货地址</a></p>
+					<p class="onp">
+						<a href="#/EmployeeM">员工管理</a>
+					</p>
+					<p>
+						<a href="#/person-qy-lxrmsg">企业信息</a>
+					</p>
+					<p>
+						<a href="#/person-save-center">安全中心</a>
+					</p>
+					<p>
+						<a href="#/person-mana-addr">管理收货地址</a>
+					</p>
 				</div>
 			</div>
 			<div class="control-list">
-				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
+				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;">
+					<em class="coe-5"></em>安全退出</h3>
 			</div>
-        </div>
+		</div>
 		<div class="panel-right">
 			<div class="control-wrp">
 				<div class="cont-bd">
-    				<div class="contacts-wrap czhi">
-    					<div class="location mb20">  
-							<div class="addc"><a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn">添加员工</a></div>
-							<div class="add-nr js_adbr" style="display: block;">
+					<div class="contacts-wrap czhi">
+						<div class="location mb20">
+							<div class="addc">
+								<a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn" ng-click="addStaff()">添加员工</a>
+								<a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn" ng-click="getStaffList()">刷新列表</a>
+							</div>
+							<div class="add-nr js_adbr" style="display: none;">
 								<table class="addn-t">
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 姓名：</div></td>
+									<tr ng-if="(userId>0||type=='yet')&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 真实姓名：</div>
+										</td>
 										<td>
 											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入姓名"/>
+												<input ng-model="formData.true_name" ng-disabled="(userId>0||type=='yet')&&userInfo" class="text" name="true_name" type="text" placeholder="请输入姓名" />
+											</div>
+										</td>
+									</tr>
+									<tr ng-if="(userId>0||type=='yet')&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 手机号：</div>
+										</td>
+										<td>
+											<div class="an-right">
+												<input ng-model="formData.mobile_phone" ng-disabled="(userId>0||type=='yet')&&userInfo" class="text" name="mobile_phone" type="text" placeholder="请输入手机号" />
+											</div>
+										</td>
+									</tr>
+									<tr ng-if="!(userId>0)&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 输入验证码：</div>
+										</td>
+										<td>
+											<div class="an-right">
+												<input ng-model="formData.str_verify" class="yz_text" name="str_verify" type="text" placeholder="请输入验证码" />
+												<div class="yz_img">
+													<img ng-click="codeFn()" src="{{verifyImg}}" />
+												</div>
+											</div>
+										</td>
+									</tr>
+									<tr ng-if="!(userId>0)&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 输入手机验证码：</div>
+										</td>
+										<td>
+											<div class="an-right">
+												<input ng-model="formData.phone_code" class="yz_text" name="phone_code" type="text" placeholder="请输入验证码" />
+												<input type="button" ng-disabled="vdisabled" ng-click="getMobileCode()" ng-value="vvalue" class="yz_btn" />
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 手机号：</div></td>
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 账户名：</div>
+										</td>
 										<td>
 											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入手机号"/>
+												<input ng-model="formData.user_name" ng-disabled="(userId>0||type=='yet')&&userInfo" class="text" type="text" name="user_name" placeholder="请输入账号" />
 											</div>
 										</td>
 									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入验证码：</div></td>
+									<tr ng-if="!(type=='yet'||userId>0)">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 输入密码：</div>
+										</td>
 										<td>
 											<div class="an-right">
-												<input class="yz_text" type="text" placeholder="请输入验证码"/>
-												<div class="yz_img"><img src="../img/yanzm-1.jpg"/></div>
+												<input ng-model="formData.password" name="password" class="text" type="password" placeholder="请输入密码" />
 											</div>
 										</td>
 									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入手机验证码：</div></td>
+									<tr ng-if="!(type=='yet'||userId>0)">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 确认密码：</div>
+										</td>
 										<td>
 											<div class="an-right">
-												<input class="yz_text" type="text" placeholder="请输入验证码"/>
-												<input type="button" value="发送验证码" class="yz_btn"/>
+												<input ng-model="formData.cpassword" name="cpassword" class="text" type="password" placeholder="请再次密码" />
 											</div>
 										</td>
 									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 登录账号：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入账号"/>
-											</div>
+									<tr ng-if="(userId>0||type=='yet')&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 职位：</div>
 										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 输入密码：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入密码"/>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 确认密码：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" placeholder="请再次密码"/>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 职位：</div></td>
 										<td>
 											<div class="an-right">
 												<div class="an-job">
 													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">老板</label>
+														<input ng-disabled="userId>0&&userInfo.data.is_myself==1" ng-model="formData.position" type="radio" value="老板" name="position" />
+														<label for="position">老板</label>
 													</div>
 													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">店长</label>
+														<input ng-disabled="userId>0&&userInfo.data.is_myself==1" ng-model="formData.position" type="radio" value="财务" name="position" />
+														<label for="position">财务</label>
+													</div>
+													<div class="an-job-d" name="position">
+														<input ng-disabled="userId>0&&userInfo.data.is_myself==1"  ng-model="formData.position" type="radio" value="采购经理" name="position" />
+														<label for="position">采购经理</label>
 													</div>
 													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">店员</label>
+														<input ng-disabled="userId>0&&userInfo.data.is_myself==1" ng-model="formData.position" type="radio" value="店长" name="position" />
+														<label for="position">店长</label>
 													</div>
 													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">采购经理</label>
-													</div>
-													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">财务</label>
+														<input ng-disabled="userId>0&&userInfo.data.is_myself==1" ng-model="formData.position" type="radio" value="店员" name="position" />
+														<label for="position">店员</label>
 													</div>
 												</div>
-												<div class="an-job1">
-													<div class="an-job-d">
-														<input type="radio" />
-														<label for="">财务</label>
-													</div>
-													<input type="text" placeholder="填写职位" class="sent-job"/>
+												<div class="an-job1" ng-if="userInfo.data.is_myself!=1">
+													<input ng-model="formData.position" type="text" placeholder="填写职位" class="sent-job" />
 												</div>
 											</div>
 										</td>
 									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 权限：</div></td>
+									<tr ng-if="(userId>0||type=='yet')&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 权限：</div>
+										</td>
 										<td>
 											<div class="an-right">
 												<ul class="an-qx">
-													<li><input type="checkbox" class="an-qx-che"/>允许查看价格</li>
-													<li><input type="checkbox" class="an-qx-che"/>允许结算</li>
-													<li><input type="checkbox" class="an-qx-che"/>允许添加账号</li>
-													<li><input type="checkbox" class="an-qx-che"/>允许查看员工信息</li>
+													<li ng-repeat="item in authority">
+														<label ng-style="{'opacity':userId>0&&userInfo.data.is_myself==1?'0.3':'1'}" style="cursor: pointer;" for="{{item.value}}">
+															<input ng-model="item.checked" ng-change="changeAccess($event,item.value)" name="{{item.value}}" id="{{item.value}}" type="checkbox" class="an-qx-che" ng-disabled="userId>0&&userInfo.data.is_myself==1" />
+															<span>{{item.label}}</span>
+														</label>
+													</li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr ng-if="(userId>0||type=='yet')&&userInfo || type=='new'">
+										<td width="170" valign="top">
+											<div class="an-left">
+												<em>*</em> 状态：</div>
+										</td>
+										<td>
+											<div class="an-right">
+												<ul class="an-qx mb10">
+													<li>
+														<label style="cursor: pointer;" ng-style="{'opacity':userId>0&&userInfo.data.is_myself==1?'0.3':'1'}" for="staff_status">
+															<input id="staff_status" name="staff_status" type="radio" value="1" ng-model="formData.staff_status" class="an-qx-che"  ng-disabled="userId>0&&userInfo.data.is_myself==1"/>
+															<span>启用</span>
+														</label><!-- formData.staff_status -->
+													</li>
+													<li>
+														<label style="cursor: pointer;" ng-style="{'opacity':userId>0&&userInfo.data.is_myself==1?'0.3':'1'}" for="staff_status1">
+															<input id="staff_status1"  name="staff_status" type="radio" value="0" ng-model="formData.staff_status" class="an-qx-che"  ng-disabled="userId>0&&userInfo.data.is_myself==1"/>
+															<span>禁用</span>
+														</label>
+													</li>
 												</ul>
 											</div>
 										</td>
 									</tr>
 									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 状态：</div></td>
+										<td></td>
 										<td>
 											<div class="an-right">
-												<ul class="an-qx mb10">
-													<li><input type="checkbox" class="an-qx-che"/>启用</li>
-													<li><input type="checkbox" class="an-qx-che"/>禁用</li>
-												</ul>
 												<div class="olp-anniu">
-													<a style="cursor:pointer;" class="he js_querg" ng-click="onsubmit()">确认地址</a>
-													<a style="cursor:pointer;" class="ix js_querg">取消</a>
+													<a ng-if="!(type=='yet'&&!userInfo) && !(userId>0&&userInfo.data.is_myself==1)" style="cursor:pointer;" class="he js_querg"
+													 ng-click="save()">确认并保存</a>
+													<a ng-if="type=='yet'&&!userInfo" style="cursor:pointer;" class="he js_querg" ng-click="getNext()">下一步</a>
+													<a style="cursor:pointer;" class="ix js_querg" ng-click="cancelStaffEditor()">取消</a>
 												</div>
 											</div>
 										</td>
@@ -211,32 +300,39 @@
 								</table>
 							</div>
 							<!--编辑框-->
-    					</div>
-    					<div class="emp_tab">
-    						<table>
-    							<tr>
-    								<th>会员账号</th>
-    								<th>姓名</th>
-    								<th>手机号</th>
-    								<th>职位</th>
-    								<th>状态</th>
-    								<th>操作</th>
-    							</tr>
-    							<tr>
-    								<td>sunshanbin</td>
-    								<td>荆佳琦</td>
-    								<td>213213213</td>
-    								<td>采购</td>
-    								<td><span class="red">启用</span></td>
-    								<td><a href="javascript:;" class="cz_a">编辑</a></td>
-    							</tr>
-    						</table>
-    					</div>
-    				</div>
-    			</div>
+						</div>
+						<div class="emp_tab">
+							<table>
+								<tr>
+									<th>会员账号</th>
+									<th>姓名</th>
+									<th>手机号</th>
+									<th>职位</th>
+									<th>状态</th>
+									<th>操作</th>
+								</tr>
+								<tr ng-if="!staffList"><td colspan="6"><my-loading style="text-align: center;"></my-loading></td></tr>
+								<tr ng-repeat="item in staffList">
+									<td>{{item.user_name}}</td>
+									<td>{{item.true_name}}</td>
+									<td>{{item.mobile_phone}}</td>
+									<td>{{item.position}}</td>
+									<td>
+										<span ng-if="item.is_checks==1" class="red">启用</span>
+										<span ng-if="item.is_checks==0">禁用</span>
+									</td>
+									<td>
+										<a href="javascript:;" class="cz_a" ng-click="editorStaff(item.user_id)">编辑</a>
+										<span>&nbsp;|&nbsp;</span>
+										<a href="javascript:;" class="cz_a" ng-click="deleteItem(item.user_id)">删除</a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="clear"></div>
 	</div>
 </div>
-

@@ -81,7 +81,7 @@ angular.module("myApp.router", ["ui.router"])
             //注册路由
             .state("registerCompany", {
                 title: '注册',
-                url: '/register-company',
+                url: '/register-company/:user_id',
                 templateUrl: 'template/register-company.html',
                 controller: "register-company-control"
             })

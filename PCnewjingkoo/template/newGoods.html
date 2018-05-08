@@ -56,7 +56,7 @@
 						<div class="img_a"><img img-lazy-load="{{item.original_img}}"/></div>
 						<div class="wz_a">
 							<p class="wz_ap1">{{item.goods_name}}</p>
-							<p class="wz_ap2">{{item.shop_price}}<span>/ NEW /</span></p>
+							<p class="wz_ap2" ng-if="showPrice">¥{{item.shop_price}}<span>&nbsp;/ NEW /</span></p>
 						</div>
 					</div>
 				</li>

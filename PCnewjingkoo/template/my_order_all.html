@@ -186,13 +186,13 @@
 										</div>
 										<div class="nero n-3 c">
 											<div class="n3-hk" ng-if="order.isShowYf==1">
-												<p class="hk-p1" style="border: 0;color: #808080;padding: 0;">总额 : {{order.total_fee}}</p>
-												<p class="hk-p1" style="color: #4c4c4c;border: none;padding: 0;">应付 : {{order.order_amount}}</p>
-												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><span>{{order.pay_name}}</span></p>
+												<p class="hk-p1" ng-if="showPrice" style="border: 0;color: #808080;padding: 0;">总额 : {{order.total_fee}}</p>
+												<p class="hk-p1" style="border-bottom: 1px solid #d9d9d9;" ng-if="showPrice" style="color: #4c4c4c;border: none;padding: 0;">应付 : {{order.order_amount}}</p>
+												<p class="hk-p2"><span>{{order.pay_name}}</span></p>
 											</div> 
 											<div class="n3-hk"  ng-if="order.isShowYf==0" style="margin-top: 16px;"> 
-												<p class="hk-p1" style="border: 0;color: #808080;padding: 8px 0;" style="padding-top: 10px;">总额 : {{order.total_fee}}</p>
-												<p class="hk-p2" style="border-top: 1px solid #d9d9d9;"><span>{{order.pay_name}}</span></p> 
+												<p class="hk-p1" style="border-bottom: 1px solid #d9d9d9;" ng-if="showPrice" style="border: 0;color: #808080;padding: 8px 0;" style="padding-top: 10px;">总额 : {{order.total_fee}}</p>
+												<p class="hk-p2"><span>{{order.pay_name}}</span></p> 
 											</div>
 										</div>
 										<div class="nero n-4 c">
@@ -353,7 +353,7 @@
     			</div>
 			</div>
 			
-			<div class="picScroll-left">
+			<div class="picScroll-left" ng-if="YouLike.goods_list.length">
 				<div class="hd">
 					<span>猜你喜欢</span>
 					<!-- <ul></ul> -->

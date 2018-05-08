@@ -159,7 +159,7 @@
                                     <img ng-src={{ysItem.goods_img}} alt="">
                                     <div class="down-time" data-date="{{ysItem.down_time}}" down-time>剩余0天0时0分0秒</div>
                                 </a>
-                                <div class="selected-topics-goods-price">
+                                <div ng-if="showPrice" class="selected-topics-goods-price">
                                     <p>{{ysItem.shop_price}}</p>
                                     <i>{{ysItem.market_price}}</i>
                                 </div>
@@ -180,7 +180,7 @@
                                     <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
                                     <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>
                                 </a>
-                                <div class="selected-topics-goods-price">
+                                <div class="selected-topics-goods-price" ng-if="showPrice">
                                     <p>{{fsItem.promote_price}}</p>
                                     <i>¥{{fsItem.shop_price}}</i>
                                 </div>
@@ -261,8 +261,8 @@
                     <div class="coolEye-right-content" ng-repeat="jsjm in jsjmAd.data">
                         <a href="#/shop-detail/{{jsjm.id}}" target="_blank">
                             <img ng-src={{jsjm.goods_img}} alt="">
-                            <p ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
-                            <p>{{jsjm.shop_price}}</p>
+                            <p style="color: #333;" ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
+                            <p ng-if="showPrice">{{jsjm.shop_price}}</p>
                         </a>
                     </div>
                 </div>
@@ -293,8 +293,8 @@
                     <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
                         <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
                             <img ng-src={{qxsj.goods_img}} alt="">
-                            <p ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
-                            <p>{{qxsj.shop_price}}</p>
+                            <p style="color: #333;" ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
+                            <p ng-if="showPrice">{{qxsj.shop_price}}</p>
                         </a>
                     </div>
                 </div>
@@ -325,8 +325,8 @@
                     <div class="coolEye-right-content" ng-repeat="jjzy in jjzyAd.data">
                         <a href="#/shop-detail/{{jjzy.id}}" target="_blank">
                             <img ng-src={{jjzy.goods_img}} alt="">
-                            <p ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
-                            <p>{{jjzy.shop_price}}</p>
+                            <p style="color: #333;" ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
+                            <p ng-if="showPrice">{{jjzy.shop_price}}</p>
                         </a>
                     </div>
                 </div>

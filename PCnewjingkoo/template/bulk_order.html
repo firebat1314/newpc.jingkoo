@@ -81,8 +81,8 @@
             <img ng-src={{goodsImg}} alt="">
         </div>
         <h2><a href="#/shop-detail/{{goods_id}}">{{goodsName}}</a></h2>
-        <p>建议零售价格：<span>￥{{market_price}}元</span></p>
-        <p> 批发价：<span style="font-size: 16px;">￥{{shop_price}}元</span></p>
+        <p ng-if="showPrice">建议零售价格：<span>￥{{market_price}}元</span></p>
+        <p ng-if="showPrice">批发价：<span style="font-size: 16px;">￥{{shop_price}}元</span></p>
         <!--<div class="bulk-order-car">购物车<span>９</span>件</div>-->
         <div class="shop_car">
         	<!-- <input type="button" ng-click="printPreview()" class="shop_car_ip" value="打印单预览"/> -->
@@ -161,8 +161,8 @@
         <button ng-click="join()" class="add_to_cart" data-id={{goodsId}} style="background-color:#3f69a5;width:80px;height:30px;font-size:12px;margin-top:5px;margin-right:10px;">加入购物车</button>
         <input type="hidden" class="shop_price" name="shop_price" value="">
 		<div class="xj">
-			数量：<span class="xj-sp1 count_num" style="color:#808080;font-size:14px;">0</span><i></i>
-			合计：<span class="xj-sp1">￥<font class="count_pic">0.00</font></span> <i></i> 已节省：<span class="xj-sp2">￥<font class="count_pro_pic">0.00</font></span>
+            <span>数量：<span class="xj-sp1 count_num" style="color:#808080;font-size:14px;">0</span><i></i></span>
+            <span ng-if="showPrice">合计：<span class="xj-sp1">￥<font class="count_pic">0.00</font></span> <i></i> 已节省：<span class="xj-sp2">￥<font class="count_pro_pic">0.00</font></span></span>
 		</div>
 		<div class="look-detail">查 看<br />详 情</div>
     </div>

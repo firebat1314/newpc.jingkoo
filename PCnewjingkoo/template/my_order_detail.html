@@ -195,8 +195,8 @@
 					<th width="179"><div class="c">商品图片</div></th>
 					<th width="409"><div class="c">商品名称</div></th>
 					<th width="90"><div class="c">商品数量</div></th>
-					<th width="90"><div class="c">商品价格</div></th>
-					<th width="90"><div class="c">优惠金额</div></th>
+					<th width="90" ng-if="showPrice"><div class="c">商品价格</div></th>
+					<th width="90" ng-if="showPrice"><div class="c">优惠金额</div></th>
 					<th><div class="c">提示</div></th>
 				</tr>
 				<tr ng-repeat="ord in orderDetail.goods_list">
@@ -231,8 +231,8 @@
 							</span>
 					</td>
 					<td><div class="c hsez">{{ord.goods_number}}</div></td>
-					<td><div class="c hsez">{{ord.shop_price}}</div></td>
-					<td><div class="c hsez">{{ord.reduce_price||'--'}}</div></td>
+					<td ng-if="showPrice"><div class="c hsez">{{ord.shop_price}}</div></td>
+					<td ng-if="showPrice"><div class="c hsez">{{ord.reduce_price||'--'}}</div></td>
 					<td>
 						<div class="c aneni">
 							<a class="icon ico-1">
@@ -262,7 +262,7 @@
 	</div>
 </div>
 
-<div class="total gird mb40">
+<div class="total gird mb40" ng-if="showPrice">
 	<div class="totg-wrp">
 		<p class="total-p">商品总价：￥{{orderDetail.order.formated_goods_amount}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元  - 使用余额：￥{{orderDetail.order.surplus}}元 - 优惠券：￥{{orderDetail.order.bonus}}元 - 优惠金额：￥{{orderDetail.order.formated_reduce_amount}}元</p>
 		<span class="total-sp">应付总额：<em>¥{{orderDetail.order.formated_order_amount}}</em></span>

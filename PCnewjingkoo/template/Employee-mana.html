@@ -36,6 +36,9 @@
     .emp_tab th{height: 40px;text-align: center;font-size: 14px;color: #4c4c4c;}
     .emp_tab td{padding: 20px 0;text-align: center;font-size: 12px;color: #808080;}
     .emp_tab td a{font-size: 12px;color: #4169a3;}
+    .emp_tab td a.cz_a{font-size: 12px;color: #4169a3;}
+    .emp_tab td a.cz_a.disabled{pointer-events: none;color: #999999;}
+	 
 </style>
 <div class="route mb20">
 	<div class="gird">
@@ -121,8 +124,8 @@
 					<div class="contacts-wrap czhi">
 						<div class="location mb20">
 							<div class="addc">
-								<a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn" ng-click="addStaff()">添加员工</a>
-								<a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn" ng-click="getStaffList()">刷新列表</a>
+								<a style="cursor:pointer;display: block !important;" ng-if="showPrice" class="ad-btn js_adbtn" ng-click="addStaff()">添加员工</a>
+								<!-- <a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn" ng-click="getStaffList()">刷新列表</a> -->
 							</div>
 							<div class="add-nr js_adbr" style="display: none;">
 								<table class="addn-t">
@@ -214,7 +217,7 @@
 										</td>
 										<td>
 											<div class="an-right">
-												<div class="an-job">
+												<div class="an-job" ng-style="{'opacity':userId>0&&userInfo.data.is_myself==1?'0.3':'1'}">
 													<div class="an-job-d">
 														<input ng-disabled="userId>0&&userInfo.data.is_myself==1" ng-model="formData.position" type="radio" value="老板" name="position" />
 														<label for="position">老板</label>
@@ -312,6 +315,7 @@
 									<th>操作</th>
 								</tr>
 								<tr ng-if="!staffList"><td colspan="6"><my-loading style="text-align: center;"></my-loading></td></tr>
+								<tr ng-if="staffList&&!staffList.length"><td colspan="6">暂无账号，请<a href="" ng-click="addStaff()" >添加</a></td></tr>
 								<tr ng-repeat="item in staffList">
 									<td>{{item.user_name}}</td>
 									<td>{{item.true_name}}</td>
@@ -324,7 +328,7 @@
 									<td>
 										<a href="javascript:;" class="cz_a" ng-click="editorStaff(item.user_id)">编辑</a>
 										<span>&nbsp;|&nbsp;</span>
-										<a href="javascript:;" class="cz_a" ng-click="deleteItem(item.user_id)">删除</a>
+										<a href="javascript:;" class="cz_a" ng-class="{'disabled':item.is_myself==1}" ng-click="deleteItem(item.user_id)">删除</a>
 									</td>
 								</tr>
 							</table>

@@ -142,8 +142,59 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
     }])
     //首页头部
     .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat) {
-        $scope.$qimoChat = $qimoChat;
 
+        $scope.company = [];
+        $scope.getCompanyList = function(){
+            var inde = layer.load(2)
+            $http({
+                method: "POST",
+                url: '' + $rootScope.ip + '/Index/CompanyList',
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            }).success(function (data) {
+                layer.close(inde)
+                if(data.status == 1){
+                    $scope.company = data.data;
+                    setTimeout(function() {
+                        $scope.companylayer = layer.open({
+                            type: 1,
+                            title: '请选择公司',
+                            skin: 'layui-layer-rim', //加上边框
+                            area: '420px', //宽高
+                            content: $('#clooseCompany1'),
+                            resize: false,
+                            move: false,
+                            shade: 0.4,
+                            shadeClose: true
+                        });
+                    }, 500);
+                }
+            })
+        }
+        $scope.loginByCompany = function (cid) {
+            layer.close($scope.companylayer)
+            $http({
+                url: '' + $rootScope.ip + '/Index/SwitchCompany',
+                method: 'POST',
+                data: Object.assign({ cid: cid }),
+                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+            }).success(function (data) {
+                if (data.status == 1) {
+                    $scope.userData = data;
+                    layer.msg(data.info, { time: 500 }, function () {
+                        $state.go('home');
+                    });
+                    /* ipCookie("token", data.data.token, { expires: 21 });
+                    ipCookie("username", data.data.user_name, { expires: 21 });
+                    ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
+                    ipCookie("login_by_phone", false, { expires: 21 });
+                    ipCookie("has_login", true, { expires: 21 }); */
+                } else {
+                    // $scope.geeteTrue1.reset();
+                    layer.msg(data.info, { time: 3000 });
+                    // $scope.codeFn();
+                }
+            });
+        }
         $scope.goListPage = function () {
             $state.go('shop-list', {
                 params: encodeURIComponent(JSON.stringify({
@@ -154,24 +205,15 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
-            params: '',
+            data: '',
             headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         })
             .success(function (data) {
                 $scope.IndexData = data;
 
-                //get_html(document.getElementsByTagName('header')[0].cloneNode(true));
-
                 //首页广告大img
                 $scope.jsjmImg = data.list.ads_jsjm[0].ad_img;
                 $scope.jjzyImg = data.list.ads_jjzy[0].ad_img;
-                // for(var i = 0;i<data.list.getAreaList.length;i++){
-                //     if(data.list.getAreaList[i].selected){
-                //         $('.header-top .header-top-content .header-top-content-left .trans-city .item a').eq(i).addClass('selected');
-                //     }else{
-                //         //$('.header-top .header-top-content .header-top-content-left .trans-city .item a').removeClass('selected');
-                //     }
-                // }
                 $scope.areaListAdd = function (e, index) {
                     for (var i = 0; i < data.list.getAreaList.length; i++) {
                         $scope.IndexData.list.getAreaList[i].selected = 0;
@@ -189,6 +231,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             .success(function (data) {
                 $scope.userData = data;
                 $rootScope.userData = data;
+                $rootScope.showPrice = data.user_info.authority?data.user_info.authority.indexOf('1')>-1:false;
                 $scope.username = data.user_info.user_name;
                 $scope.userImg = data.user_info.avatar;
                 $scope.userMoney = data.user_info.user_money;
@@ -483,8 +526,6 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         $scope.goVip = function () {
             $state.go('control-mb');
         };
-
-
         //右侧优惠券
         $scope.getCuponList = function (bonus_type) {
             $scope.status = bonus_type;
@@ -522,14 +563,10 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             })
         };
         $scope.yhqFn();
-
-
         $rootScope.$on('uploadCoupon', function () {
             $scope.getCuponList();
             $scope.yhqFn();
         });
-
-
         //领取优惠券
         $scope.lqYhq = function (tid) {
             $http({
@@ -549,13 +586,11 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 }
             })
         };
-
         //使用优惠券
         $scope.goDpDetail = function (suppliers_id) {
             var url = $state.href('shopHomeNew', { shopId: suppliers_id });
             window.open(url, '_blank');
         }
-
         //去列表
         $scope.quList = function (suppliers_name) {
             var url = $state.href('shop-list', {
@@ -565,8 +600,6 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             });
             window.open(url, '_blank');
         };
-
-
     }])
     //首页尾部
     .controller('index_footer_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
@@ -1926,7 +1959,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 method: 'POST',
                 data: params
             }).success(function (data) {
-                if (data.status) {
+                if (data.status ==1 ) {
                     $scope.company = data.company;
                     $scope.companylayer = layer.open({
                         type: 1,
@@ -1938,6 +1971,17 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                         move: false,
                         shade: 0.4,
                         shadeClose: true
+                    });
+                } else if (data.status == -2) {
+                    layer.confirm(data.info, {
+                        btn: ['认证企业','取消'], //按钮
+                        title: '提示',
+                        closeBtn: 0
+                    }, function (index) {
+                        layer.close(index);
+                        $state.go('registerCompany',{user_id:data.user_id});
+                    }, function (index) {
+                      
                     });
                 } else {
                     layer.msg(data.info, { time: 2000 });
@@ -1967,21 +2011,9 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     ipCookie("login_by_phone", false, { expires: 21 });
                     ipCookie("has_login", true, { expires: 21 });
-                } else if (data.status == -2) {
-                    layer.confirm('请绑定企业信息', {
-                        btn: ['绑定', '取消'] //按钮
-                    }, function (index) {
-                        $state.go('registerCompany');
-                        layer.close(index)
-                    }, function () {
-                        layer.msg('请绑定企业信息后登陆', {
-                            time: 20000, //20s后自动关闭
-                            btn: ['知道了']
-                          });
-                    });
                 } else {
                     // $scope.geeteTrue1.reset();
-                    layer.msg(data.info, { time: 2000 });
+                    layer.msg(data.info, { time: 3000 });
                     // $scope.codeFn();
                 }
             });
@@ -2525,10 +2557,12 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                     data: $scope.registerList
                 }).success(function (data) {
                     if (data.status) {
-                        layer.confirm('您已提交申请，请耐心等待客服审核，如有疑问，请联系客服电话：400-080-5118', {
-                            btn: ['确定'], //按钮
-                            title: '提示',
+                        layer.confirm('如有疑问，请联系客服电话：400-080-5118', {
+                            btn: ['认证','取消'], //按钮
+                            title: '注册成功，是否认证企业信息？',
                             closeBtn: 0
+                        }, function () {
+                            $state.go('register-company',{user_id:data.user_id});
                         }, function (index) {
                             layer.close(index);
                             $state.go('login');
@@ -2543,13 +2577,14 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         };
     }])
     //注册公司
-    .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce) {
+    .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce','$stateParams', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = false;
 
-
+        $scope.user_id = $stateParams.user_id;
         $scope.registerList = {
-            step: 'two'
+            step: 'two',
+            user_id:$scope.user_id
         };
 
         $http({

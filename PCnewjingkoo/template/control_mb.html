@@ -148,7 +148,7 @@
 							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
 							<div class="title">
 								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
-								<b>{{like.shop_price}}</b>
+								<b ng-if="showPrice">{{like.shop_price}}</b>
 							</div>
 						</li>
 					</ul>

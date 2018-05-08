@@ -114,11 +114,11 @@
 							</div>
 						</div>
 						<div class="saler_msg_box" style="padding-left: 0;">
-							<div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
+							<div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0&&showPrice">
 								<span class="saler_msg_sp1">建议零售价</span>
 								<span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
 							</div>
-							<div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
+							<div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0&&showPrice">
 								<span class="saler_msg_sp1">原价批发</span>
 								<span class="saler_msg_sp3">{{data.data.old_shop_price}}</span>
 							</div>
@@ -210,9 +210,9 @@
 									<tr class="first-line">
 										<th width="72"></th>
 										<th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
-										<th width="124" ng-if="!data.data.is_promotion">单价</th>
-										<th width="124" ng-if="data.data.is_promotion">原价</th>
-										<th width="124" ng-if="data.data.is_promotion">促销价</th>
+										<th width="124" ng-if="!data.data.is_promotion&&showPrice">单价</th>
+										<th width="124" ng-if="data.data.is_promotion&&showPrice">原价</th>
+										<th width="124" ng-if="data.data.is_promotion&&showPrice">促销价</th>
 										<th width="124">库存</th>
 										<th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
 									</tr>
@@ -227,8 +227,9 @@
 											</div>
 										</th>
 										<th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
-										<th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
-										<th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
+										<th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
+										<th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}</th>
+										<th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
 										<th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
 										<th width="124">
 											<div class="diy-right" ng-if="data.data.isdingzhi!=1">
@@ -270,10 +271,10 @@
 									<th>柱镜</th>
 									<th ng-if="data.data.zhouwei">轴位</th>
 									<th ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
-									<th ng-if="data.data.is_promotion==0">单价</th>
-									<th ng-if="data.data.is_promotion==1">原价</th>
-									<th ng-if="data.data.is_promotion==1">促销价</th>
-									<th>小计</th>
+									<th ng-if="data.data.is_promotion==0&&showPrice">单价</th>
+									<th ng-if="data.data.is_promotion==1&&showPrice">原价</th>
+									<th ng-if="data.data.is_promotion==1&&showPrice">促销价</th>
+									<th ng-if="showPrice">小计</th>
 									<th></th>
 								</tr>
 								<tr ng-repeat="item in arr">
@@ -344,10 +345,10 @@
 										</select>
 									</td>
 									<!--<td><select class="pick-selt" style="width:47px;"><option>R</option></select></td>-->
-									<td ng-if="data.data.is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
-									<td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
-									<td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
-									<td style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
+									<td ng-if="data.data.is_promotion==0&&showPrice" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+									<td ng-if="data.data.is_promotion==1&&showPrice" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+									<td ng-if="data.data.is_promotion==1&&showPrice" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
+									<td ng-if="showPrice" style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
 									<td>
 										<img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt="">
 									</td>
@@ -369,8 +370,7 @@
 						</div>
 						<div class="pick-list-bottom">
 							<div class="fl list-bottom-total">
-								<span>{{listTotalNumber}}</span>{{data.data.unit}} |
-								<span>{{listTotalPrice}}</span>元</div>
+								<span>{{listTotalNumber}}</span>{{data.data.unit}}<span ng-if="showPrice"> | {{listTotalPrice}}元</span></div><span>
 							<div class="fl list-bottom-selected" ng-class="{'select':topList}" ng-click="topList=!topList">已选清单</div>
 						</div>
 					</div>
@@ -379,7 +379,7 @@
 						<button ng-click="buyNow()" class="buy">立即购买</button>
 						<button ng-if="isGlass" class="piliang" ng-click="goBulkOrder()">批量下单</button>
 					</div>
-					<div class="zhic">
+					<div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
 						<div>服务支持：</div>
 						<div ng-if="data.data.additional.is_true">
 							<img src="img/zzpz.png" title="正品保证">正品保证</div>
@@ -513,7 +513,7 @@
 										<img ng-src={{historyItem.goods_thumb}} alt="">
 									</div>
 									<p ng-attr-title="{{historyItem.goods_name}}">{{historyItem.goods_name}}</p>
-									<span>{{historyItem.format_shop_price}}</span>
+									<span ng-if="showPrice">{{historyItem.format_shop_price}}</span>
 								</a>
 							</div>
 						</div>

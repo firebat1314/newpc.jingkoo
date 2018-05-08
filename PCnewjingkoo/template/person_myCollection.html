@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="wenbook">
                                         <p class="wbk-1"><a href="#/shop-detail/{{item.goods_id}}" ng-attr-title="{{item.goods_name}}">{{item.goods_name}}</a></p>
-                                        <p class="wbk-2">{{item.shop_price||'暂无报价'}}</p>
+                                        <p class="wbk-2" ng-if="showPrice">{{item.shop_price||'暂无报价'}}</p>
                                     </div>
                                     <div class="Coupon cle">
                                         <div class="coupon-item onsi">

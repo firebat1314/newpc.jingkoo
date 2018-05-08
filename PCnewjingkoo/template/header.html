@@ -1,4 +1,32 @@
+
+<style>
+    #clooseCompany1 {
+        width: 100%;
+        display: none;
+    }
+
+    #clooseCompany1>div {
+        width: 100%;
+        padding: 20px 0 20px 20px;
+        font-size: 16px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #e0e0e0;
+        cursor: pointer;
+    }
+
+    #clooseCompany1>div:last-child {
+        border-bottom: 0;
+    }
+
+    #clooseCompany1>div:hover {
+        background: #e0e0e0;
+    }
+</style>
 <div ng-controller="index_header_parentControl">
+    
+<div id="clooseCompany1">
+        <div ng-repeat="item in company" ng-click="loginByCompany(item.cid)">{{item.cname}}</div>
+    </div>
     <div class="header-main">
         <div class="header-top">
             <div class="header-top-content">
@@ -23,6 +51,9 @@
                     </div>
                     <div class="jingkoo-call">
                         <p>400-080-5118</p>
+                    </div>
+                    <div class="jingkoo-call" ng-click="getCompanyList()" style="background: none;padding-left: 0;">
+                        <p><a href="">切换企业</a></p>
                     </div>
                     <div class="jingkoo-call" ng-if="showHomeBtn" style="background: url(../img/call_fhsy.png) no-repeat left;    background-size: 20px;">
                         <a style="line-height: 40px;" href="#home">
@@ -201,7 +232,7 @@
                                             </p>
                                         </a>
                                         <div class="price-del">
-                                            <div class="price">{{goods.goods_price}}×{{attr.goods_number}}</div>
+                                            <div class="price" ng-if="showPrice">{{goods.goods_price}}×{{attr.goods_number}}</div>
                                             <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
                                         </div>
                                     </div>
@@ -442,7 +473,6 @@
     </div>
 
 </div>
-
 <script>
     //    $('.header-top .header-top-content .header-top-content-left .trans-city .item a').click(function(e){
     //        $('.header-top .header-top-content .header-top-content-left .trans-city .item a').removeClass('selected');

@@ -96,7 +96,7 @@
 							<span class="new_shop_sp1">{{shopDetailData.data.goods_brief}}</span>
 						</p>
 						<div class="money_cg_box" style="margin-top: 10px;" ng-if="shopDetailData.promotion.length!=0 && shopDetailData.promotion[0].is_jti == 1 && shopDetailData.promotion[0].type == 0">
-							<div class="money_cg_d1">
+							<div class="money_cg_d1" ng-if="showPrice">
 								<span class="new_shop_sp3">价格</span>
 								<ul class="money_cg_u1">
 									<li ng-repeat="proPrice in shopDetailData.promotion[0].value">
@@ -132,11 +132,11 @@
 							</div>
 						</div>
 						<div class="saler_msg_box" style="padding-left: 0;">
-							<div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
+							<div ng-if="showPrice" class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
 								<span class="saler_msg_sp1">建议零售价</span>
 								<span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
 							</div>
-							<div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
+							<div ng-if="showPrice" class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
 								<span class="saler_msg_sp1">原价批发</span>
 								<span class="saler_msg_sp3">{{data.data.old_shop_price}}</span>
 							</div>
@@ -235,9 +235,9 @@
 										<tr class="first-line">
 											<th width="72"></th>
 											<th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
-											<th width="124" ng-if="!data.data.is_promotion">单价</th>
-											<th width="124" ng-if="data.data.is_promotion">原价</th>
-											<th width="124" ng-if="data.data.is_promotion">促销价</th>
+											<th width="124" ng-if="!data.data.is_promotion&&showPrice">单价</th>
+											<th width="124" ng-if="data.data.is_promotion&&showPrice">原价</th>
+											<th width="124" ng-if="data.data.is_promotion&&showPrice">促销价</th>
 											<th width="124">库存</th>
 											<th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
 										</tr>
@@ -252,8 +252,9 @@
 												</div>
 											</th>
 											<th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
-											<th width="124" style="color:#ff3333;">{{trItem.old_price}}</th>
-											<th width="124" ng-if="data.data.is_promotion" style="color:#ff3333;">{{trItem.price}}</th>
+											<th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
+											<th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}</th>
+											<th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
 											<th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
 											<th width="124">
 												<div class="diy-right" ng-if="data.data.isdingzhi!=1">
@@ -296,9 +297,9 @@
 										<th style="width: 100px;" ng-if="data.data.zhouwei">轴位</th>
 										<th style="width: 130px;" ng-repeat="pickTa in spectaclesData.specification">{{pickTa.name}}</th>
 										<th style="width: 130px;" ngIf="shipTime">定制周期</th>
-										<th style="width: 100px;" ng-if="data.data.is_promotion==0">单价</th>
-										<th style="width: 100px;" ng-if="data.data.is_promotion==1">原价</th>
-										<th style="width: 100px;" ng-if="data.data.is_promotion==1">促销价</th>
+										<th style="width: 100px;" ng-if="data.data.is_promotion==0&&showPrice">单价</th>
+										<th style="width: 100px;" ng-if="data.data.is_promotion==1&&showPrice">原价</th>
+										<th style="width: 100px;" ng-if="data.data.is_promotion==1&&showPrice">促销价</th>
 										<!-- <th>小计</th> -->
 									</tr>
 									<tr ng-repeat="item in arr">
@@ -361,9 +362,9 @@
 											</select>
 										</td>
 										<td ngIf="shipTime">{{shipTime || shopDetailData.data.dingzhitime}}</td>
-										<td ng-if="data.data.is_promotion==0" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
-										<td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
-										<td ng-if="data.data.is_promotion==1" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
+										<td ng-if="data.data.is_promotion==0&&showPrice" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+										<td ng-if="data.data.is_promotion==1&&showPrice" style="color:#ff3333;">¥{{item.price||'0.00'}}</td>
+										<td ng-if="data.data.is_promotion==1&&showPrice" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -483,7 +484,7 @@
 											<img ng-src={{historyItem.goods_thumb}} alt="">
 										</div>
 										<p ng-attr-title="{{historyItem.goods_name}}">{{historyItem.goods_name}}</p>
-										<span>{{historyItem.format_shop_price}}</span>
+										<span ng-if="showPrice">{{historyItem.format_shop_price}}</span>
 									</a>
 								</div>
 							</div>

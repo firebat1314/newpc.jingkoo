@@ -150,11 +150,12 @@
                             </label>
                             <p>全选</p>
                         </th>
-                        <th width="480">商品</th>
-                        <th width="180">数量</th>
-                        <th width="140">单价</th>
-                        <th width="140">优惠</th>
-                        <th>小计</th>
+                        <th style="text-align: center;" width="406">商品</th>
+                        <th style="text-align: center;" width="150">数量</th>
+                        <th ng-if="showPrice" style="text-align: center;">单价</th>
+                        <th ng-if="showPrice" style="text-align: center;">优惠</th>
+                        <th ng-if="showPrice" style="text-align: center;">小计</th>
+                        <th></th>
                         <!--<th style="text-align: center" width="135">操作</th>-->
                     </tr>
                 </tbody>
@@ -242,7 +243,7 @@
                                     </div>-->
                                 </div>
                             </div>
-                            <div class="hasGoods-check-message">
+                            <div class="hasGoods-check-message" style="margin-right: -10px;">
                                 <div class="check-li" ng-repeat="carArr in carList.attrs">
                                     <label ng-if="!(carList.cutting_id>0)">
                                         <input type="checkbox" ng-click="changeAttrCheck(carArr,carArr.rec_id)" style="display: none;">
@@ -268,7 +269,7 @@
                                 </div>
                                 <div class="hasGoods-xiugai" ng-click="xiugaiFn($event)">修改</div>
                             </div>
-                            <div class="gwc_wt">
+                            <div ng-if="showPrice" class="gwc_wt">
                                 <div ng-repeat="carArr in carList.attrs" style="padding: 0;margin: 0;display: inline-flex;position: relative;width: 100%;">
                                     <div style="height:30px; " class="hasGoods-check-price">
                                         <p style="padding: 0;margin: 0;position: relative;top: 0;">{{carArr.goods_price}}</p>
@@ -328,7 +329,7 @@
                     </span>
                     <span>货品种类：{{typeCount}} 种</span>
                     <span>数量总计：{{count}} 件</span>
-                    <span>
+                    <span ng-if="showPrice">
                         <em>货品金额总计（不包含运费)：</em>
                         <i class="whole-price">{{totalPrice}}</i>
                     </span>

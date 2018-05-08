@@ -7007,11 +7007,9 @@ span.a_arrow_r {
 .flash-sale-main .purchase li {
   float: left;
   width: 282px;
-  height: 400px;
   margin-right: 24px;
   margin-bottom: 24px; }
 .flash-sale-main .purchase li .wrp {
-  height: 390px;
   border: 1px solid #ebebeb;
   background: #fff; }
 .flash-sale-main .purchase li .wrp .img {
@@ -7023,7 +7021,7 @@ span.a_arrow_r {
   height: 280px; }
 .flash-sale-main .purchase li .wrp .img .djs {
   position: absolute;
-  bottom: -30px;
+  bottom: 0;
   left: 0;
   width: 100%;
   height: 30px;
@@ -7043,9 +7041,8 @@ span.a_arrow_r {
   background: url(../img/time.png) no-repeat center;
   display: none; }
 .flash-sale-main .purchase li .wrp .txt .tt-1 {
-  padding: 10px;
-  overflow: hidden;
-  padding-top: 40px; }
+  margin: 16px;
+  overflow: hidden; }
 .flash-sale-main .purchase li .wrp .txt .tt-1 .cx {
   float: left;
   border-radius: 3px;
@@ -7079,7 +7076,7 @@ span.a_arrow_r {
   font-size: 14px;
   text-decoration: line-through; }
 .flash-sale-main .purchase li .wrp .txt .tt-2 {
-  padding: 0 10px;
+  margin: 16px;
   color: #666;
   font-size: 14px;
   line-height: 22px;

@@ -3549,7 +3549,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 		$scope.getStaffList();
 		$scope.deleteItem = function (user_id) {
-			layer.msg('也可以这样', {
+			layer.msg('确认删除该账号', {
 				time: 20000, //20s后自动关闭
 				btn: ['删除', '取消'],
 				yes: function (i) {

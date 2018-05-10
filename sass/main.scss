@@ -390,6 +390,13 @@ $browser-default-font-size: 37.5px !default;
               color:#0070c9;
             }
           }
+          .child_account{
+            @extend .geRen-center;
+            background: url(../img/child_account_1.png) no-repeat 20px 10px/20px 20px;
+            &:hover{
+              background: url(../img/child_account_2.png) no-repeat 20px 10px/20px 20px #fafafa;
+            }
+          }
           .bangzhu-center{
             @extend .geRen-center;
             background: url(../img/help.png) no-repeat 20px 10px;

@@ -39,6 +39,39 @@
                 </div>
             </div>
         </div>
+        <div class="shopList-select-conditions" ng-if="shopListData.goods.length!=0">
+            <div class="more-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&moreXx" ng-click="moreXxFn()">
+                <p>更多选项</p>
+            </div>
+            <div class="more-ano-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&shouQi" ng-click="shouQiFn()">
+                <p>收起</p>
+            </div>
+            <div class="shopList-fashion">
+                <div class="shopList-fashion-tit" style="top:21px;">{{shopListData.goods_attr_arr[0].name}}：</div>
+                <div class="shopList-fashion-content brand-item">
+                    <div class="shopList-fashion-item" ng-repeat="fashionAllItem in shopListData.goods_attr_arr[0].data" repeat-done="clickMore()">
+                        <div class="fashion-item-name" ng-click="getAllValue(fashionAllItem.brand_name,fashionAllItem.brand_id)">{{fashionAllItem.brand_name}}</div>
+                        <img ng-src={{fashionAllItem.brand_logo}} alt="">
+                    </div>
+                </div>
+                <div class="more-fashion" style="top:27px;" ng-if="shopListData.goods_attr_arr[0].data.length > 7">
+                    <p>更多</p>
+                    <i>+</i>
+                </div>
+            </div>
+            <div class="shopList-fashion shopList-price" ng-if="shouQi?true:$index<2" ng-repeat="fashionAttr in shopListData.goods_attr_arr[3].data"
+                repeat-done="clickMore()">
+                <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>
+                <!--<div class="shopList-fashion-item-one">全部</div>-->
+                <div class="shopList-fashion-content">
+                    <div class="shopList-fashion-item" ng-repeat="fashionWaterItem in fashionAttr.values" ng-click="getAttrValue(fashionWaterItem.value,fashionWaterItem.filter)">{{fashionWaterItem.value}}</div>
+                </div>
+                <div class="more-fashion" ng-show="fashionAttr.values.length > 5">
+                    <p>更多</p>
+                    <i>+</i>
+                </div>
+            </div>
+        </div>
         <div ng-show="shopListData.goods.length==0" class="ns-wrap clearfix info" style="padding: 10px 0px;clear:both;">
             <span class="ns-icon" style="float: left;display: block;width: 32px;height: 32px;background: url(//misc.360buyimg.com/product/search/1.0.7/css/i/search.notice.png) no-repeat 0 2px;"></span>
             <div class="ns-content" style="margin-left: 32px;line-height: 32px;padding-left: 10px;font-size: 14px;font-weight: 700;color: #f60;">

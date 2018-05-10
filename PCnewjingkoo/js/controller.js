@@ -63,8 +63,8 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         };
         // $rootScope.ip = 'http://newapp.jingkoo.net'; //测试
         // $rootScope.ip = 'http://newm.jingkoo.net'; //测试
-        $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-        // $rootScope.ip = 'https://www.jingku.cn'; //正式
+        // $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+        $rootScope.ip = 'https://www.jingku.cn'; //正式
 
         $scope.loginOut = function () {
             $http({
@@ -180,18 +180,17 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             }).success(function (data) {
                 if (data.status == 1) {
                     $scope.userData = data;
-                    layer.msg(data.info, { time: 500 }, function () {
-                        $state.go('home');
-                    });
-                    /* ipCookie("token", data.data.token, { expires: 21 });
-                    ipCookie("username", data.data.user_name, { expires: 21 });
+                    ipCookie("token", data.data.token, { expires: 21 });
+                    /* ipCookie("username", data.data.user_name, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     ipCookie("login_by_phone", false, { expires: 21 });
                     ipCookie("has_login", true, { expires: 21 }); */
+                    layer.msg('切换成功', { time: 500 }, function () {
+                        // $state.go('home');
+                        location.reload();
+                    });
                 } else {
-                    // $scope.geeteTrue1.reset();
                     layer.msg(data.info, { time: 3000 });
-                    // $scope.codeFn();
                 }
             });
         }
@@ -232,6 +231,8 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                 $scope.userData = data;
                 $rootScope.userData = data;
                 $rootScope.showPrice = data.user_info.authority?data.user_info.authority.indexOf('1')>-1:false;
+                $rootScope.canCheckout = data.user_info.authority?data.user_info.authority.indexOf('2')>-1:false;
+                $rootScope.canAddUser = data.user_info.authority?data.user_info.authority.indexOf('3')>-1:false;
                 $scope.username = data.user_info.user_name;
                 $scope.userImg = data.user_info.avatar;
                 $scope.userMoney = data.user_info.user_money;
@@ -1954,24 +1955,28 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             $scope.fulllogin($scope.user)
         };
         $scope.fulllogin = function (params) {
+            var index = layer.load(2)
             $http({
                 url: '' + $rootScope.ip + '/Login/loginCompany',
                 method: 'POST',
                 data: params
             }).success(function (data) {
+                layer.close(index);
                 if (data.status ==1 ) {
                     $scope.company = data.company;
-                    $scope.companylayer = layer.open({
-                        type: 1,
-                        title: '请选择公司',
-                        skin: 'layui-layer-rim', //加上边框
-                        area: '420px', //宽高
-                        content: $('#clooseCompany'),
-                        resize: false,
-                        move: false,
-                        shade: 0.4,
-                        shadeClose: true
-                    });
+                    setTimeout(function() {
+                        $scope.companylayer = layer.open({
+                            type: 1,
+                            title: '请选择公司',
+                            skin: 'layui-layer-rim', //加上边框
+                            area: '420px', //宽高
+                            content: $('#clooseCompany'),
+                            resize: false,
+                            move: false,
+                            shade: 0.4,
+                            shadeClose: true
+                        });
+                    }, 300);
                 } else if (data.status == -2) {
                     layer.confirm(data.info, {
                         btn: ['认证企业','取消'], //按钮
@@ -1995,10 +2000,11 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             } else {
                 var params = $scope.user;
             }
+            params.cid = cid
             $http({
                 url: '' + $rootScope.ip + '/Login/index',
                 method: 'POST',
-                data: Object.assign({ cid: cid }, params)
+                data:  params
             }).success(function (data) {
                 if (data.status == 1) {
                     $scope.userData = data;
@@ -2007,7 +2013,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                     });
                     // $rootScope.res = data.data.token;
                     ipCookie("token", data.data.token, { expires: 21 });
-                    ipCookie("username", data.data.user_name, { expires: 21 });
+                    ipCookie("username", $scope.user.username, { expires: 21 });
                     ipCookie("phone_number", data.data.mobile_phone, { expires: 21 });
                     ipCookie("login_by_phone", false, { expires: 21 });
                     ipCookie("has_login", true, { expires: 21 });
@@ -2550,6 +2556,7 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
         //注册提交
         $scope.register = function () {
             console.log($scope.registerList)
+            
             if ($scope.isCheck) {
                 $http({
                     method: "POST",
@@ -2557,12 +2564,13 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
                     data: $scope.registerList
                 }).success(function (data) {
                     if (data.status) {
-                        layer.confirm('如有疑问，请联系客服电话：400-080-5118', {
+                        layer.confirm(data.info, {
                             btn: ['认证','取消'], //按钮
-                            title: '注册成功，是否认证企业信息？',
+                            title: '提示',
                             closeBtn: 0
-                        }, function () {
-                            $state.go('register-company',{user_id:data.user_id});
+                        }, function (index) {
+                            $state.go('registerCompany',{user_id:data.user_id});
+                            layer.close(index);
                         }, function (index) {
                             layer.close(index);
                             $state.go('login');
@@ -6921,7 +6929,10 @@ angular.module('myApp.controllers', ['ShopListModule', 'ShopListCutModule', 'Sho
             goods_ids: []
         };
         $scope.goJiesuan = function () {
-
+            if(!$rootScope.canCheckout){
+                layer.msg('无结算权限，请联系企业管理员', { time: 2000 });
+                return 
+            }
             for (var i = 0; i < $scope.shopCarData.suppliers_goods_list.length; i++) {
                 for (var j = 0; j < $scope.shopCarData.suppliers_goods_list[i].goods_list.length; j++) {
                     if ($scope.shopCarData.suppliers_goods_list[i].goods_list[j].is_select == 0) {

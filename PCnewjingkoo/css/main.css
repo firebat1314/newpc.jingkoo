@@ -517,15 +517,19 @@ span.a_arrow_r {
         left: -25px;
         display: none;
         z-index: 9999; }
-        .header-top .header-top-content .header-top-content-right .person .user-ul .geRen-center, .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center, .header-top .header-top-content .header-top-content-right .person .user-ul .fapiao, .header-top .header-top-content .header-top-content-right .person .user-ul .jiagong, .header-top .header-top-content .header-top-content-right .person .user-ul .zijin, .header-top .header-top-content .header-top-content-right .person .user-ul .out {
+        .header-top .header-top-content .header-top-content-right .person .user-ul .geRen-center, .header-top .header-top-content .header-top-content-right .person .user-ul .child_account, .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center, .header-top .header-top-content .header-top-content-right .person .user-ul .fapiao, .header-top .header-top-content .header-top-content-right .person .user-ul .jiagong, .header-top .header-top-content .header-top-content-right .person .user-ul .zijin, .header-top .header-top-content .header-top-content-right .person .user-ul .out {
           height: 30px;
           color: #333;
           padding-left: 50px;
           padding-top: 10px;
           background: url(../img/geren.png) no-repeat 20px 10px; }
-          .header-top .header-top-content .header-top-content-right .person .user-ul .geRen-center:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .fapiao:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .jiagong:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .zijin:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .out:hover {
+          .header-top .header-top-content .header-top-content-right .person .user-ul .geRen-center:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .child_account:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .fapiao:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .jiagong:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .zijin:hover, .header-top .header-top-content .header-top-content-right .person .user-ul .out:hover {
             background: url(../img/geren_.png) no-repeat 20px 10px #fafafa;
             color: #0070c9; }
+        .header-top .header-top-content .header-top-content-right .person .user-ul .child_account {
+          background: url(../img/child_account_1.png) no-repeat 20px 10px/20px 20px; }
+          .header-top .header-top-content .header-top-content-right .person .user-ul .child_account:hover {
+            background: url(../img/child_account_2.png) no-repeat 20px 10px/20px 20px #fafafa; }
         .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center {
           background: url(../img/help.png) no-repeat 20px 10px; }
           .header-top .header-top-content .header-top-content-right .person .user-ul .bangzhu-center:hover {

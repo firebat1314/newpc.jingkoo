@@ -13,8 +13,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		};
 		$scope.goto();
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		$rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-		// $rootScope.ip = 'https://www.jingku.cn'; //正式
+		// $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+		$rootScope.ip = 'https://www.jingku.cn'; //正式
 
 		$scope.getUserMsgHs = function () {
 			$data.getUserMsg().success(function (data) {
@@ -3100,6 +3100,10 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 
 		//		跳到支付页
 		$scope.goOverPage = function (order_id) {
+			if(!$rootScope.canCheckout){
+				layer.msg('无结算权限，请联系企业管理员', { time: 2000 });
+				return 
+		  }
 			$state.go('paymentNew', { order_id: order_id, type: 'order' });
 		}
 
@@ -3213,6 +3217,10 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 		//		跳到支付页
 		$scope.goOverPage = function (order_id) {
+			if(!$rootScope.canCheckout){
+				layer.msg('无结算权限，请联系企业管理员', { time: 2000 });
+				return 
+		  }
 			if (order_id) {
 				$state.go('paymentNew', { order_id: order_id, log_id: '', type: 'order' });
 			} else {
@@ -3573,7 +3581,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 		$scope.changeAccess = function () {
 			$scope.formData.authority = [];
-			for (let i = 0; i < $scope.authority.length; i++) {
+			for (var i = 0; i < $scope.authority.length; i++) {
 				if ($scope.authority[i].checked) {
 					$scope.formData.authority.push($scope.authority[i].value)
 				}

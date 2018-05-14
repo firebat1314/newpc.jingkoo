@@ -296,6 +296,19 @@ angular.module('myApp.services', [])
 					}
 				})
 			},
+			//          用户订单
+			getAllOrderD: function (data) {
+				return $http({
+					method: 'get',
+					cache: false,
+					url: ip + '/Distribution/orders',
+					params: data,
+					timeout: 5000,
+					headers: {
+						'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
+					}
+				})
+			},
 			//           设置默认
 			setDefault: function (data) {
 				return $http({

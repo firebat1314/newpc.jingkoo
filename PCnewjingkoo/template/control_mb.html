@@ -1,93 +1,107 @@
 <style type="text/css">
-	.picScroll-left .hd ul li.on{background-color: #3f69a5;}
-	.dd_table .tbe td span.user_name{display: inline-block;width: 100px;overflow:hidden;text-overflow:ellipsis; white-space:nowrap;}
+	.picScroll-left .hd ul li.on {
+		background-color: #3f69a5;
+	}
+
+	.dd_table .tbe td span.user_name {
+		display: inline-block;
+		width: 100px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 </style>
-<div class="route mb20"> 
+<div class="route mb20">
 	<div class="gird">
-		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+		当前位置：
+		<a href="#/home">首页</a> >
+		<a href="#/control-mb">用户中心</a>&gt;{{title}}
 	</div>
 </div>
 
 <div class="main" style="margin-bottom: 25px;">
 	<div class="im-panel gird cle">
-		<div class="panel-left">
-			<div class="control-bt" style="color: #0070c9;cursor: pointer;" ng-click="goControlMb()"><em class="ico"></em>控制面板</div>
-			<div class="control-list aotms">
-				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
-				<div class="control-nr">
-					<p><a href="#/order-all/">我的订单</a></p>
-					<p><a href="#/myCollect">我的收藏</a></p>
-					<p><a href="#/person-integral">积分管理</a></p>
-					<p><a href="#/person-yhq">优惠券管理</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
-				<div class="control-nr">
-					<p><a href="#/person-process" >来镜加工</a></p>
-					<p><a href="#/person-return-repair">返修退换货</a></p>
-					<p><a href="#/parson-msg-center">消息中心</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
-				<div class="control-nr">
-					<p><a href="#/zijin-mana">资金管理</a></p>
-					<p><a href="#/person-invoices">发票管理</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
-				<div class="control-nr">
-					<p><a href="#/EmployeeM">员工管理</a></p>
-					<p><a href="#/person-qy-lxrmsg">企业信息</a></p>
-					<p><a href="#/person-save-center">安全中心</a></p>
-					<p><a href="#/person-mana-addr">管理收货地址</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
-			</div>
-		</div>
+		<div ng-include="'Template/control-tool.html'"></div>
 		<div class="panel-right" ng-show="peopleData">
 			<div class="control-wrp" style="min-height: auto;">
-				<div class="cont-hd cle">    
-    				<div class="cbt-left"> 
-    					<span><a style="pointer-events: none;" class="cbt-wz on">控制面板</a></span>
-    				</div>
-    			</div>
-    			<div class="cont-bd">
-    				<div class="panel mb20">
+				<div class="cont-hd cle">
+					<div class="cbt-left">
+						<span>
+							<a style="pointer-events: none;" class="cbt-wz on">控制面板</a>
+						</span>
+					</div>
+				</div>
+				<div class="cont-bd">
+					<div class="panel mb20">
 						<div class="panel-left fl">
-							<div class="pic fl" style="cursor: pointer;" ng-click="goPersonLogo()"><img ng-src="{{peopleData.avatar}}"/></div>
+							<div class="pic fl" style="cursor: pointer;" ng-click="goPersonLogo()">
+								<img ng-src="{{peopleData.avatar}}" />
+							</div>
 							<h1 class="pal-h1">{{peopleData.username}}</h1>
-							<div class="grade-1"><img ng-src="{{peopleData.rank_icon}}" style="width: 20px;height: 20px;"/>{{peopleData.rank_name}}</div>
-							<div class="grade-2">{{peopleData.rank_name}}<span><em ng-style="{width:Wid}" style="min-width: 2%;"></em></span>{{peopleData.next_rank_name}}</div>
+							<div class="grade-1">
+								<img ng-src="{{peopleData.rank_icon}}" style="width: 20px;height: 20px;" />{{peopleData.rank_name}}</div>
+							<div class="grade-2">{{peopleData.rank_name}}
+								<span>
+									<em ng-style="{width:Wid}" style="min-width: 2%;"></em>
+								</span>{{peopleData.next_rank_name}}</div>
 							<div class="grade-3">({{peopleData.rank_points}}/{{peopleData.next_points}})</div>
 						</div>
 						<div class="panel-right fr">
 							<ul class="pal-ul1">
-								<li>账户余额：<span class="pal-or" style="text-align:left;">￥{{peopleData.user_money}}</span></li>
-								<li>消费积分：<span class="pal-or" style="text-align:left;">{{peopleData.pay_points}}</span></li>
-								<li>等级积分：<span class="pal-or" style="text-align:left;">{{peopleData.rank_points}}</span></li>
+								<li>账户余额：
+									<span class="pal-or" style="text-align:left;">￥{{peopleData.user_money}}</span>
+								</li>
+								<li>消费积分：
+									<span class="pal-or" style="text-align:left;">{{peopleData.pay_points}}</span>
+								</li>
+								<li>等级积分：
+									<span class="pal-or" style="text-align:left;">{{peopleData.rank_points}}</span>
+								</li>
 							</ul>
 							<ul class="pal-ul2">
-								<li><img src="img/k-duih.png"/>登录密码<a href="#/person-save-center"><span class="pal-or2">变更</span></a></li>
-								<li><img src="img/k-duih.png" ng-if="haveYx"/><img src="img/k-cuoh.png" ng-if="!haveYx"/>绑定邮箱<a href="#/person-save-center"><span class="pal-or2">{{haveYx?'变更':'绑定'}}</span></a></li>
-								<li><img src="img/k-duih.png" ng-if="haveSj"/><img src="img/k-cuoh.png" ng-if="!haveSj"/>手机验证<a href="#/person-save-center"><span class="pal-or2">{{haveSj?'变更':'绑定'}}</span></a></li>
+								<li>
+									<img src="img/k-duih.png" />登录密码
+									<a href="#/person-save-center">
+										<span class="pal-or2">变更</span>
+									</a>
+								</li>
+								<li>
+									<img src="img/k-duih.png" ng-if="haveYx" />
+									<img src="img/k-cuoh.png" ng-if="!haveYx" />绑定邮箱
+									<a href="#/person-save-center">
+										<span class="pal-or2">{{haveYx?'变更':'绑定'}}</span>
+									</a>
+								</li>
+								<li>
+									<img src="img/k-duih.png" ng-if="haveSj" />
+									<img src="img/k-cuoh.png" ng-if="!haveSj" />手机验证
+									<a href="#/person-save-center">
+										<span class="pal-or2">{{haveSj?'变更':'绑定'}}</span>
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>
-    				
-    				<div class="ztai cle" style="overflow: hidden;">
-    					<span class="ts-1" ng-click="getNeedOrder('unpay')" style="cursor: pointer;">待付款 <em>{{unpay}}</em></span>
-    					<span class="ts-1" ng-click="getNeedOrder('send')" style="cursor: pointer;">待发货 <em>{{send}}</em></span>
-    					<span class="ts-1" ng-click="getNeedOrder('collect')" style="cursor: pointer;">待收货 <em>{{collect}}</em></span>
-    					<span class="ts-1" ng-click="getNeedOrder('ok')" style="cursor: pointer;">已完成 <em>{{ok}}</em></span>
-    					<span class="ts-1" ng-click="goFX()" style="cursor: pointer;">返修/退换货<em>{{return}}</em></span>
-    				</div>
-    				
-    				<!--<div class="btit cle" style="overflow: hidden;">
+
+					<div class="ztai cle" style="overflow: hidden;">
+						<span class="ts-1" ng-click="getNeedOrder('unpay')" style="cursor: pointer;">待付款
+							<em>{{unpay}}</em>
+						</span>
+						<span class="ts-1" ng-click="getNeedOrder('send')" style="cursor: pointer;">待发货
+							<em>{{send}}</em>
+						</span>
+						<span class="ts-1" ng-click="getNeedOrder('collect')" style="cursor: pointer;">待收货
+							<em>{{collect}}</em>
+						</span>
+						<span class="ts-1" ng-click="getNeedOrder('ok')" style="cursor: pointer;">已完成
+							<em>{{ok}}</em>
+						</span>
+						<span class="ts-1" ng-click="goFX()" style="cursor: pointer;">返修/退换货
+							<em>{{return}}</em>
+						</span>
+					</div>
+
+					<!--<div class="btit cle" style="overflow: hidden;">
     					<span class="bt-1">镜库白条： <em>未开通</em></span>
     					<span class="bt-1">白条额度： <em>￥0.00 元</em></span>
     					<span class="bt-1">实名认证： <em>未认证</em></span>
@@ -101,9 +115,13 @@
     				</div>-->
 				</div>
 			</div>
-			
+
 			<div class="dd_table mb20">
-				<div class="ddt-bt">我的订单<span class="qbuc"><a href="#/order-all/">查看全部订单</a></span></div>
+				<div class="ddt-bt">我的订单
+					<span class="qbuc">
+						<a href="#/order-all/">查看全部订单</a>
+					</span>
+				</div>
 				<div style="padding:0 20px;">
 					<table class="tbe">
 						<tr ng-repeat="ord in orderMsg.list">
@@ -111,13 +129,18 @@
 								<div class="conpei">
 									<div class="conp-wrp" style="overflow-x: hidden;">
 										<div class="dms">
-											<div class="cwimg" style="cursor: pointer;" ng-repeat="img in ord.goods"  ng-if="$index<3" ng-click="gessGoods(img.goods_id)"><img ng-src="{{img.original_img}}" ng-click="gessGoods(img.goods_id)"></div>
+											<div class="cwimg" style="cursor: pointer;" ng-repeat="img in ord.goods" ng-if="$index<3" ng-click="gessGoods(img.goods_id)">
+												<img ng-src="{{img.original_img}}" ng-click="gessGoods(img.goods_id)">
+											</div>
 										</div>
 									</div>
 								</div>
 							</td>
-							<td width="100"><span class="user_name" ng-attr-title="{{ord.consignee}}">{{ord.consignee}}</span></td>
-							<td width="110">{{ord.order_amount}}<br ng-if="ord.order_amount">{{ord.pay_name}}</td>
+							<td width="100">
+								<span class="user_name" ng-attr-title="{{ord.consignee}}">{{ord.consignee}}</span>
+							</td>
+							<td width="110">{{ord.order_amount}}
+								<br ng-if="ord.order_amount">{{ord.pay_name}}</td>
 							<td width="110">{{ord.add_time}}</td>
 							<td width="160">{{ord.status}}</td>
 							<td width="70">
@@ -136,7 +159,7 @@
 					</table>
 				</div>
 			</div>
-			 
+
 			<div class="picScroll-left">
 				<div class="hd">
 					<span>猜你喜欢</span>
@@ -145,7 +168,9 @@
 				<div class="bd">
 					<ul class="picList">
 						<li ng-repeat="like in YouLike.goods_list" repeat-done="picList()" ng-click="gessGoods(like.goods_id)" style="cursor: pointer;">
-							<div class="pic"><img ng-src="{{like.goods_img}}" /></div>
+							<div class="pic">
+								<img ng-src="{{like.goods_img}}" />
+							</div>
 							<div class="title">
 								<p ng-attr-title="{{like.goods_name}}">{{like.goods_name}}</p>
 								<b ng-if="showPrice">{{like.shop_price}}</b>
@@ -156,8 +181,8 @@
 				<a class="prev" href="javascript:void(0)"></a>
 				<a class="next" href="javascript:void(0)"></a>
 			</div>
-			
+
 		</div>
-		<div class="clear"></div> 
+		<div class="clear"></div>
 	</div>
 </div>

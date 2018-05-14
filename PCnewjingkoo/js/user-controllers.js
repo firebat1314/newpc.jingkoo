@@ -13,8 +13,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		};
 		$scope.goto();
 		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		// $rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-		$rootScope.ip = 'https://www.jingku.cn'; //正式
+		$rootScope.ip = 'http://newpc.jingkoo.net'; //测试
+		// $rootScope.ip = 'https://www.jingku.cn'; //正式
 
 		$scope.getUserMsgHs = function () {
 			$data.getUserMsg().success(function (data) {
@@ -2579,14 +2579,11 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$anchorScroll.yOffset = 0;
 			$anchorScroll();
 		};
-		$scope.goto();
-		$scope.tabType = $stateParams.type1 || '';
-		//console.log($scope.tabType)
 		//		页码
 		$scope.ListPage = {
 			page: 1,
 			size: 10,
-			type: $scope.tabType,
+			type: $stateParams.type1,
 			order_number: null
 		};
 
@@ -2606,14 +2603,14 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			link_to: 'javascript:;',
 			prev_show_always: false,
 			next_show_always: false,
-			current_page: 0,
+			current_page: $scope.ListPage.page-1,
 			callback: function (index) {
 				$scope.ListPage.page = index + 1;
 				var cool = layer.load(0, { shade: [0.3, '#fff'] });
 				$http({
 					method: "GET",
 					url: '' + $rootScope.ip + '/User/order',
-					params: Object.assign($scope.ListPage, { type: $scope.tabType }),
+					params: $scope.ListPage,
 					headers: {
 						'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
 					}
@@ -2633,7 +2630,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}
 		$scope.getAllOrderHs = function (order) {
 			var cool = layer.load(0, { shade: [0.3, '#fff'] });
-			$scope.tabType = order;
+			$scope.ListPage.type = order;
+			$scope.ListPage.page = 1;
 
 			$data.getAllOrder({
 				type: order || '',
@@ -2654,7 +2652,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			})
 
 		};
-		$scope.getAllOrderHs($scope.tabType);
+		$scope.getAllOrderHs($scope.ListPage.type);
 		//		确认收货
 		$scope.QrGet = function (order_id) {
 			$data.QrGetGoods({
@@ -2681,7 +2679,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						layer.msg('删除成功', {
 							icon: 1
 						});
-						$scope.getAllOrderHs($scope.tabType);
+						$scope.getAllOrderHs($scope.ListPage.type);
 					} else {
 						layer.msg('删除失败', {
 							icon: 2
@@ -2704,7 +2702,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						layer.msg('取消成功', {
 							icon: 1
 						});
-						$scope.getAllOrderHs($scope.tabType);
+						$scope.getAllOrderHs($scope.ListPage.type);
 						$scope.getOrderLength();
 					} else {
 						layer.msg('取消失败', {
@@ -2904,7 +2902,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		//输入框查询
 		$scope.serchGoods = function (order_number) {
 			$scope.ListPage.order_number = order_number;
-			$scope.ListPage.type = $scope.tabType;
+			$scope.ListPage.type = $scope.ListPage.type;
 			$data.getAllOrder({
 				order_number: order_number,
 				type: $scope.ListPage.type

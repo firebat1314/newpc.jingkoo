@@ -42,44 +42,7 @@
 
 <div class="main" style="margin-bottom: 25px;">
 	<div class="im-panel gird cle">
-		<div class="panel-left">
-			<div class="control-bt" ng-click="goControlMb()" style="cursor: pointer;"><em class="ico"></em>控制面板</div>
-			<div class="control-list aotms">
-				<h3 class="control-h3"><em class="coe-1"></em>交易管理</h3>
-				<div class="control-nr">
-					<p class="onp"><a href="#/order-all/">我的订单</a></p>
-					<p><a href="#/myCollect">我的收藏</a></p>
-					<p><a href="#/person-integral">积分管理</a></p>
-					<p><a href="#/person-yhq">优惠券管理</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-2"></em>服务中心</h3>
-				<div class="control-nr">
-					<p><a href="#/person-process" >来镜加工</a></p>
-					<p><a href="#/person-return-repair">返修退换货</a></p>
-					<p><a href="#/parson-msg-center">消息中心</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-3"></em>资产中心</h3>
-				<div class="control-nr">
-					<p><a href="#/zijin-mana">资金管理</a></p>
-					<p><a href="#/person-invoices">发票管理</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3"><em class="coe-4"></em>个人设置</h3>
-				<div class="control-nr">
-					<p><a href="#/person-qy-lxrmsg">企业信息</a></p> 
-					<p><a href="#/person-save-center">安全中心</a></p>
-					<p><a href="#/person-mana-addr">管理收货地址</a></p>
-				</div>
-			</div>
-			<div class="control-list">
-				<h3 class="control-h3" ng-click="loginOut()" style="cursor: pointer;"><em class="coe-5"></em>安全退出</h3>
-			</div>
-        </div>
+		<ng-template ng-include="'Template/control-tool.html'"></ng-template>
 		<div class="panel-right">
 			<div class="control-wrp">	
 				<div class="cont-hd cle">

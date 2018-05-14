@@ -14208,8 +14208,14 @@ textarea {
   color: #fff; }
 
 /*积分商城切换页码*/
-.control-list .control-nr p.onp a {
+.control-list .control-nr p {
+  cursor: pointer; }
+
+.control-list .control-nr .onp a {
   color: #0070c9 !important; }
+
+.control-list .control-nr .onp {
+  cursor: pointer; }
 
 /*我的订单*/
 .top-wrap {

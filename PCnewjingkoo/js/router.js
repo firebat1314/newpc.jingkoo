@@ -119,12 +119,45 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/shop-list-cut/shop-list-cut.html',
                 controller: "ShopListCutControl"
             })
+            .state("shop-list-distribution", {
+                title: '商品列表',
+                url: '/shop-list-distribution/:params',
+                templateUrl: 'template/distribution/shop-list-distribution/shop-list-distribution.html',
+                controller: "ShopListDistributionControl"
+            })
             //切边镜片商品详情路由
             .state("shop-detail-cut", {
-                title: '',
-                url: '/shop-detail-cut/:goods_id/:cutting_id',
+                title: '商品详情',
+                url: '/shop-detail-cut/:goods_id/:id',
                 templateUrl: 'template/shop-detail-cut/shop-detail-cut.html',
                 controller: "shopDetailCutControl"
+            })
+            //切边镜片商品详情路由
+            .state("shop-detail-distribution", {
+                title: '铺货详情',
+                url: '/shop-detail-distribution/:did',
+                templateUrl: 'template/distribution/shop-detail-distribution/shop-detail-distribution.html',
+                controller: "shopDetailDistributionControl"
+            })
+            //切边镜片商品详情路由
+            .state("checkout-distribution", {
+                title: '结算铺货',
+                url: '/checkout-distribution/:did',
+                templateUrl: 'template/distribution/jiesuan-distribution/jiesuan-distribution.html',
+                controller: "checkoutDistributionControl"
+            })
+            //
+            .state("order-list-d", {
+                title: '铺货订单',
+                url: '/order-list-d',
+                templateUrl: 'template/distribution/order-list/order-list.html',
+                controller: "orderListDistributionControl"
+            })
+            .state("order-detail-d", {
+                title: '订单详情',
+                url: '/order-detail-d/:orderId',
+                templateUrl: 'template/distribution/order-detail/order-detail.html',
+                controller: "orderDetailDistributionControl"
             })
             //商品列表路由
             .state("shop-list-ano", {
@@ -135,7 +168,7 @@ angular.module("myApp.router", ["ui.router"])
             })
             //商品详情路由
             .state("shop-detail", {
-                title: '',
+                title: '商品详情',
                 url: '/shop-detail/:goods_id',
                 templateUrl: 'template/shop_detail.html',
                 controller: "shopDetail-control"
@@ -553,7 +586,7 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/person_yhq.html',
                 controller: "personYhq-control"
             })
-            //          个人中心-我的订单全部
+            //个人中心-我的订单全部
             .state("order-all", {
                 title: '我的订单',
                 url: '/order-all/:type1',

@@ -642,8 +642,10 @@ angular.module('ShopDetailDistributionModule', [])
             var cool = layer.load(0, { shade: [0.3, '#fff'] });
             $http({
                 method: "POST",
-                url: '' + $rootScope.ip + '/Distribution/checkout/ceshi/1/id/1/goods_id/7011',
-                data: '',
+                url: '' + $rootScope.ip + '/Distribution/checkout',
+                data: {
+                    id: $scope.dId
+                },
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 layer.close(cool);

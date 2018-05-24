@@ -237,14 +237,14 @@
                <div class="table_bottom">
                    <div class="table_b1" ng-repeat="cartGoodsList in jiesuanData.goods_list">
                        <div class="table_b1_left">
-                           <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
+                           <a href="#/shop-detail-distribution/{{cartGoodsList.distribution_id}}">
                                <img ng-src={{cartGoodsList.goods_img}} width="80" height="80" style="border: 1px solid #e6e6e6;" />
                            </a>
                        </div>
                        <div class="table_b1_rightbox">
                            <div class="rightbox_more" ng-repeat="cartGoodsAttr in cartGoodsList.attrs" style="min-height: 80px;height: auto;">
                                <div class="table_b1_right">
-                                   <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
+                                   <a href="#/shop-detail-distribution/{{cartGoodsList.distribution_id}}">
                                        <p ng-attr-title="{{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}"> {{cartGoodsList.cutting_id>0?cartGoodsList.cutting_name:cartGoodsList.goods_name}}</p>
                                    </a>
                                    <ul class="b1_right_u1">
@@ -295,15 +295,15 @@
                        </div>
                        <div class="remark_right" style="float: right;">
                            <p>
-                               <span>购物金额小计：</span>
+                               <span>铺货总金额：</span>
                                <span>{{jiesuanData.total.subtotal}}</span>
                            </p>
-                           <!-- <p class="p2">
-                               <span>+配送费用：</span>
-                               <span>{{cartGoods.shipping_free}}</span>
-                           </p> -->
                            <p class="p2">
-                               <span>押金：</span>
+                               <span>配送费用：</span>
+                               <span>{{jiesuanData.DistributionInfo.shipping_fee}}</span>
+                           </p>
+                           <p class="p2">
+                               <span>+押金：</span>
                                <span>{{jiesuanData.DistributionInfo.deposit}}</span>
                            </p>
                        </div>
@@ -350,10 +350,9 @@
            <div class="refer_order_d">
 
                <p class="refer_order_p">
-                   <!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费) :
-                   <span class="refer_order_sp1">{{jiesuanData.total.subtotal}}</span>
-                   <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn"
-                   />
+                   <!-- <span ng-if="jiesuanData.total.formated_subsidy_price">镜库补贴 : {{jiesuanData.total.formated_subsidy_price}}</span> -->　应付总金额(包含运费加押金) :
+                   <span class="refer_order_sp1">{{jiesuanData.total.subtotals}}</span>
+                   <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn" />
                </p>
            </div>
        </div>

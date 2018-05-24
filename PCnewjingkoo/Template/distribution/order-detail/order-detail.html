@@ -8,7 +8,7 @@
 		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
 	</div> 
 </div> 
-<div class="fkllc gird cle" style="margin-bottom: 25px;margin-top: 20px;">
+<div ng-if="orderDetail" class="fkllc gird cle" style="margin-bottom: 25px;margin-top: 20px;">
 	<div class="ddho ">订单号：{{orderDetail.order.order_sn}}</div>
 	<div class="needshow" ng-if="(orderDetail.order.order_status==1 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)||(orderDetail.order.order_status==0 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)">
 		<div class="fkllc-left">
@@ -178,7 +178,7 @@
 				<p class="p">收<em>货</em>人：  {{orderDetail.order.consignee}}</p>
 				<p class="p">地<em></em><em></em>址：  {{orderDetail.order.region + orderDetail.order.address}}</p>
 				<p class="p">手机号码：  {{orderDetail.order.mobile}}</p>
-				<p class="p">固定电话：  {{orderDetail.order.tel}}</p>
+				<p class="p">固定电话：  {{orderDetail.order.tel || '无'}}</p>
 			</div>
 			<div class="info-xx">
 				<b class="bt">支付及配送方式</b>
@@ -196,6 +196,7 @@
 					<th width="409"><div class="c">商品名称</div></th>
 					<th width="90"><div class="c">铺货数量</div></th>
 					<th width="90" ng-if="showPrice"><div class="c">铺货单价</div></th>
+					<th width="90" ng-if="showPrice"><div class="c">合同金额</div></th>
 					<!-- <th width="90" ng-if="showPrice"><div class="c">优惠金额</div></th> -->
 					<!-- <th><div class="c">提示</div></th> -->
 				</tr>
@@ -232,6 +233,7 @@
 					</td>
 					<td><div class="c hsez">{{ord.goods_number}}</div></td>
 					<td ng-if="showPrice"><div class="c hsez">{{ord.shop_price}}</div></td>
+					<td ng-if="showPrice"><div class="c hsez">￥{{ord.subtotal}}</div></td>
 					<!-- <td ng-if="showPrice"><div class="c hsez">{{ord.reduce_price||'--'}}</div></td> -->
 					<!-- <td>
 						<div class="c aneni">
@@ -255,8 +257,8 @@
 
 <div class="total gird mb40" ng-if="showPrice">
 	<div class="totg-wrp">
-		<p class="total-p">押金：￥{{orderDetail.order.order_amount}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元 - 优惠券：￥{{orderDetail.order.bonus}}元</p>
-		<span class="total-sp">
+		<p class="total-p">押金：￥{{orderDetail.order.deposit}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元</p>
+		<span class="total-sp">总额：<em>¥{{orderDetail.order.order_amount}}</em></span>
 	</div>
 </div>
 

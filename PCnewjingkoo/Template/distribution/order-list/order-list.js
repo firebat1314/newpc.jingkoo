@@ -138,12 +138,12 @@ angular.module('OrderListDistributionModule', [])
    //		获取不同的订单信息
    //		未支付
    $scope.getOrderLength = function () {
-      $data.getAllOrder({
+      $data.getAllOrderD({
          type: 'unpay'
       }).success(function (data) {
          $scope.orderpay = data.count;
       })
-      $data.getAllOrder({
+      $data.getAllOrderD({
          type: 'collect'
       }).success(function (data) {
          $scope.orderDsh = data.count;
@@ -243,6 +243,42 @@ angular.module('OrderListDistributionModule', [])
          }
       })
    }
+   $scope.token = ipCookie('token');
+    $scope.viewerContract = function (order_id) {
+        var w = window.open();
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Distribution/infoUrl',
+            data: { order_id: order_id },
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            if (data.status) {
+                w.location = data.url;
+            } else {
+                layer.msg(data.info);
+                w.close();
+            }
+        })
+    }
+    $scope.downloadContract = function (order_id) {
+        location.href = $rootScope.ip + '/Distribution/downloadPdf?order_id='+order_id+'&token='+ipCookie('token');
+    }
+    $scope.sealContract = function (order_id) {
+        var w = window.open();
+        $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Seal/index',
+            data: { order_id: order_id },
+            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+        }).success(function (data) {
+            if (data.status) {
+                w.location = data.url;
+            } else {
+                layer.msg(data.info);
+                w.close();
+            }
+        })
+    }
    //再次兑换
    $scope.dhAgain = function (goods_id) {
       $state.go('pointsMall');
@@ -325,7 +361,7 @@ angular.module('OrderListDistributionModule', [])
    $scope.serchGoods = function (order_number) {
       $scope.ListPage.order_number = order_number;
       $scope.ListPage.type = $scope.ListPage.type;
-      $data.getAllOrder({
+      $data.getAllOrderD({
          order_number: order_number,
          type: $scope.ListPage.type
       }).success(function (data) {

@@ -113,7 +113,6 @@ angular.module('CheckoutDistributionModule', [])
                 headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
-                    layer.msg(data.info, { time: 1000 });
                     $scope.jiesuanFn();
                 } else {
                     layer.msg(data.info, { time: 1000 });
@@ -448,7 +447,6 @@ angular.module('CheckoutDistributionModule', [])
                 })
             }
         };
-
         $scope.submitList = function (e, index) {
             if ($scope.yeIf) {
                 $http({

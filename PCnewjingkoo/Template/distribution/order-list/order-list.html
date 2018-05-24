@@ -258,8 +258,9 @@
 									</div>
 									<div class="neiro">
 										<div class="nero n-1">
-											<div class="noot-sp">
+											<div class="noot-sp" style="min-width: 450px;">
 												<div class="le-dd">
+													<div ng-if="!order.goods.length">&nbsp;</div>
 													<div class="imsldd" ng-repeat="goods in order.goods" ng-if="order.showmorelist||$index<2" style="position: relative;">
 														<div class="img" ng-click="goGoodsDetail(goods.goods_id,goods.cutting_id)" style="cursor: pointer;">
 															<img src="{{goods.original_img}}" />
@@ -305,16 +306,11 @@
 											</div>
 										</div>
 										<div class="nero n-3 c">
-											<div class="n3-hk" ng-if="order.isShowYf==1">
-												<!-- <p class="hk-p1" ng-if="showPrice" style="border: 0;color: #808080;padding: 0;">总额 : {{order.total_fee}}</p> -->
-												<p class="hk-p1" style="border-bottom: 1px solid #d9d9d9;" ng-if="showPrice" style="color: #4c4c4c;border: none;padding: 0;">应付 : {{order.order_amount}}</p>
-												<p class="hk-p2">
-													<span>{{order.pay_name}}</span>
-												</p>
-											</div>
-											<div class="n3-hk" ng-if="order.isShowYf==0" style="margin-top: 16px;">
+											<div class="n3-hk" style="margin-top: 16px;">
 												<p class="hk-p1" style="border-bottom: 1px solid #d9d9d9;" ng-if="showPrice" style="border: 0;color: #808080;padding: 8px 0;"
-												 style="padding-top: 10px;">押金 : {{order.total_fee}}</p>
+												 style="padding-top: 10px;">押金 : {{order.deposit}}</p>
+												<p class="hk-p1" style="border-bottom: 1px solid #d9d9d9;" ng-if="showPrice" style="border: 0;color: #808080;padding: 8px 0;"
+												 style="padding-top: 10px;">总额 : {{order.order_amount}}</p>
 												<p class="hk-p2">
 													<span>{{order.pay_name}}</span>
 												</p>
@@ -363,10 +359,10 @@
 											</div>
 											<!--待付款-->
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==0)||(order.order_status==0 && order.pay_status==0 && order.gq==0)">
-												<p>
+												<!-- <p>
 													<em></em>
 													<span data-date="{{order.gq_time}}" down-time1></span>
-												</p>
+												</p> -->
 												<a class="ako3" style="height: 25px;line-height: 25px;cursor: pointer;" ng-click="goOverPage(order.order_id)">付款</a>
 												<a style="cursor:pointer;" class="ako2" ng-click="cancelDd(order.order_id)">取消订单</a>
 											</div>
@@ -375,8 +371,14 @@
 												<a class="ako4" ng-click="buyAgain(order.order_id)" style="margin-top: 32px;">立即购买</a>
 											</div>
 											<!--定制待完善-->
-											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.order_status==7">
-												<a class="ako4" href="#/shop-jiesuan-copy/{{order.order_sn}}" style="margin-top: 32px;">完善定案</a>
+											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.contractid">
+												<a class="ako4" target="_blank" ng-click="viewerContract(order.order_id)">查看合同</a>
+											</div>
+											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.contractid">
+												<a class="ako4" target="_blank" ng-click="downloadContract(order.order_id)">下载合同</a>
+											</div>
+											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.seal_status==0||order.seal_status==1)&&order.pay_status==2">
+												<a class="ako4" target="_blank" ng-click="sealContract(order.order_id)">盖章</a>
 											</div>
 										</div>
 										<div class="clear"></div>

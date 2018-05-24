@@ -132,12 +132,12 @@
 							</div>
 						</div>
 						<div class="saler_msg_box" style="padding-left: 0;">
-							<div ng-if="showPrice" class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0">
+							<div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0&&showPrice">
 								<span class="saler_msg_sp1">建议零售价</span>
 								<span class="saler_msg_sp2">¥{{shopDetailData.data.market_price}}</span>
 							</div>
-							<div ng-if="showPrice" class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0">
-								<span class="saler_msg_sp1">原价批发</span>
+							<div class="saler_msg_d1" ng-if="shopDetailData.promotion.length>0&&showPrice">
+								<span class="saler_msg_sp1">批发价</span>
 								<span class="saler_msg_sp3">{{data.data.old_shop_price}}</span>
 							</div>
 							<div class="saler_msg_d1">

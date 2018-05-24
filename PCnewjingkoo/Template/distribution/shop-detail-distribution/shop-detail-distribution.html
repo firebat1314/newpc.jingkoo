@@ -174,20 +174,6 @@
 									<!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
 								</div>
 							</div>
-							<!--关联商品-->
-							<div class="sale-detailed-message" style="margin-left: 17px;padding-top: 10px;">
-								<div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods" style="margin-bottom: 0;">
-									<p style="color:#666;padding-left: 0;">关联商品</p>
-									<ul>
-										<li ng-repeat="glLi in shopDetailData.linked_goods">
-											<a href="#/shop-detail/{{glLi.goods_id}}">
-												<img ng-src={{glLi.goods_img}} alt="">
-											</a>
-											<i class="guanlianYes"></i>
-										</li>
-									</ul>
-								</div>
-							</div>
 							<!--商品主属性-->
 							<div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
 								<span class="saler_msg_sp1">{{saler.name}}</span>

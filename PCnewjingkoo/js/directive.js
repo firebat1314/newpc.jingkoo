@@ -260,12 +260,52 @@ angular.module('myApp.directives', [])
         return {
             restrict: 'A',
             scope: {
+                adsClick: '@',
                 typeName: '@',
                 typeValue: '@',
                 typeLink: '@'
             },
             link: function (scope, element, attrs) {
+                element.css('cursor','pointer');
+                element.css('width','100%');
                 $(element).on('click', function () {
+                    if (scope.adsClick) {
+                        var data = JSON.parse(scope.adsClick)
+                        var typeName = data.link_type.type_name;
+                        var typeValue = data.link_type.type_value;
+                        var typeLink = data.ad_link;
+                        if (!typeName || !typeValue) {
+                            return window.open(typeLink);
+                        }
+                        if (typeName == "category") {
+                            var url = $state.href('shop-list', {
+                                params: encodeURIComponent(JSON.stringify({
+                                    cat_id: typeValue,
+                                }))
+                            });
+                            window.open(url, '_blank');
+                        } else if (typeName == "goods") {
+                            var url = $state.href('shop-detail', {
+                                goods_id: typeValue,
+                            });
+                            window.open(url, '_blank');
+                        } else if (typeName == "brand") {
+                            var url = $state.href('shop-list', {
+                                params: encodeURIComponent(JSON.stringify({
+                                    brand_id: typeValue,
+                                }))
+                            });
+                            window.open(url, '_blank');
+                        } else if (typeName == "search") {
+                            var url = $state.href('shop-list', {
+                                params: encodeURIComponent(JSON.stringify({
+                                    keywords: typeValue,
+                                }))
+                            });
+                            window.open(url, '_blank');
+                        }
+                        return
+                    }
                     console.log(scope.typeName, scope.typeValue)
                     if (!scope.typeName || !scope.typeValue) {
                         return location = scope.typeLink;
@@ -306,11 +346,32 @@ angular.module('myApp.directives', [])
             restrict: 'E',
             replace: true,
             template: '<div class="loader loader--style5" title="4"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve"><rect x="0" y="0" width="4" height="10" fill="#666666"><animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0" dur="0.6s" repeatCount="indefinite" /></rect><rect x="10" y="0" width="4" height="10" fill="#666666"><animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.2s" dur="0.6s" repeatCount="indefinite" /></rect><rect x="20" y="0" width="4" height="10" fill="#666666"> <animateTransform attributeType="xml" attributeName="transform" type="translate" values="0 0; 0 20; 0 0" begin="0.4s" dur="0.6s" repeatCount="indefinite" /></rect></svg></div>',
-            //transclude是必须的。
-            // transclude:true,
             link: function (scope, element, attrs) {
 
             }
         }
+    })
+    .directive('adsTop', function () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            scope: {},
+            controller: ["$scope", "$http", '$rootScope', 'ipCookie', function ($scope, $http, $rootScope, ipCookie) {
+                $http({
+                    method: "POST",
+                    url: '' + $rootScope.ip + '/Index/ads',
+                    data: { int_pos_id: 79, int_size: 1 },
+                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
+                }).success(function (data) {
+                    if (data.status) {
+                        $scope.data = data;
+                    }
+                })
+            }],
+            templateUrl:'template/ads-top.html',
+            replace: true,
+            link:function (scope, element, attrs) {
+            }
+        };
     })
 

@@ -280,12 +280,12 @@
                             <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
                             <span ng-if="!defaultShipping">请选择收货地址</span>
                             <!--商家备注-->
-                            <div class="remark_left" ng-if="!cartGoods&&!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
+                            <div class="remark_left" ng-if="!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                                 <span class="sent_sp1">商家备注 : </span>
-                                <input ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" type="text"
+                                <input style="margin-left: 0;" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" type="text"
                                     placeholder="请将购买需求在备注中做详细说明" class="remark_ip" />
                             </div>
-                            <div class="remark_left remark_left2" ng-if="cartGoods||cartGoods.input_show" style="overflow: hidden;margin-top: 10px;">
+                            <div class="remark_left remark_left2" ng-if="cartGoods.input_show" style="overflow: hidden;margin-top: 10px;">
                                 <span class="sent_sp1" style="float: left;">商家备注 : </span>
                                 <div class="texbox_d">
                                     <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()"></textarea>

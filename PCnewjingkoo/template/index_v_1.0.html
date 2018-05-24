@@ -108,7 +108,7 @@
     <div class="pic">
         <div class="slider" style="width:100%;margin: 0 auto;">
             <ul>
-                <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
+                <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}" type-link="{{slide.ad_link}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
                 </li>
             </ul>
         </div>

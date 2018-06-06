@@ -669,6 +669,7 @@ angular.module('myApp.controllers', [
                     ipCookie.remove('show_ads');
                 }
             }
+            $scope.adTanData = res;
             $scope.link_type = res.ads[0].link_type;
             if (res.pc_index_tan_time == 0) {
                 var img = new Image();

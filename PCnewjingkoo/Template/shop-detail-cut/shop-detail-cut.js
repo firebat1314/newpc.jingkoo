@@ -5,7 +5,7 @@ angular.module('ShopDetailCutModule', [])
 		$rootScope.change = true;
 
 		$scope.goods_id = $stateParams.goods_id;
-		$scope.cutting_id = $stateParams.cutting_id;
+		$scope.cutting_id = $stateParams.id;
 		$scope.attrNumber = 1;
 		//点击展开
 		//商品详情获取商品初始类型接口

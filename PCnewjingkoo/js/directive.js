@@ -267,7 +267,6 @@ angular.module('myApp.directives', [])
             },
             link: function (scope, element, attrs) {
                 element.css('cursor','pointer');
-                element.css('width','100%');
                 $(element).on('click', function () {
                     if (scope.adsClick) {
                         var data = JSON.parse(scope.adsClick)
@@ -364,13 +363,14 @@ angular.module('myApp.directives', [])
                     headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status) {
-                        $scope.data = data;
+                        $scope.topads = data;
                     }
                 })
             }],
             templateUrl:'template/ads-top.html',
             replace: true,
             link:function (scope, element, attrs) {
+                element.css('width','100%');
             }
         };
     })

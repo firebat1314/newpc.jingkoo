@@ -42,58 +42,10 @@
          background: #666;
       }
 
-      .close {
-         animation: ads-top-close 2s linear 0s;
-      }
-
-      @keyframes ads-top-close {
-         from {
-            opacity: 1;
-         }
-         to {
-            opacity: 0;
-         }
-      }
-
-      @-moz-keyframes ads-top-close
-      /* Firefox */
-
-         {
-         from {
-            opacity: 1;
-         }
-         to {
-            opacity: 0;
-         }
-      }
-
-      @-webkit-keyframes ads-top-close
-      /* Safari 和 Chrome */
-
-         {
-         from {
-            opacity: 1;
-         }
-         to {
-            opacity: 0;
-         }
-      }
-
-      @-o-keyframes ads-top-close
-      /* Opera */
-
-         {
-         from {
-            opacity: 1;
-         }
-         to {
-            opacity: 0;
-         }
-      }
    </style>
-   <div class="ads-top" ng-if="data" ng-class="{'close':show}" ng-style="{'background':data.data[0].mobile_link}">
+   <div class="ads-top" ng-if="topads" ng-style="{'background':topads.data[0].mobile_link}">
       <div class="img">
-         <img ads-click="{{data.data[0]}}" src="{{data.data[0].ad_img}}" alt="">
+         <img ads-click="{{topads.data[0]}}" src="{{topads.data[0].ad_img}}" alt="">
          <div class="ads-top-close" onclick="$('.ads-top').fadeOut()">×</div>
       </div>
    </div>

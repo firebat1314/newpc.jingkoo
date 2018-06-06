@@ -47,7 +47,7 @@
         position: relative;
         max-width: 80%;
         max-height: 90%;
-        height: 100000px;
+        height: auto;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -101,7 +101,7 @@
 <div class="ad_box" ng-show="ad_show&&ad_img">
     <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
         <div class="close" ng-click="closeAd()">+</div>
-        <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{link_type.ad_link}}" src="{{ad_img}}" alt="">
+        <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{adTanData.ads[0].ad_link}}" src="{{ad_img}}" alt="">
     </div>
 </div>
 <div class="scroll-area" style="margin-bottom: 50px;">

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/smohan.pop&share.css">
     <link rel="stylesheet" href="css/newGoods.css">
-    
+
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
 
     <!-- <script src="http://www.jq22.com/jquery/1.7.2/jquery.min.js"></script> -->
@@ -66,7 +66,8 @@
                     ANDROID_TABLET: false, //Android Tablet
                     WINDOWS_TABLET: false, //Windows Tablet
                     TABLET: false, //Tablet (iPad, Android, Windows)
-                    SMART_PHONE: false //Smart Phone (iPhone, Android)
+                    SMART_PHONE: false, //Smart Phone (iPhone, Android)
+                    weixin: ua.match(/MicroMessenger/i) && ua.match(/MicroMessenger/i)[0] == "micromessenger"
                 };
 
                 mua.ANDROID_TABLET = mua.ANDROID && !mua.MOBILE;
@@ -76,12 +77,8 @@
 
                 return mua;
             }());
-
-            //SmartPhone
             if (MobileUA.SMART_PHONE) {
-                // 移动端链接地址
-
-                document.location.href = 'https://m.jingku.cn/';
+                location.href = 'https://m.jingku.cn/';
             }
         });
 
@@ -89,7 +86,6 @@
 </head>
 
 <body ng-controller="ParentControl">
-    <ads-top></ads-top>
     <header ng-include="'template/header.html'" ng-if="change"></header>
     <div ui-view style="min-height: 400px;"></div>
     <footer ng-include="'template/footer.html'" ng-if="change"></footer>
@@ -103,21 +99,21 @@
     <script type="text/javascript" src="js/lib/angular-animate.js"></script>
     <script type="text/javascript" src="js/lib/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="js/lib/angular-cookies.min.js"></script>
-    <script type="text/javascript" src="js/app.js?t=201805101"></script>
-    <script type="text/javascript" src="js/services.js?t=201805101" charset="utf-8"></script>
-    <script type="text/javascript" src="js/controller.js?t=201805101"></script>
-    <script type="text/javascript" src="js/user-controllers.js?t=201805101" charset="utf-8"></script>
-    <script type="text/javascript" src="js/directive.js?t=201805101"></script>
-    <script type="text/javascript" src="js/router.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/shop-list/shop-list.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/shop-list-cut/shop-list-cut.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/shop-detail-cut/shop-detail-cut.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/jump/jump.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/distribution/shop-list-distribution/shop-list-distribution.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/distribution/shop-detail-distribution/shop-detail-distribution.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/distribution/jiesuan-distribution/jiesuan-distribution.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/distribution/order-list/order-list.js?t=201805101"></script>
-    <script type="text/javascript" src="Template/distribution/order-detail/order-detail.js?t=201805101"></script>
+    <script type="text/javascript" src="js/app.js?t=201805241"></script>
+    <script type="text/javascript" src="js/services.js?t=201805241" charset="utf-8"></script>
+    <script type="text/javascript" src="js/controller.js?t=201805241"></script>
+    <script type="text/javascript" src="js/user-controllers.js?t=201805241" charset="utf-8"></script>
+    <script type="text/javascript" src="js/directive.js?t=201805241"></script>
+    <script type="text/javascript" src="js/router.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/shop-list/shop-list.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/shop-list-cut/shop-list-cut.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/shop-detail-cut/shop-detail-cut.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/jump/jump.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/distribution/shop-list-distribution/shop-list-distribution.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/distribution/shop-detail-distribution/shop-detail-distribution.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/distribution/jiesuan-distribution/jiesuan-distribution.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/distribution/order-list/order-list.js?t=201805241"></script>
+    <script type="text/javascript" src="Template/distribution/order-detail/order-detail.js?t=201805241"></script>
     <!-- <script type="text/javascript" src="./plugins/js.js"></script> -->
 </body>
 

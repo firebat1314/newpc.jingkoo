@@ -27,14 +27,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						time: 3000
 					})
 				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					// layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getUserMsgHs();
@@ -169,15 +161,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$scope.msg_show = true;
 
 				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
-			});
+			})
 
 		$scope.ListPage = {
 			page: 1,
@@ -216,12 +200,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
-				});
+				})
 			}
 		}
 
@@ -239,14 +218,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				layer.close(cool);
 				$scope.cityData = res;
 				$scope.no_city = res.no_user_citys.length;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getRegionApplyPar();
@@ -350,14 +321,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$scope.Wid = $scope.rank_points / $scope.next_points * 100 + '%';
 			$scope.haveYx = data.user_info.email;
 			$scope.haveSj = data.user_info.mobile_phone;
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 
 		$data.getUsercount().success(function (data) {
@@ -460,14 +423,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$scope.zjLen = data.recharge_list.page_next;
 					$scope.zjLenA = data.recharge_list.length;
 				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.userMoneyRecordHs();
@@ -485,11 +440,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					} else {
 						$scope.zjList = data;
 					}
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -506,11 +456,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						layer.msg(data.info);
 					} else {
 						$scope.zjList = data;
-					}
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
 					}
 				})
 			} else {
@@ -548,11 +493,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -625,14 +565,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$scope.username = data.user_info.username;
 
 				$scope.payPass = data.user_info.is_pay_pass;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getUserMsgHs();
@@ -683,11 +615,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 							time: 3000
 						})
 					}
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 
 		}
@@ -730,11 +657,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -758,14 +680,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}).success(function (data) {
 			layer.close(cool);
 			$scope.bankAll = data;
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 
 
@@ -842,7 +756,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 						note: $scope.note,
 						pay: $scope.payment_id,
 					},
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 				}).success(function (data) {
 					$scope.log_id = data.log_id;
 					if (data.status != 1) {
@@ -887,14 +800,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$data.getUserMsg().success(function (data) {
 				layer.close(cool);
 				$scope.getUserMsg = data;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getUserMsgHsa();
@@ -981,14 +886,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$data.getUserMsg().success(function (data) {
 				layer.close(cool);
 				$scope.getQyMsg = data;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.saveQyHs();
@@ -1496,14 +1393,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			}).success(function (data) {
 				layer.close(cool);
 				$scope.getEditAddress = data;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getEditAddressPrHs();
@@ -1530,14 +1419,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				//			    }
 				//				 console.log(addrs); 
 				$scope.haveSetAddr = data.data.length;
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.addList();
@@ -1796,14 +1677,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$scope.no_dd = false;
 					$scope.MoneyDetial = data;
 				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getData($scope.ListPage);
@@ -1853,11 +1726,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -2165,7 +2033,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			method: "POST",
 			url: '' + $rootScope.ip + '/User/user_info',
 			data: '',
-			headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 		})
 			.success(function (data) {
 				$scope.userData = data;
@@ -2311,7 +2178,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/edit_paypwd',
 				data: $scope.forgotTwoOption,
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				//console.log(data);
 				if (data.status) {
@@ -2348,7 +2214,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/edit_paypwd',
 				data: $scope.forgotThreeOption,
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				//console.log(data);
 				if (data.status) {
@@ -2524,14 +2389,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$scope.personYhq = data;
 					$scope.yhq_show = false;
 				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		}
 		$scope.getCuponList();
@@ -2620,11 +2477,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -2641,14 +2493,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$scope.AllOrder = data;
 				$scope.getOrd(data);
 				$scope.getOrderLength();
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 
 		};
@@ -2800,7 +2644,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/align_buy',
 				data: { order_id: order_id },
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
 					layer.confirm('需要医疗器械许可证，是否上传', {
@@ -3050,11 +2893,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$('html,body').animate({
 						'scrollTop': 0
 					}, 500)
-				}).error(function (data) {
-					if (data.status == 0) {
-						location.href = "/default.html";
-						layer.close(cool);
-					}
 				})
 			}
 		}
@@ -3070,14 +2908,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$scope.InOrd = data;
 					$scope.InOrdList = data.list;
 					$scope.getOrd1(data);
-				}
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
 				}
 			})
 		}
@@ -3127,14 +2957,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		}).success(function (data) {
 			$scope.IntegralDT = data;
 			layer.close(cool);
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 		//得到物流信息
 		$data.getWlMsg({ order_id: $scope.orderid }).success(function (data) {
@@ -3159,14 +2981,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			layer.close(cool);
 			$scope.orderDetail = data;
 			$scope.butie_price = (Number(data.order.supp_subsidy_amount) + Number(data.order.subsidy_amount)).toFixed(2);
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 
 		$data.getWlMsg({ order_id: $scope.orderid }).success(function (data) {
@@ -3180,7 +2994,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/align_buy',
 				data: { order_id: order_id },
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
 					layer.msg(data.info, { icon: 2, time: 3000 })
@@ -3305,7 +3118,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/is_goods_repair',
 				data: $scope.allGoods,
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status) {
 					$state.go('return-repair-content', {
@@ -3333,21 +3145,12 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				mid: $stateParams.mid,
 				lj_shipping_sn: $scope.wlsn
 			},
-			headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 		}).success(function (data) {
 			$data.getOrderInfo({ order_id: $scope.orderid, type: 1 }).success(function (data) {
 				layer.close(cool);
 
 				$scope.html = ($sce.trustAsHtml(data.content));
 
-			}).error(function (data, staus) {
-				layer.close(cool);
-				if (staus == 401) {
-					////layer.msg('用户失效，请重新登录');
-					ipCookie.remove('has_login');
-					ipCookie.remove('token');
-					location.href = "/default.html";
-				}
 			})
 		})
 	}])
@@ -3370,14 +3173,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 		$data.getOrderInfo({ order_id: $scope.orderid }).success(function (data) {
 			layer.close(cool);
 			$scope.orderDetailQx = data;
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 
 		$scope.joinBuyCar = function (order_id) {
@@ -3385,7 +3180,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				method: "POST",
 				url: '' + $rootScope.ip + '/User/align_buy',
 				data: { order_id: order_id },
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				if (data.status == 0) {
 					layer.msg(data.info, { icon: 2, time: 3000 })
@@ -3409,19 +3203,10 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			data: {
 				url: $scope.ImgUrl
 			},
-			headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 		}).success(function (data) {
 			layer.close(cool);
 			$scope.payNewData = data;
 			$scope.res = ipCookie('token');
-		}).error(function (data, staus) {
-			layer.close(cool);
-			if (staus == 401) {
-				////layer.msg('用户失效，请重新登录');
-				ipCookie.remove('has_login');
-				ipCookie.remove('token');
-				location.href = "/default.html";
-			}
 		})
 
 		setInterval(function () {
@@ -3431,7 +3216,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				params: {
 					id: $scope.payNewData.order_no
 				},
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
 					//console.log(data);
@@ -3497,7 +3281,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				url: '' + $rootScope.ip + '/Staff/edit_user',
 				method: 'GET',
 				params: { user_id: userId },
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				layer.close(index);
 				if (data.status == 1) {
@@ -3545,7 +3328,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$http({
 				url: '' + $rootScope.ip + '/Staff/index',
 				method: 'POST',
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			}).success(function (data) {
 				// layer.close(index);
 				if (data.status == 1) {
@@ -3563,7 +3345,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 					$http({
 						url: '' + $rootScope.ip + '/Staff/del_user',
 						method: 'POST',
-						headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
 						data: { user_id: user_id }
 					}).success(function (data) {
 						layer.close(index);
@@ -3590,7 +3371,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$http({
 					url: '' + $rootScope.ip + '/Staff/edit_user',
 					method: 'POST',
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
 					data: {
 						user_id: $scope.userId,
 						mobile_phone: $scope.formData.mobile_phone,
@@ -3611,7 +3391,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$http({
 					url: '' + $rootScope.ip + '/Staff/add_user',
 					method: 'POST',
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
 					data: $scope.formData
 				}).success(function (data) {
 					layer.msg(data.info, { time: 2000 });
@@ -3624,7 +3403,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 				$http({
 					url: '' + $rootScope.ip + '/Staff/add_now',
 					method: 'POST',
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
 					data: {
 						user_id: $scope.userInfo.data.user_id,
 						step: 'two',
@@ -3651,7 +3429,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$http({
 				url: '' + $rootScope.ip + '/Staff/add_now',
 				method: 'POST',
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') },
 				data: { step: 'one', user_name: $scope.formData.user_name }
 			}).success(function (data) {
 				layer.close(index);

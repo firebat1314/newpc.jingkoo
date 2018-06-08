@@ -1,47 +1,22 @@
-
-(function (ng) {
-    'use strict';
-    var app = ng.module('ngLoadScript', []);
-    app.directive('script', function() {
-        return {
-            restrict: 'E',
-            scope: false,
-            link: function(scope, elem, attr)
-            {
-                if (attr.type==='text/javascript-lazy')
-                {
-                    var s = document.createElement("script");
-                    s.type = "text/javascript";
-                    var src = elem.attr('src');
-                    if(src!==undefined)
-                    {
-                        s.src = src;
-                    }
-                    else
-                    {
-                        var code = elem.text();
-                        s.text = code;
-                    }
-                    document.head.appendChild(s);
-                    elem.remove();
-                }
-            }
-        };
-    });
-}(angular));
-
-angular.module('myApp', [
+var myApp = angular.module('myApp', [
     'ipCookie',
     'ngSanitize',
-    'myApp.services',
+    'myApp.HttServices',
     'myApp.controllers',
     'myApp.user-controllers',
     'myApp.router',
     'myApp.directives',
-    'ngLoadScript',
-    'afkl.lazyImage'
+    'myApp.filter',
+    'afkl.lazyImage',
+    // 'ui.bootstrap'
 ])
-// function get_html(html){
-//     console.log(html);
-//     return html;
-// }
+myApp.config(function ($provide, $compileProvider, $controllerProvider, $filterProvider) {
+    myApp.controller = $controllerProvider.register;
+    myApp.directive = $compileProvider.directive;
+    myApp.filter = $filterProvider.register;
+    myApp.factory = $provide.factory;
+    myApp.service = $provide.service;
+    myApp.constant = $provide.constant;
+
+    
+});

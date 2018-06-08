@@ -1,7 +1,5 @@
 
-angular.module('CheckoutDistributionModule', [])
-
-    .controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
         $rootScope.isShow = false;
         $rootScope.change = true;
         // $scope.returnCar = function(){
@@ -31,7 +29,6 @@ angular.module('CheckoutDistributionModule', [])
                     notes: $scope.getNotes(),
                     id: $scope.dId
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
         }
         //结算页所有信息接口数据
@@ -43,7 +40,6 @@ angular.module('CheckoutDistributionModule', [])
                 data: {
                     id: $scope.dId
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 layer.close(cool);
                 if (data.status == 1) {
@@ -63,7 +59,6 @@ angular.module('CheckoutDistributionModule', [])
                         method: "POST",
                         url: '' + $rootScope.ip + '/User/user_info',
                         data: '',
-                        headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                     }).success(function (data) {
                             $scope.payPoints = data.user_info.pay_points;
                         }) */
@@ -110,7 +105,6 @@ angular.module('CheckoutDistributionModule', [])
                     address_id: id,
                     id: $scope.dId
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     $scope.jiesuanFn();
@@ -131,7 +125,6 @@ angular.module('CheckoutDistributionModule', [])
                 params: {
                     address_id: id
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 });
@@ -158,7 +151,6 @@ angular.module('CheckoutDistributionModule', [])
                 params: {
                     address_id: id
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.bianjiData = data;
 
@@ -182,7 +174,6 @@ angular.module('CheckoutDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/edit_address',
                 data: $scope.editData,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
@@ -210,7 +201,6 @@ angular.module('CheckoutDistributionModule', [])
                     type: 2,
                     parent_id: pid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.bianjiData.city_list = data.data;
                 $scope.disDatas = [];
@@ -227,7 +217,6 @@ angular.module('CheckoutDistributionModule', [])
                     type: 3,
                     parent_id: pid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.disDatas = data;
                 $scope.bianjiData.district_list = data.data;
@@ -248,7 +237,6 @@ angular.module('CheckoutDistributionModule', [])
                 method: "GET",
                 url: '' + $rootScope.ip + '/User/add_address',
                 params: '',
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.tianjiaData = data;
 
@@ -266,7 +254,6 @@ angular.module('CheckoutDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/User/add_address',
                 data: $scope.eeditData,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
@@ -289,7 +276,6 @@ angular.module('CheckoutDistributionModule', [])
                     type: 2,
                     parent_id: pid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.cityData = data;
                 $scope.disData = [];
@@ -306,7 +292,6 @@ angular.module('CheckoutDistributionModule', [])
                     type: 3,
                     parent_id: pid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.disData = data;
             })
@@ -319,7 +304,6 @@ angular.module('CheckoutDistributionModule', [])
                 params: {
                     address_id: id
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 });
@@ -338,7 +322,6 @@ angular.module('CheckoutDistributionModule', [])
                     pay_id: id,
                     id: $scope.dId
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 });
@@ -357,7 +340,6 @@ angular.module('CheckoutDistributionModule', [])
                     suppliers_id: storeId,
                     shipping: id
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     $scope.jiesuanFn();
@@ -375,7 +357,6 @@ angular.module('CheckoutDistributionModule', [])
                     suppliers_id: sid,
                     bonus_id: bid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 });
@@ -395,7 +376,6 @@ angular.module('CheckoutDistributionModule', [])
                 data: {
                     bonus_sn: code
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 event.target.style.pointerEvents = 'auto';
                 event.target.style.opacity = '1';
@@ -412,7 +392,6 @@ angular.module('CheckoutDistributionModule', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/user_info',
             data: '',
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             $scope.userMoney = data.user_info.user_money;
         })
@@ -426,7 +405,6 @@ angular.module('CheckoutDistributionModule', [])
                     data: {
                         surplus: 1
                     },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status) {
                         $scope.jiesuanFn();
@@ -439,7 +417,6 @@ angular.module('CheckoutDistributionModule', [])
                     data: {
                         surplus: 0
                     },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status) {
                         $scope.jiesuanFn();
@@ -455,7 +432,6 @@ angular.module('CheckoutDistributionModule', [])
                     data: {
                         password: $scope.pass
                     },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status) {
                         $http({
@@ -465,7 +441,6 @@ angular.module('CheckoutDistributionModule', [])
                                 notes: $scope.getNotes(),
                                 id: $scope.dId
                             },
-                            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
                                 if (data.status == 1) {
@@ -491,7 +466,6 @@ angular.module('CheckoutDistributionModule', [])
                         notes: $scope.getNotes(),
                         id: $scope.dId
                     },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status == 1) {
                         layer.msg(data.info, { time: 1000 });

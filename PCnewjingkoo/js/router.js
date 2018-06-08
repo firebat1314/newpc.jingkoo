@@ -1,11 +1,12 @@
 
-angular.module("myApp.router", ["ui.router"])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-        //重定向首页
+angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
-        //location.href = 'http://newwww.jingkoo.net/';
-
-        $urlRouterProvider.otherwise('/jump/');
+        $ocLazyLoadProvider.config({
+            debug: false, //知否启用调试模式  
+            events: false  //事件绑定是否启用  
+        });
+        $urlRouterProvider.when("", "/home").otherwise('/error');
         //一级栏目
         //首页
         $stateProvider
@@ -13,7 +14,12 @@ angular.module("myApp.router", ["ui.router"])
                 title: '转跳中...',
                 url: '/jump/:token',
                 templateUrl: 'template/jump/jump.html',
-                controller: "jumpControl"
+                controller: "jumpControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/jump/jump.js");
+                    }]
+                }
             })
             //首页路由
             .state("home", {
@@ -80,7 +86,7 @@ angular.module("myApp.router", ["ui.router"])
             })
             //注册路由
             .state("registerCompany", {
-                title: '注册',
+                title: '企业认证',
                 url: '/register-company/:user_id',
                 templateUrl: 'template/register-company.html',
                 controller: "register-company-control"
@@ -110,54 +116,94 @@ angular.module("myApp.router", ["ui.router"])
                 title: '商品列表',
                 url: '/shop-list/:params',
                 templateUrl: 'template/shop-list/shop-list.html',
-                controller: "ShopListControl"
+                controller: "ShopListControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/shop-list/shop-list.js");
+                    }]
+                }
             })
             //切边镜片商品列表
             .state("shop-list-cut", {
                 title: '商品列表',
                 url: '/shop-list-cut/:params',
                 templateUrl: 'template/shop-list-cut/shop-list-cut.html',
-                controller: "ShopListCutControl"
+                controller: "ShopListCutControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/shop-list-cut/shop-list-cut.js");
+                    }]
+                }
             })
             .state("shop-list-distribution", {
                 title: '商品列表',
                 url: '/shop-list-distribution/:params',
                 templateUrl: 'template/distribution/shop-list-distribution/shop-list-distribution.html',
-                controller: "ShopListDistributionControl"
+                controller: "ShopListDistributionControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/distribution/shop-list-distribution/shop-list-distribution.js");
+                    }]
+                }
             })
             //切边镜片商品详情路由
             .state("shop-detail-cut", {
                 title: '商品详情',
                 url: '/shop-detail-cut/:goods_id/:id',
                 templateUrl: 'template/shop-detail-cut/shop-detail-cut.html',
-                controller: "shopDetailCutControl"
+                controller: "shopDetailCutControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/shop-detail-cut/shop-detail-cut.js");
+                    }]
+                }
             })
             //切边镜片商品详情路由
             .state("shop-detail-distribution", {
                 title: '铺货详情',
                 url: '/shop-detail-distribution/:did',
                 templateUrl: 'template/distribution/shop-detail-distribution/shop-detail-distribution.html',
-                controller: "shopDetailDistributionControl"
+                controller: "shopDetailDistributionControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/distribution/shop-detail-distribution/shop-detail-distribution.js");
+                    }]
+                }
             })
             //切边镜片商品详情路由
             .state("checkout-distribution", {
                 title: '结算铺货',
                 url: '/checkout-distribution/:did',
                 templateUrl: 'template/distribution/jiesuan-distribution/jiesuan-distribution.html',
-                controller: "checkoutDistributionControl"
+                controller: "checkoutDistributionControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/distribution/jiesuan-distribution/jiesuan-distribution.js");
+                    }]
+                }
             })
             //
             .state("order-list-d", {
                 title: '铺货订单',
                 url: '/order-list-d',
                 templateUrl: 'template/distribution/order-list/order-list.html',
-                controller: "orderListDistributionControl"
+                controller: "orderListDistributionControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/distribution/order-list/order-list.js");
+                    }]
+                }
             })
             .state("order-detail-d", {
                 title: '订单详情',
                 url: '/order-detail-d/:orderId',
                 templateUrl: 'template/distribution/order-detail/order-detail.html',
-                controller: "orderDetailDistributionControl"
+                controller: "orderDetailDistributionControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load("template/distribution/order-detail/order-detail.js");
+                    }]
+                }
             })
             //商品列表路由
             .state("shop-list-ano", {
@@ -682,6 +728,143 @@ angular.module("myApp.router", ["ui.router"])
                 templateUrl: 'template/Employee-mana.html',
                 controller: "EmployeeM-control"
             })
-        // $locationProvider.html5Mode(true);y
+            //error
+            .state("error", {
+                title: 'error',
+                url: '/error',
+                templateUrl: 'template/error/error.html',
+                controller: "errorControl",
+                resolve: {
+                    deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            "template/error/error.js",
+                            "template/error/error.css",
+                        ]);
+                    }]
+                }
+            })
+            //商户贷
+            .state("SHD", {
+                title: '商户贷',
+                url: '/SHD',
+                views: {
+                    '': {
+                        templateUrl: 'template/SHD/SHD.html',
+                        controller: "SHDControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/SHD.css",
+                                    "template/SHD/SHD.js",
+                                ]);
+                            }]
+                        }
+                    },
+                    "userMain@SHD": {
+                        title: '商户贷222',
+                        templateUrl: 'template/SHD/index/index.html',
+                        controller: "SHDIndexControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/index/index.css",
+                                    "template/SHD/index/index.js",
+                                ]);
+                            }]
+                        },
+                    }
+                }
+            })
+            .state("SHD.borrowings", {
+                title: '借款',
+                url: '/borrowings',
+                views: {
+                    'userMain@SHD': {
+                        templateUrl: 'template/SHD/borrowings/borrowings.html',
+                        controller: "SHDBorrowingsControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/borrowings/borrowings.css",
+                                    "template/SHD/borrowings/borrowings.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
+            .state("SHD.borrowingsInfo", {
+                title: '借款信息',
+                url: '/borrowingsInfo',
+                views: {
+                    'userMain@SHD': {
+                        templateUrl: 'template/SHD/borrowings-info/borrowings-info.html',
+                        controller: "SHDBorrowingsInfoControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/borrowings-info/borrowings-info.css",
+                                    "template/SHD/borrowings-info/borrowings-info.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
+            .state("SHD.borrowingsPersonInfo", {
+                title: '借款人信息',
+                url: '/borrowingsPersonInfo',
+                views: {
+                    'userMain@SHD': {
+                        templateUrl: 'template/SHD/borrowings-person-info/borrowings-person-info.html',
+                        controller: "SHDBorrowingsPersonInfoControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/borrowings-person-info/borrowings-person-info.css",
+                                    "template/SHD/borrowings-person-info/borrowings-person-info.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
+            .state("SHD.companyInfo", {
+                title: '公司信息',
+                url: '/companyInfo',
+                views: {
+                    'userMain@SHD': {
+                        templateUrl: 'template/SHD/company-info/company-info.html',
+                        controller: "SHDCompanyInfoControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/company-info/company-info.css",
+                                    "template/SHD/company-info/company-info.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
+            .state("SHD.tiedCard", {
+                title: '实名绑卡认证',
+                url: '/tiedCard',
+                views: {
+                    'userMain@SHD': {
+                        templateUrl: 'template/SHD/tied-card/tied-card.html',
+                        controller: "SHDTiedCardControl",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/SHD/tied-card/tied-card.css",
+                                    "template/SHD/tied-card/tied-card.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
+
 
     })

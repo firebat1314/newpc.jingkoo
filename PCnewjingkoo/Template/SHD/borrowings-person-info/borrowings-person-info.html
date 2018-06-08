@@ -1,0 +1,111 @@
+<div class="shd-borrowings-person-info animated fadeIn">
+   <div class="fore fore2">
+      <div class="tit">基本信息</div>
+      <div class="body">
+         <table>
+            <tr>
+               <td style="width: 120px">学历：</td>
+               <td>
+                  <select ng-model="params.education" style="cursor: pointer;" class="input" name="education" id="education" ng-options="item.id as item.label for item in education">
+                     <option value="">请选择</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td>婚姻狀況：</td>
+               <td>
+                  <select ng-model="params.marital_status" style="cursor: pointer;" class="input" name="marital_status" id="marital_status" ng-options="item.id as item.label for item in marital_status">
+                     <option value="">请选择</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td>子女狀況：</td>
+               <td>
+                  <select ng-model="params.child_status" style="cursor: pointer;" class="input" name="child_status" id="child_status" ng-options="item.id as item.label for item in child_status">
+                     <option value="">请选择</option>
+                  </select>
+               </td>
+            </tr>
+
+         </table>
+      </div>
+   </div>
+   <div class="fore fore2">
+      <div class="tit">家庭住址</div>
+      <div class="body">
+         <table>
+
+            <tr>
+               <td style="width: 120px">所在地区：</td>
+               <td>
+                  <input ng-model="params.residential_area" class="input" type="text" name="j_dq" id="j_dq" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td style="width: 120px">详细地址：</td>
+               <td>
+                  <input ng-model="params.residential_address" class="input" type="text" name="j_dz" id="j_dz" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>居住地址类型：</td>
+               <td>
+                  <select ng-model="params.house_type" style="cursor: pointer;" class="input" name="house_type" id="house_type" ng-options="item.id as item.label for item in house_type">
+                     <option value="">请选择</option>
+                  </select>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <div class="fore fore2" ng-repeat="item in params.contact_info">
+      <div class="tit">紧急联系人（{{$index+1}}）：</div>
+      <div class="body">
+         <table>
+
+            <tr>
+               <td style="width: 120px">联系人姓名：</td>
+               <td>
+                  <input ng-model="item.contact_name" class="input" type="text" name="jj_je" id="jj_je" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td style="width: 120px">联系人电话：</td>
+               <td>
+                  <input ng-model="item.contact_mobile" class="input" type="text" name="je" id="je" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>与本人关系：</td>
+               <td>
+                  <select ng-model="item.contact_relation" style="cursor: pointer;" class="input" name="contact_relation" id="contact_relation" ng-options="item.id as item.label for item in contact_relation">
+                     <option value="">请选择</option>
+                  </select>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+   <div class="fore fore2">
+      <div class="tit">邮箱</div>
+      <div class="body">
+         <table>
+            <tr>
+               <td style="width: 120px">邮箱地址：</td>
+               <td>
+                  <input ng-model="params.email" class="input" type="text" name="email" id="email" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>
+                  <div>
+                     <button ng-click="next()" class="button">下一步</button>
+                  </div>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</div>

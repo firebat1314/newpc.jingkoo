@@ -1,6 +1,5 @@
-angular.module('OrderListDistributionModule', [])
 
-.controller('orderListDistributionControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {
+myApp.controller('orderListDistributionControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {
    //获取用户订单信息
    //控制首页会员中心显隐
    $rootScope.isShow = false;
@@ -222,7 +221,6 @@ angular.module('OrderListDistributionModule', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/align_buy',
          data: { order_id: order_id },
-         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
       }).success(function (data) {
          if (data.status == 0) {
             layer.confirm('需要医疗器械许可证，是否上传', {
@@ -250,7 +248,6 @@ angular.module('OrderListDistributionModule', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Distribution/infoUrl',
             data: { order_id: order_id },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             if (data.status) {
                 w.location = data.url;
@@ -269,7 +266,6 @@ angular.module('OrderListDistributionModule', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Seal/index',
             data: { order_id: order_id },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (data) {
             if (data.status) {
                 w.location = data.url;

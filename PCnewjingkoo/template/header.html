@@ -25,7 +25,8 @@
 <div ng-controller="index_header_parentControl">
 
     <div id="clooseCompany1">
-        <div ng-repeat="item in company" ng-click="loginByCompany(item.cid)">{{item.cname}}</div>
+        <div ng-repeat="item in company" ng-style="item.checked==1?{'opacity':'.3','backgroundColor':'#ffffff','cursor': 'not-allowed'}:{}"
+            ng-click="item.checked==1?null:loginByCompany(item.cid)">{{item.cname}}</div>
     </div>
     <div class="header-main">
         <div class="header-top">
@@ -76,22 +77,22 @@
                     <!--</a>
 						#/order-all/
 					-->
-                    <a href="http://crm.jingku.cn" target="_blank" ng-if="userData.user_info.is_salesman==1">
-                        <div class="dingDan" style="background: url(../img/CRM_.png) no-repeat left;background-size: 19px;">
+                    <div ng-if="userData.user_info.is_salesman==1" class="dingDan" style="background: url(../img/CRM_.png) no-repeat left;background-size: 19px;">
+                        <a href="http://crm.jingku.cn" target="_blank">
                             <p>CRM</p>
-                        </div>
-                    </a>
-                    <a href="#/order-all/">
-                        <div class="dingDan">
+                        </a>
+                    </div>
+                    <div class="dingDan">
+                        <a href="#/order-all/">
                             <p>订单</p>
-                        </div>
-                    </a>
-                    <a href="#/parson-msg-center">
-                        <div class="xinXi">
+                        </a>
+                    </div>
+                    <div class="xinXi">
+                        <a href="#/parson-msg-center">
                             <!--<p>消息<span>({{msgNumber}})</span></p>-->
                             <p>消息</p>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     <div class="ywy" ng-if="userData.user_info.parent_id>0">
                         <!--<p>消息<span>({{msgNumber}})</span></p>-->
                         <p>业务员</p>
@@ -104,28 +105,28 @@
                             </span>
                         </div>
                     </div>
-                    <a href="">
-                        <div class="phone-version">
+                    <div class="phone-version">
+                        <a href="">
                             <p>手机版</p>
                             <div class="iosAndAndroid-box">
                                 <img src="img/app.png" class="ewm_img">
                                 <span class="erweima_p">镜库APP</span>
                             </div>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="weixin">
+                        </a>
+                    </div>
+                    <div class="weixin">
+                        <a href="">
                             <!--<p>消息<span>({{msgNumber}})</span></p>-->
                             <p>关注镜库</p>
                             <div class="erweima_box">
                                 <img src="img/header_ewm.png" class="ewm_img">
                                 <span class="erweima_p">关注镜库微信</span>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                     <div class="person" style="margin-right:0;">
                         <a href="#/control-mb">
-                            <p style="text-align: center;" ng-attr-title="{{username}}">{{username}}</p>
+                            <p style="text-align: center;" ng-attr-title="{{userData.user_info.user_name}}">{{userData.user_info.user_name}}</p>
                         </a>
                         <div class="user-ul" style="height: auto;">
                             <ul>
@@ -257,10 +258,10 @@
                 <div class="vip-center" ng-if="isShow">
                     <div class="vip-touxiang-box">
                         <div style="cursor: pointer;" ng-click="goVip()" class="vip-touxiang">
-                            <img ng-src={{userImg}} alt="">
+                            <img ng-src={{userData.user_info.avatar}} alt="">
                         </div>
                     </div>
-                    <span>您好！{{username}}</span>
+                    <span>您好！{{userData.user_info.user_name}}</span>
                     <button ng-click="goVip()">会员中心</button>
                     <div class="vip-content-box">
                         <a href="#/order-all/unpay">
@@ -294,11 +295,11 @@
                 </a>
             </div>
         </div>
-        <div class="nav" ng-class="{'nav show':allNav==1||allNavs==1,'nav':allNav==0}">
+        <div class="nav" ng-class="{'show':allNav==1||allNavs==1}">
             <div class="nav-bar">
                 <div class="nav-bar-all">
                     <span style="margin-left:0px;">全部商品分类</span>
-                    <div class="all-fenlei" ng-class="{'all-fenlei show':allFenLei==1,'all-fenlei':allFenLei==0}">
+                    <div class="all-fenlei" ng-class="{'show':allFenLei==1}">
                         <div ng-mouseover="Index($index)" ng-repeat="allItem in IndexData.list.fastnav" class="all-fenlei-item" repeat-done="glassLiBox()">
                             <img style="width:25px;height:25px;" ng-src={{allItem.img}} alt="">
                             <span ng-click="goShopList(allItem.filter_name,allItem.filter_val,allItem.zeiss_name,allItem.zeiss_val,allItem.brand_name,allItem.brand_val,allItem.cate_name,allItem.cate_val,allItem.search_name,allItem.search_val,allItem.is_url,allItem.url)">{{allItem.name}}</span>
@@ -320,36 +321,55 @@
                     </div>
                 </div>
                 <ul>
-                    <a ui-sref="home" ui-sref-active="active">
-                        <li>首页</li>
-                    </a>
-                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="fashion" ui-sref-active="active">
-                        <li>品牌</li>
-                    </a>
-                    <!-- <a ui-sref="waitingSale" ui-sref-active="active"><li>预售</li></a> -->
-                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="newGoods" ui-sref-active="active">
-                        <li>新品</li>
-                    </a>
-                    <a ng-if="userData&&userData.user_info.is_test!=1" ui-sref="flashSale" ui-sref-active="active">
-                        <li>闪购</li>
-                    </a>
-                    <a ui-sref="pointsMall" ui-sref-active="active">
-                        <li>积分商城</li>
-                    </a>
-                    <a ui-sref="yhq" ui-sref-active="active">
-                        <li>优惠券</li>
-                    </a>
-                    <!--<a ui-sref="recharge" ui-sref-active="active"><li>充值</li></a>-->
-                    <a ui-sref="person-pay" ui-sref-active="active">
-                        <li>充值</li>
-                    </a>
-                    <a ui-sref="sheji" ui-sref-active="active">
-                        <li>镜库设计</li>
-                    </a>
-                    <a ui-sref="shop-list-distribution" ui-sref-active="active">
-                        <li>铺货专区</li>
-                    </a>
-                    <!-- <a ui-sref="shop-list-cut({params:1})" ui-sref-active="active">
+                    <li>
+                        <a ui-sref-active="active" ui-sref="home">
+                            首页
+                        </a>
+                    </li>
+                    <li ng-if="userData&&userData.user_info.is_test!=1">
+                        <a ui-sref-active="active" ui-sref="fashion">
+                            品牌
+                        </a>
+                    </li>
+                    <!--  <a ui-sref-active="active" ui-sref="waitingSale"><li>预售</li></a> -->
+                    <li ng-if="userData&&userData.user_info.is_test!=1">
+                        <a ui-sref-active="active" ui-sref="newGoods">
+                            新品
+                        </a>
+                    </li>
+                    <li ng-if="userData&&userData.user_info.is_test!=1">
+                        <a ui-sref-active="active" ui-sref="flashSale">
+                            闪购
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" ui-sref="pointsMall">
+                            积分商城
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" ui-sref="yhq">
+                            优惠券
+                        </a>
+                    </li>
+                    <!--<a ui-sref-active="active" ui-sref="recharge"><li>充值</li></a>-->
+                    <li>
+                        <a ui-sref-active="active" ui-sref="person-pay">
+                            充值
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" ui-sref="sheji">
+                            镜库设计
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" ui-sref="shop-list-distribution({params:''})">
+                            铺货专区
+                        </a>
+                    </li>
+
+                    <!--  <a ui-sref-active="active" ui-sref="shop-list-cut({params:1})">
                         <li>切边</li>
                     </a> -->
                     <!--<li ng-click="jqqd()">镜库金融</li>-->

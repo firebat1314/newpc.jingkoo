@@ -164,8 +164,8 @@
 										<p class="saler_p11">
 											<span ng-if="data.goods_fee.free_money>-1" class="saler_msg_sp6">满{{shopDetailData.goods_fee.free_money}}包邮</span>
 										</p>
-										<div class="ship_tips">
-											<span class="shipping_rule">{{shopDetailData.supplier_info.shipping_rule}}</span>
+										<div class="ship_tips" ng-if="shopDetailData.supplier_info.shipping_title">
+											<i class="iconfont icon-wuliu" style="font-size: 22px;color: #3f69a5;"></i><span class="shipping_rule">{{shopDetailData.supplier_info.shipping_title}}</span>
 										</div>
 									</div>
 									<!-- <div class="saler_msg_d3" style="line-height: 30px;">{{shopDetailData.supplier_info.shipping_rule}}</div> -->

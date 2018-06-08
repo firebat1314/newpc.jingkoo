@@ -1,5 +1,27 @@
 
 angular.module('myApp.directives', [])
+    .directive('script', function () {
+        return {
+            restrict: 'E',
+            scope: false,
+            link: function (scope, elem, attr) {
+                if (attr.type === 'text/javascript-lazy') {
+                    var s = document.createElement("script");
+                    s.type = "text/javascript";
+                    var src = elem.attr('src');
+                    if (src !== undefined) {
+                        s.src = src;
+                    }
+                    else {
+                        var code = elem.text();
+                        s.text = code;
+                    }
+                    document.head.appendChild(s);
+                    elem.remove();
+                }
+            }
+        };
+    })
     .directive('repeatDone', function ($timeout) {
         return {
             link: function (scope, element, attrs) {
@@ -266,7 +288,7 @@ angular.module('myApp.directives', [])
                 typeLink: '@'
             },
             link: function (scope, element, attrs) {
-                element.css('cursor','pointer');
+                element.css('cursor', 'pointer');
                 $(element).on('click', function () {
                     if (scope.adsClick) {
                         var data = JSON.parse(scope.adsClick)
@@ -360,17 +382,20 @@ angular.module('myApp.directives', [])
                     method: "POST",
                     url: '' + $rootScope.ip + '/Index/ads',
                     data: { int_pos_id: 79, int_size: 1 },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 }).success(function (data) {
                     if (data.status) {
                         $scope.topads = data;
                     }
                 })
+                $scope.close = function(e){
+                    e.stopPropagation();
+                    $('.ads-top').fadeOut();
+                }
             }],
-            templateUrl:'template/ads-top.html',
+            templateUrl: 'template/ads-top.html',
             replace: true,
-            link:function (scope, element, attrs) {
-                element.css('width','100%');
+            link: function (scope, element, attrs) {
+                element.css('width', '100%');
             }
         };
     })

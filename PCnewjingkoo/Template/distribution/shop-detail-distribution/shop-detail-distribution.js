@@ -1,5 +1,4 @@
-angular.module('ShopDetailDistributionModule', [])
-    .controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', '$sce', function ($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll, $sce) {
+myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', '$sce', function ($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll, $sce) {
         $rootScope.isShow = false;
         $rootScope.change = true;
 
@@ -8,7 +7,6 @@ angular.module('ShopDetailDistributionModule', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Distribution/info',
             data: { id: $scope.dId },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
         }).success(function (res) {
             if (res.status == 1) {
                 $scope.distributionInfo = res;
@@ -26,7 +24,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Distribution/get_goods_attribute',
                 data: { goods_id: $scope.goods_id, id: $scope.dId },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 $scope.spectaclesData = data;
                 $scope.attrNumber = 1;
@@ -66,7 +63,6 @@ angular.module('ShopDetailDistributionModule', [])
                                 attr: attrId,
                                 id: $scope.dId
                             },
-                            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
                                 $scope.goodsData = data;
@@ -94,7 +90,6 @@ angular.module('ShopDetailDistributionModule', [])
                                         method: "POST",
                                         url: '' + $rootScope.ip + '/Goods/change_goods_number',
                                         data: $scope.goodsCarParams,
-                                        headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                                     })
                                         .success(function (data) {
                                             //layer.close(cool);
@@ -160,7 +155,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/goods_infos',
                 data: { goods_id: $scope.goods_id },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status) {
@@ -176,7 +170,6 @@ angular.module('ShopDetailDistributionModule', [])
                             method: "POST",
                             url: '' + $rootScope.ip + '/User/user_info',
                             data: '',
-                            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
                                 $scope.payPoints = data.user_info.pay_points;
@@ -221,7 +214,6 @@ angular.module('ShopDetailDistributionModule', [])
                                     id: $scope.shopId,
                                     type: 0
                                 },
-                                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
                                     layer.msg(data.info, { time: 1000 });
@@ -237,7 +229,6 @@ angular.module('ShopDetailDistributionModule', [])
                                     id: $scope.shopId,
                                     type: 1
                                 },
-                                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                             })
                                 .success(function (data) {
                                     layer.msg(data.info, { time: 1000 });
@@ -299,7 +290,6 @@ angular.module('ShopDetailDistributionModule', [])
                 data: {
                     type_id: tid
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 if (data.status) {
                     layer.msg(data.info, { time: 1000 }, function () {
@@ -334,7 +324,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/get_goods_collect',
                 data: { goods_id: $scope.goods_id },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status == '0') {
@@ -360,7 +349,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/collect_del',
                 data: { goods_id: $scope.goods_id },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status == '0') {
@@ -388,7 +376,6 @@ angular.module('ShopDetailDistributionModule', [])
                     id: addressId,
                     goods_id: $stateParams.goods_id
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status) {
@@ -397,7 +384,6 @@ angular.module('ShopDetailDistributionModule', [])
                             method: "POST",
                             url: '' + $rootScope.ip + '/Goods/set_area',
                             data: $scope.regionArr,
-                            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                         })
                             .success(function (data) {
                                 $rootScope.$broadcast('uploadCity');
@@ -425,7 +411,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/set_area',
                 data: $scope.regionArr,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status) {
@@ -473,7 +458,6 @@ angular.module('ShopDetailDistributionModule', [])
                     goods_id: $scope.goods_id,
                     item: item.qiujing
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     $scope.zhujingData = data;
@@ -515,7 +499,6 @@ angular.module('ShopDetailDistributionModule', [])
                     qiujing: item.qiujing,
                     zhujing: item.zhujing
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (res) {
                 if (res.status) {
                     item.price = res.data.price.toFixed(2);
@@ -616,7 +599,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
                 data: $scope.goodsSpectaclesCarParams,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     success ? success(data) : null;
@@ -629,7 +611,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/Goods/add_to_cart_spec',
                 data: $scope.goodsCarParams,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     success ? success(data) : null;
@@ -646,7 +627,6 @@ angular.module('ShopDetailDistributionModule', [])
                 data: {
                     id: $scope.dId
                 },
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             }).success(function (data) {
                 layer.close(cool);
                 if (data.status == 1) {
@@ -748,7 +728,6 @@ angular.module('ShopDetailDistributionModule', [])
                     data: {
                         goods_id: $scope.shopDetailData.data.exchange_info.goods_id
                     },
-                    headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
                 })
                     .success(function (data) {
                         if (data.status) {
@@ -778,7 +757,6 @@ angular.module('ShopDetailDistributionModule', [])
                 method: "POST",
                 url: '' + $rootScope.ip + '/user/del_watch',
                 data: $scope.historyItem,
-                headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
             })
                 .success(function (data) {
                     if (data.status) {

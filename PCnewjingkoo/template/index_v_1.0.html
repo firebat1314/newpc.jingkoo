@@ -175,7 +175,7 @@
                     <div class="tempWrap">
                         <ul>
                             <li ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
-                                <a href="#/shop-detail/{{fsItem.id}}">
+                                <a href="#/shop-detail/{{fsItem.id}}" style="display: block">
                                     <img ng-src={{fsItem.goods_img}} alt="">
                                     <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
                                     <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>

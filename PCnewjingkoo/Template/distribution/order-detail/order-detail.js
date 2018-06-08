@@ -1,5 +1,4 @@
-angular.module('orderDetailDistributionModule', [])
-.controller('orderDetailDistributionControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {
+myApp.controller('orderDetailDistributionControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', '$anchorScroll', '$location', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams, $anchorScroll, $location) {
    //控制首页会员中心显隐
    $rootScope.isShow = false;
    //控制header和footer显隐
@@ -36,7 +35,6 @@ angular.module('orderDetailDistributionModule', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/align_buy',
          data: { order_id: order_id },
-         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
       }).success(function (data) {
          if (data.status == 0) {
             layer.msg(data.info, { icon: 2, time: 3000 })
@@ -161,7 +159,6 @@ angular.module('orderDetailDistributionModule', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/is_goods_repair',
          data: $scope.allGoods,
-         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
       }).success(function (data) {
          if (data.status) {
             $state.go('return-repair-content', {

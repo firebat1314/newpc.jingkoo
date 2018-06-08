@@ -1,7 +1,5 @@
 
-angular.module('ShopListDistributionModule', [])
-
-.controller('ShopListDistributionControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
+myApp.controller('ShopListDistributionControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
    $rootScope.isShow = false;
    $rootScope.change = true;
    $scope.params = $stateParams.params?JSON.parse(decodeURIComponent($stateParams.params)):{};
@@ -77,7 +75,6 @@ angular.module('ShopListDistributionModule', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/category_goods',
          data: $scope.ListPage,
-         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
       })
          .success(function (data) {
             //console.log(data);
@@ -121,7 +118,6 @@ angular.module('ShopListDistributionModule', [])
             is_return: 1,
             cats: $scope.shopListData.ding_id
          },
-         headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
       })
          .success(function (data) {
             //console.log(data);
@@ -440,7 +436,6 @@ angular.module('ShopListDistributionModule', [])
             data: {
                goods_id: id
             },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
          })
             .success(function (data) {
                //console.log(data);
@@ -459,7 +454,6 @@ angular.module('ShopListDistributionModule', [])
             data: {
                goods_id: id
             },
-            headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
          })
             .success(function (data) {
                //console.log(data);

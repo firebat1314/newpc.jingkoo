@@ -23,11 +23,11 @@
          
       var dlform = document.createElement('form');
       dlform.method = 'post';
-      dlform.action = GetRequest().url;
+      dlform.action = decodeURIComponent(GetRequest().url);
       var hdnFilePath = document.createElement('input');
       hdnFilePath.type = 'hidden';
       hdnFilePath.name = 'data';
-      hdnFilePath.value = GetRequest().data;
+      hdnFilePath.value = decodeURIComponent(GetRequest().data);
       dlform.appendChild(hdnFilePath);
       console.log(dlform)
       document.body.appendChild(dlform);

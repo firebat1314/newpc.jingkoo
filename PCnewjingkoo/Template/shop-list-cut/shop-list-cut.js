@@ -1,7 +1,5 @@
 
-angular.module('ShopListCutModule', [])
-
-	.controller('ShopListCutControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
+	myApp.controller('ShopListCutControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
 		$rootScope.isShow = false;
 		$rootScope.change = true;
 		$scope.params = JSON.parse(decodeURIComponent($stateParams.params) || {})
@@ -77,7 +75,6 @@ angular.module('ShopListCutModule', [])
 				method: "POST",
 				url: '' + $rootScope.ip + '/Cutting/cutting_list',
 				data: $scope.ListPage,
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
 					layer.close(cool);
@@ -109,7 +106,6 @@ angular.module('ShopListCutModule', [])
 					is_return: 1,
 					cats: $scope.shopListData.ding_id || null
 				},
-				headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 			})
 				.success(function (data) {
 					//console.log(data);
@@ -425,7 +421,6 @@ angular.module('ShopListCutModule', [])
 					data: {
 						goods_id: id
 					},
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 				})
 					.success(function (data) {
 						//console.log(data);
@@ -444,7 +439,6 @@ angular.module('ShopListCutModule', [])
 					data: {
 						goods_id: id
 					},
-					headers: { 'Authorization': 'Basic ' + btoa(ipCookie('token') + ':') }
 				})
 					.success(function (data) {
 						//console.log(data);

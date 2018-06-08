@@ -1,4 +1,4 @@
-<div class="login-main">
+<div class="login-main animated fadeIn">
     <a href="http://www.jingku.cn/default.html">
         <img class="jingkoo-logo" src="img/jingkooLogo.png" alt="">
     </a>
@@ -93,7 +93,7 @@
 <div id="clooseCompany">
     <div ng-repeat="item in company" ng-click="loginByCompany(item.cid)">{{item.cname}}</div>
 </div>
-<script>
+<script type="text/javascript">
     $('.login-main').height($(window).height());
     $('.user').focus(function () {
         $(this).parent().addClass('focu');

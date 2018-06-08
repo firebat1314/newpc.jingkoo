@@ -3,6 +3,7 @@
       .ads-top {
          width: 100%;
          min-height: 50px;
+         cursor: pointer;
       }
 
       .ads-top .img {
@@ -43,10 +44,10 @@
       }
 
    </style>
-   <div class="ads-top" ng-if="topads" ng-style="{'background':topads.data[0].mobile_link}">
+   <div class="ads-top" ng-if="topads.length" ng-style="{'background':topads.data[0].mobile_link}" ads-click="{{topads.data[0]}}">
       <div class="img">
-         <img ads-click="{{topads.data[0]}}" src="{{topads.data[0].ad_img}}" alt="">
-         <div class="ads-top-close" onclick="$('.ads-top').fadeOut()">×</div>
+         <img src="{{topads.data[0].ad_img}}" alt="">
+         <div class="ads-top-close" ng-click="close($event)">×</div>
       </div>
    </div>
 </ng-templat>

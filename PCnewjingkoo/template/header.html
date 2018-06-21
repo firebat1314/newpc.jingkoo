@@ -33,8 +33,21 @@
          <div class="header-top-content">
             <div class="header-top-content-left">
                <div class="trans-city">
+                  <style>
+                     .iconfont {
+                        margin-right: 8px;
+                        vertical-align: middle;
+                     }
+
+                     .iconfont+span {
+                        vertical-align: middle;
+                     }
+                  </style>
                   <p>
-                     <span ng-if="areaListName.selected" ng-repeat="areaListName in IndexData.list.getAreaList">{{areaListName.region_name}}</span>
+                     <span ng-if="areaListName.selected" ng-repeat="areaListName in IndexData.list.getAreaList">
+                        <i class="iconfont icon-weizhi"></i>
+                        <span>{{areaListName.region_name}}</span>
+                     </span>
                   </p>
                   <div class="dd dorpdown-layer">
                      <div class="dd-spacer"></div>
@@ -51,11 +64,15 @@
                   </div>
                </div>
                <div class="jingkoo-call">
-                  <p>400-080-5118</p>
+                  <p>
+                     <i class="iconfont icon-dianhua2"></i>
+                     <span>400-080-5118</span>
+                  </p>
                </div>
                <div class="jingkoo-call" ng-click="getCompanyList()" style="background: none;padding-left: 0;">
                   <p>
-                     <a href="">切换企业</a>
+                     <i class="iconfont icon-iconqyxx"></i>
+                     <span>切换企业</span>
                   </p>
                </div>
                <div class="jingkoo-call" ng-if="showHomeBtn" style="background: url(../img/call_fhsy.png) no-repeat left;    background-size: 20px;">
@@ -130,11 +147,11 @@
                   </a>
                   <div class="user-ul" style="height: auto;">
                      <ul>
-                        <a href="#/EmployeeM">
-                           <li class="child_account">员工管理</li>
-                        </a>
                         <a href="#/control-mb">
                            <li class="geRen-center">会员中心</li>
+                        </a>
+                        <a href="#/EmployeeM">
+                           <li class="child_account">员工管理</li>
                         </a>
                         <a href="" ng-click="goHelpCenter()">
                            <li class="bangzhu-center">帮助中心</li>
@@ -209,12 +226,12 @@
                         <div class="keywords-search-item">
                            <p>找“眼镜”相关店铺</p>
                         </div>
-                     </div> -->
-                  <!-- <div class="history-search">
-                        <div class="keywords-search-item">
-                           <span>眼镜</span>
-                           <i>搜索历史</i>
-                           <p>删除</p>
+                    </div>
+                </div>
+                <div class="vip-center" ng-if="isShow">
+                    <div class="vip-touxiang-box">
+                        <div style="cursor: pointer;" ng-click="goVip()" class="vip-touxiang">
+                            <img img-lazy-load={{userData.user_info.avatar}} alt="">
                         </div>
                         <div class="keywords-search-item">
                            <span>眼镜</span>

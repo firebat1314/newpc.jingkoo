@@ -574,8 +574,6 @@ $browser-default-font-size: 37.5px !default;
          color: #666;
          .trans-city {
             height: 40px;
-            background: url(../img/dingwei_.png) no-repeat left;
-            padding-left: 25px;
             cursor: pointer;
             margin-right: 24px;
             position: relative;
@@ -622,7 +620,6 @@ $browser-default-font-size: 37.5px !default;
          }
          .jingkoo-call {
             @extend .trans-city;
-            background: url(../img/call_.png) no-repeat left;
          }
       }
       .header-top-content-right {
@@ -631,7 +628,6 @@ $browser-default-font-size: 37.5px !default;
          padding-right: 15px;
          .qycg {
             height: 40px;
-            background: url(../img/cg_.png) no-repeat left;
             padding-left: 25px;
             margin-right: 24px;
             float: left;
@@ -934,7 +930,7 @@ $browser-default-font-size: 37.5px !default;
                   margin-right: 8px;
                }
                .arrow-box {
-                  transition: all .2s;
+                  transition: all .5s;
                   transform: rotateX(0);
                   i {
                      font-size: 12px;

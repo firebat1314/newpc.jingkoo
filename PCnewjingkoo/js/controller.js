@@ -457,7 +457,7 @@ angular.module('myApp.controllers', [])
          $scope.num = index;
       };
       $scope.goodsTypes = [{
-         label: '全部商品',
+         label: '普通商品',
          value: 1
       }, {
          label: '切边眼镜',
@@ -466,18 +466,16 @@ angular.module('myApp.controllers', [])
          label: '铺货商品',
          value: 3
       }];
-      $scope.goodsType = {
-         label: '全部商品',
-         value: 1
+      switch ($state.current.name) {//根据路由判断当前搜索类型
+         case 'shop-list-cut':$scope.goodsType = $scope.goodsTypes[1];break;
+         case 'shop-list-distribution':$scope.goodsType = $scope.goodsTypes[2];break;
+         default:$scope.goodsType = $scope.goodsTypes[0];break;
       }
       $scope.selectgoodsType = function(item){
          $scope.goodsType = item;
       }
       //搜索
       $scope.searchKey = function () {
-         if($state.current.name == 'home'){
-
-         }
          if($scope.goodsType.value == 1){
             statego('shop-list');
          }else if($scope.goodsType.value == 2){

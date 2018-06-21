@@ -12,9 +12,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 			$anchorScroll();
 		};
 		$scope.goto();
-		var cool = layer.load(0, { shade: [0.3, '#fff'] });
-		$rootScope.ip = 'http://newpc.jingkoo.net'; //测试
-		// $rootScope.ip = 'https://www.jingku.cn'; //正式
+      var cool = layer.load(0, { shade: [0.3, '#fff'] });
+      
+		$rootScope.ip = $data.ip; 
 
 		$scope.getUserMsgHs = function () {
 			$data.getUserMsg().success(function (data) {

@@ -6,7 +6,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             debug: false, //知否启用调试模式  
             events: false  //事件绑定是否启用  
         });
-        $urlRouterProvider.when("", "/home").otherwise('/error');
+        $urlRouterProvider.when("", "/jump/").otherwise('/error');
         //一级栏目
         //首页
         $stateProvider

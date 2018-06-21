@@ -13,7 +13,7 @@ myApp.controller('SHDTiedCardControl', function ($scope, $rootScope, $state, $da
    };
    $scope.Shd_bindCard = function () {
       $scope.downtime = 60;
-      $scope.timer = setInterval(() => {
+      $scope.timer = setInterval(function () {
          if ($scope.downtime == 1) {
             $scope.downtime = null;
             clearInterval($scope.timer);
@@ -31,8 +31,8 @@ myApp.controller('SHDTiedCardControl', function ($scope, $rootScope, $state, $da
       })
    }
    $scope.Shd_bankConfirm = function () {
-      $data.Shd_bankConfirm(params).then(function(res){
-         
+      $data.Shd_bankConfirm(params).then(function (res) {
+
       })
       $state.go('SHD.borrowingsInfo');
    }

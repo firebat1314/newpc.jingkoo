@@ -519,7 +519,7 @@ span.a_arrow_r {
 /* Track */
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
    -webkit-border-radius: 10px;
    border-radius: 10px;
 }
@@ -895,27 +895,64 @@ $browser-default-font-size: 37.5px !default;
          }
       }
       .search-box {
-         width: 418px;
+         width: 500px;
          height: 40px;
-         border-radius: 8px 0 0 8px;
+         border-radius: 4px;
          border: 1px solid #3f69a5;
+         border-right: none;
+         display: flex;
          float: left;
+         * {
+            box-sizing: border-box;
+         }
          .search-box-left {
-            width: 105px;
-            height: 40px;
-            margin-top: 8px;
             position: relative;
-            float: left;
-            &:hover .search-type {
-               display: block;
+            cursor: pointer;
+            height: 100%;
+            padding: 0 16px;
+            border-right: 1px solid #ccc;
+            &.activated,
+            &:hover {
+               .search-type {
+                  display: block;
+               }
+               .inner-main {
+                  .arrow-box {
+                     transform: rotateX(180deg);
+                  }
+               }
+            }
+            .inner-main {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               width: 100%;
+               height: 100%;
+               .value {
+                  display: inline-block;
+                  color: #000;
+                  margin-right: 8px;
+               }
+               .arrow-box {
+                  transition: all .2s;
+                  transform: rotateX(0);
+                  i {
+                     font-size: 12px;
+                     vertical-align: middle;
+                  }
+               }
             }
             .search-type {
-               width: 110px;
-               @include border;
+               user-select: none;
+               width: 100%;
                position: absolute;
-               top: 38px;
+               top: 41px;
+               left: 0;
                display: none;
                z-index: 1000;
+               background: #fafafa;
+               border-radius: 0 0 8px 8px;
+               overflow: hidden;
                li {
                   display: flex;
                   display: -webkit-box;
@@ -929,59 +966,18 @@ $browser-default-font-size: 37.5px !default;
                   cursor: pointer;
                   color: #000;
                   &:hover {
-                     background: #fafafa;
-                     color: #f10215;
+                     background: #e0e0e0;
+                     color: #3f69a5;
                   }
                }
-            }
-            span {
-               width: 75px;
-               display: inline-block;
-               line-height: 30px;
-               padding-left: 25px;
-               border-right: 1px solid #ccc;
-               color: #000;
-            }
-            /*下箭头*/
-            .bottom {
-               width: 20px;
-               height: 20px;
-               position: absolute;
-               right: 15px;
-               top: 11px;
-               z-index: 2;
-               /*兼容ie8-*/
-            }
-            .bottom-arrow1,
-            .bottom-arrow2 {
-               width: 0;
-               height: 0;
-               display: block;
-               position: absolute;
-               left: 0;
-               top: 0;
-               z-index: 5;
-               /*兼容ie8-*/
-               border-bottom: 7px transparent dashed;
-               border-left: 7px transparent dashed;
-               border-right: 7px transparent dashed;
-               border-top: 7px white solid;
-               overflow: hidden;
-            }
-            .bottom-arrow1 {
-               top: 1px;
-               /*重要*/
-               border-top: 7px #333 solid;
-            }
-            .bottom-arrow2 {
-               border-top: 7px white solid;
             }
          }
          .search-box-center {
             position: relative;
+            flex: 1;
             #txt {
                width: 100%;
-               height: 40px;
+               height: 100%;
                border: none;
                outline: none;
                float: left;
@@ -1066,10 +1062,9 @@ $browser-default-font-size: 37.5px !default;
       }
       .search-box-right {
          width: 82px;
-         height: 40px;
-         border: 1px solid #3f69a5;
+         height: 100%;
          float: left;
-         border-radius: 0 8px 8px 0;
+         border-radius: 0 4px 4px 0;
          cursor: pointer;
          background: url(../img/mirror.png) no-repeat center #3f69a5;
       }
@@ -1439,29 +1434,27 @@ $browser-default-font-size: 37.5px !default;
          padding-left: 45px;
          float: left;
          display: flex;
-         &.active li {
-				a {
-					color: #3f69a5;
-				}
-            box-sizing: border-box;
-            border-bottom: 2px solid #3f69a5;
-         }
          li {
-            width: 81px;
-            height: 45px;
-            font-size: 15px;
-            margin-right: 20px;
             float: left;
-            color: #333;
-            text-align: center;
-            line-height: 45px;
             cursor: pointer;
-            &:hover {
-               a {
-						color: #3f69a5;
-					}
+            a {
+               color: #333;
+               text-align: center;
+               line-height: 45px;
+               width: 81px;
+               height: 45px;
+               display: block;
+               font-size: 15px;
+               margin-right: 20px;
                box-sizing: border-box;
-               border-bottom: 2px solid #3f69a5;
+               &.active {
+                  color: #3f69a5;
+                  border-bottom: 2px solid #3f69a5;
+               }
+               &:hover {
+                  color: #3f69a5;
+                  border-bottom: 2px solid #3f69a5;
+               }
             }
          }
       }
@@ -6247,7 +6240,11 @@ $browser-default-font-size: 37.5px !default;
             //height:320px;
             display: inline-block;
             border: 1px solid #e6e6e6;
+            border-bottom: 0;
             position: relative;
+            &:last-child {
+               border-bottom: 1px solid #e6e6e6;
+            }
             .car-manjian {
                height: 64px;
                line-height: 64px; //background:url(../img/car-manjian.png) no-repeat 20px;
@@ -16078,11 +16075,10 @@ textarea {
 .invoice_ask_d3 .ask_d3_div1 {
    position: relative;
    height: 50px;
-   line-height: 50px;
-  //  border-top: 1px solid #e6e6e6;
+   line-height: 50px; //  border-top: 1px solid #e6e6e6;
    border-bottom: 1px solid #e6e6e6;
-   &:last-child{
-     border-bottom: 0;
+   &:last-child {
+      border-bottom: 0;
    }
 }
 

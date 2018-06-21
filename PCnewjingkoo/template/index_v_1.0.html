@@ -1,389 +1,395 @@
 <style type="text/css">
-    .coolEye-center .center-item1>img:hover {
-        border: 1px solid #b2dcf5;
-    }
+   .coolEye-center .center-item1>img:hover {
+      border: 1px solid #b2dcf5;
+   }
 
-    .coolEye-center .center-item2>img:hover {
-        border: 1px solid #b4c5f9;
-    }
+   .coolEye-center .center-item2>img:hover {
+      border: 1px solid #b4c5f9;
+   }
 
-    .coolEye-center .center-item3>img:hover {
-        border: 1px solid #f8c1d6;
-    }
+   .coolEye-center .center-item3>img:hover {
+      border: 1px solid #f8c1d6;
+   }
 
-    .coolEye-center .center-item1:first-child>img:hover,
-    .coolEye-center .center-item2:first-child>img:hover,
-    .coolEye-center .center-item3:first-child>img:hover {
-        border: none;
-    }
+   .coolEye-center .center-item1:first-child>img:hover,
+   .coolEye-center .center-item2:first-child>img:hover,
+   .coolEye-center .center-item3:first-child>img:hover {
+      border: none;
+   }
 </style>
 <style type="text/css">
-    .ad_box {
+   .ad_box {
 
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        z-index: 1000000;
-        text-align: center;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-        background: rgba(0, 0, 0, .4);
-    }
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      z-index: 1000000;
+      text-align: center;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, .4);
+   }
 
-    .ad_box .img {
-        position: relative;
-        max-width: 80%;
-        max-height: 90%;
-        height: auto;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        -webkit-justify-content: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
+   .ad_box .img {
+      position: relative;
+      max-width: 80%;
+      max-height: 90%;
+      height: auto;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+   }
 
-    .ad_box img {
-        max-height: 100%;
-        max-width: 100%;
-        cursor: pointer;
-    }
-    .ad_box .close {
-        position: absolute;
-        top: -30px;
-        right: -30px;
-        text-align: center;
-        color: #999999;
-        font-size: 42px;
-        transform: rotate(45deg);
-        cursor: pointer;
-        -moz-user-select: none;
-        /*火狐*/
-        -webkit-user-select: none;
-        /*webkit浏览器*/
-        -ms-user-select: none;
-        /*IE10*/
-        -khtml-user-select: none;
-        /*早期浏览器*/
-        user-select: none;
-        color: #e0e0e0;
-        border-radius: 50%;
-        background: #666;
-        width: 30px;
-        height: 30px;
-        line-height: 27px;
-        font-size: 27px;
-    }
+   .ad_box img {
+      max-height: 100%;
+      max-width: 100%;
+      cursor: pointer;
+   }
 
-    .ad_box .close:hover {
-        color: #fff;
-    }
+   .ad_box .close {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      text-align: center;
+      color: #999999;
+      font-size: 42px;
+      transform: rotate(45deg);
+      cursor: pointer;
+      -moz-user-select: none;
+      /*火狐*/
+      -webkit-user-select: none;
+      /*webkit浏览器*/
+      -ms-user-select: none;
+      /*IE10*/
+      -khtml-user-select: none;
+      /*早期浏览器*/
+      user-select: none;
+      color: #e0e0e0;
+      border-radius: 50%;
+      background: #666;
+      width: 30px;
+      height: 30px;
+      line-height: 27px;
+      font-size: 27px;
+   }
+
+   .ad_box .close:hover {
+      color: #fff;
+   }
 </style>
 <div class="ad_box" ng-show="ad_show&&ad_img">
-    <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
-        <div class="close" ng-click="closeAd()">+</div>
-        <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{adTanData.ads[0].ad_link}}" src="{{ad_img}}" alt="">
-    </div>
+   <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
+      <div class="close" ng-click="closeAd()">+</div>
+      <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{adTanData.ads[0].ad_link}}"
+         src="{{ad_img}}" alt="">
+   </div>
 </div>
 <div class="scroll-area" style="margin-bottom: 50px;">
-    <div class="pic">
-        <div class="slider" style="width:100%;margin: 0 auto;">
-            <ul>
-                <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}" type-link="{{slide.ad_link}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="home-main">
-        <div class="selected-topics">
-            <div class="floor-select" style="display: none;">
-                <div class="floor-select-item yushou">
-                    <span>精选专题</span>
-                </div>
-                <!--<div class="floor-select-item shangou"><div class="item-img"></div><span>闪购</span></div>-->
-                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item pinpai">
-                    <span>品牌街区</span>
-                </div>
-                <div class="floor-select-item  yinxing">
-                    <span>镜尚镜美</span>
-                </div>
-                <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item meitong">
-                    <span>清新视界</span>
-                </div>
-                <div class="floor-select-item huli">
-                    <span>极简主义</span>
-                </div>
-                <div class="goTop" style="width: 35px;line-height: 20px;text-align: center;padding-top: 5px;padding-bottom: 5px;word-spacing: initial;display: inline-block;border-bottom: 1px solid #e8e8e8;cursor: pointer;background: url(img/dingbu.png) no-repeat center 25px #3f69a5;background-size: 10px 10px;height:27px;display: none;">顶部</div>
-            
+   <div class="pic">
+      <div class="slider" style="width:100%;margin: 0 auto;">
+         <ul>
+            <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}"
+               type-link="{{slide.ad_link}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="home-main">
+      <div class="selected-topics">
+         <div class="floor-select" style="display: none;">
+            <div class="floor-select-item yushou">
+               <span>精选专题</span>
             </div>
-            
-            <div class="selected-topics-tit">
-                <h2>精选专题</h2>
-                <div class="topics-tit-p">
-                    <!-- <p ng-if="yushouData&&yushouData.data.length!=0" ng-click="ysShow=2">预售</p> -->
-                    <p ng-if="flashData&&flashData.data.length!=0" ng-click="ysShow=1" class="show">闪购</p>
-                </div>
-                <a ng-if="ysShow==2" href="#/waitingSale">查看全部
-                    <span class="a_arrow_r"></span>
-                </a>
-                <a ng-if="ysShow==1" href="#/flashSale">查看全部
-                    <span class="a_arrow_r"></span>
-                </a>
+            <!--<div class="floor-select-item shangou"><div class="item-img"></div><span>闪购</span></div>-->
+            <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item pinpai">
+               <span>品牌街区</span>
             </div>
-            <div ng-if="yushouData.data.length!=0">
-                <div class="selected-topics-goods" ng-if="ysShow==2">
-                    <a class="sPrev" ng-if="yushouData.data.length>5" href="javascript:void(0)"></a>
-                    <div class="tempWrap">
-                        <ul>
-                            <li ng-repeat="ysItem in yushouData.data" repeat-done="yushou()">
-                                <a href="#/shop-detail/{{ysItem.id}}">
-                                    <img ng-src={{ysItem.goods_img}} alt="">
-                                    <div class="down-time" data-date="{{ysItem.down_time}}" down-time>剩余0天0时0分0秒</div>
-                                </a>
-                                <div ng-if="showPrice" class="selected-topics-goods-price">
-                                    <p>{{ysItem.shop_price}}</p>
-                                    <i>{{ysItem.market_price}}</i>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <a class="sNext" ng-if="yushouData.data.length>5" href="javascript:void(0)"></a>
-                </div>
+            <div class="floor-select-item  yinxing">
+               <span>镜尚镜美</span>
             </div>
-            <div ng-if="flashData.data.length!=0">
-                <div class="selected-topics-goods" ng-if="ysShow==1">
-                    <a class="sPrev" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
-                    <div class="tempWrap">
-                        <ul>
-                            <li ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
-                                <a href="#/shop-detail/{{fsItem.id}}" style="display: block">
-                                    <img ng-src={{fsItem.goods_img}} alt="">
-                                    <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
-                                    <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>
-                                </a>
-                                <div class="selected-topics-goods-price" ng-if="showPrice">
-                                    <p>{{fsItem.promote_price}}</p>
-                                    <i>¥{{fsItem.shop_price}}</i>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <a class="sNext" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
-                </div>
+            <div ng-if="userData&&userData.user_info.is_test!=1" class="floor-select-item meitong">
+               <span>清新视界</span>
             </div>
-        </div>
-        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics brand-block">
-            <div class="selected-topics-tit">
-                <h2>品牌街区</h2>
-                <a href="#/fashion">查看全部
-                    <span class="a_arrow_r"></span>
-                </a>
+            <div class="floor-select-item huli">
+               <span>极简主义</span>
             </div>
-            <div class="brand-block-ad">
-                <a class="sPrev" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
-                <div class="tempWrap">
-                    <ul>
-                        <li ads-click type-name="{{item.link_type.type_name}}" type-value="{{item.link_type.type_value}}" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
-                            <img ng-src={{item.ad_img}} alt="">
-                        </li>
-                    </ul>
-                </div>
-                <a class="sNext" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
+            <div class="goTop" style="width: 35px;line-height: 20px;text-align: center;padding-top: 5px;padding-bottom: 5px;word-spacing: initial;display: inline-block;border-bottom: 1px solid #e8e8e8;cursor: pointer;background: url(img/dingbu.png) no-repeat center 25px #3f69a5;background-size: 10px 10px;height:27px;display: none;">顶部</div>
+
+         </div>
+
+         <div class="selected-topics-tit">
+            <h2>精选专题</h2>
+            <div class="topics-tit-p">
+               <!-- <p ng-if="yushouData&&yushouData.data.length!=0" ng-click="ysShow=2">预售</p> -->
+               <p ng-if="flashData&&flashData.data.length!=0" ng-click="ysShow=1" class="show">闪购</p>
             </div>
-        </div>
-        <div ng-if="userData&&userData.user_info.is_test!=1" class="brand-block-fashion">
-            <div class="bd">
-                <div class="ulWrap mainlist">
-                    <li ng-repeat="fashion in logoFashionData.data">
-                        <img ng-src={{fashion.brand_logo}} alt="">
-                        <div class="fashion-tit">
-                            <p>{{fashion.brand_name}}</p>
-                            <button ng-click="goBrandList(fashion.brand_id)">点击进入</button>
+            <a ng-if="ysShow==2" href="#/waitingSale">查看全部
+               <span class="a_arrow_r"></span>
+            </a>
+            <a ng-if="ysShow==1" href="#/flashSale">查看全部
+               <span class="a_arrow_r"></span>
+            </a>
+         </div>
+         <div ng-if="yushouData.data.length!=0">
+            <div class="selected-topics-goods" ng-if="ysShow==2">
+               <a class="sPrev" ng-if="yushouData.data.length>5" href="javascript:void(0)"></a>
+               <div class="tempWrap">
+                  <ul>
+                     <li ng-repeat="ysItem in yushouData.data" repeat-done="yushou()">
+                        <a href="#/shop-detail/{{ysItem.id}}">
+                           <img ng-src={{ysItem.goods_img}} alt="">
+                           <div class="down-time" data-date="{{ysItem.down_time}}" down-time>剩余0天0时0分0秒</div>
+                        </a>
+                        <div ng-if="showPrice" class="selected-topics-goods-price">
+                           <p>{{ysItem.shop_price}}</p>
+                           <i>{{ysItem.market_price}}</i>
                         </div>
-                    </li>
-                </div>
+                     </li>
+                  </ul>
+               </div>
+               <a class="sNext" ng-if="yushouData.data.length>5" href="javascript:void(0)"></a>
             </div>
-            <div class="hd">
-                <div class="line-box">
-                    <a ng-click="sNext()" class="sNext"></a>
-                    <a ng-click="sPrev()" class="sPrev"></a>
-                </div>
-                <div class="more-fashion">
-                    <a href="#/fashion">
-                        <span>查看更多
-                            <span class="a_arrow_r"></span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="selected-topics cool-eye-world">
-            <div class="selected-topics-tit jingshang">
-                <h2>镜尚镜美</h2>
-            </div>
-            <div class="cool-eye-content">
-                <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item2" ads-click type-name="{{jsjm.link_type.type_name}}" type-value="{{jsjm.link_type.type_value}}" type-link="{{jsjm.link_type.ad_link}}" ng-repeat="jsjm in IndexData.list.ads_jsjm">
-                        <img ng-src={{jsjm.ad_img}} alt="">
-                    </div>
-                    <div class="left-ad">
-                        <button ads-click type-name="category" type-value="6">眼镜片</button>
-                        <button ads-click type-name="category" type-value="4">镜架</button>
-                        <button ads-click type-name="category" type-value="5">太阳镜</button>
-                    </div>
-                </div>
-                <div class="coolEye-right">
-                    <div class="coolEye-right-tit">
-                        <p>大家都在买</p>
-                        <p ng-click="jsjmTrans()">
-                            <span>换一批</span>
-                        </p>
-                    </div>
-                    <div class="coolEye-right-content" ng-repeat="jsjm in jsjmAd.data">
-                        <a href="#/shop-detail/{{jsjm.id}}" target="_blank">
-                            <img ng-src={{jsjm.goods_img}} alt="">
-                            <p style="color: #333;" ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
-                            <p ng-if="showPrice">{{jsjm.shop_price}}</p>
+         </div>
+         <div ng-if="flashData.data.length!=0">
+            <div class="selected-topics-goods" ng-if="ysShow==1">
+               <a class="sPrev" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
+               <div class="tempWrap">
+                  <ul>
+                     <li ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
+                        <a href="#/shop-detail/{{fsItem.id}}" style="display: block">
+                           <img ng-src={{fsItem.goods_img}} alt="">
+                           <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
+                           <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>
                         </a>
-                    </div>
-                </div>
+                        <div class="selected-topics-goods-price" ng-if="showPrice">
+                           <p>{{fsItem.promote_price}}</p>
+                           <i>¥{{fsItem.shop_price}}</i>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <a class="sNext" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
             </div>
-        </div>
-        <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
-            <div class="selected-topics-tit">
-                <h2>清新视界</h2>
+         </div>
+      </div>
+      <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics brand-block">
+         <div class="selected-topics-tit">
+            <h2>品牌街区</h2>
+            <a href="#/fashion">查看全部
+               <span class="a_arrow_r"></span>
+            </a>
+         </div>
+         <div class="brand-block-ad">
+            <a class="sPrev" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
+            <div class="tempWrap">
+               <ul>
+                  <li ads-click type-name="{{item.link_type.type_name}}" type-value="{{item.link_type.type_value}}" ng-repeat="item in IndexData.list.ads_brand"
+                     repeat-done="brand()">
+                     <img ng-src={{item.ad_img}} alt="">
+                  </li>
+               </ul>
             </div>
-            <div class="cool-eye-content">
-                <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}" type-link="{{qxsj.link_type.ad_link}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
-                        <img ng-src={{qxsj.ad_img}} alt="">
-                    </div>
-                    <div class="left-ad">
-                        <button ads-click type-name="category" type-value="1">隐形</button>
-                        <button ads-click type-name="category" type-value="2">美瞳</button>
-                        <button ads-click type-name="category" type-value="3">护理液</button>
-                    </div>
-                </div>
-                <div class="coolEye-right">
-                    <div class="coolEye-right-tit">
-                        <p>大家都在买</p>
-                        <p ng-click="qxsjTrans()">
-                            <span>换一批</span>
-                        </p>
-                    </div>
-                    <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
-                        <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
-                            <img ng-src={{qxsj.goods_img}} alt="">
-                            <p style="color: #333;" ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
-                            <p ng-if="showPrice">{{qxsj.shop_price}}</p>
-                        </a>
-                    </div>
-                </div>
+            <a class="sNext" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
+         </div>
+      </div>
+      <div ng-if="userData&&userData.user_info.is_test!=1" class="brand-block-fashion">
+         <div class="bd">
+            <div class="ulWrap mainlist">
+               <li ng-repeat="fashion in logoFashionData.data">
+                  <img ng-src={{fashion.brand_logo}} alt="">
+                  <div class="fashion-tit">
+                     <p>{{fashion.brand_name}}</p>
+                     <button ng-click="goBrandList(fashion.brand_id)">点击进入</button>
+                  </div>
+               </li>
             </div>
-        </div>
-        <div class="selected-topics cool-eye-world">
-            <div class="selected-topics-tit jizhi">
-                <h2>极简主义</h2>
+         </div>
+         <div class="hd">
+            <div class="line-box">
+               <a ng-click="sNext()" class="sNext"></a>
+               <a ng-click="sPrev()" class="sPrev"></a>
             </div>
-            <div class="cool-eye-content">
-                <div class="coolEye-center">
-                    <div class="coolEye-center-item center-item3" ads-click type-name="{{jjzy.link_type.type_name}}" type-value="{{jjzy.link_type.type_value}}" type-link="{{jjzy.link_type.ad_link}}" ng-repeat="jjzy in IndexData.list.ads_jjzy">
-                        <img ng-src={{jjzy.ad_img}} alt="">
-                    </div>
-                    <div class="left-ad">
-                        <button ads-click type-name="category" type-value="7">功能眼镜</button>
-                        <button ads-click type-name="category" type-value="8">配件</button>
-                        <button ads-click type-name="category" type-value="9">工具</button>
-                    </div>
-                </div>
-                <div class="coolEye-right">
-                    <div class="coolEye-right-tit">
-                        <p>大家都在买</p>
-                        <p ng-click="jjzyTrans()">
-                            <span>换一批</span>
-                        </p>
-                    </div>
-                    <div class="coolEye-right-content" ng-repeat="jjzy in jjzyAd.data">
-                        <a href="#/shop-detail/{{jjzy.id}}" target="_blank">
-                            <img ng-src={{jjzy.goods_img}} alt="">
-                            <p style="color: #333;" ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
-                            <p ng-if="showPrice">{{jjzy.shop_price}}</p>
-                        </a>
-                    </div>
-                </div>
+            <div class="more-fashion">
+               <a href="#/fashion">
+                  <span>查看更多
+                     <span class="a_arrow_r"></span>
+                  </span>
+               </a>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+      <div class="selected-topics cool-eye-world">
+         <div class="selected-topics-tit jingshang">
+            <h2>镜尚镜美</h2>
+         </div>
+         <div class="cool-eye-content">
+            <div class="coolEye-center">
+               <div class="coolEye-center-item center-item2" ads-click type-name="{{jsjm.link_type.type_name}}" type-value="{{jsjm.link_type.type_value}}"
+                  type-link="{{jsjm.link_type.ad_link}}" ng-repeat="jsjm in IndexData.list.ads_jsjm">
+                  <img ng-src={{jsjm.ad_img}} alt="">
+               </div>
+               <div class="left-ad">
+                  <button ads-click type-name="category" type-value="6">眼镜片</button>
+                  <button ads-click type-name="category" type-value="4">镜架</button>
+                  <button ads-click type-name="category" type-value="5">太阳镜</button>
+               </div>
+            </div>
+            <div class="coolEye-right">
+               <div class="coolEye-right-tit">
+                  <p>大家都在买</p>
+                  <p ng-click="jsjmTrans()">
+                     <span>换一批</span>
+                  </p>
+               </div>
+               <div class="coolEye-right-content" ng-repeat="jsjm in jsjmAd.data">
+                  <a href="#/shop-detail/{{jsjm.id}}" target="_blank">
+                     <img ng-src={{jsjm.goods_img}} alt="">
+                     <p style="color: #333;" ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
+                     <p ng-if="showPrice">{{jsjm.shop_price}}</p>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics cool-eye-world">
+         <div class="selected-topics-tit">
+            <h2>清新视界</h2>
+         </div>
+         <div class="cool-eye-content">
+            <div class="coolEye-center">
+               <div class="coolEye-center-item center-item1" ads-click type-name="{{qxsj.link_type.type_name}}" type-value="{{qxsj.link_type.type_value}}"
+                  type-link="{{qxsj.link_type.ad_link}}" ng-repeat="qxsj in IndexData.list.ads_qxsj">
+                  <img ng-src={{qxsj.ad_img}} alt="">
+               </div>
+               <div class="left-ad">
+                  <button ads-click type-name="category" type-value="1">隐形</button>
+                  <button ads-click type-name="category" type-value="2">美瞳</button>
+                  <button ads-click type-name="category" type-value="3">护理液</button>
+               </div>
+            </div>
+            <div class="coolEye-right">
+               <div class="coolEye-right-tit">
+                  <p>大家都在买</p>
+                  <p ng-click="qxsjTrans()">
+                     <span>换一批</span>
+                  </p>
+               </div>
+               <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
+                  <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
+                     <img ng-src={{qxsj.goods_img}} alt="">
+                     <p style="color: #333;" ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
+                     <p ng-if="showPrice">{{qxsj.shop_price}}</p>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="selected-topics cool-eye-world">
+         <div class="selected-topics-tit jizhi">
+            <h2>极简主义</h2>
+         </div>
+         <div class="cool-eye-content">
+            <div class="coolEye-center">
+               <div class="coolEye-center-item center-item3" ads-click type-name="{{jjzy.link_type.type_name}}" type-value="{{jjzy.link_type.type_value}}"
+                  type-link="{{jjzy.link_type.ad_link}}" ng-repeat="jjzy in IndexData.list.ads_jjzy">
+                  <img ng-src={{jjzy.ad_img}} alt="">
+               </div>
+               <div class="left-ad">
+                  <button ads-click type-name="category" type-value="7">功能眼镜</button>
+                  <button ads-click type-name="category" type-value="8">配件</button>
+                  <button ads-click type-name="category" type-value="9">工具</button>
+               </div>
+            </div>
+            <div class="coolEye-right">
+               <div class="coolEye-right-tit">
+                  <p>大家都在买</p>
+                  <p ng-click="jjzyTrans()">
+                     <span>换一批</span>
+                  </p>
+               </div>
+               <div class="coolEye-right-content" ng-repeat="jjzy in jjzyAd.data">
+                  <a href="#/shop-detail/{{jjzy.id}}" target="_blank">
+                     <img ng-src={{jjzy.goods_img}} alt="">
+                     <p style="color: #333;" ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
+                     <p ng-if="showPrice">{{jjzy.shop_price}}</p>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
 
 <script>
-    //
-    var flags = true;
-    $('.floor-select .floor-select-item').click(function () {
-        flags = false;
-        $(this).addClass('selected').siblings().removeClass('selected');
+   //
+   var flags = true;
+   $('.floor-select .floor-select-item').click(function () {
+      flags = false;
+      $(this).addClass('selected').siblings().removeClass('selected');
 
-        var sTop = $(".selected-topics-tit").eq($(this).index()).offset().top;
+      var sTop = $(".selected-topics-tit").eq($(this).index()).offset().top;
 
-        $("body,html").animate({
-            "scrollTop": sTop
-        }, 1000, function () {
-            flags = true;
-        });
-    });
+      $("body,html").animate({
+         "scrollTop": sTop
+      }, 1000, function () {
+         flags = true;
+      });
+   });
 
-    //控制首页楼梯效果
-    $(window).scroll(function () {
-        var scrT = $(document).scrollTop();
-        if (scrT < 500) {
-            $('.floor-select').hide();
-            $('.goTop').hide();
-        } else if (scrT >= 500) {
-            $('.floor-select').show();
-            $('.goTop').show();
-            $('.floor-select-item.yushou').addClass('selected').siblings().removeClass('selected');
-        }
-        if (scrT >= 640 && scrT <= 999) {
-            $('.floor-select-item.yushou').addClass('selected').siblings().removeClass('selected');
+   //控制首页楼梯效果
+   $(window).scroll(function () {
+      var scrT = $(document).scrollTop();
+      if (scrT < 500) {
+         $('.floor-select').hide();
+         $('.goTop').hide();
+      } else if (scrT >= 500) {
+         $('.floor-select').show();
+         $('.goTop').show();
+         $('.floor-select-item.yushou').addClass('selected').siblings().removeClass('selected');
+      }
+      if (scrT >= 640 && scrT <= 999) {
+         $('.floor-select-item.yushou').addClass('selected').siblings().removeClass('selected');
 
-        } else if (scrT >= 1000 && scrT <= 1499) {
-            $('.floor-select-item.pinpai').addClass('selected').siblings().removeClass('selected');
+      } else if (scrT >= 1000 && scrT <= 1499) {
+         $('.floor-select-item.pinpai').addClass('selected').siblings().removeClass('selected');
 
-        } else if (scrT >= 1500 && scrT <= 2090) {
-            $('.floor-select-item.yinxing').addClass('selected').siblings().removeClass('selected');
+      } else if (scrT >= 1500 && scrT <= 2090) {
+         $('.floor-select-item.yinxing').addClass('selected').siblings().removeClass('selected');
 
-        } else if (scrT >= 2091 && scrT <= 2660) {
-            $('.floor-select-item.meitong').addClass('selected').siblings().removeClass('selected');
+      } else if (scrT >= 2091 && scrT <= 2660) {
+         $('.floor-select-item.meitong').addClass('selected').siblings().removeClass('selected');
 
-        } else if (scrT >= 2661 && scrT <= 10000) {
-            $('.floor-select-item.huli').addClass('selected').siblings().removeClass('selected');
-        }
+      } else if (scrT >= 2661 && scrT <= 10000) {
+         $('.floor-select-item.huli').addClass('selected').siblings().removeClass('selected');
+      }
 
-    });
+   });
 
-    $('.goTop').click(function () {
-        $("body,html").animate({
-            "scrollTop": 0
-        }, 500)
-    });
-
+   $('.goTop').click(function () {
+      $("body,html").animate({
+         "scrollTop": 0
+      }, 500)
+   });
 </script>

@@ -273,6 +273,7 @@ angular.module('myApp.directives', [])
                 var span = document.createElement('span');
                 span.style.display = 'inline-block';
                 span.style.height = '100%';
+                span.style.width = '0%';
                 span.style.verticalAlign = 'middle';
                 element[0].parentNode.insertBefore(span, element[0])
             }

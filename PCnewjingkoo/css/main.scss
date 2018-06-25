@@ -12175,7 +12175,6 @@ $browser-default-font-size: 37.5px !default;
 .pur_close_dlbox {
    width: calc(100% - 20px);
    float: left;
-   padding-left: 20px;
 }
 
 .pur_close_dl span {
@@ -12191,6 +12190,31 @@ $browser-default-font-size: 37.5px !default;
    position: relative;
    padding-bottom: 20px;
    font-weight: bold;
+   .segment {
+      border-radius: 3px;
+      color: #fff;
+      background: #fff;
+      font-size: 12px;
+      color: #666;
+      margin: 0 15px;
+      border: 1px solid #3f69a5;
+      display: inline-block;
+      input {
+         display: none;
+      }
+      span {
+         padding: 5px 15px;
+         background: #fff;
+         color: #3f69a5;
+         font-size: 12px;
+         font-weight: initial;
+         display: inline-block;
+         &.on {
+            background: #3f69a5;
+            color: #fff;
+         }
+      }
+   }
 }
 
 .pur_close_dl .pur_close_sp1 {
@@ -12365,7 +12389,6 @@ $browser-default-font-size: 37.5px !default;
    position: relative;
    cursor: pointer;
    padding-top: 5px;
-   margin-left: 20px;
 }
 
 .pur_close_d .more_addr:hover,
@@ -12404,7 +12427,6 @@ $browser-default-font-size: 37.5px !default;
 .zfbt_box {
    width: calc(100% - 20px);
    float: left;
-   padding-left: 20px;
 }
 
 .zfbt_box>span {

@@ -466,24 +466,31 @@ angular.module('myApp.controllers', [])
          label: '铺货商品',
          value: 3
       }];
-      switch ($state.current.name) {//根据路由判断当前搜索类型
-         case 'shop-list-cut':$scope.goodsType = $scope.goodsTypes[1];break;
-         case 'shop-list-distribution':$scope.goodsType = $scope.goodsTypes[2];break;
-         default:$scope.goodsType = $scope.goodsTypes[0];break;
+      switch ($state.current.name) { //根据路由判断当前搜索类型
+         case 'shop-list-cut':
+            $scope.goodsType = $scope.goodsTypes[1];
+            break;
+         case 'shop-list-distribution':
+            $scope.goodsType = $scope.goodsTypes[2];
+            break;
+         default:
+            $scope.goodsType = $scope.goodsTypes[0];
+            break;
       }
-      $scope.selectgoodsType = function(item){
+      $scope.selectgoodsType = function (item) {
          $scope.goodsType = item;
       }
       //搜索
       $scope.searchKey = function () {
-         if($scope.goodsType.value == 1){
+         if ($scope.goodsType.value == 1) {
             statego('shop-list');
-         }else if($scope.goodsType.value == 2){
+         } else if ($scope.goodsType.value == 2) {
             statego('shop-list-cut');
-         }else if($scope.goodsType.value == 3){
+         } else if ($scope.goodsType.value == 3) {
             statego('shop-list-distribution');
          }
-         function statego(state){
+
+         function statego(state) {
             var url = $state.go(state, {
                params: encodeURIComponent(JSON.stringify({
                   keywords: $rootScope.keywords,
@@ -3780,6 +3787,7 @@ angular.module('myApp.controllers', [])
                   }, 0)
                   $scope.attrNumber = $scope.spectaclesData.data[i].values[0].number || 1;
                   $scope.attrId = $scope.spectaclesData.data[i].values[0].id;
+                  $scope.checkMainAttrLabel = $scope.spectaclesData.data[i].values[0].label || '';
                }
             }
          }
@@ -3792,9 +3800,10 @@ angular.module('myApp.controllers', [])
             $scope.pointsMall = false;
             //商品属性为goods时调用这个接口
 
-            $scope.getAttrList = function (attrId, attrNumber) {
+            $scope.getAttrList = function (attrId, attrNumber, label) {
                $scope.attrNumber = attrNumber || 1;
                $scope.attrId = attrId;
+               $scope.checkMainAttrLabel = label;
                $scope.isList = false;
                $scope.goodsData = null;
                $http({
@@ -4670,6 +4679,7 @@ angular.module('myApp.controllers', [])
          }).success(function (data) {
             layer.close(cool);
             $scope.table = $sce.trustAsHtml(data.content);
+            console.log(JSON.stringify(data))
             //$scope.table = data.content
             $scope.specification = data.specification;
             $scope.zhouwei = data.goods.zhouwei;
@@ -7085,9 +7095,6 @@ angular.module('myApp.controllers', [])
    .controller('shopJiesuan-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', function ($scope, $rootScope, $http, $state, ipCookie) {
       $rootScope.isShow = false;
       $rootScope.change = true;
-      // $scope.returnCar = function(){
-      //   $state.go('shop-car');
-      // };
       /* —————————————— 保存用户备注信息 —————————————— */
       $scope.getNotes = function () {
          var commentArr = [];
@@ -7114,7 +7121,6 @@ angular.module('myApp.controllers', [])
          }
       }
       $scope.saveNotes = function () {
-
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/write_notes',
@@ -7136,21 +7142,7 @@ angular.module('myApp.controllers', [])
             layer.close(cool);
             if (data.status == 1) {
                $scope.jiesuanData = data;
-               $scope.totalPrice = $scope.jiesuanData.total.formated_goods_price;
-               $scope.total = $scope.jiesuanData.total.amount_formated;
-               $scope.totalShip = $scope.jiesuanData.total.suppliers_shipping_fee_formated;
-               $scope.shipIf = $scope.jiesuanData.total.shipping_fee;
-               $scope.jifen = $scope.jiesuanData.total.will_get_give_rank_integral;
-               $scope.subsidyPrice = data.total.formated_subsidy_price;
-               $scope.sub = Number(data.total.formated_subsidy_price);
-               $scope.yhqTotal = data.total.bonus_formated;
-               $scope.yhqIf = data.total.bonus;
-               $scope.yhqNum = data.total.bonus_nums;
-               $scope.yeTotal = data.total.surplus_formated;
-               $scope.yeIf = data.total.surplus;
-               $scope.exchange_integral = data.total.exchange_integral;
-               //判断商品是否为积分商品
-               $scope.isExchange = data.is_exchange;
+               $scope.areaTypeSelect = data.is_interim > 0 ? 1 : 0;
 
                /* 选中的收货方式 */
                if (data.consignee_list.length == 0) {
@@ -7162,7 +7154,7 @@ angular.module('myApp.controllers', [])
                      }
                   }
                }
-               /* 检查是否有label */
+               /* 检查是否有标签备注 */
                for (var i = 0, item = data.cart_goods_list; i < item.length; i++) {
                   for (var j = 0, item2 = item[j].order_label; j < item2.length; j++) {
                      if (item2[j].selected == 1) {
@@ -7202,18 +7194,14 @@ angular.module('myApp.controllers', [])
          })
       };
       $scope.jiesuanFn();
-      //切换收货信息样式
-      $scope.setMor = function (e) {
-         angular.element(e.target).parent().parent().addClass('pur_close_don').siblings().removeClass('pur_close_don');
-      };
       //选择收货人信息
-      $scope.selectAddress = function (id) {
-         $scope.flag = !$scope.flag;
-         $http({
+      $scope.selectAddress = function (address) {
+         return $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/change_consignee',
             data: {
-               address_id: id
+               address_id: address.address_id,
+               type: address.is_interim == 1 ? 1 : 0
             },
          }).success(function (data) {
             if (data.status) {
@@ -7253,67 +7241,11 @@ angular.module('myApp.controllers', [])
             }
          })
       };
-      $scope.setMoren = function (mor) {
-         if (mor == true) {
-            $scope.editData.default = 1;
-         } else {
-            $scope.editData.default = 0;
-         }
-      };
-      //编辑收货地址
-      $scope.bianji = function (id, index, address) {
-         $('.masks').show();
-         $('.pur_bianji').show();
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/User/edit_address',
-            params: {
-               address_id: id
-            },
-         }).success(function (data) {
-            $scope.bianjiData = data;
-
-            //编辑收货地址参数
-            $scope.editData = {
-               address_id: address.address_id,
-               consignee: address.consignee,
-               province: address.province,
-               city: address.city,
-               district: address.district,
-               address: address.address,
-               mobile: address.mobile,
-               default: address.is_default,
-               tel: address.tel
-            };
-         })
-      };
-      //编辑提交收货地址
-      $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
-         $http({
-            method: "POST",
-            url: '' + $rootScope.ip + '/User/edit_address',
-            data: $scope.editData,
-         }).success(function (data) {
-            if (data.status) {
-               layer.msg(data.info, {
-                  time: 1000
-               }, function () {
-                  $scope.jiesuanFn();
-                  $('.masks').hide();
-                  $('.pur_bianji').hide();
-               });
-            } else {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-            }
-         })
-      };
       //编辑取消按钮
       $scope.quxiao = function () {
          $('.masks').hide();
          $('.pur_bianji').hide();
-         $('.pur_zengjia').hide();
+         $('.pur_bianji').hide();
       };
       //编辑里省切换
       $scope.changeProvince = function (pid) {
@@ -7325,10 +7257,8 @@ angular.module('myApp.controllers', [])
                parent_id: pid
             },
          }).success(function (data) {
-            $scope.bianjiData.city_list = data.data;
-            $scope.disDatas = [];
+            $scope.city_list = data.data;
             $scope.changeCity(pid);
-            $scope.editData.city = $scope.editData.district = '';
          })
       };
       //编辑市切换
@@ -7341,86 +7271,100 @@ angular.module('myApp.controllers', [])
                parent_id: pid
             },
          }).success(function (data) {
-            $scope.disDatas = data;
-            $scope.bianjiData.district_list = data.data;
+            $scope.district_list = data.data;
          })
-      };
-      $scope.addSetMoren = function (mor) {
-         if (mor == true) {
-            $scope.eeditData.default = 1;
-         } else {
-            $scope.eeditData.default = 0;
-         }
       };
       //添加收货地址
-      $scope.tianjia = function () {
+      $scope.tianjia = function (address) {
          $('.masks').show();
-         $('.pur_zengjia').show();
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/User/add_address',
-            params: '',
-         }).success(function (data) {
-            $scope.tianjiaData = data;
-
-            //添加收货地址参数
-            $scope.eeditData = {
-               default: ''
-            };
-            $scope.isMor = 1;
-         })
+         $('.pur_bianji').show();
+         if (address) {
+            $scope.addressId = address.address_id;
+            return $http({
+               method: "GET",
+               url: '' + $rootScope.ip + '/User/edit_address',
+               params: {
+                  address_id: address.address_id
+               },
+            }).success(function (data) {
+               $scope.province_list = data.province_list;
+               $scope.city_list = data.city_list;
+               $scope.district_list = data.district_list;
+               //编辑收货地址参数
+               $scope.editData = {
+                  address_id: address.address_id,
+                  consignee: address.consignee,
+                  province: address.province,
+                  city: address.city,
+                  district: address.district,
+                  address: address.address,
+                  mobile: address.mobile,
+                  default: address.is_default ? true : false,
+                  tel: address.tel
+               };
+            })
+         } else {
+            $scope.addressId = null;
+            $scope.editData = {};
+            $http({
+               method: "GET",
+               url: '' + $rootScope.ip + '/User/add_address',
+               params: '',
+            }).success(function (data) {
+               $scope.province_list = data.province_list;
+               $scope.city_list = [];
+               $scope.district_list = [];
+               //添加收货地址参数
+            })
+         }
       };
       //提交添加收货地址
-      $scope.tianjiaAddress = function () {
-         $scope.eeditData.default = $scope.isMor ? 1 : 0;
+      $scope.enterAddress = function () {
+         $scope.editData.default = $scope.editData.default ? 1 : 0;
+         if ($scope.addressId) {
+            return $http({
+               method: "POST",
+               url: '' + $rootScope.ip + '/User/edit_address',
+               data: $.extend({
+                  is_interim: $scope.areaTypeSelect > 0 ? 1 : 0
+               }, $scope.editData),
+            }).success(function (data) {
+               if (data.status) {
+                  layer.msg(data.info, {
+                     time: 1000
+                  }, function () {
+                     $scope.jiesuanFn();
+                     $scope.quxiao();
+                  });
+               } else {
+                  layer.msg(data.info, {
+                     time: 1000
+                  });
+               }
+            })
+         }
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/add_address',
-            data: $scope.eeditData,
+            data: $.extend({
+                  is_interim: $scope.areaTypeSelect > 0 ? 1 : 0
+               }, $scope.editData),
          }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
                }, function () {
                   $('.masks').hide();
-                  $('.pur_zengjia').hide();
-                  $scope.jiesuanFn();
-                  $scope.selectAddress(data.address_id);
+                  $('.pur_bianji').hide();
+                  $scope.selectAddress(data).then(function () {
+                     $scope.jiesuanFn();
+                  });
                });
             } else {
                layer.msg(data.info, {
                   time: 1000
                });
             }
-         })
-      };
-      //添加里省切换
-      $scope.selectProvince = function (pid) {
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/User/change_region',
-            params: {
-               type: 2,
-               parent_id: pid
-            },
-         }).success(function (data) {
-            $scope.cityData = data;
-            $scope.disData = [];
-            $scope.selectCity(pid);
-            $scope.eeditData.city = $scope.eeditData.district = '';
-         })
-      };
-      //添加市切换
-      $scope.selectCity = function (pid) {
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/User/change_region',
-            params: {
-               type: 3,
-               parent_id: pid
-            },
-         }).success(function (data) {
-            $scope.disData = data;
          })
       };
       //删除一个收货地址
@@ -7533,173 +7477,26 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      //个人信息面板信息
-      $http({
-         method: "POST",
-         url: '' + $rootScope.ip + '/User/user_info',
-         data: '',
-      }).success(function (data) {
-         $scope.userMoney = data.user_info.user_money;
-      })
-
-      //是否使用余额支付
-      $scope.isMoney = function () {
-         if (!$scope.is_money) {
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Flow/change_surplus',
-               data: {
-                  surplus: 1
-               },
-            }).success(function (data) {
-               if (data.status) {
-                  $scope.jiesuanFn();
-               }
-            })
-         } else {
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Flow/change_surplus',
-               data: {
-                  surplus: 0
-               },
-            }).success(function (data) {
-               if (data.status) {
-                  $scope.jiesuanFn();
-               }
-            })
-         }
-      };
 
       $scope.submitList = function (e, index) {
-
-         // return false;
-
-         if ($scope.yeIf) {
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Flow/check_pay_pass',
-               data: {
-                  password: $scope.pass
-               },
-            }).success(function (data) {
-               if (data.status) {
-                  $http({
-                     method: "POST",
-                     url: '' + $rootScope.ip + '/Flow/done',
-                     data: {
-                        notes: $scope.getNotes()
-                     },
-                  }).success(function (data) {
-                     if (data.status == 1) {
-                        layer.msg(data.info, {
-                           time: 1000
-                        });
-                        $rootScope.$broadcast('upCarList');
-                        $state.go('paymentNew', {
-                           order_id: data.order_id,
-                           type: 'order'
-                        });
-                     } else {
-                        layer.msg(data.info, {
-                           time: 1000
-                        });
-                     }
-                  })
-               } else {
-                  layer.msg(data.info, {
-                     icon: 2,
-                     time: 500
-                  });
-               }
-            })
-         } else {
-
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Flow/done',
-               data: {
-                  notes: $scope.getNotes()
-               },
-            }).success(function (data) {
-               if (data.status == 1) {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
-                  $state.go('paymentNew', {
-                     order_id: data.order_id,
-                     type: 'order'
-                  });
-               } else if (data.status == -2) {
-                  layer.msg(data.info, {
-                     time: 3000
-                  });
-               } else {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
-               }
-            })
-         }
-      };
-
-
-      $(".i-text").focus(function () {
-         $(".sixDigitPassword").find("i").eq(0).addClass("active");
-         $(".guangbiao").css({
-            left: 0,
-            opacity: 1
-         });
-      })
-      $(".i-text").blur(function () {
-         $(".sixDigitPassword").find("i").removeClass("active");
-         $(".guangbiao").css({
-            opacity: 0
-         });
-      })
-
-      $(".i-text").keyup(function () {
-         var inp_v = $(this).val();
-         var inp_l = inp_v.length;
-         //$("p").html( "input的值为：" + inp_v +"; " + "值的长度为:" + inp_l);//测试用
-
-         for (var x = 0; x <= 6; x++) {
-            // $("p").html( inp_l );//测试
-
-            $(".sixDigitPassword").find("i").eq(inp_l).addClass("active").siblings("i").removeClass("active");
-            $(".sixDigitPassword").find("i").eq(inp_l).prevAll("i").find("b").css({
-               "display": "block"
+         $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Flow/done',
+            data: {
+               notes: $scope.getNotes()
+            },
+         }).success(function (data) {
+            layer.msg(data.info, {
+               time: 2000
             });
-            $(".sixDigitPassword").find("i").eq(inp_l - 1).nextAll("i").find("b").css({
-               "display": "none"
-            });
-
-            $(".guangbiao").css({
-               "left": inp_l * 41
-            }); //光标位置
-
-            if (inp_l == 0) {
-               $(".sixDigitPassword").find("i").eq(0).addClass("active").siblings("i").removeClass("active");
-               $(".sixDigitPassword").find("b").css({
-                  "display": "none"
-               });
-               $(".guangbiao").css({
-                  "left": 0
-               });
-            } else if (inp_l == 6) {
-               $(".sixDigitPassword").find("b").css({
-                  "display": "block"
-               });
-               $(".sixDigitPassword").find("i").eq(5).addClass("active").siblings("i").removeClass("active");
-               $(".guangbiao").css({
-                  "left": 5 * 41
+            if (data.status == 1) {
+               $state.go('paymentNew', {
+                  order_id: data.order_id,
+                  type: 'order'
                });
             }
-
-
-         }
-      });
-
+         })
+      }
    }])
    /* 定制片结算页 */
    .controller('shopJiesuanCopy-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {

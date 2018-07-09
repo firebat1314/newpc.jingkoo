@@ -865,6 +865,24 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                     }
                 }
             })
+            .state("jingku-finance", {
+                title: '镜库金融',
+                url: '/jingku-finance',
+                views: {
+                    '': {
+                        templateUrl: 'template/jingku-finance/jingku-finance.html',
+                        controller: "jingkuFinanceController",
+                        resolve: {
+                            deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                                return $ocLazyLoad.load([
+                                    "template/jingku-finance/jingku-finance.css",
+                                    "template/jingku-finance/jingku-finance.js",
+                                ]);
+                            }]
+                        }
+                    }
+                }
+            })
 
 
     })

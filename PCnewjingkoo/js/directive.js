@@ -258,16 +258,15 @@ angular.module('myApp.directives', [])
             link: function (scope, element, attrs) {
                 // console.log(scope, element, attrs)
                 element[0].src = scope.defaultSrc || '../img/150-39.jpg';
-                element[0].style.width = 'auto';
+               //  element[0].style.width = 'auto';
                 element[0].style.display = 'inline-block';
                 element[0].style.verticalAlign = 'middle';
                 element[0].style.maxHeight = '100%';
                 element[0].style.maxWidth = '100%';
-
                 var img = new Image();
                 img.src = scope.src;
                 img.onload = function () {
-                    element[0].style.width = 'inherit';
+                  //   element[0].style.width = 'initial';
                     element[0].src = scope.src;
                 }
                 var span = document.createElement('span');

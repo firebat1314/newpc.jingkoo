@@ -27,8 +27,8 @@
 <div class="pur_close_box gird" ng-show="jiesuanData">
    <a href="" class="pur_close_a" ng-click="tianjia()">+ 新增收货地址</a>
 
-   <div class="pur_bianji">
-      <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库科技</div>
+   <div class="pur_bianji animate">
+      <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">{{areaTypeSelect==1?'临时地址':'常用地址'}}</div>
       <table class="dzhi-table" width="100%">
          <tbody>
             <tr>
@@ -107,11 +107,11 @@
             <div class="segment">
                <label for="address1">
                   <input type="radio" value="0" id="address1" name="address" ng-model="areaTypeSelect">
-                  <span ng-class="{'on':areaTypeSelect==0}">普通地址</span>
+                  <span ng-class="{'on':areaTypeSelect==0}">常用地址</span>
                </label>
                <label for="address2">
                   <input type="radio" value="1" id="address2" name="address" ng-model="areaTypeSelect">
-                  <span ng-class="{'on':areaTypeSelect==1}">临时定制</span>
+                  <span ng-class="{'on':areaTypeSelect==1}">临时地址</span>
                </label>
             </div>
          </span>
@@ -133,8 +133,8 @@
                <input type="button" value="默认地址" ng-class="{'pur_close_btn block':address.is_default}" class="pur_close_btn" style="width:auto;padding: 0 15px;background-color: #ff3333;color: #fff;border: none;margin-right: 10px;"
                />
                <div class="a_box fr">
-                  <a href="" class="set_mor" ng-click="setMor(address.address_id)" ng-if="!address.is_default">设为默认地址</a>
-                  <a href="" ng-click="tianjia(address)">编辑</a>
+                  <a href="" class="set_mor" ng-click="setMor(address.address_id)" ng-if="!address.is_default&&areaTypeSelect==0">设为默认地址</a>
+                  <a href="" ng-click="tianjia(address)" ng-hide="address.is_show==0&&areaTypeSelect==1">编辑</a>
                   <a href="" ng-click="deleteAddress(address.address_id)">删除</a>
                </div>
             </div>
@@ -216,8 +216,8 @@
                      <span class="sent_sp1">配送方式 : </span>
                      <span class="send_way_sp" ng-click="selectShip(cartGoods.suppliers_id,sent.shipping_id)" ng-style="{'pointerEvents':sent.disabled?'none':'auto','opacity':sent.disabled?'.4':'1','display':sent.disabled?'none':'inline-block'}"
                         ng-class="{'send_way_sp selected':sent.selected}" ng-repeat="sent in cartGoods.shipping">{{sent.shipping_name}}</span>
-                     <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span>
-                     <span ng-if="!defaultShipping">请选择收货地址</span>
+                     <!-- <span ng-if="(!cartGoods.shipping.length)&&defaultShipping">该供应商暂无配送方式</span> -->
+                     <!-- <span ng-if="!defaultShipping">请选择收货地址</span> -->
                      <!--商家备注-->
                      <div class="remark_left" ng-if="!cartGoods.hasLabels&&!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                         <span class="sent_sp1">商家备注 : </span>
@@ -227,7 +227,7 @@
                      <div class="remark_left remark_left2" ng-if="cartGoods.hasLabels||cartGoods.input_show" style="overflow: hidden;margin-top: 10px;">
                         <span class="sent_sp1" style="float: left;">商家备注 : </span>
                         <div class="texbox_d">
-                           <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes()" placeholder="请将购买需求在备注中做详细说明"></textarea>
+                           <textarea class="bz_text" ng-model="jiesuanData.suppliers_notes[cartGoods.suppliers_id]" ng-blur="saveNotes();" placeholder="请将购买需求在备注中做详细说明"></textarea>
                            <ul class="bz_ul">
                               <li ng-class="order_label.selected?'on':''" ng-repeat="order_label in cartGoods.order_label" ng-click="order_label.selected = !order_label.selected;saveNotes()">{{order_label.value}}</li>
                            </ul>
@@ -281,8 +281,8 @@
                                     ng-click="useYhq(yhqUse.suppliers_id,yhqUse.bonus_id)">
                                     <p class="oupon_top_p1">
                                        <span class="top_p1_sp1"></span>
-                                       <span class="top_p1_sp2">{{yhqUse.bonus_money_formated | number:0}}</span>
-                                       <span class="top_p1_sp3">满{{yhqUse.min_goods_amount | number:0}}</span>
+                                       <span class="top_p1_sp2">{{yhqUse.bonus_money_formated}}</span>
+                                       <span class="top_p1_sp3">满{{yhqUse.min_goods_amount}}</span>
                                     </p>
                                     <p class="oupon_top_p2">有效期至{{yhqUse.use_end_date}}</p>
                                     <p class="oupon_top_p3">店铺 : {{yhqUse.suppliers_name}}</p>
@@ -296,8 +296,8 @@
                                  <div class="oupon_top_d gray_bg" ng-repeat="yhqNoUse in parentYhqNoUse.no_use_bonus">
                                     <p class="oupon_top_p1">
                                        <span class="top_p1_sp1"></span>
-                                       <span class="top_p1_sp2">{{yhqNoUse.bonus_money_formated | number:0}}</span>
-                                       <span class="top_p1_sp3">满{{yhqNoUse.min_goods_amount | number:0}}</span>
+                                       <span class="top_p1_sp2">{{yhqNoUse.bonus_money_formated}}</span>
+                                       <span class="top_p1_sp3">满{{yhqNoUse.min_goods_amount}}</span>
                                     </p>
                                     <p class="oupon_top_p2">有效期至{{yhqNoUse.use_end_date}}</p>
                                     <p class="oupon_top_p3">店铺 : {{yhqNoUse.suppliers_name}}</p>
@@ -412,8 +412,8 @@
    showMask();
 
    $('#masks').click(function () {
-      $(this).hide();
-      $('.pur_bianji').hide();
-      $('.pur_zengjia').hide();
+      $(this).fadeOut();
+      $('.pur_bianji').fadeOut();
+      $('.pur_zengjia').fadeOut();
    });
 </script>

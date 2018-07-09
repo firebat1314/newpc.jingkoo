@@ -49,7 +49,7 @@ angular.module('myApp.HttServices', [])
                layer.msg('连接出错，请稍后再试');
             }
             if (rejection.status == 500) {
-               layer.msg('500');
+               layer.msg('数据异常');
             }
             return $q.reject(rejection);
          }
@@ -533,6 +533,20 @@ angular.module('myApp.HttServices', [])
             return $http({
                method: 'post',
                url: ip + '/App/Shd/get_shd_info',
+               data: data
+            })
+         },
+         jingku_finance: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/App/Index/jingku_finance',
+               data: data
+            })
+         },
+         search_census: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/search_census ',
                data: data
             })
          },

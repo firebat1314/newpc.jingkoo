@@ -28,7 +28,7 @@
                 <a class="sPrev" ng-if="fashionHomeData.three_ad.length<3" href="javascript:void(0)"></a>
                 <div class="tempWrap">
                     <ul>
-                        <li ads-click type-name="{{item.link_type.type_name}}" type-value="{{item.link_type.type_value}}" ng-repeat="item in fashionHomeData.three_ad" repeat-done="brandFn()">
+                        <li ads-click={{item}} ng-repeat="item in fashionHomeData.three_ad" repeat-done="brandFn()">
                             <img ng-src={{item.ad_img}} alt="">
                         </li>
                     </ul>

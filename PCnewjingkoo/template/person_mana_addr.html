@@ -1,187 +1,235 @@
 <div class="route mb20">
-	<div class="gird">
-		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
-	</div>
+   <div class="gird">
+      当前位置：
+      <a href="#/home">首页</a> >
+      <a href="#/control-mb">用户中心</a>&gt;{{title}}
+   </div>
 </div>
 
 <div class="main" style="margin-bottom: 25px;">
-	<div class="im-panel gird cle">
-		<ng-template ng-include="'Template/control-tool.html'"></ng-template>
-		<div class="panel-right">
-			<div class="control-wrp">
-				<div class="cont-hd cle">
-    				<div class="cbt-left">
-    					<span><a href="#/person-mana-addr" class="cbt-wz on">配送地址</a></span>
-    					<span><a href="#/person-addr-apply" class="cbt-wz ">地区申请</a></span>
-    				</div>
-    			</div>
-    			<div class="cont-bd">
-    				<div class="contacts-wrap czhi">
-    					<div class="location mb20">  
-							<div class="addc"><a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn">添加新地址</a></div>
-							<div class="add-nr js_adbr">
-								<table class="addn-t">
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 收货人：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" ng-model="addParamsData.consignee" placeholder="请输入收货人姓名"/>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 所在地区：</div></td>
-										<td>
-											<div class="an-right">
-												<div class="anr-selt">
-													<select class="selt"  ng-model="addParamsData.province" ng-change="provinceChange()">
-														<option ng-selected="1" value="">请选择</option>
-														<option ng-repeat="item in provinceList" value="{{item.region_id}}">{{item.region_name}}</option>
-													</select>
-													<select class="selt" ng-disable="cityList" ng-model="addParamsData.city" ng-change="cityChange()">
-														<option ng-selected="1" value="">请选择</option>
-														<option ng-repeat="item in cityList" value="{{item.region_id}}">{{item.region_name}}</option>
-													</select>
-													<select class="selt" ng-disable="districtList" ng-model="addParamsData.district">
-														<option ng-selected="1" value="">请选择</option>
-														<option ng-repeat="item in districtList" value="{{item.region_id}}">{{item.region_name}}</option>
-													</select>
-												</div>												
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 详细地址：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" ng-model="addParamsData.address" placeholder="请输入详细地址"/>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em>*</em> 手机号码：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入您的手机号"  ng-model="addParamsData.mobile"/>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td width="170" valign="top" ><div class="an-left"><em></em> 固定电话：</div></td>
-										<td>
-											<div class="an-right">
-												<input class="text" type="text" placeholder="请输入您的固定电话" ng-model="addParamsData.tel"/>
-												<div class="mren mb10">
-													<span class="uq"><input type="checkbox" id="uep" value="" ng-model="addParamsData.default"/><label for="uep"></label></span>设置为默认收获地址
-												</div>
-												<div class="olp-anniu">
-													<a style="cursor:pointer;" class="he js_querg" ng-click="onsubmit()">确认地址</a>
-													<a style="cursor:pointer;" class="ix js_querg">取消</a>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<!--编辑框-->
-							<div class="changeMsgBox" ng-if="neShow==1" ng-init="neShow=0">
-								<div class="add-nrc js_adbrc">
-									<table class="addn-tc">
-										<tr>
-											<td width="170" valign="top" ><div class="an-leftc"><em>*</em> 收货人：</div></td>
-											<td>
-												<div class="an-rightc">
-													<input class="textc" type="text" ng-model="addParamsDataA.consignee"/>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td width="170" valign="top" ><div class="an-leftc"><em>*</em> 所在地区：</div></td>
-											<td>
-												<div class="an-rightc">
-													<div class="anr-seltc">
-														<select class="seltc" ng-model="addParamsDataA.province" ng-change="provinceChangeA(addParamsDataA.province)">
-															<option ng-selected="1" value="">请选择</option>
-															<option ng-repeat="itemA in getThisAddress.province_list" ng-selected="itemA.selected" value="{{itemA.region_id}}">{{itemA.region_name}}</option>
-														</select>
-														<select class="seltc" ng-disable="cityListA" ng-model="addParamsDataA.city" ng-change="cityChangeA(addParamsDataA.city)">
-															<option ng-selected="1" value="">请选择</option>
-															<option ng-repeat="itemB in getThisAddress.city_list" ng-selected="itemB.selected" value="{{itemB.region_id}}">{{itemB.region_name}}</option>
-														</select>
-														<select class="seltc" ng-disable="districtListA" ng-model="addParamsDataA.district">
-															<option ng-selected="1" value="">请选择</option>
-															<option ng-repeat="itemC in getThisAddress.district_list" ng-selected="itemC.selected" value="{{itemC.region_id}}">{{itemC.region_name}}</option>
-														</select>                                               
-													</div>												
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td width="170" valign="top" ><div class="an-leftc"><em>*</em> 详细地址：</div></td>
-											<td>
-												<div class="an-rightc">
-													<input class="textc" type="text" ng-model="addParamsDataA.address"/>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td width="170" valign="top" ><div class="an-leftc"><em>*</em> 手机号码：</div></td>
-											<td>
-												<div class="an-rightc">
-													<input class="textc" type="text" ng-model="addParamsDataA.mobile" />
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td width="170" valign="top" ><div class="an-leftc"><em></em> 固定电话：</div></td>
-											<td>
-												<div class="an-rightc">
-													<input class="textc" type="text"  ng-model="addParamsDataA.tel"/>
-													<div class="mrenc mb10">
-														<span class="uqc"><input type="checkbox" id="uepc" ng-checked="addParamsDataA.default" ng-model="addParamsDataA.default" ng-disabled="addParamsDataA.default"/><label for="uepc"></label></span>设为默认收获地址
-													</div>
-													<div class="olp-anniuc">
-														<a style="cursor: pointer;" class="hec js_quergc" ng-click="changePersonAddress(addr.address_id)">确认更改</a>
-														<a style="cursor: pointer;" class="ixc js_quergc" ng-click="qxChangeBox()">取消</a>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-    					</div>
-    					<div class="addr_boxes">
-	    					<div class="add-list" ng-repeat="addr in manaAddress.data" ng-class="{'selected':addr.selected}">
-	    						<div class="item cle" ng-class="{'setdefault':addr.selected}">
-	    							<div class="only">
-	    								<div class="veel icl-1" style="overflow-wrap: break-word;" ng-attr-title="{{addr.consignee}}">{{addr.consignee}}</div>
-	    								<div class="veel icl-2">{{addr.address}}</div>
-	    								<div class="veel icl-3">{{addr.mobile}}</div>
-	    								<div class="veel icl-4" ng-if="!addr.selected">
-	    									<a style="cursor:pointer;" ng-click="setDefaultDz(addr.address_id,$event)">设为默认</a>
-	    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
-	    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
-	    								</div>  
-	    								<div class="veel icl-4" ng-if="addr.selected"> 
-	    									<a style="cursor:pointer;">默认地址</a>
-	    									<a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
-	    									<a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
-	    								</div>     								
-	    							</div> 
-	    							<div class="clear"></div> 
-	    						</div>
-	    						<!--删除地址-->
-	    					</div>
-    					</div> 
-    					
-    				</div>
-    			</div>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+   <div class="im-panel gird cle">
+      <ng-template ng-include="'Template/control-tool.html'"></ng-template>
+      <div class="panel-right">
+         <div class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left">
+                  <span>
+                     <a ui-sref="person-mana-addr" ui-sref-active="on" class="cbt-wz">配送地址</a>
+                  </span>
+                  <span>
+                     <a ui-sref="person-addr-apply" ui-sref-active="on" class="cbt-wz">地区申请</a>
+                  </span>
+               </div>
+            </div>
+            <div class="cont-bd">
+               <div class="contacts-wrap czhi">
+                  <div class="location mb20">
+                     <div class="addc">
+                        <div class="segment">
+                           <label for="address1">
+                              <input type="radio" value="0" id="address1" name="address" ng-change="areaTypeChange()" ng-model="areaTypeSelect">
+                              <span ng-class="{'on':areaTypeSelect==0}">常用地址</span>
+                           </label>
+                           <label for="address2">
+                              <input type="radio" value="1" id="address2" name="address" ng-change="areaTypeChange()" ng-model="areaTypeSelect">
+                              <span ng-class="{'on':areaTypeSelect==1}">临时地址</span>
+                           </label>
+                        </div>
+                        <a style="cursor:pointer;display: block !important;" class="ad-btn js_adbtn">添加新地址</a>
+                     </div>
+                     <div class="add-nr js_adbr">
+                        <table class="addn-t">
+                           <tr>
+                              <td width="170" valign="top">
+                                 <div class="an-left">
+                                    <em>*</em> 收货人：</div>
+                              </td>
+                              <td>
+                                 <div class="an-right">
+                                    <input class="text" type="text" ng-model="addParamsData.consignee" placeholder="请输入收货人姓名" />
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="170" valign="top">
+                                 <div class="an-left">
+                                    <em>*</em> 所在地区：</div>
+                              </td>
+                              <td>
+                                 <div class="an-right">
+                                    <div class="anr-selt">
+                                       <select class="selt" ng-model="addParamsData.province" ng-change="provinceChange()">
+                                          <option ng-selected="1" value="">请选择</option>
+                                          <option ng-repeat="item in provinceList" value="{{item.region_id}}">{{item.region_name}}</option>
+                                       </select>
+                                       <select class="selt" ng-disable="cityList" ng-model="addParamsData.city" ng-change="cityChange()">
+                                          <option ng-selected="1" value="">请选择</option>
+                                          <option ng-repeat="item in cityList" value="{{item.region_id}}">{{item.region_name}}</option>
+                                       </select>
+                                       <select class="selt" ng-disable="districtList" ng-model="addParamsData.district">
+                                          <option ng-selected="1" value="">请选择</option>
+                                          <option ng-repeat="item in districtList" value="{{item.region_id}}">{{item.region_name}}</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="170" valign="top">
+                                 <div class="an-left">
+                                    <em>*</em> 详细地址：</div>
+                              </td>
+                              <td>
+                                 <div class="an-right">
+                                    <input class="text" type="text" ng-model="addParamsData.address" placeholder="请输入详细地址" />
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="170" valign="top">
+                                 <div class="an-left">
+                                    <em>*</em> 手机号码：</div>
+                              </td>
+                              <td>
+                                 <div class="an-right">
+                                    <input class="text" type="text" placeholder="请输入您的手机号" ng-model="addParamsData.mobile" />
+                                 </div>
+                              </td>
+                           </tr>
+                           <tr>
+                              <td width="170" valign="top">
+                                 <div class="an-left">
+                                    <em></em> 固定电话：</div>
+                              </td>
+                              <td>
+                                 <div class="an-right">
+                                    <input class="text" type="text" placeholder="请输入您的固定电话" ng-model="addParamsData.tel" />
+                                    <div class="mren" ng-if="areaTypeSelect==0">
+                                       <span class="uq">
+                                          <input type="checkbox" id="uep" value="" ng-model="addParamsData.default" />
+                                          <label for="uep"></label>
+                                       </span>设置默认
+                                    </div>
+                                    <div class="olp-anniu" style="padding: 20px 0 0;">
+                                       <a style="cursor:pointer;" class="he js_querg" ng-click="onsubmit()">确认地址</a>
+                                       <a style="cursor:pointer;" class="ix js_querg">取消</a>
+                                    </div>
+                                 </div>
+                              </td>
+                           </tr>
+                        </table>
+                     </div>
+                     <!--编辑框-->
+                     <div class="changeMsgBox" ng-if="neShow==1" ng-init="neShow=0">
+                        <div class="add-nrc js_adbrc">
+                           <table class="addn-tc">
+                              <tr>
+                                 <td width="170" valign="top">
+                                    <div class="an-leftc">
+                                       <em>*</em> 收货人：</div>
+                                 </td>
+                                 <td>
+                                    <div class="an-rightc">
+                                       <input class="textc" type="text" ng-model="addParamsDataA.consignee" />
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td width="170" valign="top">
+                                    <div class="an-leftc">
+                                       <em>*</em> 所在地区：</div>
+                                 </td>
+                                 <td>
+                                    <div class="an-rightc">
+                                       <div class="anr-seltc">
+                                          <select class="seltc" ng-model="addParamsDataA.province" ng-change="provinceChangeA(addParamsDataA.province)">
+                                             <option ng-selected="1" value="">请选择</option>
+                                             <option ng-repeat="itemA in getThisAddress.province_list" ng-selected="itemA.selected" value="{{itemA.region_id}}">{{itemA.region_name}}</option>
+                                          </select>
+                                          <select class="seltc" ng-disable="cityListA" ng-model="addParamsDataA.city" ng-change="cityChangeA(addParamsDataA.city)">
+                                             <option ng-selected="1" value="">请选择</option>
+                                             <option ng-repeat="itemB in getThisAddress.city_list" ng-selected="itemB.selected" value="{{itemB.region_id}}">{{itemB.region_name}}</option>
+                                          </select>
+                                          <select class="seltc" ng-disable="districtListA" ng-model="addParamsDataA.district">
+                                             <option ng-selected="1" value="">请选择</option>
+                                             <option ng-repeat="itemC in getThisAddress.district_list" ng-selected="itemC.selected" value="{{itemC.region_id}}">{{itemC.region_name}}</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td width="170" valign="top">
+                                    <div class="an-leftc">
+                                       <em>*</em> 详细地址：</div>
+                                 </td>
+                                 <td>
+                                    <div class="an-rightc">
+                                       <input class="textc" type="text" ng-model="addParamsDataA.address" />
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td width="170" valign="top">
+                                    <div class="an-leftc">
+                                       <em>*</em> 手机号码：</div>
+                                 </td>
+                                 <td>
+                                    <div class="an-rightc">
+                                       <input class="textc" type="text" ng-model="addParamsDataA.mobile" />
+                                    </div>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td width="170" valign="top">
+                                    <div class="an-leftc">
+                                       <em></em> 固定电话：</div>
+                                 </td>
+                                 <td>
+                                    <div class="an-rightc">
+                                       <input class="textc" type="text" ng-model="addParamsDataA.tel" />
+                                       <div class="mrenc" ng-if="areaTypeSelect==0">
+                                          <span class="uqc">
+                                             <input type="checkbox" id="uepc" ng-checked="addParamsDataA.default" ng-model="addParamsDataA.default" ng-disabled="addParamsDataA.default"
+                                             />
+                                             <label for="uepc"></label>
+                                          </span>设为默认
+                                       </div>
+                                       <div class="olp-anniuc" style="padding: 20px 0 0;">
+                                          <a style="cursor: pointer;" class="hec js_quergc" ng-click="changePersonAddress(addr.address_id)">确认更改</a>
+                                          <a style="cursor: pointer;" class="ixc js_quergc" ng-click="qxChangeBox()">取消</a>
+                                       </div>
+                                    </div>
+                                 </td>
+                              </tr>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="addr_boxes">
+                     <div class="add-list" ng-repeat="addr in manaAddress.data" ng-class="{'selected':addr.selected}">
+                        <div class="item cle" ng-class="{'setdefault':addr.selected}">
+                           <div class="only">
+                              <div class="veel icl-1" style="overflow-wrap: break-word;" ng-attr-title="{{addr.consignee}}">{{addr.consignee}}</div>
+                              <div class="veel icl-2">{{addr.address}}</div>
+                              <div class="veel icl-3">{{addr.mobile}}</div>
+                              <div class="veel icl-4">
+                                 <a style="cursor:pointer;" ng-if="!addr.selected&&addr.is_interim==0" ng-click="setDefaultDz(addr.address_id,$event)">设为默认</a>
+                                 <a ng-if="addr.selected&&addr.is_interim==0">默认地址</a>
+                                 <a style="cursor:pointer;" ng-click="changeMsgBox(addr.address_id);">编辑 </a>
+                                 <a style="cursor:pointer;" class="js_delt" ng-click="delAddBtn(addr.address_id)">删除</a>
+                              </div>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                        <!--删除地址-->
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
 </div>
-
-
-

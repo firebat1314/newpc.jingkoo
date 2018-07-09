@@ -35,10 +35,8 @@
                <div class="trans-city">
                   <style>
                      .iconfont {
-                        margin-right: 8px;
                         vertical-align: middle;
                      }
-
                      .iconfont+span {
                         vertical-align: middle;
                      }
@@ -210,7 +208,7 @@
                   </div> 
                </div>-->
                <form class="search-box-center" name="searchForm" method="post" ng-submit="searchKey()" novalidate>
-                  <input id="txt" type="text" ng-model="$root.keywords" placeholder="搜索镜库商品" autocomplete="off">
+                  <input id="txt" type="text" ng-model="$root.keywords" placeholder="搜索镜库商品" autocomplete="off" style="height: 40px;">
                   <!-- <div class="keywords-search-box">
                         <div class="keywords-search-item">
                            <span>眼镜</span>
@@ -397,6 +395,11 @@
                <li>
                   <a ui-sref-active="active" ui-sref="shop-list-distribution({params:''})">
                      铺货专区
+                  </a>
+               </li>
+               <li>
+                  <a ui-sref-active="active" ui-sref="jingku-finance">
+                     镜库金融
                   </a>
                </li>
 

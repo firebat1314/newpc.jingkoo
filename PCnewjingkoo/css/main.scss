@@ -973,7 +973,7 @@ $browser-default-font-size: 37.5px !default;
             flex: 1;
             #txt {
                width: 100%;
-               height: 100%;
+               height: 40px;
                border: none;
                outline: none;
                float: left;
@@ -1348,7 +1348,7 @@ $browser-default-font-size: 37.5px !default;
 }
 
 .nav {
-   height: 45px;
+   height: 44px;
    background: #fff;
    border-bottom: 1px solid #eaeaea;
    &.show {
@@ -1356,12 +1356,13 @@ $browser-default-font-size: 37.5px !default;
    }
    .nav-bar {
       @extend .gird;
+      display: flex;
       .nav-bar-all {
+         flex-shrink: 0;
          width: 198px;
          height: 44px;
          line-height: 47px;
          font-size: 15px;
-         float: left;
          color: #fff;
          cursor: pointer;
          border-right: none;
@@ -1427,9 +1428,8 @@ $browser-default-font-size: 37.5px !default;
          }
       }
       ul {
-         padding-left: 45px;
-         float: left;
          display: flex;
+         margin-left: 26px;
          li {
             float: left;
             cursor: pointer;
@@ -1437,12 +1437,13 @@ $browser-default-font-size: 37.5px !default;
                color: #333;
                text-align: center;
                line-height: 45px;
-               width: 81px;
                height: 45px;
                display: block;
                font-size: 15px;
-               margin-right: 20px;
+               margin: 0 10px;
+               padding: 0 16px;
                box-sizing: border-box;
+               white-space: nowrap;
                &.active {
                   color: #3f69a5;
                   border-bottom: 2px solid #3f69a5;
@@ -12209,6 +12210,7 @@ $browser-default-font-size: 37.5px !default;
          font-size: 12px;
          font-weight: initial;
          display: inline-block;
+         cursor: pointer;
          &.on {
             background: #3f69a5;
             color: #fff;
@@ -12329,8 +12331,10 @@ $browser-default-font-size: 37.5px !default;
 }
 
 .pur_close_dl.noEvent {
-   pointer-events: none;
-   opacity: .6;
+   .pur_close_sp1{
+      pointer-events: none;
+      opacity: .6;
+   }
 }
 
 .pur_close_top .pur_close_dl:hover {
@@ -18349,12 +18353,40 @@ textarea {
 
 .location .addc {
    overflow: hidden;
+   display: flex;  
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 10px;
+   .segment {
+      border-radius: 3px;
+      color: #fff;
+      background: #fff;
+      font-size: 12px;
+      color: #666;
+      border: 1px solid #3f69a5;
+      display: inline-block;
+      input {
+         display: none;
+      }
+      span {
+         padding: 5px 15px;
+         background: #fff;
+         color: #3f69a5;
+         font-size: 12px;
+         font-weight: initial;
+         display: inline-block;
+         cursor: pointer;
+         &.on {
+            background: #3f69a5;
+            color: #fff;
+         }
+      }
+   }
 }
 
 .location .addc .ad-btn {
    float: left;
    display: block !important;
-   margin-right: 20px;
    width: 120px;
    height: 35px;
    line-height: 35px;
@@ -18363,13 +18395,6 @@ textarea {
    border: 0;
    color: #fff;
    font-size: 15px;
-}
-
-//.location .addc .ad-btn:hover{background:#827669;}
-.location .addc span {
-   float: left;
-   line-height: 35px;
-   color: #808080;
 }
 
 .location .add-nr {

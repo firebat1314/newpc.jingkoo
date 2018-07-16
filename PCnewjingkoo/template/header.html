@@ -99,7 +99,7 @@
                   </a>
                </div>
                <div class="dingDan">
-                  <a href="#/order-all/">
+                  <a ui-sref="order-all({})">
                      <p>订单</p>
                   </a>
                </div>
@@ -293,19 +293,19 @@
                <span>您好！{{userData.user_info.user_name}}</span>
                <button ng-click="goVip()">会员中心</button>
                <div class="vip-content-box">
-                  <a href="#/order-all/unpay">
+                  <a ui-sref="order-all({type1:'unpay'})">
                      <div class="waiting-pay">
                         <p>待付款</p>
                         <i>{{unpay}}</i>
                      </div>
                   </a>
-                  <a href="#/order-all/collect">
+                  <a ui-sref="order-all({type1:'send'})">
                      <div class="waiting-pay">
                         <p>待发货</p>
                         <i>{{send}}</i>
                      </div>
                   </a>
-                  <a href="#/order-all/collect">
+                  <a ui-sref="order-all({type1:'collect'})">
                      <div class="waiting-pay">
                         <p>待收货</p>
                         <i>{{uncollect}}</i>

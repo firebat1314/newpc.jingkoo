@@ -46,10 +46,10 @@ angular.module('myApp.HttServices', [])
                }
             }
             if (rejection.status == 404) {
-               layer.msg('连接出错，请稍后再试');
+               layer.msg('数据异常，请稍后再试');
             }
             if (rejection.status == 500) {
-               layer.msg('数据异常');
+               layer.msg('数据异常，请稍后再试');
             }
             return $q.reject(rejection);
          }
@@ -547,6 +547,69 @@ angular.module('myApp.HttServices', [])
             return $http({
                method: 'post',
                url: ip + '/Public/search_census ',
+               data: data
+            })
+         },
+         search_census: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/search_census ',
+               data: data
+            })
+         },
+         click_census: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/click_census ',
+               data: data
+            })
+         },
+         commentIndex: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/index ',
+               data: data
+            })
+         },
+         commentCommentLaud: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/CommentLaud ',
+               data: data
+            })
+         },
+         commentCommentReckon: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/CommentReckon ',
+               data: data
+            })
+         },
+         commentIsComment: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/is_comment ',
+               data: data
+            })
+         },
+         commentInsertComment: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/insert_comment ',
+               data: data
+            })
+         },
+         get_supplier_info: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Goods/get_supplier_info ',
+               data: data
+            })
+         },
+         commentNoComment: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Comment/NoComment ',
                data: data
             })
          },

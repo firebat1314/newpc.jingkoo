@@ -5,13 +5,16 @@
 		<h3 class="control-h3">
 			<em class="coe-1"></em>交易管理</h3>
 		<div class="control-nr">
-			<p ui-sref="order-all" ui-sref-active="onp">
+			<p ui-sref="order-all({})" ui-sref-active="onp">
 				<a>我的订单</a>
+			</p>
+			<p ui-sref="no-comment" ui-sref-active="onp">
+				<a>评价晒单</a>
 			</p>
 			<p ui-sref="order-list-d" ui-sref-active="onp">
 				<a>铺货订单</a>
 			</p>
-			<p ui-sref="myCollect" ui-sref-active="onp" ui-sref-active="onp">
+			<p ui-sref="myCollect" ui-sref-active="onp">
 				<a>我的收藏</a>
 			</p>
 			<p ui-sref="person-integral" ui-sref-active="onp">
@@ -41,9 +44,9 @@
 		<h3 class="control-h3">
 			<em class="coe-3"></em>资产中心</h3>
 		<div class="control-nr">
-			<p ui-sref="SHD" ng-class="{'onp': ('SHD' | includedByState)}">
+			<!-- <p ui-sref="SHD" ng-class="{'onp': ('SHD' | includedByState)}">
 				<a>商户贷</a>
-			</p>
+			</p> -->
 			<p ui-sref="zijin-mana" ui-sref-active="onp">
 				<a>资金管理</a>
 			</p>

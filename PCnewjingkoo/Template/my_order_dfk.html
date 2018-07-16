@@ -11,7 +11,7 @@
 			<div class="control-wrp">
 				<div class="cont-hd cle">
     				<div class="cbt-left">
-    					<span ng-click="getAllOrderHs(null)"><a href="#/order-all" class="cbt-wz">所有订单</a></span>
+    					<span ng-click="getAllOrderHs(null)"><a ui-sref="order-all({type1:''})" class="cbt-wz">所有订单</a></span>
     					<span ng-click="getAllOrderHs('pay')"><a href="#/order-wait" class="cbt-wz on">待付款<em>{{orderpay}}</em></a></span>
     					<span ng-click="getAllOrderHs('dsh')"><a href="#/order-get" class="cbt-wz">待收货<em>{{orderDsh}}</em></a></span>
     					<span ng-click=""><a style="cursor:pointer;" class="cbt-wz">积分兑换<em>10</em></a></span>

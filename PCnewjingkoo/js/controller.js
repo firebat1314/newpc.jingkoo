@@ -1,20 +1,72 @@
 angular.module('myApp.controllers', [])
 
-   .run(['$location', '$rootScope', '$window', function ($location, $rootScope, $window) {
+   .run(function ($location, $rootScope, $window, $data) {
+      var _hmt = _hmt || [];
+      if ($data.ip.indexOf('new') > -1) {
+         var hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?cfb5f441f14dbbcc5dc4fdbd9f2a2ee2";//newpc.jingkoo.net
+         var s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
+
+         var hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?05360c21248117defd002a402a49efca";//newpc.jingkoo.net
+         var s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
+      }else{
+         var hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?4446a612f5446d9c92affc8926d0cc96"; //www.jingku.cn
+         var s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
+
+         var hm = document.createElement("script");
+         hm.src = "https://hm.baidu.com/hm.js?1d167ffa0c4869e89f309a615dcb3fe0"; //www.jingku.cn
+         var s = document.getElementsByTagName("script")[0];
+         s.parentNode.insertBefore(hm, s);
+      }
       $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
          $rootScope.title = toState.title;
          //百度统计 
-         //百度账号 15733128449
-         //05360c21248117defd002a402a49efca   newpc.jingkoo.net
-         //1d167ffa0c4869e89f309a615dcb3fe0   www.jingku.cn
-         _hmt.push(['_setAccount', '05360c21248117defd002a402a49efca']);
-         _hmt.push(['_trackPageview', '/' + location.hash]);
-         //百度账号 镜库科技
-         //cfb5f441f14dbbcc5dc4fdbd9f2a2ee2   newpc.jingkoo.net
-         //4446a612f5446d9c92affc8926d0cc96   www.jingku.cn
-         _hmt.push(['_setAccount', 'cfb5f441f14dbbcc5dc4fdbd9f2a2ee2']);
-         _hmt.push(['_trackPageview', '/' + location.hash]);
+         if ($data.ip.indexOf('new') > -1) {
+            //百度账号 15733128449
+            //05360c21248117defd002a402a49efca   newpc.jingkoo.net
+            _hmt.push(['_setAccount', '05360c21248117defd002a402a49efca']);
+            _hmt.push(['_trackPageview', '/' + location.hash]);
+            //百度账号 镜库科技
+            //cfb5f441f14dbbcc5dc4fdbd9f2a2ee2   newpc.jingkoo.net
+            _hmt.push(['_setAccount', 'cfb5f441f14dbbcc5dc4fdbd9f2a2ee2']);
+            _hmt.push(['_trackPageview', '/' + location.hash]);
+         } else {
+            //百度账号 15733128449
+            //1d167ffa0c4869e89f309a615dcb3fe0   www.jingku.cn
+            _hmt.push(['_setAccount', '1d167ffa0c4869e89f309a615dcb3fe0']);
+            _hmt.push(['_trackPageview', '/' + location.hash]);
+            //百度账号 镜库科技
+            //4446a612f5446d9c92affc8926d0cc96   www.jingku.cn
+            _hmt.push(['_setAccount', '4446a612f5446d9c92affc8926d0cc96']);
+            _hmt.push(['_trackPageview', '/' + location.hash]);
+         }
 
+         if (toState.name == 'shop-detail') { //商品点击统计
+            $data.click_census({
+               type: 'goods',
+               effect: toParams.goods_id,
+               url: '#' + fromState.url
+            });
+         }
+         if (toState.name == "help_company") { //文章点击统计
+            $data.click_census({
+               type: 'article',
+               effect: toParams.id,
+               url: '#' + fromState.url
+            });
+         }
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
+         /* ———————————————————————————————————————————— */
          if (toState.title == "镜库首页") {
             $rootScope.allFenLei = true;
          } else {
@@ -40,7 +92,7 @@ angular.module('myApp.controllers', [])
             $rootScope.showHomeBtn = false;
          }
       });
-   }])
+   })
 
    //主控制
    .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat, $data) {
@@ -484,37 +536,37 @@ angular.module('myApp.controllers', [])
          $scope.goodsType = item;
       }
       //搜索
-      $scope.searchKey = function() {
-          if ($scope.goodsType.value == 1) {
-              statego('shop-list').then(function() {
-                  $data.search_census({
-                      type: 'goods',
-                      search_name: $rootScope.keywords
-                  });
-              });
-          } else if ($scope.goodsType.value == 2) {
-              statego('shop-list-cut').then(function() {
-                  $data.search_census({
-                      type: 'cutting',
-                      search_name: $rootScope.keywords
-                  });
-              });
-          } else if ($scope.goodsType.value == 3) {
-              statego('shop-list-distribution').then(function() {
-                  $data.search_census({
-                      type: 'distribution',
-                      search_name: $rootScope.keywords
-                  });
-              });
-          }
+      $scope.searchKey = function () {
+         if ($scope.goodsType.value == 1) {
+            statego('shop-list').then(function () {
+               $data.search_census({
+                  type: 'goods',
+                  search_name: $rootScope.keywords
+               });
+            });
+         } else if ($scope.goodsType.value == 2) {
+            statego('shop-list-cut').then(function () {
+               $data.search_census({
+                  type: 'cutting',
+                  search_name: $rootScope.keywords
+               });
+            });
+         } else if ($scope.goodsType.value == 3) {
+            statego('shop-list-distribution').then(function () {
+               $data.search_census({
+                  type: 'distribution',
+                  search_name: $rootScope.keywords
+               });
+            });
+         }
 
-          function statego(state) {
-              return $state.go(state, {
-                  params: encodeURIComponent(JSON.stringify({
-                      keywords: $rootScope.keywords,
-                  }))
-              })
-          }
+         function statego(state) {
+            return $state.go(state, {
+               params: encodeURIComponent(JSON.stringify({
+                  keywords: $rootScope.keywords,
+               }))
+            })
+         }
       };
       //控制分类菜单显隐
       //$scope.allFenLei = true;
@@ -3779,6 +3831,7 @@ angular.module('myApp.controllers', [])
       $rootScope.change = true;
 
       $scope.goods_id = $stateParams.goods_id;
+
       //点击展开
       //商品详情获取商品初始类型接口
       $http({
@@ -3885,7 +3938,7 @@ angular.module('myApp.controllers', [])
                   };
                })
             };
-            $scope.getAttrList($scope.attrId, $scope.attrNumber);
+            $scope.getAttrList($scope.attrId, $scope.attrNumber, $scope.checkMainAttrLabel);
          } else if (data.goods_type == "goods_spectacles") {
             var arr = [];
             //获取球镜度数的最大值和最小值
@@ -3914,7 +3967,6 @@ angular.module('myApp.controllers', [])
          }, 500)
       }
       $scope.NumSelect = function (e) {
-
          angular.element(e.target).focus().select();
       };
       $scope.change = function (trItem) {
@@ -3942,97 +3994,11 @@ angular.module('myApp.controllers', [])
             layer.close(cool);
             if (data.status == 1) {
                $scope.data = data;
+               $scope.shopDetailData = data;
                document.title = data.data.goods_name;
-               //积分详情页data.data.goods_name
-               if (data.data.exchange_info) {
-                  //控制积分商城商品和普通商品和镜片的区别
-                  //个人信息面板信息
-                  $http({
-                     method: "POST",
-                     url: '' + $rootScope.ip + '/User/user_info',
-                     data: '',
-                  }).success(function (data) {
-                     $scope.payPoints = data.user_info.pay_points;
-                  })
-               } else {
-                  $scope.isPointsMall = true;
-                  $scope.pointsMall = false;
-               }
+               $scope.shopId = data.data.suppliers_id;
                //图文详情
                $scope.goodsDesc = $sce.trustAsHtml(data.data.goods_desc);
-               //控制配送区域显隐
-               $scope.selectArea = function () {
-                  $('.select-takeGoods-area').click(function () {
-                     $('.takeGoods-area-box').show();
-                  });
-                  $('.takeGoods-area-tit i').click(function () {
-                     $('.takeGoods-area-box').hide();
-                  });
-               };
-
-               //商品放大镜函数
-               $scope.jqzoom = function () {
-
-               }
-
-               //商品详情详细信息
-               $scope.shopDetailData = data;
-               $scope.shopId = data.data.suppliers_id;
-               $scope.goStore = function () {
-                  var url = $state.href('shopHomeNew', {
-                     shopId: $scope.shopId
-                  });
-                  window.open(url, '_blank');
-               };
-               //店铺关注
-               $scope.shopGz = function () {
-                  if ($scope.shopDetailData.supplier_info.is_select) {
-                     $http({
-                        method: "POST",
-                        url: '' + $rootScope.ip + '/Goods/CollectShop',
-                        data: {
-                           id: $scope.shopId,
-                           type: 0
-                        },
-                     }).success(function (data) {
-                        layer.msg(data.info, {
-                           time: 1000
-                        });
-                        if (data.status) {
-                           $scope.shopDetailData.supplier_info.is_select = 0;
-                        }
-                     })
-                  } else {
-                     $http({
-                        method: "POST",
-                        url: '' + $rootScope.ip + '/Goods/CollectShop',
-                        data: {
-                           id: $scope.shopId,
-                           type: 1
-                        },
-                     }).success(function (data) {
-                        layer.msg(data.info, {
-                           time: 1000
-                        });
-                        if (data.status) {
-                           $scope.shopDetailData.supplier_info.is_select = 1;
-                        }
-                     })
-                  }
-               };
-               $scope.goodsName = data.data.goods_name;
-               if (data.data.is_batch == 0) {
-                  $scope.isGlass = false;
-               } else {
-                  $scope.isGlass = true;
-               }
-               $scope.goBack = function (category, categoryId) {
-                  $state.go('shop-list', {
-                     params: encodeURIComponent(JSON.stringify({
-                        cat_id: categoryId,
-                     }))
-                  });
-               };
                //是否有促销价格
                $scope.is_promotion = data.data.is_promotion;
                //商品详情相册信息
@@ -4050,7 +4016,67 @@ angular.module('myApp.controllers', [])
                $scope.pointsNum = 1;
                $scope.needJf = data.data.exchange_info ? data.data.exchange_info.exchange_integral : null;
                $scope.isExchange = data.data.exchange_info ? data.data.exchange_info.is_exchange : null;
-               // console.log(data.data.exchange_info,$scope.needJf,$scope.isExchange)
+
+               /* 获取店铺评分 */
+               $http({
+                  method: "POST",
+                  url: '' + $rootScope.ip + '/Comment/CommentReckon',
+                  data: {
+                     goods_id: $scope.goods_id,
+                     id: $scope.shopId
+                  },
+               }).success(function (res) {
+                  if (res.status == 1) {
+                     $scope.commentCommentReckon = res;
+                  }
+               })
+               //积分详情页data.data.goods_name
+               if (data.data.exchange_info) {
+                  //控制积分商城商品和普通商品和镜片的区别
+                  //个人信息面板信息
+                  $http({
+                     method: "POST",
+                     url: '' + $rootScope.ip + '/User/user_info',
+                     data: '',
+                  }).success(function (data) {
+                     $scope.payPoints = data.user_info.pay_points;
+                  })
+               } else {
+                  $scope.isPointsMall = true;
+                  $scope.pointsMall = false;
+               }
+               $scope.goStore = function () {
+                  var url = $state.href('shopHomeNew', {
+                     shopId: $scope.shopId
+                  });
+                  window.open(url, '_blank');
+               };
+               //店铺关注
+               $scope.shopGz = function () {
+                  $http({
+                     method: "POST",
+                     url: '' + $rootScope.ip + '/Goods/CollectShop',
+                     data: {
+                        id: $scope.shopId,
+                        type: $scope.shopDetailData.supplier_info.is_select ? 0 : 1
+                     },
+                  }).success(function (data) {
+                     layer.msg(data.info, {
+                        time: 1000
+                     });
+                     if (data.status) {
+                        $scope.shopDetailData.supplier_info.is_select = $scope.shopDetailData.supplier_info.is_select ? 0 : 1;
+                     }
+                  })
+               };
+
+               $scope.goBack = function (category, categoryId) {
+                  $state.go('shop-list', {
+                     params: encodeURIComponent(JSON.stringify({
+                        cat_id: categoryId,
+                     }))
+                  });
+               };
             }
          })
       };
@@ -4543,20 +4569,12 @@ angular.module('myApp.controllers', [])
          //镜片购买
          if ($scope.spectaclesData.goods_type == "goods_spectacles") {
             $scope.add_to_cart_spec_jp(function (data) {
-               if (data.status == -1) {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
-               } else if (data.status == 1) {
+               if (data.status == 1) {
                   layer.msg(data.info, {
                      time: 1000
                   });
                   // $rootScope.$broadcast('upCarList');
                   $state.go('shop-car');
-               } else if (data.status == 0) {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
                } else if (data.status == -2) {
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
@@ -4568,7 +4586,10 @@ angular.module('myApp.controllers', [])
                      btn2: function (index) {
                         layer.close(index);
                      }
-                     // closeBtn: 0
+                  });
+               } else {
+                  layer.msg(data.info, {
+                     time: 1000
                   });
                }
             })
@@ -4577,24 +4598,12 @@ angular.module('myApp.controllers', [])
          else if ($scope.spectaclesData.goods_type == "goods") {
             //普通商品加入购物车接口
             $scope.add_to_cart_spec(function (data) {
-               if (data.status == -1) {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
-               } else if (data.status == 1) {
+               if (data.status == 1) {
                   layer.msg(data.info, {
                      time: 1000
                   });
                   // $rootScope.$broadcast('upCarList');
                   $state.go('shop-car');
-               } else if (data.status == 0) {
-                  layer.msg(data.info, {
-                     time: 1000
-                  });
-               } else if (data == 'null') {
-                  layer.msg('商品数量不能为零', {
-                     time: 1000
-                  });
                } else if (data.status == -2) {
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
@@ -4607,6 +4616,10 @@ angular.module('myApp.controllers', [])
                         layer.close(index);
                      }
                      // closeBtn: 0
+                  });
+               } else {
+                  layer.msg(data.info, {
+                     time: 1000
                   });
                }
             })
@@ -8679,7 +8692,7 @@ angular.module('myApp.controllers', [])
             $scope.aliPayCode = data.alipay;
          } else {
             layer.msg(data.info);
-            $state.go('order-list-d');
+            $state.go('order-all');
          }
       })
       $(".i-text").focus(function () {
@@ -9079,7 +9092,7 @@ angular.module('myApp.controllers', [])
                      }
                   }, function (index) {
                      layer.close(index)
-                     $state.go('person-process');
+                     $state.go('order-all');
                   })
                } else {
                   layer.confirm('订单已支付成功', {
@@ -9110,7 +9123,6 @@ angular.module('myApp.controllers', [])
    .controller('erweima-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
-
 
       layer.msg('玩命加载中', {
          icon: 16,

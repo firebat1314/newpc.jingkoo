@@ -57,7 +57,7 @@ myApp.controller('orderDetailDistributionControl', ['$scope', '$rootScope', '$st
                   layer.msg('删除成功', {
                      icon: 1
                   });
-                  $state.go('order-all', { type: '' });
+                  $state.go('order-all', { type1: '' });
                } else {
                   layer.msg('删除失败', {
                      icon: 2
@@ -89,7 +89,7 @@ myApp.controller('orderDetailDistributionControl', ['$scope', '$rootScope', '$st
             layer.msg(data.info, { icon: 2, time: 3000 });
          } else {
             layer.msg(data.info, { icon: 1, time: 3000 });
-            $state.go('order-all', { type: '' })
+            $state.go('order-all', { type1: '' })
          }
       })
    }

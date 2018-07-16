@@ -85,19 +85,19 @@
 
 					<div class="ztai cle" style="overflow: hidden;">
 						<span class="ts-1" ng-click="getNeedOrder('unpay')" style="cursor: pointer;">待付款
-							<em>{{unpay}}</em>
-						</span>
-						<span class="ts-1" ng-click="getNeedOrder('send')" style="cursor: pointer;">待发货
-							<em>{{send}}</em>
+							<em>{{usercount.data.unpay || 0}}</em>
 						</span>
 						<span class="ts-1" ng-click="getNeedOrder('collect')" style="cursor: pointer;">待收货
-							<em>{{collect}}</em>
+							<em>{{usercount.data.collect || 0}}</em>
+						</span>
+						<span class="ts-1" ui-sref="no-comment({})" style="cursor: pointer;">待评价
+							<em>{{usercount.data.comment || 0}}</em>
 						</span>
 						<span class="ts-1" ng-click="getNeedOrder('ok')" style="cursor: pointer;">已完成
-							<em>{{ok}}</em>
+							<em>{{usercount.data.ok || 0}}</em>
 						</span>
 						<span class="ts-1" ng-click="goFX()" style="cursor: pointer;">返修/退换货
-							<em>{{return}}</em>
+							<em>{{usercount.data.return || 0}}</em>
 						</span>
 					</div>
 
@@ -119,7 +119,7 @@
 			<div class="dd_table mb20">
 				<div class="ddt-bt">我的订单
 					<span class="qbuc">
-						<a href="#/order-all/">查看全部订单</a>
+						<a ui-sref="order-all({type1:''})">查看全部订单</a>
 					</span>
 				</div>
 				<div style="padding:0 20px;">

@@ -1,0 +1,88 @@
+<my-loading ng-if="!data"></my-loading>
+<div class="comment-page" ng-if="data">
+   <div class="comment_labels">
+      <div class="comment_labels_left">
+         <span style="color: #999999;">好评度</span>
+         <span style="color: #3f69a5;font-size: 20px;margin: 8px 0;">
+            <span style="font-size: 40px;">{{data.hao_baif}}</span>%
+         </span>
+         <span class="star">
+            <comment-stars star-rating="hao_baif_rating" allow-edit="false"></comment-stars>
+         </span>
+      </div>
+      <div class="comment_labels_right">
+         <div class="label" ng-class="{'on':false}" ng-repeat="item in data.labels">{{item}}</div>
+      </div>
+   </div>
+   <div class="toolbar">
+      <div class="left">
+         <div ng-class="{on:type==0}" ng-click="getData(0)">全部评价（{{data.zong_count||0}}）</div>
+         <div ng-class="{on:type==1}" ng-click="getData(1)">晒图（{{data.img_count||0}}）</div>
+         <div ng-class="{on:type==2}" ng-click="getData(2)">好评（{{data.hao_count||0}}）</div>
+         <div ng-class="{on:type==3}" ng-click="getData(3)">中评（{{data.zhong_count||0}}）</div>
+         <div ng-class="{on:type==4}" ng-click="getData(4)">差评（{{data.cha_count||0}}）</div>
+         <!-- <div>
+            <label for="see_current">
+               <input type="checkbox" name="see_current" id="see_current">
+               <span>只看当前商品评论</span>
+            </label>
+         </div> -->
+      </div>
+      <div class="right">
+         <div class="order">推荐排序</div>
+      </div>
+   </div>
+   <div class="comment_list">
+      <div ng-if="!data.list.length" style="text-align: center;padding: 20px;color: #666666;">暂无评论</div>
+      <div class="comment_li" ng-repeat="item in data.list">
+         <div class="c-head">
+            <div class="user">
+               <div class="avatar">
+                  <img img-lazy-load="{{item.avatar}}">
+               </div>
+               <div class="name">
+                  <span>{{item.user_name | hideName}}</span>
+                  <!-- <div class="vip">
+                     <img src="../img/jingku_plus.jpg" alt="">
+                  </div> -->
+               </div>
+            </div>
+            <div class="star">
+               <comment-stars star-rating="item.comment_rank" allow-edit="false"></comment-stars>
+            </div>
+         </div>
+         <div class="c-body">
+            <div class="text">{{item.content}}</div>
+            <div class="imgs">
+               <div class="img" ng-repeat="img in item.img track by $index">
+                  <img img-lazy-load="{{img}}" ng-click="showPhoto(item.img,$index)" alt="图片">
+               </div>
+            </div>
+         </div>
+         <div class="c-foot">
+            <div class="time">
+               <ng-template ng-repeat="attr in item.goods_attrs">{{attr}}&nbsp;&nbsp;&nbsp;</ng-template>{{item.add_time}}</div>
+            <div class="praise">
+               <div class="z" ng-class="{'on':item.is_laud}" ng-click="commentCommentLaud(item)">
+                  <span>{{item.laud_count}}</span>&nbsp;
+                  <i ng-if="!item.is_laud" class="iconfont icon-good"></i>
+                  <span ng-if="item.is_laud">点赞</span>
+                  <!-- <i class="iconfont icon-cai"></i> -->
+               </div><!-- &nbsp;&nbsp;&nbsp;
+               <div class="p">
+                  <span>{{item.comment_count}}</span>&nbsp;
+                  <i class="iconfont icon-pinglun"></i>
+               </div> -->
+            </div>
+         </div>
+         <div class="child_comment" ng-if="item.child_comment">
+            <p>{{item.child_comment.user_name}}&nbsp;&nbsp;回复：</p>
+            <p style="margin: 3px 0">{{item.child_comment.content}}</p>
+            <p class="time">{{item.child_comment.add_time}}</p>
+         </div>
+      </div>
+   </div>
+   
+   <pagination oncall="callback(index)" pages="data.pages"></pagination>
+
+</div>

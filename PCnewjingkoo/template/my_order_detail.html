@@ -242,6 +242,7 @@
             <p class="p">支付方式： {{orderDetail.order.pay_name}}</p>
             <p class="p">配送方式： {{orderDetail.order.shipping_name}}</p>
             <p class="p">订单备注： {{orderDetail.order.postscript||'无备注'}}</p>
+            <p class="p" ng-if="orderDetail.order.to_buyer">商家留言： {{orderDetail.order.to_buyer}}</p>
          </div>
          <div class="clear"></div>
       </div>

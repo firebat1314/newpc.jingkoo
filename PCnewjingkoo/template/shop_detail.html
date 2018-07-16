@@ -56,7 +56,7 @@
                   <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
                   <div class="items">
                      <ul ng-init="shopDetailData.indexss=0">
-                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom();shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index"
+                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index"
                            ng-style="{'border-color':shopDetailData.indexss == $index?'#e60000':'#e0e0e0'}">{{indexss}}
                            <img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);">
                         </li>
@@ -73,7 +73,7 @@
             <div class="fl sp-nrright" ng-if="data&&!data.data.exchange_info">
 
                <div class="new_shop_detail_top">
-                  <h2 class="new_shop_h2">{{goodsName}}</h2>
+                  <h2 class="new_shop_h2">{{shopDetailData.data.goods_name}}</h2>
                   <p class="new_shop_p1">
                      <span class="new_shop_sp1">{{shopDetailData.data.goods_brief}}</span>
                   </p>
@@ -172,8 +172,8 @@
                            </div>
                            <!-- <div class="saler_msg_d3" style="line-height: 30px;">{{shopDetailData.supplier_info.shipping_rule}}</div> -->
                            <div class="saler_msg_d3" style="line-height: 30px;">由&nbsp;
-                              <span style="color: #e60000;">{{shopDetailData.supplier_info.name||'镜库'}}</span>&nbsp;负责发货，并提供售后服务</div>
-                           <!--<p class="saler_p1">由<span class="saler_msg_sp4">镜库</span>发货，并提供售后服务。11.10前下单，预计 今天（09月07日） 送达</p>-->
+                              <span style="color: #e60000;">{{shopDetailData.supplier_info.name||'镜库'}}</span>&nbsp;负责发货，并提供售后服务<span class="saler_p1" ng-if="shopDetailData.supplier_info.shipping_notice">，{{shopDetailData.supplier_info.shipping_notice}}</span></div>
+                           
                         </div>
                      </div>
                      <!--关联商品-->
@@ -374,7 +374,7 @@
                   </div>
                   <div class="pick-list-bottom">
                      <div class="fl list-bottom-total">
-                        <span>{{listTotalNumber}}</span>{{data.data.unit}}
+                        <span>{{listTotalNumber||0}}</span>{{data.data.unit}}
                         <span ng-if="showPrice"> | {{listTotalPrice}}元</span>
                      </div>
                      <span>
@@ -384,7 +384,7 @@
                <div class="buy-button" ng-if="data.data.isdingzhi!=1">
                   <button ng-click="joinCar()">加入购物车</button>
                   <button ng-click="buyNow()" class="buy">立即购买</button>
-                  <button ng-if="isGlass" class="piliang" ng-click="goBulkOrder()">批量下单</button>
+                  <button ng-if="shopDetailData.data.is_batch!=0" class="piliang" ng-click="goBulkOrder()">批量下单</button>
                </div>
                <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
                   <div>服务支持：</div>
@@ -397,7 +397,7 @@
                </div>
             </div>
             <div class="fl sp-nrright" ng-if="data&&data.data.exchange_info">
-               <h2>{{goodsName}}</h2>
+               <h2>{{shopDetailData.data.goods_name}}</h2>
                <div class="model">
                   <div class="fl goods-number">商品编号：
                      <span>{{data.data.goods_sn}}</span>
@@ -466,30 +466,42 @@
                      <p>{{name}}</p>
                      <img src="img/chengxin.png" alt="">
                   </div>
-                  <!--<div class="store-evaluation">-->
-                  <!--<table width="100%">-->
-                  <!--<tr>-->
-                  <!--<th class="zonghe" width="96">综合评分</th>-->
-                  <!--<th width="80">详细评分</th>-->
-                  <!--<th width="85">相比行业</th>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                  <!--<th class="zonghe" width="96"></th>-->
-                  <!--<th width="80">商品</th>-->
-                  <!--<th width="85"><span>9.54</span><img src="img/jt-01.png" alt=""><span>0.01%</span></th>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                  <!--<th class="pinfen" width="96">9.6</th>-->
-                  <!--<th width="80">服务</th>-->
-                  <!--<th width="85">9.54</span><img src="img/jt-02.png" alt=""><span>0.01%</span></th>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                  <!--<th class="zonghe" width="96"></th>-->
-                  <!--<th width="80">物流</th>-->
-                  <!--<th width="85">9.54</span><img src="img/jt-02.png" alt=""><span>0.01%</span></th>-->
-                  <!--</tr>-->
-                  <!--</table>-->
-                  <!--</div>-->
+                  <div class="store-evaluation" ng-if="commentCommentReckon">
+                     <table width="100%">
+                        <tr>
+                           <th class="zonghe" width="96">综合评分</th>
+                           <th width="80">详细评分</th>
+                           <th width="85">相比行业</th>
+                        </tr>
+                        <tr>
+                           <th class="zonghe" width="96"></th>
+                           <th width="80">商品</th>
+                           <th width="85">
+                              <span>{{commentCommentReckon.comment_rank}}</span>
+                              <!-- <img src="img/jt-01.png" alt="">
+                              <span>0.01%</span> -->
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="pinfen" width="96">{{commentCommentReckon.zong}}</th>
+                           <th width="80">服务</th>
+                           <th width="85">
+                              <span>{{commentCommentReckon.service_rank}}</span>
+                              <!-- <img src="img/jt-02.png" alt="">
+                              <span>0.01%</span> -->
+                           </th>
+                        </tr>
+                        <tr>
+                           <th class="zonghe" width="96"></th>
+                           <th width="80">物流</th>
+                           <th width="85">
+                              <span>{{commentCommentReckon.delivery_rank}}</span>
+                              <!-- <img src="img/jt-02.png" alt="">
+                              <span>0.01%</span> -->
+                           </th>
+                        </tr>
+                     </table>
+                  </div>
                   <div class="store-dizhi">
                      <p>公司名称：
                         <span>{{company}}</span>
@@ -529,18 +541,24 @@
                </div>
             </div>
             <div class="fl goods-mainly-right">
-               <div class="goods-introduce">
-                  <div class="goods-introduce-tit">商品简介</div>
+               <div class="goods-introduce" ng-init="goodsMainly='jj'">
+                  <div class="goods-introduce-tit" ng-class="{'on':goodsMainly=='jj'}" ng-click="goodsMainly='jj'">商品简介</div>
+                  <div class="goods-introduce-tit" ng-class="{'on':goodsMainly=='pl'}" ng-click="goodsMainly='pl'">商品评论</div>
                </div>
-               <div class="introduce-table" ng-if="shopDetailData.parameter">
-                  <div class="introduce-table-list">
-                     <div class="introduce-table-list-item" ng-repeat="jianjie in shopDetailData.parameter">{{jianjie.name}}:{{jianjie.value}}</div>
+               <ng-template ng-if="goodsMainly=='jj'">
+                  <div class="introduce-table" ng-if="shopDetailData.parameter">
+                     <div class="introduce-table-list">
+                        <div class="introduce-table-list-item" ng-repeat="jianjie in shopDetailData.parameter">{{jianjie.name}}:{{jianjie.value}}</div>
+                     </div>
                   </div>
-               </div>
-               <div class="introduce-pic">
-                  <!--<img src="img/introducePic.png" alt="">-->
-                  <p ng-bind-html="goodsDesc"></p>
-               </div>
+                  <div class="introduce-pic">
+                     <!--<img src="img/introducePic.png" alt="">-->
+                     <p ng-bind-html="goodsDesc"></p>
+                  </div>
+               </ng-template>
+               <ng-template ng-if="goodsMainly=='pl'">
+                  <comment-page ng-if="goods_id" goodsid="{{goods_id}}"></comment-page>
+               </ng-template>
             </div>
          </div>
       </div>

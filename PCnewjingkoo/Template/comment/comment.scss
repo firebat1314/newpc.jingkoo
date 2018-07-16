@@ -1,0 +1,218 @@
+.comment {
+   * {
+      box-sizing: border-box;
+   }
+   img {
+      max-width: 100px;
+   }
+   user-select: none;
+   .store {
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
+      padding: 14px 20px;
+      margin-bottom: 10px;
+      display: flex;
+   }
+   .head {
+      text-align: center;
+      padding: 28px 0;
+      .title {
+         font-size: 16px;
+         color: #333333;
+         font-weight: 600;
+      }
+      .subtitle {
+         color: #999999;
+         margin-top: 10px;
+      }
+   }
+   .store {
+      .left {
+         border-right: 1px solid #f0f0f0;
+         display: flex;
+         align-items: center;
+         padding: 5px 20px;
+         width: 300px;
+         flex-shrink: 0;
+         .logo {
+            width: 70px;
+            height: 70px;
+            margin-right: 16px;
+            background-color: #ffffff;
+            border: 1px solid #f0f0f0;
+            border-radius: 50%;
+            flex-shrink: 0;
+            overflow: hidden;
+         }
+         .info {
+            white-space: nowrap;
+            .store_name {
+               color: #333333;
+               font-size: 14px;
+               margin-bottom: 5px;
+               font-weight: 600;
+            }
+            .grade_all {
+               display: flex;
+               font-size: 10px;
+               >div {
+                  margin-right: 16px;
+                  color: #999999;
+                  >div:last-child {
+                     text-align: center;
+                     color: #3f69a5;
+                     margin-top: 3px;
+                     font-weight: 600;
+                  }
+               }
+            }
+         }
+      }
+      .grades {
+         padding: 0 20px;
+         color: #999999;
+         .grade {
+            margin: 5px 0;
+            margin-right: 16px;
+            float: left;
+            .label {
+               margin-right: 12px;
+            }
+            .stars {
+               margin-right: 8px;
+               color: #e5e5e5;
+            }
+         }
+      }
+   }
+   .goods_comment {
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
+      margin-bottom: 10px;
+      .rec {
+         display: flex;
+         padding: 14px 20px;
+         border-bottom: 1px solid #f0f0f0;
+         &:last-child {
+            border-bottom: none;
+         }
+         .goods {
+            border-right: 1px solid #f0f0f0;
+            width: 300px;
+            text-align: center;
+            padding: 8px 46px;
+            .img {
+               width: 130px;
+               height: 130px;
+               margin: auto;
+               background: #ffffff;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+            }
+            .name {
+               color: #666666;
+               margin-top: 8px;
+               margin-bottom: 12px;
+            }
+            .price {
+               color: red;
+            }
+         }
+         .goods_comment_main {
+            padding: 20px;
+            color: #999999;
+            flex: 1;
+            .tip {
+               color: #3f69a5;
+               display: flex;
+               align-items: center;
+               i {
+                  color: #3f69a5;
+                  font-size: 22px;
+                  font-weight: 600;
+                  vertical-align: middle;
+                  margin-right: 5px;
+               }
+            }
+            .whitesome {
+               .textarea {
+                  border: 1px solid #f0f0f0;
+                  padding: 12px;
+                  color: #666666;
+                  background: #ffffff;
+                  border-radius: 5px;
+                  overflow: hidden;
+                  textarea {
+                     width: 100%;
+                     min-height: 80px;
+                  }
+                  .length {
+                     text-align: right;
+                     color: #999999;
+                  }
+               }
+               .uppic {
+                  display: flex;
+                  align-items: flex-end;
+                  margin-top: 8px;
+                  flex-wrap: wrap;
+                  .pic {
+                     position: relative;
+                     width: 70px;
+                     height: 70px;
+                     border: 1px solid #f0f0f0;
+                     margin-right: 8px;
+                     text-align: center;
+                     background: #fafafa;
+                     color: #999999;
+                     display: flex;
+                     flex-direction: column;
+                     cursor: pointer;
+                     align-items: center;
+                     justify-content: space-around;
+                     border-radius: 5px;
+                     img{
+                        max-width: 100%;
+                     }
+                     i {
+                        font-size: 35px;
+                        color: #999999;
+                     }
+                  }
+               }
+            }
+            table {
+               width: 100%;
+               tr {
+                  td {
+                     padding: 10px 0;
+                     vertical-align: top;
+                  }
+               }
+            }
+         }
+      }
+   }
+   .submit {
+      background: #fafafa;
+      text-align: center;
+      padding: 30px 0;
+      margin-bottom: 10px;
+      button {
+         background: #3f69a5;
+         padding: 12px 30px;
+         width: 152px;
+         color: #ffffff;
+         border-radius: 5px;
+         border: none;
+         margin-right: 10px;
+      }
+      label {
+         cursor: pointer;
+      }
+      input[type=checkbox] {
+         -webkit-appearance: checkbox;
+      }
+   }
+}

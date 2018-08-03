@@ -80,7 +80,7 @@
         <div class="order-head-img">
             <img ng-src={{goodsImg}} alt="">
         </div>
-        <h2><a href="#/shop-detail/{{goods_id}}">{{goodsName}}</a></h2>
+        <h2><a href="javascript:;" ui-sref="shop-detail({goods_id:goods_id})">{{goodsName}}</a></h2>
         <p ng-if="showPrice">建议零售价格：<span>￥{{market_price}}元</span></p>
         <p ng-if="showPrice">批发价：<span style="font-size: 16px;">￥{{shop_price}}元</span></p>
         <!--<div class="bulk-order-car">购物车<span>９</span>件</div>-->
@@ -100,7 +100,7 @@
                         <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
                             <div ng-repeat="goods in goodsItem.goods_list">
                                 <div class="has-car-goods" ng-repeat="attr in goods.attrs">
-                                    <a href="#/shop-detail/{{attr.goods_id}}">
+                                    <a href="javascript:;" ui-sref="shop-detail({goods_id:attr.goods_id})">
                                         <img ng-src={{goods.goods_thumb}} alt="">
                                         <p class="goodsName">{{goods.goods_name}}</p>
                                         <p class="attr"><em ng-repeat="attrAr in attr.arr_attr">{{attrAr}}</em></p>

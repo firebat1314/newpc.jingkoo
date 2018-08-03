@@ -448,7 +448,8 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
                                     $rootScope.$broadcast('upCarList');
                                     $state.go('paymentNew', {
                                         order_id: data.order_id,
-                                        type: 'order'
+                                        type: 'order',
+                                        is_distribution: 1
                                     });
                                 } else {
                                     layer.msg(data.info, { time: 1000 });
@@ -471,7 +472,8 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
                         layer.msg(data.info, { time: 1000 });
                         $state.go('paymentNew', {
                             order_id: data.order_id,
-                            type: 'order'
+                            type: 'order',
+                            is_distribution: 1
                         });
                     } else if (data.status == -2) {
                         layer.msg(data.info, { time: 3000 });

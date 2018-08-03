@@ -1,97 +1,99 @@
-<style type="text/css">
-   .sgye3.sssss:after {
-      content: " ";
-      display: none !important;
-   }
+<div class="no-comment">
+   <style type="text/css">
+      .sgye3.sssss:after {
+         content: " ";
+         display: none !important;
+      }
 
-   .sydd-head,
-   .sydd-body .neiro {
-      display: -webkit-box !important;
-      display: -webkit-flex !important;
-      display: -ms-flexbox !important;
-      display: flex !important;
-   }
+      .sydd-head,
+      .sydd-body .neiro {
+         display: -webkit-box !important;
+         display: -webkit-flex !important;
+         display: -ms-flexbox !important;
+         display: flex !important;
+      }
 
-   .sydd-head .s-2,
-   .sydd-body .neiro .n-1 {
-      -webkit-box-flex: 1 !important;
-      -ms-flex: 1 !important;
-      flex: 1 !important;
-   }
-</style>
+      .sydd-head .s-2,
+      .sydd-body .neiro .n-1 {
+         -webkit-box-flex: 1 !important;
+         -ms-flex: 1 !important;
+         flex: 1 !important;
+      }
+   </style>
 
-<div class="main" style="margin-bottom: 25px;">
-   <div class="im-panel gird cle">
-      <div ng-include="'Template/control-tool.html'"></div>
+   <div class="main" style="margin-bottom: 25px;">
+      <div class="im-panel gird cle">
+         <div ng-include="'Template/control-tool.html'"></div>
 
-      <div class="panel-right">
-         <div class="control-wrp">
-            <div class="cont-hd cle">
-               <div class="cbt-left">
+         <div class="panel-right">
+            <div class="control-wrp">
+               <div class="cont-hd cle">
+                  <div class="cbt-left">
 
-                  <span ui-sref="no-comment">
-                     <a style="cursor:pointer;" class="cbt-wz on">待评价</a>
-                  </span>
+                     <span ui-sref="no-comment">
+                        <a style="cursor:pointer;" class="cbt-wz on">待评价</a>
+                     </span>
+                  </div>
                </div>
-            </div>
-            <div class="cont-bd">
-               <div class="contacts-wrap ddan integral">
-                  <div class="sydd">
-                     <div class="sydd-head">
-                        <div class="syd s-2" style="width: 314px;">订单详情</div>
-                        <div class="syd s-3">收货人</div>
-                        <div class="syd s-6">操作</div>
-                     </div>
-                     <div class="sydd-body">
-                        <p ng-if="noCommentData.count==0" style="font-size: 16px;text-align: center;padding: 100px 0;" class="ng-scope">没有未评价订单哦~</p>
-                        <div class="sydd-ittem" ng-repeat="intera in noCommentData.list">
-                           <div class="nony-bt">
-                              <span class="nony-sp1">{{intera.add_time}}</span>
-                              <span class="nony-sp2">订单号：{{intera.order_sn}}</span>
-                           </div>
-                           <div class="neiro">
-                              <div class="nero n-1" style="width: 450px;">
-                                 <div class="noot-sp">
-                                    <div class="le-dd" style="position: relative;">
-                                       <div class="imsldd" ui-sref="shop-detail({goods_id: intera.goods_id})">
-                                          <div class="img" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;">
-                                             <img img-lazy-load="{{intera.goods_img}}" />
+               <div class="cont-bd">
+                  <div class="contacts-wrap ddan integral">
+                     <div class="sydd">
+                        <div class="sydd-head">
+                           <div class="syd s-2" style="width: 314px;">订单详情</div>
+                           <div class="syd s-3">收货人</div>
+                           <div class="syd s-6">操作</div>
+                        </div>
+                        <div class="sydd-body">
+                           <p ng-if="noCommentData.count==0" style="font-size: 16px;text-align: center;padding: 100px 0;" class="ng-scope">没有未评价订单哦~</p>
+                           <div class="sydd-ittem" ng-repeat="intera in noCommentData.list">
+                              <div class="nony-bt">
+                                 <span class="nony-sp1">{{intera.add_time}}</span>
+                                 <span class="nony-sp2">订单号：{{intera.order_sn}}</span>
+                              </div>
+                              <div class="neiro">
+                                 <div class="nero n-1" style="width: 450px;">
+                                    <div class="noot-sp">
+                                       <div class="le-dd" style="position: relative;">
+                                          <div class="imsldd" ui-sref="shop-detail({goods_id: intera.goods_id})">
+                                             <div class="img" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;">
+                                                <img img-lazy-load="{{intera.goods_img}}" />
+                                             </div>
+                                             <div class="txt" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;">
+                                                <p class="gp-1" ng-attr-title="{{intera.goods_name}}">{{intera.goods_name}}</p>
+                                                <p class="gp-2">x{{intera.goods_number}}</p>
+                                             </div>
+                                             <div class="clear"></div>
                                           </div>
-                                          <div class="txt" ng-click="goIntDetail(intera.order_id)" style="cursor: pointer;">
-                                             <p class="gp-1" ng-attr-title="{{intera.goods_name}}">{{intera.goods_name}}</p>
-                                             <p class="gp-2">x{{intera.goods_number}}</p>
-                                          </div>
-                                          <div class="clear"></div>
+                                       </div>
+                                       <div class="cgend" ng-click="lookMore($index,$event)" ng-if="order.goods.length>3">
+                                          <a style="cursor:pointer;">查看更多商品 ></a>
                                        </div>
                                     </div>
-                                    <div class="cgend" ng-click="lookMore($index,$event)" ng-if="order.goods.length>3">
-                                       <a style="cursor:pointer;">查看更多商品 ></a>
+                                 </div>
+                                 <div class="nero n-2 c">
+                                    <div class="dd-name need_tk">
+                                       <em></em>
+                                       <span class="user_name" ng-attr-title="{{intera.consignee}}">{{intera.consignee}}</span>
                                     </div>
                                  </div>
-                              </div>
-                              <div class="nero n-2 c">
-                                 <div class="dd-name need_tk">
-                                    <em></em>
-                                    <span class="user_name" ng-attr-title="{{intera.consignee}}">{{intera.consignee}}</span>
+                                 <div class="nero n-5 c" style="border-right: none;width: 133px;">
+                                    <div class="n4-dsh" style="margin-top: 20px;">
+                                       <div style="margin-top: 8px;cursor: pointer;" ui-sref="order-detail({orderId:intera.order_id})">订单详情</div>
+                                       <a class="ako4" ui-sref="comment({orderid:intera.order_id})" style="margin-top: 8px;cursor:pointer;display: inline-block;width: 80px;height: 30px;line-height: 30px;border: 1px solid #e6e6e6;background-color: #f7f7f7;">评价</a>
+                                    </div>
                                  </div>
+                                 <div class="clear"></div>
                               </div>
-                              <div class="nero n-5 c" style="border-right: none;width: 133px;">
-                                 <div class="n4-dsh" style="margin-top: 20px;">
-                                    <div style="margin-top: 8px;cursor: pointer;" ui-sref="order-detail({orderId:intera.order_id})">订单详情</div>
-                                    <a class="ako4" ui-sref="comment({orderid:intera.order_id})" style="margin-top: 8px;cursor:pointer;display: inline-block;width: 80px;height: 30px;line-height: 30px;border: 1px solid #e6e6e6;background-color: #f7f7f7;">评价</a>
-                                 </div>
-                              </div>
-                              <div class="clear"></div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <pagination ng-if="noCommentData&&noCommentData.length!=0" oncall="callback(index)" pages="noCommentData.pages"></pagination>
+                     <pagination ng-if="noCommentData&&noCommentData.length!=0" oncall="callback(index)" pages="noCommentData.pages"></pagination>
 
+                  </div>
                </div>
             </div>
          </div>
+         <div class="clear"></div>
       </div>
-      <div class="clear"></div>
    </div>
 </div>

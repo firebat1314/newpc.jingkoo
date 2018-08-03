@@ -61,7 +61,7 @@
                     <div class="goods-items-imgnew">
                         <ul>
                             <li ng-repeat="bigList in listGoods.gallery">
-                                <a href="#/shop-detail/{{bigList.goods_id}}" target="_blank">
+                                <a href="javascript:;" ui-sref="shop-detail({goods_id:bigList.goods_id})" target="_blank">
                                     <img ng-src={{bigList.img_url}} alt="">
                                 </a>
                             </li>
@@ -69,15 +69,15 @@
                     </div>
                     <div class="hd">
                         <ul>
-                            <li ng-repeat="bigs in listGoods.gallery"><a href="#/shop-detail/{{bigs.goods_id}}" target="_blank"><img ng-src={{bigs.thumb_url}}></a></li>
+                            <li ng-repeat="bigs in listGoods.gallery"><a href="javascript:;" ui-sref="shop-detail({goods_id:bigs.goods_id})" target="_blank"><img ng-src={{bigs.thumb_url}}></a></li>
                         </ul>
                     </div>
                 </div>
-                <p class="goods-items-namenew" ng-attr-title='{{listGoods.name}}'><a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.name}}</a></p>
-                <p class="goods-items-pricenew" ng-if="showPrice"><a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.shop_price}}</a></p>
+                <p class="goods-items-namenew" ng-attr-title='{{listGoods.name}}'><a href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" target="_blank">{{listGoods.name}}</a></p>
+                <p class="goods-items-pricenew" ng-if="showPrice"><a href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" target="_blank">{{listGoods.shop_price}}</a></p>
                 <p class="goods-items-storenew">{{listGoods.suppliers_name}}</p>   
                 <div class="shop_btn_box">
-                    <a href="#/shop-detail/{{listGoods.id}}" class="shop_btn_a1">立即购买</a>
+                    <a href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" class="shop_btn_a1">立即购买</a>
                     <a style="cursor:pointer;" class="shop_btn_a2" ng-click="goodsCollect(listGoods.is_collect,listGoods.id,$index)">关注<span class="sc" ng-class="{'scsc':listGoods.is_collect}"></span></a>
                 </div>
             </div>

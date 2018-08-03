@@ -1,5 +1,5 @@
 angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
-   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
+   .config(function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
       $ocLazyLoadProvider.config({
          debug: false, //知否启用调试模式  
@@ -15,7 +15,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/jump/jump.html',
             controller: "jumpControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/jump/jump.js");
                }]
             }
@@ -117,7 +117,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/shop-list/shop-list.html',
             controller: "ShopListControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/shop-list/shop-list.js");
                }]
             }
@@ -129,7 +129,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/shop-list-cut/shop-list-cut.html',
             controller: "ShopListCutControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/shop-list-cut/shop-list-cut.js");
                }]
             }
@@ -140,7 +140,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/distribution/shop-list-distribution/shop-list-distribution.html',
             controller: "ShopListDistributionControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/distribution/shop-list-distribution/shop-list-distribution.js");
                }]
             }
@@ -152,7 +152,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/shop-detail-cut/shop-detail-cut.html',
             controller: "shopDetailCutControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/shop-detail-cut/shop-detail-cut.js");
                }]
             }
@@ -164,7 +164,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/distribution/shop-detail-distribution/shop-detail-distribution.html',
             controller: "shopDetailDistributionControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/distribution/shop-detail-distribution/shop-detail-distribution.js");
                }]
             }
@@ -176,7 +176,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/distribution/jiesuan-distribution/jiesuan-distribution.html',
             controller: "checkoutDistributionControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/distribution/jiesuan-distribution/jiesuan-distribution.js");
                }]
             }
@@ -188,7 +188,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/distribution/order-list/order-list.html',
             controller: "orderListDistributionControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/distribution/order-list/order-list.js");
                }]
             }
@@ -199,7 +199,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/distribution/order-detail/order-detail.html',
             controller: "orderDetailDistributionControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load("template/distribution/order-detail/order-detail.js");
                }]
             }
@@ -214,7 +214,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
          //商品详情路由
          .state("shop-detail", {
             title: '商品详情',
-            url: '/shop-detail/:goods_id',
+            url: '/shop-detail/:goods_id/:isActivity',
             templateUrl: 'template/shop_detail.html',
             controller: "shopDetail-control"
          })
@@ -256,7 +256,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
          //新支付页路由
          .state("paymentNew", {
             title: '支付',
-            url: '/paymentNew/:order_id/:log_id/:type',
+            url: '/paymentNew/:order_id/:log_id/:type/:is_distribution',
             templateUrl: 'template/paymentNew.html',
             controller: "paymentNew-control"
          })
@@ -734,7 +734,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             templateUrl: 'template/error/error.html',
             controller: "errorControl",
             resolve: {
-               deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+               deps: ["$ocLazyLoad", function($ocLazyLoad) {
                   return $ocLazyLoad.load([
                      "template/error/error.js",
                      "template/error/error.css",
@@ -751,7 +751,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/SHD.html',
                   controller: "SHDControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/SHD.css",
                            "template/SHD/SHD.js",
@@ -764,7 +764,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/index/index.html',
                   controller: "SHDIndexControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/index/index.css",
                            "template/SHD/index/index.js",
@@ -782,7 +782,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/borrowings/borrowings.html',
                   controller: "SHDBorrowingsControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/borrowings/borrowings.css",
                            "template/SHD/borrowings/borrowings.js",
@@ -800,7 +800,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/borrowings-info/borrowings-info.html',
                   controller: "SHDBorrowingsInfoControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/borrowings-info/borrowings-info.css",
                            "template/SHD/borrowings-info/borrowings-info.js",
@@ -818,7 +818,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/borrowings-person-info/borrowings-person-info.html',
                   controller: "SHDBorrowingsPersonInfoControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/borrowings-person-info/borrowings-person-info.css",
                            "template/SHD/borrowings-person-info/borrowings-person-info.js",
@@ -836,7 +836,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/company-info/company-info.html',
                   controller: "SHDCompanyInfoControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/company-info/company-info.css",
                            "template/SHD/company-info/company-info.js",
@@ -854,7 +854,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/SHD/tied-card/tied-card.html',
                   controller: "SHDTiedCardControl",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/SHD/tied-card/tied-card.css",
                            "template/SHD/tied-card/tied-card.js",
@@ -872,7 +872,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/jingku-finance/jingku-finance.html',
                   controller: "jingkuFinanceController",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/jingku-finance/jingku-finance.css",
                            "template/jingku-finance/jingku-finance.js",
@@ -890,7 +890,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/comment/comment.html',
                   controller: "commentController",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/comment/comment.css",
                            "template/comment/comment.js",
@@ -908,7 +908,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/comment/comment-over/comment-over.html',
                   controller: "commentOverController",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/comment/comment-over/comment-over.css",
                            "template/comment/comment-over/comment-over.js",
@@ -926,7 +926,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                   templateUrl: 'template/comment/no-comment-list/no-comment-list.html',
                   controller: "noCommentListController",
                   resolve: {
-                     deps: ["$ocLazyLoad", function ($ocLazyLoad) {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/comment/no-comment-list/no-comment-list.css",
                            "template/comment/no-comment-list/no-comment-list.js",
@@ -936,5 +936,111 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                }
             }
          })
-
+         .state("plus", {
+            title: '镜库PLUS会员',
+            url: '/plus',
+            views: {
+               '': {
+                  templateUrl: 'template/plus/plus.html',
+                  controller: "plusController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/plus.css",
+                           "template/plus/plus.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("plus.index", {
+            title: '镜库PLUS会员',
+            url: '/plus',
+            views: {
+               'plus@plus': {
+                  templateUrl: 'template/plus/index/index.html',
+                  controller: "plusIndexController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/index/index.css",
+                           "template/plus/index/index.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("plus.coupon", {
+            title: '镜库PLUS会员',
+            url: '/coupon',
+            views: {
+               'plus': {
+                  templateUrl: 'template/plus/coupon/coupon.html',
+                  controller: "plusCouponController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/coupon/coupon.css",
+                           "template/plus/coupon/coupon.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("plus.rebate", {
+            title: '我的购物回馈',
+            url: '/rebate',
+            views: {
+               'plus': {
+                  templateUrl: 'template/plus/rebate/rebate.html',
+                  controller: "plusRebateController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/rebate/rebate.css",
+                           "template/plus/rebate/rebate.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("plus.order", {
+            title: '开通镜库PLUS会员',
+            url: '/order',
+            views: {
+               'plus': {
+                  templateUrl: 'template/plus/order/order.html',
+                  controller: "plusOrderController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/order/order.css",
+                           "template/plus/order/order.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("plus.protocol", {
+            title: '镜库PLUS会员',
+            url: '/protocol',
+            views: {
+               'plus': {
+                  templateUrl: 'template/plus/order/protocol/protocol.html',
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/plus/order/protocol/protocol.css",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         
    })

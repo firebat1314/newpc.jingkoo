@@ -249,7 +249,7 @@
                             <div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods">
                                 <p style="color:#666;">关联商品</p>
                                 <ul>
-                                    <li ng-repeat="glLi in shopDetailData.linked_goods"><a href="#/shop-detail/{{glLi.goods_id}}"><img ng-src={{glLi.goods_img}} alt=""></a><i class="guanlianYes"></i></li>
+                                    <li ng-repeat="glLi in shopDetailData.linked_goods"><a href="javascript:;" ui-sref="shop-detail({goods_id:glLi.goods_id})"><img ng-src={{glLi.goods_img}} alt=""></a><i class="guanlianYes"></i></li>
                                 </ul>
                             </div>
                         </div>
@@ -558,7 +558,7 @@
                         <div class="history-tit">您的浏览记录</div>
                         <div class="history-goods">
                             <div class="history-goods-item" ng-repeat="historyItem in shopDetailData.history">
-                                <a href="#/shop-detail/{{historyItem.goods_id}}">
+                                <a href="javascript:;" ui-sref="shop-detail({goods_id:historyItem.goods_id})">
                                     <div class="history-goods-item-img"><img ng-src={{historyItem.goods_thumb}} alt=""></div>
                                     <p ng-attr-title="{{historyItem.goods_name}}">{{historyItem.goods_name}}</p>
                                     <span>{{historyItem.format_shop_price}}</span>

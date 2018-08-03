@@ -179,14 +179,14 @@
                 <div class="table_bottom">
                     <div class="table_b1" ng-repeat="cartGoodsList in cartGoods.list">
                         <div class="table_b1_left">
-                            <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:cartGoodsList.goods_id})">
                                 <img ng-src={{cartGoodsList.img}} width="80" height="80" style="border: 1px solid #e6e6e6;"/>
                             </a>
                         </div>
                         <div class="table_b1_rightbox">
                             <div class="rightbox_more" style="min-height: 80px;height: auto;">
                                 <div class="table_b1_right">
-                                    <a href="#/shop-detail/{{cartGoodsList.goods_id}}">
+                                    <a href="javascript:;" ui-sref="shop-detail({goods_id:cartGoodsList.goods_id})">
                                         <p>{{cartGoodsList.goods_name}}</p>
                                     </a>
                                     <ul class="b1_right_u1">

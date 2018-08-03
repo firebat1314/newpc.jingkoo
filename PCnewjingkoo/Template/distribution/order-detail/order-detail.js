@@ -74,7 +74,7 @@ myApp.controller('orderDetailDistributionControl', ['$scope', '$rootScope', '$st
          return 
      }
       if (order_id) {
-         $state.go('paymentNew', { order_id: order_id, log_id: '', type: 'order' });
+         $state.go('paymentNew', { order_id: order_id, log_id: '', type: 'order',is_distribution: 1 });
       } else {
          layer.msg('请检查商品是否存在', { icon: 1, time: 3000 });
       }

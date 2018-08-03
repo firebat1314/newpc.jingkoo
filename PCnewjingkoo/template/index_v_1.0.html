@@ -158,7 +158,7 @@
                <div class="tempWrap">
                   <ul>
                      <li ng-repeat="ysItem in yushouData.data" repeat-done="yushou()">
-                        <a href="#/shop-detail/{{ysItem.id}}">
+                        <a href="javascript:;" ui-sref="shop-detail({goods_id:ysItem.id,isActivity:1})">
                            <img ng-src={{ysItem.goods_img}} alt="">
                            <div class="down-time" data-date="{{ysItem.down_time}}" down-time>剩余0天0时0分0秒</div>
                         </a>
@@ -178,7 +178,7 @@
                <div class="tempWrap">
                   <ul>
                      <li ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
-                        <a href="#/shop-detail/{{fsItem.id}}" style="display: block">
+                        <a href="javascript:;" ui-sref="shop-detail({goods_id:fsItem.id,isActivity:1})" style="display: block">
                            <img ng-src={{fsItem.goods_img}} alt="">
                            <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
                            <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>
@@ -262,7 +262,7 @@
                   </p>
                </div>
                <div class="coolEye-right-content" ng-repeat="jsjm in jsjmAd.data">
-                  <a href="#/shop-detail/{{jsjm.id}}" target="_blank">
+                  <a href="javascript:;" ui-sref="shop-detail({goods_id:jsjm.id})" target="_blank">
                      <img ng-src={{jsjm.goods_img}} alt="">
                      <p style="color: #333;" ng-attr-title="{{jsjm.name}}">{{jsjm.name}}</p>
                      <p ng-if="showPrice">{{jsjm.shop_price}}</p>
@@ -294,7 +294,7 @@
                   </p>
                </div>
                <div class="coolEye-right-content" ng-repeat="qxsj in qxsjAd.data">
-                  <a href="#/shop-detail/{{qxsj.id}}" target="_blank">
+                  <a href="javascript:;" ui-sref="shop-detail({goods_id:qxsj.id})" target="_blank">
                      <img ng-src={{qxsj.goods_img}} alt="">
                      <p style="color: #333;" ng-attr-title="{{qxsj.name}}">{{qxsj.name}}</p>
                      <p ng-if="showPrice">{{qxsj.shop_price}}</p>
@@ -326,7 +326,7 @@
                   </p>
                </div>
                <div class="coolEye-right-content" ng-repeat="jjzy in jjzyAd.data">
-                  <a href="#/shop-detail/{{jjzy.id}}" target="_blank">
+                  <a href="javascript:;" ui-sref="shop-detail({goods_id:jjzy.id})" target="_blank">
                      <img ng-src={{jjzy.goods_img}} alt="">
                      <p style="color: #333;" ng-attr-title="{{jjzy.name}}">{{jjzy.name}}</p>
                      <p ng-if="showPrice">{{jjzy.shop_price}}</p>

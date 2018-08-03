@@ -44,7 +44,7 @@
                                             <span ng-click="delCollectionGoods([item.rec_id])">取消收藏</span>
                                         </div>
                                         <div class="ner-img">
-                                            <a ng-attr-title="{{item.goods_name}}" href="#/shop-detail/{{item.goods_id}}">
+                                            <a ng-attr-title="{{item.goods_name}}" href="javascript:;" ui-sref="shop-detail({goods_id:item.goods_id})">
                                                 <img ng-src="{{item.img}}">
                                             </a>
                                             <!--<div class="no-huo">已无货</div>-->
@@ -52,7 +52,7 @@
 
                                     </div>
                                     <div class="wenbook">
-                                        <p class="wbk-1"><a href="#/shop-detail/{{item.goods_id}}" ng-attr-title="{{item.goods_name}}">{{item.goods_name}}</a></p>
+                                        <p class="wbk-1"><a href="javascript:;" ui-sref="shop-detail({goods_id:item.goods_id})" ng-attr-title="{{item.goods_name}}">{{item.goods_name}}</a></p>
                                         <p class="wbk-2" ng-if="showPrice">{{item.shop_price||'暂无报价'}}</p>
                                     </div>
                                     <div class="Coupon cle">
@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="gwc-jr cle">
                                         <div class="up-ho"><input class="ceck" ng-model="item.selected" ng-checked="selectAll" type="checkbox" id="{{item.goods_id}}" /><label for="{{item.goods_id}}"></label></div>
-                                        <div class="gwc-c"><a href="#/shop-detail/{{item.goods_id}}"><em></em>加入购物车</a></div>
+                                        <div class="gwc-c"><a href="javascript:;" ui-sref="shop-detail({goods_id:item.goods_id})"><em></em>加入购物车</a></div>
                                     </div>
                                 </div>
                             </li>

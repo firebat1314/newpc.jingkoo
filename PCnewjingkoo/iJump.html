@@ -6,21 +6,43 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>转跳中...</title>
+   <link rel="stylesheet" href="//at.alicdn.com/t/font_700125_35bmuortpy7.css">
    <script>
-      var u = navigator.userAgent;
-      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端 
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-      if(isiOS){
-         location.href="wx437bb3d85af781ba://com.jingku.jingkuapp"
-      }
-      if(isAndroid){
-         location.href='jingku://'
+      /*var u = navigator.userAgent;
+            		var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端 
+            		var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            		if(isiOS){
+            			location.href="wx437bb3d85af781ba://com.jingku.jingkuapp"
+            		}
+            		if(isAndroid){
+            			location.href='jingku://'
+            		}*/
+      // *代表向所有父级发送，或者可以指定地址
+      var click = function() {
+
       }
    </script>
 </head>
 
 <body>
-
+   <!-- <a href="jingku://">转跳中...</a> -->
+   <!-- <button class="button">点击点击点ss击点击</button> -->
+   <style>
+   </style>
+   <div style="text-align: center;">
+      <p style="margin-top: 100px"><i style="font-size: 100px;color: #a2c127;margin-top: 100px;" class="iconfont icon-chenggong"></i></p>
+      <p style="color: #666666;">合同签署完成</p>
+   </div>
 </body>
+<script>
+   /*window.onload = function(){
+      		console.log(document.getElementsByClassName('button'))
+      		document.getElementsByClassName('button')[0].onclick=function (){
+      			console.log(this)
+      			var  idata={type:'closePage'};
+      		window.parent.postMessage(idata,"*");
+      		}
+      	}*/
+</script>
 
 </html>

@@ -25,14 +25,14 @@
                     <a class="sPrev" href="javascript:void(0)"></a>
                     <ul class="tempWrap" style="margin-left: 20px;">
                         <li class="fl like-main-item" ng-repeat="item in qxsjAd.data" repeat-done="itemFn()">
-                            <a href="#/shop-detail/{{item.id}}">
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:item.id})">
                                 <img ng-src={{item.goods_img}} alt="">
                             </a>
-                            <a href="#/shop-detail/{{item.id}}">
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:item.id})">
                                 <p>{{item.name}}</p>
                             </a>
                             <span style="margin-bottom: 0;" ng-if="showPrice">{{item.shop_price}}</span>
-                            <a style="top: 0;margin-top: 10px;" class="qg" href="#/shop-detail/{{item.id}}">立即抢购</a>
+                            <a style="top: 0;margin-top: 10px;" class="qg" href="javascript:;" ui-sref="shop-detail({goods_id:item.id})">立即抢购</a>
                         </li>
                     </ul>
                     <a class="sNext" href="javascript:void(0)"></a>
@@ -177,7 +177,7 @@
                             <div class="goods-items-img">
                                 <ul ng-if="listGoods.gallery" style="overflow: hidden;">
                                     <li style="float:left;" ng-repeat="bigList in listGoods.gallery">
-                                        <a href="#/shop-detail/{{bigList.goods_id}}" target="_blank">
+                                        <a href="javascript:;" ui-sref="shop-detail({goods_id:bigList.goods_id})" target="_blank">
                                             <img img-lazy-load={{bigList.img_url}} default-src="../img/800-800.jpg" alt="">
                                         </a>
                                     </li>
@@ -186,7 +186,7 @@
                             <div class="hd">
                                 <ul>
                                     <li ng-repeat="bigs in listGoods.gallery">
-                                        <a href="#/shop-detail/{{bigs.goods_id}}" target="_blank">
+                                        <a href="javascript:;" ui-sref="shop-detail({goods_id:bigs.goods_id})" target="_blank">
                                             <img img-lazy-load={{bigs.thumb_url}} default-src="../img/800-800.jpg">
                                         </a>
                                     </li>
@@ -194,14 +194,14 @@
                             </div>
                         </div>
                         <p class="goods-items-name" ng-attr-title='{{listGoods.name}}'>
-                            <a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.name}}</a>
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" target="_blank">{{listGoods.name}}</a>
                         </p>
                         <p class="goods-items-price" ng-if="showPrice">
-                            <a href="#/shop-detail/{{listGoods.id}}" target="_blank">{{listGoods.shop_price}}</a>
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" target="_blank">{{listGoods.shop_price}}</a>
                         </p>
                         <p class="goods-items-store">{{listGoods.suppliers_name}}</p>
                         <div class="shop_btn_box">
-                            <a href="#/shop-detail/{{listGoods.id}}" class="shop_btn_a1">立即购买</a>
+                            <a href="javascript:;" href="javascript:;" ui-sref="shop-detail({goods_id:listGoods.id})" class="shop_btn_a1">立即购买</a>
                             <a style="cursor:pointer;" class="shop_btn_a2" ng-click="goodsCollect(listGoods.is_collect,listGoods.id,$index)">关注
                                 <span class="sc" ng-class="{'scsc':listGoods.is_collect}"></span>
                             </a>
@@ -228,7 +228,7 @@
             <div class="hot-sale-goods">
                     <ul>
                         <li ng-repeat="like in YouLike.goods_list" repeat-done="likeGoodsFn()">
-                            <a href="#/shop-detail/{{like.goods_id}}">
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:like.goods_id})">
                                 <img ng-src={{like.goods_img}} alt="">
                             </a>
                             <p>{{like.goods_name}}</p>

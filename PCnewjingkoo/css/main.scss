@@ -891,7 +891,7 @@ $browser-default-font-size: 37.5px !default;
          }
       }
       .search-box {
-         width: 500px;
+         width: 550px;
          height: 40px;
          border-radius: 4px;
          border: 1px solid #3f69a5;
@@ -978,23 +978,27 @@ $browser-default-font-size: 37.5px !default;
                outline: none;
                float: left;
                font-size: 13px;
-               text-indent: 20px;
+               text-indent: 8px;
                border-radius: 8px 0 0 8px;
             }
             .keywords-search-box {
-               @include border;
-               display: none;
-               width: 392px;
+               width: calc(100% + 2px);
                position: absolute;
-               top: 40px;
-               right: -80px;
+               top: 41px;
+               right: -1px;
                z-index: 9999;
+               border: 1px solid #e0e0e0;
+               background: #ffffff;
+               border-top: none;
+               box-sizing: border-box;
                .keywords-search-item {
-                  height: 25px;
                   color: #666;
-                  padding-left: 20px;
-                  padding-top: 15px;
-                  &:last-child {
+                  padding: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  cursor: pointer;
+                  /* &:last-child {
                      background: url(../img/dianpu.png) no-repeat 20px 15px;
                      &:hover {
                         background: url(../img/dianpu.png) no-repeat 20px 15px;
@@ -1002,7 +1006,7 @@ $browser-default-font-size: 37.5px !default;
                      p {
                         margin-left: 30px;
                      }
-                  }
+                  } */
                   &:hover {
                      background: #fafafa;
                      span {
@@ -1010,25 +1014,27 @@ $browser-default-font-size: 37.5px !default;
                      }
                   }
                   span {
-                     width: 270px;
                      display: inline-block;
                   }
                }
             }
             .history-search {
-               @include border;
-               display: none;
-               width: 392px;
+               width: calc(100% + 2px);
                position: absolute;
-               top: 46px;
-               right: -80px;
+               top: 41px;
+               right: -1px;
                z-index: 9999;
+               border: 1px solid #e0e0e0;
+               background: #ffffff;
+               border-top: none;
+               box-sizing: border-box;
                .keywords-search-item {
-                  height: 25px;
                   color: #666;
-                  padding-left: 20px;
-                  padding-top: 15px;
-                  &:last-child {}
+                  padding: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  cursor: pointer;
                   &:hover {
                      background: #fafafa;
                      p {
@@ -1039,18 +1045,20 @@ $browser-default-font-size: 37.5px !default;
                      }
                   }
                   span {
-                     width: 305px;
                      color: #688bb8;
                      display: inline-block;
+                     margin-right: 8px;
+                  }
+                  p,
+                  i {
+                     text-align: right;
+                     white-space: nowrap;
+                     cursor: pointer;
+                     min-width: 70px;
                   }
                   p {
-                     width: 50px;
-                     float: right;
-                     text-align: right;
-                     margin-right: 17px;
-                     color: #688bb8;
-                     cursor: pointer;
                      display: none;
+                     color: #688bb8;
                   }
                }
             }
@@ -1347,7 +1355,7 @@ $browser-default-font-size: 37.5px !default;
    }
 }
 
-.nav {
+.nav-index {
    height: 44px;
    background: #fff;
    border-bottom: 1px solid #eaeaea;
@@ -4544,7 +4552,6 @@ $browser-default-font-size: 37.5px !default;
                         }
                      }
                      ul {
-                        width: 600px; //              height:80px;
                         li {
                            width: 60px;
                            height: 60px;
@@ -4554,6 +4561,9 @@ $browser-default-font-size: 37.5px !default;
                            margin-right: 10px;
                            cursor: pointer;
                            margin-bottom: 10px;
+                           &:last-child{
+                              margin-right: 0;
+                           }
                            img {
                               width: 100%;
                               height: 100%;
@@ -4610,15 +4620,14 @@ $browser-default-font-size: 37.5px !default;
                   table {
                      tbody {
                         .first-line {
-                           border-bottom: 1px solid #ccc;
-                           border-top: 1px solid #ccc;
+                           border-bottom: 1px solid #e0e0e0;
+                           border-top: 1px solid #e0e0e0;
                            height: 40px;
                            color: #333;
                            font-size: 14px;
                         }
                         tr {
-                           height: 75px;
-                           border-bottom: 1px solid #ccc;
+                           height: 66px;
                            th {
                               text-align: center;
                            }
@@ -4628,7 +4637,7 @@ $browser-default-font-size: 37.5px !default;
                            .table-img {
                               width: 51px;
                               height: 51px;
-                              border: 1px solid #ccc;
+                              border: 1px solid #e0e0e0;
                               position: relative;
                               img {
                                  width: 100%;
@@ -4658,27 +4667,32 @@ $browser-default-font-size: 37.5px !default;
                                  height: 35px;
                                  line-height: 35px;
                                  font-size: 20px;
-                                 border: 1px solid #ccc;
+                                 border: 1px solid #e0e0e0;
                                  &:hover {
                                     border: 1px solid #ff3333;
                                     color: #ff3333; //box-sizing: border-box;
                                  }
                                  &.no {
                                     pointer-events: none;
-                                    color: #ccc;
+                                    color: #e0e0e0;
                                  }
                               }
                               .diyr-txt {
                                  width: 60px;
                                  height: 35px;
-                                 border-bottom: 1px solid #ccc;
-                                 border-top: 1px solid #ccc;
+                                 border-bottom: 1px solid #e0e0e0;
+                                 border-top: 1px solid #e0e0e0;
                                  border-right: 0;
                                  border-left: 0;
                                  outline: none;
                                  position: relative;
                               }
                            }
+                        }
+                     }
+                     .trItem {
+                        &:last-child{
+                           border-bottom: 1px solid #e0e0e0;
                         }
                      }
                   }
@@ -4688,8 +4702,8 @@ $browser-default-font-size: 37.5px !default;
                      height: 54px;
                      text-align: center;
                      color: #666;
-                     border-bottom: 1px solid #ccc;
-                     border-top: 1px solid #ccc;
+                     border-bottom: 1px solid #e0e0e0;
+                     border-top: 1px solid #e0e0e0;
                      &:first-child {
                         width: 144px;
                      }
@@ -4746,7 +4760,7 @@ $browser-default-font-size: 37.5px !default;
                         height: 28px;
                         line-height: 27px;
                         font-size: 20px;
-                        border: 1px solid #ccc;
+                        border: 1px solid #e0e0e0;
                         -webkit-touch-callout: none;
                         /* iOS Safari */
                         -webkit-user-select: none;
@@ -4764,14 +4778,14 @@ $browser-default-font-size: 37.5px !default;
                         }
                         &.no {
                            pointer-events: none;
-                           color: #ccc;
+                           color: #e0e0e0;
                         }
                      }
                      .diyr-txt {
                         width: 35px;
                         height: 28px;
-                        border-bottom: 1px solid #ccc;
-                        border-top: 1px solid #ccc;
+                        border-bottom: 1px solid #e0e0e0;
+                        border-top: 1px solid #e0e0e0;
                         border-right: 0;
                         border-left: 0;
                         outline: none;
@@ -4821,14 +4835,14 @@ $browser-default-font-size: 37.5px !default;
                      .pick-list-top {
                         height: 45px;
                         line-height: 45px;
-                        border: 1px solid #ccc;
+                        border: 1px solid #e0e0e0;
                         border-bottom: none;
                         border-left: none;
                         border-right: none;
                         .list-top-color {
                            width: 576px;
                            text-align: left;
-                           border-right: 1px solid #ccc;
+                           border-right: 1px solid #e0e0e0;
                            padding-left: 20px;
                            color: #FF3333;
                         }
@@ -4842,12 +4856,12 @@ $browser-default-font-size: 37.5px !default;
                      background: #f7f7f7;
                      height: 50px;
                      line-height: 50px;
-                     border-bottom: 1px solid #ccc;
-                     border-top: 1px solid #ccc;
+                     border-bottom: 1px solid #e0e0e0;
+                     border-top: 1px solid #e0e0e0;
                      .list-bottom-total {
                         width: 597px;
                         text-align: center;
-                        border-right: 1px solid #ccc;
+                        border-right: 1px solid #e0e0e0;
                         color: #ff3333;
                      }
                      .list-bottom-selected {
@@ -5053,7 +5067,6 @@ $browser-default-font-size: 37.5px !default;
                   }
                   .saler_msg_box {
                      padding: 5px 0 0 20px;
-                     width: calc(100% - 20px);
                   } //关联商品
                   .connet_goods_box {
                      padding: 15px 0 20px 20px;
@@ -8919,7 +8932,6 @@ $browser-default-font-size: 37.5px !default;
    }
    .coupon-bd li .wrp .roosv .txt .rop-1 em {
       position: relative;
-      top: -15px;
       margin-right: 5px;
       display: inline-block;
       font-size: 24px;
@@ -11920,8 +11932,8 @@ $browser-default-font-size: 37.5px !default;
    position: absolute;
    bottom: 0;
    right: 0;
-   width: 15px;
-   height: 15px;
+   width: 14px;
+   height: 12px;
    background: url(../img/cg_ico1.png) no-repeat center;
 }
 
@@ -12365,8 +12377,8 @@ $browser-default-font-size: 37.5px !default;
 .pur_close_dl.pur_close_don .pur_close_sp1:after {
    content: "";
    display: inline-block;
-   width: 17px;
-   height: 17px;
+   width: 14px;
+   height: 12px;
    background: url(../img/cg_ico1.png) center center no-repeat;
    background-size: 100%;
    position: absolute;
@@ -12509,7 +12521,7 @@ $browser-default-font-size: 37.5px !default;
    content: "";
    display: inline-block;
    width: 14px;
-   height: 14px;
+   height: 12px;
    background: url(../img/cg_ico1.png) center center no-repeat;
    background-size: 100%;
    position: absolute;
@@ -12664,8 +12676,8 @@ $browser-default-font-size: 37.5px !default;
 
 .person_remark .sent_sp1,
 .send_way .sent_sp1 {
-   width: 100px;
-   text-align: center;
+   width: 80px;
+   text-align: left;
    height: 35px;
    line-height: 35px;
 }
@@ -12691,8 +12703,8 @@ $browser-default-font-size: 37.5px !default;
 .send_way .send_way_sp.selected:after {
    content: "";
    display: inline-block;
-   width: 17px;
-   height: 17px;
+   width: 14px;
+   height: 12px;
    background: url(../img/cg_ico1.png) center center no-repeat;
    background-size: 100%;
    position: absolute;
@@ -12764,6 +12776,8 @@ $browser-default-font-size: 37.5px !default;
    font-size: 12px;
    color: #999999;
    margin-left: 4px;
+   box-sizing: border-box;
+   border-radius: 0;
 }
 
 .send_way_l .remark_left.remark_left2 .texbox_d {
@@ -13278,7 +13292,7 @@ $browser-default-font-size: 37.5px !default;
 
 .refer_order .refer_order_sp {
    position: relative;
-   padding-left: 30px;
+   padding-left: 10px;
    font-size: 14px;
    color: #808080;
 }
@@ -13286,13 +13300,13 @@ $browser-default-font-size: 37.5px !default;
 .refer_order .refer_order_sp:before {
    content: "";
    display: inline-block;
-   width: 23px;
+   width: 20px;
    height: 18px;
    background: url(../img/cg_ico10.png) center center no-repeat;
    background-size: 100%;
    position: relative;
    top: 4px;
-   margin-right: 10px;
+   margin-right: 7px;
 }
 
 .refer_order .refer_order_d {
@@ -22884,7 +22898,7 @@ textarea {
       font-size: 12px;
       display: inline-block;
       cursor: pointer;
-      &:last-child{
+      &:last-child {
          margin-right: 0px;
       }
    }

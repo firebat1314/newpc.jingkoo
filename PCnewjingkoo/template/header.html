@@ -25,22 +25,13 @@
 <div ng-controller="index_header_parentControl">
 
    <div id="clooseCompany1">
-      <div ng-repeat="item in company" ng-style="item.checked==1?{'opacity':'.3','backgroundColor':'#ffffff','cursor': 'not-allowed'}:{}"
-         ng-click="item.checked==1?null:loginByCompany(item.cid)">{{item.cname}}</div>
+      <div ng-repeat="item in company" ng-style="item.checked==1?{'opacity':'.3','backgroundColor':'#ffffff','cursor': 'not-allowed'}:{}" ng-click="item.checked==1?null:loginByCompany(item.cid)">{{item.cname}}</div>
    </div>
    <div class="header-main">
       <div class="header-top">
          <div class="header-top-content">
             <div class="header-top-content-left">
-               <div class="trans-city">
-                  <style>
-                     .iconfont {
-                        vertical-align: middle;
-                     }
-                     .iconfont+span {
-                        vertical-align: middle;
-                     }
-                  </style>
+               <div class="jingkoo-call trans-city">
                   <p>
                      <span ng-if="areaListName.selected" ng-repeat="areaListName in IndexData.list.getAreaList">
                         <i class="iconfont icon-weizhi"></i>
@@ -73,7 +64,7 @@
                      <span>切换企业</span>
                   </p>
                </div>
-               <div class="jingkoo-call" ng-if="showHomeBtn">
+               <div ui-sref="home" class="jingkoo-call" ng-if="showHomeBtn">
                   <p>
                      <i class="iconfont icon-weibiao45100847"></i>
                      <span>返回首页</span>
@@ -98,13 +89,13 @@
                      <p>CRM</p>
                   </a>
                </div>
-               <div class="dingDan">
-                  <a ui-sref="order-all({})">
+               <div class="dingDan" ui-sref="order-all({})">
+                  <a>
                      <p>订单</p>
                   </a>
                </div>
-               <div class="xinXi">
-                  <a href="#/parson-msg-center">
+               <div class="xinXi" ui-sref="parson-msg-center({})">
+                  <a>
                      <!--<p>消息<span>({{msgNumber}})</span></p>-->
                      <p>消息</p>
                   </a>
@@ -192,52 +183,27 @@
                      </ul>
                   </div>
                </div>
-               <!-- <div class="search-box-left">
-                  <div class="inner-main">
-                     <span class="value">{{商品}}</span>
-                     <div class="arrow-box">
-                        <i class="iconfont icon-arrow_d"></i>
+               <form class="search-box-center" name="searchForm" method="post" ng-submit="searchKey()" novalidate>
+                  <input id="txt" class="searchkey" type="text" ng-change="searchList()" ng-model="$root.keywords" placeholder="搜索镜库商品" autocomplete="off" style="height: 40px;">
+                  <div class="keywords-search-box" ng-if="candisplay&&keywords&&searchData.good_data.length">
+                     <div class="keywords-search-item" ng-click="searchKey(item.goods_name)" ng-repeat="item in searchData.good_data">
+                        <span>{{item.goods_name}}</span>
+                     </div>
+                     <!-- <div class="keywords-search-item">
+                        <p>找“眼镜”相关店铺</p>
+                     </div> -->
+                  </div>
+                  <div class="history-search" ng-if="candisplay&&!keywords&&searchHistory.data.length">
+                     <div ng-click="searchKey(item.search_name)" class="keywords-search-item" ng-repeat="item in searchHistory.data">
+                        <span>{{item.search_name}}</span>
+                        <i>搜索历史</i>
+                        <p ng-click="delItem($event, item.id)">删除</p>
+                     </div>
+                     <div ng-click="delItems()" class="keywords-search-item" style="border-top: 1px solid #e0e0e0;">
+                        <span></span>
+                        <div style="color: #333;">全部删除</div>
                      </div>
                   </div>
-                  <div class="search-type">
-                     <ul>
-                        <li ng-click="goodsType=1">商品</li>
-                        <li ng-click="goodsType=2">切边</li>
-                        <li ng-click="goodsType=3">铺货</li>
-                     </ul>
-                  </div> 
-               </div>-->
-               <form class="search-box-center" name="searchForm" method="post" ng-submit="searchKey()" novalidate>
-                  <input id="txt" type="text" ng-model="$root.keywords" placeholder="搜索镜库商品" autocomplete="off" style="height: 40px;">
-                  <!-- <div class="keywords-search-box">
-                        <div class="keywords-search-item">
-                           <span>眼镜</span>
-                           <i>约2000个结果</i>
-                        </div>
-                        <div class="keywords-search-item">
-                           <span>眼镜</span>
-                           <i>约2000个结果</i>
-                        </div>
-                        <div class="keywords-search-item">
-                           <span>眼镜</span>
-                           <i>约2000个结果</i>
-                        </div>
-                        <div class="keywords-search-item">
-                           <p>找“眼镜”相关店铺</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="vip-center" ng-if="isShow">
-                    <div class="vip-touxiang-box">
-                        <div style="cursor: pointer;" ng-click="goVip()" class="vip-touxiang">
-                            <img img-lazy-load={{userData.user_info.avatar}} alt="">
-                        </div>
-                        <div class="keywords-search-item">
-                           <span>眼镜</span>
-                           <i>搜索历史</i>
-                           <p>删除</p>
-                        </div>
-                     </div> -->
                </form>
                <div class="search-box-right" ng-click="searchKey()"></div>
             </div>
@@ -256,16 +222,22 @@
                      <div class="has-car-goods-box" ng-repeat="goodsItem in shopCarHomeData.suppliers_goods_list">
                         <div ng-repeat="goods in goodsItem.goods_list">
                            <div class="has-car-goods" ng-repeat="attr in goods.attrs">
-                              <a ng-href="{{!(goods.cutting_id>0)?'#/shop-detail/'+goods.goods_id:'#/shop-detail-cut/'+goods.goods_id+'/'+goods.cutting_id}}">
-                                 <img ng-src={{goods.goods_thumb}} alt="">
-                                 <p class="goodsName" ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}</p>
-                                 <p class="attr">
-                                    <em ng-if="!(goods.cutting_id>0)" ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
-                                    <em ng-if="goods.cutting_id>0" ng-repeat="attrAr in goods.cutting_attr" ng-attr-title="{{attrAr}}">
-                                       <em ng-repeat="_attrAr in attrAr">{{_attrAr}}</em>
-                                    </em>
-                                 </p>
-                              </a>
+                              <a ng-if="!(goods.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:goods.goods_id})">
+                                    <img ng-src={{goods.goods_thumb}} alt="">
+                                    <p class="goodsName" ng-attr-title="{{goods.goods_name}}">{{goods.goods_name}}</p>
+                                    <p class="attr">
+                                       <em ng-repeat="attrAr in attr.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
+                                    </p>
+                                 </a>
+                              <a ng-if="goods.cutting_id>0" href="javascript:;" ui-sref="shop-detail-cut({goods_id:item.goods_id,id:goods.cutting_id})">
+                                    <img ng-src={{goods.goods_thumb}} alt="">
+                                    <p class="goodsName" ng-attr-title="{{goods.cutting_name}}">{{goods.cutting_name}}</p>
+                                    <p class="attr">
+                                       <em ng-repeat="attrAr in goods.cutting_attr" ng-attr-title="{{attrAr}}">
+                                          <em ng-repeat="_attrAr in attrAr">{{_attrAr}}</em>
+                                       </em>
+                                    </p>
+                                 </a>
                               <div class="price-del">
                                  <div class="price" ng-if="showPrice">{{goods.goods_price}}×{{attr.goods_number}}</div>
                                  <div class="del" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)">删除</div>
@@ -324,7 +296,7 @@
             </a>
          </div>
       </div>
-      <div class="nav" ng-class="{'show':allNav==1||allNavs==1}">
+      <div class="nav-index" ng-class="{'show':allNav==1||allNavs==1}">
          <div class="nav-bar">
             <div class="nav-bar-all">
                <span style="margin-left:0px;">全部商品分类</span>
@@ -402,11 +374,6 @@
                      镜库金融
                   </a>
                </li>
-
-               <!--  <a ui-sref-active="active" ui-sref="shop-list-cut({params:1})">
-                        <li>切边</li>
-                    </a> -->
-               <!--<li ng-click="jqqd()">镜库金融</li>-->
             </ul>
          </div>
       </div>
@@ -454,21 +421,30 @@
                   <div class="car-right-goods-item">
                      <div ng-repeat="carRightItem in carRight.goods_list">
                         <div class="goods-item" ng-repeat="carRightAttr in carRightItem.attrs" style="padding: 15px 0 24px;">
-                           <a ng-href="{{!(carRightItem.cutting_id>0)?'#/shop-detail/'+carRightItem.goods_id:'#/shop-detail-cut/'+carRightItem.goods_id+'/'+carRightItem.cutting_id}}"
-                              target="_blank">
+                           <a ng-if="!(carRightItem.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carRightItem.goods_id})" target="_blank">
                               <img ng-src={{carRightItem.goods_thumb}} alt="">
-                              <p class="goodsName" style="width: 160px;" ng-attr-title="{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}">{{carRightItem.cutting_id>0?carRightItem.cutting_name:carRightItem.goods_name}}</p>
+                              <p class="goodsName" style="width: 160px;" ng-attr-title="{{carRightItem.goods_name}}">{{carRightItem.goods_name}}</p>
                               <p class="attr" style="width: 160px;">
                                  <em ng-if="carRightAttr.qiujing">球镜：{{carRightAttr.qiujing}}</em>
                                  <em ng-if="carRightAttr.zhujing">柱镜：{{carRightAttr.zhujing}}</em>
                                  <em ng-if="carRightAttr.zhouwei">轴位：{{carRightAttr.zhouwei}}</em>
-                                 <em ng-if="!(carRightItem.cutting_id>0)" ng-repeat="attrAr in carRightItem.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
-                                 <em ng-if="carRightItem.cutting_id>0" ng-repeat="attrAr in carRightItem.cutting_attr" ng-attr-title="{{attrAr}}" style="float:initial;">
-                                    <span ng-repeat="_attrAr in attrAr">{{_attrAr}}</span>
-                                 </em>
+                                 <em ng-repeat="attrAr in carRightItem.arr_attr" ng-attr-title="{{attrAr}}">{{attrAr}}</em>
                               </p>
                               <i style="margin-top: 1px;margin-left: 64px;position: absolute;left: 0;">{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
                            </a>
+                           <a ng-if="(carRightItem.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carRightItem.goods_id,id:carRightItem.cutting_id})" target="_blank">
+                                 <img ng-src={{carRightItem.goods_thumb}} alt="">
+                                 <p class="goodsName" style="width: 160px;" ng-attr-title="{{carRightItem.cutting_name}}">{{carRightItem.cutting_name}}</p>
+                                 <p class="attr" style="width: 160px;">
+                                    <em ng-if="carRightAttr.qiujing">球镜：{{carRightAttr.qiujing}}</em>
+                                    <em ng-if="carRightAttr.zhujing">柱镜：{{carRightAttr.zhujing}}</em>
+                                    <em ng-if="carRightAttr.zhouwei">轴位：{{carRightAttr.zhouwei}}</em>
+                                    <em ng-if="carRightItem.cutting_id>0" ng-repeat="attrAr in carRightItem.cutting_attr" ng-attr-title="{{attrAr}}" style="float:initial;">
+                                       <span ng-repeat="_attrAr in attrAr">{{_attrAr}}</span>
+                                    </em>
+                                 </p>
+                                 <i style="margin-top: 1px;margin-left: 64px;position: absolute;left: 0;">{{carRightItem.goods_price}}×{{carRightAttr.goods_number}}</i>
+                              </a>
                            <div class="black-cha" ng-click="delSingle($index,$parent.$index,$parent.$parent.$index)"></div>
                         </div>
                      </div>
@@ -482,8 +458,7 @@
                <div class="jtc-sum" style="line-height: 20px;">共计：
                   <strong style="font-family: verdana;color: #c81623;" class="J-total">{{totalPrice}}</strong>
                </div>
-               <a id="car" style="position: absolute;right: 50px;top: 7px;width: 110px; height: 35px;text-align: center;color: rgb(255, 255, 255);font: 16px/35px 微软雅黑;background: rgb(200, 22, 35);"
-                  class="jtc-btn J-btn" href="#/shop-car">去购物车结算</a>
+               <a id="car" style="position: absolute;right: 50px;top: 7px;width: 110px; height: 35px;text-align: center;color: rgb(255, 255, 255);font: 16px/35px 微软雅黑;background: rgb(200, 22, 35);" class="jtc-btn J-btn" href="#/shop-car">去购物车结算</a>
             </div>
          </div>
       </div>
@@ -537,33 +512,10 @@
 
 </div>
 <script>
-   //    $('.header-top .header-top-content .header-top-content-left .trans-city .item a').click(function(e){
-   //        $('.header-top .header-top-content .header-top-content-left .trans-city .item a').removeClass('selected');
-   //        $(e.target).addClass('selected');
-   //    });
-   $('#txt').on('input', function () {
-      if (this.value) {
-         $('.keywords-search-box').slideDown();
-         $('.history-search').hide();
-      } else {
-         $('.keywords-search-box').slideUp();
-      }
-   });
-   $('.history-search .keywords-search-item p').click(function (e) {
-      $(e.target).parent().remove();
-   });
-   $('#txt').on('focus', function () {
-      $('.history-search').slideDown();
-   }).on('blur', function () {
-      $('.history-search').slideUp();
-   });
-
    $('.right-bar').height($(window).height());
    $('.right-bar_box').height($(window).height());
-   // $('.white-car-right-content').height($(window).height());
-   // $('.youhuiquan-right-content').height($(window).height());
    $('.goTop').css('top', $(window).height() - 50);
-   $('.goTop').click(function () {
+   $('.goTop').click(function() {
       $("body,html").animate({
          "scrollTop": 0
       }, 500)
@@ -571,7 +523,7 @@
 
    var index = '';
    var flag = true;
-   $('.table-bar').click(function (e) {
+   $('.table-bar').click(function(e) {
       if ($(this).index() === index) {
          if (flag) {
             flag = false;
@@ -619,7 +571,7 @@
       index = $(this).index();
       e.stopPropagation();
    });
-   $(document).click(function () {
+   $(document).click(function() {
       flag = false;
       $('.white-car-right-content').animate({
          'right': -270
@@ -632,7 +584,7 @@
       }, 100);
    });
 
-   $('#car').click(function () {
+   $('#car').click(function() {
       flag = false;
       $('.white-car-right-content').animate({
          'right': -270
@@ -645,7 +597,7 @@
       }, 100);
    });
 
-   $('.car-right-tit i').click(function () {
+   $('.car-right-tit i').click(function() {
       flag = false;
       $('.white-car-right-content').animate({
          'right': -270
@@ -657,7 +609,7 @@
          "right": -270
       }, 100);
    });
-   $('.youhuiquan-right-tit i').click(function () {
+   $('.youhuiquan-right-tit i').click(function() {
       flag = false;
       $('.white-car-right-content').animate({
          'right': -270
@@ -669,52 +621,7 @@
          "right": -270
       }, 100);
    });
-   $(".white-car-right-content").click(function (event) {
+   $(".white-car-right-content").click(function(event) {
       event.stopPropagation();
    });
-
-
-   function disabledMouseWheel() {
-      if (document.addEventListener) {
-         document.addEventListener('DOMMouseScroll', scrollFunc, false);
-      } //W3C
-      window.onmousewheel = document.onmousewheel = scrollFunc; //IE/Opera/Chrome
-   }
-
-
-   //  var scrollFunc;
-   //  $('.white-car-right-content').hover(
-   //      function(){
-   //          scrollFunc =  function(evt) {
-   //              evt = evt || window.event;
-   //              if(evt.preventDefault) {
-   //                  // Firefox
-   //                  evt.preventDefault();
-   //                  evt.stopPropagation();
-   //              } else {
-   //                  // IE
-   //                  evt.cancelBubble=true;
-   //                  evt.returnValue = false;
-   //              }
-   //              return false;
-   //          }
-   //        disabledMouseWheel();
-   //      },
-   //      function(){
-   //          scrollFunc = true;
-   //          disabledMouseWheel();
-   //  })
-
-   //    $('.nav-bar li').click(function(e){
-   //        $('.nav-bar li').css({
-   //            color:'#333',
-   //            boxSizing:'',
-   //            borderBottom:''
-   //        });
-   //        $(e.target).css({
-   //            color:'#ff3333',
-   //            boxSizing:'border-box',
-   //            borderBottom:'3px solid #ff3333'
-   //        });
-   //    });
 </script>

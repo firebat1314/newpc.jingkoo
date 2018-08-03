@@ -17,7 +17,7 @@
         <div class="purchase">
             <ul class="cle">
                 <li ng-repeat="cleAll in flashAllListData.data">
-                    <a href="#/shop-detail/{{cleAll.goods_id}}" target="_blank">
+                    <a ui-sref="shop-detail({goods_id:cleAll.goods_id,isActivity:1})" target="_blank">
                         <div class="wrp">
                             <div class="img">
                                 <img ng-src={{cleAll.goods_img}} />
@@ -42,7 +42,7 @@
         <div class="purchase">
             <ul class="cle">
                 <li ng-repeat="cle in flashListData.data">
-                    <a href="#/shop-detail/{{cle.goods_id}}" target="_blank">
+                    <a href="javascript:;" ui-sref="shop-detail({goods_id:cle.goods_id})" target="_blank">
                         <div class="wrp">
                             <div class="img">
                                 <img ng-src={{cle.goods_img}}>

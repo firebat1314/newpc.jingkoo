@@ -1,459 +1,461 @@
 <style>
-    .tb_inp.isMargin{
-        margin: 70px 0 !important;
-        position: relative !important;
-        top: -43px !important;
-    }
+   .tb_inp.isMargin {
+      margin: 70px 0 !important;
+      position: relative !important;
+      top: -43px !important;
+   }
 </style>
 <div class="route mb20">
-    <div class="gird">
-        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>返修退换货</a>
-    </div>
+   <div class="gird">
+      当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>返修退换货</a>
+   </div>
 </div>
 
 <div class="main" style="margin-bottom: 25px;">
-    <div class="im-panel gird cle">
-        <ng-template ng-include="'Template/control-tool.html'"></ng-template>
-        <div class="panel-right">
-            <div ng-show="isSubmit" class="control-wrp">
-                <div class="cont-hd cle">
-                    <div class="cbt-left fx_cbt">
-                        <span><a href="#/person-return-repair" class="cbt-wz on">返修/退换货</a></span>
-                        <span><a href="#/person-return-repair-history" class="cbt-wz">返修/退换货记录</a></span>
-                        <span><a href="#/person-repair-refund" class="cbt-wz">退款明细</a></span>
-                        <!--<span><a href="#/person-return-money" class="cbt-wz">返修明细</a></span>-->
-                        <div class="sp_r">
-                            <i class="sp_r_i" ng-click="repairFn()"></i>
-                            <input type="text" ng-model="repairList.order_sn" placeholder="输入商品名称或订单编号进行搜索" class="sp_r_ip"/>
-                        </div>
-                    </div>
-                </div>
-                <div class="newRepair_box">
-                    <div class="category-box" ng-if="repairData.cat_list">
-                        <div class="s-main">
-                            <ul class="category-list">
-                                <li ng-class="{'selected':li.selected}" ng-repeat="li in repairData.cat_list" ng-click="returnCatId(li.cat_id)">
-                                    <a class="search">{{li.cat_name}}</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="invoice_detail_div" style="padding-left: 20px;margin-bottom: 10px;">
-                        <span class="detail_div_sp1" style="width:auto;">类型 : </span>
-                        <div class="detail_div_d1" style="width:auto;">
-                            <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="1" ng-model="type" ng-change="changeType(type)"  name="zz" class="detail_div_ip1"  id="a1"  value="1"><label style="margin-right:20px;" for="a1">退货</label>
-                            <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="2" ng-model="type" ng-change="changeType(type)" name="zz"  class="detail_div_ip1" id="a2" value="2"><label style="margin-right:20px;" for="a2">换货</label>
-                            <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="3" ng-model="type" ng-change="changeType(type)"  name="zz"  class="detail_div_ip1" id="a3" value="3"><label style="margin-right:20px;" for="a3">维修</label>
-                        </div>
-                        <div class="detail_div_d1" style="width:auto;margin-right: 20px;">
-                            <div class="d1_div1_inp" style="margin-top:0;">
-                                <input type="text" ngc-lay-date id="fpInpMin" ng-model="starttime" ng-change="changeStartTime(starttime)"  max-date="{{endTime}}" class="fp_inp" placeholder="开始日期">
-                            </div>
-                            <span>--</span>
-                            <div class="d1_div1_inp" style="margin-top:0;">
-                                <input type="text" ngc-lay-date id="fpInpMax" ng-model="endtime" ng-change="changeEndTime(endtime)" min-date="{{startTime}}" class="fp_inp" placeholder="结束日期">
-                            </div>
-                        </div>
-                        <div class="detail_div_d1" style="width:auto;">
-                            <select style="width: 160px;height: 35px;border: 1px solid #e6e6e6;outline: none;" ng-change="changeSuppliers(suppliersId)" ng-model="suppliersId" name="">
+   <div class="im-panel gird cle">
+      <ng-template ng-include="'Template/control-tool.html'"></ng-template>
+      <div class="panel-right">
+         <div ng-show="isSubmit" class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left fx_cbt">
+                  <span><a href="#/person-return-repair" class="cbt-wz on">返修/退换货</a></span>
+                  <span><a href="#/person-return-repair-history" class="cbt-wz">返修/退换货记录</a></span>
+                  <span><a href="#/person-repair-refund" class="cbt-wz">退款明细</a></span>
+                  <!--<span><a href="#/person-return-money" class="cbt-wz">返修明细</a></span>-->
+                  <div class="sp_r">
+                     <i class="sp_r_i" ng-click="repairFn()"></i>
+                     <input type="text" ng-model="repairList.order_sn" placeholder="输入商品名称或订单编号进行搜索" class="sp_r_ip" />
+                  </div>
+               </div>
+            </div>
+            <div class="newRepair_box">
+               <div class="category-box" ng-if="repairData.cat_list">
+                  <div class="s-main">
+                     <ul class="category-list">
+                        <li ng-class="{'selected':li.selected}" ng-repeat="li in repairData.cat_list" ng-click="returnCatId(li.cat_id)">
+                           <a class="search">{{li.cat_name}}</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="invoice_detail_div" style="padding-left: 20px;margin-bottom: 10px;">
+                  <span class="detail_div_sp1" style="width:auto;">类型 : </span>
+                  <div class="detail_div_d1" style="width:auto;">
+                     <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="1" ng-model="type" ng-change="changeType(type)" name="zz" class="detail_div_ip1" id="a1" value="1"><label style="margin-right:20px;" for="a1">退货</label>
+                     <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="2" ng-model="type" ng-change="changeType(type)" name="zz" class="detail_div_ip1" id="a2" value="2"><label style="margin-right:20px;" for="a2">换货</label>
+                     <input style="width:15px;height:15px;top:-1px;" type="radio" ng-value="3" ng-model="type" ng-change="changeType(type)" name="zz" class="detail_div_ip1" id="a3" value="3"><label style="margin-right:20px;" for="a3">维修</label>
+                  </div>
+                  <div class="detail_div_d1" style="width:auto;margin-right: 20px;">
+                     <div class="d1_div1_inp" style="margin-top:0;">
+                        <input type="text" ngc-lay-date id="fpInpMin" ng-model="starttime" ng-change="changeStartTime(starttime)" max-date="{{endTime}}" class="fp_inp" placeholder="开始日期">
+                     </div>
+                     <span>--</span>
+                     <div class="d1_div1_inp" style="margin-top:0;">
+                        <input type="text" ngc-lay-date id="fpInpMax" ng-model="endtime" ng-change="changeEndTime(endtime)" min-date="{{startTime}}" class="fp_inp" placeholder="结束日期">
+                     </div>
+                  </div>
+                  <div class="detail_div_d1" style="width:auto;">
+                     <select style="width: 160px;height: 35px;border: 1px solid #e6e6e6;outline: none;" ng-change="changeSuppliers(suppliersId)" ng-model="suppliersId" name="">
                                 <option value="">请选择供货商</option>
                                 <option ng-repeat="shop in repairData.suppliers" ng-value="{{shop.suppliers_id}}" ng-selected="{{shop.selected}}">{{shop.suppliers_name}}</option>
                             </select>
-                        </div>
-                    </div>
-                    <div class="repair_box_top">
-                        <span class="box_top_sp">商品名称</span>
-                        <div class="box_top_d">
-                            <span class="top_d_sp1">类型</span>
-                            <span class="top_d_sp1">实付款</span>
-                            <span class="top_d_sp2">操作</span>
-                        </div>
-                    </div>
-                    <div class="repair_box_tb">
+                  </div>
+               </div>
+               <div class="repair_box_top">
+                  <span class="box_top_sp">商品名称</span>
+                  <div class="box_top_d">
+                     <span class="top_d_sp1">类型</span>
+                     <span class="top_d_sp1">实付款</span>
+                     <span class="top_d_sp2">操作</span>
+                  </div>
+               </div>
+               <div class="repair_box_tb">
 
-                        <table class="box_tb1">
-                            <tbody ng-repeat="tr in repairData.list" repeat-done="listZk()" ng-if="repairData&&repairData.list.length>0">
-                                <tr>
-                                    <th colspan="4">
-                                        <span class="tb_sp1">订单号：{{tr.order_sn}}</span>
-                                        <span class="tb_sp1">下单时间：{{tr.add_time}}</span>
-                                        <span class="tb_sp1">
+                  <table class="box_tb1">
+                     <tbody ng-repeat="tr in repairData.list" repeat-done="listZk()" ng-if="repairData&&repairData.list.length>0">
+                        <tr>
+                           <th colspan="4">
+                              <span class="tb_sp1">订单号：{{tr.order_sn}}</span>
+                              <span class="tb_sp1">下单时间：{{tr.add_time}}</span>
+                              <span class="tb_sp1">
                                             <img src="img/dd-2.png" onclick="qimoChatClick()" style="    display: inline-block;vertical-align: middle;margin-left: 5px;width: 22px;margin: 0;margin-right: 10px;cursor: pointer;position: relative;top: -2px;">
                                             供货商：{{tr.suppliers_name}}
                                         </span>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <!--<div ng-repeat="td in tr.goods">-->
-                                            <!--<div class="box_tb1_div" ng-repeat="tds in td.goods_list" style="width:100%;display: inline-block;margin-bottom: 20px;">-->
-                                                <div class="box_tb1_div">
-                                                        <input style="float: left;" type="checkbox" ng-model="tr.select" ng-change="sqs($index,$parent.$index,$parent.$parent.$index,tr.select)" class="tb1_checkbox"/>
-                                                    <a href="#/shop-detail/{{tr.goods_id}}"><img style="float: left;" ng-src={{tr.goods_thumb}} width="65px" height="65px"></a>
-                                                    <div  style="width:auto;float: left;margin: 0 16px 16px;" class="tb1_div_r" repeat-done="listZk()">
-                                                        <a href="#/shop-detail/{{tr.goods_id}}" style="display: inline-block;"><p ng-attr-title="{{tr.goods_name}}" style="width:280px;text-align:left;">{{tr.goods_name}}</p></a><em style="float: right;">×{{tr.goods_number}}</em>
-                                                        <div class="div_r_ul_box">
-                                                            <ul class="div_r_ul" ng-hide="!tr.qiujing&&!tr.zhujing&&!tr.zhouwei&&tr.arr_attr.length==0">
-                                                                <li ng-if="tr.qiujing">
-                                                                    <span>球镜：{{tr.qiujing}}</span>
-                                                                </li>
-                                                                <li ng-if="tr.zhujing">
-                                                                    <span>柱镜：{{tr.zhujing}}</span>
-                                                                </li>
-                                                                <li ng-if="tr.zhouwei">
-                                                                    <span>轴位：{{tr.zhouwei}}</span>
-                                                                </li>
-                                                                <li ng-repeat="attrs in tr.arr_attr">
-                                                                    <span style="margin-right: 30px;" ng-bind-html="attrs" ng-attr-title="{{attrs}}"></span>
-                                                                    <!--<span class="fr">镜片颜色：渐近茶</span>-->
-                                                                </li>
-                                                            </ul>
-                                                            <span class="need_lk" ng-if="tr.qiujing&&tr.zhujing&&tr.zhouwei&&tr.arr_attr.length>3">查看更多</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="clear"></div>
-                                                </div>
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    </td>
-                                    <!--<td width="140px">-->
-                                        <!--<span>{{tr.goods_number}}</span>-->
-                                    <!--</td>-->
-                                    <td width="140px">
-                                        <span ng-if="tr.huan_end==0&&tr.tui_end==0&&tr.xiu_end==0" style="margin-top:22px;" class="mj_ico1">不可售后</span>
-                                        <span ng-if="tr.huan_end==1" style="margin-top:22px;" class="mj_ico1">可换货</span>
-                                        <span ng-if="tr.tui_end==1" style="margin-top:22px;" class="mj_ico1">可退货</span>
-                                        <span ng-if="tr.xiu_end==1" style="margin-top:22px;" class="mj_ico1">可维修</span>
-                                    </td>
-                                    <td width="140px">
-                                        <span style="margin-top: 22px;" class="tb_sp2">{{tr.total_fee}}</span>
-                                        <!--<span class="tb_sp2">（含运费8元）</span>-->
-                                    </td>
-                                    <td width="140px">
-                                            <!--<div ng-repeat="td in tr.goods">-->
-                                                <!--<div class="box_tb1_div" ng-repeat="tds in td.goods_list" style="display: inline-block;">-->
-                                                    <!--<div ng-repeat="attr in tr.arr_attr" style="float: none;">-->
-                                                        <input type="button" ng-click="singleSqsh(tr.order_id,tr.rec_id,$index)" style="margin-top: 26px;" value="申请售后" class="tb_inp" ng-class="{'marginHigh':tr.qiujing&&tr.zhujing&&tr.zhouwei||tr.arr_attr.length>=3,'isMargin':(tr.qiujing&&tr.zhujing&&tr.zhouwei)||(tr.arr_attr.length>2)}">
-                                                    <!--</div>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tbody ng-if="repairData&&!repairData.list.length>0">
-                                <tr>
-                                    <td colspan="6">
-                                        <p style="font-size: 16px;color: #4c4c4c;text-align: center;padding: 40px 0;">暂无返修/退换货</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="pages" style="position: relative;">
-                            <div class="box_tb1_div" style="position: absolute;left:0;">
-                                <input type="checkbox" ng-model="selectall" ng-change="sqAlls(selectall)" class="tb1_checkbox"/>
-                                <p ng-click="tuihuo(1)" style="line-height: 56px;cursor: pointer;margin-right: 20px;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">退货</span></p>
-                                <p ng-click="tuihuo(2)" style="line-height: 56px;cursor: pointer;margin-right: 20px;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">换货</span></p>
-                                <p ng-click="tuihuo(3)" style="line-height: 56px;cursor: pointer;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">维修</span></p>
-                            </div>
-                            <div id="Pagination"></div>
-                            <div class="searchPage">
-                                <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
-                                <span class="page-go">到第<input type="text" value="1">页</span>
-                                <a href="javascript:;" class="page-btn">确定</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                           </th>
+                        </tr>
+                        <tr>
+                           <td>
+                              <!--<div ng-repeat="td in tr.goods">-->
+                              <!--<div class="box_tb1_div" ng-repeat="tds in td.goods_list" style="width:100%;display: inline-block;margin-bottom: 20px;">-->
+                              <div class="box_tb1_div">
+                                 <input style="float: left;" type="checkbox" ng-model="tr.select" ng-change="sqs($index,$parent.$index,$parent.$parent.$index,tr.select)" class="tb1_checkbox" />
+                                 <a href="javascript:;" ui-sref="shop-detail({goods_id:tr.goods_id})"><img style="float: left;" ng-src={{tr.goods_thumb}} width="65px" height="65px"></a>
+                                 <div style="width:auto;float: left;margin: 0 16px 16px;" class="tb1_div_r" repeat-done="listZk()">
+                                    <a href="javascript:;" ui-sref="shop-detail({goods_id:tr.goods_id})" style="display: inline-block;">
+                                       <p ng-attr-title="{{tr.goods_name}}" style="width:280px;text-align:left;">{{tr.goods_name}}</p>
+                                    </a><em style="float: right;">×{{tr.goods_number}}</em>
+                                    <div class="div_r_ul_box">
+                                       <ul class="div_r_ul" ng-hide="!tr.qiujing&&!tr.zhujing&&!tr.zhouwei&&tr.arr_attr.length==0">
+                                          <li ng-if="tr.qiujing">
+                                             <span>球镜：{{tr.qiujing}}</span>
+                                          </li>
+                                          <li ng-if="tr.zhujing">
+                                             <span>柱镜：{{tr.zhujing}}</span>
+                                          </li>
+                                          <li ng-if="tr.zhouwei">
+                                             <span>轴位：{{tr.zhouwei}}</span>
+                                          </li>
+                                          <li ng-repeat="attrs in tr.arr_attr">
+                                             <span style="margin-right: 30px;" ng-bind-html="attrs" ng-attr-title="{{attrs}}"></span>
+                                             <!--<span class="fr">镜片颜色：渐近茶</span>-->
+                                          </li>
+                                       </ul>
+                                       <span class="need_lk" ng-if="tr.qiujing&&tr.zhujing&&tr.zhouwei&&tr.arr_attr.length>3">查看更多</span>
+                                    </div>
+                                 </div>
+                                 <div class="clear"></div>
+                              </div>
+                              <!--</div>-->
+                              <!--</div>-->
+                           </td>
+                           <!--<td width="140px">-->
+                           <!--<span>{{tr.goods_number}}</span>-->
+                           <!--</td>-->
+                           <td width="140px">
+                              <span ng-if="tr.huan_end==0&&tr.tui_end==0&&tr.xiu_end==0" style="margin-top:22px;" class="mj_ico1">不可售后</span>
+                              <span ng-if="tr.huan_end==1" style="margin-top:22px;" class="mj_ico1">可换货</span>
+                              <span ng-if="tr.tui_end==1" style="margin-top:22px;" class="mj_ico1">可退货</span>
+                              <span ng-if="tr.xiu_end==1" style="margin-top:22px;" class="mj_ico1">可维修</span>
+                           </td>
+                           <td width="140px">
+                              <span style="margin-top: 22px;" class="tb_sp2">{{tr.total_fee}}</span>
+                              <!--<span class="tb_sp2">（含运费8元）</span>-->
+                           </td>
+                           <td width="140px">
+                              <!--<div ng-repeat="td in tr.goods">-->
+                              <!--<div class="box_tb1_div" ng-repeat="tds in td.goods_list" style="display: inline-block;">-->
+                              <!--<div ng-repeat="attr in tr.arr_attr" style="float: none;">-->
+                              <input type="button" ng-click="singleSqsh(tr.order_id,tr.rec_id,$index)" style="margin-top: 26px;" value="申请售后" class="tb_inp" ng-class="{'marginHigh':tr.qiujing&&tr.zhujing&&tr.zhouwei||tr.arr_attr.length>=3,'isMargin':(tr.qiujing&&tr.zhujing&&tr.zhouwei)||(tr.arr_attr.length>2)}">
+                              <!--</div>-->
+                              <!--</div>-->
+                              <!--</div>-->
+                           </td>
+                        </tr>
+                     </tbody>
+                     <tbody ng-if="repairData&&!repairData.list.length>0">
+                        <tr>
+                           <td colspan="6">
+                              <p style="font-size: 16px;color: #4c4c4c;text-align: center;padding: 40px 0;">暂无返修/退换货</p>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <div class="pages" style="position: relative;">
+                     <div class="box_tb1_div" style="position: absolute;left:0;">
+                        <input type="checkbox" ng-model="selectall" ng-change="sqAlls(selectall)" class="tb1_checkbox" />
+                        <p ng-click="tuihuo(1)" style="line-height: 56px;cursor: pointer;margin-right: 20px;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">退货</span></p>
+                        <p ng-click="tuihuo(2)" style="line-height: 56px;cursor: pointer;margin-right: 20px;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">换货</span></p>
+                        <p ng-click="tuihuo(3)" style="line-height: 56px;cursor: pointer;"><span style="display: inline-block;padding: 5px 10px;background-color: #3f69a5;color: #fff;border-radius: 3px;line-height: 16px;">维修</span></p>
+                     </div>
+                     <div id="Pagination"></div>
+                     <div class="searchPage">
+                        <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
+                        <span class="page-go">到第<input type="text" value="1">页</span>
+                        <a href="javascript:;" class="page-btn">确定</a>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div ng-show="isLotsSubmit" class="control-wrp">
-                <div class="cont-hd cle">
-                    <div class="cbt-left fx_cbt">
-                        <span><a class="cbt-wz on">批量申请售后</a></span>
-                    </div>
-                </div>
-                <div class="ask_order_box fx_box">
-                    <div class="sq_th_box">
-                        <table>
-                            <tr>
-                                <th colspan="5">
-									<span class="fx_new_inpbox">
+
+         </div>
+         <div ng-show="isLotsSubmit" class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left fx_cbt">
+                  <span><a class="cbt-wz on">批量申请售后</a></span>
+               </div>
+            </div>
+            <div class="ask_order_box fx_box">
+               <div class="sq_th_box">
+                  <table>
+                     <tr>
+                        <th colspan="5">
+                           <span class="fx_new_inpbox">
 										<input type="checkbox" ng-model="lotsSelect" ng-click="allSelect(lotsSelect)" class="fx_new_inp"/>
 										批量申请售后
 									</span>
-                                    <span class="sq_top" style="color: #808080;font-size: 12px;">订单号：{{orderSn}}</span>
-                                    <span class="sq_top" style="color: #808080;font-size: 12px;">下单时间：{{orderTime}}</span>
-                                    <span class="sq_top" style="color: #808080;font-size: 12px;">供货商：{{shop}}</span>
-                                </th>
-                            </tr>
-                            <tr ng-repeat="tr in sqshData.goodslist">
-                                <td style="text-align: left;width: 310px;">
-                                    <div class="sq_th_d">
-                                        <input type="checkbox" ng-model="tr.selects" ng-click="singleSelect($index,$parent.$index)" class="fx_add_inp"/>
-                                        <div class="sq_th_imgb">
-                                            <img ng-src={{tr.original_img}}>
-                                        </div>
-                                        <p>{{tr.goods_name}}</p>
-                                    </div>
-                                </td>
-                                <td width="180px">
-                                    <span class="sq_th_sp" ng-bind-html="tr.goods_attr"></span>
-                                    <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
-                                </td>
-                                <td width="180px">
-                                    {{tr.goods_number}}
-                                </td>
-                                <td>
-                                    <ul class="fx_th_u1">
-                                        <li>-</li>
-                                        <li><input type="text" ng-model="tr.goods_number"/></li>
-                                        <li>+</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="fx_btn_box">
-						<!--<span class="tj_sp">-->
-							<!--<input type="checkbox" class="tj_ip"/>-->
-							<!--批量申请售后-->
-						<!--</span>-->
-                        <input type="button" ng-click="tjsq()" value="提交申请" class="tj_btn"/>
-                        <input type="button" ng-click="qxsq()" value="取消" class="qx_btn"/>
-                    </div>
-                </div>
-
+                           <span class="sq_top" style="color: #808080;font-size: 12px;">订单号：{{orderSn}}</span>
+                           <span class="sq_top" style="color: #808080;font-size: 12px;">下单时间：{{orderTime}}</span>
+                           <span class="sq_top" style="color: #808080;font-size: 12px;">供货商：{{shop}}</span>
+                        </th>
+                     </tr>
+                     <tr ng-repeat="tr in sqshData.goodslist">
+                        <td style="text-align: left;width: 310px;">
+                           <div class="sq_th_d">
+                              <input type="checkbox" ng-model="tr.selects" ng-click="singleSelect($index,$parent.$index)" class="fx_add_inp" />
+                              <div class="sq_th_imgb">
+                                 <img ng-src={{tr.original_img}}>
+                              </div>
+                              <p>{{tr.goods_name}}</p>
+                           </div>
+                        </td>
+                        <td width="180px">
+                           <span class="sq_th_sp" ng-bind-html="tr.goods_attr"></span>
+                           <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
+                        </td>
+                        <td width="180px">
+                           {{tr.goods_number}}
+                        </td>
+                        <td>
+                           <ul class="fx_th_u1">
+                              <li>-</li>
+                              <li><input type="text" ng-model="tr.goods_number" /></li>
+                              <li>+</li>
+                           </ul>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <div class="fx_btn_box">
+                  <!--<span class="tj_sp">-->
+                  <!--<input type="checkbox" class="tj_ip"/>-->
+                  <!--批量申请售后-->
+                  <!--</span>-->
+                  <input type="button" ng-click="tjsq()" value="提交申请" class="tj_btn" />
+                  <input type="button" ng-click="qxsq()" value="取消" class="qx_btn" />
+               </div>
             </div>
-            <div ng-show="lotsSubmit" class="control-wrp">
-                <div class="cont-hd cle">
-                    <div class="cbt-left fx_cbt">
-                        <span><a class="cbt-wz on">申请售后</a></span>
-                    </div>
-                </div>
-                <div class="ask_order_box">
-                    <div class="sq_th_box">
-                        <table>
-                            <tbody ng-repeat="trs in afterSaleData.order_goods">
-                                <tr ng-repeat="tr in trs">
-                                    <th colspan="5">
-                                        <!--<span class="sq_top">服务单号：5465564564</span>-->
-                                        <span class="sq_top">订单号：{{tr.order_sn}}</span>
-                                        <span class="sq_top">下单时间：{{tr.order_addtime}}</span>
-                                    </th>
-                                </tr>
-                                <tr ng-repeat="tr in trs">
-                                    <td style="text-align: left;width: 310px;">
-                                        <div class="sq_th_d">
-                                            <div class="sq_th_imgb">
-                                                <img ng-src={{tr.original_img}}>
-                                            </div>
-                                            <p>{{tr.goods_name}}</p>
-                                        </div>
-                                    </td>
-                                    <td width="180px">
-                                        <span class="sq_th_sp" ng-if="tr.qiujing">球镜：{{tr.qiujing}}</span>
-                                        <span class="sq_th_sp" ng-if="tr.zhujing">柱镜：{{tr.zhujing}}</span>
-                                        <span class="sq_th_sp" ng-if="tr.zhouwei">轴位：{{tr.zhouwei}}</span>
-                                        <span class="sq_th_sp">{{tr.goods_attr}}</span>
-                                        <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
-                                    </td>
-                                    <td width="180px">
-                                        {{tr.return_number}}
-                                    </td>
-                                    <td>
-                                        <ul class="fx_th_u1" ng-show="tr.server_end==1||afterSaleData.type==''">
-                                            <li ng-class="{'reduce':isReduce}" ng-click="reduce($event,$index,$parent.$index)">-</li>
-                                            <li><input type="text" ng-model="tr.goods_number" ng-click="$event = $event" ng-value="tr.goods_number" ng-change="change($event,tr.goods_number,$index,$parent.$index)"></li>
-                                            <li ng-class="{'add':isAdd}" ng-click="add($event,$index,$parent.$index)">+</li>
-                                        </ul>
-                                        <p ng-if="tr.server_end==0&&afterSaleData.type==1">不可退货</p>
-                                        <p ng-if="tr.server_end==0&&afterSaleData.type==2">不可换货</p>
-                                        <p ng-if="tr.server_end==0&&afterSaleData.type==3">不可维修</p>
-                                    </td>
-                                </tr>
-                            </tbody>
+
+         </div>
+         <div ng-show="lotsSubmit" class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left fx_cbt">
+                  <span><a class="cbt-wz on">申请售后</a></span>
+               </div>
+            </div>
+            <div class="ask_order_box">
+               <div class="sq_th_box">
+                  <table>
+                     <tbody ng-repeat="trs in afterSaleData.order_goods">
+                        <tr ng-repeat="tr in trs">
+                           <th colspan="5">
+                              <!--<span class="sq_top">服务单号：5465564564</span>-->
+                              <span class="sq_top">订单号：{{tr.order_sn}}</span>
+                              <span class="sq_top">下单时间：{{tr.order_addtime}}</span>
+                           </th>
+                        </tr>
+                        <tr ng-repeat="tr in trs">
+                           <td style="text-align: left;width: 310px;">
+                              <div class="sq_th_d">
+                                 <div class="sq_th_imgb">
+                                    <img ng-src={{tr.original_img}}>
+                                 </div>
+                                 <p>{{tr.goods_name}}</p>
+                              </div>
+                           </td>
+                           <td width="180px">
+                              <span class="sq_th_sp" ng-if="tr.qiujing">球镜：{{tr.qiujing}}</span>
+                              <span class="sq_th_sp" ng-if="tr.zhujing">柱镜：{{tr.zhujing}}</span>
+                              <span class="sq_th_sp" ng-if="tr.zhouwei">轴位：{{tr.zhouwei}}</span>
+                              <span class="sq_th_sp">{{tr.goods_attr}}</span>
+                              <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
+                           </td>
+                           <td width="180px">
+                              {{tr.return_number}}
+                           </td>
+                           <td>
+                              <ul class="fx_th_u1" ng-show="tr.server_end==1||afterSaleData.type==''">
+                                 <li ng-class="{'reduce':isReduce}" ng-click="reduce($event,$index,$parent.$index)">-</li>
+                                 <li><input type="text" ng-model="tr.goods_number" ng-click="$event = $event" ng-value="tr.goods_number" ng-change="change($event,tr.goods_number,$index,$parent.$index)"></li>
+                                 <li ng-class="{'add':isAdd}" ng-click="add($event,$index,$parent.$index)">+</li>
+                              </ul>
+                              <p ng-if="tr.server_end==0&&afterSaleData.type==1">不可退货</p>
+                              <p ng-if="tr.server_end==0&&afterSaleData.type==2">不可换货</p>
+                              <p ng-if="tr.server_end==0&&afterSaleData.type==3">不可维修</p>
+                           </td>
+                        </tr>
+                     </tbody>
 
 
-                            <!--<tr>-->
-                            <!--<td style="text-align: left;">-->
-                            <!--<div class="sq_th_d">-->
-                            <!--<div class="sq_th_imgb">-->
-                            <!--<img src="img/fx_img1.png"/>-->
-                            <!--</div>-->
-                            <!--<p>库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片</p>-->
-                            <!--</div>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                            <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
-                            <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
-                            <!--</td>-->
-                            <!--<td>-->
-                            <!--10-->
-                            <!--</td>-->
-                            <!--<td>-->
-                            <!--此商品不可退-->
-                            <!--</td>-->
-                            <!--</tr>-->
-                        </table>
-                    </div>
-                    <p class="sq_th_p1">
-                        <span>* 温馨提示 : </span>本次售后服务由<span>{{shop}}</span>为您提供
-                    </p>
+                     <!--<tr>-->
+                     <!--<td style="text-align: left;">-->
+                     <!--<div class="sq_th_d">-->
+                     <!--<div class="sq_th_imgb">-->
+                     <!--<img src="img/fx_img1.png"/>-->
+                     <!--</div>-->
+                     <!--<p>库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片库博欧柯莱视月抛6片装库博欧柯 莱视月抛6片</p>-->
+                     <!--</div>-->
+                     <!--</td>-->
+                     <!--<td>-->
+                     <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
+                     <!--<span class="sq_th_sp">镜框颜色 : 渐近茶</span>-->
+                     <!--</td>-->
+                     <!--<td>-->
+                     <!--10-->
+                     <!--</td>-->
+                     <!--<td>-->
+                     <!--此商品不可退-->
+                     <!--</td>-->
+                     <!--</tr>-->
+                  </table>
+               </div>
+               <p class="sq_th_p1">
+                  <span>* 温馨提示 : </span>本次售后服务由<span>{{shop}}</span>为您提供
+               </p>
 
-                    <div class="fx_th_d2">
-                        <div class="fx_th_dd2">
-                            <span class="fx_th_sp"><i>*</i>服务类型 : </span>
-                            <div class="fx_th_btn">
-                                <input ng-disabled="tui" ng-show="afterSaleData.type==1||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==1}" value="退货"/>
-                                <input ng-disabled="huan" ng-show="afterSaleData.type==2||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==2}"  value="换货"/>
-                                <input ng-disabled="xiu" ng-show="afterSaleData.type==3||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==3}"  value="维修"/>
-                            </div>
-                        </div>
-                        <div class="fx_th_dd2">
-                            <span class="fx_th_sp"><i>*</i>问题描述 : </span>
-                            <textarea name="" ng-model="subArr.str_desc" style="width:400px;height: 90px;margin-left: 15px;overflow: hidden;border: 1px solid #d9d9d9;">
+               <div class="fx_th_d2">
+                  <div class="fx_th_dd2">
+                     <span class="fx_th_sp"><i>*</i>服务类型 : </span>
+                     <div class="fx_th_btn">
+                        <input ng-disabled="tui" ng-show="afterSaleData.type==1||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==1}" value="退货" />
+                        <input ng-disabled="huan" ng-show="afterSaleData.type==2||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==2}" value="换货" />
+                        <input ng-disabled="xiu" ng-show="afterSaleData.type==3||afterSaleData.type==''" type="button" ng-class="{'bt1':afterSaleData.type==3}" value="维修" />
+                     </div>
+                  </div>
+                  <div class="fx_th_dd2">
+                     <span class="fx_th_sp"><i>*</i>问题描述 : </span>
+                     <textarea name="" ng-model="subArr.str_desc" style="width:400px;height: 90px;margin-left: 15px;overflow: hidden;border: 1px solid #d9d9d9;">
 
 							</textarea>
-                        </div>
-                        <div class="fx_th_dd2" style="width:150px;overflow:initial;">
-                            <span class="fx_th_sp">图片信息 : </span>
-                            <!--<div class="up_d">-->
-                                <!--<input type="file" class="up_fi"/>-->
-                                <!--<input type="button" value="上传图片" class="up_img"/>-->
-                            <!--</div>-->
-                        </div>
-                        <div class="imgs_zs" style="margin-left:16px;">
-                            <!--<a href="#" class="left_arr"></a>-->
-                            <div style="width: 100px;height: 100px;float: left;border: 1px solid #e6e6e6;margin-right: 10px;position: relative;" ng-repeat="img in imgArr">
-                                <img style="width:100%;height:100%;display:block;" class="preview" ng-src='{{img.img}}'>
-                                <input type="file" class="file up_img" style="opacity: 0;position: absolute;top: 0;left: 0;width: 100%;height: 100%;" ng-model="img.file" ng-change="imgPreview($index,$event)" >
-                            </div>
-                        </div>
-                        <p class="fx_th_p2">为了帮助我们更好的解决问题,请您上传图片</p>
-                        <p class="fx_th_p2">最多可上传5张图片,每张图片大小不超过5M,支持bmp,gif,jpg,png,jpeg格式文件</p>
+                  </div>
+                  <div class="fx_th_dd2" style="width:150px;overflow:initial;">
+                     <span class="fx_th_sp">图片信息 : </span>
+                     <!--<div class="up_d">-->
+                     <!--<input type="file" class="up_fi"/>-->
+                     <!--<input type="button" value="上传图片" class="up_img"/>-->
+                     <!--</div>-->
+                  </div>
+                  <div class="imgs_zs" style="margin-left:16px;">
+                     <!--<a href="#" class="left_arr"></a>-->
+                     <div style="width: 100px;height: 100px;float: left;border: 1px solid #e6e6e6;margin-right: 10px;position: relative;" ng-repeat="img in imgArr">
+                        <img style="width:100%;height:100%;display:block;" class="preview" ng-src='{{img.img}}'>
+                        <input type="file" class="file up_img" style="opacity: 0;position: absolute;top: 0;left: 0;width: 100%;height: 100%;" ng-model="img.file" ng-change="imgPreview($index,$event)">
+                     </div>
+                  </div>
+                  <p class="fx_th_p2">为了帮助我们更好的解决问题,请您上传图片</p>
+                  <p class="fx_th_p2">最多可上传5张图片,每张图片大小不超过5M,支持bmp,gif,jpg,png,jpeg格式文件</p>
 
-                        <div class="fx_dd3btn" style="padding: 10px 0 20px 85px;">
-                            <input ng-click="sub()" type="button" value="提交"/>
-                        </div>
-                    </div>
+                  <div class="fx_dd3btn" style="padding: 10px 0 20px 85px;">
+                     <input ng-click="sub()" type="button" value="提交" />
+                  </div>
+               </div>
 
-                    <!--<div class="fx_th_d3">-->
-                        <!--<h2>确认信息<span class="fx_bj_sp"><div class="fx_bj_d">修改</div></span></h2>-->
-                        <!--<div class="fx_th_dd3box">-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>退款方式 : </span><em ng-if="return_pay_way==0">原支付方式返回</em><em ng-if="return_pay_way==1">退还回镜库余额</em>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>申请凭据 : </span><em ng-if="is_fapiao==0">有发票</em><em ng-if="is_fapiao==1">无发票</em>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>返回方式 : </span><em ng-if="return_way==0" ng-init="subArr.return_way='快递回镜库'">快递回镜库</em>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>收货地址 : </span>{{address}}-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>客户姓名 : </span>{{user}}-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>手机号码 : </span>{{mobile}}-->
-                            <!--</div>-->
-                            <!--<div class="fx_dd3btn">-->
-                                <!--<input type="button" ng-click="sub()" value="提交"/>-->
-                            <!--</div>-->
-                        <!--</div>-->
+               <!--<div class="fx_th_d3">-->
+               <!--<h2>确认信息<span class="fx_bj_sp"><div class="fx_bj_d">修改</div></span></h2>-->
+               <!--<div class="fx_th_dd3box">-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>退款方式 : </span><em ng-if="return_pay_way==0">原支付方式返回</em><em ng-if="return_pay_way==1">退还回镜库余额</em>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>申请凭据 : </span><em ng-if="is_fapiao==0">有发票</em><em ng-if="is_fapiao==1">无发票</em>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>返回方式 : </span><em ng-if="return_way==0" ng-init="subArr.return_way='快递回镜库'">快递回镜库</em>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>收货地址 : </span>{{address}}-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>客户姓名 : </span>{{user}}-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>手机号码 : </span>{{mobile}}-->
+               <!--</div>-->
+               <!--<div class="fx_dd3btn">-->
+               <!--<input type="button" ng-click="sub()" value="提交"/>-->
+               <!--</div>-->
+               <!--</div>-->
 
-                        <!--<div class="fx_th_ddd3">-->
-                            <!--<div class="fx_th_dd3 retur_way">-->
-                                <!--<span class="fx_sp4"><i>*</i>退款方式 : </span>-->
-                                <!--<input style="cursor:pointer;" type="button" value="原支付方式返回" placeholder="" class="fp_dd3_ip select"/>-->
-                                <!--<input style="cursor:pointer;" type="button" value="退还回镜库余额" placeholder="" class="fp_dd3_ip"/>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>申请凭据 : </span>-->
-                                <!--<input ng-value="0" ng-model="xgArr.is_fapiao" type="radio" name="fp" class="fx_che" id="aaa1"/>-->
-                                <!--<label for="aaa1">无发票</label>-->
-                                <!--<input ng-value="1" ng-model="xgArr.is_fapiao" type="radio" name="fp" class="fx_che" id="aaa2"/>-->
-                                <!--<label for="aaa2">有发票</label>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3 kuaidi">-->
-                                <!--<span class="fx_sp4"><i>*</i>返回方式 : </span>-->
-                                <!--<input style="cursor:pointer;" type="button" value="快递回镜库" placeholder="" class="fp_dd3_ip select"/>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3" style="position: relative;">-->
-                                <!--<span class="fx_sp4" style="position: absolute;"><i>*</i>收货地址 : </span>-->
-                                <!--<div style="position: absolute;left: 193px;top: 2px;">-->
-                                    <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.province" ng-change="changeProvince(xgArr.province)">-->
-                                        <!--<option ng-selected="1" value="">请选择</option>-->
-                                        <!--<option ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected" value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option>-->
-                                    <!--</select>-->
-                                    <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.city" ng-change="changeCity(xgArr.city)">-->
-                                        <!--<option ng-selected="1" value="">请选择</option>-->
-                                        <!--<option ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected" value="{{bjCity.region_id}}">{{bjCity.region_name}}</option>-->
-                                    <!--</select>-->
-                                    <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.district" ng-change="changeDis(xgArr.district)">-->
-                                        <!--<option ng-selected="1" value="">请选择</option>-->
-                                        <!--<option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected" value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option>-->
-                                    <!--</select>-->
-                                <!--</div>-->
-                                <!--<input style="margin-top:30px;margin-left: 193px;" type="text" ng-model="xgArr.address" placeholder="" class="fp_dd3_ip"/>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>客户姓名 : </span><input type="text" ng-model="xgArr.consignee" placeholder="" class="fp_dd3_ip"/>-->
-                            <!--</div>-->
-                            <!--<div class="fx_th_dd3">-->
-                                <!--<span class="fx_sp4"><i>*</i>手机号码 : </span><input type="text" ng-model="xgArr.mobile" placeholder="" class="fp_dd3_ip"/>-->
-                                <!--&lt;!&ndash;<input type="checkbox" class="fx_che1" id="aaa3"/><label for="aaa3">预订单手机号相同</label>&ndash;&gt;-->
-                            <!--</div>-->
-                            <!--<div class="fx_dd3btn">-->
-                                <!--<input ng-click="xg()" type="button" value="完成"/>-->
-                                <!--&lt;!&ndash;<input type="button" style="background: #fff;color:#666;border-color: #d9d9d9;" value="取消">&ndash;&gt;-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                </div>
+               <!--<div class="fx_th_ddd3">-->
+               <!--<div class="fx_th_dd3 retur_way">-->
+               <!--<span class="fx_sp4"><i>*</i>退款方式 : </span>-->
+               <!--<input style="cursor:pointer;" type="button" value="原支付方式返回" placeholder="" class="fp_dd3_ip select"/>-->
+               <!--<input style="cursor:pointer;" type="button" value="退还回镜库余额" placeholder="" class="fp_dd3_ip"/>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>申请凭据 : </span>-->
+               <!--<input ng-value="0" ng-model="xgArr.is_fapiao" type="radio" name="fp" class="fx_che" id="aaa1"/>-->
+               <!--<label for="aaa1">无发票</label>-->
+               <!--<input ng-value="1" ng-model="xgArr.is_fapiao" type="radio" name="fp" class="fx_che" id="aaa2"/>-->
+               <!--<label for="aaa2">有发票</label>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3 kuaidi">-->
+               <!--<span class="fx_sp4"><i>*</i>返回方式 : </span>-->
+               <!--<input style="cursor:pointer;" type="button" value="快递回镜库" placeholder="" class="fp_dd3_ip select"/>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3" style="position: relative;">-->
+               <!--<span class="fx_sp4" style="position: absolute;"><i>*</i>收货地址 : </span>-->
+               <!--<div style="position: absolute;left: 193px;top: 2px;">-->
+               <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.province" ng-change="changeProvince(xgArr.province)">-->
+               <!--<option ng-selected="1" value="">请选择</option>-->
+               <!--<option ng-repeat="bjProvince in bianjiData.province_list" ng-selected="bjProvince.selected" value="{{bjProvince.region_id}}">{{bjProvince.region_name}}</option>-->
+               <!--</select>-->
+               <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.city" ng-change="changeCity(xgArr.city)">-->
+               <!--<option ng-selected="1" value="">请选择</option>-->
+               <!--<option ng-repeat="bjCity in bianjiData.city_list" ng-selected="bjCity.selected" value="{{bjCity.region_id}}">{{bjCity.region_name}}</option>-->
+               <!--</select>-->
+               <!--<select style="width: 112px;height: 27px;border: 1px solid #d9d9d9;float: left;margin-right: 10px;" class="dzhi-selt" ng-model="xgArr.district" ng-change="changeDis(xgArr.district)">-->
+               <!--<option ng-selected="1" value="">请选择</option>-->
+               <!--<option ng-repeat="bjDistrict in bianjiData.district_list" ng-selected="bjDistrict.selected" value="{{bjDistrict.region_id}}">{{bjDistrict.region_name}}</option>-->
+               <!--</select>-->
+               <!--</div>-->
+               <!--<input style="margin-top:30px;margin-left: 193px;" type="text" ng-model="xgArr.address" placeholder="" class="fp_dd3_ip"/>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>客户姓名 : </span><input type="text" ng-model="xgArr.consignee" placeholder="" class="fp_dd3_ip"/>-->
+               <!--</div>-->
+               <!--<div class="fx_th_dd3">-->
+               <!--<span class="fx_sp4"><i>*</i>手机号码 : </span><input type="text" ng-model="xgArr.mobile" placeholder="" class="fp_dd3_ip"/>-->
+               <!--&lt;!&ndash;<input type="checkbox" class="fx_che1" id="aaa3"/><label for="aaa3">预订单手机号相同</label>&ndash;&gt;-->
+               <!--</div>-->
+               <!--<div class="fx_dd3btn">-->
+               <!--<input ng-click="xg()" type="button" value="完成"/>-->
+               <!--&lt;!&ndash;<input type="button" style="background: #fff;color:#666;border-color: #d9d9d9;" value="取消">&ndash;&gt;-->
+               <!--</div>-->
+               <!--</div>-->
+               <!--</div>-->
 
             </div>
-            <div ng-show="isSuccess" class="control-wrp">
-                <div class="cont-hd cle">
-                    <div class="cbt-left">
-                        <span><a class="cbt-wz on">申请服务详情</a></span>
-                    </div>
-                </div>
-                <div class="cont-bd">
-                    <div class="contacts-wrap czhi">
-                        <div class="wsh_box">
-                            <i class="wsh_ico wsh_ico1"></i>
-                            <p class="wsh_p1">恭喜您,订单提交成功</p>
-                            <p class="wsh_p2" style="color: #808080;">服务人员将在24小时内进行审核,审核结果将会以短信形式告知您,</p>
-                            <p class="wsh_p2" style="color: #808080;">您也可以在查看 返修/退换货记录中进行查询</p>
-                        </div>
-                    </div>
-                </div>
+
+         </div>
+         <div ng-show="isSuccess" class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left">
+                  <span><a class="cbt-wz on">申请服务详情</a></span>
+               </div>
             </div>
-        </div>
-        <div class="clear"></div>
-    </div>
+            <div class="cont-bd">
+               <div class="contacts-wrap czhi">
+                  <div class="wsh_box">
+                     <i class="wsh_ico wsh_ico1"></i>
+                     <p class="wsh_p1">恭喜您,订单提交成功</p>
+                     <p class="wsh_p2" style="color: #808080;">服务人员将在24小时内进行审核,审核结果将会以短信形式告知您,</p>
+                     <p class="wsh_p2" style="color: #808080;">您也可以在查看 返修/退换货记录中进行查询</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
 </div>
 <script>
-    $('.crt_u1>li>a').click(function(){
-        $(this).addClass('crt_on');
-        $(this).parent().siblings().find('a').removeClass('crt_on');
-    })
+   $('.crt_u1>li>a').click(function() {
+      $(this).addClass('crt_on');
+      $(this).parent().siblings().find('a').removeClass('crt_on');
+   })
 
-    $('.fx_bj_sp').hover(function () {
-        $(this).children().toggle();
-    });
+   $('.fx_bj_sp').hover(function() {
+      $(this).children().toggle();
+   });
 
 
-    $('.fx_bj_sp').click(function () {
-        $('.fx_th_ddd3').show();
-        $('.fx_th_dd3box').hide();
-    });
+   $('.fx_bj_sp').click(function() {
+      $('.fx_th_ddd3').show();
+      $('.fx_th_dd3box').hide();
+   });
 
-    $('.fx_dd3btn input').click(function () {
-        $('.fx_th_ddd3').hide();
-        $('.fx_th_dd3box').show();
-    })
+   $('.fx_dd3btn input').click(function() {
+      $('.fx_th_ddd3').hide();
+      $('.fx_th_dd3box').show();
+   })
 </script>

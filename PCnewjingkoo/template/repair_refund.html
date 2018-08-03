@@ -50,8 +50,8 @@
                         <tr>
                             <td width="320px">
                                 <div class="fx_detail_div" ng-repeat="fxs in fx.goods">
-                                    <a href="#/shop-detail/{{fxs.goods_id}}"><img ng-src={{fxs.goods_thumb}} class="detail_img"></a>
-                                    <a href="#/shop-detail/{{fxs.goods_id}}"><span ng-attr-title="{{fxs.goods_name}}" class="detail_sp">{{fxs.goods_name}}</span></a>
+                                    <a href="javascript:;" ui-sref="shop-detail({goods_id:fxs.goods_id})"><img ng-src={{fxs.goods_thumb}} class="detail_img"></a>
+                                    <a href="javascript:;" ui-sref="shop-detail({goods_id:fxs.goods_id})"><span ng-attr-title="{{fxs.goods_name}}" class="detail_sp">{{fxs.goods_name}}</span></a>
                                 </div>
                             </td>
                             <td width="200px">

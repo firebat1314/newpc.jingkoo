@@ -22,7 +22,7 @@
         </div>
         <div class="pointsMall-content">
             <div class="pointsMall-item" ng-repeat="item in pointsData.list">
-                <a href="#/shop-detail/{{item.goods_id}}" target="_blank">
+                <a href="javascript:;" ui-sref="shop-detail({goods_id:item.goods_id})" target="_blank">
                     <div class="pointsMall-item-img">
                         <img ng-src={{item.goods_img}} alt="">
                     </div>

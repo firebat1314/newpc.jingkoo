@@ -728,4 +728,21 @@ angular.module('myApp.directives', [])
 
 			}
 		}
-	})
+   })
+/*    .directive('commentPage', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				goodsid: '@'
+			},
+			templateUrl: 'template/comment/comment-list/comment-list.html',
+			controller: function($scope, $data, $ocLazyLoad) {
+				$ocLazyLoad.load('template/comment/comment-list/comment-list.css');
+
+				
+			},
+			link: function(scope, element, attrs) {
+
+			}
+		}
+	}) */

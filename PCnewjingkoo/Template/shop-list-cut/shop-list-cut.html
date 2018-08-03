@@ -25,14 +25,14 @@
                     <a class="sPrev" href="javascript:void(0)"></a>
                     <ul class="tempWrap" style="margin-left: 20px;">
                         <li class="fl like-main-item" ng-repeat="item in qxsjAd.data" repeat-done="itemFn()">
-                            <a href="#/shop-detail/{{item.id}}">
+                            <a ui-sref="shop-detail({goods_id:item.id})">
                                 <img ng-src={{item.goods_img}} alt="">
                             </a>
-                            <a href="#/shop-detail/{{item.id}}">
+                            <a ui-sref="shop-detail({goods_id:item.id})">
                                 <p>{{item.name}}</p>
                             </a>
                             <span style="margin-bottom: 0;" ng-if="showPrice">{{item.shop_price}}</span>
-                            <a style="top: 0;margin-top: 10px;" class="qg" href="#/shop-detail/{{item.id}}">立即抢购</a>
+                            <a style="top: 0;margin-top: 10px;" class="qg" ui-sref="shop-detail({goods_id:item.id})">立即抢购</a>
                         </li>
                     </ul>
                     <a class="sNext" href="javascript:void(0)"></a>
@@ -146,7 +146,7 @@
                 <div class="tempWrap">
                     <ul>
                         <li ng-repeat="like in YouLike.goods_list" repeat-done="likeGoodsFn()">
-                            <a href="#/shop-detail/{{like.goods_id}}">
+                            <a href="javascript:;" ui-sref="shop-detail({goods_id:like.goods_id})">
                                 <img ng-src={{like.goods_img}} alt="">
                             </a>
                             <p>{{like.goods_name}}</p>

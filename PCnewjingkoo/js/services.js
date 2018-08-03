@@ -101,10 +101,34 @@ angular.module('myApp.HttServices', [])
          }
       }
    }])
+   .factory('$myPublic', function ($state) { /* 新增客服功能 */
+      return {
+         openCoupon: function(suppliers_id) {
+            if (suppliers_id == 0) {
+               $state.go('shop-list', {
+                  params: encodeURIComponent(JSON.stringify({
+                     keywords: '镜库',
+                  }))
+               })
+            } else if (suppliers_id < 0) {
+               $state.go('shop-list', {
+                  params: encodeURIComponent(JSON.stringify({
+                     keywords: '',
+                  }))
+               })
+            } else {
+               var url = $state.href('shopHomeNew', {
+                  shopId: suppliers_id
+               });
+               window.open(url, '_blank');
+            }
+         }
+      }
+   })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function ($http, $window, $timeout, ipCookie) {
       // var ip = 'http://v401app.jingkoo.net'; //测试
-      var ip = 'http://newpc.jingkoo.net'; //正式
-      // var ip = 'https://www.jingku.cn'; //测试
+      // var ip = 'http://newpc.jingkoo.net'; //正式
+      var ip = 'https://www.jingku.cn'; //测试
       return {
          //7)获取商品价格优惠区间
          ip: ip,
@@ -610,6 +634,41 @@ angular.module('myApp.HttServices', [])
             return $http({
                method: 'post',
                url: ip + '/Comment/NoComment ',
+               data: data
+            })
+         },
+         searchList: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/SearchList ',
+               data: data
+            })
+         },
+         delSearch: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/DelSearch',
+               data: data
+            })
+         },
+         delAllSearch: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/DelAllSearch ',
+               data: data
+            })
+         },
+         suppliers_bouns_list: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Flow/suppliers_bouns_list ',
+               data: data
+            })
+         },
+         change_machining: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Flow/change_machining ',
                data: data
             })
          },

@@ -93,26 +93,6 @@
                         </ul>
                      </div>
                   </div>
-                  <div class="new_shop_yhqbox" style="margin-top: 10px;" ng-if="shopDetailData.promotion.length>0||shopDetailData.bonus.length>0">
-                     <div ng-if="shopDetailData.bonus.length>0" class="yhq_box_d1">
-                        <span class="yhq_sp1">领券</span>
-                        <ul class="yhq_u1" ng-if="shopDetailData.bonus.length>0">
-                           <li ng-repeat="bonus in shopDetailData.bonus" ng-click="lqYhq(bonus.type_id)">满{{bonus.min_goods_amount}}减{{bonus.type_money}}</li>
-                        </ul>
-                        <a href="#/yhq" class="yhq_more">更多
-                           <i class="jt_ico"></i>
-                        </a>
-                     </div>
-                     <div ng-if="shopDetailData.promotion.length>0" class="yhq_box_d1">
-                        <span class="yhq_sp1">促销</span>
-                        <div class="sent_box" ng-if="shopDetailData.promotion.length>0">
-                           <div class="sent_box_d1" ng-repeat="zp in shopDetailData.promotion">
-                              <span class="sent_box_sp1">{{zp.type_name}}</span>
-                              <span class="sent_box_sp2" ng-bind-html="zp.title"></span>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                   <div class="saler_msg_box" style="padding-left: 0;">
                      <div class="saler_msg_d1" ng-if="shopDetailData.data.market_price>0&&showPrice">
                         <span class="saler_msg_sp1">建议零售价</span>
@@ -190,7 +170,7 @@
                   <my-loading></my-loading>
                </div>
                <div style="min-height: 0;" class="pick-table">
-                  <div class="tableZk" style="height: auto;" ng-show="pickTable&&goodsData.data">
+                  <div class="tableZk" style="height: auto;border-bottom: 1px solid #e0e0e0;" ng-show="pickTable&&goodsData.data">
                      <table width="100%">
                         <tbody>
                            <tr class="first-line">
@@ -198,7 +178,6 @@
                               <th width="124" ng-repeat="goods in goodsData.data[0].goods_attr">{{goods.attr_name}}</th>
                               <th width="124" ng-if="!data.data.is_promotion&&showPrice">铺货单价</th>
                               <th width="124" ng-if="data.data.is_promotion&&showPrice">原价</th>
-                              <th width="124" ng-if="data.data.is_promotion&&showPrice">促销价</th>
                               <th width="124">铺货数量</th>
                            </tr>
                            <tr ng-repeat="trItem in goodsData.data" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3">
@@ -214,30 +193,7 @@
                               <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
                               <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
                               <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}</th>
-                              <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
                               <th width="124">{{trItem.number}}</th>
-                              <!-- <th width="124">
-											<div class="diy-right" ng-if="data.data.isdingzhi!=1">
-												<span class="wenb">
-													<a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
-													<input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
-													 ng-change="change(trItem)">
-													<a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
-												</span>
-											</div>
-											<div class="dingzhi" ng-if="data.data.isdingzhi==1">
-												<a class="dingzhi_btn" style="width: 135px;
-                                            width: 135px;
-                                            height: 40px;
-                                            background: #3f69a5;
-                                            color: #fff;
-                                            font-size: 12px;
-                                            border: none;
-                                            outline: none;
-                                            border-radius: 5px;
-                                            padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a>
-											</div>
-										</th> -->
                            </tr>
                         </tbody>
                      </table>
@@ -509,7 +465,7 @@
                   <div class="history-tit">您的浏览记录</div>
                   <div class="history-goods">
                      <div class="history-goods-item" ng-repeat="historyItem in shopDetailData.history">
-                        <a href="#/shop-detail/{{historyItem.goods_id}}">
+                        <a href="javascript:;" ui-sref="shop-detail({goods_id:historyItem.goods_id})">
                            <div class="history-goods-item-img">
                               <img ng-src={{historyItem.goods_thumb}} alt="">
                            </div>

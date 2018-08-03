@@ -102,7 +102,7 @@
                         <div class="lis" ng-repeat="lis in cate.goods_list">
                             <div class="lis-2 fl c">{{lis.name}}</div>
                             <div class="lis-3 fl c" ng-if="showPrice"><i>{{lis.shop_price}}</i>起/片</div>
-                            <div class="lis-4 fl r" style="float: right;"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                            <div class="lis-4 fl r" style="float: right;"><a href="javascript:;" ui-sref="shop-detail({goods_id:lis.id})"><b></b>立即购买</a></div>
                         </div>
                     </div>
                     <div class="item" ng-if="cate.cat_id.length>0" ng-repeat="item in cate.cat_id">
@@ -116,7 +116,7 @@
                                                 <!-- <div class="lis-1 fl">{{lis.brand_name}}</div> -->
                                                 <div class="lis-2 fl c">{{lis.name}}</div>
                                                 <div class="lis-3 fl c" ng-if="showPrice"><i>{{lis.shop_price}}</i>起/片</div>
-                                                <div class="lis-4 fl r" style="float: right;"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                                                <div class="lis-4 fl r" style="float: right;"><a href="javascript:;" ui-sref="shop-detail({goods_id:lis.id})"><b></b>立即购买</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -127,7 +127,7 @@
                                                 <!-- <div class="lis-1 fl">{{lis.brand_name}}</div> -->
                                                 <div class="lis-2 fl c">{{lis.name}}</div>
                                                 <div class="lis-3 fl c" ng-if="showPrice"><i>{{lis.shop_price}}</i>起/片</div>
-                                                <div class="lis-4 fl r" style="float: right;"><a href="#/shop-detail/{{lis.id}}"><b></b>立即购买</a></div>
+                                                <div class="lis-4 fl r" style="float: right;"><a href="javascript:;" ui-sref="shop-detail({goods_id:lis.id})"><b></b>立即购买</a></div>
                                             </div>
                                         </div>
                                     </div>

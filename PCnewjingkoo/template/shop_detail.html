@@ -56,8 +56,7 @@
                   <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
                   <div class="items">
                      <ul ng-init="shopDetailData.indexss=0">
-                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index"
-                           ng-style="{'border-color':shopDetailData.indexss == $index?'#e60000':'#e0e0e0'}">{{indexss}}
+                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index" ng-style="{'border-color':shopDetailData.indexss == $index?'#e60000':'#e0e0e0'}">{{indexss}}
                            <img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);">
                         </li>
                      </ul>
@@ -135,27 +134,26 @@
                                  <em>{{shopDetailData.goods_fee.consignee.address}}</em>
                                  <i class="arrow_down"></i>
                                  <span class="heng_line"></span>
-                                 <div class="d3_sp1_dzbox">
-                                    <!--常用地址-->
-                                    <div class="sp1_dzbox_d1">
-                                       <p class="sp1_dzbox_d1p1">
-                                          <span class="sp1_d1p1_l">常用地址</span>
-                                          <span ng-click="cheon=!cheon" class="sp1_d1p1_r" ng-class="{'cheon':cheon}"></span>
+                              <div class="d3_sp1_dzbox">
+                                 <!--常用地址-->
+                                 <div class="sp1_dzbox_d1">
+                                    <p class="sp1_dzbox_d1p1">
+                                       <span class="sp1_d1p1_l">常用地址</span>
+                                       <span ng-click="cheon=!cheon" class="sp1_d1p1_r" ng-class="{'cheon':cheon}"></span>
+                                    </p>
+                                    <div class="dzbox_d1p1_p1">
+                                       <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}" ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
+                                          <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
+                                          <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
                                        </p>
-                                       <div class="dzbox_d1p1_p1">
-                                          <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}"
-                                             ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
-                                             <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
-                                             <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
-                                          </p>
-                                          <p ng-if="shopDetailData.goods_fee.length==0">暂无收货地址,请
-                                             <a href="#/person-mana-addr" target="_blank" style="color: #0070c9;">添加</a>收货地址
-                                          </p>
-                                       </div>
-
+                                       <p ng-if="shopDetailData.goods_fee.length==0">暂无收货地址,请
+                                          <a href="#/person-mana-addr" target="_blank" style="color: #0070c9;">添加</a>收货地址
+                                       </p>
                                     </div>
 
                                  </div>
+
+                              </div>
                               </span>
                               <span class="saler_msg_d3_sp2">
                                  <strong ng-if="shopDetailData.goods_fee.goods_number>0" style="color:#999;">有货</strong>
@@ -173,7 +171,7 @@
                            <!-- <div class="saler_msg_d3" style="line-height: 30px;">{{shopDetailData.supplier_info.shipping_rule}}</div> -->
                            <div class="saler_msg_d3" style="line-height: 30px;">由&nbsp;
                               <span style="color: #e60000;">{{shopDetailData.supplier_info.name||'镜库'}}</span>&nbsp;负责发货，并提供售后服务<span class="saler_p1" ng-if="shopDetailData.supplier_info.shipping_notice">，{{shopDetailData.supplier_info.shipping_notice}}</span></div>
-                           
+
                         </div>
                      </div>
                      <!--关联商品-->
@@ -182,7 +180,7 @@
                            <p style="color:#666;padding-left: 0;">关联商品</p>
                            <ul>
                               <li ng-repeat="glLi in shopDetailData.linked_goods">
-                                 <a href="#/shop-detail/{{glLi.goods_id}}">
+                                 <a href="javascript:;" ui-sref="shop-detail({goods_id:glLi.goods_id})">
                                     <img ng-src={{glLi.goods_img}} alt="">
                                  </a>
                                  <i class="guanlianYes"></i>
@@ -191,14 +189,14 @@
                         </div>
                      </div>
                      <!--商品主属性-->
-                     <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
+                     <!-- <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                         <span class="saler_msg_sp1">{{saler.name}}</span>
                         <ul class="saler_msg_film">
                            <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="getAttrList(salers.id,salers.number,salers.label);">{{salers.label}}
                               <i class="guanlianYes"></i>
                            </li>
                         </ul>
-                     </div>
+                     </div> -->
                   </div>
                </div>
                <!-- loading组件 -->
@@ -219,45 +217,49 @@
                               <th width="124">库存</th>
                               <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                            </tr>
-                           <tr ng-repeat="trItem in goodsData.data" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3">
-                              <th class="img-th" width="72">
-                                 <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;"
-                                    ng-mousemove="trItem.event = $event">
-                                    <img ng-src={{trItem.img_path}} alt="">
-                                 </div>
-                                 <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
-                                    <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
-                                 </div>
-                              </th>
-                              <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
-                              <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
-                              <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}</th>
-                              <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}</th>
-                              <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th>
-                              <th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
-                              <th width="124">
-                                 <div class="diy-right" ng-if="data.data.isdingzhi!=1">
-                                    <span class="wenb">
-                                       <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
-                                       <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
-                                          ng-change="change(trItem)">
-                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
-                                    </span>
-                                 </div>
-                                 <div class="dingzhi" ng-if="data.data.isdingzhi==1">
-                                    <a class="dingzhi_btn" style="width: 135px;
-                                            width: 135px;
-                                            height: 40px;
-                                            background: #3f69a5;
-                                            color: #fff;
-                                            font-size: 12px;
-                                            border: none;
-                                            outline: none;
-                                            border-radius: 5px;
-                                            padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a>
-                                 </div>
-                              </th>
-                           </tr>
+                           <tbody class="trItem" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3" ng-repeat="trItem in goodsData.data">
+                              <tr>
+                                 <th class="img-th" width="72">
+                                    <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;" ng-mousemove="trItem.event = $event">
+                                       <img ng-src={{trItem.img_path}} alt="">
+                                    </div>
+                                    <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                       <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
+                                    </div>
+                                 </th>
+                                 <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
+                                 <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                                 <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                                 <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                                 <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th>
+                                 <th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
+                                 <th width="124">
+                                    <div class="diy-right" ng-if="data.data.isdingzhi!=1">
+                                       <span class="wenb">
+                                          <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
+                                          <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
+                                             ng-change="change(trItem)">
+                                          <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
+                                       </span>
+                                    </div>
+                                    <div class="dingzhi" ng-if="data.data.isdingzhi==1">
+                                       <a class="dingzhi_btn" style="width: 135px;
+                                               width: 135px;
+                                               height: 40px;
+                                               background: #3f69a5;
+                                               color: #fff;
+                                               font-size: 12px;
+                                               border: none;
+                                               outline: none;
+                                               border-radius: 5px;
+                                               padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a>
+                                    </div>
+                                 </th>
+                              </tr>
+                              <tr style="height: 44px;" ng-if="trItem.alone_attr.length">
+                                 <td colspan=20><div style="background: #f5f6fa;padding: 8px 19px;"><span ng-repeat="group in trItem.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span></div></td>
+                              </tr>
+                           </tbody>
                         </tbody>
                      </table>
                   </div>
@@ -294,8 +296,7 @@
                               <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
                            </td>
                            <td>
-                              <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing" ng-click="openDs($event,$index)" placeholder="请选择"
-                                 type="text" value="{{pickTaList}}">
+                              <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing" ng-click="openDs($event,$index)" placeholder="请选择" type="text" value="{{pickTaList}}">
                               <div class="dushu-box">
                                  <div class="dushu-tit">
                                     <p>选择度数</p>
@@ -456,6 +457,7 @@
                </div>
             </div>
          </div>
+
          <div class="goods-mainly">
             <div class="fl goods-mainly-left">
                <div class="mainly-left-store">
@@ -528,7 +530,7 @@
                   <div class="history-tit">您的浏览记录</div>
                   <div class="history-goods">
                      <div class="history-goods-item" ng-repeat="historyItem in shopDetailData.history">
-                        <a href="#/shop-detail/{{historyItem.goods_id}}">
+                        <a href="javascript:;" ui-sref="shop-detail({goods_id:historyItem.goods_id})">
                            <div class="history-goods-item-img">
                               <img ng-src={{historyItem.goods_thumb}} alt="">
                            </div>
@@ -571,7 +573,7 @@
       $("#preview .jqzoom img").attr("jqimg", $(img).attr("bimg"));
    }
    //图片放大镜效果
-   $(function () {
+   $(function() {
       $(".jqzoom").jqueryzoom({
          xzoom: 422,
          yzoom: 422
@@ -579,7 +581,7 @@
    });
 
    //图片预览小图移动效果,页面加载时触发
-   $(function () {
+   $(function() {
       var tempLength = 0; //临时变量,当前移动的长度
       var viewNum = 5; //设置每次显示图片的个数量
       var moveNum = 2; //每次移动的数量
@@ -590,7 +592,7 @@
       var countLength = (scrollItems.length - viewNum) * scrollItems.eq(0).width(); //计算总长度,总个数*单个长度
 
       //下一张
-      $(".spec-scroll .next").bind("click", function () {
+      $(".spec-scroll .next").bind("click", function() {
          if (tempLength < countLength) {
             if ((countLength - tempLength) > moveLength) {
                scrollDiv.animate({
@@ -606,7 +608,7 @@
          }
       });
       //上一张
-      $(".spec-scroll .prev").bind("click", function () {
+      $(".spec-scroll .prev").bind("click", function() {
          if (tempLength > 0) {
             if (tempLength > moveLength) {
                scrollDiv.animate({
@@ -623,7 +625,7 @@
       });
    });
 
-   $('.goods-recommended-tit .recommended').click(function () {
+   $('.goods-recommended-tit .recommended').click(function() {
       var indes = $(this).index();
       $('.goods-recommended-tit .recommended').removeClass('active');
       $('.goods-recommended-tit .recommended:eq(' + indes + ')').addClass('active');
@@ -638,7 +640,7 @@
    }
    showMask();
 
-   $('#masks').click(function () {
+   $('#masks').click(function() {
       $(this).hide();
       $('.dushu-box').hide();
       $('.dushuQiuJing-box').hide();

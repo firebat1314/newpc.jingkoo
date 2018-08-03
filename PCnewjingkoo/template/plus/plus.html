@@ -1,0 +1,187 @@
+<div class="plus">
+   <div class="header-top" ng-controller="index_header_parentControl">
+      <div class="header-top-content">
+         <div class="header-top-content-left">
+            <div class="trans-city">
+               <style>
+                  .iconfont {
+                     vertical-align: middle;
+                  }
+
+                  .iconfont+span {
+                     vertical-align: middle;
+                  }
+               </style>
+               <p>
+                  <span ng-if="areaListName.selected" ng-repeat="areaListName in IndexData.list.getAreaList">
+                     <i class="iconfont icon-weizhi"></i>
+                     <span>{{areaListName.region_name}}</span>
+                  </span>
+               </p>
+               <div class="dd dorpdown-layer">
+                  <div class="dd-spacer"></div>
+                  <div class="ui-areamini-content-wrap" style="left: auto;">
+                     <div class="ui-areamini-content">
+                        <div class="ui-areamini-content-list">
+                           <div class="item" ng-repeat="areaList in IndexData.list.getAreaList" ng-click="areaListAdd($event,$index)">
+                              <a href="" ng-click="areaListChange(areaList.region_id)" ng-class="{'selected':areaList.selected}">{{areaList.region_name}}</a>
+                           </div>
+                           <a href="#/person-addr-apply" style="color:#0070c9;position: relative;top:2px;cursor:pointer;">申请城市</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="jingkoo-call">
+               <p>
+                  <i class="iconfont icon-dianhua2"></i>
+                  <span>400-080-5118</span>
+               </p>
+            </div>
+            <div class="jingkoo-call" ng-click="getCompanyList()" style="background: none;padding-left: 0;">
+               <p>
+                  <i class="iconfont icon-iconqyxx"></i>
+                  <span>切换企业</span>
+               </p>
+            </div>
+            <div class="jingkoo-call" ng-if="showHomeBtn">
+               <p>
+                  <i class="iconfont icon-weibiao45100847"></i>
+                  <span>返回首页</span>
+               </p>
+            </div>
+         </div>
+         <div class="header-top-content-right">
+            <!--<a href="">-->
+            <!--<div class="qycg">-->
+            <!--<p>企业采购</p>-->
+            <!--</div>-->
+            <!--</a>-->
+            <!--<a href="">-->
+            <!--<div class="wShop">-->
+            <!--<p>微商城</p>-->
+            <!--</div>-->
+            <!--</a>
+               #/order-all/
+            -->
+            <div ng-if="userData.user_info.is_salesman==1" class="dingDan" style="background: url(../img/CRM_.png) no-repeat left;background-size: 19px;">
+               <a href="http://crm.jingku.cn" target="_blank">
+                  <p>CRM</p>
+               </a>
+            </div>
+            <div class="dingDan">
+               <a ui-sref="order-all({})">
+                  <p>订单</p>
+               </a>
+            </div>
+            <div class="xinXi">
+               <a href="#/parson-msg-center">
+                  <!--<p>消息<span>({{msgNumber}})</span></p>-->
+                  <p>消息</p>
+               </a>
+            </div>
+            <div class="ywy" ng-if="userData.user_info.parent_id>0">
+               <!--<p>消息<span>({{msgNumber}})</span></p>-->
+               <p>业务员</p>
+               <div class="ywy-box">
+                  <span class="name">您的专属业务员：
+                     <span>{{userData.user_info.ywy_true_name}}</span>
+                  </span>
+                  <span class="phone">手机号：
+                     <span>{{userData.user_info.ywy_phone}}</span>
+                  </span>
+               </div>
+            </div>
+            <div class="phone-version">
+               <a href="">
+                  <p>手机版</p>
+                  <div class="iosAndAndroid-box">
+                     <img src="img/app.png" class="ewm_img">
+                     <span class="erweima_p">镜库APP</span>
+                  </div>
+               </a>
+            </div>
+            <div class="weixin">
+               <a href="">
+                  <!--<p>消息<span>({{msgNumber}})</span></p>-->
+                  <p>关注镜库</p>
+                  <div class="erweima_box">
+                     <img src="img/header_ewm.png" class="ewm_img">
+                     <span class="erweima_p">关注镜库微信</span>
+                  </div>
+               </a>
+            </div>
+            <div class="person" style="margin-right:0;">
+               <a href="#/control-mb">
+                  <p style="text-align: center;" ng-attr-title="{{userData.user_info.user_name}}">{{userData.user_info.user_name}}</p>
+               </a>
+               <div class="user-ul" style="height: auto;">
+                  <ul>
+                     <a href="#/control-mb">
+                        <li class="geRen-center">会员中心</li>
+                     </a>
+                     <a href="#/EmployeeM">
+                        <li class="child_account">员工管理</li>
+                     </a>
+                     <a href="" ng-click="goHelpCenter()">
+                        <li class="bangzhu-center">帮助中心</li>
+                     </a>
+                     <a href="#/person-invoices">
+                        <li class="fapiao">发票管理</li>
+                     </a>
+                     <a href="#/person-process">
+                        <li class="jiagong">来镜加工</li>
+                     </a>
+                     <a href="#/zijin-mana">
+                        <li class="zijin">资金管理</li>
+                     </a>
+                     <a href="">
+                        <li ng-click="loginOut()" class="out">退出</li>
+                     </a>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--shortcut end-->
+   <div id="container">
+      <div id="app" ui-view="plus"></div>
+   </div>
+   <script id="lowversion-template" type="text/template">
+      <div id="lowversion-popup">
+         <div class="mt">检测到您的浏览器版本太低！</div>
+         <div class="mc">
+            <dl>
+               <dt>方案一：</dt>
+               <dd>
+                  <p>为了得到当前页面最好的体验效果，我们建议您安装以下浏览器</p>
+                  <ol class="browser-list">
+                     <li class="fore0"><a href="http://browser.qq.com/?adtag=SEM1" title="QQ浏览器" target="_blank">QQ浏览器</a></li>
+                     <li class="fore1"><a href="http://www.firefox.com.cn/" title="Firefox" target="_blank">Firefox</a></li>
+                     <li class="fore2"><a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/?spm=a21bo.50862.20161112.d1.28689e73b3XA5O" title="Chrome" target="_blank">Chrome</a></li>
+                  </ol>
+               </dd>
+            </dl>
+            <dl>
+               <dt>方案二：</dt>
+               <dd>
+                  <p>您可以使用手机京东app扫描下方的二维码，即可访问PLUS会员专区</p>
+                  <div class="cq">扫描二维码</div>
+               </dd>
+            </dl>
+         </div>
+      </div>
+   </script>
+   <div class="footer-main" ng-controller="index_footer_parentControl">
+      <div class="footer-content">
+         <ul ng-repeat="ul in helpData.data">
+            <li>{{ul.cat_name}}</li>
+            <li ng-repeat="li in ul.article">
+               <span style="cursor:pointer;display: inline-block;" ng-click="goHelp(li.article_id)">{{li.title}}</span>
+            </li>
+         </ul>
+         <p>Copyright (c) 2014 - 2018 镜库网 All Rights Reserved 京ICP备16016885号-2</p>
+      </div>
+   </div>
+</div>

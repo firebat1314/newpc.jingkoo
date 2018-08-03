@@ -219,12 +219,16 @@
                         </div>
                         <div class="fl hasGoods-check-right">
                             <div class="hasGoods-check-img">
-                                <a ng-href="{{!(carList.cutting_id>0)?'#/shop-detail/'+carList.goods_id:'#/shop-detail-cut/'+carList.goods_id+'/'+carList.cutting_id}}">
-                                    <img ng-src={{carList.goods_thumb}} alt="">
-                                </a>
+                              <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">
+                                  <img ng-src={{carList.goods_thumb}} alt="">
+                              </a>
+                              <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">
+                                  <img ng-src={{carList.goods_thumb}} alt="">
+                              </a>
                             </div>
                             <div style="position: relative;" class="newmore-p">
-                                <a ng-href="{{!(carList.cutting_id>0)?'#/shop-detail/'+carList.goods_id:'#/shop-detail-cut/'+carList.goods_id+'/'+carList.cutting_id}}">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
+                                <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
+                                <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
                                 <!--
                         		<div class="canfxbox"  ng-if="carList.is_inv==1">
                         			<span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>
@@ -258,10 +262,10 @@
                                     </ul>
                                     <div class="diy-right c">
                                         <span class="wenb">
-                                            <a href="" class="fl borr c" ng-click="reduceCarArr($event,carList.goods_properties,carArr)">－</a>
-                                            <input type="text" class="fl c diyr-txt" ng-disabled="carList.goods_properties.number" ng-model="carArr.goods_number" value="goods_number"
-                                                ng-blur="change($event,carList.goods_properties,carArr)">
-                                            <a href="" class="fl borl c" ng-click="addCarArr($event,carList.goods_properties,carArr)">+</a>
+                                            <a href="" class="fl borr c" ng-click="reduceCarArr($event,carArr.goods_properties,carArr)">－</a>
+                                            <input type="text" class="fl c diyr-txt" ng-disabled="carArr.goods_properties.number" ng-model="carArr.goods_number" value="goods_number"
+                                                ng-blur="change($event,carArr.goods_properties,carArr)">
+                                            <a href="" class="fl borl c" ng-click="addCarArr($event,carArr.goods_properties,carArr)">+</a>
                                         </span>
                                         <span class="text-value">{{carArr.goods_number}}</span>
                                     </div>
@@ -288,7 +292,7 @@
                     </div>
                     <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">
                         <p>{{mz.title}}</p>×{{mz.num}}
-                        <a ng-if="mz.goods_id" href="#/shop-detail/{{carList.goods_id}}">查看价格</a>
+                        <a ng-if="mz.goods_id" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">查看价格</a>
                     </div>
                     <!--<div class="hasGoods-item-zeng">-->
                     <!--<p>【赠品】 赠品  护理液</p>-->

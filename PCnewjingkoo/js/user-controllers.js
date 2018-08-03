@@ -11,7 +11,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
          $anchorScroll.yOffset = 1;
          $anchorScroll();
       };
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -128,7 +127,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -219,7 +217,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -321,7 +318,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -417,7 +413,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -580,7 +575,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -605,7 +599,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
 
    }])
    //个人中心-积分管理
@@ -614,7 +607,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -701,7 +693,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -756,7 +747,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
 
       $scope.payApply = function() {
          if ($scope.payment_id == undefined) {
@@ -840,7 +830,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -928,7 +917,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -1400,7 +1388,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       //定时器
       $scope.dateTime = 5;
       $scope.interval = setInterval(function() {
@@ -1424,7 +1411,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.change = true;
 
       $scope.areaTypeSelect = '0';
-      $scope.goto();
       $scope.delTanK = function(index, event) {
          $scope.show_cover = true;
       }
@@ -1720,7 +1706,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.goBack = function() {
          $window.history.back();
       }
@@ -1733,7 +1718,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
 
       $scope.ListPage = {
          page: 1,
@@ -1814,7 +1798,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.goSaveTeltwoPage = function() {
          $scope.personTelMsg = {
             mobile: $scope.phoneNumber,
@@ -1844,7 +1827,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       //控制header和footer显隐
       $rootScope.change = true;
       $scope.phoneNumber = $stateParams.phone;
-      $scope.goto();
 
       $scope.geeteInitFn1 = function() {
          $http({
@@ -1969,7 +1951,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       //		接参
       $scope.phoneNumberT = $stateParams.phone;
       //		定时器 
@@ -1993,7 +1974,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
 
       //		去第二步
       $scope.GoPasTwo = function() {
@@ -2022,7 +2002,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.geeteInitFn1 = function() {
          $http({
             url: '' + $rootScope.ip + '/Login/geeTestinit',
@@ -2084,7 +2063,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       //定时器
       $scope.dateTime = 5;
       $scope.interval = setInterval(function() {
@@ -2107,7 +2085,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       //个人信息面板信息
       $http({
             method: "POST",
@@ -2279,7 +2256,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.getUserMsgHs = function() {
          $data.getUserMsg().success(function(data) {
             $scope.payPass = data.user_info.is_pay_pass;
@@ -2313,7 +2289,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.getUserMsgHs = function() {
          $data.getUserMsg().success(function(data) {
             $scope.payPass = data.user_info.is_pay_pass;
@@ -2333,7 +2308,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.geeteInitFn1 = function() {
          $http({
             url: '' + $rootScope.ip + '/Login/geeTestinit',
@@ -2400,7 +2374,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.emailMsg = $stateParams.email;
       $scope.goThreeEmail = function() {
 
@@ -2417,7 +2390,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.emailMsg = $stateParams.email;
 
       //定时器
@@ -2436,12 +2408,11 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
 
    }])
    //优惠券
-   .controller('personYhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
+   .controller('personYhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data','$myPublic', function($scope, $rootScope, $state, $http, ipCookie, $window, $data,$myPublic) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
 
       $data.getYhqData({
          bonus_type: ''
@@ -2479,11 +2450,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $scope.getCuponList();
 
       //使用优惠券
-      $scope.goDpDetail = function(suppliers_id) {
-         $state.go('shopHomeNew', {
-            shopId: suppliers_id
-         });
-      }
+      $scope.goDpDetail = $myPublic.openCoupon;
    }])
 
    //	用户订单
@@ -2994,7 +2961,9 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
          }
          $state.go('paymentNew', {
             order_id: order_id,
-            type: 'order'
+            type: 'order',
+            log_id:'',
+            is_distribution:''
          });
       }
 
@@ -3012,7 +2981,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       //		接收id
       $scope.orderid = $stateParams.order_id;
       //		得到积分详情信息
@@ -3120,7 +3088,8 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
             $state.go('paymentNew', {
                order_id: order_id,
                log_id: '',
-               type: 'order'
+               type: 'order',
+               is_distribution:null
             });
          } else {
             layer.msg('请检查商品是否存在', {
@@ -3264,7 +3233,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.goto();
       $scope.goto = function() {
          $location.hash('');
          $anchorScroll.yOffset = 1;
@@ -3307,7 +3275,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
    .controller('erweimaPayNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
-      $scope.goto();
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });

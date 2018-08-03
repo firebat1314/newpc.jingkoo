@@ -1,0 +1,57 @@
+<div class="company-info animated fadeIn">
+   <div class="fore fore2">
+      <div class="body">
+         <table>
+            <tr>
+               <td style="width: 130px">店面/公司名称：</td>
+               <td>
+                  <input ng-model="params.com_name" class="input" type="text" name="com_name" id="com_name" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>所在地区：</td>
+               <td>
+                  <input ng-model="params.business_area" class="input" type="text" name="business_area" id="business_area" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>详细地址：</td>
+               <td>
+                  <input ng-model="params.business_address" class="input" type="text" name="business_address" id="business_address" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>社会统一信用编码：</td>
+               <td>
+                  <input ng-model="params.com_code" class="input" type="text" name="com_code" id="com_code" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td>当地从业年限：</td>
+               <td>
+                  <input ng-model="params.local_work_time" class="input" type="text" name="local_work_time" id="local_work_time" placeholder="请输入">
+               </td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>
+                  <label class="checkbox" for="agree">
+                     <input ng-model="agree" id="agree" name="staff_status" type="checkbox" value="false" />
+                     <span class="txt">我已阅读并同意
+                        <a>《个人信息信用查询授权书》</a>
+                     </span>
+                  </label>
+               </td>
+            </tr>
+            <tr>
+               <td></td>
+               <td>
+                  <div>
+                     <button ng-click="submit()" ng-disabled="!agree" class="button">提交申请</button>
+                  </div>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </div>
+</div>

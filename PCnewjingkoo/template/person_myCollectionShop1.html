@@ -1,0 +1,116 @@
+<div class="route mb20">
+    <div class="gird">
+        当前位置：<a href="#">首页</a> > <a href="#/control-mb">用户中心</a> > <a>收藏的店铺</a>
+    </div>
+</div>
+
+<div class="main">
+    <div class="im-panel gird cle">
+        <ng-template ng-include="'Template/control-tool.html'"></ng-template>
+        <div class="panel-right">
+            <div class="control-wrp">
+                <div class="cont-hd cle">
+                    <div class="cbt-left">
+                        <span><a href="#/myCollect" class="cbt-wz ">收藏的商品</a></span>
+                        <span><a href="#/myCollectShop" class="cbt-wz on">收藏的店铺</a></span>
+                    </div>
+                    <!--<div class="shur-wrp ">
+                        <input type="button" class="btna" />
+                        <input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" />
+                    </div>-->
+                </div>
+                <div class="cont-bd">
+                    <!-- ————————————————— 注释了店铺全选功能 ——————————————— -->
+                    <!-- <div class="qxc cle">
+                        <div class="qxc-left">
+                            <span class="q-up"><input class="ceck" type="checkbox" id="d-1" /><label for="d-1"></label>全选</span>
+                            <span class="q-jgc"><a ng-click="addAllToCart()">加入购物车</a>|<a  >取消收藏</a></span>
+                        </div>
+                    </div> -->
+
+
+                    <div class="bookmark cle">
+                        <div class="item">
+                            <div class="bk-left fl"  ng-repeat="item in collectShop.data">
+                                <div class="xtianl">
+                                    <div class="img" style="display: flex;justify-content:center;align-items: center;">
+                                        <div class="zhid">
+                                            <a href="#/shopHomeNew/{{item.suppliers_id}}" style="color:#fff;"><span> 店铺</span></a>
+                                            <span style="cursor:pointer" ng-click="qxCollectShop([item.suppliers_id])">取消收藏</span>
+                                        </div>
+                                        <img style="width:auto;height:auto" src="{{item.logo}}"></div>
+                                    <div class="txt">
+                                        <a href="#/shopHomeNew/{{item.suppliers_id}}"><img src="img/dp-1.png"/>进入店铺</a>
+                                        <!--<a href="javascript:;" ng-click="openService()"><img src="img/dp-2.png"/>联系客服</a>-->
+                                        <a href="javascript:;" onclick="qimoChatClick();"><img src="img/dp-2.png"/>联系客服</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="bk-right fl">
+                                <div class="slideGroup">
+                                    <div class="parHd">
+                                        <ul>
+                                            <li>热销</li>
+                                            <li>新品</li>
+                                        </ul>
+                                    </div>
+                                    <div class="parBd">
+                                        <div class="slideBox">
+                                            <div class="sov" ng-if="item.hot_list.length>4">
+                                                <span class="pageSt"></span>
+                                                <a class="sPrev" href="javascript:void(0)"></a>
+                                                <a class="sNext" href="javascript:void(0)"></a>
+                                            </div>
+                                            <ul ng-if="item.hot_list">
+                                                <li ng-repeat="item in item.hot_list" repeat-done="renderJs()">
+                                                    <div class="pic">
+                                                        <a href="#/shop-detail/{{item.id}}"><img src="{{item.goods_img}}" /></a>
+                                                    </div>
+                                                    <div class="title"><a href="javascript:;">{{item.shop_price||'暂无报价'}}</a></div>
+                                                </li>
+                                            </ul>
+                                            <div class="txt-none" ng-if="!item.hot_list.length">暂无热销~</div>
+                                        </div>
+                                        <div class="slideBox">
+                                            <div class="sov" ng-if="item.hot_list.length>4">
+                                                <span class="pageSt"></span>
+                                                <a class="sPrev" href="javascript:void(0)"></a>
+                                                <a class="sNext" href="javascript:void(0)"></a>
+                                            </div>
+                                            <ul ng-if="item.new_list">
+                                                <li ng-repeat="item in item.new_list" repeat-done="renderJs()">
+                                                    <div class="pic">
+                                                        <a href="#/shop-detail/{{item.id}}"><img src="{{item.goods_img}}" /></a>
+                                                    </div>
+                                                    <div class="title"><a href="javascript:;">{{item.shop_price||'暂无报价'}}</a></div>
+                                                </li>
+                                            </ul>
+                                            <div class="txt-none" ng-if="!item.new_list.length">暂无新品~</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="collectShop&&!collectShop.data.length" class="cont-bd ">
+                    <div class="souc-none">
+                        <div class="icon" style="background-image:url(img/souc-dp.png);"></div>
+                        <div class="txte">您还没有收藏任何店铺哦</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+
+</script>

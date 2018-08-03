@@ -1,0 +1,121 @@
+<div class="comment" ng-if="orderData">
+   <div class="comment-inner gird">
+      <div class="head">
+         <div class="title">评论订单</div>
+         <div class="subtitle">订单号：{{orderData.order.order_sn || '--'}}&nbsp;&nbsp;&nbsp;{{orderData.order.confirm_time}}</div>
+      </div>
+      <div class="store" ng-if="is_true">
+         <div class="left">
+            <div class="logo">
+               <img img-lazy-load="{{supplier_info.data.logo}}" alt="">
+            </div>
+            <div class="info">
+               <div class="store_name">{{supplier_info.data.name}}</div>
+               <div class="grade_all">
+                  <div>
+                     <div>综合</div>
+                     <div>{{commentCommentReckon.zong || '-'}}</div>
+                  </div>
+                  <div>
+                     <div>商品</div>
+                     <div>{{commentCommentReckon.accord_rank || '-'}}</div>
+                  </div>
+                  <div>
+                     <div>服务</div>
+                     <div>{{commentCommentReckon.service_rank || '-'}}</div>
+                  </div>
+                  <div>
+                     <div>物流</div>
+                     <div>{{commentCommentReckon.delivery_rank || '-'}}</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="grades">
+            <div class="grade grade1">
+               <span class="label">商品符合度</span>
+               <span class="stars">
+                  <comment-stars star-rating="orderData.accord_rank"></comment-stars>
+               </span>
+            </div>
+            <div class="grade grade1">
+               <span class="label">店家服务态度</span>
+               <span class="stars">
+                  <comment-stars star-rating="orderData.service_rank"></comment-stars>
+               </span>
+            </div>
+            <div class="grade grade1">
+               <span class="label">物流发货速度</span>
+               <span class="stars">
+                  <comment-stars star-rating="orderData.delivery_rank"></comment-stars>
+               </span>
+            </div>
+         </div>
+      </div>
+      <div class="goods_comment">
+         <div style="text-align: left;padding: 22px;font-size: 16px;" ng-if="!is_true">该订单无法评论</div>
+         <div class="rec" ng-if="is_true" ng-repeat="item in orderData.goods_list">
+            <div class="goods">
+               <div class="img">
+                  <img img-lazy-load="{{item.thumb}}" alt="">
+               </div>
+               <div class="name">{{item.goods_name}}</div>
+               <div class="price">{{item.shop_price}}</div>
+            </div>
+            <div class="goods_comment_main">
+               <!-- <div class="tip">
+                  <i class="iconfont icon-tip-"></i>
+                  <span>请至少填写一件商品的评论</span>
+               </div> -->
+               <table>
+                  <tr>
+                     <td style="width: 100px;">
+                        <div>商品评分</div>
+                     </td>
+                     <td>
+                        <comment-stars star-rating="item.comment_rank"></comment-stars>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <div>评价晒单</div>
+                     </td>
+                     <td>
+                        <div class="whitesome">
+                           <div class="textarea">
+                              <textarea ng-model="item.content" maxlength="500" placeholder="分享文字"></textarea>
+                              <div class="length">{{item.content.length || 0}}/500</div>
+                           </div>
+                           <div class="uppic">
+                              <div class="pic">
+                                 <i class="iconfont icon-shangchuan"></i>
+                                 <input type="file" get-image="selectImgs(img,item)" style="cursor: pointer;width:100%;height:100%;position: absolute;opacity: 0;top:0;">
+                                 <span>电脑传图</span>
+                              </div>
+                              <div class="pic" ng-repeat="img in item.img">
+                                 <img img-preview='{imgs:item.img,index:$index}' src="{{img}}" alt="">
+                              </div>
+                              <div>
+                                 <span>共</span>
+                                 <span style="color: red;">{{item.img.length || 0}}</span>
+                                 <span>张，还能上传</span>
+                                 <span style="color: red;">{{9-item.img.length||0}}</span>
+                                 <span>张</span>
+                              </div>
+                           </div>
+                        </div>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="submit" ng-if="is_true">
+         <button ng-click="submit()">提交</button>
+         <label>
+            <input type="checkbox" ng-model="orderData.is_anonymity">
+            <span>匿名评论</span>
+         </label>
+      </div>
+   </div>
+</div>

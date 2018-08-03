@@ -1,0 +1,366 @@
+<div class="register-main">
+    <!--头部  S-->
+    <div class="reg-top p5 gird">
+        <div class="re-logo">
+            <a href="http://www.jingku.cn/default.html">
+                <span></span>企业认证</a>
+            </a>
+        </div>
+        <!-- <div class="regi-qdl">已有账号
+            <a href="#/login">请登录</a>
+        </div> -->
+    </div>
+    <!--头部  E-->
+
+    <!--内容  S-->
+    <div class="register gird mb30">
+        <p class="register_top_p">服务须知：我们的审核时限为24小时。如有疑问，请拨打企业专享热线：400-080-5118或
+            <span style="color: #0070c9;cursor: pointer;" ng-click="qimoChatClick();">在线咨询</span>
+        </p>
+        <div class="g-wrp">
+            <h1 class="re-bt">企业信息</h1>
+            <div class="re-t">
+                <ul class="cle">
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>公司名称：</div>
+                            <div class="ret-nr">
+                                <input placeholder="请输入公司名称" ng-model="registerList.company" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>所在城市：</div>
+                            <div class="ret-nr">
+                                <select ng-model="registerList.province" ng-change="selectProvince(registerList.province)" class="ret-selt mr19">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgProvince in rgProvinceData.province_list" value="{{rgProvince.region_id}}">{{rgProvince.region_name}}</option>
+                                </select>
+                                <select ng-model="registerList.city" ng-change="selectCity(registerList.city)" class="ret-selt mr19">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgCity in cityData.data" value="{{rgCity.region_id}}">{{rgCity.region_name}}</option>
+                                </select>
+                                <select ng-model="registerList.district" class="ret-selt">
+                                    <option ng-selected="1" value="">请选择</option>
+                                    <option ng-repeat="rgDistrict in disData.data" value="{{rgDistrict.region_id}}">{{rgDistrict.region_name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>公司地址：</div>
+                            <div class="ret-nr">
+                                <input placeholder="请输入公司地址" ng-model="registerList.address" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">
+                                <em>*</em>营业执照号：</div>
+                            <div class="ret-nr">
+                                <input placeholder="请输入营业执照号" ng-model="registerList.zz_number" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp cle pt20">
+                            <div class="label fl pt0" style="min-width: 130px;">
+                                <em>*</em>营业执照：
+                            </div>
+                            <div class="ret-nr fl">
+                                <div class="ret-up fl">
+                                    <img id="preview" src="img/re-up.jpg">
+                                    <input ng-change="imgPreview($event)" id="file" ng-model="registerList.zhizhao" class="up-file" type="file">
+                                </div>
+                                <div class="ret-sli fl">
+                                    <img src="img/zz.jpg" />
+                                    <div class="sli-fdj ">
+                                        <span></span>示例</div>
+                                </div>
+                                <div class="muke hidden"></div>
+                                <div class="zzc ">
+                                    <img src="img/zz.jpg">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp cle pt20">
+                            <div class="label fl pt0" style="min-width: 130px;">
+                                医疗器械许可证：
+                            </div>
+                            <div class="ret-nr fl">
+                                <div class="ret-up fl">
+                                    <img ng-src="{{registerList.medical || 'img/up.jpg'}}" id="img33" />
+                                    <input id="img3" class="up-file cursor" type="file" ng-model="registerList.medical" ng-change="medicalPhoto($event)" />
+                                </div>
+                                <div class="ret-sli fl">
+                                    <img src="img/xkz_yl.jpg" />
+                                    <div class="sli-fdj ">
+                                        <span></span>示例</div>
+                                </div>
+                                <div class="muke hidden"></div>
+                                <div class="zzc ">
+                                    <img src="img/xkz_yl.jpg">
+                                </div>
+                            </div>
+                            <!-- <div style="    clear: both;
+                            padding-top: 12px;
+                            font-size: 12px;
+                            margin-left: 150px;
+                            color: #e68c00;">如需购买护理液、美瞳、隐形产品，请上传医疗器械许可证。</div> -->
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrp">
+                            <div class="label">区域编号：</div>
+                            <div class="ret-nr">
+                                <input ng-model="registerList.parent_id" class="ret-txt jsto" type="text" value="" />
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="re-tyi">
+                <p>
+                    <input ng-model="isCheck" ng-init="isCheck=true" type="checkbox" id="ret" />
+                    <label for="ret"></label>我已阅读并同意
+                    <a style="cursor: pointer;">
+                        <span>《用户协议》</span>
+                    </a>
+                </p>
+                <input class="ret-btn" ng-click="register()" type="button" value="同意协议并认证" />
+            </div>
+        </div>
+    </div>
+    <div class="footer_register">
+        <ul class="footer_register_u2">
+            <li>关于镜库</li>
+            <li>联系我们</li>
+            <li>商家入驻</li>
+            <li>合作伙伴</li>
+            <li>广告联盟</li>
+        </ul>
+        <p class="footer_register_p">
+            Copyright (c) 2014 - 2016 镜库网 All Rights Reserved 京ICP备16016885号-2
+        </p>
+    </div>
+    <!--内容  E-->
+
+    <!--<div id="masks" class="masks"></div>-->
+    <!--<div class="pur_zengjia" style="top:50%;margin-top: -300px;">-->
+    <!--<div style="text-align:center;height: 49px;line-height: 49px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">镜库用户服务协议</div>-->
+    <!--<div ng-bind-html='xieyi' style="overflow-y: auto;height:500px;"></div>-->
+    <!--<div class="xieyi-button" style="height:50px;line-height: 50px;text-align: center;">-->
+    <!--<button style="width:100px;height:35px;background:#3f69a5;color:#fff;border:1px solid #3f69a5;outline: none;">同意</button>-->
+    <!--<button style="width:100px;height:35px;background:#fff;color:#666;border:1px solid #ccc;outline: none;">取消</button>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="protocol_cover">
+        <div class="protocol_box">
+            <div class="protocol_box_top">镜库用户服务协议
+                <span class="protocol_sp"></span>
+            </div>
+            <div class="protocol_box_content">
+                <p class="protocol_p1">感谢您成为镜库的注册用户。</p>
+                <p class="protocol_p2">
+                    <span class="protocol_sp1">《镜库用户服务协议》</span>（以下简称“本协议”）是由镜库网站(包括PC端、移动端及应用程序)的用户（以下简称“用户或您”）与镜库网站的运营方， 即北京镜库科技有限公司及其关联公司（以下简称“镜库”）之间，就网站交易平台服务等相关事宜共同缔结。本协议具有合同效力，您应当阅读并遵
+                    守本协议。请您务必审慎阅读、充分理解各条款内容，特别是以黑体加粗形式提示您注意的条款。
+                </p>
+                <p class="protocol_p3">一、 协议确认</p>
+                <p class="protocol_p4">1、您同意并点击确认本协议条款并完成注册程序后，才能成为镜库的正式注册用户，并享受各类服务。</p>
+                <p class="protocol_p5">2、根据国家法律法规变化及网站运营需要，镜库有权对本协议条款不时进行修改，修改后的协议一经发布并经您确认同意后即刻生效，并代替原来的 协议。您可在镜库网站随时查阅最新协议。您继续使用镜库网站的行为将视为您接受了镜库网站不时更新的用户服务协议。
+                </p>
+                <p class="protocol_p6">3、在您完成用户注册程序后，即表示您自愿接受本协议，正式成为镜库的注册用户，并认可本协议全部条款内容。若您不同意本协议，或对本协议中 的条款存在任何疑问，请您立即停止镜库用户注册程序，并可以选择不使用本网站服务。
+                </p>
+                <p class="protocol_p7">4、您点击同意本协议后，即视为您确认自己具有享受jk服务、下单购物等相应的权利能力和行为能力，能够独立承担法律责任。</p>
+                <p class="protocol_p8">5、镜库保留在法律允许的范围内独自决定拒绝服务、关闭用户账户、清除或编辑内容、取消订单的权利。</p>
+                <p class="protocol_p3">二、 账户管理</p>
+                <p class="protocol_p9">1、您注册成功后，镜库会为您开通一个账户，作为您使用镜库服务的唯一身份标识。该账户的所有权归属于镜库，您仅拥有使用权。登录账户时，您 可以使用您提供或确认的用户名、邮箱、手机号码进行登录，但在登录时您必须输入您设定并保管的账户密码。为保护您的权益，您在设定账户的密码
+                    时，请勿使用重复性或者连续数字的简单密码。请您对密码加以妥善保管，切勿将密码告知他人，因密码保管不善而造成的所有损失由您自行承担。
+                </p>
+                <p class="protocol_p10">2、 镜库只允许每位用户使用一个镜库网站账户。如有证据证明或镜库有理由相信您存在注册或使用多个镜库网站账户的情形，镜库有权采取冻结或关 闭账户、取消订单、拒绝提供服务等措施。
+                </p>
+                <p class="protocol_p11">3、您对通过您的账户所进行的活动、行为和事件依法享有权利和承担责任，且不得以任何形式转让账户、授权他人使用您的账户以及与他人交易账户。</p>
+                <p class="protocol_p">4、鉴于网络服务的特殊性，镜库无义务审核是否是您本人使用该组用户名及密码，仅审核用户名及密码是否与数据库中保存的一致，任何人只要输入 的用户名及密码与数据库中保存的一致，即可凭借该组用户名及密码登录并获得镜库所提供的各类服务，所以即使您认为您的账户登录行为并非您本人
+                    所为，镜库将不承担因此而产生的任何责任。
+                </p>
+                <p class="protocol_p12">5、在下列情况下，镜库可以通过注销用户账户的方式单方解除本协议：</p>
+                <p class="protocol_p13">① 在用户违反本协议相关规定时，镜库有权暂停或终止向该用户提供服务。如该用户在镜库暂停或终止提供服务后，再一次直接或间接或以他人名义 注册为镜库网站用户的，则镜库有权再次暂停或终止向该用户提供服务；
+                </p>
+                <p class="protocol_p13">② 一经发现用户注册信息中的内容是虚假的，镜库即有权终止向该用户提供服务；</p>
+                <p class="protocol_p13">③ 本协议修改或更新时，如用户表示不愿接受新的服务协议的，镜库有权终止向该用户提供服务；</p>
+                <p class="protocol_p13 protocol_p2">④ 镜库认为需终止提供服务的其他情况。</p>
+                <p class="protocol_p3">三、 订单生效规则</p>
+                <p class="protocol_p">1、当您下订单时，请您仔细确认所购商品的名称、价格、数量、型号、规格、尺寸、联系地址、电话、收货人等信息。收货人与您本人不一致的，收 货人的行为视为您的行为，您对收货人的行为承担连带责任。 </p>
+                <p class="protocol_p">您提交订单即表示对订单中所确认的订购商品、收货地址等信息的准确性负责。如果因为您填写的收货人联系电话、地址等信息错误，导致商家（或商 家委托的配送公司）将货物交付给非您本意的收货人的，由此造成的损失需由您自行承担。
+                </p>
+                <p class="protocol_p">2、您理解并认可镜库网站上的订单成立规则：</p>
+                <p class="protocol_p">镜库网站上展示的商品信息（如商品名称、价格、商品描述等）仅构成要约邀请。当用户通过镜库网站订购商品，确定购买并成功提交订单时（订单内 容应包含购买的商品数量、价格及支付方式、收货人、联系方式、收货地址等信息），即视为用户向商家发出了购买订单商品的要约。
+                </p>
+                <p class="protocol_p">3、商家仅向消费者提供商品销售服务，若您并非因生活消费购买商品，而是中间商、零售商或批发商，则商家有权单方取消订单。</p>
+                <p class="protocol_p">4、 您有权在下列情况下，取消订单：</p>
+                <p class="protocol_p13">① 经与商家协商达成一致的；</p>
+                <p class="protocol_p13">② 商家对用户订单做出承诺之前；</p>
+                <p class="protocol_p13">③ 镜库网站上公布的商品价格发生变化或错误，用户在商家发货之前通知商家的。</p>
+                <p class="protocol_p">5、 商家在下列情况下，可以取消用户订单：</p>
+                <p class="protocol_p13">① 经与顾客协商达成一致的；</p>
+                <p class="protocol_p13">② 镜库网站上显示的商品信息明显错误或缺货的；</p>
+                <p class="protocol_p13">③ 用户订单信息明显错误或用户订购数量超出商家备货量的。</p>
+                <p class="protocol_p">6、 镜库在下列情况下，亦可取消用户订单：</p>
+                <p class="protocol_p13">① 因不可抗力、镜库网站系统发生故障或遭受第三方攻击，及其他镜库网站无法控制的情形，根据镜库网站判断需要取消用户订单的；</p>
+                <p class="protocol_p13">② 经镜库网站判断，用户订购行为不符合公平原则或诚实信用原则的情形；</p>
+                <p class="protocol_p13 protocol_p2">③ 按镜库网站已经发布的或将来可能发布或更新的各类规则，可取消用户订单的其他情形。</p>
+                <p class="protocol_p3">四、 用户权利与义务</p>
+                <p class="protocol_p">1、 您有权根据本协议的约定，以及镜库网站上发布的相关规则在镜库网站（含镜库网站移动客户端及其他登录客户端）上查询和浏览由北京镜库科技 有限公司（即“镜库自营”）及其他入驻商家（以下简称“商家”）发布的商品或服务（以下统称“商品”）信息，订购具体商品、发表使用体验、参
+                    与商品讨论、邀请关注好友、上传商品图片、参加镜库网站的有关活动以及其他使用服务。
+                </p>
+                <p class="protocol_p">2、 您保证在镜库网站购买商品过程中遵守法律法规、不违背社会公德及遵守诚实信用原则，不扰乱镜库平台交易的正常秩序，因此您将不会实施以下 任一行为。
+                </p>
+                <p class="protocol_p13">① 以任何机器人软件、蜘蛛软件、爬虫软件、刷屏软件等非镜库认可的方式访问或登录镜库网站；</p>
+                <p class="protocol_p13">② 通过任何方式对镜库网站造成或可能造成不合理或不合比例的重大负荷；</p>
+                <p class="protocol_p13">③ 通过发送病毒、木马等行为攻击其它用户的账号或终端设备；</p>
+                <p class="protocol_p13">④ 冒充镜库工作人员欺骗其他用户；</p>
+                <p class="protocol_p13">⑤ 下单后无正当理由拒不收货；</p>
+                <p class="protocol_p13">⑥ 通过留言、评价等手段发送违规或垃圾信息；</p>
+                <p class="protocol_p13">⑦ 协助他人获取不正当利益；教唆他人从事本协议所禁止的行为；</p>
+                <p class="protocol_p13">⑧ 镜库网站其他规则规定的不当行为。</p>
+                <p class="protocol_p">3、 您享有言论自由权利，并拥有适度修改、删除自己发表的文章、评价的权利。</p>
+                <p class="protocol_p">4、您理解并保证不在镜库网站传输或发表包含以下内容的言论：</p>
+                <p class="protocol_p13">① 反对宪法所确定的基本原则，煽动、抗拒、破坏宪法和法律、行政法规实施的；</p>
+                <p class="protocol_p13">② 煽动颠覆国家政权，推翻社会主义制度，煽动、分裂国家，破坏国家统一的；</p>
+                <p class="protocol_p13">③ 损害国家机关信誉的、损害国家荣誉和利益的、损害社会公共利益和涉及国家安全的；</p>
+                <p class="protocol_p13">④ 煽动民族仇恨、民族歧视，破坏民族团结的；</p>
+                <p class="protocol_p13">⑤ 任何包含对种族、性别、宗教、地域内容等歧视的；</p>
+                <p class="protocol_p13">⑥ 捏造或者歪曲事实，散布谣言，扰乱社会秩序的；</p>
+                <p class="protocol_p13">⑦ 宣扬封建迷信、邪教、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；</p>
+                <p class="protocol_p13">⑧ 骚扰性的、中伤他人的、辱骂性的、恐吓性的、伤害性的、庸俗的，淫秽的、不文明的、公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶 意攻击的；
+                </p>
+                <p class="protocol_p13">⑨ 其他违反宪法和法律行政法规的。</p>
+                <p class="protocol_p">5、用户在发表使用体验、商品讨论或图片等内容时，除遵守本条款外，还应遵守镜库网站的其他相关规定。</p>
+                <p class="protocol_p">6、未经镜库网站同意，禁止用户在镜库网站上发布任何形式的广告。</p>
+                <p class="protocol_p">7、本协议依据国家相关法律法规规章制定，您同意严格遵守以下义务：</p>
+                <p class="protocol_p13">① 从中国大陆向境外传输资料信息时必须符合中国有关法律法规；</p>
+                <p class="protocol_p13">② 不得利用镜库窃取商业秘密、窃取个人信息等违法犯罪活动；</p>
+                <p class="protocol_p13">③ 不得干扰镜库的正常运营秩序，不得侵入镜库网站及国家计算机信息系统；</p>
+                <p class="protocol_p">8、 您不得利用任何非法手段获取其他用户个人信息，不得将其他用户信息用于任何营利或非营利目的，不得泄露其他用户或权利人的个人隐私，否则 镜库有权采取措施制止您的上述行为，情节严重的，将提交公安机关处理。
+                </p>
+                <p class="protocol_p">9、您不得发布任何侵犯他人著作权、商标权等知识产权或其他合法权利的内容；如果有其他用户或权利人发现您发布的信息涉嫌知识产权、或其他合 法权益争议的，这些用户或权利人要求镜库删除您发布的信息，或者采取其他必要措施予以制止的，镜库将会依法采取这些措施。
+                </p>
+                <p class="protocol_p protocol_p2">10、若您未遵守以上规定的，镜库有权做出独立判断并采取暂停或注销您的账号、冻结账号内余额、取消相应交易订单、停止发货等措施。</p>
+                <p class="protocol_p3">五、 镜库的权利和义务</p>
+                <p class="protocol_p">1、镜库网站有义务在现有技术的基础上维护整个网站的正常运行，并努力提升和改进技术，使用户的网上交易活动得以顺利进行。 </p>
+                <p class="protocol_p protocol_p2">2、用户理解并认同，因网上交易平台的特殊性，镜库没有义务对所有用户使用镜库平台交易服务的过程及行为进行事前及实时审查。但用户在镜库网 站上有异常行为的，将授权镜库可以普通、非专业人员的知识水平标准或根据自己掌握的信息进行独立判断，并有权做出相应处理，而无须事先通知用
+                    户或取得用户同意：
+                </p>
+                <p class="protocol_p3">六、 商品信息</p>
+                <p class="protocol_p">1、 镜库网站上的商品信息随时有可能发生变动，镜库对此不作特别通知。镜库将尽所有合理必要的努力并督促所有商家，使网站内展示的商品参数、 说明、价格、库存等商品信息尽可能真实准确、全面详细。但由于网站上商品信息的数量极其庞大，且受互联网技术发展水平等客观因素的限制，网页
+                    显示的信息可能会有一定的滞后性或差错，对此情形您充分理解并予以谅解。如您发现商品信息错误或有疑问的，请在第一时间告知镜库或商家，并中 止提交该订单。
+                </p>
+                <p class="protocol_p">2、商家将尽最大努力确保用户所购商品价格与网站公布的价格一致，尽管如此，由于价格设置、文字描述、配图等错误及不可预见的系统故障等情形， 可能出现价格误差，从而导致订单因重大误解或显失公平而无法履行的情况。若出现上述情形，建议您直接联系商家协商解决；如协商未果，可联系镜
+                    库，镜库将在力所能及的范围内提供必要协助。
+                </p>
+                <p class="protocol_p">3、由于市场变化及各种以合理商业努力难以控制的因素的影响，商家无法承诺用户通过提交订单所希望购买的商品都会有货；用户订购的商品或服务 如果发生缺货，用户和商家皆有权取消该订单。
+                </p>
+                <p class="protocol_p">4、如果发生了意外情况，您提交订单后，由于供应商提价、税额变化或者由于网页信息错误等造成商品价格变化，您可以通知商家或委托镜库为您取 消订单。
+                </p>
+                <p class="protocol_p protocol_p2">5、镜库网站上显示的每一款商品的价格都包含法律规定的税金，配送费用将根据镜库网站上公布的商家配送政策和用户选择的送货方式另行计收。</p>
+                <p class="protocol_p3">七、 配送规则</p>
+                <p class="protocol_p">1、 商家负责将订购商品配送到用户指定的收货地址。所有在镜库网站上列出的配送时间皆为参考时间，仅供用户参照使用。该参考时间是根据商品库 存状况、订单处理流程和配送地点等情况综合计算得出的。 </p>
+                <p class="protocol_p">2、 因如下情况造成订单延迟或无法配送、交货等，商家不承担延迟配送、交货的责任：</p>
+                <p class="protocol_p13">① 您提供的信息错误、地址不详细等原因导致的；</p>
+                <p class="protocol_p13">② 货物送达后无人签收，导致无法配送或延迟配送的；</p>
+                <p class="protocol_p13">③ 情势变更因素导致的；</p>
+                <p class="protocol_p13">④ 未能在本站所示的送货参考时间内送货的； </p>
+                <p class="protocol_p13">⑤ 您与商家约定特殊时间段内送货的；</p>
+                <p class="protocol_p13">⑥ 因节假日、大型促销活动、店庆、预购或抢购人数众多等原因导致的；</p>
+                <p class="protocol_p13 protocol_p2">⑦ 不可抗力因素导致的，例如：自然灾害、交通戒严、突发战争等。</p>
+                <p class="protocol_p3">八、 用户信息收集、使用与保护</p>
+                <p class="protocol_p">1、您承诺以真实身份注册成为镜库的用户，并保证所提供的个人资料信息真实、准确、完整、合法有效，并在相关资料发生变更时及时更新注册信息， 依据法律规定和本协议约定对所提供的信息承担相应的法律责任。同时，您保证镜库可以通过相关信息与您本人进行联系。镜库有权审查您注册所提供
+                    的相关信息是否真实、有效。若您所提供的资料信息与事实不符或所提供的资料信息已变更而未及时更新或有任何误导之嫌，导致镜库无法为您提供或 进一步提供服务，镜库不因此承担任何责任，同时您须承担可能因此引起的相应责任及后果，并且镜库有权注销您的注册账户，终止您使用镜库提供的
+                    各类注册用户服务的权利。
+                </p>
+                <p class="protocol_p">2、您在镜库网站进行注册、浏览、下单购物、发表评价、参加活动等行为时，涉及您的真实姓名/名称、通信地址、联系电话、电子邮箱、订单详情、 评价或反馈、投诉内容、cookies等信息的，镜库有权从完成交易、提供配送、售后及客户服务、开展活动、完成良好的顾客体验等多种角度予以收集，
+                    并将对其中涉及个人隐私信息予以严格保密。
+                </p>
+                <p class="protocol_p">镜库保证不对外公开或向任何第三方提供您的个人信息，但是存在下列情形之一的除外：</p>
+                <p class="protocol_p13">① 事先获得您的明确授权；</p>
+                <p class="protocol_p13">② 系为履行您的订单或保护您的合法权利所必须；</p>
+                <p class="protocol_p13">③ 系为履行法律义务；</p>
+                <p class="protocol_p13">④ 本注册协议或其他条款另有约定。</p>
+                <p class="protocol_p">5、您同意，镜库拥有通过邮件、短信、电话、网站通知或声明等形式，向您及您指定的收货人发送订单信息、促销活动、售后服务、客户服务等告知 信息的权利。如您不希望接收上述信息，可退订。
+                </p>
+                <p class="protocol_p protocol_p2">6、您同意，您选择向镜库的商家提交订单购买商品时，视为您向该商家披露个人相关信息，接受商家向您提供商品销售、配送、售后服务、客户服务、 处理信用卡付款、数据分析、市场营销或其他必要事宜。如前述全部或部分事宜涉及由商家外的第三方履行的，商家有权将您的信息以必要方式向第三
+                    方披露，第三方有权以履行上述事宜为目的联系您。
+                </p>
+                <p class="protocol_p3">九、其他</p>
+                <p class="protocol_p">1、本协议构成双方对本协议之约定事项及其他有关事宜的完整协议，除本协议规定的之外，未赋予本协议各方其他权利。</p>
+                <p class="protocol_p">2、如本协议中的任何条款无论因何种原因被视为完全或部分无效或不具有执行力，该条应视为可分的，且不影响本协议的任何其余条款的有效性、约 束力及可执行性。
+                </p>
+                <p class="protocol_p">3、本协议中的标题仅为方便而设，不具法律或契约效果。</p>
+            </div>
+            <div class="protocol_box_bottom">
+                <input type="button" ng-click="continue()" class="protocol_ty" value="同意并继续" />
+                <input type="button" class="protocol_qx" value="取消" />
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //    $(".jsto").focus(function(){
+    //        $(this).parent().find(".zhury").addClass("hso");
+    //    })
+    //    $(".jsto").blur(function(){
+    //        $(this).parent().find(".zhury").removeClass("hso");
+    //    })
+    $(".detail_div_btn .div_btn2").click(function () {
+        $(".js_adbr").slideUp();
+    });
+    $(".ret-sli").click(function () {
+        $(this).parent().find(".muke").removeClass("hidden")
+        $(this).parent().find(".zzc").addClass("open");
+        $("body").addClass("over-hide");
+    })
+    $(".muke").click(function () {
+        $(".muke").addClass("hidden");
+        $(".zzc").removeClass("open");
+        $("body").removeClass("over-hide");
+    })
+    $(".zzc").click(function () {
+        $(".muke").addClass("hidden")
+        $(".zzc").removeClass("open");
+        $("body").removeClass("over-hide");
+    })
+
+    //    //遮罩层
+    //    function showMask(){
+    //        $("#masks").css("height",$(document).height());
+    //        $("#masks").css("width",$(document).width());
+    //    }
+    //    showMask();
+    //
+    //    $('#masks').click(function(){
+    //        $(this).hide();
+    //        $('.pur_bianji').hide();
+    //        $('.pur_zengjia').hide();
+    //    });
+
+    $('.protocol_box_bottom input').click(function () {
+        $('.protocol_cover').hide();
+    });
+
+    $('.re-tyi span').click(function () {
+        $('.protocol_cover').show();
+    });
+
+    $('.protocol_sp').click(function () {
+        $('.protocol_cover').hide();
+    });
+</script>

@@ -1,0 +1,225 @@
+<div class="route mb20">
+	<div class="gird">
+		当前位置：<a href="#">首页</a> > <a href="#">用户中心</a> > <a href="#">安全中心</a>
+	</div>
+</div>
+
+<div class="main">
+	<div class="im-panel gird cle">
+		<ng-template ng-include="'Template/control-tool.html'"></ng-template>
+		<div class="panel-right">
+			<div class="control-wrp">
+				<div class="cont-hd cle">
+    				<div class="cbt-left">
+    					<span ng-click="getAllOrderHs(null)"><a ui-sref="order-all({type1:''})" class="cbt-wz">所有订单</a></span>
+    					<span ng-click="getAllOrderHs('pay')"><a href="#/order-wait" class="cbt-wz">待付款<em>{{orderpay}}</em></a></span>
+    					<span ng-click="getAllOrderHs('dsh')"><a href="#/order-get" class="cbt-wz on">待收货<em>{{orderDsh}}</em></a></span>
+    					<span ng-click=""><a style="cursor:pointer;" class="cbt-wz">积分兑换<em>10</em></a></span>
+    				</div>
+    				<div class="shur-wrp ">
+						<input type="button" class="btna" />
+						<input type="text" class="txt agddj" placeholder="输入商品名称或订单编号进行搜索" />
+					</div>
+    			</div>
+    			<div class="cont-bd">
+    				<div class="contacts-wrap ddan integral">
+    					
+    					
+    					<div class="sydd ">
+							<div class="sydd-head">
+								<div class="syd s-1">
+									<div class="yxl">
+										<div class="sgye">近三个月订单<em class="co"></em></div>
+										<div class="syincy hidden">
+											<div class="swrpp">
+												<em></em>
+												<p><a href="#">全部订单</a></p>
+												<p><a href="#">近三个月订单</a></p>
+												<p><a href="#">2016年订单</a></p>
+												<p><a href="#">2015年订单</a></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="syd s-2">订单详情</div>
+								<div class="syd s-3">收货人</div>
+								<div class="syd s-4">金额</div>
+								<div class="syd s-5">
+									<div class="yxl">
+										<div class="sgye">全部状态<em class="co"></em></div>
+										<div class="syincy hidden">
+											<div class="swrpp">
+												<em></em>
+												<p><a href="#">全部状态</a></p>
+												<p><a href="#">等待付款</a></p>
+												<p><a href="#">等待收货</a></p>
+												<p><a href="#">已完成</a></p>
+												<p><a href="#">已取消</a></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="syd s-6">操作</div>
+							</div>
+							<div class="sydd-body">
+								<div class="sydd-ittem" ng-repeat="dsh in dshOrderMsg.list">
+									<!--<div class="nony-bt">
+										<span class="nony-sp1">2015-12-15 09：44：36</span>
+										<span class="nony-sp2">订单号：124654564654</span>
+									</div>
+									<div class="nony-fbt">
+										您订单中的商品在不同库房或属不同商家，故拆分为以下订单分开配送，给您带来的不便敬请谅解.
+									</div>
+									<div class="nony-bt" style="border-top:1px solid #e6e6e6;">
+										<span class="nony-sp1">收货人：荆佳琦</span>
+										<span class="nony-sp2">订单金额：￥112.00</span>
+										<span class="nony-sp2">支付方式：在线支付</span>
+										<span class="nony-sp2">订单状态：已拆分</span>
+									</div>-->
+									<div class="nony-bt">
+										<span class="nony-sp1">{{dsh.add_time}}</span>
+										<span class="nony-sp2">订单号：{{dsh.order_sn}}</span>
+										<span class="nony-sp2">{{dsh.suppliers_name}}<img ng-src="img/dd-2.png"/></span>
+									</div>
+									<div class="neiro">
+										<div class="nero n-1">
+											<div class="noot-sp">
+												<div class="le-dd">
+													<div class="imsldd" ng-repeat="dshgoods in dsh.goods">
+														<div class="img"><img src="{{goods.original_img}}"/></div>
+														<div class="txt">
+															<p class="gp-1">{{dshgoods.goods_name}}</p>
+															<p class="gp-2">x{{dshgoods.goods_number}}</p>
+														</div>
+														<div class="clear"></div>
+													</div>
+												</div>
+												<div class="cgend" ng-click='lookMore($index,$event)'><a href="javascript:0;">查看更多商品 ></a></div>
+											</div>
+										</div>
+										<div class="nero n-2 c">
+											<div class="dd-name">荆佳琦<em></em></div>
+										</div>
+										<div class="nero n-3 c">
+											<div class="n3-hk">
+												<p class="hk-p1">总额 : {{dsh.total_fee}}</p>
+												<p class="hk-p2"><a href="#">银行汇款</a>/<a href="#">转账</a></p>
+											</div>
+										</div>
+										<div class="nero n-4 c">
+											<div class="n4-dsh">
+												<p><span class="red">{{dsh.status}}</span></p>
+												<div class="genzg">
+													<em></em>跟踪<i></i>
+													<div class="ggz-tc">
+														<div class="wrp">
+															<h2>中通快递：45464646546556465</h2>
+															<p class="redvs"><b>●</b>快件已从 杭州中转部 发出 <br/>2017-7-26  13：31：27</p>
+															<p><b>●</b>快件已从 杭州中转部 发出 <br/>2017-7-26  13：31：27</p>
+															<p><b>●</b>以上为最新跟踪信息 <a href="#">查看全部</a></p>
+														</div>
+													</div>
+												</div>
+												<p><a href="#" class="hse">订单详情</a></p>
+											</div>
+										</div>
+										<div class="nero n-5 c">
+											<div class="n5-opon">
+												<a class="ako1" ng-click="QrGet(order.order_id)">确认收货</a>
+												<a class="ako2">取消订单</a>
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>
+								<p ng-if="no_dd" style="font-size: 20px;text-align: center;padding: 200px 0;">暂时没有订单哦~</p>
+								
+							</div>
+							
+						</div>
+    					
+    					
+    					<div class="pages">
+			                <div id="Pagination"></div>
+			                <div class="searchPage">
+			                    <span class="page-sum">共<strong class="allPage">{{dshOrderMsg.pages}}</strong>页</span>
+			                    <!--<span class="page-go">到第<input type="text" value="1">页</span>-->
+			                    <!--<a href="javascript:;" class="page-btn">确定</a>-->
+			                </div>
+			            </div>
+    					
+    					
+    				</div>
+    			</div>
+			</div>
+			<div class="picScroll-left">
+				<div class="hd">
+					<span>猜你喜欢</span>
+					<ul></ul>
+				</div>
+				<div class="bd">
+					<ul class="picList">
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+						<li>
+							<div class="pic"><img src="img/3.jpg" /></div>
+							<div class="title">
+								<p>库博欧柯莱视月抛6片…</p>
+								<b>￥520.00</b>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<script>
+	$(".sgye").click(function(){
+		$(this).parent().find(".syincy").toggleClass("hidden");
+	})
+	$(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
+</script>
+

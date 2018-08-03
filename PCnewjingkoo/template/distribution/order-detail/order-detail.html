@@ -1,0 +1,271 @@
+<style type="text/css">
+	.track .track-nr .licttv .wl_box>div.noogkci:first-child>p.p-pt:first-child{color: #FF0000;font-size: 14px;}  
+	.track .track-nr .licttv .wl_box>div.noogkci:first-child>p.p-pt:first-child .ydn{position: absolute;left: 0;top: 3px; display: block;width: 11px; height: 11px; border: 1px solid #d9d9d9;border-radius: 50%; background: #fff;}
+	.track .track-nr .licttv .wl_box>div.noogkci:first-child>p.p-pt:first-child .ydn:after{content: "";display: block;position: absolute;top: 2px;left: 2px;width: 7px;height: 7px;background: #ff0000;border-radius: 50%;}
+</style> 
+<div class="route mb20">  
+	<div class="gird">  
+		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+	</div> 
+</div> 
+<div ng-if="orderDetail" class="fkllc gird cle" style="margin-bottom: 25px;margin-top: 20px;">
+	<div class="ddho ">订单号：{{orderDetail.order.order_sn}}</div>
+	<div class="needshow" ng-if="(orderDetail.order.order_status==1 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)||(orderDetail.order.order_status==0 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)">
+		<div class="fkllc-left">
+			<h2 class="klcl-h2">等待付款</h2>
+			<p class="klcl-p"><em></em><span  data-date="{{orderDetail.order.gq_time}}" down-time1></span></p>
+			<p class="klcl-btn"><a style="cursor:pointer;" class="betn" ng-click="goOverPage(orderDetail.order.order_id)">付款</a>
+				<a style="cursor:pointer;" class="qxio" ng-click="cancleOrder(orderDetail.order.order_id)">取消订单</a></p>
+		</div>
+		<div class="fkllc-right">
+			<div class="lcik lc-1">
+				<div class="lcik-com"><span class="dq"></span></div>
+				<div class="lcik-txt">
+					<div class="lcik-box t-1">
+						<span class="tdd" style="color: #23c279;">提交订单</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.formated_add_time}}</p>
+					</div>
+					<div class="lcik-box t-2">
+						<span class="tdd">付款成功</span>
+					</div>
+					<div class="lcik-box t-3">
+						<span class="tdd">商品出库</span>
+					</div>
+					<div class="lcik-box t-4">
+						<span class="tdd">等待收货</span>
+					</div>
+					<div class="lcik-box t-5">
+						<span class="tdd">合同生效中</span>
+					</div>
+				</div>
+			</div> 
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="needshow" ng-if="orderDetail.order.order_status==1 || orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==0">
+		<div class="fkllc-left">
+			<h2 class="klcl-h2">付款成功</h2>
+			<!--<a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>-->
+		</div>
+		<div class="fkllc-right">
+			<div class="lcik lc-2">
+				<div class="lcik-com"><span class="dq"></span></div>
+				<div class="lcik-txt">
+					<div class="lcik-box t-1">
+						<span class="tdd" style="color: #23c279;">提交订单</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.formated_add_time}}</p>
+					</div>
+					<div class="lcik-box t-2">
+						<span class="tdd" style="color: #23c279;">付款成功</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.pay_time}}</p>
+					</div>
+					<div class="lcik-box t-3">
+						<span class="tdd">商品出库</span>
+					</div>
+					<div class="lcik-box t-4">
+						<span class="tdd">等待收货</span>
+					</div>
+					<div class="lcik-box t-5">
+						<span class="tdd">完成</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="needshow" ng-if="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1">
+		<div class="fkllc-left"> 	
+			<h2 class="klcl-h2">商品出库</h2> 
+			<a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>
+		</div>
+		<div class="fkllc-right">
+			<div class="lcik lc-3">
+				<div class="lcik-com"><span class="dq"></span></div>
+				<div class="lcik-txt">
+					<div class="lcik-box t-1">
+						<span class="tdd" style="color: #23c279;">提交订单</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.formated_add_time}}</p>
+					</div>
+					<div class="lcik-box t-2">
+						<span class="tdd" style="color: #23c279;">付款成功</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.pay_time}}</p>
+					</div>
+					<div class="lcik-box t-3">
+						<span class="tdd" style="color: #23c279;">商品出库</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.shipping_time}}</p>
+					</div>
+					<div class="lcik-box t-4">
+						<span class="tdd">等待收货</span>
+					</div>
+					<div class="lcik-box t-5">
+						<span class="tdd">完成</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="needshow" ng-if="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2">
+		<div class="fkllc-left">
+			<h2 class="klcl-h2">已完成</h2>
+			<a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="buyAgain1(orderDetail.order.order_id)">再次购买</a>
+		</div>
+		<div class="fkllc-right"> 
+			<div class="lcik lc-5">
+				<div class="lcik-com"><span class="dq"></span></div>
+				<div class="lcik-txt">
+					<div class="lcik-box t-1">
+						<span class="tdd" style="color: #23c279;">提交订单</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.formated_add_time}}</p>
+					</div>
+					<div class="lcik-box t-2">
+						<span class="tdd" style="color: #23c279;">付款成功</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.pay_time}}</p>
+					</div>
+					<div class="lcik-box t-3">
+						<span class="tdd" style="color: #23c279;">商品出库</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.shipping_time}}</p>
+					</div>
+					<div class="lcik-box t-4">
+						<span class="tdd" style="color: #23c279;">等待收货</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.}}</p>
+					</div>
+					<div class="lcik-box t-5">
+						<span class="tdd" style="color: #23c279;">完成</span>
+						<p class="tpp" style="color: #23c279;">{{orderDetail.order.}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<!--<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="!(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1)||(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1)" style="margin-bottom: 20px;">
+	<div class="track-bt">订单跟踪</div>
+	<div class="" style="padding: 20px;">{{wlData[0].msg}}</div>
+</div>-->
+
+<div class="track gird mb10"  ng-repeat="orderwuliu in wlData" ng-if="(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1)||(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2)" style="margin-bottom: 20px;">
+	<div class="track-bt">订单跟踪</div>
+	<div class="track-nr cle">
+		<div class="track-left">
+			<div class="img"><img  ng-src="{{orderDetail.goods_list[0].thumb}}" /></div>
+			<div class="txt">
+				<p>送货方式:{{orderDetail.order.shipping_name}}</p>
+				<p>承运人:{{orderDetail.order.express_name}}</p>
+				<p>快递单号:{{orderwuliu.invoice_no}}</p>
+			</div>
+		</div>
+		<div class="licttv">
+			<i class="x" ng-if="wlData"></i>
+			<div style="height: 220px;overflow: auto;" class="wl_box"> 
+				<div class="noogkci" ng-repeat="wlt in orderwuliu.list.slice().reverse()">
+					<p class="p-pt" style="overflow: hidden;" ng-repeat="wl in wlt.data.slice().reverse()"><em class="ydn"><i></i></em><span class="sj" style="float: left;">{{wl.ftime}}</span> <span class="dz" style="float: left;">{{wl.context}}</span></p>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+<div class="track gird mb20">
+	<div class="track-bt"><span style="float: left;">订单信息</span><a href="#/order-print/{{orderid}}" target="_blank" class="ant">打印订单</a></div>
+	<div class="wrap-nr">
+		<div class="info cle">
+			<div class="info-xx">
+				<b class="bt">收货人信息</b>
+				<p class="p">收<em>货</em>人：  {{orderDetail.order.consignee}}</p>
+				<p class="p">地<em></em><em></em>址：  {{orderDetail.order.region + orderDetail.order.address}}</p>
+				<p class="p">手机号码：  {{orderDetail.order.mobile}}</p>
+				<p class="p">固定电话：  {{orderDetail.order.tel || '无'}}</p>
+			</div>
+			<div class="info-xx">
+				<b class="bt">支付及配送方式</b>
+				<p class="p">支付方式：  {{orderDetail.order.pay_name}}</p>
+				<p class="p">配送方式：  {{orderDetail.order.shipping_name}}</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="spend">商品清单</div>
+		<div class="sen-table">
+			<table class="s-t">
+				<tr>
+					<th width="179" class="lef" style="text-align: center;"><span class="shrk" ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2"><input type="checkbox" id="chea" ng-model="selectedAll" ng-change="chooseAll(selectedAll)"/><label for="chea"></label></span>商品编号</th>
+					<th width="179"><div class="c">商品图片</div></th>
+					<th width="409"><div class="c">商品名称</div></th>
+					<th width="90"><div class="c">铺货数量</div></th>
+					<th width="90" ng-if="showPrice"><div class="c">铺货单价</div></th>
+					<th width="90" ng-if="showPrice"><div class="c">合同金额</div></th>
+					<!-- <th width="90" ng-if="showPrice"><div class="c">优惠金额</div></th> -->
+					<!-- <th><div class="c">提示</div></th> -->
+				</tr>
+				<tr ng-repeat="ord in orderDetail.goods_list">
+					<td style="text-align: center;"><span class="shrk" ng-show="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2"><input type="checkbox" id="{{ord.rec_id}}" ng-model="ord.select"/><label for="{{ord.rec_id}}"></label></span>{{ord.goods_sn}}</td>
+					<td><div class="sr-img" style="cursor: pointer;" ng-click="goGoodsDetail(ord.goods_id,ord.cutting_id)"><img ng-src="{{ord.thumb}}" /></div></td>
+					<td>
+						<div class="sr-txt">
+							<p class="srt-p1" style="white-space:initial;" ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">
+									{{ord.cutting_id>0?ord.cutting_name:ord.goods_name}}</p>
+							<p class="srt-p2">
+								<span style="margin-right: 10px;" ng-if="ord.qiujing">球镜 : {{ord.qiujing}}</span>
+								<span style="margin-right: 10px;" ng-if="ord.zhujing">柱镜 : {{ord.zhujing}}</span>
+								<span style="margin-right: 10px;" ng-if="ord.zhouwei">轴位 : {{ord.zhouwei}}</span>
+								<span ng-if="!(ord.cutting_id>0)" style="margin-right: 5px;" ng-repeat="attr in ord.goods_attrs">{{attr}}</span>
+									<span ng-if="(ord.cutting_id>0)" style="display:block;margin-right: 5px;" ng-repeat="attr in ord.cutting_attr">
+										<span ng-repeat="_attrAr in attr">{{_attrAr}}</span>
+									</span>
+							</p>
+						</div>
+
+						<span ng-attr-title="{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}">
+								{{goods.cutting_id>0?goods.cutting_name:goods.goods_name}}
+							</span>
+							<span style="display: block;margin-top: 2px;color:#c5c5c5;">
+									<span style="margin-right: 5px;" ng-if="goods.qiujing">球镜：{{goods.qiujing}}</span>
+									<span style="margin-right: 5px;" ng-if="goods.zhujing">柱镜：{{goods.zhujing}}</span>
+									<span style="margin-right: 5px;" ng-if="goods.zhouwei">轴位：{{goods.zhouwei}}</span>
+									<span ng-if="!(goods.cutting_id>0)" style="margin-right: 5px;" ng-repeat="attr in goods.goods_attrs">{{attr}}</span>
+									<span ng-if="(goods.cutting_id>0)" style="display:block;margin-right: 5px;" ng-repeat="attr in goods.cutting_attr">
+										<span ng-repeat="_attrAr in attr">{{_attrAr}}</span>
+									</span>
+							</span>
+					</td>
+					<td><div class="c hsez">{{ord.goods_number}}</div></td>
+					<td ng-if="showPrice"><div class="c hsez">{{ord.shop_price}}</div></td>
+					<td ng-if="showPrice"><div class="c hsez">￥{{ord.subtotal}}</div></td>
+					<!-- <td ng-if="showPrice"><div class="c hsez">{{ord.reduce_price||'--'}}</div></td> -->
+					<!-- <td>
+						<div class="c aneni">
+							<a class="icon ico-1">
+								<div class="lingt">{{ord.tui}}天无理由退货</div>
+							</a>
+							<a class="icon ico-2">
+								<div class="lingt">{{ord.huan}}天免费换货</div>
+							</a>
+							<a class="icon ico-3">
+								<div class="lingt">{{ord.xiu}}天免费维修</div>
+							</a>
+						</div>
+					</td> -->
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+</div>
+
+<div class="total gird mb40" ng-if="showPrice">
+	<div class="totg-wrp">
+		<p class="total-p">押金：￥{{orderDetail.order.deposit}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元</p>
+		<span class="total-sp">总额：<em>¥{{orderDetail.order.order_amount}}</em></span>
+	</div>
+</div>
+
+<script>
+	$(".sgye").click(function(){
+		$(this).parent().find(".syincy").toggleClass("hidden");
+	})
+	$(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:5,trigger:"click"});
+</script>
+

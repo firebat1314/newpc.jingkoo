@@ -1,0 +1,72 @@
+<div class="shd-index animated fadeIn">
+   <ng-template ng-if="!!add_user_status">
+      <div class="fore1">
+         <div class="tit">预估额度</div>
+         <div class="p_b">
+            <div class="price">2000.00</div>
+            <button class="ed button" ui-sref=".tiedCard">获取额度</button>
+            <button class="jk button" ui-sref=".borrowings">立即借款</button>
+         </div>
+      </div>
+      <div class="fore2">
+         <div class="tit">账单</div>
+         <ul>
+            <li ng-repeat="item in items">
+               <div class="label">本月账单</div>
+               <div class="cover">
+                  <div class="jiqi">
+                     <span>分三期</span>
+                  </div>
+                  <div class="je">借款金额：
+                     <span class="price">30000.00</span>
+                  </div>
+                  <div class="jk_time">借款时间：2018-06-05</div>
+                  <div class="main">
+                     <div class="yh">本期应还：
+                        <span class="price">10.00&nbsp;&nbsp;</span>
+                        <span class="qs">(1/12)</span>
+                     </div>
+                     <div class="ms">应还明细：0.00（本金）&nbsp;+10.00（利息）</div>
+                     <div class="yh_d">应还款日：
+                        <span class="time">2018-05-05</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="details" ng-style="{'marginTop':item.showDetal?'0':'-150'}">
+                  <table>
+                     <tr>
+                        <td>1/期</td>
+                        <td>2018-05-05</td>
+                        <td>666.66</td>
+                        <td>已还款</td>
+                     </tr>
+                     <tr>
+                        <td>1/期</td>
+                        <td>2018-05-05</td>
+                        <td>666.66</td>
+                        <td>已还款</td>
+                     </tr>
+                     <tr>
+                        <td>1/期</td>
+                        <td>2018-05-05</td>
+                        <td>666.66</td>
+                        <td>已还款</td>
+                     </tr>
+                  </table>
+                  <div class="end">剩余代还一期，剩余代还总额：
+                     <span class="price">6666.66元</span>
+                  </div>
+                  <div class="arrow">
+                     <div ng-click="item.showDetal = !item.showDetal" ng-style="{'transform':item.showDetal?'0':'rotateX(180deg)'}">
+                        <i class="iconfont icon-arrow_u"></i>
+                     </div>
+                  </div>
+               </div>
+            </li>
+            <li></li>
+            <li></li>
+            <li></li>
+         </ul>
+      </div>
+   </ng-template>
+</div>

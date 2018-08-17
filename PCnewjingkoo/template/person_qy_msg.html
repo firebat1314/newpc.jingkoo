@@ -1,320 +1,365 @@
 <style type="text/css">
-	input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
-	-webkit-appearance: none !important;-moz-appearance: none !important;-ms-appearance: none !important;}
+   input::-webkit-outer-spin-button,
+   input::-webkit-inner-spin-button {
+      -webkit-appearance: none !important;
+      -moz-appearance: none !important;
+      -ms-appearance: none !important;
+   }
 </style>
 <div class="route mb20">
-	<div class="gird">
-		当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
-	</div>
+   <div class="gird">
+      当前位置：<a href="#/home">首页</a> > <a href="#/control-mb">用户中心</a>&gt;{{title}}
+   </div>
 </div>
 
 <div class="main" style="margin-bottom: 25px;">
-	<div class="im-panel gird cle">
-		<ng-template ng-include="'Template/control-tool.html'"></ng-template>
-		<div class="panel-right">
-			<div class="control-wrp">
-				<div class="cont-hd cle">
-    				<div class="cbt-left">
-    					<span><a href="#/person-qy-lxrmsg" class="cbt-wz">联系人信息</a></span>
-    					<span><a href="#/person-qy-msg" class="cbt-wz on">企业资料</a></span>
-    					<span><a href="#/user-logo-center" class="cbt-wz">头像设置</a></span>
-    					
-    				</div>
-    			</div>
-    			<div class="cont-bd">
-    				<div class="contacts-wrap qye pt0">
-    					<h2 class="qyxx-bt">企业信息</h2>
-    					<table class="cont-tab">
-    						<tr>
-    							<td width="135"><div class="name">企业名称：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.user_info.company}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.company" placeholder="请填写企业名称"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyName($event,getQyMsg.user_info.company)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">经营所在地：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.user_info.region}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur">
-											<select name="" ng-model="addParamsData.province" class="selec" ng-change="provinceChange()">
+   <div class="im-panel gird cle">
+      <ng-template ng-include="'Template/control-tool.html'"></ng-template>
+      <div class="panel-right">
+         <div class="control-wrp">
+            <div class="cont-hd cle">
+               <div class="cbt-left">
+                  <span><a href="#/person-qy-lxrmsg" class="cbt-wz">联系人信息</a></span>
+                  <span><a href="#/person-qy-msg" class="cbt-wz on">企业资料</a></span>
+                  <span><a href="#/user-logo-center" class="cbt-wz">头像设置</a></span>
+                  <span><a href="#/distribution-qualification" class="cbt-wz">铺货资质</a></span>
+               </div>
+            </div>
+            <div class="cont-bd">
+               <!-- <div class="contacts-wrap qye pt0" ui-view="businessManagement"> -->
+               <div class="contacts-wrap qye pt0">
+                  <h2 class="qyxx-bt">企业信息</h2>
+                  <table class="cont-tab">
+                     <tr>
+                        <td width="135">
+                           <div class="name">企业名称：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.user_info.company}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.company" placeholder="请填写企业名称" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyName($event,getQyMsg.user_info.company)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">经营所在地：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.user_info.region}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur">
+                                 <select name="" ng-model="addParamsData.province" class="selec" ng-change="provinceChange()">
 												<option value="">请选择</option>
 												<option ng-repeat="item in provinceList" ng-model="province" value="{{item.region_id}}">{{item.region_name}}</option>
 											</select>
-											<select name="" class="selec" ng-disable="cityList" ng-model="addParamsData.city" ng-change="cityChange()">
+                                 <select name="" class="selec" ng-disable="cityList" ng-model="addParamsData.city" ng-change="cityChange()">
 												<option value="">请选择</option>
 												<option ng-repeat="item in cityList" ng-model="city" value="{{item.region_id}}">{{item.region_name}}</option>
 											</select>
-											<select name="" class="selec" ng-disable="districtList" ng-model="addParamsData.district">
+                                 <select name="" class="selec" ng-disable="districtList" ng-model="addParamsData.district">
 												<option value="">请选择</option>
 												<option ng-repeat="item in districtList" ng-model="district" value="{{item.region_id}}">{{item.region_name}}</option>
 											</select>
-										</div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJyszd($event)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">经营地址：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.user_info.address}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.address" placeholder="请填写经营地址"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJydz($event,getQyMsg.user_info.address)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">注册电话：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.zctel}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" style="line-height: 16px;" ng-model="getQyMsg.company_info.zctel" placeholder="请填写注册电话"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyTel($event,getQyMsg.company_info.zctel)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">银行开户许可证号：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.xk}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.xk" placeholder="请填写银行开户许可证号"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYh($event,getQyMsg.company_info.xk)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">营业执照编号：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.yyzzsn}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.yyzzsn" placeholder="请填写营业执照编号"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYyzzsn($event,getQyMsg.company_info.yyzzsn)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">营业执照：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="License ">
-    										<div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.zhizhao || 'img/up.jpg'}}" id="img22"/><input id="img2" class="up-file cursor" type="file" ng-model="yzPhoto" ng-change="yyzzPhoto($event)"/></div>
-											<div class="ret-sli fl"><img src="img/zz.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
-											<div class="muke hidden"></div>
-    										<div class="zzc "><img src="img/zz.jpg"/></div>
-    									</div>
-    								</div>
-    							</td>
-							 </tr>
-							 <tr>
-								<td><div class="name">医疗器械许可证：</div></td>
-								<td>
-									<div class="jjp cle">
-										<div class="License ">
-											<div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.medical || 'img/up.jpg'}}" id="img33"/><input id="img3" class="up-file cursor" type="file" ng-model="medical" ng-change="medicalPhoto($event)"/></div>
-										  <div class="ret-sli fl"><img src="img/xkz_yl.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
-										  <div class="muke hidden"></div>
-											<div class="zzc "><img src="img/xkz_yl.jpg"/></div>
-										</div>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td><div class="name">银行开户许可证：</div></td>
-								<td>
-									<div class="jjp cle">
-										<div class="License ">
-											<div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.brank_permit || 'img/up.jpg'}}" id="img44"/><input id="img4" class="up-file cursor" type="file" ng-model="brank_permit" ng-change="brankPermitPhoto($event)"/></div>
-										  <div class="ret-sli fl"><img src="img/xkz_yh.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
-										  <div class="muke hidden"></div>
-											<div class="zzc "><img src="img/xkz_yh.jpg"/></div>
-										</div>
-									</div>
-								</td>
-							</tr>
-    					</table>
-    					<h2 class="qyxx-bt bort" >法人信息</h2>
-    					<table class="cont-tab">
-    						<tr>
-    							<td width="135"><div class="name">法人姓名：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.fr}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.fr"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyFr($event,getQyMsg.company_info.fr)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">身份证号：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.code_sn}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.code_sn" placeholder="请填写身份证号"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyCodeSn($event,getQyMsg.company_info.code_sn)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">手机号码：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="zbu czaineir ">{{getQyMsg.company_info.mobile}}</div>
-    									<div class="ybu close-js">
-    										<a style="cursor: pointer;"><em></em>编辑</a>
-    									</div>
-    								</div>
-    								<div class="modify ">
-										<div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.mobile" placeholder="请填写手机号码"/></div>
-										<div class="anniu">
-											<input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyMobile($event,getQyMsg.company_info.mobile)"/>
-											<input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()"/>
-										</div>
-									</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">身份证正面照片：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="License ">
-    										<div class="ret-up fl "><img ng-src="{{getQyMsg.company_info.zsfz || 'img/up.jpg'}}" id="img00"/><input id="img0" class="up-file cursor" type="file" ng-model="sfz_before" ng-change="sfzBefore($event)"/></div>
-											<div class="ret-sli fl"><img src="img/sfz-z.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
-											<div class="muke hidden"></div>
-    										<div class="zzc "><img src="img/sfz-z.jpg"/></div>
-    									</div>
-    								</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">身份证反面照片：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="License ">
-    										<div class="ret-up fl "><img ng-src="{{getQyMsg.company_info.fsfz || 'img/up.jpg'}}" id="img11"/><input id="img1" class="up-file cursor" type="file" ng-model="sfz_behind" ng-change="sfzBehind($event)"/></div>
-											<div class="ret-sli fl"><img src="img/sfz-f.jpg"/><div class="sli-fdj "><span></span>示例</div></div>
-											<div class="muke hidden"></div>
-    										<div class="zzc "><img src="img/sfz-f.jpg"/></div>
-    									</div>
-    								</div>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td><div class="name">营业执照：</div></td>
-    							<td>
-    								<div class="jjp cle">
-    									<div class="License ">
-    										<div style="">
-    											<img ng-src="{{getQyMsg.user_info.zhizhao}}" style="max-width: 400px;max-height: 400px;"/>
-    										</div>
-    									</div>
-    								</div> 
-    								
-    							</td>
-    						</tr>
-    					</table>
-    					
-    					
-    				</div>
-    			</div>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+                              </div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJyszd($event)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">经营地址：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.user_info.address}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.user_info.address" placeholder="请填写经营地址" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyJydz($event,getQyMsg.user_info.address)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">注册电话：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.zctel}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur"><input class="stxt" type="text" style="line-height: 16px;" ng-model="getQyMsg.company_info.zctel" placeholder="请填写注册电话" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyTel($event,getQyMsg.company_info.zctel)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">银行开户许可证号：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.xk}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.xk" placeholder="请填写银行开户许可证号" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYh($event,getQyMsg.company_info.xk)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">营业执照编号：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.yyzzsn}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.yyzzsn" placeholder="请填写营业执照编号" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYyzzsn($event,getQyMsg.company_info.yyzzsn)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">营业执照：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.zhizhao || 'img/up.jpg'}}" id="img22" /><input id="img2" class="up-file cursor" type="file" get-image="yyzzPhoto(img)" /></div>
+                                 <div class="ret-sli fl"><img src="img/zz.jpg" />
+                                    <div class="sli-fdj "><span></span>示例</div>
+                                 </div>
+                                 <div class="muke hidden"></div>
+                                 <div class="zzc "><img src="img/zz.jpg" /></div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">医疗器械许可证：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.medical || 'img/up.jpg'}}" id="img33" /><input id="img3" class="up-file cursor" type="file" get-image="medicalPhoto(img)" /></div>
+                                 <div class="ret-sli fl"><img src="img/xkz_yl.jpg" />
+                                    <div class="sli-fdj "><span></span>示例</div>
+                                 </div>
+                                 <div class="muke hidden"></div>
+                                 <div class="zzc "><img src="img/xkz_yl.jpg" /></div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">银行开户许可证：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div class="ret-up fl "><img ng-src="{{getQyMsg.user_info.brank_permit || 'img/up.jpg'}}" id="img44" /><input id="img4" class="up-file cursor" type="file" get-image="brankPermitPhoto(img)" /></div>
+                                 <div class="ret-sli fl"><img src="img/xkz_yh.jpg" />
+                                    <div class="sli-fdj "><span></span>示例</div>
+                                 </div>
+                                 <div class="muke hidden"></div>
+                                 <div class="zzc "><img src="img/xkz_yh.jpg" /></div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                  </table>
+                  <h2 class="qyxx-bt bort">法人信息</h2>
+                  <table class="cont-tab">
+                     <tr>
+                        <td width="135">
+                           <div class="name">法人姓名：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.fr}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.fr" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyFr($event,getQyMsg.company_info.fr)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">身份证号：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.code_sn}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.code_sn" placeholder="请填写身份证号" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyCodeSn($event,getQyMsg.company_info.code_sn)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">手机号码：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="zbu czaineir ">{{getQyMsg.company_info.mobile}}</div>
+                              <div class="ybu close-js">
+                                 <a style="cursor: pointer;"><em></em>编辑</a>
+                              </div>
+                           </div>
+                           <div class="modify ">
+                              <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.mobile" placeholder="请填写手机号码" /></div>
+                              <div class="anniu">
+                                 <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyMobile($event,getQyMsg.company_info.mobile)" />
+                                 <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">身份证正面照片：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div class="ret-up fl "><img ng-src="{{getQyMsg.company_info.zsfz || 'img/up.jpg'}}" id="img00" /><input id="img0" class="up-file cursor" type="file" get-image="sfzBefore(img)" /></div>
+                                 <div class="ret-sli fl"><img src="img/sfz-z.jpg" />
+                                    <div class="sli-fdj "><span></span>示例</div>
+                                 </div>
+                                 <div class="muke hidden"></div>
+                                 <div class="zzc "><img src="img/sfz-z.jpg" /></div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">身份证反面照片：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div class="ret-up fl "><img ng-src="{{getQyMsg.company_info.fsfz || 'img/up.jpg'}}" id="img11" /><input id="img1" class="up-file cursor" type="file" get-image="sfzBehind(img)" /></div>
+                                 <div class="ret-sli fl"><img src="img/sfz-f.jpg" />
+                                    <div class="sli-fdj "><span></span>示例</div>
+                                 </div>
+                                 <div class="muke hidden"></div>
+                                 <div class="zzc "><img src="img/sfz-f.jpg" /></div>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <div class="name">营业执照：</div>
+                        </td>
+                        <td>
+                           <div class="jjp cle">
+                              <div class="License ">
+                                 <div style="">
+                                    <img ng-src="{{getQyMsg.user_info.zhizhao}}" style="max-width: 400px;max-height: 400px;" />
+                                 </div>
+                              </div>
+                           </div>
+
+                        </td>
+                     </tr>
+                  </table>
+
+
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
 </div>
 
 <script>
-	$(".close-js").click(function(){
-		$(this).parent().addClass("hide");
-		$(this).parent().parent().find(".modify").addClass("show");
-	})
-	$(".oen-no").click(function(){
-		$(this).parent().parent().removeClass("show");
-		$(this).parents().parent().parent().find(".jjp").removeClass("hide");
-	})
-	
-	$(".ret-sli").click(function(){
-		$(this).parent().find(".muke").removeClass("hidden")
-		$(this).parent().find(".zzc").addClass("open");
-		$("body").addClass("over-hide");
-	})
-	$(".muke").click(function(){
-		$(".muke").addClass("hidden")
-		$(".zzc").removeClass("open");
-		$("body").removeClass("over-hide");
-	})
-	$(".zzc").click(function(){
-		$(".muke").addClass("hidden")
-		$(".zzc").removeClass("open");
-		$("body").removeClass("over-hide");
-	})
+   $(".close-js").click(function() {
+      $(this).parent().addClass("hide");
+      $(this).parent().parent().find(".modify").addClass("show");
+   })
+   $(".oen-no").click(function() {
+      $(this).parent().parent().removeClass("show");
+      $(this).parents().parent().parent().find(".jjp").removeClass("hide");
+   })
+
+   $(".ret-sli").click(function() {
+      $(this).parent().find(".muke").removeClass("hidden")
+      $(this).parent().find(".zzc").addClass("open");
+      $("body").addClass("over-hide");
+   })
+   $(".muke").click(function() {
+      $(".muke").addClass("hidden")
+      $(".zzc").removeClass("open");
+      $("body").removeClass("over-hide");
+   })
+   $(".zzc").click(function() {
+      $(".muke").addClass("hidden")
+      $(".zzc").removeClass("open");
+      $("body").removeClass("over-hide");
+   })
 </script>

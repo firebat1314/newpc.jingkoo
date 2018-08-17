@@ -3842,14 +3842,15 @@ angular.module('myApp.controllers', [])
       $rootScope.change = true;
       $scope.goods_id = $stateParams.goods_id;
 
-      $scope.isActivity = $stateParams.isActivity==1?1:0;//该商品是否为活动商品
+      $scope.isActivity = $stateParams.isActivity == 1 ? 1 : 0; //该商品是否为活动商品
       //点击展开
       //商品详情获取商品初始类型接口
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Goods/get_goods_attribute',
          data: {
-            goods_id: $scope.goods_id
+            goods_id: $scope.goods_id,
+            isActivity: $scope.isActivity
          },
       }).success(function(data) {
          if (data.status == 0 && data.info == "商品信息不存在") {
@@ -3894,7 +3895,7 @@ angular.module('myApp.controllers', [])
                   data: {
                      goods_id: $stateParams.goods_id,
                      attr: attrId,
-                     isActivity:$scope.isActivity
+                     isActivity: $scope.isActivity
                   },
                }).success(function(data) {
                   $scope.goodsData = data;
@@ -7135,7 +7136,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //结算页
-   .controller('shopJiesuan-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie','$data', function($scope, $rootScope, $http, $state, ipCookie,$data) {
+   .controller('shopJiesuan-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$data', function($scope, $rootScope, $http, $state, ipCookie, $data) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       /* —————————————— 保存用户备注信息 —————————————— */
@@ -7249,7 +7250,7 @@ angular.module('myApp.controllers', [])
          })
       };
       $scope.jiesuanFn();
-      
+
       //选择收货人信息
       $scope.selectAddress = function(address) {
          return $http({
@@ -8485,15 +8486,16 @@ angular.module('myApp.controllers', [])
          },
       }).success(function(data) {
          layer.close(cool);
-         $rootScope.$broadcast('upCarList');
-         $scope.codeData = data;
-         $scope.isPay = data.is_pay;
-         $scope.type = data.type;
-         $scope.balance = data.balance;
-         $scope.password = data.password;
-         $scope.payPrice = data.amout;
-         $scope.aliPayCode = data.alipay;
-         if (data.status) {
+         if (data.status == 1) {
+
+            $rootScope.$broadcast('upCarList');
+            $scope.codeData = data;
+            $scope.isPay = data.is_pay;
+            $scope.type = data.type;
+            $scope.balance = data.balance;
+            $scope.password = data.password;
+            $scope.payPrice = data.amout;
+            $scope.aliPayCode = data.alipay;
             if (data.is_pay == 1) {
                $('#masks').show();
                $('.payToLj').show();
@@ -8548,11 +8550,19 @@ angular.module('myApp.controllers', [])
                   })
                };
             }
+         } else if (data.status == -3) {
+
+            if ($scope.is_distribution > 0) {
+               layer.confirm(data.info, {
+                  btn: ['确定'], //按钮
+                  closeBtn:false
+               }, function(index) {
+                  layer.close(index);
+                  $state.go('order-list-d');
+               });
+            }
          } else {
             layer.msg(data.info);
-            if ($scope.is_distribution > 0) {
-               $state.go('order-list-d');
-            }
          }
       })
       $(".i-text").focus(function() {
@@ -8624,7 +8634,7 @@ angular.module('myApp.controllers', [])
                   order_id: $stateParams.order_id
                },
             }).success(function(data) {
-               if (data.order_id>0) {
+               if (data.order_id > 0) {
                   $scope.is_glass = data.order_id;
                }
             })

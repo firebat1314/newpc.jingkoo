@@ -34,6 +34,6 @@ myApp.controller('jumpControl', ['$scope', '$rootScope', '$stateParams', '$state
             }
          });
       } else {
-         location.href = '/default.html';
+         location.href = '/default.html?1';
       }
    }])

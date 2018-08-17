@@ -1,347 +1,399 @@
 <style type="text/css">
-    .car-hasGoods-main .wholebox.add {
-        width: 100% !important;
-        height: 50px;
-        background-color: #fff;
-        box-shadow: 0 0 10px 4px rgba(155, 155, 155, .4);
-        position: fixed;
-        bottom: 0;
-        left: 0;
-    }
+   .car-hasGoods-main .wholebox.add {
+      width: 100% !important;
+      height: 50px;
+      background-color: #fff;
+      box-shadow: 0 0 10px 4px rgba(155, 155, 155, .4);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+   }
 
-    .car-hasGoods-main .wholebox.add .whole {
-        width: 1183px;
-        margin: 0 auto;
-    }
+   .car-hasGoods-main .wholebox.add .whole {
+      width: 1183px;
+      margin: 0 auto;
+   }
 
-    .wholebox.add .whole {
-        border: none;
-    }
+   .wholebox.add .whole {
+      border: none;
+   }
 
-    .newmore-p .newmore-cuXiao {
-        display: inline-block;
-        position: absolute;
-        right: 20px;
-        top: 0;
-        color: #3f69a5;
-        font-size: 12px;
-        width: 70px;
-        height: 25px;
-        line-height: 25px;
-        padding-left: 10px;
-        border: 1px solid #3f69a5;
-        background: url(img/dayuhao_.png) no-repeat 60px center;
-        cursor: pointer;
-    }
+   .newmore-p .newmore-cuXiao {
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      top: 0;
+      color: #3f69a5;
+      font-size: 12px;
+      width: 70px;
+      height: 25px;
+      line-height: 25px;
+      padding-left: 10px;
+      border: 1px solid #3f69a5;
+      background: url(img/dayuhao_.png) no-repeat 60px center;
+      cursor: pointer;
+   }
 
-    .newmore-cuXiao:hover+.newmore-cuXiao-box {
-        display: block !important;
-    }
+   .newmore-cuXiao:hover+.newmore-cuXiao-box {
+      display: block !important;
+   }
 
-    .newmore-cuXiao-box {
-        width: 250px;
-        min-height: 120px;
-        background: #fff;
-        box-shadow: 0 0 5px 0;
-        border: 1px solid #e6e6e6;
-        color: #e6e6e6;
-        position: absolute;
-        top: 30px;
-        right: 19px;
-        padding: 10px;
-        z-index: 999;
-        display: none;
-    }
+   .newmore-cuXiao-box {
+      width: 250px;
+      min-height: 120px;
+      background: #fff;
+      box-shadow: 0 0 5px 0;
+      border: 1px solid #e6e6e6;
+      color: #e6e6e6;
+      position: absolute;
+      top: 30px;
+      right: 19px;
+      padding: 10px;
+      z-index: 999;
+      display: none;
+   }
 
-    .newmore-cuXiao-box .newmore-cuXiao-item {
-        display: inline-block;
-        overflow: hidden;
-    }
+   .newmore-cuXiao-box .newmore-cuXiao-item {
+      display: inline-block;
+      overflow: hidden;
+   }
 
-    .newmore-cuXiao-box .newmore-cuXiao-item p {
-        display: inline-block;
-        float: left;
-        width: 100%;
-        text-align: center;
-        top: 0;
-    }
+   .newmore-cuXiao-box .newmore-cuXiao-item p {
+      display: inline-block;
+      float: left;
+      width: 100%;
+      text-align: center;
+      top: 0;
+   }
 
-    .newmore-cuXiao-box .newmore-cuXiao-item.newmore-cuXiao-btn {
-        margin-left: 50px;
-    }
+   .newmore-cuXiao-box .newmore-cuXiao-item.newmore-cuXiao-btn {
+      margin-left: 50px;
+   }
 
-    .newmore-cuXiao-item.newmore-cuXiao-btn .newred-btn {
-        background: #ff3333;
-        color: #fff;
-    }
+   .newmore-cuXiao-item.newmore-cuXiao-btn .newred-btn {
+      background: #ff3333;
+      color: #fff;
+   }
 
-    .newmore-cuXiao-item.newmore-cuXiao-btn button {
-        width: 60px;
-        height: 30px;
-        border-radius: 3px;
-        background: #fff;
-        color: #666;
-        border: 1px solid #ccc;
-        float: left;
-        margin-right: 15px;
-        outline: none;
-        cursor: pointer;
-    }
+   .newmore-cuXiao-item.newmore-cuXiao-btn button {
+      width: 60px;
+      height: 30px;
+      border-radius: 3px;
+      background: #fff;
+      color: #666;
+      border: 1px solid #ccc;
+      float: left;
+      margin-right: 15px;
+      outline: none;
+      cursor: pointer;
+   }
 
-    .canfxbox {
-        display: inline-block;
-        padding-left: 20px;
-    }
+   .canfxbox {
+      display: inline-block;
+      padding-left: 20px;
+   }
 
-    .canfxbox span {
-        display: inline-block;
-        height: 18px;
-        width: 33px;
-        border: 1px solid #98b6ce;
-        text-align: center;
-        margin-right: 8px;
-        line-height: 18px;
-        color: #98b6ce;
-        font-size: 12px;
-    }
+   .canfxbox span {
+      display: inline-block;
+      height: 18px;
+      width: 33px;
+      border: 1px solid #98b6ce;
+      text-align: center;
+      margin-right: 8px;
+      line-height: 18px;
+      color: #98b6ce;
+      font-size: 12px;
+   }
 </style>
 <div class="new_shop_car_top">
-    <div class="shop_car_top gird">
-        <div class="shop_car_topl">
-            <a href="#/home">
+   <div class="shop_car_top gird">
+      <div class="shop_car_topl">
+         <a href="#/home">
                 <img src="img/logo.png" class="shop_car_toplimg" width="177px" />
             </a>
-            <span class="shop_carlsp">购物车</span>
-        </div>
-        <div class="shop_car_topr">
-            <div class="car_toprbox">
-                <form name="searchForm" method="post" ng-submit="searchKey()" novalidate>
-                    <input id="txt" class="car_toprip" type="text" ng-model="carkeywords" placeholder="搜索镜库商品" autocomplete="off">
-                    <input type="button" value="搜索" class="car_toprbtn" ng-click="searchKey()" />
-                </form>
-            </div>
-        </div>
-    </div>
+         <span class="shop_carlsp">购物车</span>
+      </div>
+      <div class="shop_car_topr">
+         <div class="car_toprbox">
+            <form name="searchForm" method="post" ng-submit="searchKey()" novalidate>
+               <input id="txt" class="car_toprip" type="text" ng-model="carkeywords" placeholder="搜索镜库商品" autocomplete="off">
+               <input type="button" value="搜索" class="car_toprbtn" ng-click="searchKey()" />
+            </form>
+         </div>
+      </div>
+   </div>
 </div>
 <div class="shop-car-main" ng-if="data" style="overflow: hidden;">
-    <!--<div class="shop-car-logo" ng-if="Goods">-->
-    <!--<div class="car-logo">-->
-    <!--<h2>我的购物车</h2>-->
-    <!--</div>-->
-    <!--</div>-->
-    <div class="shop-car-noGoods" ng-if="!data.suppliers_goods_list.length">
-        <p>您的购物车还是空的，赶快去挑选商品吧！</p>
-        <p>· 去看看
-            <a href="#/myCollect">我的收藏夹</a>
-        </p>
-        <p>· 去看看
-            <a href="#/home">首页</a>
-        </p>
-    </div>
-    <div class="car-hasGoods-main" ng-if="data.suppliers_goods_list.length">
-        <div class="car-hasGoods-table">
-            <table width="100%">
-                <tbody>
-                    <tr>
-                        <th width="100">
-                            <label>
+   <!--<div class="shop-car-logo" ng-if="Goods">-->
+   <!--<div class="car-logo">-->
+   <!--<h2>我的购物车</h2>-->
+   <!--</div>-->
+   <!--</div>-->
+   <div class="shop-car-noGoods" ng-if="!data.suppliers_goods_list.length">
+      <p>您的购物车还是空的，赶快去挑选商品吧！</p>
+      <p>· 去看看
+         <a href="#/myCollect">我的收藏夹</a>
+      </p>
+      <p>· 去看看
+         <a href="#/home">首页</a>
+      </p>
+   </div>
+   <div class="car-hasGoods-main" ng-if="data.suppliers_goods_list.length">
+      <div class="car-hasGoods-table">
+         <table width="100%">
+            <tbody>
+               <tr>
+                  <th width="100">
+                     <label>
                                 <input type="checkbox" ng-click="changeAllCheck()" style="display: none;">
                                 <div class="all-check" ng-class="{'checked':isSelect}"></div>
                             </label>
-                            <p>全选</p>
-                        </th>
-                        <th style="text-align: center;" width="406">商品</th>
-                        <th style="text-align: center;" width="150">数量</th>
-                        <th ng-if="showPrice" style="text-align: center;">单价</th>
-                        <th ng-if="showPrice" style="text-align: center;">优惠</th>
-                        <th ng-if="showPrice" style="text-align: center;">小计</th>
-                        <th></th>
-                        <!--<th style="text-align: center" width="135">操作</th>-->
-                    </tr>
-                </tbody>
+                     <p>全选</p>
+                  </th>
+                  <th style="text-align: center;" width="406">商品</th>
+                  <th style="text-align: center;" width="150">数量</th>
+                  <th ng-if="showPrice" style="text-align: center;">单价</th>
+                  <th ng-if="showPrice" style="text-align: center;">优惠</th>
+                  <th ng-if="showPrice" style="text-align: center;">小计</th>
+                  <th></th>
+                  <!--<th style="text-align: center" width="135">操作</th>-->
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="shop-hasGoods-item-box">
+         <div class="shop-hasGoods-item" ng-repeat="carItem in shopCarData.suppliers_goods_list">
+            <table width="100%">
+               <tbody>
+                  <tr>
+                     <th class="kefu" width="1200">
+                        <label>
+                              <input type="checkbox" ng-click="selectStore($index)" style="display: none;">
+                              <div class="all-check" ng-class="{'checked':carItem.is_select}"></div>
+                           </label>
+                        <p style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" ng-attr-title="{{carItem.title}}">{{carItem.title}}</p>
+                        <span class="kf_sp" ng-click="qimoChatClick(carItem.access_id)"></span>
+                     </th>
+                     <th width="415"></th>
+                     <th width="180" class="more-youhui" style="text-align: left">
+                        <img src="img/kefu-youhuiquan.png" alt="" ng-show="carItem.suppliers_bonus" ng-click="gowuquanFn($event)">
+                        <div class="more-youhui-box">
+                           <div class="more-youhui-item" ng-repeat="yhq in carItem.suppliers_bonus">
+                              <!-- <img ng-src={{yhq.logo}} alt=""> -->
+                              <p>{{yhq.suppliers_name}}</p>
+                              <span>{{yhq.send_start_date}} - {{yhq.send_end_date}}</span>
+                              <button ng-show="yhq.is_get==1" class="get">已领取</button>
+                              <button ng-show="yhq.is_get==2" class="get">已领完</button>
+                              <button ng-show="yhq.is_get==0" ng-click="lqYhq(yhq.type_id)">领取</button>
+                           </div>
+                        </div>
+                     </th>
+                     <th width="135"></th>
+                     <th width="100"></th>
+                     <th width="135">
+                        <div class="mana_addr_box" style="width: 300px;text-align: right;font-size: 12px;">
+                           <!-- <span class="addr_money" style="color: #808080;margin-left: 10px;">运费：¥20.00</span> -->
+                           <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free!=1&&carItem.free_price">还差{{carItem.free_price}}免运费</span>
+                           <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free==1">免运费</span>
+                        </div>
+                     </th>
+                  </tr>
+               </tbody>
             </table>
-        </div>
-        <div class="shop-hasGoods-item-box">
-            <div class="shop-hasGoods-item" ng-repeat="carItem in shopCarData.suppliers_goods_list">
-                <table width="100%">
-                    <tbody>
-                        <tr>
-                            <th class="kefu" width="1200">
-                                <label>
-                                    <input type="checkbox" ng-click="selectStore($index)" style="display: none;">
-                                    <div class="all-check" ng-class="{'checked':carItem.is_select}"></div>
-                                </label>
-                                <p style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" ng-attr-title="{{carItem.title}}">{{carItem.title}}</p>
-                                <span class="kf_sp" ng-click="qimoChatClick(carItem.access_id)"></span>
-                            </th>
-                            <th width="415"></th>
-                            <th width="180" class="more-youhui" style="text-align: left">
-                                <img src="img/kefu-youhuiquan.png" alt="" ng-show="carItem.suppliers_bonus" ng-click="gowuquanFn($event)">
-                                <div class="more-youhui-box">
-                                    <div class="more-youhui-item" ng-repeat="yhq in carItem.suppliers_bonus">
-                                        <!-- <img ng-src={{yhq.logo}} alt=""> -->
-                                        <p>{{yhq.suppliers_name}}</p>
-                                        <span>{{yhq.send_start_date}} - {{yhq.send_end_date}}</span>
-                                        <button ng-show="yhq.is_get==1" class="get">已领取</button>
-                                        <button ng-show="yhq.is_get==2" class="get">已领完</button>
-                                        <button ng-show="yhq.is_get==0" ng-click="lqYhq(yhq.type_id)">领取</button>
-                                    </div>
-                                </div>
-                            </th>
-                            <th width="135"></th>
-                            <th width="100"></th>
-                            <th width="135">
-                                <div class="mana_addr_box" style="width: 300px;text-align: right;font-size: 12px;">
-                                    <!-- <span class="addr_money" style="color: #808080;margin-left: 10px;">运费：¥20.00</span> -->
-                                    <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free!=1&&carItem.free_price">还差{{carItem.free_price}}免运费</span>
-                                    <span class="free_money" style="color: #ff3333;margin-left: 10px;" ng-if="carItem.suppliers_free==1">免运费</span>
-                                </div>
-                            </th>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="hasGoods-item-content" ng-repeat="carList in carItem.goods_list">
-                    <!--<h3 class="mb20" style="font-size: 14px;position: absolute;right: 42px;top: 5px;color:#3f69a5;">交易方式：镜库担保交易</h3>-->
-                    <div style="margin-top: 20px" ng-if="!carList.gift_list.name"></div>
-                    <div class="car-manjian" ng-if="carList.gift_list.name">
-                        <div>
-                            <div class="manjian-box">{{carList.gift_list.name}}</div>
-                            <p>{{carList.gift_list.title}}</p>
-                        </div>
-                    </div>
-                    <div class="hasGoods-check" ng-class="{'hasGoods-check isArea':carList.in_area_id==0,'hasGoods-check':carList.in_area_id==1}">
-                        <div class="fl hasGoods-check-left">
-                            <div ng-if="carList.in_area_id==0" style="width: 20px;background: #f0f0f0;display: flex;justify-content: center;align-items: center;text-align: center;border-radius: 3px;">本地区暂不销售</div>
-                            <label ng-if="carList.in_area_id==1">
-                                <input type="checkbox" ng-click="selectGoods(carList,$index)" style="display: none;">
-                                <div class="all-check" ng-class="{'checked':carList.is_select}"></div>
-                            </label>
-                        </div>
-                        <div class="fl hasGoods-check-right">
-                            <div class="hasGoods-check-img">
-                              <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">
-                                  <img ng-src={{carList.goods_thumb}} alt="">
-                              </a>
-                              <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">
-                                  <img ng-src={{carList.goods_thumb}} alt="">
-                              </a>
-                            </div>
-                            <div style="position: relative;" class="newmore-p">
-                                <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
-                                <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
-                                <!--
-                        		<div class="canfxbox"  ng-if="carList.is_inv==1">
-                        			<span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>
-                        			<span class="can_hh" ng-if="carList.server_date.huan==-1||carList.server_date.huan>0">换货</span>
-                        			<span class="can_wx" ng-if="carList.server_date.return==-1||carList.server_date.return>0">维修</span>
-                        		</div>
+            <div class="hasGoods-item-content" ng-repeat="carList in carItem.goods_list">
+               <!--<h3 class="mb20" style="font-size: 14px;position: absolute;right: 42px;top: 5px;color:#3f69a5;">交易方式：镜库担保交易</h3>-->
+               <div style="margin-top: 20px" ng-if="!carList.gift_list.name"></div>
+               <div class="car-manjian" ng-if="carList.gift_list.name">
+                  <div>
+                     <div class="manjian-box">{{carList.gift_list.name}}</div>
+                     <p>{{carList.gift_list.title}}</p>
+                  </div>
+               </div>
+               <div class="hasGoods-check" ng-class="{'hasGoods-check isArea':carList.in_area_id==0,'hasGoods-check':carList.in_area_id==1}">
+                  <div class="fl hasGoods-check-left">
+                     <div ng-if="carList.in_area_id==0" style="width: 20px;background: #f0f0f0;display: flex;justify-content: center;align-items: center;text-align: center;border-radius: 3px;">本地区暂不销售</div>
+                     <label ng-if="carList.in_area_id==1">
+                        <input type="checkbox" ng-click="selectGoods(carList,$index)" style="display: none;">
+                        <div class="all-check" ng-class="{'checked':carList.is_select}"></div>
+                     </label>
+                  </div>
+                  <div class="fl hasGoods-check-right">
+                     <div class="hasGoods-check-img">
+                        <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">
+                           <img ng-src={{carList.goods_thumb}} alt="">
+                        </a>
+                        <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">
+                           <img ng-src={{carList.goods_thumb}} alt="">
+                        </a>
+                     </div>
+                     <div style="position: relative;" class="newmore-p">
+                        <a ng-if="!(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
+                        <a ng-if="(carList.cutting_id>0)" href="javascript:;" ui-sref="shop-detail-cut({goods_id:carList.goods_id,id:carList.cutting_id})">{{(carList.cutting_id>0)?carList.cutting_name:carList.goods_name}}</a>
+                        <!--
+                           <div class="canfxbox"  ng-if="carList.is_inv==1">
+                              <span class="can_th" ng-if="carList.server_date.edit==-1||carList.server_date.edit>0">退货</span>
+                              <span class="can_hh" ng-if="carList.server_date.huan==-1||carList.server_date.huan>0">换货</span>
+                              <span class="can_wx" ng-if="carList.server_date.return==-1||carList.server_date.return>0">维修</span>
+                           </div>
 								-->
-                                <span ng-if="yh" class="newmore-cuXiao" ng-click="moreCuXiao($event)">更多促销</span>
-                                <div class="newmore-cuXiao-box" ng-if="yh">
-                                    <div class="newmore-cuXiao-item">
-                                        <p ng-repeat="yh in carList.gift_list.volume_price">{{yh.title}}</p>
-                                    </div>
-                                    <!--<div class="newmore-cuXiao-item newmore-cuXiao-btn">
-                                        <button class="newred-btn">确定</button>
-                                        <button ng-click="closeMoreCuxiao($event)">取消</button>
-                                    </div>-->
-                                </div>
-                            </div>
-                            <div class="hasGoods-check-message" style="margin-right: -10px;">
-                                <div class="check-li" ng-repeat="carArr in carList.attrs">
-                                    <label ng-if="!(carList.cutting_id>0)">
-                                        <input type="checkbox" ng-click="changeAttrCheck(carArr,carArr.rec_id)" style="display: none;">
-                                        <div style="width:15px;height:15px;margin-top: 8px;margin-left: 30px;" class="all-check" ng-class="{'checked':carArr.is_select}"></div>
+                        <span ng-if="yh" class="newmore-cuXiao" ng-click="moreCuXiao($event)">更多促销</span>
+                        <div class="newmore-cuXiao-box" ng-if="yh">
+                           <div class="newmore-cuXiao-item">
+                              <p ng-repeat="yh in carList.gift_list.volume_price">{{yh.title}}</p>
+                           </div>
+                           <!--<div class="newmore-cuXiao-item newmore-cuXiao-btn">
+                              <button class="newred-btn">确定</button>
+                                 <button ng-click="closeMoreCuxiao($event)">取消</button>
+                           </div>-->
+                        </div>
+                     </div>
+                     <!-- <table>
+                        <tr ng-repeat="carArr in carList.attrs">
+                           <td>
+                                 <label ng-if="!(carList.cutting_id>0)" style="float: left;">
+                                       <input type="checkbox" ng-click="changeAttrCheck(carArr,carArr.rec_id)" style="display: none;">
+                                       <div style="width:15px;height:15px;margin-top: 8px;margin-left: 30px;" class="all-check" ng-class="{'checked':carArr.is_select}"></div>
                                     </label>
                                     <ul style="height: auto;">
-                                        <li ng-if="carArr.qiujing&&!(carList.cutting_id>0)">球镜：{{carArr.qiujing}}</li>
-                                        <li ng-if="carArr.zhujing&&!(carList.cutting_id>0)">柱镜：{{carArr.zhujing}}</li>
-                                        <li ng-if="carArr.zhouwei&&!(carList.cutting_id>0)">轴位：{{carArr.zhouwei}}</li>
-                                        <li ng-if="!(carList.cutting_id>0)" ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
-                                        <li ng-if="(carList.cutting_id>0)" ng-repeat="carAttr in carArr.cutting_attr" ng-attr-title="{{carAttr}}" style="float:initial;"><span ng-repeat="_carAttr in carAttr">{{_carAttr}}</span></li>
+                                       <li ng-if="carArr.qiujing&&!(carList.cutting_id>0)">球镜：{{carArr.qiujing}}</li>
+                                       <li ng-if="carArr.zhujing&&!(carList.cutting_id>0)">柱镜：{{carArr.zhujing}}</li>
+                                       <li ng-if="carArr.zhouwei&&!(carList.cutting_id>0)">轴位：{{carArr.zhouwei}}</li>
+                                       <li ng-if="!(carList.cutting_id>0)" ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
+                                       <li ng-if="(carList.cutting_id>0)" ng-repeat="carAttr in carArr.cutting_attr" ng-attr-title="{{carAttr}}" style="float:initial;"><span ng-repeat="_carAttr in carAttr">{{_carAttr}}</span></li>
                                     </ul>
-                                    <div class="diy-right c">
-                                        <span class="wenb">
-                                            <a href="" class="fl borr c" ng-click="reduceCarArr($event,carArr.goods_properties,carArr)">－</a>
-                                            <input type="text" class="fl c diyr-txt" ng-disabled="carArr.goods_properties.number" ng-model="carArr.goods_number" value="goods_number"
-                                                ng-blur="change($event,carArr.goods_properties,carArr)">
-                                            <a href="" class="fl borl c" ng-click="addCarArr($event,carArr.goods_properties,carArr)">+</a>
-                                        </span>
-                                        <span class="text-value">{{carArr.goods_number}}</span>
+                           </td>
+                           <td>
+                              
+                           <div class="diy-right c">
+                                 <span class="wenb">
+                                    <a href="" class="fl borr c" ng-click="reduceCarArr($event,carArr.goods_properties,carArr)">－</a>
+                                    <input type="text" class="fl c diyr-txt" ng-disabled="carArr.goods_properties.number" ng-model="carArr.goods_number" value="goods_number"
+                                       ng-blur="change($event,carArr.goods_properties,carArr)">
+                                    <a href="" class="fl borl c" ng-click="addCarArr($event,carArr.goods_properties,carArr)">+</a>
+                                 </span>
+                                 <span class="text-value">{{carArr.goods_number}}</span>
+                              </div>
+                           </td>
+                           <td>
+                                 <div style="height:30px; " class="hasGoods-check-price">
+                                       <p style="padding: 0;margin: 0;position: relative;top: 0;">{{carArr.goods_price}}</p>
                                     </div>
-                                    <div class="check-li-del" ng-click="delAttrGoods($index,$parent.$index,$parent.$parent.$index)"></div>
-                                </div>
-                                <div class="hasGoods-xiugai" ng-click="xiugaiFn($event)">修改</div>
-                            </div>
-                            <div ng-if="showPrice" class="gwc_wt">
-                                <div ng-repeat="carArr in carList.attrs" style="padding: 0;margin: 0;display: inline-flex;position: relative;width: 100%;">
-                                    <div style="height:30px; " class="hasGoods-check-price">
-                                        <p style="padding: 0;margin: 0;position: relative;top: 0;">{{carArr.goods_price}}</p>
+                           </td>
+                           <td>
+                                 <div style="height:30px; " class="hasGoods-check-xiaoji">
+                                       <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
+                                       <em ng-if="!carArr.cha_price">--</em>
                                     </div>
-                                    <div style="height:30px; " class="hasGoods-check-xiaoji">
-                                        <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
-                                        <em ng-if="!carArr.cha_price">--</em>
+                           </td>
+                           <td>
+                                 <div style="height:30px; " class="add_last_th">
+                                       {{carArr.subtotal}}
                                     </div>
-                                    <!--小计-->
-                                    <div style="height:30px; " class="add_last_th">
-                                        {{carArr.subtotal}}
-                                    </div>
-                                </div>
-                            </div>
+                           </td>
+                        </tr>
+                     </table> -->
+                     <div class="hasGoods-check-message" style="margin-right: -10px;">
+
+                        <div class="check-li" ng-repeat="carArr in carList.attrs">
+                           <label ng-if="!(carList.cutting_id>0)" style="float: left;">
+                              <input type="checkbox" ng-click="changeAttrCheck(carArr,carArr.rec_id)" style="display: none;">
+                              <div style="width:15px;height:15px;margin-top: 8px;margin-left: 30px;" class="all-check" ng-class="{'checked':carArr.is_select}"></div>
+                           </label>
+                           <ul style="height: auto;">
+                              <li ng-if="carArr.qiujing&&!(carList.cutting_id>0)">球镜：{{carArr.qiujing}}</li>
+                              <li ng-if="carArr.zhujing&&!(carList.cutting_id>0)">柱镜：{{carArr.zhujing}}</li>
+                              <li ng-if="carArr.zhouwei&&!(carList.cutting_id>0)">轴位：{{carArr.zhouwei}}</li>
+                              <li ng-if="!(carList.cutting_id>0)" ng-repeat="carAttr in carArr.arr_attr" ng-attr-title="{{carAttr}}">{{carAttr}}</li>
+                              <li ng-if="(carList.cutting_id>0)" ng-repeat="carAttr in carArr.cutting_attr" ng-attr-title="{{carAttr}}" style="float:initial;"><span ng-repeat="_carAttr in carAttr">{{_carAttr}}</span></li>
+                           </ul>
+                           <div class="diy-right c">
+                              <span class="wenb">
+                                 <a href="" class="fl borr c" ng-click="reduceCarArr($event,carArr.goods_properties,carArr)">－</a>
+                                 <input type="text" class="fl c diyr-txt" ng-disabled="carArr.goods_properties.number" ng-model="carArr.goods_number" value="goods_number"
+                                    ng-blur="change($event,carArr.goods_properties,carArr)">
+                                 <a href="" class="fl borl c" ng-click="addCarArr($event,carArr.goods_properties,carArr)">+</a>
+                              </span>
+                              <span class="text-value">{{carArr.goods_number}}</span>
+                           </div>
+                           <div class="check-li-del" ng-click="delAttrGoods($index,$parent.$index,$parent.$parent.$index)"></div>
+                           <div style="color: #e60000;margin-left: 66px;clear: both;">{{carArr.gift_list.title}}</div>
+
                         </div>
-                    </div>
-                    <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">
-                        <p>{{mz.title}}</p>×{{mz.num}}
-                        <a ng-if="mz.goods_id" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">查看价格</a>
-                    </div>
-                    <!--<div class="hasGoods-item-zeng">-->
-                    <!--<p>【赠品】 赠品  护理液</p>-->
-                    <!--<p>×1</p>-->
-                    <!--<p>查看价格</p>-->
-                    <!--</div>-->
-                    <div class="hasGoods-item-del" ng-click="delSingle(carList)">
-                        <span class="qipao">
-                            <span class="pre">
-                                <span class="triangle_border_up">
-                                    <em></em>
-                                </span>删除该商品</span>
-                        </span>
-                    </div>
-                    <div class="hasGoods-item-sc" ng-click="scSingle($index,$parent.$index)">
-                        <span class="qipao">
-                            <span class="pre">
-                                <span class="triangle_border_up">
-                                    <em></em>
-                                </span>移入收藏夹</span>
-                        </span>
-                    </div>
-                </div>
+                        <div class="hasGoods-xiugai" ng-click="xiugaiFn($event)">修改</div>
+
+                     </div>
+                     <div ng-if="showPrice" class="gwc_wt">
+                        <div ng-repeat="carArr in carList.attrs" style="padding: 0;margin: 0;display: inline-flex;position: relative;width: 100%;">
+
+                           <div style="height:30px; " class="hasGoods-check-price">
+                              <p style="padding: 0;margin: 0;position: relative;top: 0;">{{carArr.goods_price}}</p>
+                           </div>
+
+                           <div style="height:30px; " class="hasGoods-check-xiaoji">
+                              <em ng-if="carArr.cha_price">{{carArr.cha_price}}</em>
+                              <em ng-if="!carArr.cha_price">--</em>
+                           </div>
+                           
+                           <!--小计-->
+                           <div style="height:30px; " class="add_last_th">
+                              {{carArr.subtotal}}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="hasGoods-item-zeng" ng-repeat="mz in carList.gift_list.gifts_ladder">
+                  <p>{{mz.title}}</p>×{{mz.num}}
+                  <a ng-if="mz.goods_id" href="javascript:;" ui-sref="shop-detail({goods_id:carList.goods_id})">查看价格</a>
+               </div>
+               <!-- <div class="hasGoods-item-zeng">
+                  <p>【赠品】 赠品 护理液</p>
+                  <p>×1</p>
+                  <p>查看价格</p>
+               </div> -->
+               <div class="hasGoods-item-del" ng-click="delSingle(carList)">
+                  <span class="qipao">
+                  <span class="pre">
+                     <span class="triangle_border_up">
+                        <em></em>
+                     </span>删除该商品</span>
+                  </span>
+               </div>
+               <div class="hasGoods-item-sc" ng-click="scSingle($index,$parent.$index)">
+                  <span class="qipao">
+                  <span class="pre">
+                     <span class="triangle_border_up">
+                        <em></em>
+                     </span>移入收藏夹</span>
+                  </span>
+               </div>
             </div>
-        </div>
-        <div class="wholebox" style="z-index: 1000;">
-            <div class="whole mb30">
-                <label>
-                    <input type="checkbox" ng-click="changeAllCheck()" style="display: none;">
-                    <div class="all-check" ng-class="{'checked':isSelect}"></div>
-                </label>
-                <p>全选</p>
-                <p class="del-all" ng-click="delAll()">删除选中的商品</p>
-                <div class="whole-attr">
-                    <span>
-                        <em>卖家数量：{{supp}}/</em>
-                        <i>{{supll}}</i>
-                    </span>
-                    <span>货品种类：{{typeCount}} 种</span>
-                    <span>数量总计：{{count}} 件</span>
-                    <span ng-if="showPrice">
-                        <em>货品金额总计（不包含运费)：</em>
-                        <i class="whole-price">{{totalPrice}}</i>
-                    </span>
-                </div>
-                <button ng-click="goJiesuan()">去结算</button>
+         </div>
+      </div>
+      <div class="wholebox" style="z-index: 1000;">
+         <div class="whole mb30">
+            <label>
+               <input type="checkbox" ng-click="changeAllCheck()" style="display: none;">
+               <div class="all-check" ng-class="{'checked':isSelect}"></div>
+            </label>
+            <p>全选</p>
+            <p class="del-all" ng-click="delAll()">删除选中的商品</p>
+            <div class="whole-attr">
+               <span>
+                  <em>卖家数量：{{supp}}/</em>
+                  <i>{{supll}}</i>
+               </span>
+               <span>货品种类：{{typeCount}} 种</span>
+               <span>数量总计：{{count}} 件</span>
+               <span ng-if="showPrice">
+                  <em>货品金额总计（不包含运费)：</em>
+                  <i class="whole-price">{{totalPrice}}</i>
+               </span>
             </div>
-        </div>
-    </div>
+            <button ng-click="goJiesuan()">去结算</button>
+         </div>
+      </div>
+   </div>
 </div>
 <!-- 
 <script type="text/javascript">

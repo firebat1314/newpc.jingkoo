@@ -175,7 +175,7 @@
                         </div>
                      </div>
                      <!--关联商品-->
-                     <div class="sale-detailed-message" style="margin-left: 17px;padding-top: 10px;">
+                     <div class="sale-detailed-message" style="margin-left: 17px;padding-top: 10px;" ng-if="shopDetailData.data.goods_type!=8">
                         <div class="detailed-message-item detailed-message-lastItem" ng-if="shopDetailData.linked_goods" style="margin-bottom: 0;">
                            <p style="color:#666;padding-left: 0;">关联商品</p>
                            <ul>
@@ -188,15 +188,24 @@
                            </ul>
                         </div>
                      </div>
+                     <div ng-if="shopDetailData.data.goods_type==8&&shopDetailData.linked_goods.length" class="saler_msg_d1">
+                        <span class="saler_msg_sp1">关联规格</span>
+                        <ul class="saler_msg_film">
+                           <li ng-repeat="glLi in shopDetailData.linked_goods" ui-sref="shop-detail({goods_id:glLi.goods_id})">
+                              {{glLi.goods_name}}
+                              <i class="guanlianYes"></i>
+                           </li>
+                        </ul>
+                     </div>
                      <!--商品主属性-->
-                     <!-- <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
+                     <div ng-if="saler.is_main==1" class="saler_msg_d1" ng-repeat="saler in spectaclesData.data">
                         <span class="saler_msg_sp1">{{saler.name}}</span>
                         <ul class="saler_msg_film">
                            <li ng-repeat="salers in saler.values" ng-class="{'on':attrId==salers.id}" ng-click="getAttrList(salers.id,salers.number,salers.label);">{{salers.label}}
                               <i class="guanlianYes"></i>
                            </li>
                         </ul>
-                     </div> -->
+                     </div>
                   </div>
                </div>
                <!-- loading组件 -->
@@ -213,11 +222,11 @@
                               <th width="124" ng-if="!data.data.is_promotion&&showPrice">单价</th>
                               <th width="124" ng-if="data.data.is_promotion&&showPrice">原价</th>
                               <th width="124" ng-if="data.data.is_promotion&&showPrice">促销价</th>
-                              <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">箱规</th>
+                              <!-- <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">箱规</th> -->
                               <th width="124">库存</th>
                               <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                            </tr>
-                           <tbody class="trItem" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3" ng-repeat="trItem in goodsData.data">
+                           <tbody class="trItem" ng-style="{'borderBottomWidth':trItem.alone_attr.length?0:1}" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3" ng-repeat="trItem in goodsData.data">
                               <tr>
                                  <th class="img-th" width="72">
                                     <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;" ng-mousemove="trItem.event = $event">
@@ -231,7 +240,7 @@
                                  <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
                                  <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
                                  <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
-                                 <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th>
+                                 <!-- <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th> -->
                                  <th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
                                  <th width="124">
                                     <div class="diy-right" ng-if="data.data.isdingzhi!=1">
@@ -257,7 +266,9 @@
                                  </th>
                               </tr>
                               <tr style="height: 44px;" ng-if="trItem.alone_attr.length">
-                                 <td colspan=20><div style="background: #f5f6fa;padding: 8px 19px;"><span ng-repeat="group in trItem.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span></div></td>
+                                 <td colspan=20>
+                                    <div style="background: #f5f6fa;padding: 8px 19px;"><span ng-repeat="group in trItem.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span></div>
+                                 </td>
                               </tr>
                            </tbody>
                         </tbody>
@@ -375,7 +386,7 @@
                   </div>
                   <div class="pick-list-bottom">
                      <div class="fl list-bottom-total">
-                        <span>{{listTotalNumber||0}}</span>{{data.data.unit}}
+                        <span>{{listTotalNumber||0}}</span>{{data.data.goods_type=='8'&&hasMainAttr?checkMainAttrLabel:data.data.unit}}
                         <span ng-if="showPrice"> | {{listTotalPrice}}元</span>
                      </div>
                      <span>

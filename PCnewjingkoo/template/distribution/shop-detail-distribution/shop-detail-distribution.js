@@ -46,15 +46,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                }
             }
          }
-         //根据商品初始类型选择情况
-         if (data.goods_type == "goods") {
-            //$scope.isGlass = false;
             $scope.pickTable = true;
-            //控制积分商城商品和普通商品和镜片的区别
-            $scope.isPointsMall = true;
-            $scope.pointsMall = false;
-            //商品属性为goods时调用这个接口
-
             $scope.getAttrList = function (attrId, attrNumber) {
                $scope.attrNumber = attrNumber || 1;
                $scope.attrId = attrId;
@@ -125,26 +117,6 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                   })
             };
             $scope.getAttrList($scope.attrId, $scope.attrNumber);
-         } else if (data.goods_type == "goods_spectacles") {
-            var arr = [];
-            //获取球镜度数的最大值和最小值
-            for (var i in data.spectacles_properties.list) {
-               arr.push(data.spectacles_properties.list[i]);
-            }
-            $scope.high = Math.max.apply(null, arr).toFixed(2);
-            $scope.low = Math.min.apply(null, arr).toFixed(2);
-
-            //$scope.isGlass = true;
-            $scope.pickTa = true;
-            $scope.isList = false;
-            //控制积分商城商品和普通商品和镜片的区别
-            $scope.isPointsMall = true;
-            $scope.pointsMall = false;
-         } else {
-            //控制初始类型筛选显示哪个类型的表格
-            $scope.pickTable = false;
-            $scope.pickTa = false;
-         }
       })
    }
 
@@ -197,8 +169,6 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                      $scope.payPoints = data.user_info.pay_points;
                   })
             } else {
-               $scope.isPointsMall = true;
-               $scope.pointsMall = false;
             }
             //图文详情
             $scope.goodsDesc = $sce.trustAsHtml(data.data.goods_desc);
@@ -721,94 +691,20 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                }
                // closeBtn: 0
             });
+         }else if (data.status == -1) {
+            layer.confirm(data.info, {
+               btn: ['确定'], //按钮
+               closeBtn:false
+            }, function(index) {
+               layer.close(index);
+               $state.go('distribution-qualification');
+            });
          } else {
             layer.msg(data.info, {
                time: 3000
             });
          }
-      }).error(function (data, staus) {
-         layer.close(cool);
-         if (staus == 401) {
-            ////layer.msg('用户失效，请重新登录');
-            ipCookie.remove('token');
-            ipCookie.remove('has_login');
-            location.href = "/default.html";
-         }
       })
-   };
-   //立即购买
-   $scope.buyNow = function () {
-      //镜片购买
-      if ($scope.spectaclesData.goods_type == "goods_spectacles") {
-         $scope.add_to_cart_spec_jp(function (data) {
-            if (data.status == -1) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-            } else if (data.status == 1) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-               // $rootScope.$broadcast('upCarList');
-               $state.go('shop-car');
-            } else if (data.status == 0) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-            } else if (data.status == -2) {
-               layer.confirm('需要医疗器械许可证，是否上传', {
-                  btn: ['确定', '取消'], //按钮
-                  btnAlign: 'c',
-                  yes: function (index) {
-                     $state.go('person-qy-msg');
-                     layer.close(index);
-                  },
-                  btn2: function (index) {
-                     layer.close(index);
-                  }
-                  // closeBtn: 0
-               });
-            }
-         })
-      }
-      //普通商品购买
-      else if ($scope.spectaclesData.goods_type == "goods") {
-         //普通商品加入购物车接口
-         $scope.add_to_cart_spec(function (data) {
-            if (data.status == -1) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-            } else if (data.status == 1) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-               // $rootScope.$broadcast('upCarList');
-               $state.go('shop-car');
-            } else if (data.status == 0) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
-            } else if (data == 'null') {
-               layer.msg('商品数量不能为零', {
-                  time: 1000
-               });
-            } else if (data.status == -2) {
-               layer.confirm('需要医疗器械许可证，是否上传', {
-                  btn: ['确定', '取消'], //按钮
-                  btnAlign: 'c',
-                  yes: function (index) {
-                     $state.go('person-qy-msg');
-                     layer.close(index);
-                  },
-                  btn2: function (index) {
-                     layer.close(index);
-                  }
-                  // closeBtn: 0
-               });
-            }
-         })
-      }
    };
    //立即兑换积分商品
    $scope.buyNow_jf = function () {

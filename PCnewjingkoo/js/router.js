@@ -956,7 +956,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
          })
          .state("plus.index", {
             title: '镜库PLUS会员',
-            url: '/plus',
+            url: '/index',
             views: {
                'plus@plus': {
                   templateUrl: 'template/plus/index/index.html',
@@ -976,7 +976,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             title: '镜库PLUS会员',
             url: '/coupon',
             views: {
-               'plus': {
+               'plus@plus': {
                   templateUrl: 'template/plus/coupon/coupon.html',
                   controller: "plusCouponController",
                   resolve: {
@@ -994,7 +994,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             title: '我的购物回馈',
             url: '/rebate',
             views: {
-               'plus': {
+               'plus@plus': {
                   templateUrl: 'template/plus/rebate/rebate.html',
                   controller: "plusRebateController",
                   resolve: {
@@ -1012,7 +1012,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             title: '开通镜库PLUS会员',
             url: '/order',
             views: {
-               'plus': {
+               'plus@plus': {
                   templateUrl: 'template/plus/order/order.html',
                   controller: "plusOrderController",
                   resolve: {
@@ -1030,12 +1030,30 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             title: '镜库PLUS会员',
             url: '/protocol',
             views: {
-               'plus': {
+               'plus@plus': {
                   templateUrl: 'template/plus/order/protocol/protocol.html',
                   resolve: {
                      deps: ["$ocLazyLoad", function($ocLazyLoad) {
                         return $ocLazyLoad.load([
                            "template/plus/order/protocol/protocol.css",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
+         .state("distribution-qualification", {
+            title: '铺货资质',
+            url: '/distribution-qualification',
+            views: {
+               '': {
+                  templateUrl: 'template/business-management/distribution-qualification/distribution-qualification.html',
+                  controller: "distributionQualificationController",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/business-management/distribution-qualification/distribution-qualification.css",
+                           "template/business-management/distribution-qualification/distribution-qualification.js",
                         ]);
                      }]
                   }

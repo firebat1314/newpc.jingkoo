@@ -249,10 +249,10 @@
 								<div class="sydd-ittem" ng-repeat="order in AllOrder.list" repeat-done="renderJs()">
 									<div class="nony-bt">
 										<span class="nony-sp1">{{order.add_time}}</span>
-										<span class="nony-sp2">订单号：{{order.order_sn}}</span>
+										<span class="nony-sp2">订单号：{{order.order_sn}}<span ng-if="order.is_xianxia==1" style="color: #3f69a5;">(线下已签署合同)</span></span>
 										<span class="nony-sp2">
 											<img src="img/dd-2.png" ng-click="qimoChatClick(order.access_id)" style="margin: 0;margin-right: 10px;cursor: pointer;margin-top: -3px;"
-											 ng-if="order.suppliers_name" />{{order.suppliers_name}}</span>
+                                  ng-if="order.suppliers_name" />{{order.suppliers_name}}</span>
 										<span class="del_order" ng-click="delOrder(order.order_id)" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)"
 										 title="删除订单"></span>
 									</div>

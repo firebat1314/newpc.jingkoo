@@ -271,6 +271,8 @@ angular.module('myApp.controllers', [])
             $scope.username = $scope.userData.user_info.user_name;
             $scope.userMoney = $scope.userData.user_info.user_money;
             $scope.userPhone = $scope.userData.user_info.mobile_phone;
+            /* qimo全局配置 */
+            window.qimoClientId = {userId:data.user_info.user_id,nickName:data.user_info.user_name}
          }
       })
       //个人信息面板发货状态
@@ -704,7 +706,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //首页
-   .controller('index_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', 'locals', function($scope, $rootScope, $state, $http, ipCookie, locals) {
+   .controller('index_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', 'locals', '$data', function($scope, $rootScope, $state, $http, ipCookie, locals, $data) {
 
       //控制首页会员中心显隐
       $rootScope.isShow = true;
@@ -715,9 +717,10 @@ angular.module('myApp.controllers', [])
 
 
       // $scope.IndexData = locals.getObject('indexsData');
-      // $scope.flashData = locals.getObject('homeFlashData');
+      $scope.flashData = locals.getObject('flashData');
       $scope.adTanData = locals.getObject('adTanData');
-
+      $scope.fastCategory = locals.getObject('fastCategory');
+      $scope.category = locals.getObject('category');
 
       $http({
          method: "POST",
@@ -769,7 +772,7 @@ angular.module('myApp.controllers', [])
                num = null;
             }
          }
-      })
+      });
       $scope.ad_show = true;
       $scope.closeAd = function() {
          $scope.ad_show = false;
@@ -800,41 +803,6 @@ angular.module('myApp.controllers', [])
       $scope.Index = function(index) {
          $scope.num = index;
       };
-      //预售轮播和闪购轮播切换
-      $scope.ysShow = 1;
-      $('.topics-tit-p p').click(function() {
-         var inde = $(this).index();
-         $('.selected-topics-tit p').removeClass('show');
-         $('.selected-topics-tit p:eq(' + inde + ')').addClass('show');
-         //        $('.selected-topics-goods').removeClass('show');
-         //        $('.selected-topics-goods:eq('+inde+')').addClass('show');
-      });
-      //首页预售和闪购接口
-      //预售
-
-
-      $http({
-         method: "GET",
-         url: '' + $rootScope.ip + '/Index/presell',
-         params: {
-            type: ''
-         },
-      }).success(function(data) {
-         $scope.yushouData = data;
-      });
-      //闪购
-      $http({
-         method: "GET",
-         url: '' + $rootScope.ip + '/Index/presell',
-         params: {
-            type: 'is_promote'
-         },
-      }).success(function(data) {
-         if (data.status == 1) {
-            locals.setObject('homeFlashData', data)
-            $scope.flashData = data;
-         }
-      });
 
       /*轮播图*/
       $scope.slider = function() {
@@ -851,42 +819,58 @@ angular.module('myApp.controllers', [])
                },
                animation: 'fade'
             });
-         }, 1000)
+         }, 100);
       };
-      // /*nav全部分类*/
-      // $scope.glassLiBox = function(){
-      //     $('.all-fenlei-item').mouseenter(function(){
-      //         var index = $(this).index();
-      //         $('.glass-li-box:eq('+index+')').show();
-      //     }).mouseleave(function(){
-      //         $('.glass-li-box').hide();
-      //     });
-      // }
-      /*首页预售*/
+      //闪购
+      $scope.getFastData = function(id) {
+         $scope.selectedFastId = id;
+         $scope.flashData = null;
+         $http({
+            method: "GET",
+            url: '' + $rootScope.ip + '/Index/presell',
+            params: {
+               type: 'is_promote',
+               cat_id: id
+            },
+         }).success(function(data) {
+            if (data.status == 1) {
+               locals.setObject('flashData', data)
+               $scope.flashData = data;
+            }
+         });
+      }
+      $scope.getFastData(0);
+      /*首页闪购*/
+      $data.getCategoryPromote().success(function(data) {
+         if (data.status == 1) {
+            locals.setObject('fastCategory', data)
+            $scope.fastCategory = data;
+         }
+      });
+
       $scope.yushou = function() {
-         setTimeout(function() {
-            $(".selected-topics-goods").slide({
-               mainCell: "ul",
-               vis: 5,
-               prevCell: ".sPrev",
-               nextCell: ".sNext",
-               effect: "leftLoop"
-            });
-         }, 100)
+         var swiper = new Swiper('.swiper-container1', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 5,
+            paginationClickable: true,
+            spaceBetween: 10,
+            prevButton: '.sPrev',
+            nextButton: '.sNext',
+            // loop: true
+         });
       };
       /*品牌街区广告*/
       $scope.brand = function() {
-         setTimeout(function() {
-            $(".brand-block-ad").slide({
-               mainCell: "ul",
-               vis: 3,
-               prevCell: ".sPrev",
-               nextCell: ".sNext",
-               effect: "leftLoop"
-            });
-         }, 100)
+         var swiper = new Swiper('.swiper-container2', {
+            pagination: '.swiper-pagination',
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: 20,
+            prevButton: '.sPrev',
+            nextButton: '.sNext',
+            loop: true
+         });
       };
-
       /*品牌街区logo*/
       $scope.logoList = {
          page: 1,
@@ -930,61 +914,53 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      //清新世界广告
-      $scope.qxsjFn = function() {
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
-            params: {
-               type: 'qxsj',
-               is_return: 1
-            },
-         }).success(function(data) {
-            $scope.qxsjAd = data;
-         });
-      };
-      $scope.qxsjFn();
-      //换一批
-      $scope.qxsjTrans = function() {
-         $scope.qxsjFn();
-      };
-      //镜尚镜美广告
-      $scope.jsjmFn = function() {
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
-            params: {
-               type: 'jsjm',
-               is_return: 1
-            },
-         }).success(function(data) {
-            $scope.jsjmAd = data;
-         });
-      };
-      $scope.jsjmFn();
-      //换一批
-      $scope.jsjmTrans = function() {
-         $scope.jsjmFn();
-      };
-      //极简主义广告
-      $scope.jjzyFn = function() {
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Index/get_index_recommend_goods',
-            params: {
-               type: 'jjzy',
-               is_return: 1
-            },
-         }).success(function(data) {
-            $scope.jjzyAd = data;
-         });
-      };
-      $scope.jjzyFn();
-      //换一批
-      $scope.jjzyTrans = function() {
-         $scope.jjzyFn();
-      };
-
+      $data.IndexData().success(function(res) {
+         locals.setObject('category', res)
+         $scope.category = res;
+         setTimeout(function() {
+            var subsection = $('.subsection');
+            $(document).scroll(function(d) {
+               subsection.each(function(index, div) {
+                  if (!div.myset) {
+                     if ($(window).scrollTop() + $(window).height() > $(div).offset().top + 350) {
+                        div.myset = true;
+                        $scope.$apply(function() {
+                           $scope.category[index].show = true;
+                        });
+                     }
+                  }
+               });
+            })
+         }, 300);
+      })
+      $scope.getRecommendGoods = function(item, brand_id, index) {
+         if (item.selectbrandid == brand_id) {
+            return
+         }
+         item.selectbrandid = brand_id;
+         $data.recommendGoods({
+            recommend_id: item.Recommend_id,
+            brand_id: brand_id || null
+         }).success(function(res) {
+            if (res.status == 1) {
+               item.Recommend = res;
+               item.show = true;
+               // $(window).scrollTop($('.category-home .selected-topics-tit').eq(index).offset().top)
+            }
+         })
+      }
+      $scope.viewpager = function(value) {
+         setTimeout(function() {
+            var swiper = new Swiper('.' + value, {
+               pagination: '.swiper-pagination',
+               slidesPerView: 1,
+               paginationClickable: true,
+               autoplay: 3000,
+               // loop: true
+            });
+            swiper.update();
+         }, 300);
+      }
    }])
    //品牌
    .controller('fashion-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
@@ -7494,24 +7470,21 @@ angular.module('myApp.controllers', [])
          })
       };
       //使用优惠券
-      $scope.useYhq = function(suppliers_id, bonus_id) {
+      $scope.useYhq = function(suppliers_id, bonus_id, type) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/suppliers_bouns',
             data: {
                suppliers_id: suppliers_id,
-               bonus_id: bonus_id
+               bonus_id: bonus_id,
+               type: type || null
             },
          }).success(function(data) {
+            layer.msg(data.info, {
+               time: 1000
+            });
             if (data.status) {
-               layer.msg(data.info, {
-                  time: 1000
-               });
                $scope.jiesuanFn();
-            } else {
-               layer.msg(data.info, {
-                  time: 1000
-               });
             }
          })
       };
@@ -8555,7 +8528,7 @@ angular.module('myApp.controllers', [])
             if ($scope.is_distribution > 0) {
                layer.confirm(data.info, {
                   btn: ['确定'], //按钮
-                  closeBtn:false
+                  closeBtn: false
                }, function(index) {
                   layer.close(index);
                   $state.go('order-list-d');

@@ -28,7 +28,7 @@
    <a href="" class="pur_close_a" ng-click="tianjia()">+ 新增收货地址</a>
 
    <div class="pur_bianji animate">
-      <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">{{areaTypeSelect==1?'临时地址':'常用地址'}}</div>
+      <div style="padding: 0 80px 0 20px;height: 42px;line-height: 42px;border-bottom: 1px solid #eee;font-size: 14px;color: #333;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; background-color: #F8F8F8;border-radius: 2px 2px 0 0;">{{areaTypeSelect==1?'代发地址':'门店地址'}}</div>
       <table class="dzhi-table" width="100%">
          <tbody>
             <tr>
@@ -107,7 +107,7 @@
          <div class="segment">
             <label for="address1">
                   <input type="radio" value="0" id="address1" name="address" ng-model="areaTypeSelect">
-                  <span ng-class="{'on':areaTypeSelect==0}">常用地址</span>
+                  <span ng-class="{'on':areaTypeSelect==0}">门店地址</span>
                </label>
             <label for="address2">
                   <input type="radio" value="1" id="address2" name="address" ng-model="areaTypeSelect">
@@ -230,6 +230,13 @@
                            <option ng-repeat="item in cartGoods.use_bonus" ng-selected="item.selected"  value="{{item.bonus_id}}">{{item.title}}</option>
                         </select>
                      </div>
+                     <div class="remark_left" style="margin-top: 10px;" ng-if="cartGoods.use_shipping_bonus.length">
+                        <span class="sent_sp1">运费优惠：</span>
+                        <select style="margin-left: 0;" class="remark_ip" ng-model="cartGoods.selectedShipbouns" ng-change="useYhq(cartGoods.suppliers_id,cartGoods.selectedShipbouns,1)">
+                           <option value="">不使用优惠券</option>
+                           <option ng-repeat="item in cartGoods.use_shipping_bonus" ng-selected="item.selected"  value="{{item.bonus_id}}">{{item.title}}</option>
+                        </select>
+                     </div>
                      <!--商家备注-->
                      <div class="remark_left" ng-if="!cartGoods.hasLabels&&!cartGoods.input_show" ng-click="cartGoods.input_show=true" style="margin-top: 10px;">
                         <span class="sent_sp1">商家备注：</span>
@@ -247,12 +254,13 @@
                      </div>
                   </div>
                   <div class="remark_right" style="float: right;">
-                     <p ng-if="jiesuanData.is_exchange==0">购物金额小计 :
+                     <p ng-if="jiesuanData.is_exchange==0">购物金额小计：
                         <span>{{cartGoods.goods_subtotal}}</span>
                      </p>
-                     <p class="p2">+ 配送费用 :
+                     <p class="p2">+ 配送费用：
                         <span>{{cartGoods.shipping_free}}</span>
                      </p>
+                     <p class="p2" ng-if="cartGoods.shipping_bonus_subtotal">- 运费优惠：<span>{{cartGoods.shipping_bonus_subtotal}}</span></p>
                      <p class="p2" ng-if="cartGoods.bonus_subtotal">- 优惠券：<span>{{cartGoods.bonus_subtotal}}</span></p>
                      <p class="p2">+ 获赠积分：{{cartGoods.will_get_integral}}</p>
                   </div>
@@ -264,23 +272,26 @@
 
       <!--小计-->
       <div ng-if="jiesuanData.is_exchange==1" class="count_div" style="background: #fff;">
-         <p class="count_p1">使用积分 :{{jiesuanData.total.exchange_integral||0}}</p>
-         <p class="count_p1">可用积分 :{{payPoints}}</p>
+         <p class="count_p1">使用积分：{{jiesuanData.total.exchange_integral||0}}</p>
+         <p class="count_p1">可用积分：{{payPoints}}</p>
       </div>
       <div ng-if="jiesuanData.is_exchange==0" class="count_div" style="background: #fff;">
-         <p class="count_p1">订单总金额 :
+         <p class="count_p1">订单总金额：
             <span>{{jiesuanData.total.formated_goods_price||'0.00'}}</span>
          </p>
-         <p ng-if="jiesuanData.total.bonus" class="count_p1">-优惠券 :
+         <p ng-if="jiesuanData.total.bonus" class="count_p1">- 优惠券：
             <span>{{jiesuanData.total.bonus}}</span>
          </p>
-         <p class="count_p1">+配送费用 :
+         <p class="count_p1">+ 配送费用：
             <span>{{jiesuanData.total.suppliers_shipping_fee_formated||'0'}}</span>
          </p>
-         <p ng-if="jiesuanData.total.total.surplus_formated" class="count_p1">-余额 :
+         <p class="count_p1">- 运费优惠：
+            <span>{{jiesuanData.total.shipping_bonus_formated||'0'}}</span>
+         </p>
+         <p ng-if="jiesuanData.total.total.surplus_formated" class="count_p1">-余额：
             <span>{{jiesuanData.total.total.surplus_formated}}</span>
          </p>
-         <p ng-if="jiesuanData.total.formated_subsidy_price.slice(1)!=0" class="count_p1">-镜库补贴 :
+         <p ng-if="jiesuanData.total.formated_subsidy_price.slice(1)!=0" class="count_p1">-镜库补贴：
             <span>{{jiesuanData.total.formated_subsidy_price||0}}</span>
          </p>
          <p class="count_p1">+获赠积分：{{jiesuanData.total.will_get_give_rank_integral||0}}</p>
@@ -293,13 +304,13 @@
          <div class="refer_order_d" ng-if="jiesuanData.is_exchange==0">
 
             <p class="refer_order_p">
-               应付总金额(包含运费) :
+               应付总金额(包含运费)：
                <span class="refer_order_sp1">{{jiesuanData.total.amount_formated||'0.00'}}</span>
                <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn" />
             </p>
          </div>
          <div class="refer_order_d" ng-if="jiesuanData.is_exchange==1">
-            <p class="refer_order_p">订单总积分 :
+            <p class="refer_order_p">订单总积分：
                <span class="refer_order_sp1">{{jiesuanData.total.exchange_integral||0}}</span>
                <input ng-click="submitList($event,$index)" type="button" value="提交订单" class="refer_order_btn" />
             </p>

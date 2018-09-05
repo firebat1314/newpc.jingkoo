@@ -127,8 +127,8 @@ angular.module('myApp.HttServices', [])
    })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function ($http, $window, $timeout, ipCookie) {
       // var ip = 'http://v401app.jingkoo.net'; //测试
-      // var ip = 'http://newpc.jingkoo.net'; //正式
-      var ip = 'https://www.jingku.cn'; //测试
+      var ip = 'http://newpc.jingkoo.net'; //正式
+      // var ip = 'https://www.jingku.cn'; //测试
       return {
          //7)获取商品价格优惠区间
          ip: ip,
@@ -669,6 +669,41 @@ angular.module('myApp.HttServices', [])
             return $http({
                method: 'post',
                url: ip + '/Flow/change_machining ',
+               data: data
+            })
+         },
+         getCategoryPromote: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/getCategoryPromote ',
+               data: data
+            })
+         },
+         presell: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/presell ',
+               data: data
+            })
+         },
+         recommendGoods: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/recommendGoods ',
+               data: data
+            })
+         },
+         getCategoryAd: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/ads ',
+               data: data
+            })
+         },
+         IndexData: function (data) {
+            return $http({
+               method: 'post',
+               url: ip + '/index/IndexData ',
                data: data
             })
          },

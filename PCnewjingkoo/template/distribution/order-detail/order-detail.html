@@ -9,7 +9,7 @@
 	</div> 
 </div> 
 <div ng-if="orderDetail" class="fkllc gird cle" style="margin-bottom: 25px;margin-top: 20px;">
-	<div class="ddho ">订单号：{{orderDetail.order.order_sn}}</div>
+	<div class="ddho ">订单号：{{orderDetail.order.order_sn}}<span ng-if="orderDetail.order.is_xianxia==1" style="color: #3f69a5;">&nbsp;&nbsp;(线下已签署合同)</span></div>
 	<div class="needshow" ng-if="(orderDetail.order.order_status==1 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)||(orderDetail.order.order_status==0 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)">
 		<div class="fkllc-left">
 			<h2 class="klcl-h2">等待付款</h2>

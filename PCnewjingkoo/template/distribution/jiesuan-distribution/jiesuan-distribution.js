@@ -447,6 +447,8 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
                layer.close(index);
                $state.go('order-list-d');
             });
+         }else{
+            layer.msg(data.info, { time: 1000 });
          }
          /* if (data.status == 1) {
              layer.msg(data.info, { time: 1000 });

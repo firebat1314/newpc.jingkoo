@@ -319,7 +319,7 @@ angular.module('myApp.directives', [])
 					reader.readAsDataURL(file);
 					reader.onload = function(event) { //读取完成
 						// console.log(reader, event)
-						if (file.size > (6 * 1024 * 1024)) {
+						if (file.size > (10 * 1024 * 1024)) {
 							layer.msg("图片超过限制");
 						} else {
 							console.log('压缩品质:', scope.quality);
@@ -345,7 +345,7 @@ angular.module('myApp.directives', [])
 							scale = w / h;
 						w = obj.width || w;
 						h = obj.height || (w / scale);
-						var quality = 0.7; // 默认图片质量为0.7
+						var quality = 0.9; // 默认图片质量为0.7
 						//生成canvas
 						var canvas = document.createElement('canvas');
 						var ctx = canvas.getContext('2d');

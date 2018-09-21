@@ -203,7 +203,10 @@ fieldset,
 img {
    border: 0
 }
-
+img{
+   max-height: 100%;
+   max-width: 100%;
+}
 iframe {
    display: block
 }
@@ -471,11 +474,6 @@ h6 {
    padding: 0 3%;
 }
 
-.gird {
-   width: 1200px;
-   margin: 0 auto;
-}
-
 .bg-fff {
    background: #fff;
 }
@@ -495,7 +493,33 @@ i {
 li {
    list-style: none;
 }
+$breakpoints: ('xs': 'only screen and ( max-width: 480px)',
+'sm': 'only screen and ( max-width: 768px)',
+'md': 'only screen and ( max-width: 992px)',
+'lg': 'only screen and ( max-width: 1200px)',
+) !default;
 
+@mixin respond-form($breakpoint:'lg') {
+   $query: map-get($breakpoints, $breakpoint);
+
+   @if not $query {
+      @error 'No value found for `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.';
+   }
+
+   @media #{if(type-of($query) == 'string', unquote($query), inspect($query))} {
+      @content;
+   }
+}
+
+.gird,
+[gird] {
+   width: 1200px !important;
+   margin: 0 auto;
+
+   @include respond-form(lg) {
+      width: 1000px !important;
+   }
+}
 /*滚动条*/
 
 /* Let's get this party started */
@@ -704,7 +728,6 @@ $browser-default-font-size: 37.5px !default;
             .erweima_box {
                display: none;
                min-width: 120px;
-               height: 160px;
                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                z-index: 9999;
                background: #fff;
@@ -712,11 +735,11 @@ $browser-default-font-size: 37.5px !default;
                top: 40px;
                left: 50%;
                margin-left: -70px;
+               padding: 10px;
                .ewm_img {
                   display: block;
                   width: 120px;
                   height: 120px;
-                  margin: 10px;
                   margin-bottom: 0;
                }
                .erweima_p {
@@ -746,7 +769,6 @@ $browser-default-font-size: 37.5px !default;
             .iosAndAndroid-box {
                display: none;
                min-width: 120px;
-               height: 160px;
                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
                z-index: 9999;
                background: #fff;
@@ -754,11 +776,11 @@ $browser-default-font-size: 37.5px !default;
                top: 40px;
                left: 50%;
                margin-left: -70px;
+               padding: 10px;
                .ewm_img {
                   display: block;
                   width: 120px;
                   height: 120px;
-                  margin: 10px;
                   margin-bottom: 0;
                }
                .erweima_p {
@@ -880,11 +902,11 @@ $browser-default-font-size: 37.5px !default;
    }
    .ano-header-grid {
       @extend .gird;
-      width: 830px;
       height: 85px;
       padding-top: 39.5px;
       padding-left: 370px; //background: url(../img/logo.png) no-repeat left;
       position: relative;
+      box-sizing: border-box;
       a {
          img {
             left: 10px !important;
@@ -1437,10 +1459,9 @@ $browser-default-font-size: 37.5px !default;
       }
       ul {
          display: flex;
-         margin-left: 26px;
+         margin-left: 10px;
          li {
-            float: left;
-            cursor: pointer;
+            width: auto;
             a {
                color: #333;
                text-align: center;
@@ -1452,6 +1473,10 @@ $browser-default-font-size: 37.5px !default;
                padding: 0 16px;
                box-sizing: border-box;
                white-space: nowrap;
+               @include respond-form(){
+                  margin: 0 4px;
+                  padding: 0 10px;
+               };
                &.active {
                   color: #3f69a5;
                   border-bottom: 2px solid #3f69a5;
@@ -1465,7 +1490,7 @@ $browser-default-font-size: 37.5px !default;
       }
       .glass-li-box {
          width: 645px;
-         height: 442px;
+         min-height: 442px;
          background: #fff;
          display: none;
          position: absolute;
@@ -1473,7 +1498,7 @@ $browser-default-font-size: 37.5px !default;
          top: 0;
          padding-top: 10px;
          padding-left: 25px;
-         border-left: 1px solid #eaeaea;
+         border: 1px solid #eaeaea;
          z-index: 999;
          .hot-word-line {
             .line-title {
@@ -2180,8 +2205,8 @@ $browser-default-font-size: 37.5px !default;
                      color: #3f69a5;
                   }
                   &.on {
-                     border-bottom-color: #3f69a5;
-                     color: #3f69a5; // pointer-events: none;
+                     border-bottom-color: #1677cb;
+                     color: #1677cb; // pointer-events: none;
                   }
                }
             }
@@ -2481,9 +2506,13 @@ $browser-default-font-size: 37.5px !default;
             font-size: 14px;
             display: flex;
             flex-direction: column;
+            position: relative;
             &:hover {
                box-shadow: 0 0 29px 0 rgba(99, 99, 99, 0.1);
-               transform: translate(0, -6px)
+               transform: translate(0, -6px);
+               .name {
+                  padding: 10px 0px 0;
+               }
             }
             .img {
                height: 175px;
@@ -4639,10 +4668,11 @@ $browser-default-font-size: 37.5px !default;
                            width: calc(100% - 80px);
                            li {
                               float: left;
-                              width: 160px;
+                              width: 100px;
                               color: #333333;
                               font-size: 24px;
-                              .rmb_sp {
+                              text-align: center;
+                              &:first-letter {
                                  font-size: 12px;
                               }
                            }
@@ -4655,9 +4685,10 @@ $browser-default-font-size: 37.5px !default;
                            width: calc(100% - 80px);
                            li {
                               float: left;
-                              width: 160px;
+                              width: 100px;
                               color: #666666;
                               font-size: 12px;
+                              text-align: center;
                            }
                         }
                      }
@@ -7572,20 +7603,9 @@ $browser-default-font-size: 37.5px !default;
 .fashion-main {
    .all * {
       transition: all .3s;
-      -moz-transition: all .3s;
-      /* Firefox 4 */
-      -webkit-transition: all .3s;
-      /* Safari 和 Chrome */
-      -o-transition: all .3s;
-      /* Opera */
    }
    .brand-gg {
       height: 450px;
-   }
-   .brand-gg img {
-      width: 100%;
-      height: 100%;
-      display: block;
    }
    .navc-wrap {
       margin-top: -20px;
@@ -8163,217 +8183,178 @@ $browser-default-font-size: 37.5px !default;
 /*闪购*/
 
 .flash-sale-main {
-   .all * {
+   background: #f7f7f7;
+   overflow: hidden;
+   * {
       transition: all .3s;
-      -moz-transition: all .3s;
-      /* Firefox 4 */
-      -webkit-transition: all .3s;
-      /* Safari 和 Chrome */
-      -o-transition: all .3s;
-      /* Opera */
    }
    .brand-gg {
       height: 450px;
+      text-align: center;
    }
    .navc-wrap {
       position: relative;
       z-index: 40;
-      margin-top: -20px;
       margin-bottom: 20px;
+      .nav-xdh {
+         position: relative;
+         margin: 0 auto;
+         background: #ffffff;
+         border: 1px solid #f0f0f0;
+         .zaki {
+            text-align: center;
+            color: #666666;
+            line-height: 50px;
+            font-size: 13px !important;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            float: right;
+            em {
+               display: inline-block;
+               width: 13px;
+               height: 9px;
+               margin-left: 10px;
+               background: url(../img/xjt-cx.png) no-repeat center;
+            }
+         }
+         ul.xd-hd {
+            overflow: hidden;
+            margin-bottom: -1px;
+            li {
+               float: left;
+               overflow: hidden;
+               &.on {
+                  .wrp{
+                     background: #3f69a5;
+                     a{
+                        color: #ffffff;
+                     }
+                  }
+               }
+               .wrp {
+                  border-right: 1px solid #f0f0f0;
+                  border-bottom: 1px solid #f0f0f0;
+                  &:hover {
+                     background: #3f69a5;
+                     color: #ffffff;
+                     a{
+                        color: #ffffff;
+                     }
+                  }
+                  a {
+                     display: block;
+                     width: 100%;
+                     text-align: center;
+                     color: #666666;
+                     line-height: 50px;
+                     font-size: 13px;
+                  }
+               }
+            }
+         }
+      }
    }
-   .nav-xdh .zaki {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 14.28%;
-      height: 40px;
-      background: #fff;
-      border: 1px solid #f0f0f0;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px !important;
-      cursor: pointer;
-   }
-   .nav-xdh .zaki em {
-      display: inline-block;
-      width: 13px;
-      height: 9px;
-      margin-left: 10px;
-      background: url(../img/xjt-cx.png) no-repeat center;
-   }
-   .nav-xdh {
-      position: relative;
-      width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-   }
-   .nav-xdh .xd-hd {
-      padding-right: 163px;
-      height: 40px;
-      overflow: hidden;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li {
-      float: left;
-      width: 14.28%;
-      height: 42px;
-      overflow: hidden;
-      margin-left: -1px;
-      margin-top: -1px;
-   }
-   .nav-xdh .xd-hd li .wrp {
-      height: 40px;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li .wrp a {
-      display: block;
-      width: 100%;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px;
-   }
-   .nav-xdh .xd-hd li .wrp:hover,
-   .nav-xdh .xd-hd li.on .wrp {
-      background: #3f69a5;
-   }
-   .nav-xdh .xd-hd li .wrp:hover a,
-   .nav-xdh .xd-hd li.on .wrp a {
-      color: #fff;
-   }
-   .nav-xdh.goot .xd-hd {
-      height: 80px;
-   }
-   .nav-xdh.goot .zaki {
-      background: #3f69a5;
-      color: #fff;
-   }
-   .nav-xdh.goot .zaki em {
-      background: url(../img/xjt-cs.png) no-repeat center;
-   }
-   .nav-xdh.fdoc {
-      position: fixed;
-      z-index: 101;
-      width: 1200px;
-      top: 0;
-      left: 50%;
-      margin-left: -600px;
-   }
+   
    .purchase-box {
       display: flex;
    }
-   .purchase {
-      width: 1200px;
-      margin: 0 auto;
-   }
-   .purchase li {
-      float: left;
-      width: 282px;
-      margin-right: 24px;
-      margin-bottom: 24px;
-   }
-   .purchase li .wrp {
-      border: 1px solid #ebebeb;
-      background: #fff;
-   }
-   .purchase li .wrp .img {
-      position: relative;
-      height: 280px;
-   }
-   .purchase li .wrp .img img {
-      display: block;
-      width: 280px;
-      height: 280px;
-   }
-   .purchase li .wrp .img .djs {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      background: rgba(0, 0, 0, .5) url(../img/time.png) no-repeat 40px center;
-      color: #fff;
-      font-size: 14px;
-   }
-   .purchase li .wrp .img .djs em {
-      position: relative;
-      top: -2px;
-      vertical-align: middle;
-      margin-right: 10px;
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background: url(../img/time.png) no-repeat center;
-      display: none;
-   }
-   .purchase li .wrp .txt {}
-   .purchase li .wrp .txt .tt-1 {
-      margin: 16px;
-      overflow: hidden;
-   }
-   .purchase li .wrp .txt .tt-1 .cx {
-      float: left;
-      border-radius: 3px;
-      overflow: hidden;
-      background: #3f69a5
-   }
-   .purchase li .wrp .txt .tt-1 .cx span {
-      display: block;
-      float: left;
-      width: 62px;
-      height: 28px;
-      line-height: 28px;
-      text-align: center;
-      color: #fff;
-      border: 1px solid #3f69a5;
-      background: #3f69a5
-   }
-   .purchase li .wrp .txt .tt-1 .cx em {
-      display: block;
-      float: left;
-      width: 80px;
-      height: 28px;
-      line-height: 28px;
-      text-align: center;
-      border: 1px solid #3f69a5;
-      background: #fff;
-      color: #3f69a5;
-   }
-   .purchase li .wrp .txt .tt-1 .suzi {
-      float: left;
-      line-height: 30px;
-      padding: 0 10px;
-      color: #999;
-      font-size: 14px;
-      text-decoration: line-through;
-   }
-   .purchase li .wrp .txt .tt-2 {
-      margin: 16px;
-      color: #666;
-      font-size: 14px;
-      line-height: 22px;
-      height: 22px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
-   }
-   .purchase li:hover .wrp {
-      box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-   }
-   .purchase li:nth-child(4n) {
-      margin-right: 0;
+   .purchase{
+      >ul{
+         margin: 0 -5px;
+         display: flex;
+         flex-wrap: wrap;
+         li {
+            width: calc(50% - 10px);
+            margin: 0 5px;
+            margin-bottom: 10px;
+            .wrp {
+               background: #fff;
+               display: flex;
+               padding: 16px;
+         
+               .img {
+                  width: 200px;
+                  height: 200px;
+                  margin-right: 16px;
+                  background: #fafafa;
+               }
+         
+               .txt {
+                  display: flex;
+                  flex-direction: column;
+                  color: #666666;
+                  flex: 1;
+                  margin: 10px 0;
+         
+                  .tt-2 {
+                     font-size: 16px;
+                     color: #4d4d4d;
+                     height: 40px;
+                     overflow: hidden;
+                     text-overflow: ellipsis;
+                     display: -webkit-box;
+                     -webkit-box-orient: vertical;
+                     -webkit-line-clamp: 2;
+                  }
+                  .tt-4{
+                     flex: 1;
+                     >div{
+                        width: auto;
+                        display: inline-block;
+                        padding: 6px 24px;
+                        border-radius: 40px;
+                        color: #fff;
+                        margin: 10px 0;    
+                        background: rgb(207,217,234) url(../img/time.png) no-repeat 18px center/16px;
+                        padding-left: 40px;
+                        font-size: 15px;
+                     }
+                  }
+                  .tt-1 {
+                     display: flex;
+                     margin-bottom: 16px;
+                     align-items: flex-end;
+                     font-size: 14px;
+                     .cx {
+                        color: #3f69a5;
+         
+                        em {
+                           font-size: 32px;
+                           display: inline-block;
+                           &:first-letter{
+                              font-size: 14px;
+                              margin-right: 2px;
+                           }
+                        }
+                     }
+         
+                     .suzi {
+                        em {
+                           text-decoration: line-through;
+                        }
+                     }
+                  }
+         
+                  .tt-3 {
+                     button {
+                        background: #3f69a5;
+                        border-radius: 5px;
+                        padding: 10px 30px;
+                        border: none;
+                        outline: none;
+                        color: #ffffff;
+                        font-size: 16px;
+                     }
+                  }
+               }
+            }
+         }
+      }
    }
    .next_fel {
-      width: 1200px;
-      margin: 0 auto 40px;
-      ;
+      margin: 10px auto 40px;
       height: 70px;
-      background: #f7f7f7;
+      background: #ffffff;
       text-align: center;
       cursor: pointer;
    }

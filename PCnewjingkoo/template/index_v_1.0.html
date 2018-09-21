@@ -124,76 +124,78 @@
                </ul>
             </div>
 
-            <a href="#/flashSale">
+            <a href="#/flashSale" target="_blank">
                <span>查看全部</span>
                <span class="a_arrow_r"></span>
             </a>
          </div>
-         <div class="selected-topics-goods" style="min-height: 260px;">
+         <div class="selected-topics-goods" style="min-height: 260px;max-height: 450px;">
             <div class="swiper-container swiper-container1" ng-if="flashData">
                <div class="swiper-wrapper">
-                  <div class="swiper-slide" ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
-                     <a style="max-width: 250px;" href="javascript:;" ui-sref="shop-detail({goods_id:fsItem.id,isActivity:1})">
+                  <a class="swiper-slide" style="max-width: 240px;" ng-repeat="fsItem in flashData.data" repeat-done="yushou()" href="javascript:;" ui-sref="shop-detail({goods_id:fsItem.id,isActivity:1})" target="_blank">
+                     <div>
                         <img ng-src={{fsItem.goods_img}} alt="">
-                     </a>
+                     </div>
                      <div class="down-time" ng-if="fsItem.promote_end_date" data-date="{{fsItem.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
                      <div class="down-time" ng-if="!fsItem.promote_end_date">活动已结束</div>
                      <div class="selected-topics-goods-price" ng-if="showPrice">
                         <p>{{fsItem.promote_price}}</p>
                         <i>¥{{fsItem.shop_price}}</i>
                      </div>
-                  </div>
+                  </a>
                </div>
                <a class="sPrev" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
                <a class="sNext" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
             </div>
          </div>
       </div>
-      <div ng-if="userData&&userData.user_info.is_test!=1" class="selected-topics brand-block">
-         <div class="selected-topics-tit">
-            <h2>品牌街区</h2>
-            <a href="#/fashion">查看全部
-               <span class="a_arrow_r"></span>
-            </a>
-         </div>
-         <div class="brand-block-ad">
-            <div class="swiper-container swiper-container2">
-               <div class="swiper-wrapper">
-                  <div class="swiper-slide" ads-click="{{item}}" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
-                     <img ng-src={{item.ad_img}} alt="">
-                  </div>
-               </div>
-               <a class="sPrev" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
-               <a class="sNext" ng-if="IndexData.list.ads_brand.length>3" href="javascript:void(0)"></a>
-            </div>
-         </div>
-      </div>
-      <div ng-if="userData&&userData.user_info.is_test!=1" class="brand-block-fashion">
-         <div class="bd">
-            <div class="ulWrap mainlist">
-               <li ng-repeat="fashion in logoFashionData.data">
-                  <img ng-src={{fashion.brand_logo}} alt="">
-                  <div class="fashion-tit">
-                     <p>{{fashion.brand_name}}</p>
-                     <button ng-click="goBrandList(fashion.brand_id)">点击进入</button>
-                  </div>
-               </li>
-            </div>
-         </div>
-         <div class="hd">
-            <div class="line-box">
-               <a ng-click="sNext()" class="sNext"></a>
-               <a ng-click="sPrev()" class="sPrev"></a>
-            </div>
-            <div class="more-fashion">
-               <a href="#/fashion">
-                  <span>查看更多
-                     <span class="a_arrow_r"></span>
-                  </span>
+      <ng-container ng-if="userData&&userData.user_info.is_test!=1">
+         <div class="selected-topics brand-block">
+            <div class="selected-topics-tit">
+               <h2>品牌街区</h2>
+               <a href="#/fashion" target="_blank">查看全部
+                  <span class="a_arrow_r"></span>
                </a>
             </div>
+            <div class="brand-block-ad">
+               <div class="swiper-container swiper-container2">
+                  <div class="swiper-wrapper">
+                     <div class="swiper-slide" ads-click="{{item}}" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
+                        <img ng-src={{item.ad_img}} alt="">
+                     </div>
+                  </div>
+                  <a class="sPrev" href="javascript:void(0)"></a>
+                  <a class="sNext" href="javascript:void(0)"></a>
+               </div>
+            </div>
          </div>
-      </div>
+         <div class="brand-block-fashion">
+            <div class="bd">
+               <div class="ulWrap mainlist">
+                  <li ng-repeat="fashion in logoFashionData.data">
+                     <img ng-src={{fashion.brand_logo}} alt="">
+                     <div class="fashion-tit">
+                        <p>{{fashion.brand_name}}</p>
+                        <button ng-click="goList({brand_id: fashion.brand_id})">点击进入</button>
+                     </div>
+                  </li>
+               </div>
+            </div>
+            <div class="hd">
+               <div class="line-box">
+                  <a ng-click="sNext()" class="sNext"></a>
+                  <a ng-click="sPrev()" class="sPrev"></a>
+               </div>
+               <div class="more-fashion">
+                  <a href="#/fashion">
+                     <span>查看更多
+                        <span class="a_arrow_r"></span>
+                     </span>
+                  </a>
+               </div>
+            </div>
+         </div>
+      </ng-container>
       <div class="selected-topics category-home">
          <div class="category-home-c" ng-repeat="item in category">
             <div class="subsection" ng-if="!item.show" style="min-height: 300px;text-align: center;padding-top: 150px;">
@@ -210,7 +212,7 @@
                      </ul>
                   </div>
 
-                  <a href="#/flashSale">
+                  <a href="javascript:;" ng-click="goList({cat_id:item.Recommend_id})">
                      <span>查看全部</span>
                      <span class="a_arrow_r"></span>
                   </a>
@@ -226,11 +228,11 @@
                         <div class="swiper-pagination"></div>
                      </div>
                   </div>
-                  <div class="goods animated fadeIn" ng-repeat="goods in item.Recommend.list" ui-sref="shop-detail({goods_id:goods.goods_id})">
+                  <a class="goods animated fadeIn" ng-repeat="goods in item.Recommend.list" ui-sref="shop-detail({goods_id:goods.goods_id})" target="_blank" title="{{goods.goods_name}}">
                      <div class="img"><img img-lazy-load="{{goods.original_img}}" alt=""></div>
                      <div class="name">{{goods.goods_name}}</div>
                      <div class="price" ng-if="showPrice">￥{{goods.shop_price}}</div>
-                  </div>
+                  </a>
                </div>
             </div>
 

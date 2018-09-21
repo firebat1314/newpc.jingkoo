@@ -1,78 +1,54 @@
 <div class="flash-sale-main">
-    <div class="brand-gg" style="height:450px;background:url(img/flashShopBigPic.jpg) no-repeat center center;background-size: auto 100%;">
-        <!--<img style="width:100%;height:100%;display: block;object-fit:contain;" src="img/flashShopBigPic.jpg" alt="">-->
-    </div>
-
-    <div class="navc-wrap">
-        <div class="nav-xdh all">
-            <div class="zaki" ng-if="flashData.data.length>7">全部分类<em></em></div>
-            <ul class="xd-hd" style="padding-right: 0;height: auto;">
-                <li style="width: 11%" class="on" ng-click="getPromote(0,-1)"><div class="wrp"><a href="">全部</a></div></li>
-                <li style="width: 11%" ng-repeat="xd in flashData.data" repeat-done="xdFn()" ng-click="getPromote(xd.cat_id,$index)" class=""><div class="wrp"><a href="">{{xd.cat_name}}</a></div></li>
+   <div class="brand-gg" style="height:450px;background:url(img/flashShopBigPic.jpg) center center;background-size: auto 100%;">
+      <!-- <img src="img/flashShopBigPic.jpg" alt=""> -->
+   </div>
+   <ng-container ng-if="flashAllListData">
+      <div class="navc-wrap">
+         <div class="nav-xdh all" gird>
+            <div class="zaki" style="width: 11%" ng-if="flashData.data.length>7">全部分类<em></em></div>
+            <ul class="xd-hd">
+               <li style="width: 11%" ng-class="{on:selectIndex==-1}" ng-click="getPromote(-1)">
+                  <div class="wrp"><a href="">全部</a></div>
+               </li>
+               <li style="width: 11%" ng-class="{on:selectIndex==$index}" ng-repeat="xd in flashData.data" ng-click="getPromote($index)" repeat-done="xdFn()">
+                  <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
+               </li>
             </ul>
-        </div>
-    </div>
-
-    <div class="purchase-box" ng-if="isAll">
-        <div class="purchase">
+         </div>
+      </div>
+      <div class="purchase-box">
+         <div class="purchase" gird>
             <ul class="cle">
-                <li ng-repeat="cleAll in flashAllListData.data">
-                    <a ui-sref="shop-detail({goods_id:cleAll.goods_id,isActivity:1})" target="_blank">
-                        <div class="wrp">
-                            <div class="img">
-                                <img ng-src={{cleAll.goods_img}} />
-                                <div class="djs" data-date="{{cleAll.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
-                            </div>
-                            <div class="txt">
-                                <div class="tt-1" ng-if="showPrice">
-                                    <div class="cx"><span>促销价</span><em>{{cleAll.promote_price}}</em></div>
-                                    <div class="suzi">¥{{cleAll.shop_price}}</div>
-                                </div>
-                                <div class="tt-2" ng-attr-title="{{cleAll.name}}">
-                                    {{cleAll.name}}
-                                </div>
-                            </div>
+               <li ng-repeat="cleAll in flashAllListData.data">
+                  <a ui-sref="shop-detail({goods_id:cleAll.goods_id,isActivity:1})" target="_blank" class="wrp">
+                     <div class="img">
+                        <img img-lazy-load={{cleAll.goods_img}} />
+                     </div>
+                     <div class="txt">
+                        <div class="tt-2" ng-attr-title="{{cleAll.name}}">
+                           {{cleAll.name}}
                         </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="purchase-box" ng-if="!isAll">
-        <div class="purchase">
-            <ul class="cle">
-                <li ng-repeat="cle in flashListData.data">
-                    <a href="javascript:;" ui-sref="shop-detail({goods_id:cle.goods_id,isActivity:1})" target="_blank">
-                        <div class="wrp">
-                            <div class="img">
-                                <img ng-src={{cle.goods_img}}>
-                                <div class="djs" data-date="{{cle.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
-                            </div>
-                            <div class="txt">
-                                <div class="tt-1" ng-if="showPrice">
-                                    <div class="cx"><span>促销价</span><em>{{cle.promote_price}}</em></div>
-                                    <div class="suzi">¥{{cle.shop_price}}</div>
-                                </div>
-                                <div class="tt-2">
-                                    {{cle.name}}
-                                </div>
-                            </div>
+                        <div class="tt-4">
+                           <div data-date="{{cleAll.promote_end_date}}" down-time>剩余0天0时0分0秒</div>
                         </div>
-                    </a>
-                </li>
+
+                        <div class="tt-1" ng-if="showPrice">
+                           <div class="cx"><span>促销价&nbsp;&nbsp;&nbsp;</span><em>{{cleAll.promote_price}}</em></div>
+                           <div class="suzi">&nbsp;&nbsp;&nbsp;原价<em>¥{{cleAll.shop_price}}</em></div>
+                        </div>
+                        <div class="tt-3">
+                           <button>立即抢购</button>
+                        </div>
+                     </div>
+                  </a>
+               </li>
             </ul>
-        </div>
-    </div>
+         </div>
+      </div>
 
-
-
-    <div class="next_fel" ng-click="next()">
-        <p>点击查看下一个分类</p>
-        <em></em>
-    </div>
+      <div class="next_fel" ng-click="next()" gird>
+         <p>点击查看下一个分类</p>
+         <em></em>
+      </div>
+   </ng-container>
 </div>
-<script>
-    $(".zaki").click(function(){
-        $(this).parent().toggleClass("goot");
-    });
-</script>

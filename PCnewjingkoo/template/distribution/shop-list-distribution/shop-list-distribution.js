@@ -2,6 +2,7 @@
 myApp.controller('ShopListDistributionControl', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $state, $timeout) {
    $rootScope.isShow = false;
    $rootScope.change = true;
+
    $scope.params = $stateParams.params?JSON.parse(decodeURIComponent($stateParams.params)):{};
    console.log($scope.params)
    $rootScope.keywords = $scope.params.keywords;
@@ -36,7 +37,7 @@ myApp.controller('ShopListDistributionControl', function ($scope, $rootScope, $s
             configurable: true
          });
       }
-      $state.go('shop-list', {
+      $state.go('shop-list-distribution', {
          params: data ? JSON.stringify(Object.assign($scope.params, data)) : {}
       })
    }

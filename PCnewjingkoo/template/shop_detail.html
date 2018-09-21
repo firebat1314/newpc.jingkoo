@@ -92,6 +92,23 @@
                         </ul>
                      </div>
                   </div>
+                  <div class="money_cg_box" style="margin-top: 10px;" ng-if="shopDetailData.price_section&&shopDetailData.price_section.length&&showPrice">
+                     <div class="money_cg_d1">
+                        <span class="new_shop_sp3">优惠</span>
+                        <ul class="money_cg_u1">
+                           <li ng-repeat="proPrice in shopDetailData.price_section">{{proPrice.format_price}}</li>
+                        </ul>
+                     </div>
+                     <div class="money_cg_d1">
+                        <span class="new_shop_sp3">采购量</span>
+                        <ul class="money_cg_u2">
+                           <li ng-repeat="proTit in shopDetailData.price_section">
+                              <span ng-if="proTit.max_num">{{proTit.number+'-'}}{{proTit.max_num}}</span>
+                              <span ng-if="!proTit.max_num">大于{{proTit.number}}</span>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
                   <div class="new_shop_yhqbox" style="margin-top: 10px;" ng-if="shopDetailData.promotion.length>0||shopDetailData.bonus.length>0">
                      <div ng-if="shopDetailData.bonus.length>0" class="yhq_box_d1">
                         <span class="yhq_sp1">领券</span>
@@ -134,26 +151,26 @@
                                  <em>{{shopDetailData.goods_fee.consignee.address}}</em>
                                  <i class="arrow_down"></i>
                                  <span class="heng_line"></span>
-                              <div class="d3_sp1_dzbox">
-                                 <!--常用地址-->
-                                 <div class="sp1_dzbox_d1">
-                                    <p class="sp1_dzbox_d1p1">
-                                       <span class="sp1_d1p1_l">常用地址</span>
-                                       <span ng-click="cheon=!cheon" class="sp1_d1p1_r" ng-class="{'cheon':cheon}"></span>
-                                    </p>
-                                    <div class="dzbox_d1p1_p1">
-                                       <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}" ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
-                                          <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
-                                          <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
+                                 <div class="d3_sp1_dzbox">
+                                    <!--常用地址-->
+                                    <div class="sp1_dzbox_d1">
+                                       <p class="sp1_dzbox_d1p1">
+                                          <span class="sp1_d1p1_l">常用地址</span>
+                                          <span ng-click="cheon=!cheon" class="sp1_d1p1_r" ng-class="{'cheon':cheon}"></span>
                                        </p>
-                                       <p ng-if="shopDetailData.goods_fee.length==0">暂无收货地址,请
-                                          <a href="#/person-mana-addr" target="_blank" style="color: #0070c9;">添加</a>收货地址
-                                       </p>
+                                       <div class="dzbox_d1p1_p1">
+                                          <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}" ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
+                                             <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
+                                             <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
+                                          </p>
+                                          <p ng-if="shopDetailData.goods_fee.length==0">暂无收货地址,请
+                                             <a href="#/person-mana-addr" target="_blank" style="color: #0070c9;">添加</a>收货地址
+                                          </p>
+                                       </div>
+
                                     </div>
 
                                  </div>
-
-                              </div>
                               </span>
                               <span class="saler_msg_d3_sp2">
                                  <strong ng-if="shopDetailData.goods_fee.goods_number>0" style="color:#999;">有货</strong>
@@ -226,33 +243,32 @@
                               <th width="124">库存</th>
                               <th width="124">{{data.data.isdingzhi?'操作':'数量'}}</th>
                            </tr>
-                           <tbody class="trItem" ng-style="{'borderBottomWidth':trItem.alone_attr.length?0:1}" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3" ng-repeat="trItem in goodsData.data">
-                              <tr>
-                                 <th class="img-th" width="72">
-                                    <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;" ng-mousemove="trItem.event = $event">
-                                       <img ng-src={{trItem.img_path}} alt="">
-                                    </div>
-                                    <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
-                                       <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
-                                    </div>
-                                 </th>
-                                 <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
-                                 <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
-                                 <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
-                                 <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
-                                 <!-- <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th> -->
-                                 <th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
-                                 <th width="124">
-                                    <div class="diy-right" ng-if="data.data.isdingzhi!=1">
-                                       <span class="wenb">
-                                          <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
-                                          <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);"
-                                             ng-change="change(trItem)">
-                                          <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
-                                       </span>
-                                    </div>
-                                    <div class="dingzhi" ng-if="data.data.isdingzhi==1">
-                                       <a class="dingzhi_btn" style="width: 135px;
+                        <tbody class="trItem" ng-style="{'borderBottomWidth':trItem.alone_attr.length?0:1}" ng-if="goodsData.Zk?$index<goodsData.data.length:$index<3" ng-repeat="trItem in goodsData.data">
+                           <tr>
+                              <th class="img-th" width="72">
+                                 <div class="table-img" ng-mouseenter="show11=1;" ng-mouseleave="show11=0" style="position: relative;    box-sizing: border-box;" ng-mousemove="trItem.event = $event">
+                                    <img ng-src={{trItem.img_path}} alt="">
+                                 </div>
+                                 <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                    <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
+                                 </div>
+                              </th>
+                              <th width="124" ng-repeat="goods in trItem.goods_attr">{{goods.attr_val}}</th>
+                              <th width="124" ng-if="!data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                              <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.old_price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                              <th width="124" ng-if="data.data.is_promotion&&showPrice" style="color:#ff3333;">{{trItem.price}}<span style="color: #666666;">{{trItem.hly_attr.attr_val?'/'+trItem.hly_attr.attr_val:''}}</span></th>
+                              <!-- <th width="124" ng-if="data.data.goods_type=='8'&&hasMainAttr">{{trItem.mods>1?trItem.mods+'瓶/'+checkMainAttrLabel:trItem.mods+'瓶'}}</th> -->
+                              <th width="124">{{trItem.product_number}} {{hasMainAttr&&data.data.goods_type=='8'?'':data.data.unit}}</th>
+                              <th width="124">
+                                 <div class="diy-right" ng-if="data.data.isdingzhi!=1">
+                                    <span class="wenb">
+                                       <a href="javascript:;" class="fl borr c" ng-class="{'no':trItem.num <= 0}" ng-click="reduce(trItem)">－</a>
+                                       <input id="Num" ng-disabled="attrNumber>1" type="number" class="fl c diyr-txt" value="0" ng-model="trItem.num" ng-focus="NumSelect($event);" ng-change="change(trItem)">
+                                       <a href="javascript:;" class="fl borl c" ng-class="{'no':(trItem.product_number - trItem.num) < attrNumber}" ng-click="goodsData.Zk=true;add(trItem)">+</a>
+                                    </span>
+                                 </div>
+                                 <div class="dingzhi" ng-if="data.data.isdingzhi==1">
+                                    <a class="dingzhi_btn" style="width: 135px;
                                                width: 135px;
                                                height: 40px;
                                                background: #3f69a5;
@@ -262,15 +278,15 @@
                                                outline: none;
                                                border-radius: 5px;
                                                padding: 12px 16px;" target="_blank" href="{{trItem.frezz_url}}">立即定制</a>
-                                    </div>
-                                 </th>
-                              </tr>
-                              <tr style="height: 44px;" ng-if="trItem.alone_attr.length">
-                                 <td colspan=20>
-                                    <div style="background: #f5f6fa;padding: 8px 19px;"><span ng-repeat="group in trItem.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span></div>
-                                 </td>
-                              </tr>
-                           </tbody>
+                                 </div>
+                              </th>
+                           </tr>
+                           <tr style="height: 44px;" ng-if="trItem.alone_attr.length">
+                              <td colspan=20>
+                                 <div style="background: #f5f6fa;padding: 8px 19px;"><span ng-repeat="group in trItem.alone_attr">{{group.attr_name+'：'+group.attr_val}}&nbsp;</span></div>
+                              </td>
+                           </tr>
+                        </tbody>
                         </tbody>
                      </table>
                   </div>
@@ -300,8 +316,7 @@
                                  <span class="wenb">
                                     <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);priceChange(item)">－</a>
                                     <input type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);">
-                                    <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}"
-                                       ng-click="item.member=item.member+1;priceChange(item)">+</a>
+                                    <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}" ng-click="item.member=item.member+1;priceChange(item)">+</a>
                                  </span>
                               </div>
                               <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->

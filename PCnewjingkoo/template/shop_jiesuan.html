@@ -288,6 +288,9 @@
          <p class="count_p1">- 运费优惠：
             <span>{{jiesuanData.total.shipping_bonus_formated||'0'}}</span>
          </p>
+         <p class="count_p1" ng-if="jiesuanData.total.volume_price">- 满减优惠：
+            <span>¥{{jiesuanData.total.volume_price||'0'}}</span>
+         </p>
          <p ng-if="jiesuanData.total.total.surplus_formated" class="count_p1">-余额：
             <span>{{jiesuanData.total.total.surplus_formated}}</span>
          </p>

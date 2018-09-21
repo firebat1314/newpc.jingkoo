@@ -272,7 +272,10 @@ angular.module('myApp.controllers', [])
             $scope.userMoney = $scope.userData.user_info.user_money;
             $scope.userPhone = $scope.userData.user_info.mobile_phone;
             /* qimo全局配置 */
-            window.qimoClientId = {userId:data.user_info.user_id,nickName:data.user_info.user_name}
+            window.qimoClientId = {
+               userId: data.user_info.user_id,
+               nickName: data.user_info.user_name
+            }
          }
       })
       //个人信息面板发货状态
@@ -850,7 +853,8 @@ angular.module('myApp.controllers', [])
 
       $scope.yushou = function() {
          var swiper = new Swiper('.swiper-container1', {
-            pagination: '.swiper-pagination',
+            pagination: '.swiper-container1 .swiper-pagination',
+            autoplay: 3000,
             slidesPerView: 5,
             paginationClickable: true,
             spaceBetween: 10,
@@ -862,7 +866,8 @@ angular.module('myApp.controllers', [])
       /*品牌街区广告*/
       $scope.brand = function() {
          var swiper = new Swiper('.swiper-container2', {
-            pagination: '.swiper-pagination',
+            pagination: '.swiper-container2 .swiper-pagination',
+            autoplay: 4000,
             slidesPerView: 3,
             paginationClickable: true,
             spaceBetween: 20,
@@ -913,16 +918,26 @@ angular.module('myApp.controllers', [])
             }))
          })
       };
+      $scope.goList = function(params) {
+         window.open($state.href('shop-list', {
+            params: encodeURIComponent(JSON.stringify(params))
+         }))
+      };
 
       $data.IndexData().success(function(res) {
          locals.setObject('category', res)
          $scope.category = res;
          setTimeout(function() {
             var subsection = $('.subsection');
+
+            renderList()
             $(document).scroll(function(d) {
+               renderList()
+            })
+            function renderList(){
                subsection.each(function(index, div) {
                   if (!div.myset) {
-                     if ($(window).scrollTop() + $(window).height() > $(div).offset().top + 350) {
+                     if ($(window).scrollTop() + $(window).height() > $(div).offset().top + 250) {
                         div.myset = true;
                         $scope.$apply(function() {
                            $scope.category[index].show = true;
@@ -930,7 +945,7 @@ angular.module('myApp.controllers', [])
                      }
                   }
                });
-            })
+            }
          }, 300);
       })
       $scope.getRecommendGoods = function(item, brand_id, index) {
@@ -952,7 +967,7 @@ angular.module('myApp.controllers', [])
       $scope.viewpager = function(value) {
          setTimeout(function() {
             var swiper = new Swiper('.' + value, {
-               pagination: '.swiper-pagination',
+               pagination: '.' + value + ' .swiper-pagination',
                slidesPerView: 1,
                paginationClickable: true,
                autoplay: 3000,
@@ -1297,6 +1312,8 @@ angular.module('myApp.controllers', [])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
+
+      $scope.selectIndex = -1;
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -1309,140 +1326,40 @@ angular.module('myApp.controllers', [])
          layer.close(cool);
          if (data.status) {
             $scope.flashData = data;
-         }
-
-
-         $scope.index = -1;
-         $scope.next = function() {
-            $scope.index++;
-            if ($scope.index >= data.data.length) {
-               $scope.index = -1;
-               $scope.isAll = true;
-               var cool = layer.load(0, {
-                  shade: [0.3, '#fff']
-               });
-               $http({
-                  method: "GET",
-                  url: '' + $rootScope.ip + '/Index/presell',
-                  params: {
-                     type: 'is_promote',
-                     cat_id: 0
-                  },
-               }).success(function(data) {
-                  layer.close(cool);
-                  if (data.status) {
-                     $scope.flashAllListData = data;
-                  }
-               })
-            } else if ($scope.index > 4) {
-               $(".zaki").parent().addClass("goot");
-               $scope.isAll = false;
-               var cool = layer.load(0, {
-                  shade: [0.3, '#fff']
-               });
-               $http({
-                  method: "GET",
-                  url: '' + $rootScope.ip + '/Index/presell',
-                  params: {
-                     type: 'is_promote',
-                     cat_id: data.data[$scope.index].cat_id
-                  },
-               }).success(function(data) {
-                  layer.close(cool);
-                  if (data.status) {
-                     $scope.flashListData = data;
-                  }
-               })
-            } else {
-               $scope.isAll = false;
-               var cool = layer.load(0, {
-                  shade: [0.3, '#fff']
-               });
-               $http({
-                  method: "GET",
-                  url: '' + $rootScope.ip + '/Index/presell',
-                  params: {
-                     type: 'is_promote',
-                     cat_id: data.data[$scope.index].cat_id
-                  },
-               }).success(function(data) {
-                  layer.close(cool);
-                  if (data.status) {
-                     $scope.flashListData = data;
-                  }
-               })
-            }
-            $('.xd-hd li').removeClass('on');
-            $('.xd-hd li').eq($scope.index + 1).addClass('on');
-         };
-         //获取全部闪购的数据
-         $scope.getAllPromote = function() {
-            var cool = layer.load(0, {
-               shade: [0.3, '#fff']
-            });
-            $scope.isAll = true;
-            $http({
-               method: "GET",
-               url: '' + $rootScope.ip + '/Index/presell',
-               params: {
-                  type: 'is_promote',
-                  cat_id: 0
-               },
-            }).success(function(data) {
-               layer.close(cool);
-               if (data.status) {
-                  $scope.flashAllListData = data;
-               }
-            })
-         };
-         $scope.getAllPromote();
-
-
-         //获取每个闪购商品的数据
-         $scope.getPromote = function(id, i) {
-            var cool = layer.load(0, {
-               shade: [0.3, '#fff']
-            });
-
-            $scope.index = i
-
-            $('.xd-hd li').removeClass('on');
-            $('.xd-hd li').eq(i + 1).addClass('on');
-
-            if (id == 0) {
-               $scope.isAll = true;
-               $http({
-                  method: "GET",
-                  url: '' + $rootScope.ip + '/Index/presell',
-                  params: {
-                     type: 'is_promote',
-                     cat_id: 0
-                  },
-               }).success(function(data) {
-                  layer.close(cool);
-                  if (data.status) {
-                     $scope.flashAllListData = data;
-                  }
-               })
-            } else {
-               $scope.isAll = false;
-               $http({
-                  method: "GET",
-                  url: '' + $rootScope.ip + '/Index/presell',
-                  params: {
-                     type: 'is_promote',
-                     cat_id: id
-                  },
-               }).success(function(data) {
-                  layer.close(cool);
-                  if (data.status) {
-                     $scope.flashListData = data;
-                  }
-               })
-            }
+            $scope.getPromote(-1);
          }
       })
+      //获取全部闪购的数据
+      $scope.getPromote = function(index) {
+         var cat_id;
+         if (index >= 0 && index < $scope.flashData.data.length) {
+            $scope.selectIndex = index;
+            cat_id = $scope.flashData.data[index].cat_id;
+         } else {
+            $scope.selectIndex = -1;
+            cat_id = 0;
+         }
+         var cool = layer.load(0, {
+            shade: [0.3, '#fff']
+         });
+         $http({
+            method: "GET",
+            url: '' + $rootScope.ip + '/Index/presell',
+            params: {
+               type: 'is_promote',
+               cat_id: cat_id
+            },
+         }).success(function(data) {
+            layer.close(cool);
+            if (data.status) {
+               $scope.flashAllListData = data;
+            }
+         })
+      };
 
+      $scope.next = function() {
+         $scope.getPromote(++$scope.selectIndex);
+      };
    }])
    //新品专区
    .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$data', function($scope, $rootScope, $state, $http, ipCookie, $data) {
@@ -8536,6 +8453,7 @@ angular.module('myApp.controllers', [])
             }
          } else {
             layer.msg(data.info);
+            $state.go('order-all');
          }
       })
       $(".i-text").focus(function() {

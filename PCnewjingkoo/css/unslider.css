@@ -57,7 +57,7 @@
 .unslider-arrow.next {
     right:20px;
     top:45%;
-    background:url('../img/slider.png') -42px 0 no-repeat;
+    /* background:url('../img/slider.png') -42px 0 no-repeat; */
 }
 .unslider-arrow.next:hover{
     background-position:-42px -42px;
@@ -65,7 +65,7 @@
 .unslider-arrow.prev {
     left:20px;
     top:45%;
-    background:url('../img/slider.png') no-repeat;
+    /* background:url('../img/slider.png') no-repeat; */
 }
 .unslider-arrow.prev:hover{
     background-position:0px -42px;

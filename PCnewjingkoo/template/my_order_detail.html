@@ -37,23 +37,17 @@
 </div>
 <div class="fkllc gird cle" style="margin-bottom: 25px;margin-top: 20px;">
    <div class="ddho ">订单号：{{orderDetail.order.order_sn}}</div>
-   <div class="needshow" ng-if="(orderDetail.order.order_status==1 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)||(orderDetail.order.order_status==0 && orderDetail.order.pay_status==0 && orderDetail.order.gq==0)">
+   <div class="needshow" ng-if="orderDetail.order.order_status == 0 && orderDetail.order.pay_stauts != 2 ">
       <div class="fkllc-left">
          <h2 class="klcl-h2">等待付款</h2>
-         <p class="klcl-p">
-            <em></em>
-            <span data-date="{{orderDetail.order.gq_time}}" down-time1></span>
-         </p>
-         <p class="klcl-btn">
-            <a style="cursor:pointer;" class="betn" ng-click="goOverPage(orderDetail.order.order_id)">付款</a>
+         <p class="klcl-p"><em></em><span data-date="{{orderDetail.order.gq_time}}" down-time1></span></p>
+         <p class="klcl-btn"><a style="cursor:pointer;" class="betn" ng-click="goOverPage(orderDetail.order.order_id)">付款</a>
             <a style="cursor:pointer;" class="qxio" ng-click="cancleOrder(orderDetail.order.order_id)">取消订单</a>
          </p>
       </div>
       <div class="fkllc-right">
          <div class="lcik lc-1">
-            <div class="lcik-com">
-               <span class="dq"></span>
-            </div>
+            <div class="lcik-com"><span class="dq"></span></div>
             <div class="lcik-txt">
                <div class="lcik-box t-1">
                   <span class="tdd" style="color: #23c279;">提交订单</span>
@@ -76,16 +70,14 @@
       </div>
       <div class="clear"></div>
    </div>
-   <div class="needshow" ng-if="orderDetail.order.order_status==1 || orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==0">
+   <div class="needshow" ng-if="orderDetail.order.pay_status == 2 && orderDetail.order.shipping_status == 0">
       <div class="fkllc-left">
          <h2 class="klcl-h2">付款成功</h2>
          <!--<a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>-->
       </div>
       <div class="fkllc-right">
          <div class="lcik lc-2">
-            <div class="lcik-com">
-               <span class="dq"></span>
-            </div>
+            <div class="lcik-com"><span class="dq"></span></div>
             <div class="lcik-txt">
                <div class="lcik-box t-1">
                   <span class="tdd" style="color: #23c279;">提交订单</span>
@@ -109,17 +101,14 @@
       </div>
       <div class="clear"></div>
    </div>
-   <div class="needshow" ng-if="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1">
+   <div class="needshow" ng-if="orderDetail.order.pay_status == 2 && (orderDetail.order.shipping_status == 3 ||  orderDetail.order.shipping_status == 4 || orderDetail.order.shipping_status == 5 || orderDetail.order.shipping_status == 6) ">
       <div class="fkllc-left">
          <h2 class="klcl-h2">商品出库</h2>
-         <a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;"
-            ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>
+         <a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>
       </div>
       <div class="fkllc-right">
          <div class="lcik lc-3">
-            <div class="lcik-com">
-               <span class="dq"></span>
-            </div>
+            <div class="lcik-com"><span class="dq"></span></div>
             <div class="lcik-txt">
                <div class="lcik-box t-1">
                   <span class="tdd" style="color: #23c279;">提交订单</span>
@@ -144,17 +133,14 @@
       </div>
       <div class="clear"></div>
    </div>
-   <div class="needshow" ng-if="orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2">
+   <div class="needshow" ng-if="orderDetail.order.pay_status == 2 && orderDetail.order.shipping_status == 1">
       <div class="fkllc-left">
-         <h2 class="klcl-h2">已完成</h2>
-         <a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;"
-            ng-click="buyAgain1(orderDetail.order.order_id)">再次购买</a>
+         <h2 class="klcl-h2">已发货</h2>
+         <a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="QrGet(orderDetail.order.order_id)">确认收货</a>
       </div>
       <div class="fkllc-right">
-         <div class="lcik lc-5">
-            <div class="lcik-com">
-               <span class="dq"></span>
-            </div>
+         <div class="lcik lc-4">
+            <div class="lcik-com"><span class="dq"></span></div>
             <div class="lcik-txt">
                <div class="lcik-box t-1">
                   <span class="tdd" style="color: #23c279;">提交订单</span>
@@ -170,11 +156,41 @@
                </div>
                <div class="lcik-box t-4">
                   <span class="tdd" style="color: #23c279;">等待收货</span>
-                  <p class="tpp" style="color: #23c279;">{{orderDetail.order.}}</p>
+               </div>
+               <div class="lcik-box t-5">
+                  <span class="tdd">完成</span>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="clear"></div>
+   </div>
+   <div class="needshow" ng-if="orderDetail.order.order_status == 1 && orderDetail.order.pay_status == 2 && orderDetail.order.shipping_status == 2 ">
+      <div class="fkllc-left">
+         <h2 class="klcl-h2">已完成</h2>
+         <a style="cursor: pointer;display: block;margin: 0 auto;margin-top: 20px;width: 80px;height: 30px;line-height: 30px;background: #3f69a5;color: #fff;font-size: 12px;" ng-click="buyAgain1(orderDetail.order.order_id)">再次购买</a>
+      </div>
+      <div class="fkllc-right">
+         <div class="lcik lc-5">
+            <div class="lcik-com"><span class="dq"></span></div>
+            <div class="lcik-txt">
+               <div class="lcik-box t-1">
+                  <span class="tdd" style="color: #23c279;">提交订单</span>
+                  <p class="tpp" style="color: #23c279;">{{orderDetail.order.formated_add_time}}</p>
+               </div>
+               <div class="lcik-box t-2">
+                  <span class="tdd" style="color: #23c279;">付款成功</span>
+                  <p class="tpp" style="color: #23c279;">{{orderDetail.order.pay_time}}</p>
+               </div>
+               <div class="lcik-box t-3">
+                  <span class="tdd" style="color: #23c279;">商品出库</span>
+                  <p class="tpp" style="color: #23c279;">{{orderDetail.order.shipping_time}}</p>
+               </div>
+               <div class="lcik-box t-4">
+                  <span class="tdd" style="color: #23c279;">等待收货</span>
                </div>
                <div class="lcik-box t-5">
                   <span class="tdd" style="color: #23c279;">完成</span>
-                  <p class="tpp" style="color: #23c279;">{{orderDetail.order.}}</p>
                </div>
             </div>
          </div>
@@ -235,7 +251,7 @@
                <em></em>
                <em></em>址：{{orderDetail.order.region + orderDetail.order.address}}</p>
             <p class="p">手机号码：{{orderDetail.order.mobile}}</p>
-            <p class="p">固定电话 {{orderDetail.order.tel||'无'}}</p>
+            <p class="p">固定电话： {{orderDetail.order.tel||'无'}}</p>
          </div>
          <div class="info-xx">
             <b class="bt">支付及配送方式</b>
@@ -342,8 +358,8 @@
 
 <div class="total gird mb40" ng-if="showPrice">
    <div class="totg-wrp">
-      <p class="total-p">商品总价：￥{{orderDetail.order.formated_goods_amount}} + 配送费用：￥{{orderDetail.order.formated_shipping_fee}}元 - 使用余额：￥{{orderDetail.order.surplus}}元
-         - 优惠券：￥{{orderDetail.order.bonus}}元 - 运费券：{{orderDetail.order.formated_shipping_bonus}} - 优惠金额：￥{{orderDetail.order.formated_reduce_amount}}元</p>
+      <p class="total-p">商品总价：¥{{orderDetail.order.formated_goods_amount}} + 配送费用：¥{{orderDetail.order.formated_shipping_fee}}元 - 使用余额：¥{{orderDetail.order.surplus}}元
+         - 优惠券：¥{{orderDetail.order.bonus}}元 - 运费券：{{orderDetail.order.formated_shipping_bonus}} - 满减优惠：¥{{orderDetail.order.formated_reduce_amount}}元 - 优惠金额：¥{{orderDetail.order.volume_amount}}元</p>
       <span class="total-sp">应付总额：
          <em>¥{{orderDetail.order.formated_order_amount}}</em>
       </span>
@@ -351,7 +367,7 @@
 </div>
 
 <script>
-   $(".sgye").click(function () {
+   $(".sgye").click(function() {
       $(this).parent().find(".syincy").toggleClass("hidden");
    })
    $(".picScroll-left").slide({

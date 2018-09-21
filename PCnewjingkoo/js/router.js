@@ -141,7 +141,10 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             controller: "ShopListDistributionControl",
             resolve: {
                deps: ["$ocLazyLoad", function($ocLazyLoad) {
-                  return $ocLazyLoad.load("template/distribution/shop-list-distribution/shop-list-distribution.js");
+                  return $ocLazyLoad.load([
+                     "template/distribution/shop-list-distribution/shop-list-distribution.js",
+                     "template/distribution/shop-list-distribution/shop-list-distribution.css"
+                  ]);
                }]
             }
          })

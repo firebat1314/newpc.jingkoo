@@ -1,0 +1,50 @@
+<div class="shop-list-distribution">
+   <div class="brand-gg" style="height:450px;background:url(img/flashShopBigPic.jpg) center center;background-size: auto 100%;">
+      <!-- <img src="img/flashShopBigPic.jpg" alt=""> -->
+   </div>
+   <ng-container ng-if="data">
+      <div class="navc-wrap">
+         <div class="nav-xdh all" gird>
+            <div class="zaki" style="width: 11%" ng-if="category.data.length>7">全部分类<em></em></div>
+            <ul class="xd-hd">
+               <li style="width: 11%" ng-class="{on:selectIndex==-1}" ng-click="getPromote(-1)">
+                  <div class="wrp"><a href="">全部</a></div>
+               </li>
+               <li style="width: 11%" ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.data" ng-click="getPromote($index)" repeat-done="xdFn()">
+                  <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
+               </li>
+            </ul>
+         </div>
+      </div>
+      <div class="purchase-box">
+         <div class="purchase" gird>
+            <ul class="cle">
+               <li ng-repeat="cleAll in data.goods">
+                  <a target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id})" target="_blank" class="wrp">
+                     <div class="img">
+                        <img img-lazy-load={{cleAll.goods_img}} />
+                     </div>
+                     <div class="txt">
+                        <div class="tt-4">
+                           <span>铺货</span>
+                        </div>
+                        <div class="tt-2">
+                           {{cleAll.name}}
+                        </div>
+                        <div class="tt-1">
+                           <div class="cx"><em *ngIf="mine?.showPrice">{{cleAll.shop_price}}</em></div>
+                           <div class="suzi"><button>立即铺货</button></div>
+                        </div>
+                     </div>
+                  </a>
+               </li>
+            </ul>
+         </div>
+      </div>
+
+      <div class="next_fel" ng-click="next()" gird>
+         <p>点击查看下一个分类</p>
+         <em></em>
+      </div>
+   </ng-container>
+</div>

@@ -1063,5 +1063,23 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                }
             }
          })
+         .state("distribution-division", {
+            title: '铺货专区',
+            url: '/distribution-division',
+            views: {
+               '': {
+                  templateUrl: 'template/distribution/distribution-division/distribution-division.html',
+                  controller: "DistributionDivisionControl",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/distribution/distribution-division/distribution-division.css",
+                           "template/distribution/distribution-division/distribution-division.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
          
    })

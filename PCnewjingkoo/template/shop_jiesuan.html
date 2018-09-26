@@ -260,12 +260,12 @@
                      <p class="p2">+ 配送费用：
                         <span>{{cartGoods.shipping_free}}</span>
                      </p>
-                     <p class="p2" ng-if="cartGoods.format_subsidy_money">- 运费补贴：
+                     <p class="p2" ng-if="cartGoods.subsidy_money>0">- 运费补贴：
                         <span>{{cartGoods.format_subsidy_money}}</span>
                      </p>
-                     <p class="p2" ng-if="cartGoods.shipping_bonus_subtotal">- 运费优惠：<span>{{cartGoods.shipping_bonus_subtotal}}</span></p>
                      <p class="p2" ng-if="cartGoods.bonus_subtotal">- 优惠券：<span>{{cartGoods.bonus_subtotal}}</span></p>
-                     <p class="p2">+ 获赠积分：{{cartGoods.will_get_integral}}</p>
+                     <p class="p2" ng-if="cartGoods.shipping_bonus_subtotal">- 运费优惠券：<span>{{cartGoods.shipping_bonus_subtotal}}</span></p>
+                     <p class="p2" ng-if="cartGoods.will_get_integral>0">+ 获赠积分：{{cartGoods.will_get_integral}}</p>
                   </div>
                </div>
                <!--商家备注-->
@@ -282,28 +282,25 @@
          <p class="count_p1">订单总金额：
             <span>{{jiesuanData.total.formated_goods_price||'0.00'}}</span>
          </p>
-         <p ng-if="jiesuanData.total.bonus" class="count_p1">- 优惠券：
-            <span>¥{{jiesuanData.total.bonus}}</span>
-         </p>
          <p class="count_p1">+ 配送费用：
             <span>{{jiesuanData.total.suppliers_shipping_fee_formated||'0'}}</span>
          </p>
-         <p class="count_p1">- 运费优惠：
+         <p ng-if="jiesuanData.total.bonus>0" class="count_p1">- 优惠券：
+            <span>¥{{jiesuanData.total.bonus}}</span>
+         </p>
+         <p class="count_p1" ng-if="jiesuanData.total.shipping_bonus>0">- 运费优惠券：
             <span>{{jiesuanData.total.shipping_bonus_formated||'0'}}</span>
          </p>
-         <p class="count_p1" ng-if="jiesuanData.total.formated_shipping_subsidy">- 运费补贴：
+         <p class="count_p1" ng-if="jiesuanData.total.shipping_subsidy>0">- 运费补贴：
             <span>{{jiesuanData.total.formated_shipping_subsidy}}</span>
          </p>
-         <p class="count_p1" ng-if="jiesuanData.total.volume_price">- 满减优惠：
-            <span>¥{{jiesuanData.total.volume_price||'0'}}</span>
+         <p class="count_p1" ng-if="jiesuanData.total.volume_price>0">- 满减优惠：
+            <span>¥{{jiesuanData.total.volume_price}}</span>
          </p>
-         <p ng-if="jiesuanData.total.total.surplus_formated" class="count_p1">-余额：
-            <span>{{jiesuanData.total.total.surplus_formated}}</span>
-         </p>
-         <p ng-if="jiesuanData.total.formated_subsidy_price.slice(1)!=0" class="count_p1">-镜库补贴：
+         <p ng-if="jiesuanData.total.subsidy_price>0" class="count_p1">-镜库补贴：
             <span>{{jiesuanData.total.formated_subsidy_price||0}}</span>
          </p>
-         <p class="count_p1">+获赠积分：{{jiesuanData.total.will_get_give_rank_integral||0}}</p>
+         <p ng-if="jiesuanData.total.will_get_give_rank_integral>0" class="count_p1">+获赠积分：{{jiesuanData.total.will_get_give_rank_integral||0}}</p>
       </div>
       <!--订单金额-->
       <div class="refer_order">

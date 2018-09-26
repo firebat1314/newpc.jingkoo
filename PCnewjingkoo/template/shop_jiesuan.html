@@ -260,6 +260,9 @@
                      <p class="p2">+ 配送费用：
                         <span>{{cartGoods.shipping_free}}</span>
                      </p>
+                     <p class="p2" ng-if="cartGoods.format_subsidy_money">- 运费补贴：
+                        <span>{{cartGoods.format_subsidy_money}}</span>
+                     </p>
                      <p class="p2" ng-if="cartGoods.shipping_bonus_subtotal">- 运费优惠：<span>{{cartGoods.shipping_bonus_subtotal}}</span></p>
                      <p class="p2" ng-if="cartGoods.bonus_subtotal">- 优惠券：<span>{{cartGoods.bonus_subtotal}}</span></p>
                      <p class="p2">+ 获赠积分：{{cartGoods.will_get_integral}}</p>
@@ -287,6 +290,9 @@
          </p>
          <p class="count_p1">- 运费优惠：
             <span>{{jiesuanData.total.shipping_bonus_formated||'0'}}</span>
+         </p>
+         <p class="count_p1" ng-if="jiesuanData.total.formated_shipping_subsidy">- 运费补贴：
+            <span>{{jiesuanData.total.formated_shipping_subsidy}}</span>
          </p>
          <p class="count_p1" ng-if="jiesuanData.total.volume_price">- 满减优惠：
             <span>¥{{jiesuanData.total.volume_price||'0'}}</span>

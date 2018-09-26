@@ -2506,7 +2506,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //注册公司
-   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams) {
+   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', '$data',function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams,$data) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -2565,75 +2565,15 @@ angular.module('myApp.controllers', [])
       };
 
       //获取img base64编码
-      $scope.imgPreview = function(event) {
-         //判断是否支持FileReader
-         if (window.FileReader) {
-            var reader = new FileReader();
-         } else {
-            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
-         }
-         //获取文件
-         //var file = angular.element(e.target).files[0];
-         var file = document.getElementById("file").files[0];
-         var imageType = /^image\//;
-         //是否是图片
-         if (!imageType.test(file.type)) {
-            alert("请选择图片！");
-            return;
-         }
-         //转码
-         //读取完成
-         reader.onload = function(e) {
-            //获取图片dom
-            var img = document.getElementById("preview");
-            //图片路径设置为读取的图片
-            $scope.img_ava = e.target.result;
-            img.src = $scope.img_ava;
-            $scope.registerList.zhizhao = $scope.img_ava;
-         };
-         reader.readAsDataURL(file);
+      $scope.imgPreview = function(e) {
+         $scope.registerList.zhizhao = e.img_url;
+         var img = document.getElementById("preview");
+         img.src = e.base64;
       }
       $scope.medicalPhoto = function(e) {
-         //判断是否支持FileReader
-         if (window.FileReader) {
-            var reader = new FileReader();
-         } else {
-            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
-         }
-         //获取文件
-         //var file = angular.element(e.target).files[0];
-         var file = document.getElementById("img3").files[0];
-         var imageType = /^image\//;
-         //是否是图片
-         if (!imageType.test(file.type)) {
-            alert("请选择图片！");
-            return;
-         }
-         //转码
-         reader.readAsDataURL(file);
-         //读取完成
-         reader.onload = function(e) {
-            //获取图片dom
-            var img = document.getElementById("img33");
-            //图片路径设置为读取的图片
-            img.src = e.target.result;
-            $scope.registerList.medical = e.target.result;
-            $data.changeQyMsg({
-               medical: $scope.registerList.medical
-            }).success(function(data) {
-               if (data.status == 0) {
-                  layer.msg(data.info, {
-                     icon: 2,
-                     time: 4000
-                  });
-               } else {
-                  layer.msg(data.info, {
-                     icon: 1,
-                     time: 4000
-                  });
-               }
-            })
-         };
+         $scope.registerList.medical = e.img_url;
+         var img = document.getElementById("img33");
+         img.src = e.base64;
       }
 
       //调用户协议
@@ -2652,7 +2592,6 @@ angular.module('myApp.controllers', [])
 
       //注册提交
       $scope.register = function() {
-         console.log($scope.registerList)
          if ($scope.isCheck) {
             $http({
                method: "POST",
@@ -10738,33 +10677,10 @@ angular.module('myApp.controllers', [])
 
 
       //获取执照复印件 base64编码
-      $scope.imgPreview = function(event) {
-         //判断是否支持FileReader
-         if (window.FileReader) {
-            var reader = new FileReader();
-         } else {
-            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
-         }
-         //获取文件
-         //var file = angular.element(e.target).files[0];
-         var file = document.getElementById("file").files[0];
-         var imageType = /^image\//;
-         //是否是图片
-         if (!imageType.test(file.type)) {
-            alert("请选择图片！");
-            return;
-         }
-         //转码
-         //读取完成
-         reader.onload = function(e) {
-            //获取图片dom
+      $scope.imgPreview = function(e) {
+            $scope.zizhiArr.yyzz = e.img_url;
             var img = document.getElementById("preview");
-            //图片路径设置为读取的图片
-            $scope.img_ava = e.target.result;
-            img.src = $scope.img_ava;
-            $scope.zizhiArr.yyzz = $scope.img_ava;
-         };
-         reader.readAsDataURL(file);
+            img.src = e.base64;
       };
 
       //获取税务登记复印件 base64编码
@@ -10877,14 +10793,6 @@ angular.module('myApp.controllers', [])
          })
          // },200)
       };
-      // $scope.goSelect = function(){
-      //     $state.go('person-inv-select');
-      // };
-      // //时间检索
-      // $scope.searchInvoices = function(){
-      //     $scope.invoicesList.time = $scope.startTime;
-      //     $scope.invoicesFn();
-      // };
       $scope.repairFn = function() {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
@@ -10940,23 +10848,6 @@ angular.module('myApp.controllers', [])
       //单选
       //$scope.sqsArr = [];
       $scope.sqs = function(index, pIndex, ppIndex, select) {
-         // for(var k = 0;k<$scope.repairData.list[ppIndex].goods[pIndex].goods_list[index].attrs.length;k++){
-         //     var arr1 = [];
-         //     if($scope.allGoods.orders.goods_ids.indexOf($scope.repairData.list[ppIndex].goods[pIndex].goods_list[index].attrs[k].goods_id)>-1){
-         //         arr1.splice($scope.allGoods.orders.goods_ids.indexOf($scope.repairData.list[ppIndex].goods[pIndex].goods_list[index].attrs[k].rec_id),1);
-         //     } else{
-         //         arr1.push($scope.repairData.list[ppIndex].goods[pIndex].goods_list.rec_id);
-         //     }
-         //     $scope.allGoods.orders.goods_ids.push(arr1);
-         //
-         // }
-
-
-         // $scope.allGoods.orders.rec_ids = [];
-         // $scope.allGoods.orders.order_ids = [];
-         //
-         // $scope.allGoods.orders.order_ids.push($scope.repairData.list[index].goods_id);
-         // $scope.allGoods.orders.rec_ids.push($scope.repairData.list[index].rec_id);
 
          //其中一个不选，取消全选
          for (var i = 0, item1 = $scope.repairData.list; i < item1.length; i++) {
@@ -11013,20 +10904,7 @@ angular.module('myApp.controllers', [])
          $scope.allGoods.orders.rec_ids = [];
          $scope.allGoods.orders.order_ids = [];
          $scope.allGoods.type = type;
-         // for(var i = 0,item1= $scope.repairData.list;i<item1.length;i++){
-         //     for(var j=0,item2 = item1[i].goods;j<item2.length;j++){
-         //         var arr1 = [];
-         //         if($scope.repairData.list[i].goods[j].select){
-         //             for(var k = 0,item3 = item2[j].goods_list;k<item3.length;k++){
-         //                 $scope.allGoods.orders.order_ids.push($scope.repairData.list[i].goods[j].goods_list[k].goods_id);
-         //                 for(var l = 0,item4 = item3[k].attrs;l<item4.length;l++){
-         //                     arr1.push($scope.repairData.list[i].goods[j].goods_list[k].attrs[l].rec_id);
-         //                 }
-         //                 $scope.allGoods.orders.goods_ids.push(arr1);
-         //             }
-         //         }
-         //     }
-         // }
+
 
          for (var i = 0, item1 = $scope.repairData.list; i < item1.length; i++) {
             if ($scope.repairData.list[i].select) {
@@ -11085,88 +10963,6 @@ angular.module('myApp.controllers', [])
             }
          })
 
-
-         // $http({
-         //     method:"POST",
-         //     url:''+$rootScope.ip+'/User/more_goods_repair',
-         //     data:$scope.allGoods,
-         //     headers:{'Authorization':'Basic ' + btoa(ipCookie('token') + ':')}
-         // }).success(function(data) {
-         //     if(data.status){
-         //         $scope.isSubmit = false;
-         //         $scope.lotsSubmit = true;
-         //         $scope.shop = data.suppliers_name;
-         //
-         //
-         //         $scope.afterSaleData = data;
-         //
-         //
-         //         for(var i = 0;i<$scope.afterSaleData.order_goods.length;i++){
-         //             for(var j = 0;j<$scope.afterSaleData.order_goods[i].length;j++) {
-         //                 if(data.type == '' && data.order_goods[i][j].tui_end == 0) {
-         //                     $scope.tui = 1;
-         //                 }
-         //                 if(data.type == '' && data.order_goods[i][j].huan_end == 0) {
-         //                     $scope.huan = 1;
-         //                 }
-         //                 if(data.type == '' && data.order_goods[i][j].xiu_end == 0) {
-         //                     $scope.xiu = 1;
-         //                 }
-         //             }
-         //         }
-         //
-         //
-         //         for(var i = 0;i<$scope.afterSaleData.order_goods.length;i++){
-         //             for(var j = 0;j<$scope.afterSaleData.order_goods[i].length;j++){
-         //                 if($scope.afterSaleData.order_goods[i][j].goods_number == $scope.afterSaleData.order_goods[i][j].return_number){
-         //                     $scope.isAdd = true;
-         //                     $scope.isReduce = false;
-         //                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-         //                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-         //                     $scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[i][j].goods_number);
-         //                 }
-         //             }
-         //         }
-         //
-         //         //批量申请售后
-         //         //单选
-         //         // $scope.sqsArr = [];
-         //         $scope.singleSelect = function(index,pIndex){
-         //             if($scope.shopGoods.indexOf($scope.sqshData.goodslist[index].rec_id)>-1){
-         //                 $scope.shopGoods.splice($scope.shopGoods.indexOf($scope.sqshData.goodslist[index].rec_id),1);
-         //             }else{
-         //                 $scope.shopGoods.push($scope.sqshData.goodslist[index].rec_id);
-         //             }
-         //
-         //             //其中一个不选，取消全选
-         //             if($scope.shopGoods.length<$scope.sqshData.goodslist.length){
-         //                 $scope.lotsSelect = false;
-         //             }else{
-         //                 $scope.lotsSelect = true;
-         //             }
-         //         };
-         //         //全选
-         //         $scope.shopGoods = [];
-         //         $scope.allSelect = function(all){
-         //             $scope.shopGoods = [];
-         //             if(all == true){
-         //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
-         //                     $scope.sqshData.goodslist[i].selects = false;
-         //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),1);
-         //                 }
-         //
-         //             }else{
-         //                 for(var i = 0;i<$scope.sqshData.goodslist.length;i++){
-         //                     $scope.sqshData.goodslist[i].selects = true;
-         //                     $scope.shopGoods.splice($.inArray(i,$scope.shopGoods),0,$scope.sqshData.goodslist[i].rec_id);
-         //                 }
-         //             }
-         //         };
-         //     }else{
-         //         $scope.isSubmit = true;
-         //         $scope.isLotsSubmit = false;
-         //     }
-         // })
       };
 
 
@@ -11432,67 +11228,6 @@ angular.module('myApp.controllers', [])
          }
       })
 
-      //获取img base64编码
-      $scope.imgPreview = function(index, e) {
-         //判断是否支持FileReader
-         if (window.FileReader) {
-            var reader = new FileReader();
-         } else {
-            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
-         }
-         //获取文件
-         //var file = angular.element(e.target).files[0];
-         var file = document.getElementsByClassName("file")[index].files[0];
-         var img = document.getElementsByClassName("preview")[index];
-         var imageType = /^image\//;
-         //是否是图片
-         if (!imageType.test(file.type)) {
-            alert("请选择图片！");
-            return;
-         }
-         //转码
-         //读取完成
-         reader.onload = function(e) {
-            //获取图片dom
-            //图片路径设置为读取的图片
-            $scope.img_ava = e.target.result;
-            $scope.subArr.return_img[index] = $scope.img_ava;
-            img.src = $scope.img_ava;
-         };
-         reader.readAsDataURL(file);
-      };
-
-
-      $scope.sub = function() {
-         for (var i = 0; i < $scope.afterSaleData.order_goods.length; i++) {
-            for (var j = 0; j < $scope.afterSaleData.order_goods[i].length; j++) {
-               if ($scope.afterSaleData.order_goods[i][j].tui_end == 0 && $scope.afterSaleData.order_goods[i][j].huan_end == 0 && $scope.afterSaleData.order_goods[i][j].xiu_end == 0) {
-                  layer.msg('该商品不可售后');
-               } else {
-                  //$scope.subArr.return_type = $scope.afterSaleData.type;
-                  if ($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[i][j].order_id) == -1) {
-                     $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[i][j].order_id);
-                  }
-                  if ($scope.subArr.rec_ids.rec_id.indexOf($scope.afterSaleData.order_goods[i][j].rec_id) == -1) {
-                     $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[i][j].rec_id);
-                  }
-                  $http({
-                     method: "POST",
-                     url: '' + $rootScope.ip + '/User/submit_repair',
-                     data: $scope.subArr,
-                  }).success(function(data) {
-                     if (data.status) {
-                        layer.msg(data.info);
-                        $scope.isSuccess = true;
-                        $scope.lotsSubmit = false;
-                     } else {
-                        layer.msg(data.info);
-                     }
-                  })
-               }
-            }
-         }
-      };
 
    }])
    //个人中心-返修退换货-返修/退换货-申请售后
@@ -11760,32 +11495,11 @@ angular.module('myApp.controllers', [])
 
       //获取img base64编码
       $scope.imgPreview = function(index, e) {
-         //判断是否支持FileReader
-         if (window.FileReader) {
-            var reader = new FileReader();
-         } else {
-            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
-         }
-         //获取文件
-         //var file = angular.element(e.target).files[0];
-         var file = document.getElementsByClassName("file")[index].files[0];
+   
+         $scope.subArr.return_img[index] = e.img_url;
          var img = document.getElementsByClassName("preview")[index];
-         var imageType = /^image\//;
-         //是否是图片
-         if (!imageType.test(file.type)) {
-            alert("请选择图片！");
-            return;
-         }
-         //转码
-         //读取完成
-         reader.onload = function(e) {
-            //获取图片dom
-            //图片路径设置为读取的图片
-            $scope.img_ava = e.target.result;
-            $scope.subArr.return_img[index] = $scope.img_ava;
-            img.src = $scope.img_ava;
-         };
-         reader.readAsDataURL(file);
+            img.src = e.base64;
+    
       };
 
 

@@ -135,7 +135,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             }
          })
          .state("shop-list-distribution", {
-            title: '商品列表',
+            title: '铺货专区',
             url: '/shop-list-distribution/:params',
             templateUrl: 'template/distribution/shop-list-distribution/shop-list-distribution.html',
             controller: "ShopListDistributionControl",

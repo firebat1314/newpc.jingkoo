@@ -61,12 +61,12 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
    //		营业执照
    $scope.yyzzPhoto = function(e) {
       $data.changeQyMsg({
-         zhizhao: e
+         zhizhao: e.img_url
       }).success(function(data) {
          if (data.status == 1) {
             var img = document.getElementById("img22");
             //图片路径设置为读取的图片
-            img.src = e;
+            img.src = e.base64;
          }
          layer.msg(data.info, {
             time: 3000
@@ -75,12 +75,12 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
    }
    $scope.medicalPhoto = function(e) {
       $data.changeQyMsg({
-         medical: e
+         medical: e.img_url
       }).success(function(data) {
          if (data.status == 1) {
             var img = document.getElementById("img33");
             //图片路径设置为读取的图片
-            img.src = e;
+            img.src = e.base64;
          }
          layer.msg(data.info, {
             time: 3000
@@ -90,12 +90,12 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
    //身份证正面上传
    $scope.sfzBefore = function(e) {
       $data.changeQyMsg({
-         zsfz: e
+         zsfz: e.img_url
       }).success(function(data) {
          if (data.status == 1) {
             var img = document.getElementById("img00");
             //图片路径设置为读取的图片
-            img.src = e;
+            img.src = e.base64;
          }
          layer.msg(data.info, {
             time: 3000
@@ -105,12 +105,12 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
    //身份证反面上传
    $scope.sfzBehind = function(e) {
       $data.changeQyMsg({
-         fsfz: e
+         fsfz: e.img_url
       }).success(function(data) {
          if (data.status == 1) {
             var img = document.getElementById("img11");
             //图片路径设置为读取的图片
-            img.src = e;
+            img.src = e.base64;
          }
          layer.msg(data.info, {
             time: 3000

@@ -714,5 +714,19 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
+         GetFileImg: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/GetFileImg',
+               data: data
+            })
+         },
+         GetFileImgs: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/GetFileImgs',
+               data: data
+            })
+         },
       }
    }])

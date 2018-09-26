@@ -76,7 +76,7 @@
                             <div class="ret-nr fl">
                                 <div class="ret-up fl">
                                     <img id="preview" src="img/re-up.jpg">
-                                    <input ng-change="imgPreview($event)" id="file" ng-model="registerList.zhizhao" class="up-file" type="file">
+                                    <input get-image="imgPreview(img)" id="file" class="up-file" type="file">
                                 </div>
                                 <div class="ret-sli fl">
                                     <img src="img/zz.jpg" />
@@ -97,8 +97,8 @@
                             </div>
                             <div class="ret-nr fl">
                                 <div class="ret-up fl">
-                                    <img ng-src="{{registerList.medical || 'img/up.jpg'}}" id="img33" />
-                                    <input id="img3" class="up-file cursor" type="file" ng-model="registerList.medical" ng-change="medicalPhoto($event)" />
+                                    <img ng-src="img/up.jpg" id="img33" />
+                                    <input id="img3" class="up-file cursor" type="file" get-image="medicalPhoto(img)" />
                                 </div>
                                 <div class="ret-sli fl">
                                     <img src="img/xkz_yl.jpg" />

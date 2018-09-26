@@ -93,7 +93,7 @@
                                  <span>电脑传图</span>
                               </div>
                               <div class="pic" ng-repeat="img in item.img">
-                                 <img img-preview='{imgs:item.img,index:$index}' src="{{img}}" alt="">
+                                 <img img-preview='{imgs:item.img,index:$index}' src="{{img.base64}}" alt="">
                               </div>
                               <div>
                                  <span>共</span>

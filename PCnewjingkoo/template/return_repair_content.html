@@ -104,7 +104,7 @@
                             <div style="width: 100px;height: 100px;float: left;border: 1px solid #e6e6e6;margin-right: 10px;position: relative;" ng-repeat="img in imgArr">
                                 <img style="width:100%;height:100%;display:block;" class="preview" ng-src='{{img.img}}'>
                                 <input type="file" class="file up_img" style="opacity: 0;position: absolute;top: 0;left: 0;width: 100%;height: 100%;" ng-model="img.file"
-                                    ng-change="imgPreview($index,$event)">
+                                    get-image="imgPreview($index,img)">
                             </div>
                         </div>
                         <p class="fx_th_p2">为了帮助我们更好的解决问题,请您上传图片</p>

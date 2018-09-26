@@ -21,7 +21,7 @@
                     <div class="contacts-wrap portrait">
                         <div class="pic">
                         	<img ng-src="{{avatarData.user_info.avatar || 'img/default_logo.jpg' }}" id="preview" style="width: 100%;height: 100%;"/>
-                        	<input class="fie" id="file" ng-model="img_ava" type="file" accept="image/*" ng-change="imgPreview($event)" style="opacity: 0;z-index: 100;"/>
+                        	<input class="fie" id="file" ng-model="img_ava" type="file" accept="image/*" get-image="imgPreview(img)" style="opacity: 0;z-index: 100;"/>
                         	<p style="cursor: pointer;">更换</p>
                         </div>
                     </div>

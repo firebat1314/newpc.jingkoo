@@ -53,12 +53,33 @@ myApp.controller('commentController', function($scope, $rootScope, $stateParams,
 			item.img = [];
 		}
 		item.img.push(img);
-		$scope.$apply($scope.orderData);
 	}
 	$scope.submit = function() {
-		console.log($scope.orderData)
+      var params = {
+         goods_list: [],
+         accord_rank: $scope.orderData.accord_rank,
+         service_rank: $scope.orderData.service_rank,
+         delivery_rank: $scope.orderData.delivery_rank,
+         is_anonymity: $scope.orderData.is_anonymity,
+      }
+      for (var i = 0; i < $scope.orderData.goods_list.length; i++) {
+         var goods = $scope.orderData.goods_list[i];
+         params.goods_list[i] = ({
+            comment_rank: goods.comment_rank,
+            content: goods.content,
+            goods_id: goods.goods_id,
+            rec_id: goods.rec_id,
+            img: []
+         })
+         if (goods.img) {
+            for (var j = 0; j < goods.img.length; j++) {
+               var img = goods.img[j];
+               params.goods_list[i].img[j] = img.img_url;
+            }
+         }
+      }
 		$data.commentInsertComment({
-			data: $scope.orderData
+			data: params
 		}).success(function(res) {
 			if (res.status == 1) {
 				$state.go('comment-over');

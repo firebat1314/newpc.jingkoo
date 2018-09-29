@@ -300,7 +300,15 @@
 				order: 'sales_num',
 				stort: 'DESC',
 			})
-		};
+      };
+		$scope.goods_sort = function () {
+			$scope.stateGo({
+				page: 1,
+				order: 'goods_sort',
+				stort: 'DESC',
+			})
+      };
+      
 		//商品价格排序
 		var good_price = 1;
 		$scope.priceOrder = function () {

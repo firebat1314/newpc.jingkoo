@@ -447,8 +447,30 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
                layer.close(index);
                $state.go('order-list-d');
             });
-         }else{
-            layer.msg(data.info, { time: 1000 });
+         } else if (data.status == -2) {
+            layer.confirm('需要医疗器械许可证，是否上传', {
+               btn: ['确定', '取消'], //按钮
+               btnAlign: 'c',
+               yes: function(index) {
+                  $state.go('person-qy-msg');
+                  layer.close(index);
+               },
+               btn2: function(index) {
+                  layer.close(index);
+               }
+            });
+         } else if (data.status == -1) {
+            layer.confirm(data.info, {
+               btn: ['确定'], //按钮
+               closeBtn: false
+            }, function(index) {
+               layer.close(index);
+               $state.go('distribution-qualification');
+            });
+         } else {
+            layer.msg(data.info, {
+               time: 1000
+            });
          }
          /* if (data.status == 1) {
              layer.msg(data.info, { time: 1000 });

@@ -321,9 +321,13 @@ angular.module('myApp.directives', [])
                   var reader = new FileReader();
                   reader.onload = function(event) { //读取完成
                      var base = event.target['result'];
+                     var cool = layer.load(0, {
+                        shade: [0.3, '#fff']
+                     });
                      $data.GetFileImg({
                         img: base
                      }).success(function(res) {
+                        layer.close(cool);
                         if (res.status) {
                            scope.getImage({
                               img: {

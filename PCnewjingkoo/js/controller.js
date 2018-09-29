@@ -850,7 +850,9 @@ angular.module('myApp.controllers', [])
             $scope.fastCategory = data;
          }
       });
-
+      $scope.clickclick = function(id){
+         window.open($state.href('shop-detail',{goods_id:id,isActivity:1}))
+      }
       $scope.yushou = function() {
          var swiper = new Swiper('.swiper-container1', {
             pagination: '.swiper-container1 .swiper-pagination',
@@ -858,8 +860,8 @@ angular.module('myApp.controllers', [])
             slidesPerView: 5,
             paginationClickable: true,
             spaceBetween: 10,
-            prevButton: '.sPrev',
-            nextButton: '.sNext',
+            prevButton: '.swiper-container1 .sPrev',
+            nextButton: '.swiper-container1 .sNext',
             // loop: true
          });
       };
@@ -871,9 +873,8 @@ angular.module('myApp.controllers', [])
             slidesPerView: 3,
             paginationClickable: true,
             spaceBetween: 20,
-            prevButton: '.sPrev',
-            nextButton: '.sNext',
-            loop: true
+            prevButton: '.swiper-container2 .sPrev',
+            nextButton: '.swiper-container2 .sNext',
          });
       };
       /*品牌街区logo*/
@@ -984,9 +985,66 @@ angular.module('myApp.controllers', [])
       //控制header和footer显隐
       $rootScope.change = true;
 
+
+      $scope.selectIndex = 0;
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
+      
+      //闪购除了全部的数据
+      /* $http({
+         method: "POST",
+         url: '' + $rootScope.ip + '/Category/get_categorys',
+         data: '',
+      }).success(function(data) {
+         layer.close(cool);
+         if (data.status) {
+            $scope.data = data;
+            $scope.getPromote(0);
+         }
+      })
+      $http({
+         method: "POST",
+         url: '' + $rootScope.ip + '/Brand/brand_index',
+         data: '',
+      }).success(function(data) {
+         if(data.status==1){
+            $scope.fashionHomeData = data;
+         }
+      })
+      //获取全部闪购的数据
+      $scope.getPromote = function(index) {
+         var cat_id;
+         if (index >= 0 && index < $scope.data.data.length) {
+            $scope.selectIndex = index;
+            cat_id = $scope.data.data[index].cat_id;
+         } else {
+            $scope.selectIndex = 0;
+            cat_id = 0;
+         }
+         var cool = layer.load(0, {
+            shade: [0.3, '#fff']
+         });
+         $http({
+            method: "GET",
+            url: '' + $rootScope.ip + '/Category/get_categorys',
+            params: {
+               type: 'is_promote',
+               cat_id: cat_id
+            },
+         }).success(function(data) {
+            layer.close(cool);
+            if (data.status) {
+               $scope.list = data;
+            }
+         })
+      };
+
+      $scope.next = function() {
+         $scope.getPromote(++$scope.selectIndex);
+      }; */
+
+
       //品牌馆除了全部的数据
       $http({
          method: "POST",
@@ -1139,6 +1197,10 @@ angular.module('myApp.controllers', [])
          })
       };
       $scope.logoFashion();
+
+      $scope.lookMore = function(){
+         
+      }
 
       $(".gdoo").click(function() {
          $(this).parent().toggleClass("open");
@@ -3037,554 +3099,6 @@ angular.module('myApp.controllers', [])
          })
       };
 
-   }])
-   //商品列表
-   .controller('shopList-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', '$timeout', function($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state, $timeout) {
-      $rootScope.isShow = false;
-      $rootScope.change = true;
-      $scope.goto = function() {
-         $location.hash('');
-         $anchorScroll.yOffset = 0;
-         $anchorScroll();
-      };
-
-      $scope.keyFn = function(id) {
-         $state.go('shop-list', {
-            params: encodeURIComponent(JSON.stringify({
-               cat_id: id,
-            }))
-         })
-      };
-
-      $scope.brand_id = $stateParams.brand_id;
-      $scope.cat_id = $stateParams.cat_id;
-      $scope.filter = $stateParams.filter;
-      $scope.keywords = $stateParams.keywords;
-      $scope.random = $stateParams.random;
-      $scope.page = $stateParams.page || 1;
-
-      //控制收起和更多选项
-      $scope.shouQi = false;
-      $scope.moreXx = true;
-      $scope.moreXxFn = function() {
-         $scope.shouQi = true;
-         $scope.moreXx = false;
-      };
-      $scope.shouQiFn = function() {
-         $scope.shouQi = false;
-         $scope.moreXx = true;
-      };
-
-      $scope.ListPage = {
-         brand_id: $scope.brand_id,
-         cat_id: $scope.cat_id,
-         filter: $scope.filter,
-         order: '',
-         stort: '',
-         max_price: '',
-         min_price: '',
-         keywords: $scope.keywords,
-         page: $scope.page,
-         size: 20
-      };
-      $('.nav-bar ul a:eq(0)').addClass('active');
-      // $rootScope.res = ipCookie('token');
-
-      //分页操作
-      $scope.pageIndex = 0; //初始页索引
-      $scope.pageSize = 10; //每页数据条数
-      $scope.options = {
-         num_edge_entries: 1, //边缘页数
-         num_display_entries: 4, //主体页数
-         items_per_page: 1, //每页显示1项
-         // prev_text: "上一页",
-         // next_text: "下一页",
-         link_to: 'javascript:;',
-         prev_show_always: false,
-         next_show_always: false,
-         current_page: $scope.page - 1,
-         callback: pageIndex
-      };
-
-      function pageIndex(index) {
-         $scope.ListPage.page = index + 1;
-         var cool = layer.load(0, {
-            shade: [0.3, '#fff']
-         });
-         $http({
-            method: "POST",
-            url: '' + $rootScope.ip + '/Category/category_goods',
-            data: $scope.ListPage,
-         }).success(function(data) {
-            layer.close(cool);
-            if (data.status) {
-               $scope.shopListData = data;
-            }
-            $scope.listControl();
-            $("body,html").animate({
-               "scrollTop": $('.shopList-main-tit').offset().top
-            }, 100)
-         })
-
-      };
-      //价格筛选
-      $scope.enterPrice = function() {
-         $scope.InitList();
-      };
-      //价格清空
-      $scope.clearPrice = function() {
-         $scope.ListPage.min_price = '';
-         $scope.ListPage.max_price = '';
-         $scope.InitList();
-      };
-
-      //不使用插件分页
-      $scope.prevList = function() {
-         $scope.pagination[0].prevPage();
-      };
-      $scope.nextList = function() {
-         $scope.pagination[0].nextPage();
-      };
-
-
-      $scope.InitList = function() {
-         $scope.ListPage.page = 1;
-
-         var cool = layer.load(0, {
-            shade: [0.3, '#fff']
-         });
-         $http({
-            method: "POST",
-            url: '' + $rootScope.ip + '/Category/category_goods',
-            data: $scope.ListPage,
-         }).success(function(data) {
-            layer.close(cool);
-            if (data.status) {
-               $scope.shopListData = data;
-               $scope.getGoods(data);
-               $scope.listControl(); //图像延迟加载
-               $scope.qxsjFn();
-
-               if ($scope.shopListData.goods_attr_arr[3].data.length == 0) {
-                  $scope.shouQi = false;
-                  $scope.moreXx = false;
-               } else {
-                  $scope.shouQi = false;
-                  $scope.moreXx = true;
-               }
-               $scope.fashionAllName = data.goods_attr_arr[0].name;
-               $scope.fashionPriceName = data.goods_attr_arr[2].name;
-               $scope.fashionMonthName = data.goods_attr_arr[1].name;
-            }
-
-         })
-      };
-      $scope.InitList();
-      $scope.qxsjFn = function() {
-         $scope.qxsjAd = null;
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Index/get_category_recommend_goods',
-            params: {
-               type: 'hot',
-               is_return: 1,
-               cats: $scope.shopListData.ding_id
-            },
-         }).success(function(data) {
-            $scope.qxsjAd = data;
-         });
-      };
-      $scope.itemFn = function() {
-         $(".likeTui").slide({
-            mainCell: "ul",
-            vis: 4,
-            prevCell: ".sPrev",
-            nextCell: ".sNext",
-            effect: "leftLoop",
-            autoPlay: true
-         });
-      };
-      $scope.getGoods = function(data) {
-         $scope.pagination = $('#Pagination').pagination(data.pages, $scope.options);
-      };
-      /*        //goto
-		        $(".page-btn").one("click",function() {
-		            var allPage = $(".allPage").text();
-		            var goPage = $(".page-go input").val() - 1; //跳转页数
-        
-		            if (goPage > -1 && goPage < allPage) {
-		                $scope.options.current_page = 2;
-		                $scope.InitList();
-		            } else {
-		                $scope.InitList();
-		            }
-		            //清空用户跳转页数
-		            $(".page-go input").val("");
-		        })*/
-      // $scope.searchPage = function(){
-      //
-      // };
-      //清空所有已选条件
-      $scope.deleteSelect = function() {
-
-         $scope.ListPage.brand_id = '';
-         // $scope.ListPage.cat_id = '';
-         $scope.brand_id = '';
-         $scope.ListPage.min_price = '';
-         $scope.ListPage.max_price = '';
-         $scope.ListPage.filter = '';
-
-         $scope.ListPage.cat_id = '';
-         $scope.cat_id = '';
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.keywords = '';
-
-
-         $scope.price = false;
-         $scope.InitList();
-
-      };
-      //取消商品品牌筛选的内容
-      $scope.closeFashion = function(e) {
-         $scope.fashion = false;
-         $scope.ListPage.brand_id = '';
-         $scope.brand_id = '';
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-      };
-      //获取商品品牌筛选的内容
-      $scope.fashion = false;
-      $scope.getAllValue = function(value, id) {
-         $scope.brand_name = value;
-         $scope.ListPage.brand_id = id;
-         $scope.brand_id = id;
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-         $scope.fashion = true;
-         $('.shopList-select-conditions .more-fashion:first').prev().css({
-            height: '62'
-         })
-         $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-            height: '30'
-         })
-         $("body,html").animate({
-            "scrollTop": $('.shopList-main-tit').offset().top
-         }, 100)
-
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-      };
-      //取消商品价格区间筛选的内容
-      $scope.closePrice = function(e) {
-         $scope.price = false;
-         $scope.ListPage.min_price = '';
-         $scope.ListPage.max_price = '';
-         $scope.InitList();
-      };
-      $scope.priceAll = function() {
-         $scope.price = false;
-         $scope.ListPage.min_price = '';
-         $scope.ListPage.max_price = '';
-         $scope.InitList();
-         $('.shopList-select-conditions .more-fashion:first').prev().css({
-            height: '62'
-         })
-         $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-            height: '30'
-         })
-         $("body,html").animate({
-            "scrollTop": $('.shopList-main-tit').offset().top
-         }, 100)
-
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-      };
-      //获取商品价格区间筛选的内容
-      $scope.price = false;
-      $scope.getPriceValue = function(value1, value2) {
-         $scope.min_price = value1;
-         $scope.max_price = value2;
-         $scope.ListPage.min_price = value1;
-         $scope.ListPage.max_price = value2;
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-         $scope.price = true;
-         $('.shopList-select-conditions .more-fashion:first').prev().css({
-            height: '62'
-         })
-         $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-            height: '30'
-         })
-         $("body,html").animate({
-            "scrollTop": $('.shopList-main-tit').offset().top
-         }, 100)
-
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-      };
-      //取消商品分类筛选的内容
-      $scope.closeFenlei = function(e) {
-         $scope.fenlei = false;
-         $scope.ListPage.cat_id = '';
-         $scope.cat_id = '';
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-      };
-      $scope.cateAll = function() {
-         $scope.ListPage.cat_id = 0;
-         $scope.InitList();
-         $('.shopList-select-conditions .more-fashion:first').prev().css({
-            height: '62'
-         })
-         $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-            height: '30'
-         })
-         $("body,html").animate({
-            "scrollTop": $('.shopList-main-tit').offset().top
-         }, 100)
-
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-      };
-      //获取商品分类区间筛选的内容
-      $scope.fenlei = false;
-      $scope.getMonthValue = function(value, id) {
-         $scope.cat_name = value;
-         $scope.fenlei = true;
-         $scope.ListPage.cat_id = id;
-         $scope.cat_id = id;
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-      };
-      //取消商品属性筛选的内容
-      $scope.closeShuxing = function(filter) {
-         $scope.ListPage.filter = filter;
-         $scope.InitList();
-      };
-      //获取商品属性筛选的内容
-      $scope.getAttrValue = function(value, id) {
-         //$scope.cat_name = value;
-         $scope.ListPage.filter = id;
-         $scope.ListPage.keywords = '';
-         $scope.keywords = '';
-         $scope.InitList();
-         /* $('.shopList-select-conditions .more-fashion:first').prev().css({
-             height: '62'
-         })
-         $('.shopList-select-conditions .more-fashion:not(:first)').prev().css({
-             height: '30'
-         })
-         $("body,html").animate({
-             "scrollTop": $('.shopList-main-tit').offset().top
-         }, 100) */
-
-         $('.shopList-select-conditions .more-fashion:first').find('i').html('+');
-         $('.shopList-select-conditions .more-fashion:not(:first)').find('i').html('+');
-         $scope.shouQi = false;
-         $scope.moreXx = true;
-      };
-
-      //商品综合排序
-      $scope.allOrder = function() {
-         $scope.ListPage.order = '';
-         $scope.ListPage.stort = 'DESC';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //商品推荐排序
-      $scope.tuijianOrder = function() {
-         $scope.ListPage.order = 'sales_num';
-         $scope.ListPage.stort = 'DESC';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //商品价格排序
-      var good_price = 1;
-      $scope.priceOrder = function() {
-         if (good_price == 1) {
-            $scope.PriceAsOrder();
-            good_price = 0;
-         } else {
-            $scope.PriceDsOrder();
-            good_price = 1;
-         }
-         //          $scope.ListPage.order = 'shop_price';
-         //          $scope.ListPage.page = 1;
-         //          $scope.InitList();
-      };
-      //价格升序
-      $scope.PriceAsOrder = function() {
-         $scope.ListPage.stort = 'ASC';
-         $scope.ListPage.order = 'shop_price';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //价格降序
-      $scope.PriceDsOrder = function() {
-         $scope.ListPage.stort = 'DESC';
-         $scope.ListPage.order = 'shop_price';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //商品时间排序
-      $scope.timeOrder = function() {
-         $scope.ListPage.order = 'add_time';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //时间升序
-      $scope.timeAsOrder = function() {
-         $scope.ListPage.stort = 'ASC';
-         $scope.ListPage.order = 'add_time';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //时间降序
-      $scope.timeDsOrder = function() {
-         $scope.ListPage.stort = 'DESC';
-         $scope.ListPage.order = 'add_time';
-         $scope.ListPage.page = 1;
-         $scope.InitList();
-      };
-      //图片处理函数
-      $scope.listControl = function() {
-         $timeout(function() {
-            $(".picFocus").slide({
-               mainCell: ".goods-items-img ul",
-               effect: "left",
-               autoPlay: false,
-               // prevCell: ".sPrev",
-               // nextCell: ".sNext",
-               //vis:num
-            });
-         }, 1000)
-      };
-
-      //点击更多展开
-      $scope.clickMore = function() {
-         var more = true;
-
-         $('.shopList-select-conditions .more-fashion:not(:first)').click(function() {
-            if (more) {
-               more = false;
-               $(this).prev().css({
-                  height: 'auto'
-               })
-               $(this).find('i').html('-');
-            } else {
-               $(this).prev().css({
-                  height: '30'
-               })
-               more = true;
-               $(this).find('i').html('+');
-            }
-         });
-         $('.shopList-select-conditions .more-fashion:first').click(function() {
-            if (more) {
-               more = false;
-               $(this).prev().css({
-                  height: 'auto'
-               })
-               $(this).find('i').html('-');
-            } else {
-               $(this).prev().css({
-                  height: '62'
-               })
-               more = true;
-               $(this).find('i').html('+');
-            }
-         });
-      };
-      $scope.clickMore();
-
-      //猜你喜欢
-      $data.guessYouLike().success(function(data) {
-         $scope.YouLike = data;
-      });
-
-      $scope.likeGoodsFn = function() {
-         setTimeout(function() {
-            $(".hot-sale-tuijian").slide({
-               titCell: ".hot-sale-tit",
-               mainCell: ".hot-sale-goods ul",
-               vis: 6,
-               prevCell: ".sPrev",
-               nextCell: ".sNext",
-               effect: "leftLoop"
-            });
-         }, 200)
-      };
-
-
-
-      //列表页切换大图小图
-      //  $scope.picFoucusFn = function(){
-      //      setTimeout(function(){
-      //          $(".picFocus").slide({ mainCell:".bd ul",vis:4,effect:"left",autoPlay:false});
-      //      },100)
-      //  };
-
-
-
-
-
-      //商品关注
-      //防止用户多次点击，多次请求
-      var timeoutflag = 0;
-      $scope.goodsCollect = function(collect, id, index) {
-         if (timeoutflag) {
-            layer.msg('操作太频繁啦！');
-            return;
-         }
-         timeoutflag = 1;
-         timeoutflagfn = setTimeout(function() {
-            timeoutflag = 0;
-         }, 1000);
-
-         if (collect == 0) {
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Goods/get_goods_collect',
-               data: {
-                  goods_id: id
-               },
-            }).success(function(data) {
-               if (data.status == '0') {
-                  //layer.msg('关注失败',{time:100});
-                  //$state.go('login');
-               } else {
-                  //layer.msg('关注成功',{time:100});
-                  $scope.shopListData.goods[index].is_collect = 1;
-               }
-            })
-         } else {
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Goods/collect_del',
-               data: {
-                  goods_id: id
-               },
-            }).success(function(data) {
-               if (data.status == '0') {
-                  //layer.msg('取消关注失败',{time:100});
-                  //$state.go('login');
-               } else {
-                  //layer.msg('取消关注成功',{time:100});
-                  $scope.shopListData.goods[index].is_collect = 0;
-               }
-            })
-         }
-      };
    }])
    //商品品牌专题页
    .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', function($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state) {
@@ -10201,6 +9715,11 @@ angular.module('myApp.controllers', [])
       //商品推荐排序
       $scope.tuijianOrder = function() {
          $scope.hotGoodList.order = 'sales_num';
+         $scope.hotGoodList.page = 1;
+         $scope.getHotGoods();
+      };
+      $scope.goods_sort = function() {
+         $scope.hotGoodList.order = 'goods_sort';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };

@@ -132,7 +132,7 @@
          <div class="selected-topics-goods" style="min-height: 260px;max-height: 450px;">
             <div class="swiper-container swiper-container1" ng-if="flashData">
                <div class="swiper-wrapper">
-                  <a class="swiper-slide" style="max-width: 240px;" ng-repeat="fsItem in flashData.data" repeat-done="yushou()" href="javascript:;" ui-sref="shop-detail({goods_id:fsItem.id,isActivity:1})" target="_blank">
+                  <a class="swiper-slide" href="javascript:;" style="max-width: 240px;" ng-click="clickclick(fsItem.id)" ng-repeat="fsItem in flashData.data" repeat-done="yushou()">
                      <div>
                         <img ng-src={{fsItem.goods_img}} alt="">
                      </div>
@@ -144,8 +144,8 @@
                      </div>
                   </a>
                </div>
-               <a class="sPrev" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
-               <a class="sNext" ng-if="flashData.data.length>5" href="javascript:void(0)"></a>
+               <a class="sPrev" href="javascript:void(0)"></a>
+               <a class="sNext" href="javascript:void(0)"></a>
             </div>
          </div>
       </div>
@@ -160,8 +160,8 @@
             <div class="brand-block-ad">
                <div class="swiper-container swiper-container2">
                   <div class="swiper-wrapper">
-                     <div class="swiper-slide" ads-click="{{item}}" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
-                        <img ng-src={{item.ad_img}} alt="">
+                     <div class="swiper-slide" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
+                        <img ads-click="{{item}}" ng-src={{item.ad_img}} alt="">
                      </div>
                   </div>
                   <a class="sPrev" href="javascript:void(0)"></a>

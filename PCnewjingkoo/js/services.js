@@ -127,8 +127,8 @@ angular.module('myApp.HttServices', [])
    })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function($http, $window, $timeout, ipCookie) {
       // var ip = 'http://v401app.jingkoo.net'; //测试
-      var ip = 'http://newpc.jingkoo.net'; //正式
-      // var ip = 'https://www.jingku.cn'; //测试
+      // var ip = 'http://newpc.jingkoo.net'; //正式
+      var ip = 'https://www.jingku.cn'; //测试
       return {
          //7)获取商品价格优惠区间
          ip: ip,

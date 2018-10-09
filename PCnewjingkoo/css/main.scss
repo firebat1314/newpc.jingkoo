@@ -8401,12 +8401,12 @@ $browser-default-font-size: 37.5px !default;
       .nav-xdh {
          position: relative;
          margin: 0 auto;
-         background: #5891e1;
+         background: #ffffff;
          border: 1px solid #f0f0f0;
          border-top: none;
          .zaki {
             text-align: center;
-            color: #ffffff;
+            color: #666666;
             line-height: 50px;
             font-size: 13px !important;
             border-bottom: 1px solid #f0f0f0;
@@ -8417,13 +8417,7 @@ $browser-default-font-size: 37.5px !default;
                width: 13px;
                height: 9px;
                margin-left: 10px;
-               &:after{
-                  content: '';
-                  border: 7px solid transparent;
-                  border-top-color: #fff;
-                  display: inline-block;
-                  margin-bottom: -5px;
-               }
+               background: url(../img/xjt-cx.png) no-repeat center;
             }
          }
          ul.xd-hd {
@@ -8435,15 +8429,9 @@ $browser-default-font-size: 37.5px !default;
                &.on {
                   .wrp{
                      background: #3f69a5;
-                     // border-right-color: transparent;
                      a{
                         color: #ffffff;
                      }
-                  }
-               }
-               &:last-child{
-                  .wrp{
-                     border-right-color: transparent;
                   }
                }
                .wrp {
@@ -8460,7 +8448,7 @@ $browser-default-font-size: 37.5px !default;
                      display: block;
                      width: 100%;
                      text-align: center;
-                     color: #ffffff;
+                     color: #666666;
                      line-height: 50px;
                      font-size: 13px;
                   }

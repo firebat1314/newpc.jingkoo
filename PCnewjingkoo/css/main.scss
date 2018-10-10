@@ -22815,3 +22815,134 @@ textarea {
       cursor: default;
    }
 }
+.newGoods_box{
+   .head_img {
+      text-align: center;
+   }
+
+   .newbrandin {
+      background-color: #ffffff;
+      padding-bottom: 80px;
+      .title {
+         text-align: center;
+         margin: auto;
+         padding: 50px 0;
+
+         .en {
+            color: #999999;
+            font-size: 21px;
+            margin-bottom: 8px;
+         }
+
+         .ch {
+            font-size: 30px;
+            color: #000000;
+            letter-spacing: 5px;
+         }
+      }
+
+      .brand_list {
+
+         .dh ul {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 306px;
+            margin: 0 auto;
+
+            li {
+               float: left;
+               overflow: hidden;
+               height: 100%;
+               position: relative;
+               cursor: pointer;
+
+               img {
+                  max-width: initial;
+                  max-height: initial;
+                  height: 100%;
+               }
+
+               a {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+               }
+
+            }
+         }
+      }
+
+   }
+
+   .commodity {
+      @extend .newbrandin;
+      background-color: #eff3f7;
+
+      .goods-list {
+         background-color: #ffffff;
+         box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+         overflow: hidden;
+
+         * {
+            box-sizing: border-box;
+         }
+
+         .goods {
+            float: left;
+            width: 33.33%;
+            border: 1px solid #fafafa;
+            overflow: hidden;
+            cursor: pointer;
+
+            &:hover {
+               .img {
+                  transition: transform .3s;
+                  transform: translateY(-10px)
+               }
+            }
+
+            &:nth-child(3n) {
+               border-right: 0;
+            }
+
+            .img {
+               text-align: center;
+               width: 200px;
+               height: 200px;
+               margin: 36px auto;
+            }
+
+            .info {
+               background-color: #eff3f7;
+               padding: 16px;
+               text-align: center;
+               margin: 0 20px 28px;
+
+               .name {
+                  color: #333333;
+                  font-size: 16px;
+                  margin-bottom: 8px;
+               }
+
+               .price {
+                  font-size: 16px;
+                  color: #e60000;
+                  font-weight: 600;
+               }
+            }
+         }
+      }
+   }
+   .new_product {
+      @extend .commodity;
+      background-color: #ffffff;
+
+      .goods-list {
+         .goods {
+            width: 25%;
+         }
+
+      }
+   }
+}

@@ -1437,34 +1437,41 @@ angular.module('myApp.controllers', [])
       }).success(function(data) {
          $scope.data = data;
       })
-      $scope.clickAds = function(link_type) {
-         if (link_type.type_name == 'category') {
-            window.open($state.href('shop-list', {
-               params: encodeURIComponent(JSON.stringify({
-                  cat_id: link_type.type_value,
-               }))
-            }), '_blank');
-         } else if (link_type.type_name == 'goods') {
-            window.open($state.href('shop-detail', {
-               goods_id: link_type.type_value,
-               keywords: ''
-            }), '_blank');
-         } else if (link_type.type_name == "brand") {
-            window.open($state.href('shop-list', {
-               params: encodeURIComponent(JSON.stringify({
-                  brand_id: link_type.type_value,
-               }))
-            }), '_blank');
-         } else if (link_type.type_name == "search") {
-
-         }
+      $scope.render = function(){
+         var parent = jQuery('.dh ul');
+         var li = parent.find('li');
+         var length = li.length;
+      
+         li.first()
+        .animate({
+            width: li.first().find('img').width()
+         }, 'slow')
+         .siblings()
+         .animate({
+            width: (parent.width()-li.first().width())/(length-1)-1+'px',
+         }, 'slow');
+   
+         jQuery('.sfq ul li').hover(function() {
+   
+            $(this).addClass('curr')
+               .stop()
+               .animate({
+                  width: $(this).find('img').width(),
+               }, 'slow')
+               .siblings()
+               .stop()
+               .animate({
+                  width: (parent.width()-$(this).find('img').width())/(length-1)-1+'px',
+               }, 'slow')
+               .removeClass('curr');
+   
+   
+         }, function() {
+            //移出
+   
+         })
       }
-      $scope.goShopDetails = function(goods_id) {
-         $state.go('shop-detail', {
-            goods_id: goods_id,
-            keywords: ''
-         });
-      }
+    
    }])
    //积分商城
    .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
@@ -1615,6 +1622,7 @@ angular.module('myApp.controllers', [])
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
+      
       $scope.yhqList = {
          page: 1,
          size: 6,

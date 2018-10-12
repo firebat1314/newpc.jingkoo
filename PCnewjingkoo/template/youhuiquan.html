@@ -1,64 +1,79 @@
 <div class="youhuiquan-main">
-    <div class="brand-gg" style="height:450px;background:url(img/youhuiquanBigPic.jpg) no-repeat center center;background-size: auto 100%;">
-        <!--<img style="width:100%;height:100%;display: block;object-fit:contain;" src="img/youhuiquanBigPic.jpg" alt="">-->
-    </div>
+   <div class="brand-gg" style="height:450px;background:url(img/youhuiquanBigPic.jpg) no-repeat center center;background-size: auto 100%;">
+      <!--<img style="width:100%;height:100%;display: block;object-fit:contain;" src="img/youhuiquanBigPic.jpg" alt="">-->
+   </div>
 
-    <div class="coupon-hd cle">
-        <div class="cou-pxv">
-            <span ng-click="moren()">默认排序</span>
-            <span ng-click="guoqi()">即将过期</span>
-            <span ng-click="moneyMax()">面值最大</span>
-        </div>
-        <!--<div class="cou-goux">-->
-            <!--<span><input type="checkbox" id="go-1"/><label for="go-1"></label>全部类型</span>-->
-            <!--<span><input type="checkbox" id="go-2"/><label for="go-2"></label>运费券</span>-->
-        <!--</div>-->
-    </div>
+   <div class="navc-wrap">
+      <div class="nav-xdh all" gird>
+         <div class="zaki" style="width: 11%" ng-if="category.data.length>7">全部分类<em></em></div>
+         <ul class="xd-hd">
+            <li style="width: 11%" ng-class="{on:selectIndex==-1}" ng-click="getList(-1)">
+               <div class="wrp"><a href="">全部</a></div>
+            </li>
+            <li style="width: 11%" ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.list" ng-click="getList($index)" repeat-done="xdFn()">
+               <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
+            </li>
+         </ul>
+      </div>
+   </div>
 
-    <div class="coupon-box">
-        <div class="coupon-bd">
-            <ul class="cle">
-                <li ng-repeat="yhq in yhqData.list" repeat-done="circleFn()">
-                    <div class="wrp" ng-class="{'hbg':yhq.is_get==2,'shyg':yhq.is_get==1}">
-                        <div class="cmo-bg"></div>
-                        <div class="roosv">
-                            <div class="img">
-                                <a href="javascript:;" ng-click="quList(yhq.suppliers_id)">
-                                    <img ng-src={{yhq.logo}}>
-                                </a>
-                            </div>
-                            <div class="txt">
-                                <p class="rop-1"><em>¥</em>{{yhq.type_money | number:0}}<span class="spa_yhq">满{{yhq.min_goods_amount | number:0}}元可用</span></p>
-                                <p class="rop-2">{{yhq.type_name}}</p>
-                                <p class="rop-3">{{yhq.send_start_date}}--{{yhq.send_end_date}}</p>
-                            </div>
-                        </div>
-                        <div class="syu all">
-                            <div class="lnasi mb10" ng-show="yhq.is_get==0"><div class="myStat2" style="padding-top:0;margin:0 auto;width:88px;" data-dimension="80" data-text="已抢" data-percent="{{yhq.number}}" data-info="{{yhq.baifen}}" data-width="3" data-fontsize="12" data-fgcolor="#fff" data-bgcolor="#3871ff"></div></div>
-                            <a href="" class="lequ" ng-show="yhq.is_get==0" ng-click="lqYhq(yhq.type_id)">立即领取</a>
-                            <div class="ylq mb10" ng-show="yhq.is_get==1"></div>
-                            <a href="" ng-click="quList(yhq.suppliers_id)" class="lequ" ng-show="yhq.is_get==1">立即使用</a>
-                            <div class="yqg mb10" ng-show="yhq.is_get==2"></div>
-                            <span class="yliwa" ng-show="yhq.is_get==2">已领完</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        
-            <div class="pages" style="float:left">
-                <div id="Pagination"></div>
-                <div class="searchPage">
-                    <span class="page-sum">共<strong class="allPage">{{totalSize}}</strong>页</span>
-                    <span class="page-go">到第<input type="text" value="1">页</span>
-                    <a href="javascript:;" class="page-btn">确定</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+   <div class="coupon-box">
+      <div class="coupon-bd" gird>
+            <div class="no-coupon" ng-if="yhqData&&!yhqData.list.length">
+                  <div class="img">
+                      <img img-lazy-load="./img/no-coupon.png" alt="">
+                  </div>
+                  <div class="message">
+                      该分类没有优惠券哦
+                  </div>
+              </div>
+         <ul class="cle">
+            <li ng-repeat="yhq in yhqData.list" repeat-done="circleFn()">
+               <div class="wrp" ng-class="{'hbg':yhq.is_get==2,'shyg':yhq.is_get==1}">
+                  <div class="roosv">
+                     <div class="img">
+                        <a href="javascript:;" ng-click="goShop(yhq.suppliers_id)">
+                           <img ng-src={{yhq.logo}}>
+                        </a>
+                     </div>
+                     <div class="txt">
+                        <p class="rop-1"><em>¥</em>{{yhq.type_money | number:0}}<span class="spa_yhq">满{{yhq.min_goods_amount | number:0}}元可用</span></p>
+                        <p class="rop-2">{{yhq.type_name}}</p>
+                        <p class="rop-3" ng-if="yhq.is_get!=2">{{yhq.send_start_date}}- {{yhq.send_end_date}}</p>
+                        <p class="rop-3" ng-if="yhq.is_get==2">已抢完</p>
+                     </div>
+                  </div>
+                  <div class="syu all" ng-click="getPrivilege(yhq)">
+                     <div class="cmo-bg"></div>
+                     <span class="lequ" ng-if="yhq.is_get==0">立即领取</span>
+                     <span class="lequ" ng-if="yhq.is_get==1">立即使用</span>
+                     <span class="yliwa" ng-if="yhq.is_get==2">今天看看</span>
+                  </div>
+               </div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   <div class="coupon-success" ng-if="showCouponSuccess">
+      <div class="wrap " >
+         <div class="close" ng-click="close()"></div>
+         <img src="./img/coupon-success.png" alt="">
+         <div class="title">恭喜你，领取成功</div>
+         <div class="sub-title">感谢您的参与，祝您购物愉快</div>
+         <div class="btns">
+            <button class="use" ng-click="useNow()">立即使用</button>
+            <button class="cls" ng-click="close()">关闭</button>
+         </div>
+         <div class="auto-close">5秒后自动关闭</div>
+      </div>
+   </div>
+   <div class="next_fel" ng-click="next()" gird>
+      <p>点击查看下一个分类</p>
+      <em></em>
+   </div>
 </div>
 <script>
-    $(".zaki").click(function(){
-        $(this).parent().toggleClass("goot");
-    });
+   $(".zaki").click(function() {
+      $(this).parent().toggleClass("goot");
+   });
 </script>

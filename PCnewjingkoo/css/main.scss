@@ -8584,102 +8584,75 @@ $browser-default-font-size: 37.5px !default;
 .youhuiquan-main {
    .all * {
       transition: all .3s;
-      -moz-transition: all .3s;
-      /* Firefox 4 */
-      -webkit-transition: all .3s;
-      /* Safari 和 Chrome */
-      -o-transition: all .3s;
-      /* Opera */
    }
    .brand-gg {
       height: 450px;
    }
    .navc-wrap {
       position: relative;
-      z-index: 50;
-      margin-top: -20px;
+      z-index: 40;
+      margin-bottom: 20px;
+      .nav-xdh {
+         position: relative;
+         margin: 0 auto;
+         background: #ffffff;
+         border: 1px solid #f0f0f0;
+         border-top: none;
+         .zaki {
+            text-align: center;
+            color: #666666;
+            line-height: 50px;
+            font-size: 13px !important;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            float: right;
+            em {
+               display: inline-block;
+               width: 13px;
+               height: 9px;
+               margin-left: 10px;
+               background: url(../img/xjt-cx.png) no-repeat center;
+            }
+         }
+         ul.xd-hd {
+            overflow: hidden;
+            margin-bottom: -1px;
+            li {
+               float: left;
+               overflow: hidden;
+               &.on {
+                  .wrp{
+                     background: #3f69a5;
+                     a{
+                        color: #ffffff;
+                     }
+                  }
+               }
+               .wrp {
+                  border-right: 1px solid #f0f0f0;
+                  border-bottom: 1px solid #f0f0f0;
+                  &:hover {
+                     background: #3f69a5;
+                     color: #ffffff;
+                     a{
+                        color: #ffffff;
+                     }
+                  }
+                  a {
+                     display: block;
+                     width: 100%;
+                     text-align: center;
+                     color: #666666;
+                     line-height: 50px;
+                     font-size: 13px;
+                  }
+               }
+            }
+         }
+      }
    }
-   .nav-xdh .zaki {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 14.28%;
-      height: 40px;
-      background: #fff;
-      border: 1px solid #f0f0f0;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px;
-      cursor: pointer;
-   }
-   .nav-xdh .zaki em {
-      display: inline-block;
-      width: 13px;
-      height: 9px;
-      margin-left: 10px;
-      background: url(../img/xjt-cx.png) no-repeat center;
-   }
-   .nav-xdh {
-      position: relative;
-      width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-   }
-   .nav-xdh .xd-hd {
-      padding-right: 163px;
-      height: 40px;
-      overflow: hidden;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li {
-      float: left;
-      width: 14.28%;
-      height: 42px;
-      overflow: hidden;
-      margin-left: -1px;
-      margin-top: -1px;
-   }
-   .nav-xdh .xd-hd li .wrp {
-      height: 40px;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li .wrp a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 16px;
-   }
-   .nav-xdh .xd-hd li .wrp:hover,
-   .nav-xdh .xd-hd li.on .wrp {
-      background: #f23030;
-   }
-   .nav-xdh .xd-hd li .wrp:hover a,
-   .nav-xdh .xd-hd li.on .wrp a {
-      color: #fff;
-   }
-   .nav-xdh.goot .xd-hd {
-      height: 80px;
-   }
-   .nav-xdh.goot .zaki {
-      background: #f23030;
-      color: #fff;
-      border-color: #f23030;
-   }
-   .nav-xdh.goot .zaki em {
-      background: url(../img/xjt-cs.png) no-repeat center;
-   }
-   .nav-xdh.fdoc {
-      position: fixed;
-      z-index: 101;
-      width: 1200px;
-      top: 0;
-      left: 50%;
-      margin-left: -600px;
-   }
+
+
    .coupon-box {
       display: flex;
    }
@@ -8690,198 +8663,238 @@ $browser-default-font-size: 37.5px !default;
       overflow: hidden;
       height: 0;
    }
-   .coupon-hd {
-      width: 1200px;
-      margin: 0 auto;
-      border: 1px solid #e6e6e6;
-      padding: 5px 0;
-      margin-top: 20px;
-   }
-   .coupon-hd .cou-pxv {
-      float: left;
-   }
-   .coupon-hd .cou-pxv span {
-      cursor: pointer;
-      float: left;
-      display: block;
-      width: 123px;
-      height: 30px;
-      line-height: 30px;
-      text-align: center;
-      font-size: 14px;
-      color: #666;
-      border-right: 1px solid #e6e6e6;
-   }
-   .coupon-hd .cou-pxv span.on,
-   .coupon-hd .cou-pxv span:hover {
-      color: #ff3333;
-   }
-   .coupon-hd .cou-goux {
-      float: left;
-      margin-left: 10px;
-   }
-   .coupon-hd .cou-goux span {
-      float: left;
-      display: block;
-      margin-top: 7px;
-      margin-left: 20px;
-      line-height: 18px;
-      color: #808080;
-   }
-   .coupon-hd .cou-goux span input {
-      display: none;
-   }
-   .coupon-hd .cou-goux span input+label {
-      display: block;
-      float: left;
-      width: 18px;
-      height: 18px;
-      margin-right: 10px;
-      background: #fff;
-      border: 1px solid #e6e6e6;
-      cursor: pointer;
-   }
-   .coupon-hd .cou-goux span input:checked+label {
-      border-color: #f23030;
-      background: #f23030 url(../img/yes.png) no-repeat center;
-   }
    .coupon-bd {
-      width: 1200px;
       margin: 0 auto 25px;
-   }
-   .coupon-bd li {
-      float: left;
-      width: 580px;
-      height: 170px;
-      margin: 20px 40px 0 0;
-      background: #fff;
-   }
-   .coupon-bd li .wrp {
-      position: relative;
-   }
-   .coupon-bd li .wrp .roosv {
-      float: left;
-      width: 415px;
-      height: 150px;
-      padding: 20px 0 0 30px;
-      border-radius: 5px;
-      box-shadow: 0 0 7px rgba(0, 0, 0, .1);
-   }
-   .coupon-bd li .wrp .roosv .img {
-      float: left;
-      width: 130px;
-      height: 130px;
-   }
-   .coupon-bd li .wrp .roosv .img img {
-      display: block;
-      width: 130px;
-      height: 130px;
-   }
-   .coupon-bd li .wrp .roosv .txt {
-      padding-left: 150px;
-   }
-   .coupon-bd li .wrp .roosv .txt .rop-1 {
-      margin-bottom: 10px;
-      color: #ff3333;
-      font-size: 35px;
-   }
-   .coupon-bd li .wrp .roosv .txt .rop-1 em {
-      position: relative;
-      margin-right: 5px;
-      display: inline-block;
-      font-size: 24px;
-   }
-   .coupon-bd li .wrp .roosv .txt .rop-1 span {
-      display: inline-block;
-      font-size: 14px;
-      color: #666;
-      padding-left: 10px;
-      color: #3f69a5;
-   }
-   .coupon-bd li .wrp .roosv .txt .rop-2 {
-      color: #808080;
-      font-size: 14px;
-      margin-bottom: 17px;
-   }
-   .coupon-bd li .wrp .roosv .txt .rop-3 {
-      color: #808080;
-      font-size: 14px;
-   }
-   .coupon-bd li .wrp .syu {
-      float: left;
-      width: 134px;
-      height: 150px;
-      padding-top: 20px;
-      background: #799fff;
-      border-radius: 5px;
-      box-shadow: 0 0 7px rgba(0, 0, 0, .1);
-   }
-   .coupon-bd li .wrp .syu .lequ {
-      display: block;
-      margin: 15px auto 0;
-      width: 100px;
-      height: 31px;
-      line-height: 31px;
-      text-align: center;
-      border-radius: 31px;
-      border: 1px solid #fff;
-      color: #fff;
-      font-size: 14px;
-      &:hover {
+
+      .no-coupon{
+         text-align: center;
+         font-size: 14px;
+         img{
+            width: 100px;
+         }
+      }
+      li {
+         float: left;
+         margin: 20px 15px 0 0;
          background: #fff;
-         color: #396cec;
+         box-shadow: 0 0 7px rgba(0, 0, 0, .1);
+         border-radius: 5px;
+         width: calc(33.33% - 10px);
+   
+         &:nth-child(3n) {
+            margin-right: 0;
+         }
+   
+         .wrp {
+            position: relative;
+            display: flex;
+   
+            /* 已抢完 */
+            &.hbg {
+               &:after{
+                  content: '';
+                  position: absolute;
+                  display: block;
+                  width: 69px;
+                  height: 68px;
+                  background: url(../img/coupon_center_1_03.png) no-repeat center center/100%;
+                  left: 265px;
+                  top: 47px;
+                  z-index: 10;
+               }
+               .syu {
+                  background: #c3c3c3;
+                  .cmo-bg {
+                     background-image: url(../img/cmo-bg2.jpg);
+                  }
+               }
+            }
+            /* 已领取 */
+            &.shyg{
+               &:after{
+                  content: '';
+                  position: absolute;
+                  display: block;
+                  width: 69px;
+                  height: 68px;
+                  background: url(../img/coupon_center_1_03.png) no-repeat center center/100%;
+                  left: 265px;
+                  top: 47px;
+                  z-index: 10;
+               }
+               .syu {
+                  background: #c3c3c3;
+                  .cmo-bg {
+                     background-image: url(../img/cmo-bg2.jpg);
+                  }
+               }
+            }/* 未领取 */
+            &.unget{
+              
+            }
+   
+            .roosv {
+               flex: 1;
+               overflow: hidden;
+   
+               .img {
+                  float: left;
+                  width: 105px;
+                  height: 105px;
+                  margin: 12px;
+                     border: 1px solid #f0f0f0;
+                     img {
+                     display: block;
+                  }
+               }
+   
+               .txt {
+                  float: left;
+                  margin: 12px 0;
+   
+                  .rop-1 {
+                     margin-bottom: 10px;
+                     color: #ff3333;
+                     font-size: 35px;
+   
+   
+                     em {
+                        position: relative;
+                        margin-right: 5px;
+                        display: inline-block;
+                        font-size: 18px;
+                     }
+                     .spa_yhq {
+                        color: #ff3333;
+                        background: #fff4ec;
+                        padding: 3px 5px;
+                        margin-left: 10px;
+                     }
+   
+                     span {
+                        display: inline-block;
+                        font-size: 14px;
+                        color: #666;
+                        padding-left: 10px;
+                        color: #3f69a5;
+                     }
+                  }
+   
+                  .rop-2 {
+                     color: #333333;
+                     font-size: 14px;
+                     margin-bottom: 12px;
+                  }
+                  .rop-3 {
+                     color: #808080;
+                     font-size: 14px;
+                  }
+   
+               }
+            }
+   
+            
+
+            .syu {
+               float: left;
+               max-width: 16px;
+               background: #799fff;
+               cursor: pointer;
+               position: relative;
+               -webkit-transition: all .3s;
+               transition: all .3s;
+               text-align: center;
+               padding: 0 10px;
+               padding-top: 22px;
+               &:hover {
+                  opacity: .8;
+               }
+               .cmo-bg {
+                  position: absolute;
+                  top: 0;
+                  left: -20px;
+                  display: block;
+                  width: 25px;
+                  height: 100%;
+                  background: url(../img/cmo-bg.jpg) no-repeat center/auto 100%;
+               }
+               .lequ {
+                  display: block;
+                  text-align: center;
+                  color: #fff;
+                  font-size: 14px;
+               }
+            }
+   
+         }
       }
    }
-   .coupon-bd li .wrp .cmo-bg {
-      position: absolute;
+   .coupon-success{
+      background: rgba(0, 0, 0, .3);
+      position: fixed;
+      width: 100%;
+      height: 100%;
       top: 0;
-      left: 430px;
-      display: block;
-      width: 25px;
-      height: 170px;
-      background: url(../img/cmo-bg.jpg) no-repeat center;
+      z-index: 100;
+      display: flex;
+    align-items: center;
+    justify-content: center;
+      .wrap{
+         position: absolute;
+         // top:0;left:0;right:0;bottom:9;margin: auto;
+         text-align: center;
+         padding: 50px 107px;
+         border-radius: 5px;
+         background: #ffffff;
+         border: 3px solid rgba(0, 0, 0, .3);
+         img{
+            margin-bottom: 16px;
+         }
+         .close{
+            text-align: right;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 25px;
+            height:25px;
+            cursor: pointer;
+            background: url(../img/xieyi_xh.png) no-repeat center/100%;
+         }
+         .title{
+            font-size: 20px;
+            color: #333333;;
+            margin-bottom: 8px;
+         }
+         .sub-title{
+            margin-bottom: 16px;
+         }
+         .btns{
+            .use,.cls{
+               background: #3f69a5;
+               color: #ffffff;
+               padding: 12px 20px;
+               margin-right: 14px;
+               min-width: 100px;
+               border:1px solid #e0e0e0;
+               border: none;
+               outline: none;
+               border-radius: 3px;
+            }
+            .cls{
+               margin-right: 0;
+               background: #fafafa;
+               color:#666;
+            }
+         }
+         .auto-close{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+         }
+      }
    }
-   .coupon-bd li .wrp .lnasi {
-      position: relative;
-      width: 70px;
-      height: 70px;
-      margin: 0 auto;
-   }
-   .coupon-bd li .wrp .yliwa {
-      display: block;
-      margin: 0 auto;
-      width: 100px;
-      height: 33px;
-      line-height: 31px;
-      text-align: center;
-      color: #fff;
-      font-size: 14px;
-   }
-   .coupon-bd li .wrp .yqg {
-      width: 70px;
-      height: 70px;
-      margin: 15px auto 0;
-      background: url(../img/yqg.png) no-repeat center top;
-   }
-   .coupon-bd li .wrp .ylq {
-      width: 70px;
-      height: 70px;
-      margin: 15px auto 0;
-      background: url(../img/ylq.png) no-repeat center top;
-   }
-   .coupon-bd li:nth-child(2n) {
-      margin-right: 0;
-   }
-   .coupon-bd li .wrp.hbg .syu {
-      background: #c3c3c3;
-   }
-   .coupon-bd li .wrp.hbg .cmo-bg {
-      background: url(../img/cmo-bg2.jpg) no-repeat center;
-   } //.coupon-bd li .wrp.shyg .syu .lequ{background:#fff;color:#396cec;}
-   .coupon-bd li .wrp.shyg .syu .ylq {}
    .next_fel {
-      width: 1200px;
-      margin: 0 auto 40px;
+      margin: 10px auto 40px;
       height: 70px;
       background: #f7f7f7;
       text-align: center;
@@ -8889,8 +8902,8 @@ $browser-default-font-size: 37.5px !default;
    }
    .next_fel p {
       color: #333;
-      font-size: 18px;
-      padding-top: 30px;
+      font-size: 15px;
+      padding-top: 15px;
    }
    .next_fel em {
       display: block;
@@ -22849,9 +22862,10 @@ textarea {
             width: 100%;
             height: 306px;
             margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
 
             li {
-               float: left;
                overflow: hidden;
                height: 100%;
                position: relative;
@@ -22915,7 +22929,7 @@ textarea {
 
             .info {
                background-color: #eff3f7;
-               padding: 16px;
+               padding: 16px 53px;
                text-align: center;
                margin: 0 20px 28px;
 
@@ -22923,6 +22937,10 @@ textarea {
                   color: #333333;
                   font-size: 16px;
                   margin-bottom: 8px;
+                  text-align: left;
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
                }
 
                .price {

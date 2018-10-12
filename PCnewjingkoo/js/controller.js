@@ -850,8 +850,11 @@ angular.module('myApp.controllers', [])
             $scope.fastCategory = data;
          }
       });
-      $scope.clickclick = function(id){
-         window.open($state.href('shop-detail',{goods_id:id,isActivity:1}))
+      $scope.clickclick = function(id) {
+         window.open($state.href('shop-detail', {
+            goods_id: id,
+            isActivity: 1
+         }))
       }
       $scope.yushou = function() {
          var swiper = new Swiper('.swiper-container1', {
@@ -935,7 +938,8 @@ angular.module('myApp.controllers', [])
             $(document).scroll(function(d) {
                renderList()
             })
-            function renderList(){
+
+            function renderList() {
                subsection.each(function(index, div) {
                   if (!div.myset) {
                      if ($(window).scrollTop() + $(window).height() > $(div).offset().top + 250) {
@@ -990,7 +994,7 @@ angular.module('myApp.controllers', [])
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
-      
+
       //闪购除了全部的数据
       /* $http({
          method: "POST",
@@ -1198,8 +1202,8 @@ angular.module('myApp.controllers', [])
       };
       $scope.logoFashion();
 
-      $scope.lookMore = function(){
-         
+      $scope.lookMore = function() {
+
       }
 
       $(".gdoo").click(function() {
@@ -1437,41 +1441,99 @@ angular.module('myApp.controllers', [])
       }).success(function(data) {
          $scope.data = data;
       })
-      $scope.render = function(){
-         var parent = jQuery('.dh ul');
-         var li = parent.find('li');
-         var length = li.length;
-      
-         li.first()
-        .animate({
-            width: li.first().find('img').width()
-         }, 'slow')
-         .siblings()
-         .animate({
-            width: (parent.width()-li.first().width())/(length-1)-1+'px',
-         }, 'slow');
+      $scope.render = function() {
+         
+
+         setTimeout(() => {
+            (function (e) {
+               var box = document.querySelector(".dh");
+               var ul = box.children[0];
+               var lis = ul.children;
+
+               var width = box.offsetWidth / lis.length - 6;//初始每个图片宽度
+
+               for (var i = 0; i < lis.length; i++) {
+                  animate(lis[i], { "width": Math.floor(width) });
+               }
+               // animate(lis[0], { "width": 200 });
+
+               //循环遍历 lis 绑定背景图
+               for (var i = 0; i < lis.length; i++) {
+                  // lis[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+
+                  //给每一个li注册鼠标经过事件 鼠标经过后要排他
+
+                  lis[i].onmouseover = function () {
+                     var img = this.getElementsByTagName('img')[0];
+                     //干掉所有人 让所有人的宽度 渐渐地 变为100
+                     if(width>img.width){
+                        return
+                     }
+                     for (var j = 0; j < lis.length; j++) {
+                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - 6 });
+                     }
+
+                     //留下我自己 让我的宽度 渐渐地 变为800
+
+                     animate(this, { "width": Math.floor(img.width) });
+                  };
+               }
+
+               //鼠标离开box 所有的li宽度 渐渐地 变为240
+
+               box.onmouseout = function () {
+                  for (var i = 0; i < lis.length; i++) {
+                     animate(lis[i], { "width": Math.floor(width) });
+                  }
+               };
+               function animate(obj, json) {
+                  clearInterval(obj.timer);
+                  obj.timer = setInterval(function () {
    
-         jQuery('.sfq ul li').hover(function() {
+                     //先假设 这一次执行完 所有的属性都到达目标了
    
-            $(this).addClass('curr')
-               .stop()
-               .animate({
-                  width: $(this).find('img').width(),
-               }, 'slow')
-               .siblings()
-               .stop()
-               .animate({
-                  width: (parent.width()-$(this).find('img').width())/(length-1)-1+'px',
-               }, 'slow')
-               .removeClass('curr');
+                     var flag = true;
+                     for (var k in json) {
+                        var leader = parseInt(getStyle(obj, k)) || 0;
+                        var target = json[k];
+                        var step = (target - leader) / 10;
+                        step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                        leader = leader + step;
+                        obj.style[k] = leader + "px";
+                        //if (leader === target) {
+                        //    clearInterval(obj.timer);
+                        //}
+                        // console.log("代码还在运行");
    
+                        if (leader != target) {
    
-         }, function() {
-            //移出
+                           flag = false;//告诉标记 当前这个属s性还没到达
    
-         })
+                        }
+                     }
+   
+                     //如果此时仍然为true 就说明真的都到达了
+   
+                     if (flag) {
+                        clearInterval(obj.timer);
+                     }
+                  }, 15);
+               }
+   
+               //全部属性都到达目标值才能清空
+   
+               function getStyle(obj, attr) {
+                  if (window.getComputedStyle) {
+                     return window.getComputedStyle(obj, null)[attr];
+                  } else {
+                     return obj.currentStyle[attr];
+                  }
+               }
+            })(this)
+            
+         }, 1000);
       }
-    
+
    }])
    //积分商城
    .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
@@ -1617,113 +1679,106 @@ angular.module('myApp.controllers', [])
       };
    }])
    //优惠券
-   .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$myPublic', function($scope, $rootScope, $state, $http, ipCookie, $myPublic) {
+   .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$myPublic', '$data', function($scope, $rootScope, $state, $http, ipCookie, $myPublic, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      
-      $scope.yhqList = {
-         page: 1,
-         size: 6,
-         order: ''
-      };
-      $scope.yhqFn = function() {
+
+
+      $scope.selectIndex = -1;
+      var cool = layer.load(0, {
+         shade: [0.3, '#fff']
+      });
+      $data.CatCoupon().success(function(data) {
+         layer.close(cool);
+         if (data.status) {
+            $scope.category = data;
+            $scope.getList(-1);
+         }
+      })
+      $scope.getList = function(index) {
+         var cat_id;
+         if (index >= 0 && index < $scope.category.list.length) {
+            $scope.selectIndex = index;
+            cat_id = $scope.category.list[index].cat_id;
+         } else {
+            $scope.selectIndex = -1;
+            cat_id = 0;
+         }
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/coupon',
-            data: $scope.yhqList,
-         }).success(function(data) {
-            if (data.status) {
-               layer.close(cool);
-            }
-            $scope.yhqData = data;
-            $scope.getGoods(data);
-            $scope.totalSize = data.pages;
-         })
-      };
-      $scope.yhqFn();
-      $scope.options = {
-         num_edge_entries: 1, //边缘页数
-         num_display_entries: 4, //主体页数
-         items_per_page: 1, //每页显示1项
-         // prev_text: "上一页",
-         // next_text: "下一页",
-         link_to: 'javascript:;',
-         prev_show_always: false,
-         next_show_always: false,
-         current_page: 0,
-         callback: function(index) {
-            var cool = layer.load(0, {
-               shade: [0.3, '#fff']
-            });
-            $scope.yhqList.page = index + 1;
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Index/coupon',
-               data: $scope.yhqList,
-            }).success(function(data) {
-               if (data.status) {
-                  layer.close(cool);
-               }
-               $scope.yhqData = data;
-            })
-         }
-      };
-      $scope.getGoods = function(data) {
-         $('#Pagination').pagination(data.pages, $scope.options);
-      };
-      //缓冲进度环
-      $scope.circleFn = function() {
-         setTimeout(function() {
-            $('.myStat2').circliful();
-         }, 200)
-      };
-      //默认排序
-      $scope.moren = function() {
-         $scope.yhqList.order = 'type_id';
-         $scope.yhqFn();
-      };
-      //即将过期
-      $scope.guoqi = function() {
-         $scope.yhqList.order = 'use_end_date';
-         $scope.yhqFn();
-      };
-      //面值最大
-      $scope.moneyMax = function() {
-         $scope.yhqList.order = 'type_money';
-         $scope.yhqFn();
-      };
-      //领取优惠券
-      $scope.lqYhq = function(tid) {
-         $http({
-            method: "POST",
-            url: '' + $rootScope.ip + '/Goods/send_by_user',
             data: {
-               type_id: tid
+               page: 1,
+               size: 6,
+               cat: cat_id
             },
          }).success(function(data) {
+            layer.close(cool);
             if (data.status) {
-               $rootScope.$broadcast('uploadCoupon')
-               layer.msg(data.info, {
-                  time: 1000,
-                  icon: 1
-               }, function() {
-                  $scope.yhqFn();
-               });
-            } else {
-               layer.msg(data.info, {
-                  time: 1000,
-                  icon: 2
-               });
+               $scope.yhqData = data;
             }
          })
       };
-      //去列表
-      $scope.quList = $myPublic.openCoupon;
+
+      $scope.next = function() {
+         $scope.getList(++$scope.selectIndex);
+      };
+
+      $scope.getPrivilege = function(item) {
+         $scope.showCouponSuccess = false;
+         var is_get = item.is_get,
+            type_id = item.type_id,
+            suppliers_id = item.suppliers_id;
+         if (is_get == 1 || is_get == 2) {
+            $myPublic.openCoupon(suppliers_id);
+         } else if (is_get == 0) {
+            var inde = layer.load(2)
+            $http({
+               method: "POST",
+               url: '' + $rootScope.ip + '/Goods/send_by_user',
+               data: {
+                  type_id: type_id
+               },
+            }).success(function(data) {
+               layer.close(inde)
+               if (data.status) {
+                  var timer;
+                  $rootScope.$broadcast('uploadCoupon')
+                  item.is_get = 1;
+                  $scope.showCouponSuccess = true;
+                  $scope.useNow = function() {
+                     $scope.getPrivilege(item);
+                  }
+                  $scope.close = function() {
+                     clearInterval(timer);
+                     $scope.showCouponSuccess = false;
+                  }
+                  time = 5;
+                  timer = setInterval(() => {
+                     console.log(time)
+                     if (time == 1) {
+                        $scope.showCouponSuccess = false;
+                        $scope.$apply()
+                        clearInterval(timer);
+                     } else {
+                        $('.auto-close').html(--time + '秒后自动关闭');
+                     }
+                  }, 1000);
+               } else {
+
+                  layer.msg(data.info);
+               }
+            })
+         }
+      }
+      $scope.goShop = function(suppliers_id) {
+         $myPublic.openCoupon(suppliers_id);
+      }
    }])
    //设计
    .controller('sheji-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
@@ -2576,7 +2631,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //注册公司
-   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', '$data',function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams,$data) {
+   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', '$data', function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams, $data) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -10205,9 +10260,9 @@ angular.module('myApp.controllers', [])
 
       //获取执照复印件 base64编码
       $scope.imgPreview = function(e) {
-            $scope.zizhiArr.yyzz = e.img_url;
-            var img = document.getElementById("preview");
-            img.src = e.base64;
+         $scope.zizhiArr.yyzz = e.img_url;
+         var img = document.getElementById("preview");
+         img.src = e.base64;
       };
 
       //获取税务登记复印件 base64编码
@@ -11022,11 +11077,11 @@ angular.module('myApp.controllers', [])
 
       //获取img base64编码
       $scope.imgPreview = function(index, e) {
-   
+
          $scope.subArr.return_img[index] = e.img_url;
          var img = document.getElementsByClassName("preview")[index];
-            img.src = e.base64;
-    
+         img.src = e.base64;
+
       };
 
 

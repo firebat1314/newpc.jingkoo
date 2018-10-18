@@ -478,7 +478,7 @@ angular.module('myApp.controllers', [])
       $scope.Index = function(index) {
          $scope.num = index;
       };
-      $scope.goodsTypes = [{
+      $scope.goodsTypes = $scope.userData.user_info.parent_id>0?[{
          label: '普通商品',
          type: 'goods',
          value: 1
@@ -490,6 +490,14 @@ angular.module('myApp.controllers', [])
          label: '铺货商品',
          type: 'distribution',
          value: 3
+      }]:[{
+         label: '普通商品',
+         type: 'goods',
+         value: 1
+      }, {
+         label: '切边眼镜',
+         type: 'cutting',
+         value: 2
       }];
       switch ($state.current.name) { //根据路由判断当前搜索类型
          case 'shop-list-cut':

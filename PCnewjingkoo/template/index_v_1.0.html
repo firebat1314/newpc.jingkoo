@@ -101,14 +101,14 @@
 <div class="ad_box" ng-show="ad_show&&ad_img">
    <div class="img animated" ng-class="{'bounceIn':ad_show,'bounceOut':!ad_show}">
       <div class="close" ng-click="closeAd()">+</div>
-      <img ads-click type-name="{{link_type.type_name}}" ng-click="closeAd()" type-value="{{link_type.type_value}}" type-link="{{adTanData.ads[0].ad_link}}" src="{{ad_img}}" alt="">
+      <img ads-click="adTanData.ads[0]" ng-click="closeAd()" type-link="{{adTanData.ads[0].ad_link}}" src="{{ad_img}}" alt="">
    </div>
 </div>
 <div class="scroll-area">
    <div class="pic">
       <div class="slider" style="width:100%;margin: 0 auto;">
          <ul>
-            <li ng-repeat="slide in IndexData.list.ads_banner" ads-click type-name="{{slide.link_type.type_name}}" type-value="{{slide.link_type.type_value}}" type-link="{{slide.ad_link}}" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
+            <li ng-repeat="slide in IndexData.list.ads_banner" ads-click="slide" repeat-done="slider()" style="cursor: pointer;height:450px;background:url({{slide.ad_img}}) no-repeat center center;background-size: auto 100%;">
             </li>
          </ul>
       </div>
@@ -161,7 +161,7 @@
                <div class="swiper-container swiper-container2">
                   <div class="swiper-wrapper">
                      <div class="swiper-slide" ng-repeat="item in IndexData.list.ads_brand" repeat-done="brand()">
-                        <img ads-click="{{item}}" ng-src={{item.ad_img}} alt="">
+                        <img ads-click="item" ng-src={{item.ad_img}} alt="">
                      </div>
                   </div>
                   <a class="sPrev" href="javascript:void(0)"></a>
@@ -221,7 +221,7 @@
                   <div class="viewpager animated fadeIn">
                      <div class="swiper-container swiper-container-s{{$index}}">
                         <div class="swiper-wrapper">
-                           <div ads-click="{{view}}" class="swiper-slide" ng-repeat="view in item.Ad" repeat-done="viewpager('swiper-container-s' + $parent.$index)">
+                           <div ads-click="view" class="swiper-slide" ng-repeat="view in item.Ad" repeat-done="viewpager('swiper-container-s' + $parent.$index)">
                               <img img-lazy-load="{{view.ad_img}}" alt="">
                            </div>
                         </div>

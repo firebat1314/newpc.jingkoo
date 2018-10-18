@@ -2,7 +2,7 @@
    <div class="head_img">
       <!-- <img src="img/newgoods.jpg" alt=""> -->
       <li ng-repeat="item in data.bannerone">
-         <a href="javascript:;" ads-click="{{item}}"><img ng-src="{{item.ad_img}}" alt=""></a>
+         <a href="javascript:;" ads-click="item"><img ng-src="{{item.ad_img}}" alt=""></a>
       </li>
    </div>
    <div class="newbrandin">
@@ -14,7 +14,7 @@
          <div class="dh sfq">
             <ul>
                <li ng-repeat="item in data.new_goods" repeat-done="render()">
-                  <a href="javascript:;" ads-click="{{item}}"><img ng-src="{{item.ad_img}}" alt=""></a>
+                  <a href="javascript:;" ads-click="item"><img ng-src="{{item.ad_img}}" alt=""></a>
                </li>
             </ul>
          </div>

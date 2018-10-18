@@ -356,14 +356,14 @@ angular.module('myApp.directives', [])
                var data = [];
                for (var i = 0; i < scope.imgPreview.imgs.length; i++) {
                   var img = scope.imgPreview.imgs[i];
-                  if(typeof img === 'object'){
+                  if (typeof img === 'object') {
                      data.push({
                         "alt": "",
                         "pid": i, //图片id
                         "src": img.base64, //原图地址
                         "thumb": img.base64 //缩略图地址
                      })
-                  }else{
+                  } else {
                      data.push({
                         "alt": "",
                         "pid": i, //图片id
@@ -371,7 +371,7 @@ angular.module('myApp.directives', [])
                         "thumb": img //缩略图地址
                      })
                   }
-                  
+
                }
                layer.photos({
                   photos: {
@@ -390,7 +390,7 @@ angular.module('myApp.directives', [])
       return {
          restrict: 'A',
          scope: {
-            adsClick: '@',
+            adsClick: '=',
             typeName: '@',
             typeValue: '@',
             typeLink: '@'
@@ -399,18 +399,26 @@ angular.module('myApp.directives', [])
             element.css('cursor', 'pointer');
             $(element).on('click', function() {
                if (scope.adsClick) {
-                  var data = JSON.parse(scope.adsClick)
-                  var typeName = data.link_type.type_name;
-                  var typeValue = data.link_type.type_value;
-                  var typeLink = data.ad_link;
+                  var typeName = scope.adsClick.link_type.type_name;
+                  var typeValue = scope.adsClick.link_type.type_value;
+                  var typeLink = scope.adsClick.ad_link;
+                  console.log({
+                     type_name:scope.adsClick.link_type.type_name,
+                     type_value:scope.adsClick.link_type.type_value,
+                     ad_link:scope.adsClick.ad_link
+                  })
                   if (!typeName || !typeValue) {
 
-                     $data.click_census({ //广告点击统计
-                        type: 'ad',
-                        effect: typeLink,
-                        url: '/' + location.hash
-                     });
-                     return window.open(typeLink);
+                     if (typeLink) {
+                        window.open(typeLink);
+                        $data.click_census({ //广告点击统计
+                           type: 'ad',
+                           effect: typeLink,
+                           url: '/' + location.hash
+                        });
+                     }
+
+                     return false;
                   }
                   $data.click_census({
                      type: 'ad',
@@ -445,38 +453,6 @@ angular.module('myApp.directives', [])
                      });
                      window.open(url, '_blank');
                   }
-                  return
-               }
-               console.log(scope.typeName, scope.typeValue)
-               if (!scope.typeName || !scope.typeValue) {
-                  return location = scope.typeLink;
-               }
-               if (scope.typeName == "category") {
-                  var url = $state.href('shop-list', {
-                     params: encodeURIComponent(JSON.stringify({
-                        cat_id: scope.typeValue,
-                     }))
-                  });
-                  window.open(url, '_blank');
-               } else if (scope.typeName == "goods") {
-                  var url = $state.href('shop-detail', {
-                     goods_id: scope.typeValue,
-                  });
-                  window.open(url, '_blank');
-               } else if (scope.typeName == "brand") {
-                  var url = $state.href('shop-list', {
-                     params: encodeURIComponent(JSON.stringify({
-                        brand_id: scope.typeValue,
-                     }))
-                  });
-                  window.open(url, '_blank');
-               } else if (scope.typeName == "search") {
-                  var url = $state.href('shop-list', {
-                     params: encodeURIComponent(JSON.stringify({
-                        keywords: scope.typeValue,
-                     }))
-                  });
-                  window.open(url, '_blank');
                }
             })
          }

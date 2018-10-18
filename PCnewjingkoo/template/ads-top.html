@@ -44,7 +44,7 @@
       }
 
    </style>
-   <div class="ads-top" ng-if="topads.data.length" ng-style="{'background':topads.data[0].mobile_link}" ads-click="{{topads.data[0]}}">
+   <div class="ads-top" ng-if="topads.data.length" ng-style="{'background':topads.data[0].mobile_link}" ads-click="topads.data[0]">
       <div class="img">
          <img ng-src="{{topads.data[0].ad_img}}" alt="">
          <div class="ads-top-close" ng-click="close($event)">×</div>

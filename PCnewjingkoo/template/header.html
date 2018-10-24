@@ -340,7 +340,7 @@
                </li>
                <li ng-if="userData&&userData.user_info.is_test!=1">
                   <a ui-sref-active="active" ui-sref="flashSale">
-                     闪购
+                     活动专区
                   </a>
                </li>
                <li>
@@ -364,7 +364,7 @@
                      镜库设计
                   </a>
                </li>
-               <li ng-if="userData.user_info.parent_id>0">
+               <li ng-if="userData.user_info.is_ywy===2||userData.user_info.is_ywy===1">
                   <a ui-sref-active="active" ui-sref="distribution-division()">
                      铺货专区
                   </a>

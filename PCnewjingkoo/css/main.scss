@@ -3809,19 +3809,11 @@ $browser-default-font-size: 37.5px !default;
                   height: 420px;
                   border: 1px solid #ccc;
                   .jqzoom {
-                     float: left;
                      border: none;
                      position: relative;
-                     padding: 0px;
                      cursor: pointer;
-                     margin: 0px;
-                     display: block;
                      display: flex;
                      align-items: center;
-                     img {
-                        width: 420px;
-                        height: 420px;
-                     }
                   }
                   .zoomdiv {
                      z-index: 100;
@@ -3835,6 +3827,10 @@ $browser-default-font-size: 37.5px !default;
                      display: none;
                      text-align: center;
                      overflow: hidden;
+                     img {
+                        max-width: initial;
+                        max-height: initial;
+                     }
                   }
                   .jqZoomPup {
                      z-index: 10;

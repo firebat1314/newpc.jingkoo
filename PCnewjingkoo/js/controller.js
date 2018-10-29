@@ -478,7 +478,7 @@ angular.module('myApp.controllers', [])
       $scope.Index = function(index) {
          $scope.num = index;
       };
-      $scope.goodsTypes = $scope.userData.user_info.parent_id>0?[{
+      $scope.goodsTypes = $scope.userData.user_info.is_ywy==1||$scope.userData.user_info.is_ywy==2?[{
          label: '普通商品',
          type: 'goods',
          value: 1
@@ -1458,12 +1458,18 @@ angular.module('myApp.controllers', [])
                var ul = box.children[0];
                var lis = ul.children;
 
-               var width = box.offsetWidth / lis.length - 6;//初始每个图片宽度
+               var between = 12;
 
-               for (var i = 0; i < lis.length; i++) {
+               var width = box.offsetWidth / lis.length - between;//初始每个图片宽度
+
+               /* for (var i = 0; i < lis.length; i++) {
                   animate(lis[i], { "width": Math.floor(width) });
+               } */
+               for (var j = 0; j < lis.length; j++) {
+                  animate(lis[j], { "width": Math.floor((box.offsetWidth - lis[j].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between });
                }
-               // animate(lis[0], { "width": 200 });
+               var imgWidth = lis[0].getElementsByTagName('img')[0].width;
+               animate(lis[0], { "width": Math.floor(imgWidth) });
 
                //循环遍历 lis 绑定背景图
                for (var i = 0; i < lis.length; i++) {
@@ -1478,7 +1484,7 @@ angular.module('myApp.controllers', [])
                         return
                      }
                      for (var j = 0; j < lis.length; j++) {
-                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - 6 });
+                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between });
                      }
 
                      //留下我自己 让我的宽度 渐渐地 变为800
@@ -1490,9 +1496,9 @@ angular.module('myApp.controllers', [])
                //鼠标离开box 所有的li宽度 渐渐地 变为240
 
                box.onmouseout = function () {
-                  for (var i = 0; i < lis.length; i++) {
+                  /* for (var i = 0; i < lis.length; i++) {
                      animate(lis[i], { "width": Math.floor(width) });
-                  }
+                  } */
                };
                function animate(obj, json) {
                   clearInterval(obj.timer);
@@ -6470,14 +6476,33 @@ angular.module('myApp.controllers', [])
             data: $scope.carIdArr,
          }).success(function(data) {
             if (data.status == 1) {
-               $state.go('shop-jiesuan');
-               $rootScope.$broadcast('upCarList');
-            } else if (data.status == -2) {
+               $http({
+                  method: "POST",
+                  url: '' + $rootScope.ip + '/Flow/checkout',
+               }).success(function(data) {
+                  if (data.suppliers_id>0) { //有suppliers_id为不满足订单起订金额
+                     layer.confirm(data.info, {
+                        btn: ['去店铺', '取消'], //按钮
+                        title: '提示',
+                        btnAlign: 'c',
+                        yes: function(index) {
+                           $state.go('shopHomeNew',{shopId:data.suppliers_id});
+                           layer.close(index);
+                        },
+                        btn2: function(index) {
+                           
+                        }
+                        // closeBtn: 0
+                     });
+                  }else{
+                     $state.go('shop-jiesuan');
+                           $rootScope.$broadcast('upCarList');
+                  }
+               })
+            } else {
                layer.msg(data.info, {
                   time: 3000
                });
-            } else {
-               layer.msg(data.info);
             }
          })
       };

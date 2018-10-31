@@ -7594,6 +7594,89 @@ $browser-default-font-size: 37.5px !default;
    }
 }
 
+@mixin navc-wrap {
+   position: relative;
+   z-index: 40;
+   margin-bottom: 20px;
+
+   .nav-xdh {
+      position: relative;
+      margin: 0 auto;
+      background: #ffffff;
+      border-left: 1px solid #f0f0f0;
+
+      .zaki {
+         text-align: center;
+         color: #666666;
+         line-height: 50px;
+         font-size: 13px !important;
+         border-bottom: 1px solid #f0f0f0;
+         border-right: 1px solid #f0f0f0;
+         cursor: pointer;
+         float: right;
+         width: 11%;
+
+         em {
+            display: inline-block;
+            width: 12px;
+            height: 10px;
+            margin-left: 5px;
+            background: url(../img/xjt-cx.png) no-repeat center/100%;
+         }
+         &.on{
+            background: #3f69a5;
+            color: #ffffff;   
+            em{
+               background-image: url(../img/xjt-cs.png);
+            }         
+         }
+      }
+
+      ul.xd-hd {
+         overflow: hidden;
+         margin-bottom: -1px;
+
+         li {
+            float: left;
+            overflow: hidden;
+            width: 12.5%;
+
+            &.on {
+               .wrp {
+                  background: #3f69a5;
+
+                  a {
+                     color: #ffffff;
+                  }
+               }
+            }
+
+            .wrp {
+               border-right: 1px solid #f0f0f0;
+               border-bottom: 1px solid #f0f0f0;
+
+               &:hover {
+                  background: #3f69a5;
+                  color: #ffffff;
+
+                  a {
+                     color: #ffffff;
+                  }
+               }
+
+               a {
+                  display: block;
+                  width: 100%;
+                  text-align: center;
+                  color: #666666;
+                  line-height: 50px;
+                  font-size: 13px;
+               }
+            }
+         }
+      }
+   }
+}
 /*品牌*/
 
 .fashion-main {
@@ -7603,90 +7686,8 @@ $browser-default-font-size: 37.5px !default;
    .brand-gg {
       height: 450px;
    }
-   .navc-wrap {
-      margin-top: -20px;
-   }
-   .nav-xdh .zaki {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 14.28%;
-      height: 40px;
-      background: #fff;
-      border: 1px solid #f0f0f0;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px !important;
-      cursor: pointer;
-   }
-   .nav-xdh .zaki em {
-      display: inline-block;
-      width: 13px;
-      height: 9px;
-      margin-left: 10px;
-      background: url(../img/xjt-cx.png) no-repeat center;
-   }
-   .nav-xdh {
-      position: relative;
-      width: 1200px;
-      margin: 0 auto;
-      background: #fff;
-      z-index: 1000;
-   }
-   .nav-xdh .xd-hd {
-      padding-right: 163px;
-      height: 40px;
-      overflow: hidden;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li {
-      float: left;
-      width: 14.28%;
-      height: 42px;
-      overflow: hidden;
-      margin-left: -1px;
-      margin-top: -1px;
-   }
-   .nav-xdh .xd-hd li .wrp {
-      height: 40px;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li .wrp a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px;
-   }
-   .nav-xdh .xd-hd li .wrp:hover,
-   .nav-xdh .xd-hd li.on .wrp {
-      background: #3f69a5;
-   }
-   .nav-xdh .xd-hd li .wrp:hover a,
-   .nav-xdh .xd-hd li.on .wrp a {
-      color: #fff;
-   }
-   .nav-xdh.goot .xd-hd {
-      height: 80px;
-   }
-   .nav-xdh.goot .zaki {
-      background: #3f69a5;
-      color: #fff;
-   }
-   .nav-xdh.goot .zaki em {
-      background: url(../img/xjt-cs.png) no-repeat center;
-   }
-   .nav-xdh.fdoc {
-      position: fixed;
-      z-index: 101;
-      width: 1200px;
-      top: 0;
-      left: 50%;
-      margin-left: -600px;
-   }
+   @include navc-wrap;
+
    .three {
       .brand-block-ad {
          height: 200px;
@@ -7753,7 +7754,6 @@ $browser-default-font-size: 37.5px !default;
       margin: 0 auto;
    }
    .pinpai ul {
-      height: 218px;
       overflow: hidden;
    }
    .pinpai ul li {
@@ -7762,6 +7762,7 @@ $browser-default-font-size: 37.5px !default;
       margin-bottom: 13px;
       width: 183px;
       height: 95px;
+      cursor: pointer;
    }
    .pinpai ul li .wrp {
       position: relative;
@@ -7807,9 +7808,6 @@ $browser-default-font-size: 37.5px !default;
       opacity: 1;
    }
    .pinpai .gdoo {
-      position: absolute;
-      right: 7px;
-      bottom: 13px;
       z-index: 10;
       width: 183px;
       height: 96px;
@@ -7864,11 +7862,11 @@ $browser-default-font-size: 37.5px !default;
    .next_fel {
       width: 1200px;
       margin: 0 auto 40px;
-      ;
       height: 70px;
       background: #f7f7f7;
       text-align: center;
       cursor: pointer;
+      margin-top: 20px;
    }
    .next_fel p {
       color: #333;
@@ -7892,32 +7890,30 @@ $browser-default-font-size: 37.5px !default;
       border-color: #ff3333;
       background-image: url(../img/cle_jt2.png);
    }
-   .center-yx {
-      display: flex;
-   }
    .xt-list {
       width: 1200px;
       margin: 20px auto 0;
    }
    .xt-list ul {
-      padding-left: 30px;
    }
    .xt-list li {
       float: left;
-      width: 262px;
-      height: 221px;
-      margin-right: 30px;
-      margin-bottom: 30px;
+      width: calc(25% - 6px);
+      margin-bottom: 8px;
+      margin-right: 8px;
+      transition: all .3s;
+      &:nth-child(4n){
+         margin-right: 0;
+      }
    }
    .xt-list li .img {
-      width: 262px;
-      height: 173px;
       background: #f5f5f5;
       overflow: hidden;
+      text-align: center;
+      padding-top: 20px;
    }
    .xt-list li .img {
       display: block;
-      width: 262px;
       height: 173px;
    }
    .xt-list li .txt {
@@ -7929,7 +7925,7 @@ $browser-default-font-size: 37.5px !default;
       font-size: 15px;
       text-align: center;
    }
-   .xt-list li:hover .wrp {
+   .xt-list li:hover{
       box-shadow: 0 0 15px rgba(0, 0, 0, .1)
    }
    .xt-list li:hover .txt {
@@ -8188,72 +8184,11 @@ $browser-default-font-size: 37.5px !default;
       height: 450px;
       text-align: center;
    }
-   .navc-wrap {
-      position: relative;
-      z-index: 40;
-      margin-bottom: 20px;
-      .nav-xdh {
-         position: relative;
-         margin: 0 auto;
-         background: #ffffff;
-         border: 1px solid #f0f0f0;
-         border-top: none;
-         .zaki {
-            text-align: center;
-            color: #666666;
-            line-height: 50px;
-            font-size: 13px !important;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            float: right;
-            em {
-               display: inline-block;
-               width: 13px;
-               height: 9px;
-               margin-left: 10px;
-               background: url(../img/xjt-cx.png) no-repeat center;
-            }
-         }
-         ul.xd-hd {
-            overflow: hidden;
-            margin-bottom: -1px;
-            li {
-               float: left;
-               overflow: hidden;
-               &.on {
-                  .wrp{
-                     background: #3f69a5;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-               }
-               .wrp {
-                  border-right: 1px solid #f0f0f0;
-                  border-bottom: 1px solid #f0f0f0;
-                  &:hover {
-                     background: #3f69a5;
-                     color: #ffffff;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-                  a {
-                     display: block;
-                     width: 100%;
-                     text-align: center;
-                     color: #666666;
-                     line-height: 50px;
-                     font-size: 13px;
-                  }
-               }
-            }
-         }
-      }
-   }
+   @include navc-wrap;
+
    
    .purchase-box {
-      display: flex;
+      margin-top: 10px;
    }
    .purchase{
       >ul{
@@ -8390,72 +8325,11 @@ $browser-default-font-size: 37.5px !default;
       height: 450px;
       text-align: center;
    }
-   .navc-wrap {
-      position: relative;
-      z-index: 40;
-      margin-bottom: 20px;
-      .nav-xdh {
-         position: relative;
-         margin: 0 auto;
-         background: #ffffff;
-         border: 1px solid #f0f0f0;
-         border-top: none;
-         .zaki {
-            text-align: center;
-            color: #666666;
-            line-height: 50px;
-            font-size: 13px !important;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            float: right;
-            em {
-               display: inline-block;
-               width: 13px;
-               height: 9px;
-               margin-left: 10px;
-               background: url(../img/xjt-cx.png) no-repeat center;
-            }
-         }
-         ul.xd-hd {
-            overflow: hidden;
-            margin-bottom: -1px;
-            li {
-               float: left;
-               overflow: hidden;
-               &.on {
-                  .wrp{
-                     background: #3f69a5;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-               }
-               .wrp {
-                  border-right: 1px solid #f0f0f0;
-                  border-bottom: 1px solid #f0f0f0;
-                  &:hover {
-                     background: #3f69a5;
-                     color: #ffffff;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-                  a {
-                     display: block;
-                     width: 100%;
-                     text-align: center;
-                     color: #666666;
-                     line-height: 50px;
-                     font-size: 13px;
-                  }
-               }
-            }
-         }
-      }
-   }
+   @include navc-wrap;
+
    
    .purchase-box {
-      display: flex;
+      margin-top: 10px;
    }
    .purchase{
       >ul{
@@ -8584,69 +8458,7 @@ $browser-default-font-size: 37.5px !default;
    .brand-gg {
       height: 450px;
    }
-   .navc-wrap {
-      position: relative;
-      z-index: 40;
-      margin-bottom: 20px;
-      .nav-xdh {
-         position: relative;
-         margin: 0 auto;
-         background: #ffffff;
-         border: 1px solid #f0f0f0;
-         border-top: none;
-         .zaki {
-            text-align: center;
-            color: #666666;
-            line-height: 50px;
-            font-size: 13px !important;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            float: right;
-            em {
-               display: inline-block;
-               width: 13px;
-               height: 9px;
-               margin-left: 10px;
-               background: url(../img/xjt-cx.png) no-repeat center;
-            }
-         }
-         ul.xd-hd {
-            overflow: hidden;
-            margin-bottom: -1px;
-            li {
-               float: left;
-               overflow: hidden;
-               &.on {
-                  .wrp{
-                     background: #3f69a5;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-               }
-               .wrp {
-                  border-right: 1px solid #f0f0f0;
-                  border-bottom: 1px solid #f0f0f0;
-                  &:hover {
-                     background: #3f69a5;
-                     color: #ffffff;
-                     a{
-                        color: #ffffff;
-                     }
-                  }
-                  a {
-                     display: block;
-                     width: 100%;
-                     text-align: center;
-                     color: #666666;
-                     line-height: 50px;
-                     font-size: 13px;
-                  }
-               }
-            }
-         }
-      }
-   }
+   @include navc-wrap;
 
 
    .coupon-box {
@@ -8665,6 +8477,7 @@ $browser-default-font-size: 37.5px !default;
       .no-coupon{
          text-align: center;
          font-size: 14px;
+         padding: 100px 0;
          img{
             width: 100px;
          }
@@ -22958,4 +22771,6 @@ textarea {
 
       }
    }
+
+   
 }

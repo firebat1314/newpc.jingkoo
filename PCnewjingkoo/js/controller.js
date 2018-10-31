@@ -997,171 +997,12 @@ angular.module('myApp.controllers', [])
       //控制header和footer显隐
       $rootScope.change = true;
 
+      $scope.selectIndex = -1;
+      $scope.showMoreCate = false;
 
-      $scope.selectIndex = 0;
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
-
-      //闪购除了全部的数据
-      /* $http({
-         method: "POST",
-         url: '' + $rootScope.ip + '/Category/get_categorys',
-         data: '',
-      }).success(function(data) {
-         layer.close(cool);
-         if (data.status) {
-            $scope.data = data;
-            $scope.getPromote(0);
-         }
-      })
-      $http({
-         method: "POST",
-         url: '' + $rootScope.ip + '/Brand/brand_index',
-         data: '',
-      }).success(function(data) {
-         if(data.status==1){
-            $scope.fashionHomeData = data;
-         }
-      })
-      //获取全部闪购的数据
-      $scope.getPromote = function(index) {
-         var cat_id;
-         if (index >= 0 && index < $scope.data.data.length) {
-            $scope.selectIndex = index;
-            cat_id = $scope.data.data[index].cat_id;
-         } else {
-            $scope.selectIndex = 0;
-            cat_id = 0;
-         }
-         var cool = layer.load(0, {
-            shade: [0.3, '#fff']
-         });
-         $http({
-            method: "GET",
-            url: '' + $rootScope.ip + '/Category/get_categorys',
-            params: {
-               type: 'is_promote',
-               cat_id: cat_id
-            },
-         }).success(function(data) {
-            layer.close(cool);
-            if (data.status) {
-               $scope.list = data;
-            }
-         })
-      };
-
-      $scope.next = function() {
-         $scope.getPromote(++$scope.selectIndex);
-      }; */
-
-
-      //品牌馆除了全部的数据
-      $http({
-         method: "POST",
-         url: '' + $rootScope.ip + '/Category/get_categorys',
-         data: '',
-      }).success(function(data) {
-         layer.close(cool);
-         $scope.fashionData = data;
-         $scope.index = -1;
-         $scope.next = function() {
-            $scope.index++;
-            if ($scope.index >= data.data.length) {
-               $scope.index = -1;
-               $scope.all = true;
-               $scope.anoAll = false;
-               $http({
-                  method: "POST",
-                  url: '' + $rootScope.ip + '/Brand/brand_index',
-                  data: '',
-               }).success(function(data) {
-                  layer.close(cool);
-                  $scope.fashionHomeData = data;
-               })
-            } else if ($scope.index > 4) {
-               $(".zaki").parent().addClass("goot");
-               $scope.all = false;
-               $scope.anoAll = true;
-               $http({
-                  method: "POST",
-                  url: '' + $rootScope.ip + '/Brand/brand_list',
-                  data: {
-                     cat_id: data.data[$scope.index].cat_id
-                  },
-               }).success(function(data) {
-                  if (data.status) {
-                     layer.close(cool);
-                  }
-                  $scope.fashionListData = data;
-               })
-            } else {
-               $scope.all = false;
-               $scope.anoAll = true;
-               $http({
-                  method: "POST",
-                  url: '' + $rootScope.ip + '/Brand/brand_list',
-                  data: {
-                     cat_id: data.data[$scope.index].cat_id
-                  },
-               }).success(function(data) {
-                  if (data.status) {
-                     layer.close(cool);
-                  }
-                  $scope.fashionListData = data;
-               })
-            }
-            $('.xd-hd li').removeClass('on');
-            $('.xd-hd li').eq($scope.index + 1).addClass('on');
-         };
-         //控制全部和商品的显隐
-         $scope.all = true;
-         $scope.anoAll = false;
-
-
-         // $scope.getAll = function(i){
-         //     $scope.all = true;
-         //     $scope.anoAll = false;
-         //     $scope.index = i;
-         //     $('.xd-hd li').removeClass('on');
-         //     $('.xd-hd li').eq(i+1).addClass('on');
-         // };
-
-
-         //调取每个品牌的数据
-         $scope.getFashion = function(id, i) {
-
-            $scope.index = i;
-
-            if (id == 0) {
-               $scope.all = true;
-               $scope.anoAll = false;
-            } else {
-               $scope.all = false;
-               $scope.anoAll = true;
-            }
-
-            $('.xd-hd li').removeClass('on');
-            $('.xd-hd li').eq(i + 1).addClass('on');
-
-            var cool = layer.load(0, {
-               shade: [0.3, '#fff']
-            });
-            $http({
-               method: "POST",
-               url: '' + $rootScope.ip + '/Brand/brand_list',
-               data: {
-                  cat_id: id
-               },
-            }).success(function(data) {
-               layer.close(cool);
-               if (data.status) {
-                  $scope.fashionListData = data;
-               }
-            })
-         }
-      })
 
       //品牌全部的数据
       $http({
@@ -1169,9 +1010,80 @@ angular.module('myApp.controllers', [])
          url: '' + $rootScope.ip + '/Brand/brand_index',
          data: '',
       }).success(function(data) {
-         $scope.fashionHomeData = data;
+         layer.close(cool);
+         if(data.status==1){
+            $scope.fashionHomeData = data;
          $scope.brandAd = data.big_banner[0].ad_img;
+      }
       })
+      
+      //所有logo
+      $scope.logoList = {
+         page: 1,
+         size: 11
+      };
+      $scope.logoFashion = function() {
+         $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Index/get_brands',
+            data: $scope.logoList,
+         }).success(function(data) {
+            if(data.status==1){
+               $scope.logoFashionData = data;
+               $scope.logoFashionList = data.data;
+            }
+         })
+      };
+      $scope.logoFashion();
+      //闪购除了全部的数据
+      $http({
+         method: "POST",
+         url: '' + $rootScope.ip + '/Category/get_categorys',
+         data: '',
+      }).success(function(data) {
+         if (data.status) {
+            $scope.data = data;
+            $scope.getPromote(-1);
+         }
+      });
+
+      //获取全部闪购的数据
+      $scope.getPromote = function(index) {
+         var cat_id;
+         if (index >= 0 && index < $scope.data.data.length) {
+            if(index>6){
+               $scope.showMoreCate = true;
+            }
+            cat_id = $scope.data.data[index].cat_id;
+            var cool = layer.load(0, {
+               shade: [0.3, '#fff']
+            });
+            $http({
+               method: "GET",
+               url: $rootScope.ip + '/Brand/brand_list',
+               params: {
+                  cat_id: cat_id
+               },
+            }).success(function(data) {
+               layer.close(cool);
+               if (data.status) {
+                  $scope.selectIndex = index;
+                  $scope.fashionListData = data;
+               }
+            })
+         } else {
+            $scope.selectIndex = -1;
+            return false;
+         }
+      };
+
+      $scope.toggleMore = function(){
+         $scope.showMoreCate=!$scope.showMoreCate
+      }
+
+      $scope.next = function() {
+         $scope.getPromote(++$scope.selectIndex);
+      };
 
       //广告插件
       $scope.brandFn = function() {
@@ -1194,37 +1106,23 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      //所有logo
-      $scope.logoList = {
-         page: 1,
-         size: 11
-      };
-      $scope.logoFashion = function() {
+      $scope.openMoreByLogo = function() {
+         $scope.logoList.page++;
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/get_brands',
-            data: $scope.logoList,
+            data: {
+               page:$scope.logoList.page,
+               size:36
+            },
          }).success(function(data) {
-            $scope.logoFashionData = data;
+            if(data.status==1){
+               $scope.logoFashionData = data;
+               $scope.logoFashionList = $scope.logoFashionList.concat(data.data);
+            }
          })
-      };
-      $scope.logoFashion();
-
-      $scope.lookMore = function() {
-
       }
 
-      $(".gdoo").click(function() {
-         $(this).parent().toggleClass("open");
-         if ($(this).parent().hasClass("open")) {
-            $scope.logoList.size = 300;
-            $scope.logoFashion();
-            $(this).html("收起<em></em>");
-         } else {
-            $scope.logoFashion();
-            $(this).html("展开更多<em></em>");
-         }
-      })
    }])
    //预售
    .controller('waitingSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {

@@ -1799,107 +1799,11 @@ $browser-default-font-size: 37.5px !default;
 /*品牌*/
 
 .fashion-main {
-   .all * {
-      transition: all .3s;
-      -moz-transition: all .3s;
-      /* Firefox 4 */
-      -webkit-transition: all .3s;
-      /* Safari 和 Chrome */
-      -o-transition: all .3s;
-      /* Opera */
-   }
+  
    .brand-gg {
       height: 450px;
    }
-   .brand-gg img {
-      width: 100%;
-      height: 100%;
-      display: block;
-   }
-   .navc-wrap {
-      margin-top: -20px;
-   }
-   .nav-xdh .zaki {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 14.28%;
-      height: 40px;
-      background: #fff;
-      border: 1px solid #f0f0f0;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px !important;
-      cursor: pointer;
-   }
-   .nav-xdh .zaki em {
-      display: inline-block;
-      width: 13px;
-      height: 9px;
-      margin-left: 10px;
-      background: url(../img/xjt-cx.png) no-repeat center;
-   }
-   .nav-xdh {
-      position: relative;
-      width: 1000px;
-      margin: 0 auto;
-      background: #fff;
-      z-index: 1000;
-   }
-   .nav-xdh .xd-hd {
-      padding-right: 135px;
-      height: 40px;
-      overflow: hidden;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li {
-      float: left;
-      width: 14.28%;
-      height: 42px;
-      overflow: hidden;
-      margin-left: -1px;
-      margin-top: -1px;
-   }
-   .nav-xdh .xd-hd li .wrp {
-      height: 40px;
-      border: 1px solid #f0f0f0;
-   }
-   .nav-xdh .xd-hd li .wrp a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      line-height: 40px;
-      color: #666;
-      font-size: 15px;
-   }
-   .nav-xdh .xd-hd li .wrp:hover,
-   .nav-xdh .xd-hd li.on .wrp {
-      background: #3f69a5;
-   }
-   .nav-xdh .xd-hd li .wrp:hover a,
-   .nav-xdh .xd-hd li.on .wrp a {
-      color: #fff;
-   }
-   .nav-xdh.goot .xd-hd {
-      height: 80px;
-   }
-   .nav-xdh.goot .zaki {
-      background: #3f69a5;
-      color: #fff;
-   }
-   .nav-xdh.goot .zaki em {
-      background: url(../img/xjt-cs.png) no-repeat center;
-   }
-   .nav-xdh.fdoc {
-      position: fixed;
-      z-index: 101;
-      width: 1000px;
-      top: 0;
-      left: 50%;
-      margin-left: -500px;
-   }
+  
    .three {
       .brand-block-ad {
          height: 165px;

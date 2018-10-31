@@ -3,14 +3,14 @@
       <!--<img style="width:100%;height:100%;display: block;object-fit:contain;" src="img/youhuiquanBigPic.jpg" alt="">-->
    </div>
 
-   <div class="navc-wrap">
+   <div class="navc-wrap" ng-if="yhqData&&yhqData.list.length">
       <div class="nav-xdh all" gird>
-         <div class="zaki" style="width: 11%" ng-if="category.data.length>7">全部分类<em></em></div>
+         <div class="zaki" ng-if="category.data.length>7">全部分类<em></em></div>
          <ul class="xd-hd">
-            <li style="width: 11%" ng-class="{on:selectIndex==-1}" ng-click="getList(-1)">
+            <li ng-class="{on:selectIndex==-1}" ng-click="getList(-1)">
                <div class="wrp"><a href="">全部</a></div>
             </li>
-            <li style="width: 11%" ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.list" ng-click="getList($index)" repeat-done="xdFn()">
+            <li ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.list" ng-click="getList($index)" repeat-done="xdFn()">
                <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
             </li>
          </ul>
@@ -19,14 +19,14 @@
 
    <div class="coupon-box">
       <div class="coupon-bd" gird>
-            <div class="no-coupon" ng-if="yhqData&&!yhqData.list.length">
-                  <div class="img">
-                      <img img-lazy-load="./img/no-coupon.png" alt="">
-                  </div>
-                  <div class="message">
-                      该分类没有优惠券哦
-                  </div>
-              </div>
+         <div class="no-coupon" ng-if="yhqData&&!yhqData.list.length">
+            <div class="img">
+               <img img-lazy-load="./img/no-coupon.png" alt="">
+            </div>
+            <div class="message">
+               该分类没有优惠券哦
+            </div>
+         </div>
          <ul class="cle">
             <li ng-repeat="yhq in yhqData.list" repeat-done="circleFn()">
                <div class="wrp" ng-class="{'hbg':yhq.is_get==2,'shyg':yhq.is_get==1}">
@@ -55,7 +55,7 @@
       </div>
    </div>
    <div class="coupon-success" ng-if="showCouponSuccess">
-      <div class="wrap " >
+      <div class="wrap ">
          <div class="close" ng-click="close()"></div>
          <img src="./img/coupon-success.png" alt="">
          <div class="title">恭喜你，领取成功</div>
@@ -67,7 +67,7 @@
          <div class="auto-close">5秒后自动关闭</div>
       </div>
    </div>
-   <div class="next_fel" ng-click="next()" gird>
+   <div class="next_fel" ng-click="next()" gird ng-if="yhqData&&yhqData.list.length">
       <p>点击查看下一个分类</p>
       <em></em>
    </div>

@@ -1,82 +1,73 @@
-<div class="fashion-main" ng-if="fashionData">
-    <div class="brand-gg" ads-click="fashionHomeData.big_banner[0]" ng-style="{backgroundImage:'url('+fashionHomeData.big_banner[0].ad_img+')'}" style="height:450px;background:url(img/fashionBigPic.jpg) no-repeat center center;background-size: auto 100%;">
-        <!--<img style="object-fit:contain;" src="img/fashionBigPic.jpg" alt="">-->
-    </div>
+<div class="fashion-main" ng-if="data">
+   <div class="brand-gg" ads-click="fashionHomeData.big_banner[0]" ng-style="{backgroundImage:'url('+fashionHomeData.big_banner[0].ad_img+')'}" style="height:450px;background:url(img/fashionBigPic.jpg) no-repeat center center;background-size: auto 100%;">
+      <!--<img style="object-fit:contain;" src="img/fashionBigPic.jpg" alt="">-->
+   </div>
 
-    <div class="navc-wrap">
-        <div class="nav-xdh all">
-            <div class="zaki">全部分类<em></em></div>
-            <ul class="xd-hd">
-                <li class="on" ng-click="getFashion(0,-1)"><div class="wrp"><a href="">全部</a></div></li>
-                <li ng-repeat="fitem in fashionData.data" repeat-done="xdFn()" ng-click="getFashion(fitem.cat_id,$index)" class=""><div class="wrp"><a href="">{{fitem.cat_name}}</a></div></li>
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-                <!--<li class=""><div class="wrp"><a href="#">透明隐形眼镜</a></div></li>-->
-            </ul>
-        </div>
-    </div>
-
-    <div ng-show="all" class="center-all">
-        <div class="three">
-            <div class="brand-block-ad gird">
-                <a class="sPrev" ng-if="fashionHomeData.three_ad.length<3" href="javascript:void(0)"></a>
-                <div class="tempWrap">
-                    <ul>
-                        <li ads-click=item ng-repeat="item in fashionHomeData.three_ad" repeat-done="brandFn()">
-                            <img ng-src={{item.ad_img}} alt="">
-                        </li>
-                    </ul>
-                </div>
-                <a class="sNext" ng-if="fashionHomeData.three_ad.length<3" href="javascript:void(0)"></a>
+   <div class="navc-wrap">
+      <div class="nav-xdh all" gird>
+         <div class="zaki" ng-if="data.data.length>7" ng-click="toggleMore()" ng-class="{'on':showMoreCate}">全部分类<em></em></div>
+         <ul class="xd-hd">
+            <li ng-class="{on:selectIndex==-1}" ng-click="getPromote(-1)">
+               <div class="wrp"><a href="">全部</a></div>
+            </li>
+            <li ng-class="{on:selectIndex==$index}" ng-if="showMoreCate || $index<7" ng-repeat="xd in data.data" ng-click="getPromote($index)" repeat-done="xdFn()">
+               <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
+            </li>
+         </ul>
+      </div>
+   </div>
+   
+   <div ng-if="selectIndex==-1" class="center-all">
+      <div class="three">
+         <div class="brand-block-ad gird">
+            <a class="sPrev" ng-if="fashionHomeData.three_ad.length<3" href="javascript:void(0)"></a>
+            <div class="tempWrap">
+               <ul>
+                  <li ads-click=item ng-repeat="item in fashionHomeData.three_ad" repeat-done="brandFn()">
+                     <img ng-src={{item.ad_img}} alt="">
+                  </li>
+               </ul>
             </div>
-        </div>
+            <a class="sNext" ng-if="fashionHomeData.three_ad.length<3" href="javascript:void(0)"></a>
+         </div>
+      </div>
 
-        <div class="pinpai all">
-            <ul class="cle">
-                <li ng-repeat="cle in logoFashionData.data">
-                    <div class="wrp">
-                        <a href=""><img ng-src={{cle.brand_logo}}></a>
-                        <div class="txt">
-                            <p>{{cle.brand_name}}</p>
-                            <a href="" ng-click="goList(cle.brand_id)" class="btnv">点击进入</a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="gdoo">展示更多<em></em></div>
-        </div>
-    </div>
+      <div class="pinpai all">
+         <ul class="cle">
+            <li ng-repeat="cle in logoFashionList" ng-click="goList(cle.brand_id)">
+               <div class="wrp">
+                  <a href=""><img ng-src={{cle.brand_logo}}></a>
+                  <div class="txt">
+                     <p>{{cle.brand_name}}</p>
+                     <a href="" class="btnv">点击进入</a>
+                  </div>
+               </div>
+            </li>
+            <li ng-if="logoFashionData.page!=logoFashionData.pages">
+               <div class="gdoo" ng-click="openMoreByLogo()">展示更多<em></em></div>
+            </li>
+         </ul>
+      </div>
+   </div>
 
-    <div ng-if="anoAll" class="center-yx">
-        <div class="xt-list">
-            <ul class="cle">
-                <li ads-click="list" ng-repeat="list in fashionListData.data[0].ads">
-                    <a href="">
-                        <div class="wrp">
-                            <div class="img"><img ng-src={{list.ad_img}}></div>
-                            <div class="txt">{{list.ad_name}}</div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+   <div ng-if="selectIndex!=-1" class="center-yx">
+      <div class="xt-list">
+         <ul class="cle">
+            <li ads-click="list" ng-repeat="list in fashionListData.data[0].ads">
+               <a href="">
+                  <div class="wrp">
+                     <div class="img"><img ng-src={{list.ad_img}}></div>
+                     <div class="txt">{{list.ad_name}}</div>
+                  </div>
+               </a>
+            </li>
+         </ul>
+      </div>
+   </div>
 
 
-    <div class="next_fel" ng-click="next()" ng-click="next()">
-        <p>点击查看下一个分类</p>
-        <em></em>
-    </div>
+   <div class="next_fel" ng-click="next()">
+      <p>点击查看下一个分类</p>
+      <em></em>
+   </div>
 </div>
-
-<script>
-        $(".zaki").click(function(){
-            $(this).parent().toggleClass("goot");
-        });
-</script>

@@ -37,7 +37,7 @@ body,html{height: 100%;}
 .car-swiper .swiper-slide .p2 i{display:inline-block;width: 7px;height:7px;background:#fff;border-radius:50%;vertical-align: middle;margin:0 20px}
 .car-swiper .swiper-slide .p3{font-size:24px;color:#fff;font-weight:normal}
 .car-swiper .swiper-slide .p4{margin-top:50px;}
-.car-swiper .swiper-slide .p4 .xzpp{vertical-align:middle;display:inline-block;width: 180px;height:50px;line-height:50px;text-align:center;border-radius:2px;background:#588dc9;color:#fff;box-shadow:0 0 10px rgba(0,0,0,.2);}
+.car-swiper .swiper-slide .p4 .xzpp{vertical-align:middle;display:inline-block;width: 180px;height:50px;line-height:50px;text-align:center;border-radius:2px;background:rgba(90, 143, 199, 1) !important;color:#fff;box-shadow:0 0 10px rgba(0,0,0,.2);}
 .car-swiper .swiper-slide .p4 .xzpp em{position:relative;top:-2px;vertical-align:middle;margin-left:10px;display:inline-block;width: 20px;height:15px;background:url(../images/wel_ico12.png) no-repeat center;}
 .car-swiper .swiper-slide .p4 .erwm{vertical-align:middle;position:relative;display:inline-block;width: 47px;height:47px;margin-left:20px;}
 .car-swiper .swiper-slide .p4 .erwm .erwm-ico{position:relative;z-index:17;width: 50px;height:50px;border:1px solid #e1e1e1;background:url(../images/wel_ico13.png) no-repeat center;border-radius:50%;}

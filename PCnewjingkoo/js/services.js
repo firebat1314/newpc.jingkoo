@@ -103,32 +103,20 @@ angular.module('myApp.HttServices', [])
    }])
    .factory('$myPublic', function($state) {
       return {
-         openCoupon: function(suppliers_id) {
-            if (suppliers_id == 0) {
-               window.open($state.href('shop-list', {
-                  params: encodeURIComponent(JSON.stringify({
-                     keywords: '镜库',
-                  }))
+         openCoupon: function(bonus_id) {
+            window.open($state.href('shop-list', {
+               params: encodeURIComponent(JSON.stringify({
+                  keywords: '',
+                  bonus_id: bonus_id
                }))
-            } else if (suppliers_id < 0) {
-               window.open($state.href('shop-list', {
-                  params: encodeURIComponent(JSON.stringify({
-                     keywords: '',
-                  }))
-               }))
-            } else {
-               var url = $state.href('shopHomeNew', {
-                  shopId: suppliers_id
-               });
-               window.open(url, '_blank');
-            }
+            }))
          },
-         goListPage:function(parmas,is_blank){
-            if(is_blank){
+         goListPage: function(parmas, is_blank) {
+            if (is_blank) {
                window.open($state.href('shop-list', {
                   params: encodeURIComponent(JSON.stringify(parmas))
                }))
-            }else{
+            } else {
                $state.go('shop-list', {
                   params: encodeURIComponent(JSON.stringify(parmas))
                })

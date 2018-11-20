@@ -3,7 +3,7 @@
       <!--<img style="width:100%;height:100%;display: block;object-fit:contain;" src="img/youhuiquanBigPic.jpg" alt="">-->
    </div>
 
-   <div class="navc-wrap" ng-if="yhqData&&yhqData.list.length">
+   <div class="navc-wrap">
       <div class="nav-xdh all" gird>
          <div class="zaki" ng-if="category.data.length>7">全部分类<em></em></div>
          <ul class="xd-hd">
@@ -32,13 +32,13 @@
                <div class="wrp" ng-class="{'hbg':yhq.is_get==2,'shyg':yhq.is_get==1}">
                   <div class="roosv">
                      <div class="img">
-                        <a href="javascript:;" ng-click="goShop(yhq.suppliers_id)">
+                        <a href="javascript:;" ng-click="goShop(yhq)">
                            <img ng-src={{yhq.logo}}>
                         </a>
                      </div>
                      <div class="txt">
                         <p class="rop-1"><em>¥</em>{{yhq.type_money | number:0}}<span class="spa_yhq">满{{yhq.min_goods_amount | number:0}}元可用</span></p>
-                        <p class="rop-2">{{yhq.type_name}}</p>
+                        <p class="rop-2" title="{{yhq.type_name}}">{{yhq.type_name}}</p>
                         <p class="rop-3" ng-if="yhq.is_get!=2">{{yhq.send_start_date}}- {{yhq.send_end_date}}</p>
                         <p class="rop-3" ng-if="yhq.is_get==2">已抢完</p>
                      </div>
@@ -67,7 +67,7 @@
          <div class="auto-close">5秒后自动关闭</div>
       </div>
    </div>
-   <div class="next_fel" ng-click="next()" gird ng-if="yhqData&&yhqData.list.length">
+   <div class="next_fel" ng-click="next()" gird>
       <p>点击查看下一个分类</p>
       <em></em>
    </div>

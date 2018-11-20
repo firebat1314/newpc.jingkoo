@@ -1350,7 +1350,7 @@ angular.module('myApp.controllers', [])
       $scope.render = function() {
          
 
-         setTimeout(() => {
+         setTimeout(function() {
             (function (e) {
                var box = document.querySelector(".dh");
                var ul = box.children[0];
@@ -1647,7 +1647,7 @@ angular.module('myApp.controllers', [])
             type_id = item.type_id,
             suppliers_id = item.suppliers_id;
          if (is_get == 1 || is_get == 2) {
-            $myPublic.openCoupon(suppliers_id);
+            $myPublic.openCoupon(item.type_id);
          } else if (is_get == 0) {
             var inde = layer.load(2)
             $http({
@@ -1671,7 +1671,7 @@ angular.module('myApp.controllers', [])
                      $scope.showCouponSuccess = false;
                   }
                   time = 5;
-                  timer = setInterval(() => {
+                  timer = setInterval(function() {
                      console.log(time)
                      if (time == 1) {
                         $scope.showCouponSuccess = false;
@@ -1688,8 +1688,8 @@ angular.module('myApp.controllers', [])
             })
          }
       }
-      $scope.goShop = function(suppliers_id) {
-         $myPublic.openCoupon(suppliers_id);
+      $scope.goShop = function(item) {
+         $myPublic.openCoupon(item.type_id);
       }
    }])
    //设计
@@ -4031,6 +4031,23 @@ angular.module('myApp.controllers', [])
    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$state', function($scope, $rootScope, $http, $stateParams, ipCookie, $sce, $state) {
       $rootScope.change = true;
 
+      
+      //购物车接口同步
+      $scope.carFn = function() {
+         $http({
+            method: "POST",
+            url: '' + $rootScope.ip + '/Flow/get_flow_goods',
+            data: '',
+         }).success(function(data) {
+            if (data.status == 1) {
+               $scope.shopCarHomeData = data;
+               $scope.totalNum = data.total.zong_goods_count;
+               $scope.totalPrice = data.total.goods_price;
+            }
+         })
+
+      };
+      $scope.carFn();
       $scope.getdata = function() {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']

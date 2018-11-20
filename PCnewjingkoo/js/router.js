@@ -226,7 +226,7 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
             title: '批量下单',
             url: '/bulk-order/:goods_id/:shop_price/:is_promote/:zhouwei',
             templateUrl: 'template/bulk_order.html?'+new Date().getTime(),
-            controller: "bulkOrder-control"
+            controller: "bulkOrder-control" 
          })
          //购物车路由
          .state("shop-car", {

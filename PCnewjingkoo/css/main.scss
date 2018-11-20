@@ -3808,18 +3808,24 @@ $browser-default-font-size: 37.5px !default;
                   width: 420px;
                   height: 420px;
                   border: 1px solid #ccc;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                   .jqzoom {
                      border: none;
                      position: relative;
                      cursor: pointer;
-                     display: flex;
-                     align-items: center;
+                     height: 100%;
+                     max-width: 100%;
+                     img{
+                        margin: auto;
+                     }
                   }
                   .zoomdiv {
                      z-index: 100;
                      position: absolute;
                      top: 0px;
-                     left: 0px;
+                     right: 0px;
                      width: 420px;
                      height: 420px;
                      background: #ffffff;
@@ -7595,7 +7601,8 @@ $browser-default-font-size: 37.5px !default;
 }
 
 @mixin navc-wrap {
-   position: relative;
+   .navc-wrap{
+      position: relative;
    z-index: 40;
    margin-bottom: 20px;
 
@@ -7675,6 +7682,7 @@ $browser-default-font-size: 37.5px !default;
             }
          }
       }
+   }
    }
 }
 /*品牌*/
@@ -8545,21 +8553,21 @@ $browser-default-font-size: 37.5px !default;
             .roosv {
                flex: 1;
                overflow: hidden;
-   
+               display: flex;
                .img {
-                  float: left;
                   width: 105px;
                   height: 105px;
                   margin: 12px;
-                     border: 1px solid #f0f0f0;
-                     img {
-                     display: block;
+                  flex-shrink: 0;
+                  border: 1px solid #f0f0f0;
+                  img {
+                  display: block;
                   }
                }
    
                .txt {
-                  float: left;
                   margin: 12px 0;
+                  flex:1;
    
                   .rop-1 {
                      margin-bottom: 10px;
@@ -8593,6 +8601,10 @@ $browser-default-font-size: 37.5px !default;
                      color: #333333;
                      font-size: 14px;
                      margin-bottom: 12px;
+                     white-space: nowrap;
+                     text-overflow: ellipsis;
+                     width: 172px;
+                     overflow: hidden;
                   }
                   .rop-3 {
                      color: #808080;

@@ -67,8 +67,9 @@
 			min_price: $scope.params.min_price || null,
 			keywords: $scope.params.keywords || null,
 			page: $scope.params.page || 1,
-			size: 20
-		};
+         size: 20,
+			bonus_id: $scope.params.bonus_id || null,
+      };
 		$scope.InitList = function () {
 			var cool = layer.load(0, { shade: [0.3, '#fff'] });
 			$http({

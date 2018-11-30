@@ -172,7 +172,7 @@
                 </tr>
             </table>
             <div class="goods_table_item" ng-repeat="cartGoods in jiesuanData.cart_goods_list">
-                <p class="p_titl">{{jiesuanData.suppliers_info.suppliers_name}}<span style="cursor: pointer;" class="per_lo" ng-click="qimoChatClick(jiesuanData.suppliers_info.access_id);"></span>
+                <p class="p_titl">{{jiesuanData.suppliers_info.suppliers_name}}<span style="cursor: pointer;" class="per_lo" ng-click="chatClick(jiesuanData.suppliers_info.id);"></span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.free_price&&cartGoods.free_price!=0">购满{{cartGoods.free_price}}免运费</span>
                     <span class="have_enough" style="float: right;color: #808080;font-size: 12px;padding-top: 2px;padding-right: 20px;" ng-if="cartGoods.suppliers_free==1">已免运费</span>
                 </p>

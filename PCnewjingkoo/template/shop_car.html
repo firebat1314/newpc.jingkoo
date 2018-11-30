@@ -172,7 +172,7 @@
                               <div class="all-check" ng-class="{'checked':carItem.is_select}"></div>
                            </label>
                         <p style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" ng-attr-title="{{carItem.title}}">{{carItem.title}}</p>
-                        <span class="kf_sp" ng-click="qimoChatClick(carItem.access_id)"></span>
+                        <span class="kf_sp" ng-click="chatClick({suppliers_id:carItem.suppliers_id})"></span>
                      </th>
                      <th width="415"></th>
                      <th width="180" class="more-youhui" style="text-align: left">

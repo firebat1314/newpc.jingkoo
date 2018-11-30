@@ -78,7 +78,7 @@
                               <span class="tb_sp1">订单号：{{tr.order_sn}}</span>
                               <span class="tb_sp1">下单时间：{{tr.add_time}}</span>
                               <span class="tb_sp1">
-                                            <img src="img/dd-2.png" onclick="qimoChatClick()" style="    display: inline-block;vertical-align: middle;margin-left: 5px;width: 22px;margin: 0;margin-right: 10px;cursor: pointer;position: relative;top: -2px;">
+                                            <img src="img/dd-2.png" ng-click="chatClick({suppliers_id:tr.suppliers_id})" style="display: inline-block;vertical-align: middle;margin-left: 5px;width: 22px;margin: 0;margin-right: 10px;cursor: pointer;position: relative;top: -2px;">
                                             供货商：{{tr.suppliers_name}}
                                         </span>
                            </th>
@@ -106,7 +106,7 @@
                                              <span>轴位：{{tr.zhouwei}}</span>
                                           </li>
                                           <li ng-repeat="attrs in tr.arr_attr">
-                                             <span style="margin-right: 30px;" ng-bind-html="attrs" ng-attr-title="{{attrs}}"></span>
+                                             <span ng-bind-html="attrs" ng-attr-title="{{attrs}}"></span>
                                              <!--<span class="fr">镜片颜色：渐近茶</span>-->
                                           </li>
                                        </ul>
@@ -129,16 +129,9 @@
                            </td>
                            <td width="140px">
                               <span style="margin-top: 22px;" class="tb_sp2">{{tr.total_fee}}</span>
-                              <!--<span class="tb_sp2">（含运费8元）</span>-->
                            </td>
                            <td width="140px">
-                              <!--<div ng-repeat="td in tr.goods">-->
-                              <!--<div class="box_tb1_div" ng-repeat="tds in td.goods_list" style="display: inline-block;">-->
-                              <!--<div ng-repeat="attr in tr.arr_attr" style="float: none;">-->
-                              <input type="button" ng-click="singleSqsh(tr.order_id,tr.rec_id,$index)" style="margin-top: 26px;" value="申请售后" class="tb_inp" ng-class="{'marginHigh':tr.qiujing&&tr.zhujing&&tr.zhouwei||tr.arr_attr.length>=3,'isMargin':(tr.qiujing&&tr.zhujing&&tr.zhouwei)||(tr.arr_attr.length>2)}">
-                              <!--</div>-->
-                              <!--</div>-->
-                              <!--</div>-->
+                              <input type="button" ng-click="singleSqsh(tr.order_id,tr.rec_id,$index)" value="申请售后" class="tb_inp">
                            </td>
                         </tr>
                      </tbody>

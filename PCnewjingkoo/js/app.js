@@ -17,6 +17,5 @@ myApp.config(function ($provide, $compileProvider, $controllerProvider, $filterP
     myApp.factory = $provide.factory;
     myApp.service = $provide.service;
     myApp.constant = $provide.constant;
-
     
 });

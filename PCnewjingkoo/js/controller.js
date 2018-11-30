@@ -1,5 +1,10 @@
 angular.module('myApp.controllers', [])
 
+   .config(function(){
+   
+      
+   })
+
    .run(function($location, $rootScope, $window, $data) {
       var _hmt = _hmt || [];
       if ($data.ip.indexOf('new') > -1) {
@@ -62,11 +67,6 @@ angular.module('myApp.controllers', [])
          }
          /* ———————————————————————————————————————————— */
          /* ———————————————————————————————————————————— */
-         /* ———————————————————————————————————————————— */
-         /* ———————————————————————————————————————————— */
-         /* ———————————————————————————————————————————— */
-         /* ———————————————————————————————————————————— */
-         /* ———————————————————————————————————————————— */
          if (toState.title == "镜库首页") {
             $rootScope.allFenLei = true;
          } else {
@@ -92,6 +92,7 @@ angular.module('myApp.controllers', [])
             $rootScope.showHomeBtn = false;
          }
       });
+
    })
 
    //主控制
@@ -139,32 +140,7 @@ angular.module('myApp.controllers', [])
          })
       };
       /* 新增客服功能 */
-      $rootScope.qimoChatClick = function(access_id) {
-         //this.native.showLoading();
-         var cool = layer.load(0, {
-            shade: [0.3, '#fff']
-         });
-
-         var old = document.getElementsByClassName('qimo')[0]
-         if (old) {
-            old.parentNode.removeChild(old);
-         }
-         var qimo = document.createElement('script');
-         qimo.type = 'text/javascript';
-         qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-         qimo.className = 'qimo';
-         document.getElementsByTagName('body')[0].appendChild(qimo);
-         var that = this;
-         var timer = setInterval(function() {
-            if (typeof qimoChatClick != "undefined") {
-               layer.close(cool);
-               clearInterval(timer)
-               setTimeout(function() {
-                  qimoChatClick();
-               }, 1000);
-            }
-         }, 500)
-      }
+      $rootScope.chatClick = this.$qimoChat.chatClick;
    }])
    //首页头部
    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', 'locals', '$myPublic', function($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat, locals, $myPublic) {

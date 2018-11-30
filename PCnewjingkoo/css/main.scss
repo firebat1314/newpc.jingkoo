@@ -14673,19 +14673,9 @@ textarea {
    border: 1px solid #3f69a5;
    color: #fff;
    font-size: 12px;
-   margin-top: 10px;
    cursor: pointer;
 }
 
-.repair_box_tb .box_tb1 td .tb_inp.marginHigh {
-   margin: 70px 0 !important;
-   position: relative;
-   top: -43px;
-}
-
-.repair_box_tb .box_tb1 td .tb_inp.marginHighA {
-   margin-top: 25px !important;
-}
 
 .box_tb1_div .tb1_div_r .div_r_ul {
    width: 280px;
@@ -14721,8 +14711,8 @@ textarea {
    font-size: 12px;
    color: #808080;
    text-align: left;
-   padding: 15px 10px;
-   width: calc(50% - 20px);
+   padding: 5px;
+   width: calc(50% - 10px);
    float: left;
 }
 
@@ -14735,7 +14725,6 @@ textarea {
 
 .box_tb1_div .tb1_div_r .div_r_ul_box {
    width: 280px;
-   position: absolute;
 }
 
 .box_tb1_div .tb1_div_r .div_r_ul_box .need_lk {

@@ -72,32 +72,16 @@ angular.module('myApp.HttServices', [])
 
       }
    }])
-   .factory('$qimoChat', [function() { /* 新增客服功能 */
+   .factory('$qimoChat', ['$state', function($state) { /* 新增客服功能 */
       return {
-         qimoChatClick: function(access_id) {
-            console.log(access_id)
-            if (!access_id) {
-               layer.msg('该店铺暂无客服', {
-                  time: 1000,
-                  icon: 2
-               });
-               return
-            }
-            var old = document.getElementsByClassName('qimo')[0]
-            //console.log(old)
-            if (old) {
-               old.parentNode.removeChild(old);
-            }
-            var qimo = document.createElement('script');
-            qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + access_id + '&autoShow=false'
-            qimo.classList = 'qimo'
-            document.body.append(qimo)
-            qimo.onload = function() {
-               setTimeout(function() {
-                  //console.log('七陌加载完成')
-                  qimoChatClick();
-               }, 400);
-            }
+         chatClick: function(ids) {
+            window.open($state.href('custome-services', {
+               params: encodeURIComponent(JSON.stringify({
+                  order_id: ids && ids.order_id,
+                  goods_id: ids && ids.goods_id,
+                  suppliers_id: ids && ids.suppliers_id
+               }))
+            }))
          }
       }
    }])
@@ -125,12 +109,42 @@ angular.module('myApp.HttServices', [])
       }
    })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function($http, $window, $timeout, ipCookie) {
-      // var ip = 'http://v401app.jingkoo.net'; //测试
-      var ip = 'http://newpc.jingkoo.net'; //正式
-      // var ip = 'https://www.jingku.cn'; //测试
+
+      // var isAccessFormalEnv = true;
+      var isAccessFormalEnv = false;
+
+      if (isAccessFormalEnv) {
+         var ip = 'https://www.jingku.cn'; //正式
+         var admin_ip = 'https://admin.jingku.cn';
+         var supplier_ip = 'https://supplier.jingku.cn';
+      } else {
+         // var ip = 'http://v401app.jingkoo.net'; //测试
+         var ip = 'http://newpc.jingkoo.net'; //测试
+         var admin_ip = 'http://newadmin.jingkoo.net';
+         var supplier_ip = 'http://newsupplier.jingkoo.net';
+      }
+
+
       return {
          //7)获取商品价格优惠区间
          ip: ip,
+         parseURL: function(url) {
+
+            if (url && url.indexOf("?") == -1) return {}
+
+            var startIndex = url.indexOf("?") + 1;
+            var str = url.substr(startIndex);
+            var strs = str.split("&");
+            var param = {}
+            for (var i = 0; i < strs.length; i++) {
+               var result = strs[i].split("=");
+               var key = result[0];
+               var value = result[1];
+               param[key] = value;
+            }
+            return param
+
+         },
          getPriceSection: function(data) {
             return $http({
                method: 'POST',
@@ -734,5 +748,82 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
+         CustomerService: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/CustomerService',
+               data: data
+            })
+         },
+         adminLoginInfo: function(data) {
+            return $http({
+               method: 'post',
+               url: admin_ip + '/Admin/Public/loginInfo ',
+               data: data
+            })
+         },
+         supplierLoginInfo: function(data) {
+            return $http({
+               method: 'post',
+               url: supplier_ip + '/Suppliers/Public/loginInfo ',
+               data: data
+            })
+         },
+         fastCustomerService: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Login/fastCustomerService ',
+               data: data
+            })
+         },
+         customer_get_supplier_info: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Category/get_supplier_info ',
+               data: data
+            })
+         },
+         customer_get_history: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Goods/get_history ',
+               data: data
+            })
+         },
+         customer_get_category_recommend_goods: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/get_category_recommend_goods ',
+               data: data
+            })
+         },
+         goods_infos: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Goods/goods_infos ',
+               data: data
+            })
+         },
+         LinShiUserig: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Public/LinShiUserig ',
+               data: data
+            })
+         },
+         CustomerServiceCustom: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/CustomerServiceCustom ',
+               data: data
+            })
+         },
+         CustomerServiceGroup: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/CustomerServiceGroup ',
+               data: data
+            })
+         }
       }
    }])

@@ -47,47 +47,6 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
             });
          })
       }
-      /* 新增客服功能 */
-      $rootScope.qimoChatClick = function(access_id) {
-         //this.native.showLoading();
-         var cool = layer.load(0, {
-            shade: [0.3, '#fff']
-         });
-         if (!access_id) {
-            // this.native.showToast('该店铺暂无客服');
-         }
-         var old = document.getElementsByClassName('qimo')[0]
-         //console.log(old);
-         if (old) {
-            old.parentNode.removeChild(old);
-         }
-         var qimo = document.createElement('script');
-         qimo.type = 'text/javascript';
-         qimo.src = 'https://webchat.7moor.com/javascripts/7moorInit.js?accessId=' + (access_id || 'b441f710-80d9-11e7-8ddd-b18e4f0e2471') + '&autoShow=false';
-         qimo.className = 'qimo';
-         document.getElementsByTagName('body')[0].appendChild(qimo);
-         var that = this;
-         var timer = setInterval(function() {
-            if (typeof qimoChatClick != "undefined") {
-               layer.close(cool);
-               clearInterval(timer)
-               setTimeout(function() {
-                  qimoChatClick();
-               }, 500);
-            }
-         }, 500)
-         /* qimo.onload = qimo['onreadystatechange'] = function () {
-         	 //that.native.hideLoading();
-         	 if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-         		 setTimeout(function () {
-         			 //console.log('客服加载完成');
-         			 layer.close(cool);
-         			 qimoChatClick();
-         		 }, 800);
-         		 qimo.onload = qimo['onreadystatechange'] = null;
-         	 }
-          }; */
-      }
 
    }])
 

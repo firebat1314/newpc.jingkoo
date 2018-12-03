@@ -326,15 +326,15 @@
                                     <p style="padding-top: 8px;">
                                        <span class="red">{{order.status}}</span>
                                     </p>
-                                    <div ng-if="(order.order_status==5 && order.pay_status==2 && order.shipping_status==1)||(order.order_status==5 && order.pay_status==2 && order.shipping_status==2)" class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">
-                                       <em></em>跟踪
+                                    <div ng-if="(order.order_status==5 || order.order_status==1) && order.pay_status==2 && (order.shipping_status==1 || order.shipping_status==2)" class="genzg" style="cursor: pointer;" data-order="{{order.order_id}}">
+                                       <em></em>物流跟踪
                                        <i style="display: none;"></i>
                                     </div>
                                     <p>
                                        <a style="cursor:pointer;" class="hse" ng-click="goOrderDetail(order.order_id)">订单详情</a>
                                     </p>
                                  </div>
-
+                                 
                               </div>
                               <div class="nero n-5 c">
 

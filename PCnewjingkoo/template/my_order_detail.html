@@ -204,9 +204,9 @@
 	<div class="" style="padding: 20px;">{{wlData[0].msg}}</div>
 </div>-->
 
-<div class="track gird mb10" ng-repeat="orderwuliu in wlData" ng-if="(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==1)||(wlData[0].state&&orderDetail.order.order_status==5 && orderDetail.order.pay_status==2 && orderDetail.order.shipping_status==2)"
+<div class="track gird mb10" ng-repeat="orderwuliu in wlData" ng-if="wlData[0].state&&(orderDetail.order.order_status==5 || orderDetail.order.order_status==1) && orderDetail.order.pay_status==2 && (orderDetail.order.shipping_status==1 || orderDetail.order.shipping_status==2)"
    style="margin-bottom: 20px;">
-   <div class="track-bt">订单跟踪</div>
+   <div class="track-bt">物流跟踪</div>
    <div class="track-nr cle">
       <div class="track-left">
          <div class="img">

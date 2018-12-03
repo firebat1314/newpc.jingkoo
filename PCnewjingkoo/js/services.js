@@ -804,6 +804,7 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
+         /* 非登录状态客服 */
          LinShiUserig: function(data) {
             return $http({
                method: 'post',
@@ -811,6 +812,7 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
+         /* 发送商品信息 */
          CustomerServiceCustom: function(data) {
             return $http({
                method: 'post',
@@ -818,10 +820,19 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
+         //通过群组ID找供应商id
          CustomerServiceGroup: function(data) {
             return $http({
                method: 'post',
                url: ip + '/Index/CustomerServiceGroup ',
+               data: data
+            })
+         },
+         /* 云通讯参数 */
+         TxImInfo: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/User/TxImInfo ',
                data: data
             })
          }

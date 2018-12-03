@@ -1,8 +1,8 @@
 angular.module('myApp.controllers', [])
 
-   .config(function(){
-   
-      
+   .config(function() {
+
+
    })
 
    .run(function($location, $rootScope, $window, $data) {
@@ -96,7 +96,7 @@ angular.module('myApp.controllers', [])
    })
 
    //主控制
-   .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', '$data', function($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat, $data) {
+   .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', '$data', 'locals', function($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat, $data, locals) {
       this.$qimoChat = $qimoChat;
       //控制首页楼梯效果
       $(window).scroll(function() {
@@ -141,6 +141,14 @@ angular.module('myApp.controllers', [])
       };
       /* 新增客服功能 */
       $rootScope.chatClick = this.$qimoChat.chatClick;
+
+      /* 云通讯信息 */
+      $data.TxImInfo().success(function(res) {
+         if (res.status == 1) {
+            $rootScope.TxImInfo = res;
+            locals.setObject(ipCookie('username')+'_TxImInfo', res);
+         }
+      })
    }])
    //首页头部
    .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', 'locals', '$myPublic', function($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat, locals, $myPublic) {
@@ -454,7 +462,7 @@ angular.module('myApp.controllers', [])
       $scope.Index = function(index) {
          $scope.num = index;
       };
-      $scope.goodsTypes = $scope.userData.user_info.is_ywy==1||$scope.userData.user_info.is_ywy==2?[{
+      $scope.goodsTypes = $scope.userData.user_info.is_ywy == 1 || $scope.userData.user_info.is_ywy == 2 ? [{
          label: '普通商品',
          type: 'goods',
          value: 1
@@ -466,7 +474,7 @@ angular.module('myApp.controllers', [])
          label: '铺货商品',
          type: 'distribution',
          value: 3
-      }]:[{
+      }] : [{
          label: '普通商品',
          type: 'goods',
          value: 1
@@ -987,12 +995,12 @@ angular.module('myApp.controllers', [])
          data: '',
       }).success(function(data) {
          layer.close(cool);
-         if(data.status==1){
+         if (data.status == 1) {
             $scope.fashionHomeData = data;
-         $scope.brandAd = data.big_banner[0].ad_img;
-      }
+            $scope.brandAd = data.big_banner[0].ad_img;
+         }
       })
-      
+
       //所有logo
       $scope.logoList = {
          page: 1,
@@ -1004,7 +1012,7 @@ angular.module('myApp.controllers', [])
             url: '' + $rootScope.ip + '/Index/get_brands',
             data: $scope.logoList,
          }).success(function(data) {
-            if(data.status==1){
+            if (data.status == 1) {
                $scope.logoFashionData = data;
                $scope.logoFashionList = data.data;
             }
@@ -1027,7 +1035,7 @@ angular.module('myApp.controllers', [])
       $scope.getPromote = function(index) {
          var cat_id;
          if (index >= 0 && index < $scope.data.data.length) {
-            if(index>6){
+            if (index > 6) {
                $scope.showMoreCate = true;
             }
             cat_id = $scope.data.data[index].cat_id;
@@ -1053,8 +1061,8 @@ angular.module('myApp.controllers', [])
          }
       };
 
-      $scope.toggleMore = function(){
-         $scope.showMoreCate=!$scope.showMoreCate
+      $scope.toggleMore = function() {
+         $scope.showMoreCate = !$scope.showMoreCate
       }
 
       $scope.next = function() {
@@ -1088,11 +1096,11 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Index/get_brands',
             data: {
-               page:$scope.logoList.page,
-               size:36
+               page: $scope.logoList.page,
+               size: 36
             },
          }).success(function(data) {
-            if(data.status==1){
+            if (data.status == 1) {
                $scope.logoFashionData = data;
                $scope.logoFashionList = $scope.logoFashionList.concat(data.data);
             }
@@ -1324,26 +1332,30 @@ angular.module('myApp.controllers', [])
          $scope.data = data;
       })
       $scope.render = function() {
-         
+
 
          setTimeout(function() {
-            (function (e) {
+            (function(e) {
                var box = document.querySelector(".dh");
                var ul = box.children[0];
                var lis = ul.children;
 
                var between = 12;
 
-               var width = box.offsetWidth / lis.length - between;//初始每个图片宽度
+               var width = box.offsetWidth / lis.length - between; //初始每个图片宽度
 
                /* for (var i = 0; i < lis.length; i++) {
                   animate(lis[i], { "width": Math.floor(width) });
                } */
                for (var j = 0; j < lis.length; j++) {
-                  animate(lis[j], { "width": Math.floor((box.offsetWidth - lis[j].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between });
+                  animate(lis[j], {
+                     "width": Math.floor((box.offsetWidth - lis[j].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between
+                  });
                }
                var imgWidth = lis[0].getElementsByTagName('img')[0].width;
-               animate(lis[0], { "width": Math.floor(imgWidth) });
+               animate(lis[0], {
+                  "width": Math.floor(imgWidth)
+               });
 
                //循环遍历 lis 绑定背景图
                for (var i = 0; i < lis.length; i++) {
@@ -1351,35 +1363,40 @@ angular.module('myApp.controllers', [])
 
                   //给每一个li注册鼠标经过事件 鼠标经过后要排他
 
-                  lis[i].onmouseover = function () {
+                  lis[i].onmouseover = function() {
                      var img = this.getElementsByTagName('img')[0];
                      //干掉所有人 让所有人的宽度 渐渐地 变为100
-                     if(width>img.width){
+                     if (width > img.width) {
                         return
                      }
                      for (var j = 0; j < lis.length; j++) {
-                        animate(lis[j], { "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between });
+                        animate(lis[j], {
+                           "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between
+                        });
                      }
 
                      //留下我自己 让我的宽度 渐渐地 变为800
 
-                     animate(this, { "width": Math.floor(img.width) });
+                     animate(this, {
+                        "width": Math.floor(img.width)
+                     });
                   };
                }
 
                //鼠标离开box 所有的li宽度 渐渐地 变为240
 
-               box.onmouseout = function () {
+               box.onmouseout = function() {
                   /* for (var i = 0; i < lis.length; i++) {
                      animate(lis[i], { "width": Math.floor(width) });
                   } */
                };
+
                function animate(obj, json) {
                   clearInterval(obj.timer);
-                  obj.timer = setInterval(function () {
-   
+                  obj.timer = setInterval(function() {
+
                      //先假设 这一次执行完 所有的属性都到达目标了
-   
+
                      var flag = true;
                      for (var k in json) {
                         var leader = parseInt(getStyle(obj, k)) || 0;
@@ -1392,24 +1409,24 @@ angular.module('myApp.controllers', [])
                         //    clearInterval(obj.timer);
                         //}
                         // console.log("代码还在运行");
-   
+
                         if (leader != target) {
-   
-                           flag = false;//告诉标记 当前这个属s性还没到达
-   
+
+                           flag = false; //告诉标记 当前这个属s性还没到达
+
                         }
                      }
-   
+
                      //如果此时仍然为true 就说明真的都到达了
-   
+
                      if (flag) {
                         clearInterval(obj.timer);
                      }
                   }, 15);
                }
-   
+
                //全部属性都到达目标值才能清空
-   
+
                function getStyle(obj, attr) {
                   if (window.getComputedStyle) {
                      return window.getComputedStyle(obj, null)[attr];
@@ -1418,7 +1435,7 @@ angular.module('myApp.controllers', [])
                   }
                }
             })(this)
-            
+
          }, 1000);
       }
 
@@ -4007,7 +4024,7 @@ angular.module('myApp.controllers', [])
    .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$state', function($scope, $rootScope, $http, $stateParams, ipCookie, $sce, $state) {
       $rootScope.change = true;
 
-      
+
       //购物车接口同步
       $scope.carFn = function() {
          $http({
@@ -6371,23 +6388,25 @@ angular.module('myApp.controllers', [])
                   method: "POST",
                   url: '' + $rootScope.ip + '/Flow/checkout',
                }).success(function(data) {
-                  if (data.suppliers_id>0) { //有suppliers_id为不满足订单起订金额
+                  if (data.suppliers_id > 0) { //有suppliers_id为不满足订单起订金额
                      layer.confirm(data.info, {
                         btn: ['去店铺', '取消'], //按钮
                         title: '提示',
                         btnAlign: 'c',
                         yes: function(index) {
-                           $state.go('shopHomeNew',{shopId:data.suppliers_id});
+                           $state.go('shopHomeNew', {
+                              shopId: data.suppliers_id
+                           });
                            layer.close(index);
                         },
                         btn2: function(index) {
-                           
+
                         }
                         // closeBtn: 0
                      });
-                  }else{
+                  } else {
                      $state.go('shop-jiesuan');
-                           $rootScope.$broadcast('upCarList');
+                     $rootScope.$broadcast('upCarList');
                   }
                })
             } else {

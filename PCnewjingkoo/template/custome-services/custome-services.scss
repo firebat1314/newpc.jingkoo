@@ -282,7 +282,8 @@
                }
             }
 
-            .looking-box,.supplier-box {
+            .looking-box,
+            .supplier-box {
                .goods_head {
                   display: flex;
                   padding: 10px;
@@ -305,9 +306,11 @@
                   padding: 6px 10px;
                   font-size: 14px;
                   font-size: 14px;
-                  .value{
+
+                  .value {
                      color: #999999;
                   }
+
                   .value.price {
                      color: #e60000;
                   }
@@ -451,11 +454,11 @@
             padding: 8px;
             background: rgb(243, 243, 243);
             border-radius: 2px;
+            flex-shrink: 0;
 
             .content {
                line-height: 1;
                position: relative;
-               height: 100%;
                z-index: 2;
                word-break: break-word;
                white-space: pre-wrap;
@@ -471,22 +474,25 @@
                   vertical-align: bottom;
                   display: inline-block;
                }
-               .goods{
-                  .name{
+
+               .goods {
+                  .name {
                      margin-top: 5px;
                      text-align: center;
                      width: 100%;
                   }
-                  &:hover{
-                     .name{
-                     color: #1676f8;
+
+                  &:hover {
+                     .name {
+                        color: #1676f8;
                      }
                   }
-                  img{
+
+                  img {
                      display: block;
-                     
-                  min-width: 100px;
-                  min-height: 100px;
+
+                     min-width: 100px;
+                     min-height: 100px;
                   }
                }
             }
@@ -555,10 +561,6 @@
             }
          }
       }
-   }
-
-   .msgflow .msgbody img {
-      max-width: 500px;
    }
 
    .editbar {}

@@ -33,6 +33,90 @@
 
                         <tr>
                            <td>
+                              <div class="name">法人姓名：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="zbu czaineir ">{{getQyMsg.company_info.fr||'无'}}</div>
+                                 <div class="ybu close-js">
+                                    <a style="cursor: pointer;"><em></em>编辑</a>
+                                 </div>
+                              </div>
+                              <div class="modify ">
+                                 <div class="shur">
+                                    <input class="stxt" type="text" ng-model="getQyMsg.company_info._fr" placeholder="请填写营业执照编号" />
+                                 </div>
+                                 <div class="anniu">
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveThis($event,getQyMsg.company_info,'fr')" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <div class="name">法人联系方式：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="zbu czaineir ">{{getQyMsg.company_info.mobile||'无'}}</div>
+                                 <div class="ybu close-js">
+                                    <a style="cursor: pointer;"><em></em>编辑</a>
+                                 </div>
+                              </div>
+                              <div class="modify ">
+                                 <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info._mobile" placeholder="请填写法人联系方式" /></div>
+                                 <div class="anniu">
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveThis($event,getQyMsg.company_info,'mobile')" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <div class="name">法人身份证号：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="zbu czaineir ">{{getQyMsg.company_info.id_card||'无'}}</div>
+                                 <div class="ybu close-js">
+                                    <a style="cursor: pointer;"><em></em>编辑</a>
+                                 </div>
+                              </div>
+                              <div class="modify ">
+                                 <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info._id_card" placeholder="请填写法人身份证号" /></div>
+                                 <div class="anniu">
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveThis($event,getQyMsg.company_info,'id_card','code_sn')" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <div class="name">身份证效期：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="zbu czaineir ">{{(getQyMsg.company_info.code_validity_start||'无')+' -  '+(getQyMsg.company_info.code_validity_end||'无')}}</div>
+                                 <div class="ybu close-js">
+                                    <a style="cursor: pointer;"><em></em>编辑</a>
+                                 </div>
+                              </div>
+                              <div class="modify validity">
+                                 <div class="shur">
+                                    <input class="stxt code-validity-input" type="text" placeholder="请填写日期" />
+                                 </div>
+                                 <div class="anniu">
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveCodeValidity($event)" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
                               <div class="name">营业执照编号：</div>
                            </td>
                            <td>
@@ -43,10 +127,49 @@
                                  </div>
                               </div>
                               <div class="modify ">
-                                 <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info.yyzzsn" placeholder="请填写营业执照编号" /></div>
+                                 <div class="shur"><input class="stxt" type="text" ng-model="getQyMsg.company_info._yyzzsn" placeholder="请填写营业执照编号" /></div>
                                  <div class="anniu">
-                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveQyYyzzsn($event,getQyMsg.company_info.yyzzsn)" />
-                                    <input class="sbtn oen-no n2" type="button" value="取消" ng-click="haveSj()" />
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveThis($event,getQyMsg.company_info,'yyzzsn')" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              <div class="name">营业执照效期：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="zbu czaineir ">{{(getQyMsg.company_info.zz_validity_start||'无')+' -  '+(getQyMsg.company_info.zz_validity_end||'无')}}</div>
+                                 <div class="ybu close-js">
+                                    <a style="cursor: pointer;"><em></em>编辑</a>
+                                 </div>
+                              </div>
+                              <div class="modify validity">
+                                 <div class="shur ">
+                                    <input class="stxt zz-validity-input" type="text" placeholder="请填写日期" />
+                                 </div>
+                                 <div class="anniu">
+                                    <input class="sbtn oen-yes" type="button" value="保存" ng-click="saveZzValidity($event)" />
+                                    <input class="sbtn oen-no n2" type="button" value="取消" />
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td width="135">
+                              <div class="name">门头照：</div>
+                           </td>
+                           <td>
+                              <div class="jjp cle">
+                                 <div class="License ">
+                                    <div class="ret-up fl "><img ng-src="{{getQyMsg.company_info.doorhead_img || 'img/up.jpg'}}" /><input id="img2" class="up-file cursor" style="cursor: pointer;" type="file" get-image="updatePhoto(img,'doorhead_img')" /></div>
+                                    <!-- <div class="ret-sli fl"><img src="img/zz.jpg" />
+                                       <div class="sli-fdj "><span></span>示例</div>
+                                    </div>
+                                    <div class="muke hidden"></div>
+                                    <div class="zzc "><img src="img/zz.jpg" /></div> -->
                                  </div>
                               </div>
                            </td>

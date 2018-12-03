@@ -1,4 +1,4 @@
-myApp.controller('CustomeServicesControl', function($scope, $rootScope, $stateParams, $data, IMServ, locals) {
+myApp.controller('CustomeServicesControl', function($scope, $rootScope, $stateParams, $data, IMServ, locals, ipCookie) {
    //控制首页会员中心显隐
    $rootScope.isShow = false;
    //控制header和footer显隐
@@ -26,6 +26,8 @@ myApp.controller('CustomeServicesControl', function($scope, $rootScope, $statePa
                'headurl': res.txim.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
             };
             window.webimLogin();
+         } else {
+            alert(res.info)
          }
       })
    } else {
@@ -41,27 +43,60 @@ myApp.controller('CustomeServicesControl', function($scope, $rootScope, $statePa
          'headurl': "https://img.jingku.cn/data/avatar/APP_20181109145123218597.png" //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
       };
       window.webimLogin(); */
-      $data.CustomerService({
-         order_id: $scope.params.order_id,
-         goods_id: $scope.params.goods_id,
-         suppliers_id: $scope.params.suppliers_id
-      }).success(function(res) {
-         layer.close(inde)
-         if (res.status == 1) {
-            var userData = locals.getObject('userData');
-            window.loginInfo = {
-               'sdkAppID': 1400158766, //用户所属应用id,必填
-               'identifier': userData.txim.identifier, //当前用户ID,必须是否字符串类型，必填
-               // 'identifier': "user_b", //当前用户ID,必须是否字符串类型，必填
-               'accountType': 1, //用户所属应用帐号类型，必填
-               'userSig': userData.txim.usersig,
-               //当前用户身份凭证，必须是字符串类型，必填
-               'identifierNick': userData.user_info.user_name, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
-               'headurl': userData.user_info.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
-            };
-            window.webimLogin();
-         }
-      })
+      var TxImInfo = locals.getObject(ipCookie('username') + '_TxImInfo');
+      console.log(TxImInfo)
+      if (TxImInfo) {
+         $data.CustomerService({
+            order_id: $scope.params.order_id,
+            goods_id: $scope.params.goods_id,
+            suppliers_id: $scope.params.suppliers_id
+         }).success(function(res) {
+            layer.close(inde)
+            if (res.status == 1) {
+               window.loginInfo = {
+                  'sdkAppID': 1400158766, //用户所属应用id,必填
+                  'identifier': TxImInfo.txim.identifier, //当前用户ID,必须是否字符串类型，必填
+                  // 'identifier': "user_b", //当前用户ID,必须是否字符串类型，必填
+                  'accountType': 1, //用户所属应用帐号类型，必填
+                  'userSig': TxImInfo.txim.usersig,
+                  //当前用户身份凭证，必须是字符串类型，必填
+                  'identifierNick': TxImInfo.txim.user_name, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
+                  'headurl': TxImInfo.txim.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
+               };
+               window.webimLogin();
+            } else {
+               alert(res.info)
+            }
+         })
+      } else {
+         /* 云通讯信息 */
+         $data.TxImInfo().success(function(TxImInfo) {
+            if (TxImInfo.status == 1) {
+               $data.CustomerService({
+                  order_id: $scope.params.order_id,
+                  goods_id: $scope.params.goods_id,
+                  suppliers_id: $scope.params.suppliers_id
+               }).success(function(res) {
+                  layer.close(inde)
+                  if (res.status == 1) {
+                     window.loginInfo = {
+                        'sdkAppID': 1400158766, //用户所属应用id,必填
+                        'identifier': TxImInfo.txim.identifier, //当前用户ID,必须是否字符串类型，必填
+                        // 'identifier': "user_b", //当前用户ID,必须是否字符串类型，必填
+                        'accountType': 1, //用户所属应用帐号类型，必填
+                        'userSig': TxImInfo.txim.usersig,
+                        //当前用户身份凭证，必须是字符串类型，必填
+                        'identifierNick': TxImInfo.user_info.user_name, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
+                        'headurl': TxImInfo.user_info.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
+                     };
+                     window.webimLogin();
+                  } else {
+                     alert(res.info)
+                  }
+               })
+            }
+         })
+      }
    }
    //店铺订单
    $data.goods_infos({

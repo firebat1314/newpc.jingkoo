@@ -152,11 +152,11 @@
                         <div class="supplier"></div> -->
                   <div class="tab1">
                      <ul class="tab">
-                        <li class="looking cur">正在查询</li>
+                        <li class="looking cur" ng-if="goodsData.data.goods_name">正在查询</li>
                         <!-- <li class="order">我的订单</li> -->
                         <li class="supplier">店铺信息</li>
                      </ul>
-                     <div class="box looking-box on">
+                     <div class="box looking-box on" ng-if="goodsData.data.goods_name">
                         <div class="goods_head">
                            <div class="img"><img src="{{goodsData.data.goods_thumb}}" alt=""></div>
                            <div class="name">{{goodsData.data.goods_name}}</div>
@@ -177,7 +177,7 @@
                      <!-- <div class="box order-box">
 
                      </div> -->
-                     <div class="box supplier-box">
+                     <div class="box supplier-box" ng-class="{on:!goodsData.data.goods_name}">
 
                         <div class="item">
                            <span class="key">店铺名称：</span>

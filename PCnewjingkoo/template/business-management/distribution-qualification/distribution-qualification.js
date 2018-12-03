@@ -4,13 +4,10 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
    //控制header和footer显隐
    $rootScope.change = true;
 
-   
+
    $scope.saveQyHs = function() {
-      var cool = layer.load(0, {
-         shade: [0.3, '#fff']
-      });
+
       $data.getUserMsg().success(function(data) {
-         layer.close(cool);
          $scope.getQyMsg = data;
          /* this.params = {
            company: res.data.company,//企业名称
@@ -33,28 +30,100 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
       })
    }
    $scope.saveQyHs();
-   $scope.haveSj = function() {
+   /* $scope.haveSj = function() {
       $scope.saveQyHs();
-   }
-
-   //编辑营业执照编号
-   $scope.saveQyYyzzsn = function(e, yyzzsn) {
+   } */
+   laydate.render({
+      elem: '.code-validity-input',
+      range: true,
+      trigger: 'click',
+      range: true,
+      done: function(value, date) {
+         var arrDate = value.split(' - ');
+         $scope.getQyMsg.company_info._code_validity_start = arrDate[0];
+         $scope.getQyMsg.company_info._code_validity_end = arrDate[1];
+      }
+   });
+   laydate.render({
+      elem: '.zz-validity-input',
+      trigger: 'click',
+      range: true,
+      done: function(value, date) {
+         var arrDate = value.split(' - ');
+         $scope.getQyMsg.company_info._zz_validity_start = arrDate[0];
+         $scope.getQyMsg.company_info._zz_validity_end = arrDate[1];
+      }
+   });
+   $scope.saveCodeValidity = function(e) {
+      var cool = layer.load();
       $data.changeQyMsg({
-         yyzzsn: yyzzsn
+         code_validity_start: $scope.getQyMsg.company_info._code_validity_start,
+         code_validity_end: $scope.getQyMsg.company_info._code_validity_end
       }).success(function(data) {
-         if (data.status == 0) {
+         layer.close(cool);
+         if (data.status == 1) {
+            $scope.getQyMsg.company_info.code_validity_start = $scope.getQyMsg.company_info._code_validity_start;
+            $scope.getQyMsg.company_info.code_validity_end = $scope.getQyMsg.company_info._code_validity_end;
+            layer.msg(data.info, {
+               icon: 1,
+               time: 1000
+            })
+            $(e.currentTarget).parent().parent().removeClass("show");
+            $(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
+         } else {
             layer.msg(data.info, {
                icon: 2,
                time: 3000
             })
-         } else if (data.status == 1) {
+         }
+      })
+   }
+   $scope.saveZzValidity = function(e) {
+      var cool = layer.load();
+      $data.changeQyMsg({
+         zz_validity_start: $scope.getQyMsg.company_info._zz_validity_start,
+         zz_validity_end: $scope.getQyMsg.company_info._zz_validity_end
+      }).success(function(data) {
+         layer.close(cool);
+         if (data.status == 1) {
+
+            $scope.getQyMsg.company_info.zz_validity_start = $scope.getQyMsg.company_info._zz_validity_start;
+            $scope.getQyMsg.company_info.zz_validity_end = $scope.getQyMsg.company_info._zz_validity_end;
             layer.msg(data.info, {
                icon: 1,
-               time: 3000
+               time: 1000
             })
             $(e.currentTarget).parent().parent().removeClass("show");
             $(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
-            $scope.saveQyHs();
+         } else {
+            layer.msg(data.info, {
+               icon: 2,
+               time: 3000
+            })
+         }
+      })
+   }
+
+   $scope.saveThis = function(e, company_info, arg, name) {
+      var cool = layer.load();
+      $data.changeQyMsg({
+         [name ? name : arg]: company_info["_" + arg]
+      }).success(function(data) {
+         layer.close(cool);
+         if (data.status == 1) {
+
+            company_info[arg] = company_info["_" + arg];
+            layer.msg(data.info, {
+               icon: 1,
+               time: 1000
+            })
+            $(e.currentTarget).parent().parent().removeClass("show");
+            $(e.currentTarget).parents().parent().parent().find(".jjp").removeClass("hide");
+         } else {
+            layer.msg(data.info, {
+               icon: 2,
+               time: 3000
+            })
          }
       })
    }
@@ -96,6 +165,19 @@ myApp.controller('distributionQualificationController', function($scope, $rootSc
             var img = document.getElementById("img00");
             //图片路径设置为读取的图片
             img.src = e.base64;
+         }
+         layer.msg(data.info, {
+            time: 3000
+         });
+      })
+   }
+   //图片上传
+   $scope.updatePhoto = function(e, arg) {
+      $data.changeQyMsg({
+         [arg]: e.img_url
+      }).success(function(data) {
+         if (data.status == 1) {
+            $scope.getQyMsg.company_info[arg] = e.base64;
          }
          layer.msg(data.info, {
             time: 3000

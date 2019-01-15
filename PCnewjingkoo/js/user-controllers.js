@@ -2440,18 +2440,7 @@ angular.module('myApp.user-controllers', ['ipCookie', 'ngSanitize'])
             },
          }).success(function(data) {
             if (data.status == 0) {
-               layer.confirm('需要医疗器械许可证，是否上传', {
-                  btn: ['确定', '取消'], //按钮
-                  btnAlign: 'c',
-                  yes: function(index) {
-                     $state.go('person-qy-msg');
-                     layer.close(index);
-                  },
-                  btn2: function(index) {
-                     layer.close(index);
-                  }
-                  // closeBtn: 0
-               });
+               layer.msg(data.info);
             } else {
                $rootScope.$broadcast('upCarList');
                $state.go('shop-car');

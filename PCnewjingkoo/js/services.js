@@ -39,7 +39,9 @@ angular.module('myApp.HttServices', [])
                if (rejection.status == 401) {
                   ipCookie.remove('token');
                   ipCookie.remove('has_login');
-                  location.href = "#/login"
+                  if (location.href.indexOf('custome-services') == -1) {
+                     location.href = "#/login"
+                  }
                }
                if (rejection.status == 404) {
                   layer.msg('数据异常，请稍后再试');
@@ -835,6 +837,15 @@ angular.module('myApp.HttServices', [])
                url: ip + '/User/TxImInfo ',
                data: data
             })
+         },
+         /* 切换会话：来源 */
+         CustomerServiceGroupSource: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/Index/CustomerServiceGroupSource ',
+               data: data
+            })
          }
+         
       }
    }])

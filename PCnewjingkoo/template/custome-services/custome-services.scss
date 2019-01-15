@@ -19,8 +19,7 @@
    .aio {
       display: none;
       position: absolute;
-      right: 0;
-      left: 0;
+      left: 50%;
       top: 0;
       bottom: 0;
       font: 10px/1.5 "微软雅黑";
@@ -29,6 +28,7 @@
       max-height: 700px;
       height: 100%;
       margin: auto;
+      margin-left: -480px;
       box-shadow: rgba(0, 0, 0, 0.298039) 0px 0px 6px 0px;
       border: 0px none black;
       -webkit-tap-highlight-color: transparent;
@@ -57,8 +57,12 @@
       top: 10px;
       left: 0;
       float: left;
-      font-size: 20px;
+      font-size: 16px;
       color: white;
+      width: 119px;
+      overflow: hidden;
+      word-break: initial;
+      text-overflow: ellipsis;
    }
 
    .titlebar #t_my_menu {
@@ -73,7 +77,7 @@
    .sesspart {
       clear: both;
       float: left;
-      width: 200px;
+      width: 240px;
       height: 100%;
       background: rgb(242, 245, 249);
       display: flex;
@@ -140,51 +144,81 @@
    }
 
    .sessinfo {
+      transition: height 0.3s;
+      display: flex;
+      align-items: center;
       clear: both;
-      height: 60px;
+      height: 70px;
       background: rgb(242, 245, 249);
+      padding-right: 6px;
+      cursor: pointer;
+      position: relative;
    }
 
    .sessinfo-sel {
+      transition: height 0.3s;
+      position: relative;
       clear: both;
-      height: 70px;
+      height: 86px;
+      display: flex;
+      align-items: center;
       background: rgb(210, 230, 249);
+      padding-right: 6px;
+      cursor: pointer;
    }
 
    .sessinfo-sel .face {
-      width: 50px;
-      height: 50px;
+    width: 60px;
+    height: 60px;
    }
 
    .face {
       transition: all 0.3s;
       float: left;
-      width: 40px;
-      height: 40px;
-      margin: 10px 5px 10px 10px;
+      width: 50px;
+      height: 50px;
+      margin: 10px 8px 10px 10px;
+      flex-shrink: 0;
    }
 
-   .name {
-      float: left;
-      height: 20px;
-      text-indent: 2px;
-      font-size: 12px;
+   .sessinfo-center {
+      flex: 1;
+      flex-shrink: 0;
+      max-width: 59%;
+   }
+
+   .sesslist .sessinfo-center .name {
       color: #1f1f1f;
-      margin: 18px 0 0 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0px;
+   }
+
+   .sessinfo-center .showmsg {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: #808080;
+      font-size: 12px;
    }
 
    .badge {
       display: none;
-      float: right;
-      margin: 18px 0 0 0;
-      width: 32px;
-      height: 20px;
+      /* float: right; */
+      /* width: 28px; */
+      height: 17px;
       background: #f00000;
       color: white;
       text-align: center;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
       border-radius: 10px;
+      position: absolute;
+      right: 0;
+      bottom: 14px;
+      margin-right: 8px;
+      padding: 1px 6px;
    }
 
    .badge span {
@@ -198,7 +232,7 @@
       float: left;
       border: 0px red solid;
       background: #ffffff;
-      width: calc(100% - 200px);
+      width: calc(100% - 240px);
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -275,7 +309,8 @@
 
             .box {
                min-height: 100px;
-               display: none;
+               max-height: 300px;
+               overflow: auto;
 
                &.on {
                   display: block;
@@ -319,10 +354,11 @@
          }
 
          .tab2 {
-            padding: 10px;
+            padding: 0;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            flex: 1;
 
             .tab {
                display: flex;
@@ -355,50 +391,108 @@
                }
             }
 
-            .goods {
-               display: flex;
-               align-items: center;
-               overflow: hidden;
-               border-bottom: #f0f0f0 solid 1px;
-               padding: 8px;
+         }
 
-               .img {
-                  width: 68px;
-                  height: 68px;
-                  border: 1px solid #f0f0f0;
-                  margin-right: 10px;
-                  flex-shrink: 0;
-                  background: rgb(150, 150, 150);
-               }
+         .order-box {
+            background: #F8F8F8;
 
-               .info {
-                  flex: 1;
+            .li {
+               margin-bottom: 10px;
+               padding: 0 10px;
+               background: #ffffff;
+
+               .li-head {
                   display: flex;
-                  flex-direction: column;
+                  justify-content: space-between;
+                  padding: 10px 4px;
+                  color: #666666;
+                  border-bottom: 1px solid #f0f0f0;
+                  white-space: nowrap;
 
-                  .name {
-                     color: #666666;
+                  .ordersn {
+                     width: 50%;
                      text-overflow: ellipsis;
-                     margin-bottom: 8px;
-                     margin-top: 0;
-                     height: auto;
+                     overflow: hidden;
                   }
 
-                  .pp {
-                     display: flex;
-                     justify-content: space-between;
-                     align-items: center;
+                  .ordertime {
+                     color: #cccccc;
+                  }
+               }
 
-                     .price {
-                        color: #e60000;
-                     }
+               .li-foot {
+                  white-space: nowrap;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 10px 4px;
 
-                     .sendbtn {
-                        border: #e0e0e0 1px solid;
-                        background: #ffffff;
-                        color: #4d4d4d;
-                        margin-right: 0;
+                  .order-price {
+                     color: #666666;
+
+                     .pricetxt {
+                        color: #ff0000;
                      }
+                  }
+
+                  .order-status {
+                     color: #1676F7;
+                     background: #D2E6F9;
+                     padding: 4px 8px;
+                     border-radius: 5px;
+                  }
+               }
+            }
+         }
+
+         .goods {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            border-bottom: #f0f0f0 solid 1px;
+            padding: 8px;
+
+            .img {
+               width: 68px;
+               height: 68px;
+               border: 1px solid #f0f0f0;
+               margin-right: 10px;
+               flex-shrink: 0;
+               background: rgb(150, 150, 150);
+            }
+
+            .info {
+               flex: 1;
+               display: flex;
+               flex-direction: column;
+
+               .name {
+                  color: #666666;
+                  text-overflow: ellipsis;
+                  margin-bottom: 8px;
+                  margin-top: 0;
+                  height: auto;
+                  cursor: pointer;
+
+                  &:hover {
+                     color: #1676f8;
+                  }
+               }
+
+               .pp {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+
+                  .price {
+                     color: #e60000;
+                  }
+
+                  .sendbtn {
+                     border: #e0e0e0 1px solid;
+                     background: #ffffff;
+                     color: #4d4d4d;
+                     margin-right: 0;
                   }
                }
             }
@@ -474,27 +568,6 @@
                   vertical-align: bottom;
                   display: inline-block;
                }
-
-               .goods {
-                  .name {
-                     margin-top: 5px;
-                     text-align: center;
-                     width: 100%;
-                  }
-
-                  &:hover {
-                     .name {
-                        color: #1676f8;
-                     }
-                  }
-
-                  img {
-                     display: block;
-
-                     min-width: 100px;
-                     min-height: 100px;
-                  }
-               }
             }
 
             &:after {
@@ -552,13 +625,101 @@
                &:after {
                   background: rgba(208, 233, 255, 1);
                   right: -2px;
-                  left: unset;
+                  left: auto;
                }
             }
 
             .spinner {
                order: 1;
             }
+         }
+      }
+
+      &.custom {
+         .msghead {}
+
+         .msgbody {
+
+            .avatar {}
+
+            .msg-main {
+
+               background: #fff;
+               border: 1px solid #f0f0f0;
+               padding: 12px;
+
+               &:hover {
+                  background: #fafafa;
+               }
+
+               .content {
+                  color: #333333;
+
+                  a {
+                     color: #333333;
+                  }
+               }
+
+               &:after {
+                  display: none;
+                  right: -2px;
+                  left: auto;
+               }
+
+               .goods,
+               .order {
+                  display: flex;
+                  text-decoration: none;
+
+                  img {
+                     display: block;
+                     min-width: 100px;
+                     min-height: 100px;
+                     max-width: 100px;
+                     max-height: 100px;
+                     border: 1px solid #f0f0f0;
+                     flex-shrink: 0;
+                  }
+
+                  .info {
+                     margin: 8px;
+
+                     .name {
+                        text-align: left;
+                        width: 100%;
+                        margin-bottom: 10px;
+                     }
+
+                     .bottom {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .price {
+                           color: #ff0000;
+                        }
+
+                        .status {
+                           >span {
+                              color: #1676F7;
+                              background: #D2E6F9;
+                              padding: 4px 8px;
+                              border-radius: 27px;
+                           }
+                        }
+                     }
+                  }
+
+                  &:hover {
+                     .name {
+                        // color: #1676f8;
+                     }
+                  }
+
+               }
+            }
+
+            .spinner {}
          }
       }
    }
@@ -603,7 +764,7 @@
       width: 428px;
       height: 225px;
       bottom: 170px;
-      left: 145px;
+      left: 185px;
       display: none;
       z-index: 1000;
    }
@@ -724,12 +885,6 @@
       }
    }
 
-   .bottom {
-      clear: both;
-      height: 3px;
-      background: #d7eaf3;
-   }
-
    #demo_type_desc {
       display: none;
       color: red;
@@ -821,12 +976,43 @@
    }
 
    .delChat {
-      color: red;
-      width: 50px;
-      padding: 16px 0;
-      float: right;
-      margin-right: 5px;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      text-align: center;
+      transform: rotate(45deg);
+      cursor: pointer;
+      user-select: none;
+      color: #fff;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, .3);
+      width: 20px;
+      height: 20px;
+      line-height: 16px;
+      font-size: 20px;
       display: none;
+
+      &:hover {
+         background: #ff0000;
+      }
    }
 
+   .sessinfo-sel:hover .delChat {
+      display: block;
+   }
+
+   .sessinfo:hover .delChat {
+      display: block;
+   }
+
+   /* .sessinfo-sel:hover .badge {
+      display: none !important;
+   }
+   
+   .sessinfo:hover .badge {
+      display: none !important;
+   } */
+   .img-responsive{
+      border: 1px solid #e0e0e0;
+   }
 }

@@ -197,7 +197,7 @@
                            <p style="color:#666;padding-left: 0;">关联商品</p>
                            <ul>
                               <li ng-repeat="glLi in shopDetailData.linked_goods">
-                                 <a href="javascript:;" ui-sref="shop-detail({goods_id:glLi.goods_id})">
+                                 <a href="javascript:;" ng-attr-title="{{glLi.goods_name}}" ui-sref="shop-detail({goods_id:glLi.goods_id})">
                                     <img ng-src={{glLi.goods_img}} alt="">
                                  </a>
                                  <i class="guanlianYes"></i>

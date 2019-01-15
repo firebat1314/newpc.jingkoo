@@ -1,11 +1,11 @@
 angular.module('myApp.controllers', [])
 
-   .config(function() {
+   .config(function () {
 
 
    })
 
-   .run(function($location, $rootScope, $window, $data) {
+   .run(function ($location, $rootScope, $window, $data) {
       var _hmt = _hmt || [];
       if ($data.ip.indexOf('new') > -1) {
          var hm = document.createElement("script");
@@ -28,7 +28,7 @@ angular.module('myApp.controllers', [])
          var s = document.getElementsByTagName("script")[0];
          s.parentNode.insertBefore(hm, s);
       }
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
          $rootScope.title = toState.title;
          //百度统计 
          if ($data.ip.indexOf('new') > -1) {
@@ -96,10 +96,10 @@ angular.module('myApp.controllers', [])
    })
 
    //主控制
-   .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', '$data', 'locals', function($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat, $data, locals) {
+   .controller('ParentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$anchorScroll', '$location', '$qimoChat', '$data', 'locals', function ($scope, $rootScope, $state, $http, ipCookie, $anchorScroll, $location, $qimoChat, $data, locals) {
       this.$qimoChat = $qimoChat;
       //控制首页楼梯效果
-      $(window).scroll(function() {
+      $(window).scroll(function () {
          if ($(document).scrollTop() > 500) {
             $('.goTop').show();
          } else {
@@ -108,24 +108,24 @@ angular.module('myApp.controllers', [])
       });
 
       //去购物车
-      $scope.goCar = function() {
+      $scope.goCar = function () {
          $state.go('shop-car');
       };
-      $scope.goControlMb = function() {
+      $scope.goControlMb = function () {
          $state.go('control-mb');
       };
       //去登陆
-      $scope.goLogin = function() {
+      $scope.goLogin = function () {
          $state.go('login');
       };
       $rootScope.ip = $data.ip; //测试
 
-      $scope.loginOut = function() {
+      $scope.loginOut = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/logout',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -143,27 +143,48 @@ angular.module('myApp.controllers', [])
       $rootScope.chatClick = this.$qimoChat.chatClick;
 
       /* 云通讯信息 */
-      $data.TxImInfo().success(function(res) {
+      $data.TxImInfo().success(function (res) {
          if (res.status == 1) {
             $rootScope.TxImInfo = res;
-            locals.setObject(ipCookie('username')+'_TxImInfo', res);
+            locals.setObject(ipCookie('username') + '_TxImInfo', res);
+
+            /* window.loginInfo = {
+               'sdkAppID': 1400158766, //用户所属应用id,必填
+               'identifier': res.txim.identifier, //当前用户ID,必须是否字符串类型，必填
+               // 'identifier': "user_b", //当前用户ID,必须是否字符串类型，必填
+               'accountType': 1, //用户所属应用帐号类型，必填
+               'userSig': res.txim.usersig,
+               //当前用户身份凭证，必须是字符串类型，必填
+               'identifierNick': res.txim.user_name, //当前用户昵称，不用填写，登录接口会返回用户的昵称，如果没有设置，则返回用户的id
+               'headurl': res.txim.avatar //当前用户默认头像，选填，如果设置过头像，则可以通过拉取个人资料接口来得到头像信息
+            };
+            window.webimLogin(); */
          }
       })
+      // 首先，让我们检查我们是否有权限发出通知
+      // 如果没有，我们就请求获得权限
+      if (window.Notification && Notification.permission !== "granted") {
+         Notification.requestPermission(function (status) {
+            if (Notification.permission !== status) {
+               Notification.permission = status;
+            }
+         });
+      }
    }])
    //首页头部
-   .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', 'locals', '$myPublic', function($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat, locals, $myPublic) {
+   .controller('index_header_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$stateParams', '$data', '$qimoChat', 'locals', '$myPublic', function ($scope, $rootScope, $state, $http, ipCookie, $stateParams, $data, $qimoChat, locals, $myPublic) {
 
       $scope.company = [];
-      $scope.getCompanyList = function() {
+      $scope.getCompanyList = function () {
          var inde = layer.load(2)
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/CompanyList',
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(inde)
             if (data.status == 1) {
                $scope.company = data.data;
-               setTimeout(function() {
+               setTimeout(function () {
                   $scope.companylayer = layer.open({
                      type: 1,
                      title: '请选择公司',
@@ -181,7 +202,7 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      $scope.loginByCompany = function(cid) {
+      $scope.loginByCompany = function (cid) {
          layer.close($scope.companylayer)
          $http({
             url: '' + $rootScope.ip + '/Index/SwitchCompany',
@@ -189,7 +210,7 @@ angular.module('myApp.controllers', [])
             data: Object.assign({
                cid: cid
             }),
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.userData = data;
                ipCookie("token", data.data.token, {
@@ -201,7 +222,7 @@ angular.module('myApp.controllers', [])
                ipCookie("has_login", true, { expires: 21 }); */
                layer.msg('切换成功', {
                   time: 500
-               }, function() {
+               }, function () {
                   // $state.go('home');
                   location.reload();
                });
@@ -212,7 +233,7 @@ angular.module('myApp.controllers', [])
             }
          });
       }
-      $scope.goListPage = function() { //季度热卖
+      $scope.goListPage = function () { //季度热卖
          $state.go('shop-list', {
             params: encodeURIComponent(JSON.stringify({
                cat_id: 1042,
@@ -223,13 +244,13 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Index/indexs',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.IndexData = data;
             //首页广告大img
             $scope.jsjmImg = data.list.ads_jsjm[0].ad_img;
             $scope.jjzyImg = data.list.ads_jjzy[0].ad_img;
-            $scope.areaListAdd = function(e, index) {
+            $scope.areaListAdd = function (e, index) {
                for (var i = 0; i < data.list.getAreaList.length; i++) {
                   $scope.IndexData.list.getAreaList[i].selected = 0;
                }
@@ -244,7 +265,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/user_info',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status == 1) {
             locals.setObject('userData', data)
             $scope.userData = data;
@@ -260,6 +281,21 @@ angular.module('myApp.controllers', [])
                userId: data.user_info.user_id,
                nickName: data.user_info.user_name
             }
+            if ($scope.userData.user_info.is_ywy == 1 || $scope.userData.user_info.is_ywy == 2) {
+               $scope.goodsTypes = [{
+                  label: '普通商品',
+                  type: 'goods',
+                  value: 1
+               }, {
+                  label: '切边眼镜',
+                  type: 'cutting',
+                  value: 2
+               }, {
+                  label: '铺货商品',
+                  type: 'distribution',
+                  value: 3
+               }]
+            }
          }
       })
       //个人信息面板发货状态
@@ -267,7 +303,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/usercount',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.userShData = data;
             $scope.unpay = data.data.unpay;
@@ -283,11 +319,11 @@ angular.module('myApp.controllers', [])
          headers: {
             'Authorization': 'Basic ' + btoa(ipCookie('token') + ':')
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.msgNumber = data.count;
       })
       //首页头部地区切换接口
-      $scope.areaListChange = function(id) {
+      $scope.areaListChange = function (id) {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -297,19 +333,19 @@ angular.module('myApp.controllers', [])
             data: {
                id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                layer.msg('切换地区成功', {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $rootScope.$broadcast('uploadAddress');
                   $http({
                      method: "POST",
                      url: '' + $rootScope.ip + '/Index/indexs',
                      params: '',
-                  }).success(function(data) {
+                  }).success(function (data) {
                      if (data.status) {
                         $scope.IndexData = data;
                      }
@@ -323,7 +359,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //获取商品分类id
-      $scope.goShopList = function(filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId, search_name, search_val, is_url, url) {
+      $scope.goShopList = function (filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId, search_name, search_val, is_url, url) {
          console.log(filter, filterId, zeiss, zeissId, brand, brandId, category, categoryId)
          /* filter_name,
          filter_val,
@@ -388,12 +424,12 @@ angular.module('myApp.controllers', [])
             window.open(url, '_blank');
          }
       };
-      $scope.loginOut = function() {
+      $scope.loginOut = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/logout',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                ipCookie.remove("token");
@@ -405,24 +441,24 @@ angular.module('myApp.controllers', [])
          })
       };
       //地区更新同步
-      $rootScope.$on('uploadCity', function() {
+      $rootScope.$on('uploadCity', function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/indexs',
             params: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.IndexData = data;
             }
          });
       });
       //购物车接口同步
-      $scope.carFn = function() {
+      $scope.carFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/get_flow_goods',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.shopCarHomeData = data;
                $scope.totalNum = data.total.zong_goods_count;
@@ -433,19 +469,19 @@ angular.module('myApp.controllers', [])
       };
       $scope.carFn();
       //购物车更新同步
-      $rootScope.$on('upCarList', function() {
+      $rootScope.$on('upCarList', function () {
          $scope.carFn();
       });
 
       //删除购物车单独一行商品
-      $scope.delSingle = function(index, pIndex, ppIndex) {
+      $scope.delSingle = function (index, pIndex, ppIndex) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/drop_cart_goods_select',
             data: {
                rec_id: $scope.shopCarHomeData.suppliers_goods_list[ppIndex].goods_list[pIndex].attrs[index].rec_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg('删除成功', {
                   icon: 1
@@ -459,22 +495,10 @@ angular.module('myApp.controllers', [])
          })
       };
       //获得全部分类索引
-      $scope.Index = function(index) {
+      $scope.Index = function (index) {
          $scope.num = index;
       };
-      $scope.goodsTypes = $scope.userData.user_info.is_ywy == 1 || $scope.userData.user_info.is_ywy == 2 ? [{
-         label: '普通商品',
-         type: 'goods',
-         value: 1
-      }, {
-         label: '切边眼镜',
-         type: 'cutting',
-         value: 2
-      }, {
-         label: '铺货商品',
-         type: 'distribution',
-         value: 3
-      }] : [{
+      $scope.goodsTypes = [{
          label: '普通商品',
          type: 'goods',
          value: 1
@@ -494,36 +518,36 @@ angular.module('myApp.controllers', [])
             $scope.goodsType = $scope.goodsTypes[0];
             break;
       }
-      $scope.selectgoodsType = function(item) {
+      $scope.selectgoodsType = function (item) {
          $scope.goodsType = item;
          $data.searchList({
             keywords: $rootScope.keywords,
             type: item.type
-         }).success(function(res) {
+         }).success(function (res) {
             if (res.status == 1) {
                $scope.searchData = res;
             }
          })
       }
       //搜索
-      $scope.searchKey = function(key) {
+      $scope.searchKey = function (key) {
          if (key) $rootScope.keywords = key;
          if ($scope.goodsType.value == 1) {
-            statego('shop-list').then(function() {
+            statego('shop-list').then(function () {
                $data.search_census({
                   type: 'goods',
                   search_name: $rootScope.keywords
                });
             });
          } else if ($scope.goodsType.value == 2) {
-            statego('shop-list-cut').then(function() {
+            statego('shop-list-cut').then(function () {
                $data.search_census({
                   type: 'cutting',
                   search_name: $rootScope.keywords
                });
             });
          } else if ($scope.goodsType.value == 3) {
-            statego('shop-list-distribution').then(function() {
+            statego('shop-list-distribution').then(function () {
                $data.search_census({
                   type: 'distribution',
                   search_name: $rootScope.keywords
@@ -540,45 +564,45 @@ angular.module('myApp.controllers', [])
          }
       };
       var timer;
-      $('#txt').on('click', function() {
+      $('#txt').on('click', function () {
          clearTimeout(timer);
+         $data.searchList().success(function (res) {
+            if (res.status == 1) {
+               $scope.searchHistory = res;
+            }
+         })
          $scope.candisplay = true;
          $scope.$apply();
       })
 
-      $('.search-box').on('mouseenter', function() {
+      $('.search-box').on('mouseenter', function () {
          clearTimeout(timer);
       })
-      $('.search-box').on('mouseleave', function() {
+      $('.search-box').on('mouseleave', function () {
          clearTimeout(timer);
-         timer = setTimeout(function() {
+         timer = setTimeout(function () {
             $scope.candisplay = false;
             $scope.$apply()
          }, 500);
       })
-      $data.searchList().success(function(res) {
-         if (res.status == 1) {
-            $scope.searchHistory = res;
-         }
-      })
-      $scope.searchList = function() {
+      $scope.searchList = function () {
          $scope.candisplay = true;
          $data.searchList({
             keywords: $rootScope.keywords,
             type: $scope.goodsType.type
-         }).success(function(res) {
+         }).success(function (res) {
             if (res.status == 1) {
                $scope.searchData = res;
             }
          })
       }
-      $scope.delItem = function(e, id) {
+      $scope.delItem = function (e, id) {
          e.stopPropagation();
          $data.delSearch({
             id: id
-         }).success(function(res) {
+         }).success(function (res) {
             if (res.status == 1) {
-               $data.searchList().success(function(res) {
+               $data.searchList().success(function (res) {
                   if (res.status == 1) {
                      $scope.searchHistory = res;
                   }
@@ -586,10 +610,10 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      $scope.delItems = function() {
-         $data.delAllSearch().success(function(res) {
+      $scope.delItems = function () {
+         $data.delAllSearch().success(function (res) {
             if (res.status == 1) {
-               $data.searchList().success(function(res) {
+               $data.searchList().success(function (res) {
                   if (res.status == 1) {
                      $scope.searchHistory = res;
                   }
@@ -598,20 +622,20 @@ angular.module('myApp.controllers', [])
          })
       }
       //去帮助中心
-      $scope.goHelpCenter = function() {
+      $scope.goHelpCenter = function () {
          $state.go('help_company', {
             id: 7
          })
       };
-      $scope.goVip = function() {
+      $scope.goVip = function () {
          $state.go('control-mb');
       };
       //右侧优惠券
-      $scope.getCuponList = function(bonus_type) {
+      $scope.getCuponList = function (bonus_type) {
          $scope.status = bonus_type;
          $data.getYhqData({
             bonus_type: bonus_type
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.data.length == 0) {
                $scope.yhq_show = true;
             } else {
@@ -626,12 +650,12 @@ angular.module('myApp.controllers', [])
          page: 1,
          size: 500
       };
-      $scope.yhqFn = function() {
+      $scope.yhqFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/coupon',
             data: $scope.yhqList,
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.yhqData = data;
             $scope.isGet = false;
             for (var i = 0; i < data.list.length; i++) {
@@ -642,19 +666,19 @@ angular.module('myApp.controllers', [])
          })
       };
       $scope.yhqFn();
-      $rootScope.$on('uploadCoupon', function() {
+      $rootScope.$on('uploadCoupon', function () {
          $scope.getCuponList();
          $scope.yhqFn();
       });
       //领取优惠券
-      $scope.lqYhq = function(tid) {
+      $scope.lqYhq = function (tid) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/send_by_user',
             data: {
                type_id: tid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $scope.yhqFn();
@@ -667,7 +691,7 @@ angular.module('myApp.controllers', [])
       //使用优惠券
       $scope.goDpDetail = $myPublic.openCoupon;
       //去列表
-      $scope.quList = function(suppliers_name) {
+      $scope.quList = function (suppliers_name) {
          var url = $state.href('shop-list', {
             params: encodeURIComponent(JSON.stringify({
                keywords: suppliers_name,
@@ -677,21 +701,21 @@ angular.module('myApp.controllers', [])
       };
    }])
    //首页尾部
-   .controller('index_footer_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('index_footer_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //帮助中心
       //获取每个标题
-      $scope.getTit = function() {
+      $scope.getTit = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/help',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.helpData = data;
          })
       };
       $scope.getTit();
       //获取每个标题下的内容
-      $scope.goHelp = function(id) {
+      $scope.goHelp = function (id) {
          $("body,html").animate({
             "scrollTop": 0
          }, 500)
@@ -701,7 +725,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //首页
-   .controller('index_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', 'locals', '$data', function($scope, $rootScope, $state, $http, ipCookie, locals, $data) {
+   .controller('index_parentControl', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', 'locals', '$data', function ($scope, $rootScope, $state, $http, ipCookie, locals, $data) {
 
       //控制首页会员中心显隐
       $rootScope.isShow = true;
@@ -721,7 +745,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Index/ad_tan',
          data: '',
-      }).success(function(res) {
+      }).success(function (res) {
          if (res.status) {
             if ((ipCookie("pc_index_tan_second") != res.pc_index_tan_second) || (ipCookie('show_ads') != res.pc_index_tan_time)) {
                ipCookie("show_ads_time", 0) //已经显示多少次
@@ -749,7 +773,7 @@ angular.module('myApp.controllers', [])
             if (res.pc_index_tan_time == 0) {
                var img = new Image();
                img.src = res.ads[0].ad_img;
-               img.onload = function() {
+               img.onload = function () {
                   $scope.ad_img = (img.src);
                }
             } else {
@@ -757,7 +781,7 @@ angular.module('myApp.controllers', [])
                if (ipCookie("show_ads_time") < res.pc_index_tan_second) {
                   var img = new Image();
                   img.src = res.ads[0].ad_img;
-                  img.onload = function() {
+                  img.onload = function () {
                      $scope.ad_img = (img.src);
                   }
                   ipCookie("show_ads_time", ++num);
@@ -769,7 +793,7 @@ angular.module('myApp.controllers', [])
          }
       });
       $scope.ad_show = true;
-      $scope.closeAd = function() {
+      $scope.closeAd = function () {
          $scope.ad_show = false;
       }
 
@@ -780,12 +804,12 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Index/indexs',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          // layer.close(cool);
          if (data.status == 1) {
             locals.setObject('indexsData', data)
             $scope.IndexData = data;
-            $scope.areaListAdd = function(e, index) {
+            $scope.areaListAdd = function (e, index) {
                for (var i = 0; i < data.list.getAreaList.length; i++) {
                   $scope.IndexData.list.getAreaList[i].selected = 0;
                }
@@ -795,13 +819,13 @@ angular.module('myApp.controllers', [])
       })
 
       //获得全部分类索引
-      $scope.Index = function(index) {
+      $scope.Index = function (index) {
          $scope.num = index;
       };
 
       /*轮播图*/
-      $scope.slider = function() {
-         setTimeout(function() {
+      $scope.slider = function () {
+         setTimeout(function () {
             $('.slider').unslider({
                autoplay: true,
                delay: 6000,
@@ -817,7 +841,7 @@ angular.module('myApp.controllers', [])
          }, 100);
       };
       //闪购
-      $scope.getFastData = function(id) {
+      $scope.getFastData = function (id) {
          $scope.selectedFastId = id;
          $scope.flashData = null;
          $http({
@@ -827,7 +851,7 @@ angular.module('myApp.controllers', [])
                type: 'is_promote',
                cat_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                locals.setObject('flashData', data)
                $scope.flashData = data;
@@ -836,19 +860,19 @@ angular.module('myApp.controllers', [])
       }
       $scope.getFastData(0);
       /*首页闪购*/
-      $data.getCategoryPromote().success(function(data) {
+      $data.getCategoryPromote().success(function (data) {
          if (data.status == 1) {
             locals.setObject('fastCategory', data)
             $scope.fastCategory = data;
          }
       });
-      $scope.clickclick = function(id) {
+      $scope.clickclick = function (id) {
          window.open($state.href('shop-detail', {
             goods_id: id,
             isActivity: 1
          }))
       }
-      $scope.yushou = function() {
+      $scope.yushou = function () {
          var swiper = new Swiper('.swiper-container1', {
             pagination: '.swiper-container1 .swiper-pagination',
             autoplay: 3000,
@@ -861,7 +885,7 @@ angular.module('myApp.controllers', [])
          });
       };
       /*品牌街区广告*/
-      $scope.brand = function() {
+      $scope.brand = function () {
          var swiper = new Swiper('.swiper-container2', {
             pagination: '.swiper-container2 .swiper-pagination',
             autoplay: 4000,
@@ -877,18 +901,18 @@ angular.module('myApp.controllers', [])
          page: 1,
          size: 10
       };
-      $scope.logoFashion = function() {
+      $scope.logoFashion = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/get_brands',
             data: $scope.logoList,
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.logoFashionData = data;
          })
       };
       $scope.logoFashion();
       //下一页品牌logo
-      $scope.sNext = function() {
+      $scope.sNext = function () {
          if ($scope.logoList.page < $scope.logoFashionData.pages) {
             $scope.logoList.page++;
             $scope.logoFashion();
@@ -897,7 +921,7 @@ angular.module('myApp.controllers', [])
             $scope.logoFashion();
          }
       };
-      $scope.sPrev = function() {
+      $scope.sPrev = function () {
          $scope.logoList.page--;
          $scope.logoFashion();
          if ($scope.logoList.page == 0) {
@@ -907,36 +931,36 @@ angular.module('myApp.controllers', [])
       };
 
       //品牌跳列表
-      $scope.goBrandList = function(id) {
+      $scope.goBrandList = function (id) {
          $state.go('shop-list', {
             params: encodeURIComponent(JSON.stringify({
                brand_id: id,
             }))
          })
       };
-      $scope.goList = function(params) {
+      $scope.goList = function (params) {
          window.open($state.href('shop-list', {
             params: encodeURIComponent(JSON.stringify(params))
          }))
       };
 
-      $data.IndexData().success(function(res) {
+      $data.IndexData().success(function (res) {
          locals.setObject('category', res)
          $scope.category = res;
-         setTimeout(function() {
+         setTimeout(function () {
             var subsection = $('.subsection');
 
             renderList()
-            $(document).scroll(function(d) {
+            $(document).scroll(function (d) {
                renderList()
             })
 
             function renderList() {
-               subsection.each(function(index, div) {
+               subsection.each(function (index, div) {
                   if (!div.myset) {
                      if ($(window).scrollTop() + $(window).height() > $(div).offset().top + 250) {
                         div.myset = true;
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                            $scope.category[index].show = true;
                         });
                      }
@@ -945,7 +969,7 @@ angular.module('myApp.controllers', [])
             }
          }, 300);
       })
-      $scope.getRecommendGoods = function(item, brand_id, index) {
+      $scope.getRecommendGoods = function (item, brand_id, index) {
          if (item.selectbrandid == brand_id) {
             return
          }
@@ -953,7 +977,7 @@ angular.module('myApp.controllers', [])
          $data.recommendGoods({
             recommend_id: item.Recommend_id,
             brand_id: brand_id || null
-         }).success(function(res) {
+         }).success(function (res) {
             if (res.status == 1) {
                item.Recommend = res;
                item.show = true;
@@ -961,8 +985,8 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      $scope.viewpager = function(value) {
-         setTimeout(function() {
+      $scope.viewpager = function (value) {
+         setTimeout(function () {
             var swiper = new Swiper('.' + value, {
                pagination: '.' + value + ' .swiper-pagination',
                slidesPerView: 1,
@@ -975,7 +999,7 @@ angular.module('myApp.controllers', [])
       }
    }])
    //品牌
-   .controller('fashion-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('fashion-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -993,7 +1017,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Brand/brand_index',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status == 1) {
             $scope.fashionHomeData = data;
@@ -1006,12 +1030,12 @@ angular.module('myApp.controllers', [])
          page: 1,
          size: 11
       };
-      $scope.logoFashion = function() {
+      $scope.logoFashion = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Index/get_brands',
             data: $scope.logoList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.logoFashionData = data;
                $scope.logoFashionList = data.data;
@@ -1024,7 +1048,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Category/get_categorys',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.data = data;
             $scope.getPromote(-1);
@@ -1032,7 +1056,7 @@ angular.module('myApp.controllers', [])
       });
 
       //获取全部闪购的数据
-      $scope.getPromote = function(index) {
+      $scope.getPromote = function (index) {
          var cat_id;
          if (index >= 0 && index < $scope.data.data.length) {
             if (index > 6) {
@@ -1048,7 +1072,7 @@ angular.module('myApp.controllers', [])
                params: {
                   cat_id: cat_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(cool);
                if (data.status) {
                   $scope.selectIndex = index;
@@ -1061,17 +1085,17 @@ angular.module('myApp.controllers', [])
          }
       };
 
-      $scope.toggleMore = function() {
+      $scope.toggleMore = function () {
          $scope.showMoreCate = !$scope.showMoreCate
       }
 
-      $scope.next = function() {
+      $scope.next = function () {
          $scope.getPromote(++$scope.selectIndex);
       };
 
       //广告插件
-      $scope.brandFn = function() {
-         setTimeout(function() {
+      $scope.brandFn = function () {
+         setTimeout(function () {
             $(".brand-block-ad").slide({
                mainCell: "ul",
                vis: 3,
@@ -1082,7 +1106,7 @@ angular.module('myApp.controllers', [])
          }, 300)
       };
       //logo去列表
-      $scope.goList = function(id) {
+      $scope.goList = function (id) {
          $state.go('shop-list', {
             params: encodeURIComponent(JSON.stringify({
                brand_id: id
@@ -1090,7 +1114,7 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.openMoreByLogo = function() {
+      $scope.openMoreByLogo = function () {
          $scope.logoList.page++;
          $http({
             method: "POST",
@@ -1099,7 +1123,7 @@ angular.module('myApp.controllers', [])
                page: $scope.logoList.page,
                size: 36
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.logoFashionData = data;
                $scope.logoFashionList = $scope.logoFashionList.concat(data.data);
@@ -1109,7 +1133,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //预售
-   .controller('waitingSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('waitingSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1122,12 +1146,12 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Category/get_categorys',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status) {
             $scope.waitingData = data;
             $scope.index = -1;
-            $scope.next = function() {
+            $scope.next = function () {
                $scope.index++;
                if ($scope.index >= data.data.length) {
                   $scope.index = -1;
@@ -1142,7 +1166,7 @@ angular.module('myApp.controllers', [])
                         cat_id: 0,
                         type: 'is_pre'
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.close(cool);
                      if (data.status) {
                         $scope.waitingAllListData = data;
@@ -1161,7 +1185,7 @@ angular.module('myApp.controllers', [])
                         cat_id: data.data[$scope.index].cat_id,
                         type: 'is_pre'
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.close(cool);
                      if (data.status) {
                         $scope.waitingListData = data;
@@ -1179,7 +1203,7 @@ angular.module('myApp.controllers', [])
                         cat_id: data.data[$scope.index].cat_id,
                         type: 'is_pre'
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.close(cool);
                      if (data.status) {
                         $scope.waitingListData = data;
@@ -1190,7 +1214,7 @@ angular.module('myApp.controllers', [])
                $('.xd-hd li').eq($scope.index + 1).addClass('on');
             };
             //获取全部预售的数据
-            $scope.getAllPresell = function() {
+            $scope.getAllPresell = function () {
                $scope.isAll = true;
                var cool = layer.load(0, {
                   shade: [0.3, '#fff']
@@ -1202,7 +1226,7 @@ angular.module('myApp.controllers', [])
                      cat_id: 0,
                      type: 'is_pre'
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   layer.close(cool);
                   if (data.status) {
                      $scope.waitingAllListData = data;
@@ -1212,7 +1236,7 @@ angular.module('myApp.controllers', [])
             $scope.getAllPresell();
 
             //获取每个预售商品的数据
-            $scope.getPresell = function(id, i) {
+            $scope.getPresell = function (id, i) {
 
                $scope.index = i;
 
@@ -1232,7 +1256,7 @@ angular.module('myApp.controllers', [])
                         cat_id: 0,
                         type: 'is_pre'
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.close(cool);
                      if (data.status) {
                         $scope.waitingAllListData = data;
@@ -1250,7 +1274,7 @@ angular.module('myApp.controllers', [])
                         cat_id: id,
                         type: 'is_pre'
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.close(cool);
                      if (data.status) {
                         $scope.waitingListData = data;
@@ -1263,7 +1287,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //闪购
-   .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('flashSale-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1278,7 +1302,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Index/getCategoryPromote',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status) {
             $scope.flashData = data;
@@ -1286,7 +1310,7 @@ angular.module('myApp.controllers', [])
          }
       })
       //获取全部闪购的数据
-      $scope.getPromote = function(index) {
+      $scope.getPromote = function (index) {
          var cat_id;
          if (index >= 0 && index < $scope.flashData.data.length) {
             $scope.selectIndex = index;
@@ -1305,7 +1329,7 @@ angular.module('myApp.controllers', [])
                type: 'is_promote',
                cat_id: cat_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                $scope.flashAllListData = data;
@@ -1313,12 +1337,12 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.next = function() {
+      $scope.next = function () {
          $scope.getPromote(++$scope.selectIndex);
       };
    }])
    //新品专区
-   .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$data', function($scope, $rootScope, $state, $http, ipCookie, $data) {
+   .controller('newgoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1328,14 +1352,14 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Index/newArea',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.data = data;
       })
-      $scope.render = function() {
+      $scope.render = function () {
 
 
-         setTimeout(function() {
-            (function(e) {
+         setTimeout(function () {
+            (function (e) {
                var box = document.querySelector(".dh");
                var ul = box.children[0];
                var lis = ul.children;
@@ -1363,7 +1387,7 @@ angular.module('myApp.controllers', [])
 
                   //给每一个li注册鼠标经过事件 鼠标经过后要排他
 
-                  lis[i].onmouseover = function() {
+                  lis[i].onmouseover = function () {
                      var img = this.getElementsByTagName('img')[0];
                      //干掉所有人 让所有人的宽度 渐渐地 变为100
                      if (width > img.width) {
@@ -1385,7 +1409,7 @@ angular.module('myApp.controllers', [])
 
                //鼠标离开box 所有的li宽度 渐渐地 变为240
 
-               box.onmouseout = function() {
+               box.onmouseout = function () {
                   /* for (var i = 0; i < lis.length; i++) {
                      animate(lis[i], { "width": Math.floor(width) });
                   } */
@@ -1393,7 +1417,7 @@ angular.module('myApp.controllers', [])
 
                function animate(obj, json) {
                   clearInterval(obj.timer);
-                  obj.timer = setInterval(function() {
+                  obj.timer = setInterval(function () {
 
                      //先假设 这一次执行完 所有的属性都到达目标了
 
@@ -1441,7 +1465,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //积分商城
-   .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('pointsMall-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1455,7 +1479,7 @@ angular.module('myApp.controllers', [])
          max_exchange: '',
          is_buy: 0
       };
-      $scope.pointsFn = function() {
+      $scope.pointsFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -1463,7 +1487,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Index/exchange',
             data: $scope.ponitsList,
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                $scope.getGoods(data);
@@ -1505,7 +1529,7 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
@@ -1514,7 +1538,7 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/Index/exchange',
                data: $scope.ponitsList,
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(cool);
                if (data.status) {
                   $scope.pointsData = data;
@@ -1522,58 +1546,58 @@ angular.module('myApp.controllers', [])
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
       //默认排序
-      $scope.morenOrder = function() {
+      $scope.morenOrder = function () {
          $scope.ponitsList.order = 'stotr';
          $scope.ponitsList.sort = 'DESC';
          $scope.pointsFn();
       };
       //积分兑换量排序
-      $scope.duihuanOrder = function() {
+      $scope.duihuanOrder = function () {
          $scope.ponitsList.order = 'sales_num';
          $scope.pointsFn();
       };
       //兑换量升序
-      $scope.duihuanliangAsOrder = function() {
+      $scope.duihuanliangAsOrder = function () {
          $scope.ponitsList.sort = 'ASC';
          $scope.ponitsList.order = 'sales_num';
          $scope.pointsFn();
       };
       //兑换量降序
-      $scope.duihuanliangDsOrder = function() {
+      $scope.duihuanliangDsOrder = function () {
          $scope.ponitsList.sort = 'DESC';
          $scope.ponitsList.order = 'sales_num';
          $scope.pointsFn();
       };
       //积分排序
-      $scope.pointsOrder = function() {
+      $scope.pointsOrder = function () {
          $scope.ponitsList.order = 'exchange_integral';
          $scope.pointsFn();
       };
       //积分升序
-      $scope.pointsAsOrder = function() {
+      $scope.pointsAsOrder = function () {
          $scope.ponitsList.sort = 'ASC';
          $scope.ponitsList.order = 'exchange_integral';
          $scope.pointsFn();
       };
       //积分降序
-      $scope.pointsDsOrder = function() {
+      $scope.pointsDsOrder = function () {
          $scope.ponitsList.sort = 'DESC';
          $scope.ponitsList.order = 'exchange_integral';
          $scope.pointsFn();
       };
       //搜索积分范围
-      $scope.minAndmax = function() {
+      $scope.minAndmax = function () {
          $scope.ponitsList.min_exchange = $scope.minPoint;
          $scope.ponitsList.max_exchange = $scope.maxPoint;
          $scope.pointsFn();
       };
       //只看我能兑换
-      $scope.isBuy = function() {
+      $scope.isBuy = function () {
          if ($scope.pointsData.is_buy) {
             $scope.ponitsList.is_buy = 0;
             $scope.pointsFn();
@@ -1584,7 +1608,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //优惠券
-   .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$myPublic', '$data', function($scope, $rootScope, $state, $http, ipCookie, $myPublic, $data) {
+   .controller('yhq-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$myPublic', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $myPublic, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1595,14 +1619,14 @@ angular.module('myApp.controllers', [])
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
-      $data.CatCoupon().success(function(data) {
+      $data.CatCoupon().success(function (data) {
          layer.close(cool);
          if (data.status) {
             $scope.category = data;
             $scope.getList(-1);
          }
       })
-      $scope.getList = function(index) {
+      $scope.getList = function (index) {
          var cat_id;
          if (index >= 0 && index < $scope.category.list.length) {
             $scope.selectIndex = index;
@@ -1622,7 +1646,7 @@ angular.module('myApp.controllers', [])
                size: 6,
                cat: cat_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                $scope.yhqData = data;
@@ -1630,11 +1654,11 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.next = function() {
+      $scope.next = function () {
          $scope.getList(++$scope.selectIndex);
       };
 
-      $scope.getPrivilege = function(item) {
+      $scope.getPrivilege = function (item) {
          $scope.showCouponSuccess = false;
          var is_get = item.is_get,
             type_id = item.type_id,
@@ -1649,22 +1673,22 @@ angular.module('myApp.controllers', [])
                data: {
                   type_id: type_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(inde)
                if (data.status) {
                   var timer;
                   $rootScope.$broadcast('uploadCoupon')
                   item.is_get = 1;
                   $scope.showCouponSuccess = true;
-                  $scope.useNow = function() {
+                  $scope.useNow = function () {
                      $scope.getPrivilege(item);
                   }
-                  $scope.close = function() {
+                  $scope.close = function () {
                      clearInterval(timer);
                      $scope.showCouponSuccess = false;
                   }
                   time = 5;
-                  timer = setInterval(function() {
+                  timer = setInterval(function () {
                      console.log(time)
                      if (time == 1) {
                         $scope.showCouponSuccess = false;
@@ -1681,12 +1705,12 @@ angular.module('myApp.controllers', [])
             })
          }
       }
-      $scope.goShop = function(item) {
+      $scope.goShop = function (item) {
          $myPublic.openCoupon(item.type_id);
       }
    }])
    //设计
-   .controller('sheji-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function($scope, $rootScope, $state, $http, ipCookie) {
+   .controller('sheji-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', function ($scope, $rootScope, $state, $http, ipCookie) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -1697,7 +1721,7 @@ angular.module('myApp.controllers', [])
          size: 8,
          is_return: 1
       };
-      $scope.qxsjFn = function() {
+      $scope.qxsjFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -1705,7 +1729,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Index/jingku',
             data: $scope.hotList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -1717,8 +1741,8 @@ angular.module('myApp.controllers', [])
       };
       $scope.qxsjFn();
 
-      $scope.hotSpFn = function() {
-         setTimeout(function() {
+      $scope.hotSpFn = function () {
+         setTimeout(function () {
             $(".hot-sp").slide({
                titCell: ".hd ul",
                mainCell: ".bd .ulWrap",
@@ -1733,13 +1757,13 @@ angular.module('myApp.controllers', [])
       //商品关注
       //防止用户多次点击，多次请求
       var timeoutflag = 0;
-      $scope.guanZhu = function(goods, id) {
+      $scope.guanZhu = function (goods, id) {
          if (timeoutflag) {
             layer.msg('操作太频繁啦！');
             return;
          }
          timeoutflag = 1;
-         timeoutflagfn = setTimeout(function() {
+         timeoutflagfn = setTimeout(function () {
             timeoutflag = 0;
          }, 2000);
          if (!goods.is_collect) {
@@ -1749,7 +1773,7 @@ angular.module('myApp.controllers', [])
                data: {
                   goods_id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.msg(data.info);
                if (data.status == '0') {
                   //location.href=$rootScope.ip + "/default.html";
@@ -1764,7 +1788,7 @@ angular.module('myApp.controllers', [])
                data: {
                   goods_id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.msg(data.info);
                if (data.status == '0') {
                   //location.href="http://jingkoo.net2017/11/28/default.html";
@@ -1790,7 +1814,7 @@ angular.module('myApp.controllers', [])
       // };
       // $scope.qxsjFn();
 
-      $scope.prev = function() {
+      $scope.prev = function () {
          if ($scope.hotList.size > $scope.shejiData.hot_goods.length) {
             return
          } else {
@@ -1805,7 +1829,7 @@ angular.module('myApp.controllers', [])
          //     $scope.qxsjFn();
          // }
       };
-      $scope.next = function() {
+      $scope.next = function () {
          if ($scope.hotList.page == 1) {
             return
          } else {
@@ -1822,7 +1846,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //登录
-   .controller('login-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function($scope, $rootScope, $state, $http, ipCookie, $interval) {
+   .controller('login-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function ($scope, $rootScope, $state, $http, ipCookie, $interval) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -1831,26 +1855,26 @@ angular.module('myApp.controllers', [])
       } else {
          $scope.isPhone = true;
       }
-      $scope.phoneLogin = function() {
+      $scope.phoneLogin = function () {
          $scope.isPhone = true;
       };
-      $scope.userLogin = function() {
+      $scope.userLogin = function () {
          $scope.isPhone = false;
       };
 
-      $scope.geeteInitFn1 = function() {
+      $scope.geeteInitFn1 = function () {
          $http({
             url: '' + $rootScope.ip + '/Login/geeTestinit',
             method: 'GET',
             params: '',
-         }).success(function(data) {
+         }).success(function (data) {
             initGeetest({
                // 以下配置参数来自服务端 SDK
                gt: data.gt,
                challenge: data.challenge,
                offline: !data.success,
                new_captcha: data.new_captcha
-            }, function(captchaObj) {
+            }, function (captchaObj) {
                // $(".getGeetestCaptcha").live("tap",function (e) {
                //     e.preventDefault();
                //     getMobileGeetestCaptcha($(this) , captchaObj);
@@ -1864,19 +1888,19 @@ angular.module('myApp.controllers', [])
       };
       $scope.geeteInitFn1();
 
-      $scope.geeteInitFn2 = function() {
+      $scope.geeteInitFn2 = function () {
          $http({
             url: '' + $rootScope.ip + '/Login/geeTestinit',
             method: 'GET',
             params: '',
-         }).success(function(data) {
+         }).success(function (data) {
             initGeetest({
                // 以下配置参数来自服务端 SDK
                gt: data.gt,
                challenge: data.challenge,
                offline: !data.success,
                new_captcha: data.new_captcha
-            }, function(captchaObj) {
+            }, function (captchaObj) {
                // $(".getGeetestCaptcha").live("tap",function (e) {
                //     e.preventDefault();
                //     getMobileGeetestCaptcha($(this) , captchaObj);
@@ -1907,23 +1931,23 @@ angular.module('myApp.controllers', [])
          $scope.user.remember = true;
          $scope.user.username = ipCookie('username');
       }
-      $scope.loginClick = function() {
+      $scope.loginClick = function () {
          $scope.fulllogin($scope.user)
       };
-      $scope.fulllogin = function(params) {
+      $scope.fulllogin = function (params) {
          var index = layer.load(2)
          $http({
             url: '' + $rootScope.ip + '/Login/loginCompany',
             method: 'POST',
             data: params
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(index);
             if (data.status == 1) {
                $scope.company = data.company;
                if (data.company.length == 1) {
                   return $scope.loginByCompany(data.company[0].cid);
                }
-               setTimeout(function() {
+               setTimeout(function () {
                   $scope.companylayer = layer.open({
                      type: 1,
                      title: '请选择公司',
@@ -1941,12 +1965,12 @@ angular.module('myApp.controllers', [])
                   btn: ['认证企业', '取消'], //按钮
                   title: '提示',
                   closeBtn: 0
-               }, function(index) {
+               }, function (index) {
                   layer.close(index);
                   $state.go('registerCompany', {
                      user_id: data.user_id
                   });
-               }, function(index) {
+               }, function (index) {
 
                });
             } else {
@@ -1956,7 +1980,7 @@ angular.module('myApp.controllers', [])
             }
          });
       }
-      $scope.loginByCompany = function(cid) {
+      $scope.loginByCompany = function (cid) {
          layer.close($scope.companylayer)
          if ($scope.isPhone) {
             var params = $scope.userPhone;
@@ -1968,12 +1992,12 @@ angular.module('myApp.controllers', [])
             url: '' + $rootScope.ip + '/Login/index',
             method: 'POST',
             data: params
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.userData = data;
                layer.msg(data.info, {
                   time: 500
-               }, function() {
+               }, function () {
                   $state.go('home');
                });
                // $rootScope.res = data.data.token;
@@ -2013,7 +2037,7 @@ angular.module('myApp.controllers', [])
          $scope.userPhone.userphone = ipCookie('phone_number');
       }
 
-      $scope.anoLoginClick = function() {
+      $scope.anoLoginClick = function () {
          $scope.fulllogin($scope.userPhone)
       };
       //获取短信验证码
@@ -2022,7 +2046,7 @@ angular.module('myApp.controllers', [])
          kedian: false,
          time: 59
       };
-      $scope.info = function() {
+      $scope.info = function () {
          var validate2 = $scope.geeteTrue2.getValidate();
 
          if (validate2 != undefined) {
@@ -2043,13 +2067,13 @@ angular.module('myApp.controllers', [])
                   geetest_validate: $scope.infogeetest_validate,
                   geetest_seccode: $scope.infogeetest_seccode
                }
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.geeteTrue2.reset();
                   layer.msg(data.info);
                   $scope.vm.kedian = true;
                   $scope.vm.data = $scope.vm.time + 's';
-                  $interval(function() {
+                  $interval(function () {
                      $scope.vm.data = ($scope.vm.time - 1) + 's';
                      $scope.vm.time--;
                      if ($scope.vm.time == 0) {
@@ -2073,7 +2097,7 @@ angular.module('myApp.controllers', [])
 
 
       };
-      $scope.anoinfo = function() {
+      $scope.anoinfo = function () {
          var validate2 = $scope.geeteTrue2.getValidate();
 
          if (validate2 != undefined) {
@@ -2094,12 +2118,12 @@ angular.module('myApp.controllers', [])
                   geetest_validate: $scope.anoInfogeetest_validate,
                   geetest_seccode: $scope.anoInfogeetest_seccode
                }
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.vm.kedian = true;
                   $scope.vm.data = $scope.vm.time + 's';
-                  $interval(function() {
+                  $interval(function () {
                      $scope.vm.data = ($scope.vm.time - 1) + 's';
                      $scope.vm.time--;
                      if ($scope.vm.time == 0) {
@@ -2125,7 +2149,7 @@ angular.module('myApp.controllers', [])
       };
 
       //记住用户名
-      $scope.remeberUser = function(user) {
+      $scope.remeberUser = function (user) {
          if (user) {
             ipCookie("remeber_user_name", true, {
                expires: 21
@@ -2140,7 +2164,7 @@ angular.module('myApp.controllers', [])
          expires: 21
       });
       //记住用户名
-      $scope.remeberUserPhone = function(user) {
+      $scope.remeberUserPhone = function (user) {
          if (user) {
             ipCookie("remeber_user_phone", true, {
                expires: 21
@@ -2156,26 +2180,26 @@ angular.module('myApp.controllers', [])
       });
    }])
    //注册
-   .controller('register-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce) {
+   .controller('register-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
       $scope.registerList = {
          step: 'one'
       };
-      $scope.geeteInitFn1 = function() {
+      $scope.geeteInitFn1 = function () {
          $http({
             url: '' + $rootScope.ip + '/Login/geeTestinit',
             method: 'GET',
             params: '',
-         }).success(function(data) {
+         }).success(function (data) {
             initGeetest({
                // 以下配置参数来自服务端 SDK
                gt: data.gt,
                challenge: data.challenge,
                offline: !data.success,
                new_captcha: data.new_captcha
-            }, function(captchaObj) {
+            }, function (captchaObj) {
                // $(".getGeetestCaptcha").live("tap",function (e) {
                //     e.preventDefault();
                //     getMobileGeetestCaptcha($(this) , captchaObj);
@@ -2189,18 +2213,18 @@ angular.module('myApp.controllers', [])
       };
       $scope.geeteInitFn1();
 
-      $('.userInput').focus(function() {
-         $scope.$apply(function() {
+      $('.userInput').focus(function () {
+         $scope.$apply(function () {
             $scope.userShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.userShow = false;
          })
       });
 
 
-      $scope.isUserChange = function(user) {
+      $scope.isUserChange = function (user) {
          var res = /^[\u4e00-\u9fa5_a-zA-Z0-9_]{0,20}$/;
          if (res.test(user) && user.length != 0) {
             $scope.isUser = true;
@@ -2212,7 +2236,7 @@ angular.module('myApp.controllers', [])
                data: {
                   user_name: user
                }
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status == 0) {
                   $scope.validate_user = data;
                   $scope.isLife = false;
@@ -2238,16 +2262,16 @@ angular.module('myApp.controllers', [])
 
 
 
-      $('.userPwd').focus(function() {
-         $scope.$apply(function() {
+      $('.userPwd').focus(function () {
+         $scope.$apply(function () {
             $scope.pwdShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.pwdShow = false;
          })
       });
-      $scope.isPassWordChange = function(password) {
+      $scope.isPassWordChange = function (password) {
 
          var ruo = /^\d+$/;
          var zhong = /^(?!\d+$)(?![a-zA-Z]+$)[a-zA-Z\d]+$/;
@@ -2273,22 +2297,22 @@ angular.module('myApp.controllers', [])
          }
 
       };
-      $scope.isPassWord = function(password) {
+      $scope.isPassWord = function (password) {
          $scope.isPassWordChange(password)
       };
 
 
-      $('.userCpwd').focus(function() {
-         $scope.$apply(function() {
+      $('.userCpwd').focus(function () {
+         $scope.$apply(function () {
             $scope.cpwdShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.cpwdShow = false;
          })
       });
       //验证再次确认密码
-      $scope.isCpassWordChange = function(cpwd) {
+      $scope.isCpassWordChange = function (cpwd) {
          if (cpwd != $scope.registerList.password || cpwd.length == 0) {
             $scope.isCpwd = false;
             $scope.cpwdRight = false;
@@ -2304,7 +2328,7 @@ angular.module('myApp.controllers', [])
             $scope.cpwdShow = false;
          }
       };
-      $scope.isCpassWord = function(cpwd) {
+      $scope.isCpassWord = function (cpwd) {
          if (cpwd != $scope.registerList.password || cpwd.length == 0) {
             $scope.isCpwd = false;
             $scope.cpwdRight = false;
@@ -2322,17 +2346,17 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $('.userPhone').focus(function() {
-         $scope.$apply(function() {
+      $('.userPhone').focus(function () {
+         $scope.$apply(function () {
             $scope.phoneShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.phoneShow = false;
          })
       });
       //验证手机号
-      $scope.isPhone = function(phone) {
+      $scope.isPhone = function (phone) {
          var res = /^[1][3,4,5,6,7,8][0-9]{9}$/;
          if (!res.test(phone)) {
             $scope.isTel = false;
@@ -2350,7 +2374,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //注册里省切换
-      $scope.selectProvince = function(pid) {
+      $scope.selectProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Login/change_region',
@@ -2358,7 +2382,7 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.cityData = data;
             $scope.disData = [];
             $scope.selectCity(pid);
@@ -2366,7 +2390,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //注册里市切换
-      $scope.selectCity = function(pid) {
+      $scope.selectCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Login/change_region',
@@ -2374,23 +2398,23 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.disData = data;
          })
       };
 
 
-      $('.userCode').focus(function() {
-         $scope.$apply(function() {
+      $('.userCode').focus(function () {
+         $scope.$apply(function () {
             $scope.codeShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.codeShow = false;
          })
       });
       //获取验证码接口
-      $scope.codeFn = function() {
+      $scope.codeFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/verify',
@@ -2400,14 +2424,14 @@ angular.module('myApp.controllers', [])
                codeSet: 0,
                useNoise: true
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.code = data.data.skey;
             $scope.getKey();
          })
       };
       $scope.codeFn();
       //回调一次验证码接口获取图片
-      $scope.getKey = function() {
+      $scope.getKey = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/verify',
@@ -2418,16 +2442,16 @@ angular.module('myApp.controllers', [])
                codeSet: 0,
                skey: $scope.code
             }
-         }).success(function(data) {
-            setTimeout(function() {
-               $scope.$apply(function() {
+         }).success(function (data) {
+            setTimeout(function () {
+               $scope.$apply(function () {
                   $scope.codeMa = data.data.captcha + '?' + Math.random(); //增加随机参数时间可强制刷新
                });
             }, 200)
          })
       };
       //点击验证码图片切换验证码
-      $scope.codeAgain = function() {
+      $scope.codeAgain = function () {
          $scope.codeFn();
       };
       //获取短信验证码
@@ -2437,7 +2461,7 @@ angular.module('myApp.controllers', [])
          time: 59
       };
 
-      $scope.info = function() {
+      $scope.info = function () {
          var validate = $scope.geeteTrue.getValidate();
 
          if (validate != undefined) {
@@ -2458,12 +2482,12 @@ angular.module('myApp.controllers', [])
                   geetest_validate: $scope.reggeetest_validate,
                   geetest_seccode: $scope.reggeetest_seccode
                }
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.vm.kedian = true;
                   $scope.vm.data = $scope.vm.time + 's';
-                  $interval(function() {
+                  $interval(function () {
                      $scope.vm.data = ($scope.vm.time - 1) + 's';
                      $scope.vm.time--;
                      if ($scope.vm.time == 0) {
@@ -2493,17 +2517,17 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Login/user_agreement',
          data: ''
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.xieyi = $sce.trustAsHtml(data.data.content);
       })
 
       //判断协议是否同意
-      $scope.continue = function() {
+      $scope.continue = function () {
          $scope.isCheck = true;
       };
 
       //注册提交
-      $scope.register = function() {
+      $scope.register = function () {
          console.log($scope.registerList)
 
          if ($scope.isCheck) {
@@ -2511,18 +2535,18 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/Login/new_register',
                data: $scope.registerList
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.confirm(data.info, {
                      btn: ['认证', '取消'], //按钮
                      title: '提示',
                      closeBtn: 0
-                  }, function(index) {
+                  }, function (index) {
                      $state.go('registerCompany', {
                         user_id: data.data.user_id
                      });
                      layer.close(index);
-                  }, function(index) {
+                  }, function (index) {
                      layer.close(index);
                      $state.go('login');
                   });
@@ -2536,7 +2560,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //注册公司
-   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', '$data', function($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams, $data) {
+   .controller('register-company-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', '$sce', '$stateParams', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $interval, $sce, $stateParams, $data) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -2550,22 +2574,22 @@ angular.module('myApp.controllers', [])
          method: "GET",
          url: '' + $rootScope.ip + '/Login/region_list',
          params: ''
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.rgProvinceData = data;
       })
 
-      $('.userInput').focus(function() {
-         $scope.$apply(function() {
+      $('.userInput').focus(function () {
+         $scope.$apply(function () {
             $scope.userShow = true;
          })
-      }).blur(function() {
-         $scope.$apply(function() {
+      }).blur(function () {
+         $scope.$apply(function () {
             $scope.userShow = false;
          })
       });
 
       //注册里省切换
-      $scope.selectProvince = function(pid) {
+      $scope.selectProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Login/change_region',
@@ -2573,7 +2597,7 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.cityData = data;
             $scope.disData = [];
             $scope.selectCity(pid);
@@ -2581,7 +2605,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //注册里市切换
-      $scope.selectCity = function(pid) {
+      $scope.selectCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Login/change_region',
@@ -2589,18 +2613,18 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.disData = data;
          })
       };
 
       //获取img base64编码
-      $scope.imgPreview = function(e) {
+      $scope.imgPreview = function (e) {
          $scope.registerList.zhizhao = e.img_url;
          var img = document.getElementById("preview");
          img.src = e.base64;
       }
-      $scope.medicalPhoto = function(e) {
+      $scope.medicalPhoto = function (e) {
          $scope.registerList.medical = e.img_url;
          var img = document.getElementById("img33");
          img.src = e.base64;
@@ -2611,29 +2635,29 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/Login/user_agreement',
          data: ''
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.xieyi = $sce.trustAsHtml(data.data.content);
       })
 
       //判断协议是否同意
-      $scope.continue = function() {
+      $scope.continue = function () {
          $scope.isCheck = true;
       };
 
       //注册提交
-      $scope.register = function() {
+      $scope.register = function () {
          if ($scope.isCheck) {
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/Login/new_register',
                data: $scope.registerList
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.confirm(data.info, {
                      btn: ['确定'], //按钮
                      title: '提示',
                      closeBtn: 0
-                  }, function(index) {
+                  }, function (index) {
                      layer.close(index);
                      $state.go('login');
                   });
@@ -2647,7 +2671,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //忘记密码
-   .controller('forgotPassword-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function($scope, $rootScope, $state, $http, ipCookie, $interval) {
+   .controller('forgotPassword-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function ($scope, $rootScope, $state, $http, ipCookie, $interval) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -2661,31 +2685,31 @@ angular.module('myApp.controllers', [])
       $scope.forgotOneOption = {
          step: 'one'
       };
-      $scope.stepOne = function() {
+      $scope.stepOne = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/forgotPwd',
             data: $scope.forgotOneOption
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.isPhone = data.phone;
                $scope.forgotTwoOption.phone = data.phone;
                $scope.one = false;
                $scope.two = true;
 
-               $scope.geeteInitFn1 = function() {
+               $scope.geeteInitFn1 = function () {
                   $http({
                      url: '' + $rootScope.ip + '/Login/geeTestinit',
                      method: 'GET',
                      params: '',
-                  }).success(function(data) {
+                  }).success(function (data) {
                      initGeetest({
                         // 以下配置参数来自服务端 SDK
                         gt: data.gt,
                         challenge: data.challenge,
                         offline: !data.success,
                         new_captcha: data.new_captcha
-                     }, function(captchaObj) {
+                     }, function (captchaObj) {
                         // $(".getGeetestCaptcha").live("tap",function (e) {
                         //     e.preventDefault();
                         //     getMobileGeetestCaptcha($(this) , captchaObj);
@@ -2712,7 +2736,7 @@ angular.module('myApp.controllers', [])
       };
 
       //获取验证码接口
-      $scope.codeFn = function() {
+      $scope.codeFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/verify',
@@ -2721,14 +2745,14 @@ angular.module('myApp.controllers', [])
                length: 4,
                useNoise: true
             }
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.code = data.data.skey;
             $scope.getKey();
          })
       };
       $scope.codeFn();
       //回调一次验证码接口获取图片
-      $scope.getKey = function() {
+      $scope.getKey = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/verify',
@@ -2738,9 +2762,9 @@ angular.module('myApp.controllers', [])
                useNoise: true,
                codeSet: $scope.code
             }
-         }).success(function(data) {
-            setTimeout(function() {
-               $scope.$apply(function() {
+         }).success(function (data) {
+            setTimeout(function () {
+               $scope.$apply(function () {
                   $scope.codeMa = data.data.captcha + '?' + Math.random(); //增加随机参数时间可强制刷新
                });
             }, 200)
@@ -2748,7 +2772,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //点击验证码图片切换验证码
-      $scope.codeAgain = function() {
+      $scope.codeAgain = function () {
          $scope.codeFn();
       };
 
@@ -2759,7 +2783,7 @@ angular.module('myApp.controllers', [])
          time: 59
       };
 
-      $scope.info = function() {
+      $scope.info = function () {
          var validate = $scope.geeteTrue.getValidate();
 
          if (validate != undefined) {
@@ -2780,12 +2804,12 @@ angular.module('myApp.controllers', [])
                   geetest_validate: $scope.Twogeetest_validate,
                   geetest_seccode: $scope.Twogeetest_seccode
                }
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.vm.kedian = true;
                   $scope.vm.data = $scope.vm.time + 's';
-                  $interval(function() {
+                  $interval(function () {
                      $scope.vm.data = ($scope.vm.time - 1) + 's';
                      $scope.vm.time--;
                      if ($scope.vm.time == 0) {
@@ -2811,12 +2835,12 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $scope.stepTwo = function() {
+      $scope.stepTwo = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/forgotPwd',
             data: $scope.forgotTwoOption
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.forgotThreeOption.phone = data.phone;
                $scope.forgotThreeOption.verify = data.verify;
@@ -2835,12 +2859,12 @@ angular.module('myApp.controllers', [])
          phone: '',
          verify: ''
       };
-      $scope.stepThree = function() {
+      $scope.stepThree = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Login/forgotPwd',
             data: $scope.forgotThreeOption
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.one = false;
                $scope.two = false;
@@ -2852,49 +2876,49 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.goLogin = function() {
+      $scope.goLogin = function () {
          $state.go('login');
       };
    }])
    //充值
-   .controller('recharge-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function($scope, $rootScope, $state, $http, ipCookie, $interval) {
+   .controller('recharge-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$interval', function ($scope, $rootScope, $state, $http, ipCookie, $interval) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.accountList = {
          amount: '',
          payment_id: 6
       }
-      $('.jifanniu .km').click(function(e) {
+      $('.jifanniu .km').click(function (e) {
          $('.jifanniu .km').removeClass('on');
          $(e.target).addClass('on');
       });
       if ($('.ikm1').hasClass('on')) {
          $scope.accountList.amount = 5000;
       }
-      $scope.wuqian = function() {
+      $scope.wuqian = function () {
          $scope.accountList.amount = 5000;
       };
-      $scope.yiwan = function() {
+      $scope.yiwan = function () {
          $scope.accountList.amount = 10000;
       };
-      $scope.liangwan = function() {
+      $scope.liangwan = function () {
          $scope.accountList.amount = 20000;
       };
-      $scope.sanwan = function() {
+      $scope.sanwan = function () {
          $scope.accountList.amount = 30000;
       };
-      $scope.siwan = function() {
+      $scope.siwan = function () {
          $scope.accountList.amount = 40000;
       };
-      $scope.wuwan = function() {
+      $scope.wuwan = function () {
          $scope.accountList.amount = 50000;
       };
-      $scope.aliPayFn = function() {
+      $scope.aliPayFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/addAccount',
             data: $scope.accountList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $http({
                   method: "POST",
@@ -2903,7 +2927,7 @@ angular.module('myApp.controllers', [])
                      log_id: data.log_id,
                      type: 'log'
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      $http({
                         method: "POST",
@@ -2911,15 +2935,15 @@ angular.module('myApp.controllers', [])
                         data: {
                            code: data.alipay
                         },
-                     }).success(function(data) {
+                     }).success(function (data) {
                         if (data.status) {
                            layer.msg('玩命加载中', {
                               icon: 16,
                               shade: 0.3
-                           }, function() {
+                           }, function () {
 
                            })
-                           pingpp.createPayment(data.pingxx, function(result, err) {
+                           pingpp.createPayment(data.pingxx, function (result, err) {
                               if (result == "success") {
                                  // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                               } else if (result == "fail") {
@@ -2944,12 +2968,12 @@ angular.module('myApp.controllers', [])
             }
          })
       };
-      $scope.wexinFn = function() {
+      $scope.wexinFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/addAccount',
             data: $scope.accountList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $http({
                   method: "POST",
@@ -2958,7 +2982,7 @@ angular.module('myApp.controllers', [])
                      log_id: data.log_id,
                      type: 'log'
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      $http({
                         method: "POST",
@@ -2966,12 +2990,12 @@ angular.module('myApp.controllers', [])
                         data: {
                            code: data.weixin
                         },
-                     }).success(function(data) {
+                     }).success(function (data) {
                         if (data.status) {
                            layer.msg('玩命加载中', {
                               icon: 16,
                               shade: 0.3
-                           }, function() {
+                           }, function () {
                               $state.go('erweima', {
                                  url: data.wx_url
                               });
@@ -3011,12 +3035,12 @@ angular.module('myApp.controllers', [])
             }
          })
       };
-      $scope.ylFn = function() {
+      $scope.ylFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/addAccount',
             data: $scope.accountList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $http({
                   method: "POST",
@@ -3025,7 +3049,7 @@ angular.module('myApp.controllers', [])
                      log_id: data.log_id,
                      type: 'log'
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      $http({
                         method: "POST",
@@ -3033,15 +3057,15 @@ angular.module('myApp.controllers', [])
                         data: {
                            code: data.upacp
                         },
-                     }).success(function(data) {
+                     }).success(function (data) {
                         if (data.status) {
                            layer.msg('玩命加载中', {
                               icon: 16,
                               shade: 0.3
-                           }, function() {
+                           }, function () {
 
                            })
-                           pingpp.createPayment(data.pingxx, function(result, err) {
+                           pingpp.createPayment(data.pingxx, function (result, err) {
                               if (result == "success") {
                                  // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                               } else if (result == "fail") {
@@ -3069,13 +3093,13 @@ angular.module('myApp.controllers', [])
 
    }])
    //商品品牌专题页
-   .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', function($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state) {
+   .controller('shopListAno-control', ['$scope', '$rootScope', '$stateParams', '$http', 'ipCookie', '$window', '$location', '$data', '$anchorScroll', '$state', function ($scope, $rootScope, $stateParams, $http, ipCookie, $window, $location, $data, $anchorScroll, $state) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
       //分类切换函数
-      $scope.anoSlideFn = function() {
-         setTimeout(function() {
+      $scope.anoSlideFn = function () {
+         setTimeout(function () {
             $(".cuntab").slide({
                mainCell: ".bd",
                trigger: "click"
@@ -3093,7 +3117,7 @@ angular.module('myApp.controllers', [])
          data: {
             cat_id: $stateParams.cat_id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status) {
             $scope.anoListData = data;
@@ -3105,9 +3129,9 @@ angular.module('myApp.controllers', [])
       })
 
 
-      $scope.catFn = function() {
-         setTimeout(function() {
-            $(".ls1h3").on("click", function() {
+      $scope.catFn = function () {
+         setTimeout(function () {
+            $(".ls1h3").on("click", function () {
                $(".ls1h3").removeClass("attr");
                $(this).addClass("attr");
 
@@ -3126,7 +3150,7 @@ angular.module('myApp.controllers', [])
          }, 200)
       };
 
-      $scope.getZeissGoods = function(box, i1, ii, iii) {
+      $scope.getZeissGoods = function (box, i1, ii, iii) {
          $scope.zeissList = [];
          if (box.cat_id == []) {
             return;
@@ -3138,9 +3162,9 @@ angular.module('myApp.controllers', [])
                data: {
                   cats: box.cat_id[i].id
                },
-            }).success(function(data) {
-               setTimeout(function() {
-                  $scope.$apply(function() {
+            }).success(function (data) {
+               setTimeout(function () {
+                  $scope.$apply(function () {
                      $scope.anoListData.category.cat_id[iii].cat_id[ii].cat_id[i1]['zeissList'] = data.data;
                   })
                }, 20)
@@ -3151,7 +3175,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //商品详情
-   .controller('shopDetail-control', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', '$sce', function($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll, $sce) {
+   .controller('shopDetail-control', ['$scope', '$rootScope', '$stateParams', '$state', '$http', 'ipCookie', '$window', '$location', '$anchorScroll', '$sce', function ($scope, $rootScope, $stateParams, $state, $http, ipCookie, $window, $location, $anchorScroll, $sce) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.goods_id = $stateParams.goods_id;
@@ -3166,7 +3190,7 @@ angular.module('myApp.controllers', [])
             goods_id: $scope.goods_id,
             isActivity: $scope.isActivity
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status == 0 && data.info == "商品信息不存在") {
             layer.msg(data.info);
             $window.history.back();
@@ -3177,8 +3201,8 @@ angular.module('myApp.controllers', [])
          if ($scope.spectaclesData.data) {
             for (var i = 0; i < $scope.spectaclesData.data.length; i++) {
                if ($scope.spectaclesData.data[i].is_main == 1) {
-                  setTimeout(function() {
-                     $scope.$apply(function() {
+                  setTimeout(function () {
+                     $scope.$apply(function () {
                         $scope.hasMainAttr = true;
                      })
                   }, 0)
@@ -3197,7 +3221,7 @@ angular.module('myApp.controllers', [])
             $scope.pointsMall = false;
             //商品属性为goods时调用这个接口
 
-            $scope.getAttrList = function(attrId, attrNumber, label) {
+            $scope.getAttrList = function (attrId, attrNumber, label) {
                $scope.attrNumber = attrNumber || 1;
                $scope.attrId = attrId;
                $scope.checkMainAttrLabel = label;
@@ -3211,13 +3235,13 @@ angular.module('myApp.controllers', [])
                      attr: attrId,
                      isActivity: $scope.isActivity
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   $scope.goodsData = data;
                   //使得输入框中初始值为0
                   for (var i = 0; i < $scope.goodsData.data.length; i++) {
                      $scope.goodsData.data[i].num = 0;
                   }
-                  $scope.numberChange = function() {
+                  $scope.numberChange = function () {
                      //每次更新商品数量获取的数据
                      $scope.goodsCarParams.goods.member = [];
                      $scope.goodsCarParams.goods.spec = [];
@@ -3237,7 +3261,7 @@ angular.module('myApp.controllers', [])
                         method: "POST",
                         url: '' + $rootScope.ip + '/Goods/change_goods_number',
                         data: $scope.goodsCarParams,
-                     }).success(function(data) {
+                     }).success(function (data) {
                         //layer.close(cool);
                         if (data.status) {
                            $scope.listTotalNumber = data.number;
@@ -3251,7 +3275,7 @@ angular.module('myApp.controllers', [])
                   };
                   $scope.isReduce = true;
                   //增加
-                  $scope.add = function(trItem) {
+                  $scope.add = function (trItem) {
                      trItem.num += Number($scope.attrNumber);
                      if (trItem.num > 0) {
                         $scope.isList = true;
@@ -3259,7 +3283,7 @@ angular.module('myApp.controllers', [])
                      $scope.numberChange();
                   };
                   //减少
-                  $scope.reduce = function(item) {
+                  $scope.reduce = function (item) {
                      item.num -= Number($scope.attrNumber);
                      $scope.numberChange();
                   };
@@ -3288,15 +3312,15 @@ angular.module('myApp.controllers', [])
          }
       })
 
-      $scope.scrollTopTop = function() {
+      $scope.scrollTopTop = function () {
          $('body,html').animate({
             'scrollTop': 0
          }, 500)
       }
-      $scope.NumSelect = function(e) {
+      $scope.NumSelect = function (e) {
          angular.element(e.target).focus().select();
       };
-      $scope.change = function(trItem) {
+      $scope.change = function (trItem) {
          console.log(trItem.num)
          if (Number(trItem.num) > Number(trItem.product_number)) {
             trItem.num = Number(trItem.product_number);
@@ -3307,7 +3331,7 @@ angular.module('myApp.controllers', [])
       };
 
       //商品详情接口
-      $scope.shopDetailFn = function() {
+      $scope.shopDetailFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -3317,7 +3341,7 @@ angular.module('myApp.controllers', [])
             data: {
                goods_id: $scope.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status == 1) {
                $scope.data = data;
@@ -3352,7 +3376,7 @@ angular.module('myApp.controllers', [])
                      goods_id: $scope.goods_id,
                      id: $scope.shopId
                   },
-               }).success(function(res) {
+               }).success(function (res) {
                   if (res.status == 1) {
                      $scope.commentCommentReckon = res;
                   }
@@ -3365,21 +3389,21 @@ angular.module('myApp.controllers', [])
                      method: "POST",
                      url: '' + $rootScope.ip + '/User/user_info',
                      data: '',
-                  }).success(function(data) {
+                  }).success(function (data) {
                      $scope.payPoints = data.user_info.pay_points;
                   })
                } else {
                   $scope.isPointsMall = true;
                   $scope.pointsMall = false;
                }
-               $scope.goStore = function() {
+               $scope.goStore = function () {
                   var url = $state.href('shopHomeNew', {
                      shopId: $scope.shopId
                   });
                   window.open(url, '_blank');
                };
                //店铺关注
-               $scope.shopGz = function() {
+               $scope.shopGz = function () {
                   $http({
                      method: "POST",
                      url: '' + $rootScope.ip + '/Goods/CollectShop',
@@ -3387,7 +3411,7 @@ angular.module('myApp.controllers', [])
                         id: $scope.shopId,
                         type: $scope.shopDetailData.supplier_info.is_select ? 0 : 1
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      layer.msg(data.info, {
                         time: 1000
                      });
@@ -3397,7 +3421,7 @@ angular.module('myApp.controllers', [])
                   })
                };
 
-               $scope.goBack = function(category, categoryId) {
+               $scope.goBack = function (category, categoryId) {
                   $state.go('shop-list', {
                      params: encodeURIComponent(JSON.stringify({
                         cat_id: categoryId,
@@ -3411,18 +3435,18 @@ angular.module('myApp.controllers', [])
 
 
       //领取优惠券
-      $scope.lqYhq = function(tid) {
+      $scope.lqYhq = function (tid) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/send_by_user',
             data: {
                type_id: tid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.shopDetailFn();
                });
             } else {
@@ -3434,8 +3458,8 @@ angular.module('myApp.controllers', [])
       };
 
       //商品推荐
-      $scope.tuijianFn = function() {
-         setTimeout(function() {
+      $scope.tuijianFn = function () {
+         setTimeout(function () {
             $(".goods-recommended-content").slide({
                mainCell: "ul",
                vis: 7,
@@ -3449,7 +3473,7 @@ angular.module('myApp.controllers', [])
       //商品关注
       //防止用户多次点击，多次请求
       var timeoutflag = 0;
-      $scope.goodsCollect = function() {
+      $scope.goodsCollect = function () {
          if (timeoutflag) {
             layer.msg('操作太频繁啦！', {
                time: 1000
@@ -3457,7 +3481,7 @@ angular.module('myApp.controllers', [])
             return;
          }
          timeoutflag = 1;
-         timeoutflagfn = setTimeout(function() {
+         timeoutflagfn = setTimeout(function () {
             timeoutflag = 0;
          }, 500);
          $http({
@@ -3466,7 +3490,7 @@ angular.module('myApp.controllers', [])
             data: {
                goods_id: $scope.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == '0') {
                layer.msg('关注失败', {
                   time: 1000
@@ -3481,7 +3505,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //商品取消关注
-      $scope.goodsNotCollect = function() {
+      $scope.goodsNotCollect = function () {
          if (timeoutflag) {
             layer.msg('操作太频繁啦！', {
                time: 1000
@@ -3489,7 +3513,7 @@ angular.module('myApp.controllers', [])
             return;
          }
          timeoutflag = 1;
-         timeoutflagfn = setTimeout(function() {
+         timeoutflagfn = setTimeout(function () {
             timeoutflag = 0;
          }, 500);
          $http({
@@ -3498,7 +3522,7 @@ angular.module('myApp.controllers', [])
             data: {
                goods_id: $scope.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == '0') {
                layer.msg('取消关注失败', {
                   time: 1000
@@ -3520,7 +3544,7 @@ angular.module('myApp.controllers', [])
       };
 
       //商品切换收货地址
-      $scope.chengeAddress = function(addressId, region) {
+      $scope.chengeAddress = function (addressId, region) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/Goods_fee',
@@ -3528,19 +3552,19 @@ angular.module('myApp.controllers', [])
                id: addressId,
                goods_id: $stateParams.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.regionArr.region_id = region;
                $http({
                   method: "POST",
                   url: '' + $rootScope.ip + '/Goods/set_area',
                   data: $scope.regionArr,
-               }).success(function(data) {
+               }).success(function (data) {
                   $rootScope.$broadcast('uploadCity');
                   layer.msg('更换地址成功', {
                      icon: 1,
                      time: 1000
-                  }, function() {
+                  }, function () {
                      $scope.shopDetailFn();
                   });
                })
@@ -3553,21 +3577,21 @@ angular.module('myApp.controllers', [])
          })
       };
       //商品切换销售区域
-      $scope.regionTable = function(regionId) {
+      $scope.regionTable = function (regionId) {
          $scope.regionArr.region_id = regionId;
       };
       //地区更新同步
-      $rootScope.$on('uploadAddress', function() {
+      $rootScope.$on('uploadAddress', function () {
          $scope.shopDetailFn();
       });
-      $scope.saveArea = function(e) {
+      $scope.saveArea = function (e) {
          angular.element(e.target).parent().parent().hide();
 
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/set_area',
             data: $scope.regionArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg('更换地区成功', {
                   icon: 1,
@@ -3585,20 +3609,20 @@ angular.module('myApp.controllers', [])
       };
 
       //显示当前球镜柱镜选择度数框
-      $scope.openDs = function(e, index) {
+      $scope.openDs = function (e, index) {
          $('#masks').show();
          //$('.dushu-box').show();
          angular.element(e.target).next().show();
       };
       //关闭当前球镜柱镜选择度数框
-      $scope.hideDuShuBox = function(e) {
+      $scope.hideDuShuBox = function (e) {
          angular.element(e.target).parent().parent().hide();
          $('#masks').hide();
       };
-      $scope.openDsZj = function(e) {
+      $scope.openDsZj = function (e) {
          if (angular.element(e.target).parent().prev().find('.pick-text-qiujing').val() == '') {
             angular.element(e.target).next().show();
-            setTimeout(function() {
+            setTimeout(function () {
                angular.element(e.target).next().hide();
             }, 2000)
          } else {
@@ -3609,7 +3633,7 @@ angular.module('myApp.controllers', [])
       };
 
       //点击球镜数据给当前球镜设置度数，同时请求柱镜数据
-      $scope.getDs = function(item) {
+      $scope.getDs = function (item) {
          //获取柱镜的数据
          item.zhujing = '';
          $http({
@@ -3619,7 +3643,7 @@ angular.module('myApp.controllers', [])
                goods_id: $scope.goods_id,
                item: item.qiujing
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.zhujingData = data;
             var arrs = [];
             for (var i in data.data) {
@@ -3635,14 +3659,14 @@ angular.module('myApp.controllers', [])
          $('.dushu-box').hide();
       };
       //点击柱镜数据来给当前的柱镜给度数值
-      $scope.getDsZj = function(item) {
+      $scope.getDsZj = function (item) {
          $scope.priceChange(item);
 
          $('#masks').hide();
          $('.dushuQiuJing-box').hide();
       };
       /* 属性价格改变 */
-      $scope.priceChange = function(item) {
+      $scope.priceChange = function (item) {
          var spcArr = [];
          for (var j = 0; j < $scope.spectaclesData.specification.length; j++) {
             var attr = item[$scope.spectaclesData.specification[j].name];
@@ -3659,7 +3683,7 @@ angular.module('myApp.controllers', [])
                qiujing: item.qiujing,
                zhujing: item.zhujing
             },
-         }).success(function(res) {
+         }).success(function (res) {
             if (res.status) {
                item.price = res.data.price.toFixed(2);
                if (res.data.promotion_id > 0) {
@@ -3679,7 +3703,7 @@ angular.module('myApp.controllers', [])
          price: '0.00'
       }];
       //新增一行
-      $scope.addTr = function() {
+      $scope.addTr = function () {
          $scope.goodsSpectaclesCarParams.goods.member = [];
          $scope.goodsSpectaclesCarParams.goods.qiujing = [];
          $scope.goodsSpectaclesCarParams.goods.zhujing = [];
@@ -3710,7 +3734,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //删除一行
-      $scope.delTr = function(index) {
+      $scope.delTr = function (index) {
          if ($scope.arr.length == 1) {
             layer.msg('给留一件吧亲');
          } else if (index >= 0) {
@@ -3742,7 +3766,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //镜片购买
-      $scope.add_to_cart_spec_jp = function(success) {
+      $scope.add_to_cart_spec_jp = function (success) {
          $scope.goodsSpectaclesCarParams.goods.member = [];
          $scope.goodsSpectaclesCarParams.goods.qiujing = [];
          $scope.goodsSpectaclesCarParams.goods.zhujing = [];
@@ -3768,27 +3792,27 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/add_to_cart_spec_jp',
             data: $scope.goodsSpectaclesCarParams,
-         }).success(function(data) {
+         }).success(function (data) {
             success ? success(data) : null;
          })
       }
       //普通商品购买
-      $scope.add_to_cart_spec = function(success) {
+      $scope.add_to_cart_spec = function (success) {
 
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/add_to_cart_spec',
             data: $scope.goodsCarParams,
-         }).success(function(data) {
+         }).success(function (data) {
             success ? success(data) : null;
 
          })
       }
       //加入购物车
-      $scope.joinCar = function() {
+      $scope.joinCar = function () {
          //镜片加入购物车
          if ($scope.spectaclesData.goods_type == "goods_spectacles") {
-            $scope.add_to_cart_spec_jp(function(data) {
+            $scope.add_to_cart_spec_jp(function (data) {
                if (data.status == -1) {
                   layer.msg(data.info, {
                      time: 1000
@@ -3804,11 +3828,11 @@ angular.module('myApp.controllers', [])
                      btn: ['去结算', '继续选购'], //按钮
                      title: '提示',
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('shop-car');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                         $scope.getAttrList();
                      }
@@ -3819,11 +3843,11 @@ angular.module('myApp.controllers', [])
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('person-qy-msg');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                      }
                      // closeBtn: 0
@@ -3838,7 +3862,7 @@ angular.module('myApp.controllers', [])
          //普通商品加入购物车
          else if ($scope.spectaclesData.goods_type == "goods") {
             //普通商品加入购物车接口
-            $scope.add_to_cart_spec(function(data) {
+            $scope.add_to_cart_spec(function (data) {
                if (data.status == -1) {
                   layer.msg(data.info, {
                      time: 1000
@@ -3851,11 +3875,11 @@ angular.module('myApp.controllers', [])
                      btn: ['去结算', '继续选购'], //按钮
                      title: '提示',
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('shop-car');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                         $scope.getAttrList();
                         $("body,html").animate({
@@ -3874,11 +3898,11 @@ angular.module('myApp.controllers', [])
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('person-qy-msg');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                      }
                      // closeBtn: 0
@@ -3892,10 +3916,10 @@ angular.module('myApp.controllers', [])
          }
       };
       //立即购买
-      $scope.buyNow = function() {
+      $scope.buyNow = function () {
          //镜片购买
          if ($scope.spectaclesData.goods_type == "goods_spectacles") {
-            $scope.add_to_cart_spec_jp(function(data) {
+            $scope.add_to_cart_spec_jp(function (data) {
                if (data.status == 1) {
                   layer.msg(data.info, {
                      time: 1000
@@ -3906,11 +3930,11 @@ angular.module('myApp.controllers', [])
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('person-qy-msg');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                      }
                   });
@@ -3924,7 +3948,7 @@ angular.module('myApp.controllers', [])
          //普通商品购买
          else if ($scope.spectaclesData.goods_type == "goods") {
             //普通商品加入购物车接口
-            $scope.add_to_cart_spec(function(data) {
+            $scope.add_to_cart_spec(function (data) {
                if (data.status == 1) {
                   layer.msg(data.info, {
                      time: 1000
@@ -3935,11 +3959,11 @@ angular.module('myApp.controllers', [])
                   layer.confirm('需要医疗器械许可证，是否上传', {
                      btn: ['确定', '取消'], //按钮
                      btnAlign: 'c',
-                     yes: function(index) {
+                     yes: function (index) {
                         $state.go('person-qy-msg');
                         layer.close(index);
                      },
-                     btn2: function(index) {
+                     btn2: function (index) {
                         layer.close(index);
                      }
                      // closeBtn: 0
@@ -3953,17 +3977,17 @@ angular.module('myApp.controllers', [])
          }
       };
       //立即兑换积分商品
-      $scope.buyNow_jf = function() {
+      $scope.buyNow_jf = function () {
          layer.confirm('确认兑换？', {
             btn: ['确定', '取消'] //按钮
-         }, function() {
+         }, function () {
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/Flow/exchangebuy',
                data: {
                   goods_id: $scope.shopDetailData.data.exchange_info.goods_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $state.go('shop-jiesuan');
                   layer.msg(data.info, {
@@ -3978,7 +4002,7 @@ angular.module('myApp.controllers', [])
                   });
                }
             })
-         }, function() {
+         }, function () {
             /* layer.msg('这个不满意么？再换一个看看吧~', {
                 icon: 3,
                 time: 2000, //2s后自动关闭
@@ -3989,7 +4013,7 @@ angular.module('myApp.controllers', [])
       $scope.historyItem = {
          goods_ids: []
       };
-      $scope.deleteHistory = function() {
+      $scope.deleteHistory = function () {
          for (var h = 0; h < $scope.shopDetailData.history.length; h++) {
             $scope.historyItem.goods_ids.push($scope.shopDetailData.history[h].goods_id);
          }
@@ -3997,11 +4021,11 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/user/del_watch',
             data: $scope.historyItem,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.shopDetailFn();
                });
             } else {
@@ -4011,7 +4035,7 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      $scope.goBulkOrder = function() {
+      $scope.goBulkOrder = function () {
          window.open($state.href('bulk-order', {
             goods_id: $stateParams.goods_id,
             shop_price: $scope.shopDetailData.data.shop_price,
@@ -4021,17 +4045,17 @@ angular.module('myApp.controllers', [])
       };
    }])
    //商品批量下单页
-   .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$state', function($scope, $rootScope, $http, $stateParams, ipCookie, $sce, $state) {
+   .controller('bulkOrder-control', ['$scope', '$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$state', function ($scope, $rootScope, $http, $stateParams, ipCookie, $sce, $state) {
       $rootScope.change = true;
 
 
       //购物车接口同步
-      $scope.carFn = function() {
+      $scope.carFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/get_flow_goods',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $scope.shopCarHomeData = data;
                $scope.totalNum = data.total.zong_goods_count;
@@ -4041,7 +4065,7 @@ angular.module('myApp.controllers', [])
 
       };
       $scope.carFn();
-      $scope.getdata = function() {
+      $scope.getdata = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -4051,7 +4075,7 @@ angular.module('myApp.controllers', [])
             data: {
                goods_id: $stateParams.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             $scope.table = $sce.trustAsHtml(data.content);
             console.log(JSON.stringify(data))
@@ -4184,7 +4208,7 @@ angular.module('myApp.controllers', [])
                var arr_attr = new Array(); //属性
                var zhouwei = new Array(); //属性
                var dataid = new Array(); //属性
-               $(".attr_lists").each(function() {
+               $(".attr_lists").each(function () {
                   munber[i] = parseInt($(this).find(".nums").text());
                   if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                      is_true = true;
@@ -4198,7 +4222,7 @@ angular.module('myApp.controllers', [])
                   var attr = new Array(); //属性
                   //var spec = '';
                   //var attr = '';
-                  $(this).find(".str_attr").each(function() {
+                  $(this).find(".str_attr").each(function () {
                      //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                      //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                      spec.push($(this).find("input").val());
@@ -4232,10 +4256,10 @@ angular.module('myApp.controllers', [])
 
          })
       }
-      Array.prototype.max = function() {
+      Array.prototype.max = function () {
          return Math.max.apply({}, this)
       }
-      Array.prototype.min = function() {
+      Array.prototype.min = function () {
          return Math.min.apply({}, this)
       }
       $scope.getdata();
@@ -4258,15 +4282,15 @@ angular.module('myApp.controllers', [])
       var left_ = 0;
       var selDiv = '';
       //判断:当前元素是否是被筛选元素的子元素
-      jQuery.fn.isChildOf = function(b) {
+      jQuery.fn.isChildOf = function (b) {
          return (this.parents(b).length > 0);
       };
       //判断:当前元素是否是被筛选元素的子元素或者本身
-      jQuery.fn.isChildAndSelfOf = function(b) {
+      jQuery.fn.isChildAndSelfOf = function (b) {
          return (this.closest(b).length > 0);
       };
 
-      (function() {
+      (function () {
          function myBrowser() {
             var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
             var isOpera = userAgent.indexOf("Opera") > -1;
@@ -4292,7 +4316,7 @@ angular.module('myApp.controllers', [])
          var mb = myBrowser();
          //去掉浏览器右击默认事件
          //事件会在鼠标按键被按下时发生
-         document.getElementsByClassName('bulk-order-table')[0].onmousedown = function(event) {
+         document.getElementsByClassName('bulk-order-table')[0].onmousedown = function (event) {
             var is_batch_table = $(event.target).isChildAndSelfOf(".batch_table");
             var is_zhouwei = $(event.target).isChildAndSelfOf("input[name=zhouwei]");
             // || $("input:focus").hasClass("text_inp")
@@ -4347,7 +4371,7 @@ angular.module('myApp.controllers', [])
             var table_w = table_obj.offsetWidth,
                table_h = table_obj.offsetHeight;
             //事件会在鼠标指针移动时发生
-            document.onmousemove = function() {
+            document.onmousemove = function () {
                evt = window.event || arguments[0];
                if (isSelect) {
                   var mousemove_top = document.body.scrollTop || document.documentElement.scrollTop;
@@ -4455,7 +4479,7 @@ angular.module('myApp.controllers', [])
                   }
                   var arr_td = new Array();
                   var arr_tr = new Array();
-                  $(".seled").each(function() {
+                  $(".seled").each(function () {
                      if ($.inArray($(this).index(), arr_td) == -1) {
                         arr_td.push($(this).index());
                      }
@@ -4501,7 +4525,7 @@ angular.module('myApp.controllers', [])
             }
 
             //事件会在鼠标按键被松开时发生。
-            document.onmouseup = function() {
+            document.onmouseup = function () {
                isSelect = false;
                if (selDiv) {
                   //selDiv.style.display = "none";
@@ -4514,7 +4538,7 @@ angular.module('myApp.controllers', [])
             }
          }
 
-         $('#table_111 tr td').live("mouseover", function() {
+         $('#table_111 tr td').live("mouseover", function () {
             //$(this).siblings().eq(0).css('background','#fedede');
             $(this).parent().find("td").eq(0).css('background', '#dee9fa');
             $(this).parent().find("td").eq(0).css('color', '#3f69a5');
@@ -4529,7 +4553,7 @@ angular.module('myApp.controllers', [])
             }
 
          });
-         $('#table_111 tr td').live("mouseout", function() {
+         $('#table_111 tr td').live("mouseout", function () {
             /*
             $(this).siblings().eq(0).css('background','#f5f5f5');
             $(this).parent().siblings().eq(0).children().eq($(this).index()).css('background','#f5f5f5');
@@ -4576,7 +4600,7 @@ angular.module('myApp.controllers', [])
                   title: '共选择' + count + "种,请填写数量",
                   zIndex: 1260,
                   formType: 0,
-                  cancel: function(index, layero) {
+                  cancel: function (index, layero) {
                      //if(confirm('确定要关闭么')){
                      //只有当点击confirm框的确定时，该层才会关闭
                      $(".seled").removeClass("seled");
@@ -4596,7 +4620,7 @@ angular.module('myApp.controllers', [])
                      //}
                      return false;
                   },
-                  btn2: function() { //这里就是你要的
+                  btn2: function () { //这里就是你要的
                      $(".seled").removeClass("seled");
                      //清除样式
                      $("#table_111").find("td").css({
@@ -4611,7 +4635,7 @@ angular.module('myApp.controllers', [])
                      $(".f5").css('color', 'rgb(102, 102, 102)');
                      is_prompt = true;
                   },
-               }, function(text, index) {
+               }, function (text, index) {
                   //if (text > 0) {
                   //$(".seled").html();
                   //layer.closeAll();
@@ -4634,13 +4658,13 @@ angular.module('myApp.controllers', [])
                   var nums = text;
 
                   var spec = new Array(); //属性
-                  $(".attr_val").each(function() {
+                  $(".attr_val").each(function () {
                      tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                      spec.push(tr_val_id);
                      $scope.trid = tr_val_id;
                   });
 
-                  $(".seled").each(function() {
+                  $(".seled").each(function () {
                      qiu.push($(this).parent().find("td").eq(0).text());
                      zhu.push($(this).data("zhu"));
                      data_id.push($(this).data("id"));
@@ -4668,7 +4692,7 @@ angular.module('myApp.controllers', [])
                         token: token,
                         data_id: data_id
                      },
-                     success: function(data) {
+                     success: function (data) {
                         for (var data_i = 0; data_i < data.data.length; data_i++) {
                            var pic_count;
                            var price = data.data[data_i].price;
@@ -4692,7 +4716,7 @@ angular.module('myApp.controllers', [])
                                  if (is_zhouwei == 1) {
                                     html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                                  }
-                                 $(".attr_val").each(function() {
+                                 $(".attr_val").each(function () {
                                     tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                                     tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                                     html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -4716,7 +4740,7 @@ angular.module('myApp.controllers', [])
                                     if (is_zhouwei == 1) {
                                        html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                                     }
-                                    $(".attr_val").each(function() {
+                                    $(".attr_val").each(function () {
                                        tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                                        tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                                        html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -4761,7 +4785,7 @@ angular.module('myApp.controllers', [])
                         var arr_attr = new Array(); //属性
                         var zhouwei = new Array(); //属性
                         var dataid = new Array(); //属性
-                        $(".attr_lists").each(function() {
+                        $(".attr_lists").each(function () {
                            munber[i] = parseInt($(this).find(".nums").text());
                            if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                               is_true = true;
@@ -4775,7 +4799,7 @@ angular.module('myApp.controllers', [])
                            var attr = new Array(); //属性
                            //var spec = '';
                            //var attr = '';
-                           $(this).find(".str_attr").each(function() {
+                           $(this).find(".str_attr").each(function () {
                               //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                               //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                               spec.push($(this).find("input").val());
@@ -4832,7 +4856,7 @@ angular.module('myApp.controllers', [])
 
                         layer.close(prompt_cool);
                      },
-                     error: function() {
+                     error: function () {
                         //清除样式
                         $("#table_111").find("td").css({
                            "border-bottom": "",
@@ -4874,14 +4898,14 @@ angular.module('myApp.controllers', [])
          if (is_zhouwei == 1) {
             tpl += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
          }
-         row.each(function(i) {
+         row.each(function (i) {
             this.setAttribute('index', i);
-            $(this).find('td').each(function(i) {
+            $(this).find('td').each(function (i) {
                this.setAttribute('index', i);
             });
          });
 
-         var selTd = function(start, end, tdis) {
+         var selTd = function (start, end, tdis) {
             var minX = start.x,
                minY = start.y,
                maxX = end.x,
@@ -4905,7 +4929,7 @@ angular.module('myApp.controllers', [])
             }
             var tr_html = '';
             var tr_val = '';
-            $(".attr_val").each(function() {
+            $(".attr_val").each(function () {
                tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                tr_html += '<td align="center" class="str_attr"> <input type="hidden" value="' + tr_val_id + '">' + tr_val + '</td>';
@@ -4952,7 +4976,7 @@ angular.module('myApp.controllers', [])
             //$(".count_pic").text(count_price);
             update_cart_num();
          }
-         var delTd = function() {
+         var delTd = function () {
             for (var key in _tmp) {
                var id_dea = _tmp[key].attr('name');
                if (id_dea == 'desa') {
@@ -4964,7 +4988,7 @@ angular.module('myApp.controllers', [])
             _tmp = {};
             order.html('');
          }
-         var downEvent = function(e) {
+         var downEvent = function (e) {
                var _this = this;
                delTd();
                if (e.target.className == 'bs_bg') {
@@ -4978,10 +5002,10 @@ angular.module('myApp.controllers', [])
                   $(document).on('mouseup', endEvent);
                }
             },
-            moveEvent = function(e) {
+            moveEvent = function (e) {
                e.preventDefault();
             },
-            enterEvent = function(e) {
+            enterEvent = function (e) {
                e.preventDefault();
                if (this.className != 'bs_bg') {
                   return;
@@ -4995,14 +5019,14 @@ angular.module('myApp.controllers', [])
                selTd(params, index, tdis);
                //document.write(tdis);
             },
-            endEvent = function(e) {
+            endEvent = function (e) {
                $(cell).off('mouseenter', enterEvent);
                $(document).off('mousemove', moveEvent);
                $(document).off('mouseup', endEvent);
                ajax_change_num_pic();
                update_cart_num();
             }
-         domSel.on('change', function() {
+         domSel.on('change', function () {
             if (this.checked) {
                $('#table_111').on('mousedown', downEvent);
             } else {
@@ -5066,7 +5090,7 @@ angular.module('myApp.controllers', [])
          var members = 0;
          var picc = 0;
          var pro_picc = 0;
-         $(".attr_lists").each(function() {
+         $(".attr_lists").each(function () {
             members = $(this).find(".nums").text();
             if (isNaN(members) || isNaN(parseInt(members))) {
                members = 0;
@@ -5101,7 +5125,7 @@ angular.module('myApp.controllers', [])
          }, 'json');*/
 
          var spec = new Array(); //属性
-         $(".attr_val").each(function() {
+         $(".attr_val").each(function () {
             tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
             spec.push(tr_val_id);
             $scope.trid = tr_val_id;
@@ -5129,7 +5153,7 @@ angular.module('myApp.controllers', [])
                spc: spec,
                token: token
             },
-            success: function(data) {
+            success: function (data) {
                layer.close(cool);
                $("input[name=shop_price]").val(data.data.price);
                $("input[name=shop_price]").attr("data-pro_price", data.data.pro_price);
@@ -5151,7 +5175,7 @@ angular.module('myApp.controllers', [])
                if (is_zhouwei == 1) {
                   html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                }
-               $(".attr_val").each(function() {
+               $(".attr_val").each(function () {
                   tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                   tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                   html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -5173,7 +5197,7 @@ angular.module('myApp.controllers', [])
                   if (is_zhouwei == 1) {
                      html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                   }
-                  $(".attr_val").each(function() {
+                  $(".attr_val").each(function () {
                      tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                      tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                      html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -5222,7 +5246,7 @@ angular.module('myApp.controllers', [])
          var arr_attr = new Array(); //属性
          var zhouwei = new Array(); //属性
          var dataid = new Array(); //属性
-         $(".attr_lists").each(function() {
+         $(".attr_lists").each(function () {
             munber[i] = parseInt($(this).find(".nums").text());
             if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                is_true = true;
@@ -5236,7 +5260,7 @@ angular.module('myApp.controllers', [])
             var attr = new Array(); //属性
             //var spec = '';
             //var attr = '';
-            $(this).find(".str_attr").each(function() {
+            $(this).find(".str_attr").each(function () {
                //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                spec.push($(this).find("input").val());
@@ -5272,8 +5296,8 @@ angular.module('myApp.controllers', [])
             // $('.bulk-order-ano-table').hide();
          }
       }
-      $(function() {
-         setInterval(function() {
+      $(function () {
+         setInterval(function () {
             var is_true = false;
             var i = 0;
             var munber = new Array(); //数量
@@ -5283,7 +5307,7 @@ angular.module('myApp.controllers', [])
             var arr_attr = new Array(); //属性
             var zhouwei = new Array(); //属性
             var dataid = new Array(); //属性
-            $(".attr_lists").each(function() {
+            $(".attr_lists").each(function () {
                munber[i] = parseInt($(this).find(".nums").text());
                if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                   is_true = true;
@@ -5297,7 +5321,7 @@ angular.module('myApp.controllers', [])
                var attr = new Array(); //属性
                //var spec = '';
                //var attr = '';
-               $(this).find(".str_attr").each(function() {
+               $(this).find(".str_attr").each(function () {
                   //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                   //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                   spec.push($(this).find("input").val());
@@ -5335,17 +5359,17 @@ angular.module('myApp.controllers', [])
                })
             }
          }, 10000);
-         $("#nums").change(function() {
+         $("#nums").change(function () {
             $("input[name=box]").val($(this).val());
          });
-         $(".num").change(function() {
+         $(".num").change(function () {
             var index = $(this).val();
             if (parseInt(index) == 0 || isNaN(parseInt(index))) {
                return;
             }
             num_s = index;
          });
-         $(".td_inp td").live("click", function() {
+         $(".td_inp td").live("click", function () {
             if ($(this).attr("name") == 'desa' || !$(this).hasClass("bs_bg")) {
                return;
             }
@@ -5360,7 +5384,7 @@ angular.module('myApp.controllers', [])
             $(this).find("input").focus();
          });
 
-         $(".text_inp").live("blur", function() {
+         $(".text_inp").live("blur", function () {
             var nums = $(this).val();
             if (isNaN(parseInt(nums))) {
                nums = '';
@@ -5379,7 +5403,7 @@ angular.module('myApp.controllers', [])
             }, 'json');*/
 
             var spec = new Array(); //属性
-            $(".attr_val").each(function() {
+            $(".attr_val").each(function () {
                tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                spec.push(tr_val_id);
                $scope.trid = tr_val_id;
@@ -5400,7 +5424,7 @@ angular.module('myApp.controllers', [])
                   spc: spec,
                   token: token
                },
-               success: function(data) {
+               success: function (data) {
                   $("input[name=shop_price]").val(data.data.price);
                   $("input[name=shop_price]").attr("pro_price", data.data.pro_price);
                }
@@ -5421,7 +5445,7 @@ angular.module('myApp.controllers', [])
                   if (is_zhouwei == 1) {
                      html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                   }
-                  $(".attr_val").each(function() {
+                  $(".attr_val").each(function () {
                      tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                      tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                      html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -5443,7 +5467,7 @@ angular.module('myApp.controllers', [])
                      if (is_zhouwei == 1) {
                         html += '<td align="center"><input type="text" class="zhouwei" style="    width: 31px;"></td>';
                      }
-                     $(".attr_val").each(function() {
+                     $(".attr_val").each(function () {
                         tr_val = $(".spec_" + $(this).attr("data-ids")).find("option:selected").text();
                         tr_val_id = $(".spec_" + $(this).attr("data-ids")).find("option:selected").val();
                         html += '<td align="center" class="str_attr"><input type="hidden" value="' + tr_val_id + '"><span>' + tr_val + '</span></td>';
@@ -5492,7 +5516,7 @@ angular.module('myApp.controllers', [])
             var arr_attr = new Array(); //属性
             var zhouwei = new Array(); //属性
             var dataid = new Array(); //属性
-            $(".attr_lists").each(function() {
+            $(".attr_lists").each(function () {
                munber[i] = parseInt($(this).find(".nums").text());
                if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                   is_true = true;
@@ -5504,7 +5528,7 @@ angular.module('myApp.controllers', [])
                zhouwei[i] = $(this).find(".zhouwei").val();
                var spec = new Array(); //属性
                var attr = new Array(); //属性
-               $(this).find(".str_attr").each(function() {
+               $(this).find(".str_attr").each(function () {
                   spec.push($(this).find("input").val());
                   attr.push($(this).find("span").html());
                })
@@ -5533,7 +5557,7 @@ angular.module('myApp.controllers', [])
 
          });
 
-         $(".text_inp").live("keydown", function() {
+         $(".text_inp").live("keydown", function () {
             var k_code = event.keyCode;
             if (k_code == 38 || k_code == 40 || k_code == 39 || k_code == 37) {
                var w_index = $(this).parent().index(); //横向
@@ -5565,7 +5589,7 @@ angular.module('myApp.controllers', [])
                return false;
             }
          });
-         $(".del_td").live("click", function() {
+         $(".del_td").live("click", function () {
             var ids = $(this).attr("data-val");
             $("td:[name=" + ids + ']').text('').css('background', '');
             $(this).parent().parent().remove();
@@ -5579,7 +5603,7 @@ angular.module('myApp.controllers', [])
             var arr_attr = new Array(); //属性
             var zhouwei = new Array(); //属性
             var dataid = new Array(); //属性
-            $(".attr_lists").each(function() {
+            $(".attr_lists").each(function () {
                munber[i] = parseInt($(this).find(".nums").text());
                if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                   is_true = true;
@@ -5593,7 +5617,7 @@ angular.module('myApp.controllers', [])
                var attr = new Array(); //属性
                //var spec = '';
                //var attr = '';
-               $(this).find(".str_attr").each(function() {
+               $(this).find(".str_attr").each(function () {
                   //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                   //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                   spec.push($(this).find("input").val());
@@ -5626,7 +5650,7 @@ angular.module('myApp.controllers', [])
             update_cart_num();
          });
          var wwinH = $(window).height() - 250;
-         $(window).scroll(function() {
+         $(window).scroll(function () {
             var tbtop = $('.bulk-order-total').offset().top;
             var index = $(document).scrollTop();
             var height = $("#table_111").height();
@@ -5646,7 +5670,7 @@ angular.module('myApp.controllers', [])
          });
       });
       //加入购物车
-      $scope.join = function() {
+      $scope.join = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -5660,7 +5684,7 @@ angular.module('myApp.controllers', [])
          var arr_attr = new Array(); //属性
          var zhouwei = new Array(); //属性
          var dataid = new Array(); //属性
-         $(".attr_lists").each(function() {
+         $(".attr_lists").each(function () {
             munber[i] = parseInt($(this).find(".nums").text());
             if (munber[i] == 0 || isNaN(parseInt(munber[i]))) {
                is_true = true;
@@ -5674,7 +5698,7 @@ angular.module('myApp.controllers', [])
             var attr = new Array(); //属性
             //var spec = '';
             //var attr = '';
-            $(this).find(".str_attr").each(function() {
+            $(this).find(".str_attr").each(function () {
                //spec += spec ? ','+$(this).find("input").val() : $(this).find("input").val();
                //attr += attr ? ','+$(this).find("span").html() : $(this).find("span").html();
                spec.push($(this).find("input").val());
@@ -5711,13 +5735,13 @@ angular.module('myApp.controllers', [])
                goods: $scope.goods,
                goods_id: $stateParams.goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == -1) {
                layer.close(cool);
                layer.msg(data.info);
             } else if (data.status == 1) {
                layer.msg(data.info);
-               setTimeout(function() {
+               setTimeout(function () {
                   $http({
                      method: "POST",
                      url: '' + $rootScope.ip + '/Goods/cache_goods_batch',
@@ -5736,7 +5760,7 @@ angular.module('myApp.controllers', [])
          })
       };
       /* 打印单预览按钮 */
-      $scope.printPreview = function() {
+      $scope.printPreview = function () {
          if ($scope.goods) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
@@ -5748,7 +5772,7 @@ angular.module('myApp.controllers', [])
                   goods: $scope.goods,
                   goods_id: $stateParams.goods_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(cool);
                if (data.status) {
                   $scope.printPreviewData = data;
@@ -5767,7 +5791,7 @@ angular.module('myApp.controllers', [])
          }
       }
       /* 预览按钮 */
-      $scope.orderPreview = function() {
+      $scope.orderPreview = function () {
          if ($scope.goods) {
             $scope.printPreview();
             var cool = layer.load(0, {
@@ -5780,7 +5804,7 @@ angular.module('myApp.controllers', [])
                   goods: $scope.goods,
                   goods_id: $stateParams.goods_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(cool);
                if (data.status) {
                   $scope.orderPreviewData = data;
@@ -5802,14 +5826,14 @@ angular.module('myApp.controllers', [])
       }
    }])
    /* 打印单预览按钮 */
-   .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
+   .controller('person-process-print-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
       $rootScope.isShow = false;
       $rootScope.change = false;
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Goods/qz_batch_preview',
          data: JSON.parse($stateParams.params),
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.data = data;
             $scope.html = ($sce.trustAsHtml(data.content));
@@ -5820,14 +5844,14 @@ angular.module('myApp.controllers', [])
       })
    }])
    /* 预览按钮 */
-   .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
+   .controller('person-process-preview-control', ['$rootScope', '$http', '$stateParams', 'ipCookie', '$sce', '$scope', function ($rootScope, $http, $stateParams, ipCookie, $sce, $scope) {
       $rootScope.isShow = false;
       $rootScope.change = false;
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Goods/batch_preview',
          data: JSON.parse($stateParams.params),
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.data = data;
             $scope.html = ($sce.trustAsHtml(data.content));
@@ -5838,13 +5862,13 @@ angular.module('myApp.controllers', [])
       })
    }])
    //购物车
-   .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', '$qimoChat', function($scope, $rootScope, $http, $state, ipCookie, $document, $qimoChat) {
+   .controller('shopCar-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$document', '$qimoChat', function ($scope, $rootScope, $http, $state, ipCookie, $document, $qimoChat) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
       $scope.$qimoChat = $qimoChat;
       //购物车接口
-      $scope.carFn = function() {
+      $scope.carFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -5852,7 +5876,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/get_flow_goods',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
                if (data.status) {
@@ -5877,7 +5901,7 @@ angular.module('myApp.controllers', [])
                         $('.car-hasGoods-main .wholebox').addClass('add');
                      }
                   }
-                  setTimeout(function() {
+                  setTimeout(function () {
                      float();
                   }, 1000);
                   angular.element(window).resize(float);
@@ -5890,7 +5914,7 @@ angular.module('myApp.controllers', [])
       $scope.carFn();
 
       var flag = true;
-      $scope.gowuquanFn = function(event) {
+      $scope.gowuquanFn = function (event) {
          event.stopPropagation();
          if (flag) {
             angular.element(event.target).next().show();
@@ -5901,7 +5925,7 @@ angular.module('myApp.controllers', [])
          }
       };
 
-      $('body').click(function() {
+      $('body').click(function () {
          // $scope.$apply(function(){
          //     $scope.gouwuquan = false;
          // })
@@ -5911,19 +5935,19 @@ angular.module('myApp.controllers', [])
 
 
       //领取优惠券
-      $scope.lqYhq = function(id) {
+      $scope.lqYhq = function (id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/send_by_user',
             data: {
                type_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $scope.carFn();
                });
             } else {
@@ -5940,15 +5964,15 @@ angular.module('myApp.controllers', [])
          rec_id: '',
          number: ''
       };
-      $scope.changeCarNumber = function() {
+      $scope.changeCarNumber = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/change_num_cart',
             data: $scope.cgCarNumber,
-         }).success(function(data) {})
+         }).success(function (data) {})
       };
       //监控购物车商品数量
-      $scope.change = function(e, goods_properties, carArr) {
+      $scope.change = function (e, goods_properties, carArr) {
          $scope.cgCarNumber.rec_id = carArr.rec_id;
          $http({
             method: "POST",
@@ -5957,13 +5981,13 @@ angular.module('myApp.controllers', [])
                rec_id: $scope.cgCarNumber.rec_id,
                number: carArr.goods_number
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $http({
                   method: "POST",
                   url: '' + $rootScope.ip + '/Flow/get_flow_goods',
                   data: '',
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.suppliers_goods_list.length == 0) {
                      $scope.Goods = false;
                   } else {
@@ -5986,13 +6010,13 @@ angular.module('myApp.controllers', [])
                      rec_id: $scope.cgCarNumber.rec_id,
                      number: data.number
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      $http({
                         method: "POST",
                         url: '' + $rootScope.ip + '/Flow/get_flow_goods',
                         data: '',
-                     }).success(function(data) {
+                     }).success(function (data) {
                         if (data.suppliers_goods_list.length == 0) {
                            $scope.Goods = false;
                         } else {
@@ -6010,7 +6034,7 @@ angular.module('myApp.controllers', [])
       };
 
       //购物车商品增加
-      $scope.addCarArr = function(e, goods_properties, carArr) {
+      $scope.addCarArr = function (e, goods_properties, carArr) {
          $scope.cgCarNumber.rec_id = carArr.rec_id;
          $scope.number = Number(carArr.goods_number);
          if (goods_properties) {
@@ -6028,7 +6052,7 @@ angular.module('myApp.controllers', [])
                rec_id: $scope.cgCarNumber.rec_id,
                number: $scope.number
             },
-         }).success(function(data) {
+         }).success(function (data) {
             carArr.goods_number = carArr.goods_number;
             if (data.status) {
                $scope.carFn();
@@ -6041,7 +6065,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //购物车商品减少
-      $scope.reduceCarArr = function(e, goods_properties, carArr) {
+      $scope.reduceCarArr = function (e, goods_properties, carArr) {
          $scope.number = Number(carArr.goods_number);
 
          if (goods_properties) {
@@ -6065,7 +6089,7 @@ angular.module('myApp.controllers', [])
                   rec_id: $scope.cgCarNumber.rec_id,
                   number: $scope.number
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
                // $rootScope.$broadcast('upCarList');
             })
@@ -6074,7 +6098,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //取消和选中供应商
-      $scope.selectStore = function(index) {
+      $scope.selectStore = function (index) {
          if ($scope.shopCarData.suppliers_goods_list[index].is_select) {
             $http({
                method: "POST",
@@ -6084,7 +6108,7 @@ angular.module('myApp.controllers', [])
                   type: 1,
                   is_select: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          } else {
@@ -6096,13 +6120,13 @@ angular.module('myApp.controllers', [])
                   type: 1,
                   is_select: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          }
       };
       //取消和选中商品
-      $scope.selectGoods = function(goods, index) {
+      $scope.selectGoods = function (goods, index) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/select_change_price',
@@ -6111,12 +6135,12 @@ angular.module('myApp.controllers', [])
                type: goods.cutting_id > 0 ? 3 : 0,
                is_select: goods.is_select ? 0 : 1
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.carFn();
          })
       };
       //取消和选中商品属性
-      $scope.changeAttrCheck = function(goods, rid) {
+      $scope.changeAttrCheck = function (goods, rid) {
          if (goods.is_select) {
             $http({
                method: "POST",
@@ -6125,7 +6149,7 @@ angular.module('myApp.controllers', [])
                   rec_id: rid,
                   type: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          } else {
@@ -6136,13 +6160,13 @@ angular.module('myApp.controllers', [])
                   rec_id: rid,
                   type: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          }
       };
       //全选商品
-      $scope.changeAllCheck = function() {
+      $scope.changeAllCheck = function () {
          if ($scope.shopCarData.total.is_select) {
             $http({
                method: "POST",
@@ -6151,7 +6175,7 @@ angular.module('myApp.controllers', [])
                   type: 2,
                   is_select: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          } else {
@@ -6162,13 +6186,13 @@ angular.module('myApp.controllers', [])
                   type: 2,
                   is_select: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.carFn();
             })
          }
       };
       //删除购物车里全选的商品
-      $scope.delAll = function() {
+      $scope.delAll = function () {
          // layer.confirm('您确定要删除么？', {
          //     btn: ['确定','取消'] //按钮
          // }, function(){
@@ -6206,12 +6230,12 @@ angular.module('myApp.controllers', [])
                cut_id: cut_id,
                rec_id: attrIds
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg('删除成功', {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $scope.carFn();
                });
                $rootScope.$broadcast('upCarList');
@@ -6230,7 +6254,7 @@ angular.module('myApp.controllers', [])
          // });
       };
       //删除购物车单独一行商品
-      $scope.delSingle = function(carList) {
+      $scope.delSingle = function (carList) {
          // layer.confirm('您确定要删除么？', {
          //     btn: ['确定','取消'] //按钮
          // }, function(){
@@ -6242,12 +6266,12 @@ angular.module('myApp.controllers', [])
                data: {
                   cut_id: [carList.rec_id]
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg('删除成功', {
                      time: 1000,
                      icon: 1
-                  }, function() {
+                  }, function () {
                      $scope.carFn();
                   });
                   $rootScope.$broadcast('upCarList');
@@ -6266,12 +6290,12 @@ angular.module('myApp.controllers', [])
                   goods_ids: [carList.goods_id]
 
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg('删除成功', {
                      time: 1000,
                      icon: 1
-                  }, function() {
+                  }, function () {
                      $scope.carFn();
                   });
                   $rootScope.$broadcast('upCarList');
@@ -6291,7 +6315,7 @@ angular.module('myApp.controllers', [])
          // });
       };
       //关注购物车单独一行商品
-      $scope.scSingle = function(index, pIndex) {
+      $scope.scSingle = function (index, pIndex) {
          // layer.confirm('您确定要收藏么？', {
          //     btn: ['确定','取消'] //按钮
          // }, function(){
@@ -6302,7 +6326,7 @@ angular.module('myApp.controllers', [])
             data: {
                goods_id: $scope.shopCarData.suppliers_goods_list[pIndex].goods_list[index].goods_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000,
@@ -6324,7 +6348,7 @@ angular.module('myApp.controllers', [])
          // });
       };
       //删除购物车单独属性的一行商品
-      $scope.delAttrGoods = function(index, pIndex, ppIndex) {
+      $scope.delAttrGoods = function (index, pIndex, ppIndex) {
          // layer.confirm('您确定要删除么？', {
          //     btn: ['确定','取消'] //按钮
          // }, function(){
@@ -6336,12 +6360,12 @@ angular.module('myApp.controllers', [])
             data: {
                rec_id: $scope.attrId
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg('删除成功', {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $scope.carFn();
                });
                $rootScope.$broadcast('upCarList');
@@ -6364,7 +6388,11 @@ angular.module('myApp.controllers', [])
       $scope.carIdArr = {
          goods_ids: []
       };
-      $scope.goJiesuan = function() {
+      $scope.goJiesuan = function (e) {
+         e.target.disabled = true;
+         var cool = layer.load(0, {
+            // shade: [0.3, '#fff']
+         });
          if (!$rootScope.canCheckout) {
             layer.msg('无结算权限，请联系企业管理员', {
                time: 2000
@@ -6382,24 +6410,26 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/del_no_shop',
             data: $scope.carIdArr,
-         }).success(function(data) {
+         }).success(function (data) {
+            e.target.disabled = false;
+            layer.close(cool);
             if (data.status == 1) {
                $http({
                   method: "POST",
                   url: '' + $rootScope.ip + '/Flow/checkout',
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.suppliers_id > 0) { //有suppliers_id为不满足订单起订金额
                      layer.confirm(data.info, {
                         btn: ['去店铺', '取消'], //按钮
                         title: '提示',
                         btnAlign: 'c',
-                        yes: function(index) {
+                        yes: function (index) {
                            $state.go('shopHomeNew', {
                               shopId: data.suppliers_id
                            });
                            layer.close(index);
                         },
-                        btn2: function(index) {
+                        btn2: function (index) {
 
                         }
                         // closeBtn: 0
@@ -6414,11 +6444,13 @@ angular.module('myApp.controllers', [])
                   time: 3000
                });
             }
+         }).error(function(){
+            e.target.disabled = false;
          })
       };
       //控制更多促销盒子的显隐
       var moreCx = true;
-      $scope.moreCuXiao = function(e) {
+      $scope.moreCuXiao = function (e) {
          if (moreCx) {
             angular.element(e.target).next().show()
             moreCx = false;
@@ -6427,18 +6459,18 @@ angular.module('myApp.controllers', [])
             moreCx = true;
          }
       };
-      $scope.closeMoreCuxiao = function(e) {
+      $scope.closeMoreCuxiao = function (e) {
          moreCx = true;
          angular.element(e.target).parent().parent().hide();
       };
       //jq控制促销盒子里的空心select按钮的样式
-      $('.kongxin').click(function(e) {
+      $('.kongxin').click(function (e) {
          $('.kongxin').removeClass('dian');
          $(e.target).addClass('dian');
       });
       //控制购物车里item的修改按钮的样式改动
       var xgs = true;
-      $scope.xiugaiFn = function(e) {
+      $scope.xiugaiFn = function (e) {
          if (xgs) {
             xgs = false;
             angular.element(e.target).parent().addClass('bor').css({
@@ -6472,7 +6504,7 @@ angular.module('myApp.controllers', [])
 
 
       //搜索
-      $scope.searchKey = function() {
+      $scope.searchKey = function () {
 
          var newOpens = window.open();
          var url = $state.href('shop-list', {
@@ -6481,18 +6513,18 @@ angular.module('myApp.controllers', [])
             }))
          })
 
-         setTimeout(function() {
+         setTimeout(function () {
             newOpens.location = url;
          }, 200)
 
       };
    }])
    //结算页
-   .controller('shopJiesuan-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$data', function($scope, $rootScope, $http, $state, ipCookie, $data) {
+   .controller('shopJiesuan-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$data', function ($scope, $rootScope, $http, $state, ipCookie, $data) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       /* —————————————— 保存用户备注信息 —————————————— */
-      $scope.getNotes = function() {
+      $scope.getNotes = function () {
          var commentArr = [];
          var suppliers = [];
          var label = [];
@@ -6516,7 +6548,7 @@ angular.module('myApp.controllers', [])
             label: label
          }
       }
-      $scope.saveNotes = function() {
+      $scope.saveNotes = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/write_notes',
@@ -6526,7 +6558,7 @@ angular.module('myApp.controllers', [])
          })
       }
       //结算页所有信息接口数据
-      $scope.jiesuanFn = function() {
+      $scope.jiesuanFn = function () {
          /* var cool = layer.load(0, {
             shade: [0.3, '#fff']
          }); */
@@ -6534,7 +6566,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/checkout',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             // layer.close(cool);
             if (data.status == 1) {
                $scope.jiesuanData = data;
@@ -6576,18 +6608,18 @@ angular.module('myApp.controllers', [])
                   method: "POST",
                   url: '' + $rootScope.ip + '/User/user_info',
                   data: '',
-               }).success(function(data) {
+               }).success(function (data) {
                   $scope.payPoints = data.user_info.pay_points;
                })
             } else if (data.status == -2) {
                layer.confirm('需要医疗器械许可证，是否上传', {
                   btn: ['确定', '取消'], //按钮
                   btnAlign: 'c',
-                  yes: function(index) {
+                  yes: function (index) {
                      $state.go('person-qy-msg');
                      layer.close(index);
                   },
-                  btn2: function(index) {
+                  btn2: function (index) {
                      $state.go('shop-car');
                      layer.close(index);
                   }
@@ -6604,7 +6636,7 @@ angular.module('myApp.controllers', [])
       $scope.jiesuanFn();
 
       //选择收货人信息
-      $scope.selectAddress = function(address) {
+      $scope.selectAddress = function (address) {
          return $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/change_consignee',
@@ -6612,7 +6644,7 @@ angular.module('myApp.controllers', [])
                address_id: address.address_id,
                type: $scope.areaTypeSelect > 0 ? 1 : 0
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -6626,18 +6658,18 @@ angular.module('myApp.controllers', [])
          })
       };
       //收货人信息同步
-      $rootScope.$on('uploadAddress', function() {
+      $rootScope.$on('uploadAddress', function () {
          $scope.jiesuanFn();
       });
       //设置默认地址
-      $scope.setMor = function(id) {
+      $scope.setMor = function (id) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/default_address',
             params: {
                address_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -6651,13 +6683,13 @@ angular.module('myApp.controllers', [])
          })
       };
       //编辑取消按钮
-      $scope.quxiao = function() {
+      $scope.quxiao = function () {
          $('.masks').fadeOut();
          $('.pur_bianji').fadeOut();
          $('.pur_bianji').fadeOut();
       };
       //编辑里省切换
-      $scope.changeProvince = function(pid) {
+      $scope.changeProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -6665,13 +6697,13 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.city_list = data.data;
             $scope.changeCity(pid);
          })
       };
       //编辑市切换
-      $scope.changeCity = function(pid) {
+      $scope.changeCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -6679,12 +6711,12 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.district_list = data.data;
          })
       };
       //添加收货地址
-      $scope.tianjia = function(address) {
+      $scope.tianjia = function (address) {
          $('.masks').fadeIn();
          $('.pur_bianji').fadeIn();
          if (address) {
@@ -6695,7 +6727,7 @@ angular.module('myApp.controllers', [])
                params: {
                   address_id: address.address_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.province_list = data.province_list;
                $scope.city_list = data.city_list;
                $scope.district_list = data.district_list;
@@ -6719,7 +6751,7 @@ angular.module('myApp.controllers', [])
                method: "GET",
                url: '' + $rootScope.ip + '/User/add_address',
                params: '',
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.province_list = data.province_list;
                $scope.city_list = [];
                $scope.district_list = [];
@@ -6728,7 +6760,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //提交添加收货地址
-      $scope.enterAddress = function() {
+      $scope.enterAddress = function () {
          $scope.editData.default = $scope.editData.default ? 1 : 0;
          if ($scope.addressId) {
             return $http({
@@ -6737,11 +6769,11 @@ angular.module('myApp.controllers', [])
                data: $.extend({
                   is_interim: $scope.areaTypeSelect > 0 ? 1 : 0
                }, $scope.editData),
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info, {
                      time: 1000
-                  }, function() {
+                  }, function () {
                      $scope.jiesuanFn();
                      $scope.quxiao();
                   });
@@ -6758,14 +6790,14 @@ angular.module('myApp.controllers', [])
             data: $.extend({
                is_interim: $scope.areaTypeSelect > 0 ? 1 : 0
             }, $scope.editData),
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $('.masks').fadeOut();
                   $('.pur_bianji').fadeOut();
-                  $scope.selectAddress(data).then(function() {
+                  $scope.selectAddress(data).then(function () {
                      $scope.jiesuanFn();
                   });
                });
@@ -6777,14 +6809,14 @@ angular.module('myApp.controllers', [])
          })
       };
       //删除一个收货地址
-      $scope.deleteAddress = function(id) {
+      $scope.deleteAddress = function (id) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/del_address',
             params: {
                address_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -6798,14 +6830,14 @@ angular.module('myApp.controllers', [])
          })
       };
       //选择支付方式
-      $scope.selectPay = function(id) {
+      $scope.selectPay = function (id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/select_payment',
             data: {
                pay_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -6819,15 +6851,15 @@ angular.module('myApp.controllers', [])
          })
       };
       /* 来镜加工 */
-      $scope.change_machining = function(id) {
-         $data.change_machining().success(function(data) {
+      $scope.change_machining = function (id) {
+         $data.change_machining().success(function (data) {
             if (data.status) {
                $scope.jiesuanFn();
             }
          })
       };
       //选择配送方式
-      $scope.selectShip = function(storeId, id) {
+      $scope.selectShip = function (storeId, id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/select_shippin_suppliers',
@@ -6835,7 +6867,7 @@ angular.module('myApp.controllers', [])
                suppliers_id: storeId,
                shipping: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.jiesuanFn();
             } else {
@@ -6846,7 +6878,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //使用优惠券
-      $scope.useYhq = function(suppliers_id, bonus_id, type) {
+      $scope.useYhq = function (suppliers_id, bonus_id, type) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/suppliers_bouns',
@@ -6855,7 +6887,7 @@ angular.module('myApp.controllers', [])
                bonus_id: bonus_id,
                type: type || null
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.msg(data.info, {
                time: 1000
             });
@@ -6865,7 +6897,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //兑换优惠卷
-      $scope.getYhqByCode = function(code, event) {
+      $scope.getYhqByCode = function (code, event) {
 
          event.target.style.pointerEvents = 'none';
          event.target.style.opacity = '.7';
@@ -6876,7 +6908,7 @@ angular.module('myApp.controllers', [])
             data: {
                bonus_sn: code
             },
-         }).success(function(data) {
+         }).success(function (data) {
             event.target.style.pointerEvents = 'auto';
             event.target.style.opacity = '1';
             if (data.status) {
@@ -6892,14 +6924,20 @@ angular.module('myApp.controllers', [])
          })
       }
 
-      $scope.submitList = function(e, index) {
+      $scope.submitList = function (e, index) {
+         e.target.disabled = true;
+         var cool = layer.load(0, {
+            // shade: [0.3, '#fff']
+         });
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Flow/done',
             data: {
                notes: $scope.getNotes()
             },
-         }).success(function(data) {
+         }).success(function (data) {
+            e.target.disabled = false;
+            layer.close(cool);
             layer.msg(data.info, {
                time: 2000
             });
@@ -6928,11 +6966,13 @@ angular.module('myApp.controllers', [])
                   type: 'order'
                });
             }
+         }).error(function(){
+            e.target.disabled = false;
          })
       }
    }])
    /* 定制片结算页 */
-   .controller('shopJiesuanCopy-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('shopJiesuanCopy-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       // $scope.returnCar = function(){
@@ -6942,7 +6982,7 @@ angular.module('myApp.controllers', [])
 
       /* —————————————— 保存商家备注信息 —————————————— */
 
-      $scope.saveNotes = function() {
+      $scope.saveNotes = function () {
          var label = [];
          for (var j = 0, item = $scope.jiesuanData.order_label; j < item.length; j++) {
             if (item[j].is_select) {
@@ -6960,7 +7000,7 @@ angular.module('myApp.controllers', [])
          })
       }
       /* —————————————— 结算页所有信息接口数据 —————————————— */
-      $scope.jiesuanFn = function() {
+      $scope.jiesuanFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -6970,7 +7010,7 @@ angular.module('myApp.controllers', [])
             params: {
                sn: $scope.sn
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                $scope.jiesuanData = data;
@@ -7004,7 +7044,7 @@ angular.module('myApp.controllers', [])
                   method: "POST",
                   url: '' + $rootScope.ip + '/User/user_info',
                   data: '',
-               }).success(function(data) {
+               }).success(function (data) {
                   $scope.payPoints = data.user_info.pay_points;
                })
             } else {
@@ -7014,11 +7054,11 @@ angular.module('myApp.controllers', [])
       };
       $scope.jiesuanFn();
       //切换收货信息样式
-      $scope.setMor = function(e) {
+      $scope.setMor = function (e) {
          angular.element(e.target).parent().parent().addClass('pur_close_don').siblings().removeClass('pur_close_don');
       };
       //选择收货人信息
-      $scope.selectAddress = function(id) {
+      $scope.selectAddress = function (id) {
          $scope.flag = !$scope.flag;
          $http({
             method: "POST",
@@ -7027,7 +7067,7 @@ angular.module('myApp.controllers', [])
                address_id: id,
                order_id: $scope.jiesuanData.order.order_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -7041,22 +7081,22 @@ angular.module('myApp.controllers', [])
          })
       };
       //收货人信息同步
-      $rootScope.$on('uploadAddress', function() {
+      $rootScope.$on('uploadAddress', function () {
          $scope.jiesuanFn();
       });
       //设置默认地址
-      $scope.setMor = function(id) {
+      $scope.setMor = function (id) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/default_address',
             params: {
                address_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.jiesuanFn();
                });
             } else {
@@ -7066,7 +7106,7 @@ angular.module('myApp.controllers', [])
             }
          })
       };
-      $scope.setMoren = function(mor) {
+      $scope.setMoren = function (mor) {
          if (mor == true) {
             $scope.editData.default = 1;
          } else {
@@ -7074,7 +7114,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //编辑收货地址
-      $scope.bianji = function(id, index, address) {
+      $scope.bianji = function (id, index, address) {
          $('.masks').fadeIn();
          $('.pur_bianji').fadeIn();
          $http({
@@ -7083,7 +7123,7 @@ angular.module('myApp.controllers', [])
             params: {
                address_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.bianjiData = data;
 
             //编辑收货地址参数
@@ -7101,16 +7141,16 @@ angular.module('myApp.controllers', [])
          })
       };
       //编辑提交收货地址
-      $scope.enterAddress = function(e, province_id, city_id, dis_id, index) {
+      $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/edit_address',
             data: $scope.editData,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.jiesuanFn();
                   $('.masks').fadeOut();
                   $('.pur_bianji').fadeOut();
@@ -7123,13 +7163,13 @@ angular.module('myApp.controllers', [])
          })
       };
       //编辑取消按钮
-      $scope.quxiao = function() {
+      $scope.quxiao = function () {
          $('.masks').fadeOut();
          $('.pur_bianji').fadeOut();
          $('.pur_zengjia').fadeOut();
       };
       //编辑里省切换
-      $scope.changeProvince = function(pid) {
+      $scope.changeProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -7137,7 +7177,7 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.bianjiData.city_list = data.data;
             $scope.disDatas = [];
             $scope.changeCity(pid);
@@ -7145,7 +7185,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //编辑市切换
-      $scope.changeCity = function(pid) {
+      $scope.changeCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -7153,12 +7193,12 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.disDatas = data;
             $scope.bianjiData.district_list = data.data;
          })
       };
-      $scope.addSetMoren = function(mor) {
+      $scope.addSetMoren = function (mor) {
          if (mor == true) {
             $scope.eeditData.default = 1;
          } else {
@@ -7166,14 +7206,14 @@ angular.module('myApp.controllers', [])
          }
       };
       //添加收货地址
-      $scope.tianjia = function() {
+      $scope.tianjia = function () {
          $('.masks').fadeIn();
          $('.pur_zengjia').fadeIn();
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/add_address',
             params: '',
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.tianjiaData = data;
 
             //添加收货地址参数
@@ -7184,17 +7224,17 @@ angular.module('myApp.controllers', [])
          })
       };
       //提交添加收货地址
-      $scope.tianjiaAddress = function() {
+      $scope.tianjiaAddress = function () {
          $scope.eeditData.default = $scope.isMor ? 1 : 0;
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/add_address',
             data: $scope.eeditData,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
-               }, function() {
+               }, function () {
                   $('.masks').fadeOut();
                   $('.pur_zengjia').fadeOut();
                   $scope.jiesuanFn();
@@ -7208,7 +7248,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //添加里省切换
-      $scope.selectProvince = function(pid) {
+      $scope.selectProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -7216,7 +7256,7 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.cityData = data;
             $scope.disData = [];
             $scope.selectCity(pid);
@@ -7224,7 +7264,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //添加市切换
-      $scope.selectCity = function(pid) {
+      $scope.selectCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -7232,19 +7272,19 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.disData = data;
          })
       };
       //删除一个收货地址
-      $scope.deleteAddress = function(id) {
+      $scope.deleteAddress = function (id) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/del_address',
             params: {
                address_id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -7258,7 +7298,7 @@ angular.module('myApp.controllers', [])
          })
       };
       //选择支付方式
-      $scope.selectPay = function(id) {
+      $scope.selectPay = function (id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Frezz/select_payment',
@@ -7266,7 +7306,7 @@ angular.module('myApp.controllers', [])
                payment: id,
                order_id: $scope.jiesuanData.order.order_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000
@@ -7281,7 +7321,7 @@ angular.module('myApp.controllers', [])
       };
 
       //使用优惠券
-      $scope.useYhq = function(item, event) {
+      $scope.useYhq = function (item, event) {
          function suppliers_bouns(type) {
             event.target.style.pointerEvents = 'none';
             $http({
@@ -7292,7 +7332,7 @@ angular.module('myApp.controllers', [])
                   bonus_id: item.bonus_id,
                   type: type
                },
-            }).success(function(data) {
+            }).success(function (data) {
                event.target.style.pointerEvents = 'auto';
                if (data.status) {
                   layer.msg(data.info, {
@@ -7313,7 +7353,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //兑换优惠卷
-      $scope.getYhqByCode = function(code, event) {
+      $scope.getYhqByCode = function (code, event) {
 
          event.target.style.pointerEvents = 'none';
          event.target.style.opacity = '.7';
@@ -7325,7 +7365,7 @@ angular.module('myApp.controllers', [])
                order_id: $scope.jiesuanData.order.order_id,
                bonus_sn: code
             },
-         }).success(function(data) {
+         }).success(function (data) {
             event.target.style.pointerEvents = 'auto';
             event.target.style.opacity = '1';
             if (data.status) {
@@ -7345,12 +7385,12 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/user_info',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.userMoney = data.user_info.user_money;
       })
 
       //是否使用余额支付
-      $scope.isMoney = function() {
+      $scope.isMoney = function () {
          if (!$scope.is_money) {
             $http({
                method: "POST",
@@ -7358,7 +7398,7 @@ angular.module('myApp.controllers', [])
                data: {
                   surplus: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.jiesuanFn();
                }
@@ -7370,14 +7410,14 @@ angular.module('myApp.controllers', [])
                data: {
                   surplus: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.jiesuanFn();
                }
             })
          }
       };
-      $scope.submitList = function(e, index) {
+      $scope.submitList = function (e, index) {
          var label = [];
          for (var j = 0, item = $scope.jiesuanData.order_label; j < item.length; j++) {
             if (item[j].is_select) {
@@ -7391,7 +7431,7 @@ angular.module('myApp.controllers', [])
                data: {
                   password: $scope.pass
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $http({
                      method: "POST",
@@ -7401,7 +7441,7 @@ angular.module('myApp.controllers', [])
                         label: label,
                         order_id: $scope.jiesuanData.order.order_id
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      if (data.status) {
                         layer.msg(data.info, {
                            time: 1000
@@ -7434,7 +7474,7 @@ angular.module('myApp.controllers', [])
                   label: label,
                   order_id: $scope.jiesuanData.order.order_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info, {
                      time: 1000
@@ -7454,21 +7494,21 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $(".i-text").focus(function() {
+      $(".i-text").focus(function () {
          $(".sixDigitPassword").find("i").eq(0).addClass("active");
          $(".guangbiao").css({
             left: 0,
             opacity: 1
          });
       })
-      $(".i-text").blur(function() {
+      $(".i-text").blur(function () {
          $(".sixDigitPassword").find("i").removeClass("active");
          $(".guangbiao").css({
             opacity: 0
          });
       })
 
-      $(".i-text").keyup(function() {
+      $(".i-text").keyup(function () {
          var inp_v = $(this).val();
          var inp_l = inp_v.length;
          //$("p").html( "input的值为：" + inp_v +"; " + "值的长度为:" + inp_l);//测试用
@@ -7512,7 +7552,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //购物车支付页
-   .controller('payment-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('payment-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       //获取支付code
@@ -7524,7 +7564,7 @@ angular.module('myApp.controllers', [])
             log_id: $stateParams.log_id,
             type: $stateParams.type
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.codeData = data;
          $scope.isPay = data.is_pay;
          $scope.type = data.type;
@@ -7534,7 +7574,7 @@ angular.module('myApp.controllers', [])
             $('#masks').show();
             $('.payToLj').show();
             //监控订单
-            $scope.checkList = function() {
+            $scope.checkList = function () {
 
                $http({
                   method: "GET",
@@ -7542,13 +7582,13 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1,
                         shade: 0.3,
                         time: 2000
-                     }, function() {
+                     }, function () {
                         $state.go('home');
                      })
                   } else {
@@ -7560,7 +7600,7 @@ angular.module('myApp.controllers', [])
             };
 
             //去来镜加工页面
-            $scope.goMachining = function() {
+            $scope.goMachining = function () {
 
                var newGlass = window.open();
                $http({
@@ -7569,7 +7609,7 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1
@@ -7594,7 +7634,7 @@ angular.module('myApp.controllers', [])
       })
 
       //去支付
-      $scope.pay = function() {
+      $scope.pay = function () {
          $('#masks').show();
          $('.payToLj').show();
          if ($('.zfs-pic').eq(0).hasClass('on')) {
@@ -7604,7 +7644,7 @@ angular.module('myApp.controllers', [])
             window.open(url, '_blank');
 
             //监控订单
-            $scope.checkList = function() {
+            $scope.checkList = function () {
 
                $http({
                   method: "GET",
@@ -7612,13 +7652,13 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1,
                         shade: 0.3,
                         time: 2000
-                     }, function() {
+                     }, function () {
                         $state.go('home');
                      })
                   } else {
@@ -7629,7 +7669,7 @@ angular.module('myApp.controllers', [])
                })
             };
             //去来镜加工页面
-            $scope.goMachining = function() {
+            $scope.goMachining = function () {
                var newGlass = window.open();
                $http({
                   method: "GET",
@@ -7637,7 +7677,7 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1
@@ -7662,13 +7702,13 @@ angular.module('myApp.controllers', [])
                data: {
                   code: $scope.codeData.weixin
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg('玩命加载中', {
                      icon: 16,
                      shade: 0.3,
                      time: 200
-                  }, function() {
+                  }, function () {
                      var url = $state.href('erweima', {
                         url: data.wx_url,
                         id: data.order_no
@@ -7683,20 +7723,20 @@ angular.module('myApp.controllers', [])
             })
 
             //监控订单
-            $scope.checkList = function() {
+            $scope.checkList = function () {
                $http({
                   method: "GET",
                   url: '' + $rootScope.ip + '/Flow/check_order_pay',
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1,
                         shade: 0.3,
                         time: 2000
-                     }, function() {
+                     }, function () {
                         $state.go('home');
                      })
                   } else {
@@ -7708,7 +7748,7 @@ angular.module('myApp.controllers', [])
             };
 
             //去来镜加工页面
-            $scope.goMachining = function() {
+            $scope.goMachining = function () {
 
                var newGlass = window.open();
                $http({
@@ -7717,7 +7757,7 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1
@@ -7741,20 +7781,20 @@ angular.module('myApp.controllers', [])
             window.open(url, '_blank');
 
             //监控订单
-            $scope.checkList = function() {
+            $scope.checkList = function () {
                $http({
                   method: "GET",
                   url: '' + $rootScope.ip + '/Flow/check_order_pay',
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1,
                         shade: 0.3,
                         time: 2000
-                     }, function() {
+                     }, function () {
                         $state.go('home');
                      })
                   } else {
@@ -7767,7 +7807,7 @@ angular.module('myApp.controllers', [])
 
 
             //去来镜加工页面
-            $scope.goMachining = function() {
+            $scope.goMachining = function () {
                var newGlass = window.open();
                $http({
                   method: "GET",
@@ -7775,7 +7815,7 @@ angular.module('myApp.controllers', [])
                   params: {
                      id: $scope.codeData.id
                   },
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.msg(data.info, {
                         icon: 1
@@ -7801,12 +7841,12 @@ angular.module('myApp.controllers', [])
          data: {
             order_id: $stateParams.order_id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.is_glass = data.order_id;
       })
    }])
    //购物车支付页-new
-   .controller('paymentNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$window', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $window) {
+   .controller('paymentNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$window', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $window) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.is_distribution = $stateParams.is_distribution;
@@ -7815,7 +7855,7 @@ angular.module('myApp.controllers', [])
          method: "POST",
          url: '' + $rootScope.ip + '/User/user_info',
          data: '',
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status == 1) {
             $scope.userMoney = data.user_info.user_money;
             $scope.payPass = data.user_info.is_pay_pass;
@@ -7833,7 +7873,7 @@ angular.module('myApp.controllers', [])
             log_id: $stateParams.log_id,
             type: $stateParams.type
          },
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status == 1) {
 
@@ -7849,20 +7889,20 @@ angular.module('myApp.controllers', [])
                $('#masks').show();
                $('.payToLj').show();
                //监控订单
-               $scope.checkList = function() {
+               $scope.checkList = function () {
                   $http({
                      method: "GET",
                      url: '' + $rootScope.ip + '/Flow/check_order_pay',
                      params: {
                         id: $scope.codeData.id
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      if (data.status) {
                         layer.msg(data.info, {
                            icon: 1,
                            shade: 0.3,
                            time: 2000
-                        }, function() {
+                        }, function () {
                            $state.go('order-all');
                         })
                      } else {
@@ -7874,7 +7914,7 @@ angular.module('myApp.controllers', [])
                };
 
                //去来镜加工页面
-               $scope.goMachining = function() {
+               $scope.goMachining = function () {
                   var newGlass = window.open();
                   $http({
                      method: "GET",
@@ -7882,7 +7922,7 @@ angular.module('myApp.controllers', [])
                      params: {
                         id: $scope.codeData.id
                      },
-                  }).success(function(data) {
+                  }).success(function (data) {
                      if (data.status) {
                         layer.msg(data.info, {
                            icon: 1
@@ -7905,7 +7945,7 @@ angular.module('myApp.controllers', [])
                layer.confirm(data.info, {
                   btn: ['确定'], //按钮
                   closeBtn: false
-               }, function(index) {
+               }, function (index) {
                   layer.close(index);
                   $state.go('order-list-d');
                });
@@ -7915,21 +7955,21 @@ angular.module('myApp.controllers', [])
             $state.go('order-all');
          }
       })
-      $(".i-text").focus(function() {
+      $(".i-text").focus(function () {
          $(".sixDigitPassword").find("i").eq(0).addClass("active");
          $(".guangbiao").css({
             left: 0,
             opacity: 1
          });
       })
-      $(".i-text").blur(function() {
+      $(".i-text").blur(function () {
          $(".sixDigitPassword").find("i").removeClass("active");
          $(".guangbiao").css({
             opacity: 0
          });
       })
 
-      $(".i-text").keyup(function() {
+      $(".i-text").keyup(function () {
          var inp_v = $(this).val();
          var inp_l = inp_v.length;
          //$("p").html( "input的值为：" + inp_v +"; " + "值的长度为:" + inp_l);//测试用
@@ -7972,38 +8012,38 @@ angular.module('myApp.controllers', [])
       });
 
 
-      $scope.showShadow = function() {
+      $scope.showShadow = function () {
          $('#masks').show();
          $('.payToLj').show();
          //判断是否能来镜加工
-         var is_machining_goods_timer = setInterval(function() {
+         var is_machining_goods_timer = setInterval(function () {
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/User/is_machining_goods',
                data: {
                   order_id: $stateParams.order_id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.order_id > 0) {
                   $scope.is_glass = data.order_id;
                }
             })
          }, 1500)
          //监控订单
-         $scope.checkList = function() {
+         $scope.checkList = function () {
             $http({
                method: "GET",
                url: '' + $rootScope.ip + '/Flow/check_order_pay',
                params: {
                   id: $scope.codeData.id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info, {
                      icon: 1,
                      shade: 0.3,
                      time: 2000
-                  }, function() {
+                  }, function () {
                      $state.go('order-all');
                   })
                } else {
@@ -8014,20 +8054,20 @@ angular.module('myApp.controllers', [])
             })
          };
 
-         $scope.machCheckList = function() {
+         $scope.machCheckList = function () {
             $http({
                method: "GET",
                url: '' + $rootScope.ip + '/Flow/check_order_pay',
                params: {
                   id: $scope.codeData.id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info, {
                      icon: 1,
                      shade: 0.3,
                      time: 2000
-                  }, function() {
+                  }, function () {
                      $state.go('person-process');
                   })
                } else {
@@ -8039,7 +8079,7 @@ angular.module('myApp.controllers', [])
          };
 
          //去来镜加工页面
-         $scope.goMachining = function() {
+         $scope.goMachining = function () {
             var newGlass = window.open();
             $http({
                method: "GET",
@@ -8047,7 +8087,7 @@ angular.module('myApp.controllers', [])
                params: {
                   id: $scope.codeData.id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info, {
                      icon: 1
@@ -8070,7 +8110,7 @@ angular.module('myApp.controllers', [])
       //去支付
       $scope.pass = '';
       $scope.passyes = '';
-      $scope.yzPass = function(pass) {
+      $scope.yzPass = function (pass) {
          if ($scope.codeData.pay_salt != '' && $scope.codeData.pay_salt != null) {
             if ($.md5($.md5(pass) + $scope.codeData.pay_salt) == $scope.password) {
                $scope.passyes = true;
@@ -8097,7 +8137,7 @@ angular.module('myApp.controllers', [])
       // }
 
 
-      $scope.pay = function() {
+      $scope.pay = function () {
 
          if ((!$scope.yuE) && !$scope.paymentType) {
             layer.msg('请至少选择一种支付方式');
@@ -8139,7 +8179,7 @@ angular.module('myApp.controllers', [])
                data: {
                   password: $scope.pass
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   //$scope.$broadcast('passYes');
                   //$scope.passyes=true;
@@ -8152,7 +8192,7 @@ angular.module('myApp.controllers', [])
                         laijingId: $stateParams.order_id
                      });
                      //relove(url)
-                     setTimeout(function() {
+                     setTimeout(function () {
                         newOpens.location = url;
                      }, 200)
                      $scope.showShadow();
@@ -8167,7 +8207,7 @@ angular.module('myApp.controllers', [])
                            url: $scope.codeData.yuepay,
                            type: $scope.codeData.type
                         });
-                        setTimeout(function() {
+                        setTimeout(function () {
                            newOpens.location = url;
                         }, 200)
                         $scope.showShadow();
@@ -8178,7 +8218,7 @@ angular.module('myApp.controllers', [])
                            url: $scope.codeData.alipay,
                            type: $scope.codeData.type
                         });
-                        setTimeout(function() {
+                        setTimeout(function () {
                            newOpens.location = url;
                         }, 200)
                         $scope.showShadow();
@@ -8192,7 +8232,7 @@ angular.module('myApp.controllers', [])
                            type: $scope.codeData.type,
                            id: $scope.codeData.id
                         });
-                        setTimeout(function() {
+                        setTimeout(function () {
                            newOpens.location = url;
                         }, 200)
                         $scope.showShadow();
@@ -8203,7 +8243,7 @@ angular.module('myApp.controllers', [])
                            url: $scope.codeData.upacp,
                            type: $scope.codeData.type
                         });
-                        setTimeout(function() {
+                        setTimeout(function () {
                            newOpens.location = url;
                         }, 200)
                         $scope.showShadow();
@@ -8234,7 +8274,7 @@ angular.module('myApp.controllers', [])
                   url: $scope.codeData.alipay,
                   type: $scope.codeData.type
                });
-               setTimeout(function() {
+               setTimeout(function () {
                   newOpen.location = url;
                }, 200)
                $scope.showShadow();
@@ -8247,7 +8287,7 @@ angular.module('myApp.controllers', [])
                   id: $scope.codeData.id,
                   type: $scope.codeData.type
                });
-               setTimeout(function() {
+               setTimeout(function () {
                   newOpen.location = url;
                }, 200)
                $scope.showShadow();
@@ -8258,7 +8298,7 @@ angular.module('myApp.controllers', [])
                   url: $scope.codeData.upacp,
                   type: $scope.codeData.type
                });
-               setTimeout(function() {
+               setTimeout(function () {
                   newOpen.location = url;
                }, 200)
                $scope.showShadow();
@@ -8268,14 +8308,14 @@ angular.module('myApp.controllers', [])
 
 
       };
-      $scope.forgot = function() {
+      $scope.forgot = function () {
          var url = $state.href('save-payPass');
          window.open(url, '_blank');
       };
 
    }])
    //余额支付页面
-   .controller('yue-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('yue-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8285,7 +8325,7 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             //判断是否能来镜加工
             $http({
@@ -8294,22 +8334,22 @@ angular.module('myApp.controllers', [])
                data: {
                   order_id: $stateParams.laijingId
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.order_id) {
                   layer.confirm('订单已支付成功', {
                      shade: 0.3,
                      title: '镜库科技',
                      btn: ['确定', '来镜加工'],
-                     btn2: function() {
+                     btn2: function () {
                         $state.go('glassMachining', {
                            order_id: $stateParams.laijingId
                         });
                      },
-                     cancel: function(index, layero) {
+                     cancel: function (index, layero) {
                         layer.close(index)
                         return false;
                      }
-                  }, function(index) {
+                  }, function (index) {
                      layer.close(index)
                      $state.go('order-all');
                   })
@@ -8318,11 +8358,11 @@ angular.module('myApp.controllers', [])
                      shade: 0.3,
                      title: '镜库科技',
                      btn: ['确定'],
-                     cancel: function(index, layero) {
+                     cancel: function (index, layero) {
                         layer.close(index)
                         return false;
                      }
-                  }, function(index) {
+                  }, function (index) {
                      layer.close(index)
                      $state.go('order-all');
                   })
@@ -8332,14 +8372,14 @@ angular.module('myApp.controllers', [])
             layer.msg(data.info, {
                icon: 2,
                time: 1000
-            }, function() {
+            }, function () {
                window.close();
             })
          }
       })
    }])
    //二维码页面
-   .controller('erweima-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('erweima-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8347,7 +8387,7 @@ angular.module('myApp.controllers', [])
          icon: 16,
          shade: 0.3,
          time: 1000
-      }, function() {
+      }, function () {
 
       })
 
@@ -8357,7 +8397,7 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status == 0) {
             layer.msg(data.info)
          }
@@ -8370,7 +8410,7 @@ angular.module('myApp.controllers', [])
             data: {
                url: data.wx_url
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                //$scope.wxurl = data;
                //$scope.wxurl = $stateParams.url;
@@ -8381,14 +8421,14 @@ angular.module('myApp.controllers', [])
 
 
 
-      var timer = setInterval(function() {
+      var timer = setInterval(function () {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Flow/check_order_pay',
             params: {
                id: $scope.ermData.order_no
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   icon: 1
@@ -8407,7 +8447,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //支付宝页面
-   .controller('alipay-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('alipay-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8417,7 +8457,7 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             if (data.type == 'jump') {
                $state.go('control-mb');
@@ -8427,7 +8467,7 @@ angular.module('myApp.controllers', [])
                icon: 16,
                shade: 0.3
             })
-            pingpp.createPayment(data.pingxx, function(result, err) {
+            pingpp.createPayment(data.pingxx, function (result, err) {
                if (result == "success") {
                   // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                } else if (result == "fail") {
@@ -8440,7 +8480,7 @@ angular.module('myApp.controllers', [])
       })
    }])
    //银联页面
-   .controller('unionPay-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('unionPay-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8450,15 +8490,15 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg('玩命加载中', {
                icon: 16,
                shade: 0.3
-            }, function() {
+            }, function () {
 
             })
-            pingpp.createPayment(data.pingxx, function(result, err) {
+            pingpp.createPayment(data.pingxx, function (result, err) {
                if (result == "success") {
                   // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                } else if (result == "fail") {
@@ -8471,14 +8511,14 @@ angular.module('myApp.controllers', [])
       })
    }])
    //二维码-加余额支付页面
-   .controller('erweimaNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('erweimaNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
       layer.msg('玩命加载中', {
          icon: 16,
          shade: 0.3,
          time: 1000
-      }, function() {
+      }, function () {
 
       })
 
@@ -8488,7 +8528,7 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.ermData = data;
          $scope.wxurl = data.wx_url;
          $scope.res = ipCookie('token');
@@ -8504,7 +8544,7 @@ angular.module('myApp.controllers', [])
                data: {
                   url: data.wx_url
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.url = data;
                   //$scope.wxurl = $stateParams.url;
@@ -8517,14 +8557,14 @@ angular.module('myApp.controllers', [])
       })
 
 
-      var timer = setInterval(function() {
+      var timer = setInterval(function () {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Flow/check_order_pay',
             params: {
                id: $scope.ermData.order_no
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   icon: 1
@@ -8540,7 +8580,7 @@ angular.module('myApp.controllers', [])
       }, 3000);
    }])
    //支付宝-加余额支付页面
-   .controller('alipayNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('alipayNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8550,19 +8590,19 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg('玩命加载中', {
                icon: 16,
                shade: 0.3
-            }, function() {
+            }, function () {
 
             })
             if (data.type == "balance") {
                layer.msg(data.info);
                $state.go('order-all');
             } else if (data.type == "pay") {
-               pingpp.createPayment(data.pingxx, function(result, err) {
+               pingpp.createPayment(data.pingxx, function (result, err) {
                   if (result == "success") {
                      // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                   } else if (result == "fail") {
@@ -8580,7 +8620,7 @@ angular.module('myApp.controllers', [])
       })
    }])
    //银联-加余额支付页面
-   .controller('unionPayNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('unionPayNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8590,19 +8630,19 @@ angular.module('myApp.controllers', [])
          data: {
             code: $stateParams.url
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg('玩命加载中', {
                icon: 16,
                shade: 0.3
-            }, function() {
+            }, function () {
 
             })
             if (data.type == "balance") {
                layer.msg(data.info);
                $state.go('order-all');
             } else if (data.type == "pay") {
-               pingpp.createPayment(data.pingxx, function(result, err) {
+               pingpp.createPayment(data.pingxx, function (result, err) {
                   if (result == "success") {
                      // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                   } else if (result == "fail") {
@@ -8616,7 +8656,7 @@ angular.module('myApp.controllers', [])
       })
    }])
    //二维码-充值
-   .controller('erweimaRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('erweimaRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8624,7 +8664,7 @@ angular.module('myApp.controllers', [])
          icon: 16,
          shade: 0.3,
          time: 1000
-      }, function() {
+      }, function () {
 
       })
 
@@ -8635,7 +8675,7 @@ angular.module('myApp.controllers', [])
          data: {
             log_id: $stateParams.log_id,
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.wxData = data;
          $scope.wxurl = data.wx_url;
          $scope.res = ipCookie('token');
@@ -8646,7 +8686,7 @@ angular.module('myApp.controllers', [])
                data: {
                   url: data.wx_url
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.url = data;
                   $scope.wxurl = $scope.wxData.wx_url;
@@ -8660,14 +8700,14 @@ angular.module('myApp.controllers', [])
       })
 
 
-      var timer = setInterval(function() {
+      var timer = setInterval(function () {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/Flow/check_order_pay',
             params: {
                id: $scope.wxData.log_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   icon: 1
@@ -8683,7 +8723,7 @@ angular.module('myApp.controllers', [])
       }, 2000);
    }])
    //支付宝-充值
-   .controller('alipayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('alipayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8693,15 +8733,15 @@ angular.module('myApp.controllers', [])
          data: {
             log_id: $stateParams.log_id,
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg('玩命加载中', {
                icon: 16,
                shade: 0.3,
                time: 1000
-            }, function() {
+            }, function () {
 
-               pingpp.createPayment(data.pingxx, function(result, err) {
+               pingpp.createPayment(data.pingxx, function (result, err) {
                   if (result == "success") {
                      // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                   } else if (result == "fail") {
@@ -8719,7 +8759,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //银联-充值
-   .controller('unionPayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('unionPayRecharge-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = false;
 
@@ -8729,15 +8769,15 @@ angular.module('myApp.controllers', [])
          data: {
             log_id: $stateParams.log_id,
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg('玩命加载中', {
                icon: 16,
                shade: 0.3
-            }, function() {
+            }, function () {
 
             })
-            pingpp.createPayment(data.pingxx, function(result, err) {
+            pingpp.createPayment(data.pingxx, function (result, err) {
                if (result == "success") {
                   // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
                } else if (result == "fail") {
@@ -8750,7 +8790,7 @@ angular.module('myApp.controllers', [])
       })
    }])
    //帮助中心公司简介页面
-   .controller('helpCompany-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
+   .controller('helpCompany-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -8758,14 +8798,14 @@ angular.module('myApp.controllers', [])
          shade: [0.3, '#fff']
       });
       //获取每个标题
-      $scope.helpInit = function() {
+      $scope.helpInit = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/help',
             data: {
                id: $stateParams.id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             $scope.helpData = data;
 
@@ -8787,20 +8827,20 @@ angular.module('myApp.controllers', [])
          data: {
             id: $stateParams.id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.tit = data.data.title;
          $scope.content = $sce.trustAsHtml(data.data.content);
       })
       //获取每一个标题的内容
-      $scope.getContent = function(id) {
+      $scope.getContent = function (id) {
          $state.go('help_company', {
             id: id
          })
       };
 
 
-      $scope.helpFn = function() {
-         $('.help-dl .help-name').click(function() {
+      $scope.helpFn = function () {
+         $('.help-dl .help-name').click(function () {
             //var that = this;
             $(this).next().toggleClass('show');
 
@@ -8831,7 +8871,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //来镜加工页面
-   .controller('glassMachining-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
+   .controller('glassMachining-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       var cool = layer.load(0, {
@@ -8844,12 +8884,12 @@ angular.module('myApp.controllers', [])
          data: {
             id: $stateParams.order_id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          $scope.data = $sce.trustAsHtml(data.data);
       })
 
-      $scope.enterMessage = function() {
+      $scope.enterMessage = function () {
          $state.go('glassMachiningTwo', {
             order_id: $stateParams.order_id
          })
@@ -8857,7 +8897,7 @@ angular.module('myApp.controllers', [])
 
       $scope.lengths = 1;
       //点击显示左右眼显示框
-      $scope.showLeft = function(e) {
+      $scope.showLeft = function (e) {
          // angular.element(e.target).attr('data-id');
          $('.leftBox').show();
          //默认框里所有的数据
@@ -8870,13 +8910,13 @@ angular.module('myApp.controllers', [])
                rec_id: $scope.leftArr.goods_rec,
                rec_ids: $scope.goods_rec_arr
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.pianList = data;
             $scope.lengths = $scope.liArr.length;
 
          })
       };
-      $scope.showRight = function() {
+      $scope.showRight = function () {
          $('.rightBox').show();
          //默认框里所有的数据
          $http({
@@ -8888,13 +8928,13 @@ angular.module('myApp.controllers', [])
                rec_id: $scope.rightArr.goods_rec,
                rec_ids: $scope.goods_rec_arr
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.pianList = data;
 
             $scope.lengths = $scope.liArr.length;
          })
       };
-      $scope.showJia = function() {
+      $scope.showJia = function () {
          $('.jiaBox').show();
          //默认框里所有的数据
          $http({
@@ -8906,7 +8946,7 @@ angular.module('myApp.controllers', [])
                rec_id: $scope.jiaArr.goods_rec,
                rec_ids: $scope.goods_rec_arr
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.pianList = data;
 
             $scope.lengths = $scope.liArr.length;
@@ -8914,14 +8954,14 @@ angular.module('myApp.controllers', [])
             $("input[type='radio']").removeAttr('checked');
          })
       };
-      $scope.hideCover = function() {
+      $scope.hideCover = function () {
          $('.leftBox').hide();
          $('.rightBox').hide();
          $('.jiaBox').hide();
       };
       //镜架box切换函数
-      $scope.tableJia = function() {
-         $('.box_c_u1 li').click(function() {
+      $scope.tableJia = function () {
+         $('.box_c_u1 li').click(function () {
             var ind = $(this).index();
             $(this).addClass('con').siblings().removeClass('con');
             $('.need_showdiv>div').eq(ind).addClass('show').siblings().removeClass('show');
@@ -8929,11 +8969,11 @@ angular.module('myApp.controllers', [])
       };
       $scope.show = true;
       $scope.shows = false;
-      $scope.dingdan = function() {
+      $scope.dingdan = function () {
          $scope.show = true;
          $scope.shows = false;
       };
-      $scope.kehu = function() {
+      $scope.kehu = function () {
          $scope.show = false;
          $scope.shows = true;
       };
@@ -8953,11 +8993,11 @@ angular.module('myApp.controllers', [])
       $scope.eyeglassArr = [];
       //确认选择左眼获取左眼数据
 
-      $scope.leftSelect = function(id) {
+      $scope.leftSelect = function (id) {
          $scope.leftArr.goods_rec = id;
       };
 
-      $scope.getLeftEyeData = function(index, pIndex) {
+      $scope.getLeftEyeData = function (index, pIndex) {
          //$scope.leftArr.Goods.left = '';
          // for(var i in $scope.pianList.pian_goods_list) {
          //     if ($scope.pianList.pian_goods_list[i].selected) {
@@ -8970,7 +9010,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/select_goods_type',
             data: $scope.leftArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                //$scope.leftEyeData = data;
                $scope.liArr[index].left = data;
@@ -9020,16 +9060,16 @@ angular.module('myApp.controllers', [])
 
 
       //左眼客户输入
-      $scope.addChange = function(index, add) {
+      $scope.addChange = function (index, add) {
          $scope.liArrParams.ladd[index] = add;
       };
-      $scope.tjChange = function(index, tj) {
+      $scope.tjChange = function (index, tj) {
          $scope.liArrParams.ltongju[index] = tj;
       };
-      $scope.tgChange = function(index, tg) {
+      $scope.tgChange = function (index, tg) {
          $scope.liArrParams.ltonggao[index] = tg;
       };
-      $scope.jytjChange = function(index, jytj) {
+      $scope.jytjChange = function (index, jytj) {
          $scope.liArrParams.ljytj[index] = jytj;
       };
 
@@ -9042,11 +9082,11 @@ angular.module('myApp.controllers', [])
 
       $scope.right_goods_rec = null;
 
-      $scope.rightSelect = function(id) {
+      $scope.rightSelect = function (id) {
          $scope.rightArr.goods_rec = id;
       };
       //确认选择右眼获取右眼数据
-      $scope.getRightEyeData = function(index, pIndex) {
+      $scope.getRightEyeData = function (index, pIndex) {
          //$scope.leftArr.Goods.left = '';
          // for(var j in $scope.pianList.pian_goods_list) {
          //     if ($scope.pianList.pian_goods_list[j].selected) {
@@ -9059,7 +9099,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/select_goods_type',
             data: $scope.rightArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                //$scope.rightEyeData = data;
                $scope.liArr[index].right = data;
@@ -9093,16 +9133,16 @@ angular.module('myApp.controllers', [])
 
 
       //右眼客户输入
-      $scope.raddChange = function(index, add) {
+      $scope.raddChange = function (index, add) {
          $scope.liArrParams.radd[index] = add;
       };
-      $scope.rtjChange = function(index, tj) {
+      $scope.rtjChange = function (index, tj) {
          $scope.liArrParams.rtongju[index] = tj;
       };
-      $scope.rtgChange = function(index, tg) {
+      $scope.rtgChange = function (index, tg) {
          $scope.liArrParams.rtonggao[index] = tg;
       };
-      $scope.rjytjChange = function(index, jytj) {
+      $scope.rjytjChange = function (index, jytj) {
          $scope.liArrParams.rjytj[index] = jytj;
       };
 
@@ -9115,11 +9155,11 @@ angular.module('myApp.controllers', [])
 
       $scope.jia_goods_rec = null;
 
-      $scope.jiaSelect = function(id) {
+      $scope.jiaSelect = function (id) {
          $scope.jiaArr.goods_rec = id;
       };
       //确认镜架数据
-      $scope.getJiaData = function(index, pIndex) {
+      $scope.getJiaData = function (index, pIndex) {
          //$scope.leftArr.Goods.left = '';
          // for(var i in $scope.pianList.jia_goods_list) {
          //     if ($scope.pianList.jia_goods_list[i].selected) {
@@ -9132,7 +9172,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/select_goods_type',
             data: $scope.jiaArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if ($scope.goods_rec_arr.indexOf(data.spec_info.rec_id) == -1) {
                $scope.goods_rec_arr.push(data.spec_info.rec_id);
             }
@@ -9177,8 +9217,8 @@ angular.module('myApp.controllers', [])
       // };
       // $scope.tableLi();
 
-      $scope.tableScroll = function() {
-         setTimeout(function() {
+      $scope.tableScroll = function () {
+         setTimeout(function () {
             $(".picScroll-left").slide({
                titCell: ".hd ul",
                mainCell: ".bd ul",
@@ -9189,7 +9229,7 @@ angular.module('myApp.controllers', [])
             });
             $('.process_cont_t li').eq(0).addClass('con');
             $('.process_cont_c').eq(0).addClass('con');
-            $('.process_cont_t li').click(function() {
+            $('.process_cont_t li').click(function () {
                var ind = $(this).index();
                $(this).addClass('con').siblings().removeClass('con');
                $('.process_cont_c').eq(ind).addClass('con').siblings().removeClass('con');
@@ -9197,7 +9237,7 @@ angular.module('myApp.controllers', [])
          }, 200)
 
 
-         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+         $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
             //you also get the actual event object
             //do stuff, execute functions -- whatever...
          });
@@ -9207,7 +9247,7 @@ angular.module('myApp.controllers', [])
 
       $scope.machArr = [];
       //增加一张加工单
-      $scope.addList = function(e) {
+      $scope.addList = function (e) {
          if ($scope.liArr[$scope.liArr.length - 1].left == undefined || $scope.liArr[$scope.liArr.length - 1].right == undefined || $scope.liArr[$scope.liArr.length - 1].jia == undefined) {
             layer.msg('请先完善加工单');
          } else {
@@ -9231,7 +9271,7 @@ angular.module('myApp.controllers', [])
                      mach_type: $scope.machArr
                   }
                },
-            }).success(function(data) {
+            }).success(function (data) {
 
                $scope.leftArr.goods_rec = '';
                $scope.rightArr.goods_rec = '';
@@ -9250,7 +9290,7 @@ angular.module('myApp.controllers', [])
          }
       };
       //删除一张加工单
-      $scope.delList = function() {
+      $scope.delList = function () {
          if ($scope.liArr.length > 1) {
             $scope.liArr.pop();
             $scope.lengths--;
@@ -9278,13 +9318,13 @@ angular.module('myApp.controllers', [])
          frame_from: []
       };
       //确认信息
-      $scope.submit = function() {
+      $scope.submit = function () {
          $scope.liArrParams.eyeglass_from.push($scope.eyeglassArr);
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/insert_machining',
             data: $scope.liArrParams,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $state.go('person-process');
@@ -9295,7 +9335,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //来镜加工第二步页面
-   .controller('glassMachiningTwo-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
+   .controller('glassMachiningTwo-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$sce', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $sce) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -9305,19 +9345,19 @@ angular.module('myApp.controllers', [])
          data: {
             id: $stateParams.order_id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.content = $sce.trustAsHtml(data.data);
       })
 
 
-      $scope.submitMachining = function() {
+      $scope.submitMachining = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Machining/insert_machining',
             data: {
                order_id: $stateParams.order_id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                if (data.paid) {
                   $state.go('person-process');
@@ -9334,18 +9374,18 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $scope.returnLast = function() {
+      $scope.returnLast = function () {
          $state.go('glassMachining', {
             order_id: $stateParams.order_id
          })
       };
    }])
    //店铺首页
-   .controller('shopHome-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('shopHome-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
-      $scope.goShopListPage = function(brand_id) {
+      $scope.goShopListPage = function (brand_id) {
          $state.go('shop-list', {
             params: encodeURIComponent(JSON.stringify({
                brand_id: brand_id
@@ -9353,14 +9393,14 @@ angular.module('myApp.controllers', [])
          })
       }
       //店铺信息
-      $scope.shopMessage = function() {
+      $scope.shopMessage = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Category/get_supplier_info',
             data: {
                suppliers_id: $stateParams.shopId
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.shopHomeData = data;
             $scope.shopLogo = data.data.logo;
             $scope.name = data.data.name;
@@ -9375,21 +9415,21 @@ angular.module('myApp.controllers', [])
          data: {
             suppliers_id: $stateParams.shopId
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.shopHotGoods = data;
          $scope.getHotGoods($scope.shopHotGoods.suppliers_cat_list[0].cat_id);
       })
-      $scope.catLiFn = function() {
+      $scope.catLiFn = function () {
          $('.hot_sell_box1 .hot_sell_u2 li').eq(0).addClass('on');
-         $('.hot_sell_box1 .hot_sell_u2 li').click(function() {
+         $('.hot_sell_box1 .hot_sell_u2 li').click(function () {
             var iid = $(this).index();
             $(this).addClass('on').siblings().removeClass('on');
             $('.hot_sell_hide>.sell_hide').eq(iid).addClass('show').siblings().removeClass('show');
          });
       };
 
-      $scope.adFn = function() {
-         setTimeout(function() {
+      $scope.adFn = function () {
+         setTimeout(function () {
             $("#slideBox").slide({
                mainCell: ".bd ul",
                effect: "leftLoop",
@@ -9401,7 +9441,7 @@ angular.module('myApp.controllers', [])
       };
 
       //店铺关注
-      $scope.shopGz = function() {
+      $scope.shopGz = function () {
          if ($scope.shopHomeData.data.is_select) {
             $http({
                method: "POST",
@@ -9410,7 +9450,7 @@ angular.module('myApp.controllers', [])
                   id: $stateParams.shopId,
                   type: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.shopMessage();
@@ -9426,7 +9466,7 @@ angular.module('myApp.controllers', [])
                   id: $stateParams.shopId,
                   type: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.shopMessage();
@@ -9445,7 +9485,7 @@ angular.module('myApp.controllers', [])
          size: 8
       };
       //热销爆款
-      $scope.getHotGoods = function(id) {
+      $scope.getHotGoods = function (id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Category/suppliers_category_goods',
@@ -9455,12 +9495,12 @@ angular.module('myApp.controllers', [])
                page: $scope.hotGoodList.page,
                size: $scope.hotGoodList.size
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.hotGoodsData = data;
          })
       };
 
-      $scope.next = function() {
+      $scope.next = function () {
          if ($scope.hotGoodsData.page < $scope.hotGoodsData.pages) {
             $scope.hotGoodList.page++;
             $scope.getHotGoods($scope.hotGoodsData.supp_cat_id);
@@ -9469,7 +9509,7 @@ angular.module('myApp.controllers', [])
             $scope.getHotGoods($scope.hotGoodsData.supp_cat_id);
          }
       };
-      $scope.prev = function() {
+      $scope.prev = function () {
          $scope.hotGoodList.page--;
          $scope.getHotGoods($scope.hotGoodsData.supp_cat_id);
          if ($scope.hotGoodsData.page == 1) {
@@ -9480,14 +9520,14 @@ angular.module('myApp.controllers', [])
 
 
       //领取优惠券
-      $scope.lqYhq = function(tid) {
+      $scope.lqYhq = function (tid) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Goods/send_by_user',
             data: {
                type_id: tid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $scope.yhqFn();
@@ -9499,20 +9539,20 @@ angular.module('myApp.controllers', [])
 
    }])
    //新店铺首页
-   .controller('shopHomeNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$timeout', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $timeout) {
+   .controller('shopHomeNew-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$timeout', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $timeout) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
 
       //店铺信息
-      $scope.shopMessage = function() {
+      $scope.shopMessage = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Category/get_supplier_info',
             data: {
                suppliers_id: $stateParams.shopId
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.shopHomeData = data;
             $scope.shopLogo = data.data.logo;
             $scope.name = data.data.name;
@@ -9522,7 +9562,7 @@ angular.module('myApp.controllers', [])
       $scope.shopMessage();
 
       //店铺关注
-      $scope.shopGz = function() {
+      $scope.shopGz = function () {
          if ($scope.shopHomeData.data.is_select) {
             $http({
                method: "POST",
@@ -9531,7 +9571,7 @@ angular.module('myApp.controllers', [])
                   id: $stateParams.shopId,
                   type: 0
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.shopMessage();
@@ -9547,7 +9587,7 @@ angular.module('myApp.controllers', [])
                   id: $stateParams.shopId,
                   type: 1
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.shopMessage();
@@ -9585,7 +9625,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Category/suppliers_category_goods',
             data: $scope.hotGoodList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -9599,7 +9639,7 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $scope.pagination = $('#Pagination').pagination(data.pages, $scope.options);
       };
 
@@ -9612,7 +9652,7 @@ angular.module('myApp.controllers', [])
          supp_cat_id: ''
       };
       //热销爆款
-      $scope.getHotGoods = function() {
+      $scope.getHotGoods = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -9620,7 +9660,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/Category/suppliers_category_goods',
             data: $scope.hotGoodList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -9665,16 +9705,16 @@ angular.module('myApp.controllers', [])
 
 
       //不使用插件分页
-      $scope.prevList = function() {
+      $scope.prevList = function () {
          $scope.pagination[0].prevPage();
       };
-      $scope.nextList = function() {
+      $scope.nextList = function () {
          $scope.pagination[0].nextPage();
       };
 
       //图片处理函数
-      $scope.listControl = function(num) {
-         $timeout(function() {
+      $scope.listControl = function (num) {
+         $timeout(function () {
             $(".picFocus").slide({
                mainCell: ".goods-items-imgnew ul",
                effect: "left",
@@ -9687,7 +9727,7 @@ angular.module('myApp.controllers', [])
       };
 
       //分类导航栏切换
-      $scope.shop_cat = function(catId) {
+      $scope.shop_cat = function (catId) {
          $('.new_shop_l li').eq(0).removeClass('on');
          $scope.hotGoodList.supp_cat_id = catId;
          $scope.getHotGoods()
@@ -9702,7 +9742,7 @@ angular.module('myApp.controllers', [])
       // };
 
       //分类导航首页
-      $scope.shop_homeCat = function() {
+      $scope.shop_homeCat = function () {
          $('.new_shop_l li').eq(0).addClass('on');
          $scope.hotGoodList.supp_cat_id = '';
          $scope.hotGoodList.suppliers_id = $stateParams.shopId;
@@ -9712,72 +9752,72 @@ angular.module('myApp.controllers', [])
 
 
       //商品综合排序
-      $scope.allOrder = function() {
+      $scope.allOrder = function () {
          $scope.hotGoodList.order = 'goods_id';
          $scope.hotGoodList.stort = 'DESC';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //商品推荐排序
-      $scope.tuijianOrder = function() {
+      $scope.tuijianOrder = function () {
          $scope.hotGoodList.order = 'sales_num';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
-      $scope.goods_sort = function() {
+      $scope.goods_sort = function () {
          $scope.hotGoodList.order = 'goods_sort';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //推荐升序
-      $scope.tuijianAsOrder = function() {
+      $scope.tuijianAsOrder = function () {
          $scope.hotGoodList.stort = 'ASC';
          $scope.hotGoodList.order = 'sales_num';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //推荐降序
-      $scope.tuijianDsOrder = function() {
+      $scope.tuijianDsOrder = function () {
          $scope.hotGoodList.stort = 'DESC';
          $scope.hotGoodList.order = 'sales_num';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //商品价格排序
-      $scope.priceOrder = function() {
+      $scope.priceOrder = function () {
          $scope.hotGoodList.order = 'shop_price';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //价格升序
-      $scope.PriceAsOrder = function() {
+      $scope.PriceAsOrder = function () {
          $scope.hotGoodList.stort = 'ASC';
          $scope.hotGoodList.order = 'shop_price';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //价格降序
-      $scope.PriceDsOrder = function() {
+      $scope.PriceDsOrder = function () {
          $scope.hotGoodList.stort = 'DESC';
          $scope.hotGoodList.order = 'shop_price';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //商品时间排序
-      $scope.timeOrder = function() {
+      $scope.timeOrder = function () {
          $scope.hotGoodList.order = 'add_time';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //时间升序
-      $scope.timeAsOrder = function() {
+      $scope.timeAsOrder = function () {
          $scope.hotGoodList.stort = 'ASC';
          $scope.hotGoodList.order = 'add_time';
          $scope.hotGoodList.page = 1;
          $scope.getHotGoods();
       };
       //时间降序
-      $scope.timeDsOrder = function() {
+      $scope.timeDsOrder = function () {
          $scope.hotGoodList.stort = 'DESC';
          $scope.hotGoodList.order = 'add_time';
          $scope.hotGoodList.page = 1;
@@ -9788,13 +9828,13 @@ angular.module('myApp.controllers', [])
       //商品关注
       //防止用户多次点击，多次请求
       var timeoutflag = 0;
-      $scope.goodsCollect = function(collect, id, index) {
+      $scope.goodsCollect = function (collect, id, index) {
          if (timeoutflag) {
             layer.msg('操作太频繁啦！');
             return;
          }
          timeoutflag = 1;
-         timeoutflagfn = setTimeout(function() {
+         timeoutflagfn = setTimeout(function () {
             timeoutflag = 0;
          }, 1000);
 
@@ -9805,7 +9845,7 @@ angular.module('myApp.controllers', [])
                data: {
                   goods_id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status == '0') {
                   //layer.msg('关注失败',{time:100});
                   //$state.go('login');
@@ -9821,7 +9861,7 @@ angular.module('myApp.controllers', [])
                data: {
                   goods_id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status == '0') {
                   //layer.msg('取消关注失败',{time:100});
                   //$state.go('login');
@@ -9835,7 +9875,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-发票管理-发票列表页面
-   .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$location', '$anchorScroll', function($scope, $rootScope, $http, $state, ipCookie, $stateParams, $location, $anchorScroll) {
+   .controller('invoices-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', '$location', '$anchorScroll', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams, $location, $anchorScroll) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -9844,15 +9884,15 @@ angular.module('myApp.controllers', [])
          size: 10,
          //time:''
       };
-      $scope.goSelect = function() {
+      $scope.goSelect = function () {
          $state.go('person-inv-select');
       };
       //时间检索
-      $scope.searchInvoices = function() {
+      $scope.searchInvoices = function () {
          //$scope.invoicesList.time = $scope.startTime;
          $scope.invoicesFn();
       };
-      $scope.invoicesFn = function() {
+      $scope.invoicesFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -9860,7 +9900,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/inv_list',
             data: $scope.invoicesList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -9882,7 +9922,7 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             $scope.invoicesList.page = index + 1;
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
@@ -9891,18 +9931,18 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/User/inv_list',
                data: $scope.invoicesList,
-            }).success(function(data) {
+            }).success(function (data) {
                layer.close(cool);
                $scope.invoicesData = data;
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
    }])
    //个人中心-发票管理-发票索取页面
-   .controller('invSelect-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('invSelect-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -9912,7 +9952,7 @@ angular.module('myApp.controllers', [])
          min: '',
          max: ''
       };
-      $scope.invSelectFn = function() {
+      $scope.invSelectFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -9920,7 +9960,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/invoice',
             data: $scope.invSelectList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -9942,32 +9982,32 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             $scope.invSelectList.page = index + 1;
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/User/invoice',
                data: $scope.invSelectList,
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.invSelectData = data;
             })
          }
       };
-      $scope.getGoods = function(data) {
-         setTimeout(function() {
+      $scope.getGoods = function (data) {
+         setTimeout(function () {
             $('#Pagination').pagination(data.pages, $scope.options);
          }, 200)
       };
 
 
       //搜索
-      $scope.searchSelect = function() {
+      $scope.searchSelect = function () {
          $scope.invSelectFn();
       };
 
       var sum = 0;
       //全选
-      $scope.isCheck = function(supp) {
+      $scope.isCheck = function (supp) {
          var selectedPrice = 0;
          if (supp.allCheck) {
             for (var i = 0; i < supp.order.length; i++) {
@@ -9985,7 +10025,7 @@ angular.module('myApp.controllers', [])
       };
 
       //选中改变价格
-      $scope.selectInv = function(supp) {
+      $scope.selectInv = function (supp) {
          var selectedPrice = 0;
          for (var i = 0; i < supp.order.length; i++) {
             var item = supp.order[i];
@@ -10007,17 +10047,17 @@ angular.module('myApp.controllers', [])
          address_id: '',
          suppliers_id: ''
       };
-      $scope.getAddress = function() {
+      $scope.getAddress = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/address_list',
             data: '',
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.addressData = data;
          })
       };
       //索取发票
-      $scope.sq = function(inv) {
+      $scope.sq = function (inv) {
          var params = {};
          params.order_ids = [];
          params.suppliers_id = inv.suppliers_id;
@@ -10031,7 +10071,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/selectzz',
             data: params,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.hasKaiPiao = false;
                $scope.kaiPiaoData = data;
@@ -10044,10 +10084,10 @@ angular.module('myApp.controllers', [])
                if (data.info == '没有可选发票资质') {
                   var cool = layer.confirm('没有可选发票资质，是否前往申请', {
                      btn: ['确定', '取消'] //按钮
-                  }, function() {
+                  }, function () {
                      $state.go('person-inv-message');
                      layer.close(cool);
-                  }, function() {
+                  }, function () {
 
                   });
                } else {
@@ -10058,12 +10098,12 @@ angular.module('myApp.controllers', [])
 
       };
       //确定发票
-      $scope.sure = function() {
+      $scope.sure = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/insert_inv',
             data: $scope.piaoArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $state.go('person-invoices');
@@ -10075,17 +10115,17 @@ angular.module('myApp.controllers', [])
 
 
       //删除一个收货地址
-      $scope.deleteAddress = function(id) {
+      $scope.deleteAddress = function (id) {
          layer.confirm('您确定要删除么？', {
             btn: ['确定', '取消'] //按钮
-         }, function() {
+         }, function () {
             $http({
                method: "GET",
                url: '' + $rootScope.ip + '/User/del_address',
                params: {
                   address_id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg(data.info);
                   $scope.getAddress();
@@ -10093,7 +10133,7 @@ angular.module('myApp.controllers', [])
                   layer.msg(data.info);
                }
             })
-         }, function() {
+         }, function () {
             layer.msg('点完这个可就全没了，在考虑考虑吧~', {
                time: 2000, //2s后自动关闭
             });
@@ -10102,7 +10142,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-发票管理-发票信息管理页面
-   .controller('invMessage-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('invMessage-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -10120,17 +10160,17 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
             $scope.invMessageList.page = index + 1;
-            $scope.invMessageFn = function() {
+            $scope.invMessageFn = function () {
                $http({
                   method: "POST",
                   url: '' + $rootScope.ip + '/User/inv_role',
                   data: $scope.invMessageList,
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      layer.close(cool);
                   }
@@ -10143,12 +10183,12 @@ angular.module('myApp.controllers', [])
             $scope.invMessageFn();
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
       //添加新资质
-      $scope.addNew = function() {
+      $scope.addNew = function () {
          $scope.zizhiArr = {
             type: 1,
             inv_type: 1
@@ -10156,7 +10196,7 @@ angular.module('myApp.controllers', [])
          $(".js_adbr").show();
       };
       //发票信息管理数据
-      $scope.invMessageFn = function() {
+      $scope.invMessageFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -10164,7 +10204,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/inv_role',
             data: $scope.invMessageList,
-         }).success(function(data) {
+         }).success(function (data) {
             layer.close(cool);
             if (data.status) {
                $scope.getGoods(data);
@@ -10176,7 +10216,7 @@ angular.module('myApp.controllers', [])
       $scope.invMessageFn();
 
       //发票信息管理编辑
-      $scope.fpbianji = function(id, fp) {
+      $scope.fpbianji = function (id, fp) {
          $(".js_adbr").show();
          $('html').animate({
             'scrollTop': 0
@@ -10202,14 +10242,14 @@ angular.module('myApp.controllers', [])
 
 
       //获取执照复印件 base64编码
-      $scope.imgPreview = function(e) {
+      $scope.imgPreview = function (e) {
          $scope.zizhiArr.yyzz = e.img_url;
          var img = document.getElementById("preview");
          img.src = e.base64;
       };
 
       //获取税务登记复印件 base64编码
-      $scope.swdjPreview = function(event) {
+      $scope.swdjPreview = function (event) {
          //判断是否支持FileReader
          if (window.FileReader) {
             var reader = new FileReader();
@@ -10227,7 +10267,7 @@ angular.module('myApp.controllers', [])
          }
          //转码
          //读取完成
-         reader.onload = function(e) {
+         reader.onload = function (e) {
             //获取图片dom
             var img = document.getElementById("swdjPreview");
             //图片路径设置为读取的图片
@@ -10239,7 +10279,7 @@ angular.module('myApp.controllers', [])
       };
 
       //获取资格认证复印件 base64编码
-      $scope.zgezPreview = function(event) {
+      $scope.zgezPreview = function (event) {
          //判断是否支持FileReader
          if (window.FileReader) {
             var reader = new FileReader();
@@ -10257,7 +10297,7 @@ angular.module('myApp.controllers', [])
          }
          //转码
          //读取完成
-         reader.onload = function(e) {
+         reader.onload = function (e) {
             //获取图片dom
             var img = document.getElementById("zgezPreview");
             //图片路径设置为读取的图片
@@ -10269,12 +10309,12 @@ angular.module('myApp.controllers', [])
       };
 
       //添加发票资质提交
-      $scope.submitZz = function() {
+      $scope.submitZz = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/update_inv',
             data: $scope.zizhiArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $scope.invMessageFn();
@@ -10286,7 +10326,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //个人中心-返修退换货-返修/退换货
-   .controller('returnRepair-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('returnRepair-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.repairList = {
@@ -10298,10 +10338,10 @@ angular.module('myApp.controllers', [])
          max: '',
          suppliers_id: ''
       };
-      $scope.listZk = function() {
+      $scope.listZk = function () {
          // setTimeout(function(){
          var arrow = 1;
-         $('.div_r_ul_box .need_lk').click(function() {
+         $('.div_r_ul_box .need_lk').click(function () {
             $('.div_r_ul_box .need_lk').siblings().removeClass('hei');
             $('.div_r_ul_box .need_lk').removeClass('oni');
             if (arrow == 1) {
@@ -10318,7 +10358,7 @@ angular.module('myApp.controllers', [])
          })
          // },200)
       };
-      $scope.repairFn = function() {
+      $scope.repairFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -10326,7 +10366,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/order_repair',
             data: $scope.repairList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -10349,7 +10389,7 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
@@ -10358,7 +10398,7 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/User/order_repair',
                data: $scope.repairList,
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.close(cool);
                }
@@ -10366,13 +10406,13 @@ angular.module('myApp.controllers', [])
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
       //单选
       //$scope.sqsArr = [];
-      $scope.sqs = function(index, pIndex, ppIndex, select) {
+      $scope.sqs = function (index, pIndex, ppIndex, select) {
 
          //其中一个不选，取消全选
          for (var i = 0, item1 = $scope.repairData.list; i < item1.length; i++) {
@@ -10397,7 +10437,7 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $scope.sqAlls = function(all) {
+      $scope.sqAlls = function (all) {
 
          if (all == true) {
 
@@ -10425,7 +10465,7 @@ angular.module('myApp.controllers', [])
       };
 
       //多个提交申请-退货
-      $scope.tuihuo = function(type) {
+      $scope.tuihuo = function (type) {
          $scope.allGoods.orders.rec_ids = [];
          $scope.allGoods.orders.order_ids = [];
          $scope.allGoods.type = type;
@@ -10442,7 +10482,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/is_goods_repair',
             data: $scope.allGoods,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $state.go('return-repair-content', {
                   id: '',
@@ -10462,7 +10502,7 @@ angular.module('myApp.controllers', [])
       $scope.lotsSubmit = false;
       $scope.isSuccess = false;
       //单个提交申请
-      $scope.singleSqsh = function(tid, id, index) {
+      $scope.singleSqsh = function (tid, id, index) {
 
          $scope.allGoods.orders.rec_ids = [];
          $scope.allGoods.orders.order_ids = [];
@@ -10478,7 +10518,7 @@ angular.module('myApp.controllers', [])
                rec_id: id,
                type: $scope.allGoods.type
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $state.go('return-repair-content', {
                   id: id
@@ -10497,14 +10537,14 @@ angular.module('myApp.controllers', [])
          method: "GET",
          url: '' + $rootScope.ip + '/Login/region_list',
          params: ''
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.bianjiData = data;
       })
       $scope.editData = {
 
       };
       //编辑里省切换
-      $scope.changeProvince = function(pid) {
+      $scope.changeProvince = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -10512,13 +10552,13 @@ angular.module('myApp.controllers', [])
                type: 2,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.bianjiData.city_list = data.data;
             $scope.changeCity(pid);
          })
       };
       //编辑市切换
-      $scope.changeCity = function(pid) {
+      $scope.changeCity = function (pid) {
          $http({
             method: "GET",
             url: '' + $rootScope.ip + '/User/change_region',
@@ -10526,19 +10566,19 @@ angular.module('myApp.controllers', [])
                type: 3,
                parent_id: pid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.bianjiData.district_list = data.data;
          })
       };
 
 
 
-      $scope.qxsq = function() {
+      $scope.qxsq = function () {
          $scope.isSubmit = true;
          $scope.isLotsSubmit = false;
       };
 
-      $scope.tjsq = function() {
+      $scope.tjsq = function () {
          $scope.tjsqArr = {
             order_id: $scope.sqshData.order_info.order_id,
             rec_ids: $scope.shopGoods
@@ -10550,7 +10590,7 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/User/repair_apply',
                data: $scope.tjsqArr,
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   $scope.lotsSubmit = true;
                   $scope.isLotsSubmit = false;
@@ -10583,7 +10623,7 @@ angular.module('myApp.controllers', [])
          return_way: '',
          return_type: ''
       };
-      $scope.returnWay = function(way) {
+      $scope.returnWay = function (way) {
          $scope.subArr.return_way = way;
       };
 
@@ -10600,7 +10640,7 @@ angular.module('myApp.controllers', [])
       }];
       $scope.isReduce = true;
 
-      $scope.change = function(e, num, index, pIndex) {
+      $scope.change = function (e, num, index, pIndex) {
          if (num > 0) {
             //$scope.isReduce = false;
             angular.element(e.target).prev().removeClass('reduce');
@@ -10625,7 +10665,7 @@ angular.module('myApp.controllers', [])
 
       //增加
       //$scope.numArr = [{}];
-      $scope.add = function(e, index, pIndex) {
+      $scope.add = function (e, index, pIndex) {
          $scope.afterSaleData.order_goods[pIndex][index].goods_number++;
          $scope.subArr.rec_ids.member[index]++;
          if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 0) {
@@ -10643,7 +10683,7 @@ angular.module('myApp.controllers', [])
 
       };
       //减少
-      $scope.reduce = function(e, index, pIndex) {
+      $scope.reduce = function (e, index, pIndex) {
 
          if ($scope.afterSaleData.order_goods[pIndex][index].goods_number > 1) {
             $scope.afterSaleData.order_goods[pIndex][index].goods_number--;
@@ -10668,7 +10708,7 @@ angular.module('myApp.controllers', [])
          return_pay_way: 0,
          return_way: 0
       };
-      $('.retur_way input').click(function(e) {
+      $('.retur_way input').click(function (e) {
          $('.retur_way input').removeClass('select');
          $(e.target).addClass('select');
 
@@ -10679,7 +10719,7 @@ angular.module('myApp.controllers', [])
          }
       })
 
-      $('.kuaidi input').click(function(e) {
+      $('.kuaidi input').click(function (e) {
          $('.kuaidi input').removeClass('select');
          $(e.target).addClass('select');
 
@@ -10690,13 +10730,13 @@ angular.module('myApp.controllers', [])
          }
       })
 
-      $scope.xg = function() {
+      $scope.xg = function () {
 
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/cache_repair',
             data: $scope.xgArr,
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.return_pay_way = data.data.return_pay_way;
             $scope.is_fapiao = data.data.is_fapiao;
             $scope.return_way = data.data.return_way;
@@ -10709,38 +10749,38 @@ angular.module('myApp.controllers', [])
 
 
       //分类筛选
-      $scope.returnCatId = function(id) {
+      $scope.returnCatId = function (id) {
          $scope.repairList.cat_id = id;
          $scope.repairFn();
       };
 
       //类型筛选
-      $scope.changeType = function(type) {
+      $scope.changeType = function (type) {
          $scope.repairList.type = type;
          $scope.repairFn();
       };
 
       //时间筛选
-      $scope.changeEndTime = function(endtime) {
+      $scope.changeEndTime = function (endtime) {
          $scope.repairList.max = endtime;
          $scope.repairFn();
       };
 
       //时间筛选
-      $scope.changeStartTime = function(starttime) {
+      $scope.changeStartTime = function (starttime) {
          $scope.repairList.min = starttime;
          $scope.repairFn();
       };
 
       //供货商筛选
-      $scope.changeSuppliers = function(id) {
+      $scope.changeSuppliers = function (id) {
          $scope.repairList.suppliers_id = id;
          $scope.repairFn();
       };
 
 
 
-      $('.fx_th_btn input').click(function(e) {
+      $('.fx_th_btn input').click(function (e) {
          $('.fx_th_btn input').removeClass('bt1');
          $(e.target).addClass('bt1');
 
@@ -10756,7 +10796,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-返修退换货-返修/退换货-申请售后
-   .controller('returnRepairContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('returnRepairContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
 
@@ -10774,7 +10814,7 @@ angular.module('myApp.controllers', [])
                rec_id: $stateParams.id,
                type: $stateParams.type
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                // $scope.lotsSubmit = true;
                // $scope.isSubmit = false;
@@ -10843,7 +10883,7 @@ angular.module('myApp.controllers', [])
                },
                type: $stateParams.type
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                // $scope.lotsSubmit = true;
                // $scope.isSubmit = false;
@@ -10901,7 +10941,7 @@ angular.module('myApp.controllers', [])
          return_way: '',
          return_type: ''
       };
-      $scope.returnWay = function(way) {
+      $scope.returnWay = function (way) {
          $scope.subArr.return_way = way;
       };
 
@@ -10918,7 +10958,7 @@ angular.module('myApp.controllers', [])
       }];
       $scope.isReduce = true;
 
-      $scope.change = function(e, num, index, pIndex) {
+      $scope.change = function (e, num, index, pIndex) {
          // $scope.subArr.order_ids = [];
          // $scope.subArr.rec_ids.rec_id = [];
          // $scope.subArr.rec_ids.member = [];
@@ -10952,7 +10992,7 @@ angular.module('myApp.controllers', [])
 
       //增加
       //$scope.numArr = [{}];
-      $scope.add = function(e, index, pIndex) {
+      $scope.add = function (e, index, pIndex) {
          // $scope.subArr.order_ids.push($scope.afterSaleData.order_goods[pIndex][index].order_id);
          // $scope.subArr.rec_ids.rec_id.push($scope.afterSaleData.order_goods[pIndex][index].rec_id);
          //$scope.subArr.rec_ids.member.push($scope.afterSaleData.order_goods[pIndex][index].goods_number);
@@ -10973,7 +11013,7 @@ angular.module('myApp.controllers', [])
 
       };
       //减少
-      $scope.reduce = function(e, index, pIndex) {
+      $scope.reduce = function (e, index, pIndex) {
          // if($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id)>-1){
          //     $scope.subArr.order_ids.splice($scope.subArr.order_ids.indexOf($scope.afterSaleData.order_goods[pIndex][index].order_id),1);
          // }
@@ -11000,7 +11040,7 @@ angular.module('myApp.controllers', [])
 
       };
 
-      $('.fx_th_btn input').click(function(e) {
+      $('.fx_th_btn input').click(function (e) {
          $('.fx_th_btn input').removeClass('bt1');
          $(e.target).addClass('bt1');
 
@@ -11014,12 +11054,12 @@ angular.module('myApp.controllers', [])
       })
 
 
-      $scope.getReturnType = function(num) {
+      $scope.getReturnType = function (num) {
          $scope.subArr.return_type = num;
       };
 
       //获取img base64编码
-      $scope.imgPreview = function(index, e) {
+      $scope.imgPreview = function (index, e) {
 
          $scope.subArr.return_img[index] = e.img_url;
          var img = document.getElementsByClassName("preview")[index];
@@ -11028,7 +11068,7 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $scope.sub = function() {
+      $scope.sub = function () {
          for (var i = 0, item1 = $scope.afterSaleData.arr_order_goods; i < item1.length; i++) { //供应商
             for (var j = 0, item2 = item1[i].goods_list; j < item2.length; j++) { //商品
                if (item2[j].tui_end == 0 && item2[j].huan_end == 0 && item2[j].xiu_end == 0) {
@@ -11055,7 +11095,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/submit_repair',
             data: $scope.subArr,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info);
                $scope.isSuccess = true;
@@ -11068,7 +11108,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-返修退换货-返修/退换货记录
-   .controller('returnRepairHistory-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('returnRepairHistory-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.repairHistroyList = {
@@ -11085,7 +11125,7 @@ angular.module('myApp.controllers', [])
       //     $scope.invoicesList.time = $scope.startTime;
       //     $scope.invoicesFn();
       // };
-      $scope.repairHistroyFn = function() {
+      $scope.repairHistroyFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -11093,7 +11133,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/repair_list',
             data: $scope.repairHistroyList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -11115,7 +11155,7 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
@@ -11124,7 +11164,7 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/User/repair_list',
                data: $scope.repairHistroyList,
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.close(cool);
                }
@@ -11132,21 +11172,21 @@ angular.module('myApp.controllers', [])
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
       //查看
       $scope.islook = true;
       $scope.isSubmit = true;
-      $scope.look = function(id) {
+      $scope.look = function (id) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/repair_info',
             data: {
                id: id
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.islook = false;
                $scope.lookContentData = data;
@@ -11166,12 +11206,12 @@ angular.module('myApp.controllers', [])
                $scope.returnArr = {
                   id: data.repair_info.return_id
                };
-               $scope.listSubmit = function() {
+               $scope.listSubmit = function () {
                   $http({
                      method: "POST",
                      url: '' + $rootScope.ip + '/User/fuwudan',
                      data: $scope.returnArr,
-                  }).success(function(data) {
+                  }).success(function (data) {
                      if (data.status) {
                         $scope.isSubmit = false;
                      } else {
@@ -11188,28 +11228,28 @@ angular.module('myApp.controllers', [])
       };
 
 
-      $scope.lookMoney = function(orderid) {
+      $scope.lookMoney = function (orderid) {
          $state.go('person-repair-refund-content', {
             order_id: orderid
          })
       };
 
 
-      $scope.cancelOrder = function(id) {
+      $scope.cancelOrder = function (id) {
          layer.confirm('您确定要取消么？', {
             btn: ['确定', '取消'] //按钮
-         }, function() {
+         }, function () {
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/User/cancel_repair',
                data: {
                   id: id
                },
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.msg('取消成功', {
                      time: 1000
-                  }, function() {
+                  }, function () {
                      $scope.repairHistroyFn();
                   });
                } else {
@@ -11222,7 +11262,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //个人中心-返修退换货-返修/退款明细
-   .controller('repairRefund-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('repairRefund-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.repairRefundList = {
@@ -11233,7 +11273,7 @@ angular.module('myApp.controllers', [])
          type: 1
       };
 
-      $scope.repairRefundFn = function() {
+      $scope.repairRefundFn = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
@@ -11241,7 +11281,7 @@ angular.module('myApp.controllers', [])
             method: "POST",
             url: '' + $rootScope.ip + '/User/repair_list',
             data: $scope.repairRefundList,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.close(cool);
             }
@@ -11263,7 +11303,7 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
@@ -11272,7 +11312,7 @@ angular.module('myApp.controllers', [])
                method: "POST",
                url: '' + $rootScope.ip + '/User/repair_list',
                data: $scope.repairRefundList,
-            }).success(function(data) {
+            }).success(function (data) {
                if (data.status) {
                   layer.close(cool);
                }
@@ -11280,7 +11320,7 @@ angular.module('myApp.controllers', [])
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
@@ -11289,7 +11329,7 @@ angular.module('myApp.controllers', [])
       $scope.islook = true;
       $scope.isSubmit = true;
 
-      $scope.look = function(id) {
+      $scope.look = function (id) {
          // $http({
          //     method:"POST",
          //     url:''+$rootScope.ip+'/User/repair_info',
@@ -11343,7 +11383,7 @@ angular.module('myApp.controllers', [])
       };
    }])
    //个人中心-返修退换货-返修/退款明细详情页
-   .controller('repairRefundContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('repairRefundContent-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       //查看
@@ -11359,7 +11399,7 @@ angular.module('myApp.controllers', [])
          data: {
             id: $stateParams.order_id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             //$scope.islook = false;
             layer.close(cool);
@@ -11380,12 +11420,12 @@ angular.module('myApp.controllers', [])
             $scope.returnArr = {
                return_id: data.repair_info.return_id
             };
-            $scope.listSubmit = function() {
+            $scope.listSubmit = function () {
                $http({
                   method: "POST",
                   url: '' + $rootScope.ip + '/User/fuwudan',
                   data: $scope.returnArr,
-               }).success(function(data) {
+               }).success(function (data) {
                   if (data.status) {
                      $scope.isSubmit = false;
                   } else {
@@ -11403,7 +11443,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-返修退换货-返修/返修明细
-   .controller('returnMoney-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+   .controller('returnMoney-control', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
       $rootScope.isShow = false;
       $rootScope.change = true;
       $scope.repairRefundList = {
@@ -11414,12 +11454,12 @@ angular.module('myApp.controllers', [])
          type: 3
       };
 
-      $scope.repairRefundFn = function() {
+      $scope.repairRefundFn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/User/repair_list',
             data: $scope.repairRefundList,
-         }).success(function(data) {
+         }).success(function (data) {
             $scope.getGoods(data);
             $scope.totalSize = data.pages;
             $scope.repairRefundData = data;
@@ -11438,18 +11478,18 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             $scope.repairRefundList.page = index + 1;
             $http({
                method: "POST",
                url: '' + $rootScope.ip + '/User/repair_list',
                data: $scope.repairRefundList,
-            }).success(function(data) {
+            }).success(function (data) {
                $scope.repairRefundData = data;
             })
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
@@ -11457,7 +11497,7 @@ angular.module('myApp.controllers', [])
       //查看
       $scope.islook = true;
       $scope.isSubmit = true;
-      $scope.look = function(id) {
+      $scope.look = function (id) {
          // $http({
          //     method:"POST",
          //     url:''+$rootScope.ip+'/User/repair_info',
@@ -11511,16 +11551,16 @@ angular.module('myApp.controllers', [])
       };
    }])
    //收藏的店铺
-   .controller('collectShop-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
+   .controller('collectShop-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
-      $scope.getData = function() {
+      $scope.getData = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
-         $data.collectionShop().success(function(data) {
+         $data.collectionShop().success(function (data) {
             if (data.status == 0) {
                layer.msg(data.info, {
                   icon: 1,
@@ -11534,10 +11574,10 @@ angular.module('myApp.controllers', [])
       }
       $scope.getData();
       //		取消收藏店铺
-      $scope.qxCollectShop = function(ids) {
+      $scope.qxCollectShop = function (ids) {
          $data.delCollectionShop({
             shop_ids: ids,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 0) {
                layer.msg(data.info, {
                   icon: 2,
@@ -11547,7 +11587,7 @@ angular.module('myApp.controllers', [])
                layer.msg(data.info, {
                   icon: 1,
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.getData();
                })
             }
@@ -11555,7 +11595,7 @@ angular.module('myApp.controllers', [])
       }
 
       /* 批量取消收藏 */
-      $scope.delSelectedCollectionShop = function() {
+      $scope.delSelectedCollectionShop = function () {
          $scope.ids = [];
          /* $scope.checkbox = function(item){
              var index = $scope.ids.indexOf(item.rec_id)
@@ -11573,7 +11613,7 @@ angular.module('myApp.controllers', [])
          $scope.delCollectionGoods($scope.ids)
       }
       /* 全选按钮 */
-      $scope.checkAll = function(checked) {
+      $scope.checkAll = function (checked) {
          if (checked) {
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                item[i].selected = true
@@ -11585,14 +11625,14 @@ angular.module('myApp.controllers', [])
          }
       }
       /* 批量加入购物车 */
-      $scope.addAllToCart = function() {
+      $scope.addAllToCart = function () {
          layer.msg('批量加入购物车暂未开放', {
             time: 1000
          })
       }
       /* 遍历完成之后dom操作 */
-      $scope.renderJs = function() {
-         setTimeout(function() {
+      $scope.renderJs = function () {
+         setTimeout(function () {
 
             /* 内层图片滚动切换 */
             $(".slideGroup .slideBox").slide({
@@ -11613,14 +11653,14 @@ angular.module('myApp.controllers', [])
             });
          }, 20);
       }
-      $scope.openService = function() {
+      $scope.openService = function () {
          layer.msg('该功能暂未开放', {
             time: 1000
          })
       }
    }])
    //收藏的商品
-   .controller('collectGoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
+   .controller('collectGoods-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -11631,11 +11671,11 @@ angular.module('myApp.controllers', [])
          size: 12
       };
 
-      $scope.getData = function() {
+      $scope.getData = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
-         $data.collectionList($scope.collectList).success(function(data) {
+         $data.collectionList($scope.collectList).success(function (data) {
             if (data.status == 0) {
                layer.msg(data.info, {
                   icon: 1,
@@ -11661,13 +11701,13 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
             $scope.collectList.page = index + 1;
-            $scope.getDatas = function() {
-               $data.collectionList($scope.collectList).success(function(data) {
+            $scope.getDatas = function () {
+               $data.collectionList($scope.collectList).success(function (data) {
                   if (data.status == 0) {
                      layer.msg(data.info, {
                         icon: 1,
@@ -11683,15 +11723,15 @@ angular.module('myApp.controllers', [])
             $scope.getDatas();
          }
       };
-      $scope.getGoods = function(data) {
+      $scope.getGoods = function (data) {
          $('#Pagination').pagination(data.pages, $scope.options)
       };
 
       //取消收藏商品
-      $scope.delCollectionGoods = function(ids) {
+      $scope.delCollectionGoods = function (ids) {
          $data.delCollectionGoods({
             rec_ids: ids,
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 0) {
                layer.msg(data.info, {
                   icon: 2,
@@ -11701,14 +11741,14 @@ angular.module('myApp.controllers', [])
                layer.msg(data.info, {
                   icon: 1,
                   time: 1000
-               }, function() {
+               }, function () {
                   $scope.getData();
                })
             }
          })
       }
       /* 批量取消收藏 */
-      $scope.delSelectedCollectionGoods = function() {
+      $scope.delSelectedCollectionGoods = function () {
          $scope.ids = [];
          /* $scope.checkbox = function(item){
              var index = $scope.ids.indexOf(item.rec_id)
@@ -11726,7 +11766,7 @@ angular.module('myApp.controllers', [])
          $scope.delCollectionGoods($scope.ids)
       }
       /* 全选按钮 */
-      $scope.checkAll = function(checked) {
+      $scope.checkAll = function (checked) {
          if (checked) {
             for (var i = 0, item = $scope.collectGoods.data; i < item.length; i++) {
                item[i].selected = true
@@ -11737,27 +11777,27 @@ angular.module('myApp.controllers', [])
             }
          }
       }
-      $scope.addAllToCart = function() {
+      $scope.addAllToCart = function () {
          layer.msg('批量加入购物车暂未开放', {
             time: 1000
          })
       }
       /* 遍历完成之后dom操作 */
-      $scope.renderJs = function() {
+      $scope.renderJs = function () {
          var Coupon = $(".Coupon .coupon-item");
-         $(Coupon).hover(function() {
+         $(Coupon).hover(function () {
             $(this).parent().find(Coupon).removeClass("onsi");
             $(this).addClass("onsi");
          })
       }
       /* 领取优惠券 */
-      $scope.sendByUser = function(id) {
+      $scope.sendByUser = function (id) {
          $data.sendByUser({
             type_id: id
-         }).success(function(res) {
+         }).success(function (res) {
             layer.msg(res.info, {
                time: 1000
-            }, function() {
+            }, function () {
                if (res.status) {
                   $scope.getData();
                }
@@ -11767,7 +11807,7 @@ angular.module('myApp.controllers', [])
 
    }])
    //个人中心-来镜加工
-   .controller('personProcess-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
+   .controller('personProcess-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -11780,15 +11820,15 @@ angular.module('myApp.controllers', [])
       };
 
       /* 12.1新增筛选 */
-      $scope.changeStartTime = function(time) {
+      $scope.changeStartTime = function (time) {
          $scope.machiningList.min = time;
          $scope.getData();
       }
-      $scope.changeEndTime = function(time) {
+      $scope.changeEndTime = function (time) {
          $scope.machiningList.max = time;
          $scope.getData();
       }
-      $scope.repairFn = function(sn) {
+      $scope.repairFn = function (sn) {
          $scope.machiningList.sn = sn;
          $scope.getData();
       }
@@ -11804,13 +11844,13 @@ angular.module('myApp.controllers', [])
          prev_show_always: false,
          next_show_always: false,
          current_page: 0,
-         callback: function(index) {
+         callback: function (index) {
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });
             $scope.machiningList.page = index + 1;
-            $scope.getDatas = function() {
-               $data.machiningList($scope.machiningList).success(function(res) {
+            $scope.getDatas = function () {
+               $data.machiningList($scope.machiningList).success(function (res) {
                   $scope.data = res;
                   if (res.status) {
                      layer.close(cool);
@@ -11823,15 +11863,15 @@ angular.module('myApp.controllers', [])
             $scope.getDatas();
          }
       };
-      $scope.getGoods = function(res) {
+      $scope.getGoods = function (res) {
          $('#Pagination').pagination(res.pages, $scope.options)
       };
 
-      $scope.getData = function() {
+      $scope.getData = function () {
          var cool = layer.load(0, {
             shade: [0.3, '#fff']
          });
-         $data.machiningList($scope.machiningList).success(function(res) {
+         $data.machiningList($scope.machiningList).success(function (res) {
             $scope.data = res;
             if (res.status) {
                layer.close(cool);
@@ -11845,22 +11885,22 @@ angular.module('myApp.controllers', [])
       //		未支付
       $data.getAllOrder({
          type: 'unpay'
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.orderpay = data.list.length;
       })
       $data.getAllOrder({
          type: 'collect'
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.orderDsh = data.list.length;
       })
 
       //去店铺
-      $scope.goShop = function() {
+      $scope.goShop = function () {
          $state.go('shopHome');
       }
 
       //		查看更多
-      $scope.lookMore = function(index, event) {
+      $scope.lookMore = function (index, event) {
          $(event.currentTarget).prev().css({
             'height': 'auto',
             'overflow': 'auto'
@@ -11868,15 +11908,15 @@ angular.module('myApp.controllers', [])
       }
 
       //		得到订单详情信息
-      $scope.goOrderDetail = function(id) {
+      $scope.goOrderDetail = function (id) {
          $state.go('person-process-content', {
             mid: id
          })
       }
-      $scope.goOrderDetail1 = function(id) {
+      $scope.goOrderDetail1 = function (id) {
          $data.getOrderInfo({
             order_id: id
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 1) {
                $state.go('order-cancel', {
                   orderId: id
@@ -11891,7 +11931,7 @@ angular.module('myApp.controllers', [])
       }
 
       //去商品详情页
-      $scope.goGoodsDetail = function(goods_id, cutting_id) {
+      $scope.goGoodsDetail = function (goods_id, cutting_id) {
          if (cutting_id > 0) {
             $state.go('shop-detail-cut', {
                goods_id: goods_id,
@@ -11906,17 +11946,17 @@ angular.module('myApp.controllers', [])
 
 
       //付款
-      $scope.buyAgain = function(goods_id) {
+      $scope.buyAgain = function (goods_id) {
          $state.go('paymentNew', {
             log_id: goods_id,
             type: 'mach'
          })
       }
       //输入框查询
-      $scope.serchGoods = function() {
+      $scope.serchGoods = function () {
          $data.getAllOrder({
             order_number: $scope.order_number
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status == 0) {
                layer.msg('请确定输入是否正确', {
                   icon: 2,
@@ -11932,14 +11972,14 @@ angular.module('myApp.controllers', [])
       }
 
       //确认收货
-      $scope.QrGet = function(mid) {
+      $scope.QrGet = function (mid) {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Machining/receipt_make',
             data: {
                mid: mid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                $scope.getData();
                layer.msg(data.info, {
@@ -11952,20 +11992,20 @@ angular.module('myApp.controllers', [])
             }
          })
       }
-      $scope.print = function(mid) {
+      $scope.print = function (mid) {
          window.open($state.href('person-process-print', {
             mid: mid
          }));
       }
    }])
    //个人中心-来镜加工详情页面
-   .controller('personProcessContent-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', function($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams) {
+   .controller('personProcessContent-control', ['$scope', '$rootScope', '$state', '$http', 'ipCookie', '$window', '$data', '$stateParams', function ($scope, $rootScope, $state, $http, ipCookie, $window, $data, $stateParams) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
       $rootScope.change = true;
 
-      $scope.personProcessContentFn = function() {
+      $scope.personProcessContentFn = function () {
          // var cool = layer.load(0, {shade: [0.3,'#fff'] });
          $http({
             method: "POST",
@@ -11973,7 +12013,7 @@ angular.module('myApp.controllers', [])
             data: {
                mid: $stateParams.mid
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                // layer.close(cool);
                $scope.machInfo = data;
@@ -12001,13 +12041,13 @@ angular.module('myApp.controllers', [])
                $data.getWlMsg({
                   shipping_name: data.mach_info.jh_shipping,
                   invoice_no: data.mach_info.jh_shipping_sn
-               }).success(function(data) {
+               }).success(function (data) {
                   $scope.wlData1 = data.data;
                })
                $data.getWlMsg({
                   shipping_name: data.mach_info.lj_shipping,
                   invoice_no: data.mach_info.lj_shipping_sn
-               }).success(function(data) {
+               }).success(function (data) {
                   $scope.wlData2 = data.data;
                })
             } else {
@@ -12017,19 +12057,19 @@ angular.module('myApp.controllers', [])
       };
       $scope.personProcessContentFn();
 
-      $scope.liChange = function() {
+      $scope.liChange = function () {
 
          $('.nwe_process_bott_u li').eq(0).addClass('on');
          $('.new_process_tbbox>div').eq(0).addClass('show');
 
-         $('.nwe_process_bott_u li').click(function() {
+         $('.nwe_process_bott_u li').click(function () {
             $(this).addClass('on').siblings().removeClass('on');
             var ind = $(this).index();
             $('.new_process_tbbox>div').eq(ind).addClass('show').siblings().removeClass('show');
          })
       };
 
-      $scope.enterWuLiu = function() {
+      $scope.enterWuLiu = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Machining/update_make',
@@ -12037,12 +12077,12 @@ angular.module('myApp.controllers', [])
                mid: $stateParams.mid,
                lj_shipping: $scope.wl
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $scope.personProcessContentFn();
                });
             } else {
@@ -12054,7 +12094,7 @@ angular.module('myApp.controllers', [])
          })
       };
 
-      $scope.enterWuLiuSn = function() {
+      $scope.enterWuLiuSn = function () {
          $http({
             method: "POST",
             url: '' + $rootScope.ip + '/Machining/update_make',
@@ -12062,12 +12102,12 @@ angular.module('myApp.controllers', [])
                mid: $stateParams.mid,
                lj_shipping_sn: $scope.wlsn
             },
-         }).success(function(data) {
+         }).success(function (data) {
             if (data.status) {
                layer.msg(data.info, {
                   time: 1000,
                   icon: 1
-               }, function() {
+               }, function () {
                   $scope.personProcessContentFn();
                });
             } else {
@@ -12080,7 +12120,7 @@ angular.module('myApp.controllers', [])
       };
 
    }])
-   .controller('person-process-print-control', ['$scope', '$stateParams', '$data', '$sce', '$rootScope', function($scope, $stateParams, $data, $sce, $rootScope) {
+   .controller('person-process-print-control', ['$scope', '$stateParams', '$data', '$sce', '$rootScope', function ($scope, $stateParams, $data, $sce, $rootScope) {
       //控制首页会员中心显隐
       $rootScope.isShow = false;
       //控制header和footer显隐
@@ -12088,7 +12128,7 @@ angular.module('myApp.controllers', [])
       $scope.mid = $stateParams.mid;
       $data.machiningInfoPrint({
          mid: $scope.mid
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.html = ($sce.trustAsHtml(data.info));
          }

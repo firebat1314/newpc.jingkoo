@@ -46,77 +46,77 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                }
             }
          }
-            $scope.pickTable = true;
-            $scope.getAttrList = function (attrId, attrNumber) {
-               $scope.attrNumber = attrNumber || 1;
-               $scope.attrId = attrId;
-               $scope.isList = false;
-               $scope.goodsData = null;
-               $http({
-                     method: "POST",
-                     url: '' + $rootScope.ip + '/Distribution/get_attr_list',
-                     data: {
-                        goods_id: $scope.goods_id,
-                        attr: attrId,
-                        id: $scope.dId
-                     },
-                  })
-                  .success(function (data) {
-                     $scope.goodsData = data;
-                     //使得输入框中初始值为0
-                     for (var i = 0; i < $scope.goodsData.data.length; i++) {
-                        $scope.goodsData.data[i].num = 0;
+         $scope.pickTable = true;
+         $scope.getAttrList = function (attrId, attrNumber) {
+            $scope.attrNumber = attrNumber || 1;
+            $scope.attrId = attrId;
+            $scope.isList = false;
+            $scope.goodsData = null;
+            $http({
+                  method: "POST",
+                  url: '' + $rootScope.ip + '/Distribution/get_attr_list',
+                  data: {
+                     goods_id: $scope.goods_id,
+                     attr: attrId,
+                     id: $scope.dId
+                  },
+               })
+               .success(function (data) {
+                  $scope.goodsData = data;
+                  //使得输入框中初始值为0
+                  for (var i = 0; i < $scope.goodsData.data.length; i++) {
+                     $scope.goodsData.data[i].num = 0;
+                  }
+                  $scope.numberChange = function () {
+                     //每次更新商品数量获取的数据
+                     $scope.goodsCarParams.goods.member = [];
+                     $scope.goodsCarParams.goods.spec = [];
+                     $scope.goodsCarParams.goods.attr = [];
+                     for (var t = 0; t < $scope.goodsData.data.length; t++) {
+                        $scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
+                        var arr1 = [];
+                        var attrs = $scope.goodsData.data[t].goods_attr_id;
+                        var sAttr = $scope.goodsData.data[t].str_goods_attr;
+                        //arr1.push(attrs);
+                        $scope.goodsCarParams.goods.spec.push(attrs);
+                        $scope.goodsCarParams.goods.attr.push(sAttr);
                      }
-                     $scope.numberChange = function () {
-                        //每次更新商品数量获取的数据
-                        $scope.goodsCarParams.goods.member = [];
-                        $scope.goodsCarParams.goods.spec = [];
-                        $scope.goodsCarParams.goods.attr = [];
-                        for (var t = 0; t < $scope.goodsData.data.length; t++) {
-                           $scope.goodsCarParams.goods.member.push($scope.goodsData.data[t].num);
-                           var arr1 = [];
-                           var attrs = $scope.goodsData.data[t].goods_attr_id;
-                           var sAttr = $scope.goodsData.data[t].str_goods_attr;
-                           //arr1.push(attrs);
-                           $scope.goodsCarParams.goods.spec.push(attrs);
-                           $scope.goodsCarParams.goods.attr.push(sAttr);
-                        }
-                        //每次更新获取商品数量改变价格 接口
-                        //var cool = layer.load(0, { shade: [0.3, '#fff'] });
-                        $http({
-                              method: "POST",
-                              url: '' + $rootScope.ip + '/Goods/change_goods_number',
-                              data: $scope.goodsCarParams,
-                           })
-                           .success(function (data) {
-                              //layer.close(cool);
-                              if (data.status) {
-                                 $scope.listTotalNumber = data.number;
-                                 $scope.listTotalPrice = data.goods_total;
-                              } else {
-                                 layer.msg(data.info, {
-                                    time: 1000
-                                 });
-                              }
-                           })
-                     };
-                     $scope.isReduce = true;
-                     //增加
-                     $scope.add = function (trItem) {
-                        trItem.num += Number($scope.attrNumber);
-                        if (trItem.num > 0) {
-                           $scope.isList = true;
-                        }
-                        $scope.numberChange();
-                     };
-                     //减少
-                     $scope.reduce = function (item) {
-                        item.num -= Number($scope.attrNumber);
-                        $scope.numberChange();
-                     };
-                  })
-            };
-            $scope.getAttrList($scope.attrId, $scope.attrNumber);
+                     //每次更新获取商品数量改变价格 接口
+                     //var cool = layer.load(0, { shade: [0.3, '#fff'] });
+                     $http({
+                           method: "POST",
+                           url: '' + $rootScope.ip + '/Goods/change_goods_number',
+                           data: $scope.goodsCarParams,
+                        })
+                        .success(function (data) {
+                           //layer.close(cool);
+                           if (data.status) {
+                              $scope.listTotalNumber = data.number;
+                              $scope.listTotalPrice = data.goods_total;
+                           } else {
+                              layer.msg(data.info, {
+                                 time: 1000
+                              });
+                           }
+                        })
+                  };
+                  $scope.isReduce = true;
+                  //增加
+                  $scope.add = function (trItem) {
+                     trItem.num += Number($scope.attrNumber);
+                     if (trItem.num > 0) {
+                        $scope.isList = true;
+                     }
+                     $scope.numberChange();
+                  };
+                  //减少
+                  $scope.reduce = function (item) {
+                     item.num -= Number($scope.attrNumber);
+                     $scope.numberChange();
+                  };
+               })
+         };
+         $scope.getAttrList($scope.attrId, $scope.attrNumber);
       })
    }
 
@@ -168,8 +168,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                   .success(function (data) {
                      $scope.payPoints = data.user_info.pay_points;
                   })
-            } else {
-            }
+            } else {}
             //图文详情
             $scope.goodsDesc = $sce.trustAsHtml(data.data.goods_desc);
             //控制配送区域显隐
@@ -250,8 +249,8 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
             //是否有促销价格
             $scope.is_promotion = data.data.is_promotion;
             //商品详情相册信息
-            $scope.imgUrl = data.gallery[0].img_url;
-            $scope.thumbUrl = data.gallery[0].thumb_url;
+            // $scope.imgUrl = data.gallery[0].img_url;
+            // $scope.thumbUrl = data.gallery[0].thumb_url;
             //商品详情供货商信息
             $scope.name = data.supplier_info.name;
             $scope.region = data.supplier_info.city_name;
@@ -691,11 +690,11 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                }
                // closeBtn: 0
             });
-         }else if (data.status == -1) {
+         } else if (data.status == -1) {
             layer.confirm(data.info, {
                btn: ['确定'], //按钮
-               closeBtn:false
-            }, function(index) {
+               closeBtn: false
+            }, function (index) {
                layer.close(index);
                $state.go('distribution-qualification');
             });
@@ -775,4 +774,20 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
          zhouwei: $scope.shopDetailData.data.zhouwei
       }));
    };
+
+
+   function download(name, href) {
+      var a = document.createElement("a"), //创建a标签
+         e = document.createEvent("MouseEvents"); //创建鼠标事件对象
+      e.initEvent("click", false, false); //初始化事件对象
+      a.href = href; //设置下载地址
+      a.target = '_blank';
+      a.download = '产品资质'; //设置下载文件名
+      a.dispatchEvent(e); //给指定的元素，执行事件click事件
+   }
+   $scope.downloadIamge = function (images) {
+      for (var index = 0; index < images.length; index++) {
+         download('第' + index + '个文件', images[index]);
+      }
+   }
 }])

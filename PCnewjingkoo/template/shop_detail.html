@@ -541,13 +541,23 @@
                      </table>
                   </div>
                   <div class="store-dizhi">
-                     <p>公司名称：
-                        <span>{{company}}</span>
-                     </p>
-                     <p>所在地：
-                        <span>{{region}}</span>
-                     </p>
-                  </div>
+                        <p>
+                           <span>公司名称：</span>
+                           <span>{{company}}</span>
+                        </p>
+                        <p>
+                           <span>所在地　：</span>
+                           <span>{{region}}</span>
+                        </p>
+                        <p ng-if="data.supplier_info.shipping_rule">
+                           <span>营业时间：</span>
+                           <span>{{data.supplier_info.shipping_rule}}</span>
+                        </p>
+                        <p ng-if="data.supplier_info.shipping_duty_notice">
+                           <span>值班时间：</span>
+                           <span>{{data.supplier_info.shipping_duty_notice}}</span>
+                        </p>
+                     </div>
                   <div class="store-tell">
                      <p>联系方式：{{'400-080-5118'}}</p>
                      <!-- tell -->

@@ -47,7 +47,7 @@
             <div class="fl sp-nrleft">
                <div id="preview" class="spec-preview">
                   <span class="jqzoom">
-                     <img jqimg={{imgUrl}} ng-src={{imgUrl}} alt="">
+                     <img jqimg={{data.gallery[0].img_url}} ng-src={{imgUrl}} alt="">
                   </span>
                </div>
                <!--缩图开始-->
@@ -56,8 +56,8 @@
                   <a ng-if="shopDetailData.gallery.length>5" class="next"></a>
                   <div class="items">
                      <ul ng-init="shopDetailData.indexss=0">
-                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom();shopDetailData.indexss=0" ng-mouseenter="shopDetailData.indexss = $index"
-                           ng-style="{'border-color':shopDetailData.indexss == $index?'#e60000':'#e0e0e0'}">{{indexss}}
+                        <li ng-repeat="imgItem in shopDetailData.gallery" repeat-done="jqzoom();shopDetailData.indexss=0"
+                           ng-mouseenter="shopDetailData.indexss = $index" ng-style="{'border-color':shopDetailData.indexss == $index?'#e60000':'#e0e0e0'}">{{indexss}}
                            <img bimg="{{imgItem.img_url}}" ng-src="{{imgItem.img_url}}" onmousemove="preview(this);">
                         </li>
                      </ul>
@@ -123,8 +123,9 @@
                                           <span ng-click="cheon=!cheon" class="sp1_d1p1_r" ng-class="{'cheon':cheon}"></span>
                                        </p>
                                        <div class="dzbox_d1p1_p1">
-                                          <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)" ng-class="{'red':fee.selected==1}"
-                                             ng-init="cheon=true" ng-if="cheon||fee.selected==1" ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
+                                          <p style="cursor: pointer;" class="dzbox_d1p1_p11" ng-click="chengeAddress(fee.address_id,fee.province)"
+                                             ng-class="{'red':fee.selected==1}" ng-init="cheon=true" ng-if="cheon||fee.selected==1"
+                                             ng-repeat="fee in shopDetailData.goods_fee.consignee_list">
                                              <span class="d1p1_p1_sp1" ng-attr-title="{{fee.consignee}}">{{fee.consignee}}</span>
                                              <span class="d1p1_p1_sp2" ng-attr-title="{{fee.region}}{{fee.address}}">{{fee.region}}{{fee.address}}</span>
                                           </p>
@@ -186,7 +187,8 @@
                                     ng-mousemove="trItem.event = $event">
                                     <img ng-src={{trItem.img_path}} alt="">
                                  </div>
-                                 <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}" style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
+                                 <div ng-if="show11" ng-style="{top:trItem.event.clientY+5+'px',left:trItem.event.clientX+5+'px'}"
+                                    style="position: fixed; z-index: 100;width: 250px;height: 250px;border:1px solid #e5e5e5;">
                                     <img src="{{trItem.original_img}}" alt="" style="width: 100%;height: 100%;">
                                  </div>
                               </th>
@@ -223,7 +225,8 @@
                               <div class="diy-right">
                                  <span class="wenb">
                                     <a href="javascript:;" class="fl borr c" ng-class="{'no':item.member<=0}" ng-click="item.member>0?(item.member=item.member-1):(item.member=0);priceChange(item)">－</a>
-                                    <input type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)" ng-model="item.member" ng-focus="NumSelect($event);">
+                                    <input type="number" class="fl c diyr-txt pick-text" ng-change="priceChange(item)"
+                                       ng-model="item.member" ng-focus="NumSelect($event);">
                                     <a href="javascript:;" class="fl borl c" ng-class="{'fl borr c no':isAdd,'fl borr c':!isAdd,'fl borr c no':trItem.product_number==0}"
                                        ng-click="item.member=item.member+1;priceChange(item)">+</a>
                                  </span>
@@ -231,8 +234,8 @@
                               <!-- <input  ng-model="item.member" ng-init="item.member='1'" class="pick-text" type="text"> -->
                            </td>
                            <td>
-                              <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing" ng-click="openDs($event,$index)" placeholder="请选择"
-                                 type="text" value="{{pickTaList}}">
+                              <input id="qiujing" class="pick-text pick-text-qiujing" ng-model="item.qiujing" ng-click="openDs($event,$index)"
+                                 placeholder="请选择" type="text" value="{{pickTaList}}">
                               <div class="dushu-box">
                                  <div class="dushu-tit">
                                     <p>选择度数</p>
@@ -254,7 +257,8 @@
                               </div>
                            </td>
                            <td>
-                              <input id="pick-text" class="pick-text" ng-model="item.zhujing" ng-click="openDsZj($event)" placeholder="请选择" type="text">
+                              <input id="pick-text" class="pick-text" ng-model="item.zhujing" ng-click="openDsZj($event)"
+                                 placeholder="请选择" type="text">
                               <div class="select-error">请先选择球镜</div>
                               <div class="dushuQiuJing-box">
                                  <div class="dushuQiuJing-tit">
@@ -277,7 +281,8 @@
                               </div>
                            </td>
                            <td ng-if="data.data.zhouwei">
-                              <input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei" placeholder="请输入" type="text">
+                              <input id="zhouwei" class="pick-text" ng-focus="NumSelect($event)" ng-model="item.zhouwei"
+                                 placeholder="请输入" type="text">
                            </td>
                            <td ng-repeat="zhouwei in spectaclesData.specification">
                               <select class="pick-selt" ng-model="item[zhouwei.name]" ng-change="priceChange(item)">
@@ -291,7 +296,8 @@
                            <td ng-if="data.data.is_promotion==1&&showPrice" style="color:#ff3333;">¥{{item.youhui||'0.00'}}</td>
                            <td ng-if="showPrice" style="color:#ff3333;">¥{{item.subprice||'0.00'}}</td>
                            <td>
-                              <img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)" alt="">
+                              <img src="./img/delete_tr.png" style="cursor: pointer;width: 23px;" ng-click="delTr($index)"
+                                 alt="">
                            </td>
                         </tr>
                      </tbody>
@@ -321,7 +327,7 @@
                <div class="buy-button" ng-if="data.data.isdingzhi!=1">
                   <button ng-click="joinCar()">立即铺货</button>
                </div>
-               <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
+               <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv||distributionInfo.info.zz_img">
                   <div>服务支持：</div>
                   <div ng-if="data.data.additional.is_true">
                      <img src="img/zzpz.png" title="正品保证">正品保证</div>
@@ -329,6 +335,8 @@
                      <img src="img/thfw.png" title="退换服务">退换服务</div>
                   <div ng-if="data.data.additional.is_inv">
                      <img src="img/sdps.png" title="闪电配送">闪电配送</div>
+                  <div style="cursor: pointer;" ng-if="distributionInfo.info.zz_img" ng-click="downloadIamge(distributionInfo.info.zz_img)">
+                     <img style="width: 22px;" src="img/chanpingzizhi.png" title="产品资质">产品资质</div>
                </div>
             </div>
             <div class="fl sp-nrright" ng-if="data&&data.data.exchange_info">
@@ -378,7 +386,8 @@
                   </div>
                </div>
                <div class="buy-button">
-                  <button ng-click="buyNow_jf()" ng-model="isExchange" ng-disabled="!isExchange" ng-class="{'disable':!isExchange}" class="buy">立即兑换</button>
+                  <button ng-click="buyNow_jf()" ng-model="isExchange" ng-disabled="!isExchange" ng-class="{'disable':!isExchange}"
+                     class="buy">立即兑换</button>
                </div>
                <div class="zhic" ng-if="data.data.additional.is_true||data.data.additional.is_hdfk||data.data.additional.is_inv">
                   <div>服务支持：</div>
@@ -438,11 +447,21 @@
                      </table>
                   </div>
                   <div class="store-dizhi">
-                     <p>公司名称：
+                     <p>
+                        <span>公司名称：</span>
                         <span>{{company}}</span>
                      </p>
-                     <p>所在地：
+                     <p>
+                        <span>所在地　：</span>
                         <span>{{region}}</span>
+                     </p>
+                     <p ng-if="data.supplier_info.shipping_rule">
+                        <span>营业时间：</span>
+                        <span>{{data.supplier_info.shipping_rule}}</span>
+                     </p>
+                     <p ng-if="data.supplier_info.shipping_duty_notice">
+                        <span>值班时间：</span>
+                        <span>{{data.supplier_info.shipping_duty_notice}}</span>
                      </p>
                   </div>
                   <div class="store-tell">

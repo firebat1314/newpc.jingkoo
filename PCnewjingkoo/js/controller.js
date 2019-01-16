@@ -5793,7 +5793,6 @@ angular.module('myApp.controllers', [])
       /* 预览按钮 */
       $scope.orderPreview = function () {
          if ($scope.goods) {
-            $scope.printPreview();
             var cool = layer.load(0, {
                shade: [0.3, '#fff']
             });

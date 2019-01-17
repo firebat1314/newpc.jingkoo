@@ -50,16 +50,17 @@
       </div>
    </div>
 
-   <div ng-if="selectIndex!=-1" class="center-yx">
-      <div class="xt-list">
+   <div ng-if="selectIndex!=-1" class="center-all">
+      <div class="pinpai all">
          <ul class="cle">
-            <li ads-click="list" ng-repeat="list in fashionListData.data[0].ads">
-               <a href="">
-                  <div class="wrp">
-                     <div class="img"><img ng-src={{list.ad_img}}></div>
-                     <div class="txt">{{list.ad_name}}</div>
+            <li ng-repeat="list in fashionListData.data[0].ads" ads-click="list">
+               <div class="wrp">
+                  <a href=""><img ng-src={{list.ad_img}}></a>
+                  <div class="txt">
+                     <p>{{list.ad_name}}</p>
+                     <a href="" class="btnv">点击进入</a>
                   </div>
-               </a>
+               </div>
             </li>
          </ul>
       </div>

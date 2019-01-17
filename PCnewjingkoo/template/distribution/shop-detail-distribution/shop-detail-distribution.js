@@ -249,7 +249,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
             //是否有促销价格
             $scope.is_promotion = data.data.is_promotion;
             //商品详情相册信息
-            // $scope.imgUrl = data.gallery[0].img_url;
+            $scope.imgUrl = data.gallery?data.gallery[0].img_url:null;
             // $scope.thumbUrl = data.gallery[0].thumb_url;
             //商品详情供货商信息
             $scope.name = data.supplier_info.name;

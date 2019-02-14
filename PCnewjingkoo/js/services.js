@@ -845,6 +845,14 @@ angular.module('myApp.HttServices', [])
                url: ip + '/Index/CustomerServiceGroupSource ',
                data: data
             })
+         },
+         /* 订单取消申请 */
+         cancelApply: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/User/cancelApply ',
+               data: data
+            })
          }
          
       }

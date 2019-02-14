@@ -1643,7 +1643,7 @@ angular.module('myApp.controllers', [])
             url: '' + $rootScope.ip + '/Index/coupon',
             data: {
                page: 1,
-               size: 6,
+               size: 100,
                cat: cat_id
             },
          }).success(function (data) {

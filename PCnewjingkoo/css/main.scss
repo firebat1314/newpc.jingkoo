@@ -8190,7 +8190,72 @@ $browser-default-font-size: 37.5px !default;
    }
    @include navc-wrap;
 
-   
+
+   >.nav{
+      overflow: hidden;
+      position: relative;
+      .zaki {
+         text-align: center;
+         color: #666666;
+         line-height: 50px;
+         font-size: 13px !important;
+         border-bottom: 1px solid #f0f0f0;
+         cursor: pointer;
+         float: right;
+         width: 11%;
+
+         em {
+            display: inline-block;
+            width: 12px;
+            height: 10px;
+            margin-left: 5px;
+            background: url(../img/xjt-cx.png) no-repeat center/100%;
+         }
+         &.on{
+            background: #3f69a5;
+            color: #ffffff;   
+            em{
+               background-image: url(../img/xjt-cs.png);
+            }         
+         }
+      }
+      .xd-hd{
+         li {
+            float: left;
+            overflow: hidden;
+            width: 12.5%;
+
+            &.on {
+               .wrp {
+                  a {
+                     color: #3f69a5;
+                  }
+               }
+            }
+
+            .wrp {
+               border-bottom: 1px solid #f0f0f0;
+
+               &:hover {
+                  color: #ffffff;
+
+                  a {
+                     color: #3f69a5;
+                  }
+               }
+
+               a {
+                  display: block;
+                  width: 100%;
+                  text-align: center;
+                  color: #666666;
+                  line-height: 50px;
+                  font-size: 13px;
+               }
+            }
+         }
+      }
+   }
    .purchase-box {
       margin-top: 10px;
    }
@@ -8207,10 +8272,11 @@ $browser-default-font-size: 37.5px !default;
                background: #fff;
                display: flex;
                padding: 16px;
-         
+               height: 100%;
+               box-sizing: border-box;
                .img {
-                  width: 200px;
-                  height: 200px;
+                  width: 180px;
+                  height: 180px;
                   margin-right: 16px;
                   background: #fafafa;
                }
@@ -8225,34 +8291,20 @@ $browser-default-font-size: 37.5px !default;
                   .tt-2 {
                      font-size: 16px;
                      color: #4d4d4d;
-                     height: 40px;
                      overflow: hidden;
                      text-overflow: ellipsis;
                      display: -webkit-box;
                      -webkit-box-orient: vertical;
                      -webkit-line-clamp: 2;
                   }
-                  .tt-4{
-                     flex: 1;
-                     >div{
-                        width: auto;
-                        display: inline-block;
-                        padding: 6px 24px;
-                        border-radius: 40px;
-                        color: #fff;
-                        margin: 10px 0;    
-                        background: rgb(207,217,234) url(../img/time.png) no-repeat 18px center/16px;
-                        padding-left: 40px;
-                        font-size: 15px;
-                     }
-                  }
                   .tt-1 {
                      display: flex;
-                     margin-bottom: 16px;
+                     margin-bottom: 14px;
                      align-items: flex-end;
                      font-size: 14px;
+                     flex: 1;
                      .cx {
-                        color: #3f69a5;
+                        color: #155FC5;
          
                         em {
                            font-size: 32px;
@@ -8271,9 +8323,28 @@ $browser-default-font-size: 37.5px !default;
                      }
                   }
          
+                  .tt-4{
+                     text-align: right;
+                     >div{
+                        width: auto;
+                        display: inline-block;
+                        color: #155FC5;
+                        margin: 10px 0;    
+                        // background: url(../img/time.png) no-repeat 18px center/16px;
+                        font-size: 13px;
+                     }
+                  }
                   .tt-3 {
+                     display: flex;
+                     justify-content: space-between;
+                     align-items: center;
+                     .has-been-sold{
+                        font-size: 14px;
+                        color: #333333;
+                        font-weight: 600;
+                     }
                      button {
-                        background: #3f69a5;
+                        background: #155FC5;
                         border-radius: 5px;
                         padding: 10px 30px;
                         border: none;
@@ -22717,8 +22788,9 @@ textarea {
 
             &:hover {
                .img {
-                  transition: transform .3s;
-                  transform: translateY(-10px)
+                  img{
+                     transform: translateY(-10px)
+                  }
                }
             }
 
@@ -22731,18 +22803,30 @@ textarea {
                width: 200px;
                height: 200px;
                margin: 36px auto;
+               img{
+               transition: transform .3s;
+
+               }
             }
 
             .info {
                background-color: #eff3f7;
-               padding: 16px 53px;
-               text-align: center;
-               margin: 0 20px 28px;
-
+               padding: 12px 24px;
+               margin: 0 18px 18px;
+               position: relative;
+               .remain{
+                  position: absolute;
+                  background: #4C4C4C;
+                  color: #ffffff;
+                  font-size: 14px;
+                  padding: 4px 22px;
+                  right: 0;
+                  top: -40px;
+               }
                .name {
                   color: #333333;
                   font-size: 16px;
-                  margin-bottom: 8px;
+                  margin-bottom: 12px;
                   text-align: left;
                   white-space: nowrap;
                   overflow: hidden;
@@ -22750,9 +22834,31 @@ textarea {
                }
 
                .price {
+                  .label{
+                     color: #155FC5;
+                     font-size: 12px;
+                     border: 1px solid #155FC5;
+                     padding: 4px 14px;
+                     margin-right: 7px;
+                     display: inline-block;
+                     border-radius: 5px;
+                     // background: #ffffff;
+                  }
                   font-size: 16px;
                   color: #e60000;
                   font-weight: 600;
+                  margin-bottom: 12px;
+               }
+               .buybtn{
+                  background: #155FC5;
+                  text-align: center;
+                  padding: 8px;
+                  border-radius: 5px;
+                  color: #ffffff;
+                  transition: opacity .3s;
+                  &:hover{
+                     opacity: .5;
+                  }
                }
             }
          }

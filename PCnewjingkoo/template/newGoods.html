@@ -31,8 +31,10 @@
                <img ng-src="{{item.original_img}}" alt="">
             </div>
             <div class="info">
+               <div class="remain">仅剩{{item.goods_number ||0}}件</div>
                <div class="name">{{item.name}}</div>
-               <div class="price" ng-if="showPrice">¥{{item.shop_price}}</div>
+               <div class="price" ng-if="showPrice"><div class="label">快抢价</div>&nbsp;&nbsp;¥{{item.shop_price}}</div>
+               <div class="buybtn">立即抢购</div>
             </div>
          </a>
       </div>
@@ -48,8 +50,10 @@
                <img ng-src="{{item.original_img}}" alt="">
             </div>
             <div class="info">
+               <div class="remain">仅剩{{item.goods_number ||0}}件</div>
                <div class="name">{{item.name}}</div>
-               <div class="price" ng-if="showPrice">¥{{item.shop_price}}</div>
+               <div class="price" ng-if="showPrice"><div class="label">快抢价</div>&nbsp;&nbsp;¥{{item.shop_price}}</div>
+               <div class="buybtn">立即抢购</div>
             </div>
          </a>
       </div>

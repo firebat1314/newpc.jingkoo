@@ -2,7 +2,8 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
    $rootScope.isShow = false;
    $rootScope.change = true;
 
-   $scope.dId = $stateParams.did;
+   $scope.dId = $stateParams.did.split('-')[0];
+   $scope.linkID = $stateParams.did.split('-')[1];
    $http({
       method: "POST",
       url: '' + $rootScope.ip + '/Distribution/info',
@@ -669,13 +670,14 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/checkout',
          data: {
-            id: $scope.dId
+            id: $scope.dId,
+            linkid:$scope.linkID
          },
       }).success(function (data) {
          layer.close(cool);
          if (data.status == 1) {
             $state.go('checkout-distribution', {
-               did: $scope.dId
+               did: $scope.dId+'-'+$scope.linkID
             });
          } else if (data.status == -2) {
             layer.confirm('需要医疗器械许可证，是否上传', {

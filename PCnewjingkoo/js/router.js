@@ -1113,5 +1113,22 @@ angular.module("myApp.router", ["ui.router", 'oc.lazyLoad'])
                }
             }
          })
-
+         .state("show-special", {
+            title: '专题页',
+            url: '/show-special',
+            views: {
+               '': {
+                  templateUrl: 'template/show-special/show-special.html?' + new Date().getTime(),
+                  controller: "ShowSpecialControl",
+                  resolve: {
+                     deps: ["$ocLazyLoad", function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                           "template/show-special/show-special.css",
+                           "template/show-special/show-special.js",
+                        ]);
+                     }]
+                  }
+               }
+            }
+         })
    })

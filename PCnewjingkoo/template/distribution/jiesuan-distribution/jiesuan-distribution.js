@@ -1,12 +1,13 @@
-myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
+myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http', '$state', 'ipCookie', '$stateParams', function ($scope, $rootScope, $http, $state, ipCookie, $stateParams) {
    $rootScope.isShow = false;
    $rootScope.change = true;
    // $scope.returnCar = function(){
    //   $state.go('shop-car');
    // };
-   $scope.dId = $stateParams.did;
+   $scope.dId = $stateParams.did.split('-')[0];
+   $scope.linkID = $stateParams.did.split('-')[1];
    /* —————————————— 保存用户备注信息 —————————————— */
-   $scope.getNotes = function() {
+   $scope.getNotes = function () {
 
       var commentArr = ($scope.jiesuanData.suppliers_notes)
       var sArr = []
@@ -20,7 +21,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          label: sArr
       }
    }
-   $scope.saveNotes = function() {
+   $scope.saveNotes = function () {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/write_notes',
@@ -31,7 +32,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    }
    //结算页所有信息接口数据
-   $scope.jiesuanFn = function() {
+   $scope.jiesuanFn = function () {
       var cool = layer.load(0, {
          shade: [0.3, '#fff']
       });
@@ -41,7 +42,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          data: {
             id: $scope.dId
          },
-      }).success(function(data) {
+      }).success(function (data) {
          layer.close(cool);
          if (data.status == 1) {
             $scope.jiesuanData = data;
@@ -59,11 +60,11 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             layer.confirm('需要医疗器械许可证，是否上传', {
                btn: ['确定', '取消'], //按钮
                btnAlign: 'c',
-               yes: function(index) {
+               yes: function (index) {
                   $state.go('person-qy-msg');
                   layer.close(index);
                },
-               btn2: function(index) {
+               btn2: function (index) {
                   $state.go('shop-car');
                   layer.close(index);
                }
@@ -73,7 +74,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             layer.confirm(data.info, {
                btn: ['确定'], //按钮
                closeBtn: false
-            }, function(index) {
+            }, function (index) {
                layer.close(index);
                $state.go('person-qy-msg');
             });
@@ -83,7 +84,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             });
             history.back();
          }
-      }).error(function(data, staus) {
+      }).error(function (data, staus) {
          layer.close(cool);
          if (staus == 401) {
             ////layer.msg('用户失效，请重新登录');
@@ -95,11 +96,11 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
    };
    $scope.jiesuanFn();
    //切换收货信息样式
-   $scope.setMor = function(e) {
+   $scope.setMor = function (e) {
       angular.element(e.target).parent().parent().addClass('pur_close_don').siblings().removeClass('pur_close_don');
    };
    //选择收货人信息
-   $scope.selectAddress = function(id) {
+   $scope.selectAddress = function (id) {
       $scope.flag = !$scope.flag;
       $http({
          method: "POST",
@@ -108,7 +109,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             address_id: id,
             id: $scope.dId
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.jiesuanFn();
          } else {
@@ -119,18 +120,18 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //收货人信息同步
-   $rootScope.$on('uploadAddress', function() {
+   $rootScope.$on('uploadAddress', function () {
       $scope.jiesuanFn();
    });
    //设置默认地址
-   $scope.setMor = function(id) {
+   $scope.setMor = function (id) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/default_address',
          params: {
             address_id: id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
@@ -143,7 +144,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          }
       })
    };
-   $scope.setMoren = function(mor) {
+   $scope.setMoren = function (mor) {
       if (mor == true) {
          $scope.editData.default = 1;
       } else {
@@ -151,7 +152,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       }
    };
    //编辑收货地址
-   $scope.bianji = function(id, index, address) {
+   $scope.bianji = function (id, index, address) {
       $('.masks').show();
       $('.pur_bianji').show();
       $http({
@@ -160,7 +161,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          params: {
             address_id: id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.bianjiData = data;
 
          //编辑收货地址参数
@@ -178,16 +179,16 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //编辑提交收货地址
-   $scope.enterAddress = function(e, province_id, city_id, dis_id, index) {
+   $scope.enterAddress = function (e, province_id, city_id, dis_id, index) {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/User/edit_address',
          data: $scope.editData,
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
-            }, function() {
+            }, function () {
                $scope.jiesuanFn();
                $('.masks').hide();
                $('.pur_bianji').hide();
@@ -200,13 +201,13 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //编辑取消按钮
-   $scope.quxiao = function() {
+   $scope.quxiao = function () {
       $('.masks').hide();
       $('.pur_bianji').hide();
       $('.pur_zengjia').hide();
    };
    //编辑里省切换
-   $scope.changeProvince = function(pid) {
+   $scope.changeProvince = function (pid) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/change_region',
@@ -214,7 +215,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             type: 2,
             parent_id: pid
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.bianjiData.city_list = data.data;
          $scope.disDatas = [];
          $scope.changeCity(pid);
@@ -222,7 +223,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //编辑市切换
-   $scope.changeCity = function(pid) {
+   $scope.changeCity = function (pid) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/change_region',
@@ -230,12 +231,12 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             type: 3,
             parent_id: pid
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.disDatas = data;
          $scope.bianjiData.district_list = data.data;
       })
    };
-   $scope.addSetMoren = function(mor) {
+   $scope.addSetMoren = function (mor) {
       if (mor == true) {
          $scope.eeditData.default = 1;
       } else {
@@ -243,14 +244,14 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       }
    };
    //添加收货地址
-   $scope.tianjia = function() {
+   $scope.tianjia = function () {
       $('.masks').show();
       $('.pur_zengjia').show();
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/add_address',
          params: '',
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.tianjiaData = data;
 
          //添加收货地址参数
@@ -261,17 +262,17 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //提交添加收货地址
-   $scope.tianjiaAddress = function() {
+   $scope.tianjiaAddress = function () {
       $scope.eeditData.default = $scope.isMor ? 1 : 0;
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/User/add_address',
          data: $scope.eeditData,
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
-            }, function() {
+            }, function () {
                $('.masks').hide();
                $('.pur_zengjia').hide();
                $scope.jiesuanFn();
@@ -285,7 +286,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //添加里省切换
-   $scope.selectProvince = function(pid) {
+   $scope.selectProvince = function (pid) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/change_region',
@@ -293,7 +294,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             type: 2,
             parent_id: pid
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.cityData = data;
          $scope.disData = [];
          $scope.selectCity(pid);
@@ -301,7 +302,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //添加市切换
-   $scope.selectCity = function(pid) {
+   $scope.selectCity = function (pid) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/change_region',
@@ -309,19 +310,19 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             type: 3,
             parent_id: pid
          },
-      }).success(function(data) {
+      }).success(function (data) {
          $scope.disData = data;
       })
    };
    //删除一个收货地址
-   $scope.deleteAddress = function(id) {
+   $scope.deleteAddress = function (id) {
       $http({
          method: "GET",
          url: '' + $rootScope.ip + '/User/del_address',
          params: {
             address_id: id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
@@ -335,7 +336,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //选择支付方式
-   $scope.selectPay = function(id) {
+   $scope.selectPay = function (id) {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/select_payment',
@@ -343,7 +344,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             pay_id: id,
             id: $scope.dId
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
@@ -357,7 +358,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //选择配送方式
-   $scope.selectShip = function(storeId, id) {
+   $scope.selectShip = function (storeId, id) {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Flow/select_shippin_suppliers',
@@ -365,7 +366,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             suppliers_id: storeId,
             shipping: id
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             $scope.jiesuanFn();
          } else {
@@ -376,7 +377,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //使用优惠券
-   $scope.useYhq = function(sid, bid) {
+   $scope.useYhq = function (sid, bid) {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Flow/suppliers_bouns',
@@ -384,7 +385,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             suppliers_id: sid,
             bonus_id: bid
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status) {
             layer.msg(data.info, {
                time: 1000
@@ -398,7 +399,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       })
    };
    //兑换优惠卷
-   $scope.getYhqByCode = function(code, event) {
+   $scope.getYhqByCode = function (code, event) {
       event.target.style.pointerEvents = 'none';
       event.target.style.opacity = '.7';
       $http({
@@ -407,7 +408,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          data: {
             bonus_sn: code
          },
-      }).success(function(data) {
+      }).success(function (data) {
          event.target.style.pointerEvents = 'auto';
          event.target.style.opacity = '1';
          if (data.status) {
@@ -427,23 +428,24 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
       method: "POST",
       url: '' + $rootScope.ip + '/User/user_info',
       data: '',
-   }).success(function(data) {
+   }).success(function (data) {
       $scope.userMoney = data.user_info.user_money;
    })
-   $scope.submitList = function(e, index) {
+   $scope.submitList = function (e, index) {
       $http({
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/done',
          data: {
             notes: $scope.getNotes(),
-            id: $scope.dId
+            id: $scope.dId,
+            linkid: $scope.linkID
          },
-      }).success(function(data) {
+      }).success(function (data) {
          if (data.status == 1) {
             layer.confirm(data.info, {
                btn: ['确定'], //按钮
                closeBtn: false
-            }, function(index) {
+            }, function (index) {
                layer.close(index);
                $state.go('order-list-d');
             });
@@ -451,11 +453,11 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             layer.confirm('需要医疗器械许可证，是否上传', {
                btn: ['确定', '取消'], //按钮
                btnAlign: 'c',
-               yes: function(index) {
+               yes: function (index) {
                   $state.go('person-qy-msg');
                   layer.close(index);
                },
-               btn2: function(index) {
+               btn2: function (index) {
                   layer.close(index);
                }
             });
@@ -463,7 +465,7 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
             layer.confirm(data.info, {
                btn: ['确定'], //按钮
                closeBtn: false
-            }, function(index) {
+            }, function (index) {
                layer.close(index);
                $state.go('distribution-qualification');
             });

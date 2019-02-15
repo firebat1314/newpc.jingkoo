@@ -1,5 +1,6 @@
 <div class="shop-list-distribution">
-   <div class="brand-gg" ads-click="category.bannerone[0]" ng-style="{backgroundImage:'url('+category.bannerone[0].ad_img+')'}" style="height:450px;background:url(img/distribution-pc.jpg) center center;background-size: auto 100%;">
+   <div class="brand-gg" ads-click="category.bannerone[0]" ng-style="{backgroundImage:'url('+category.bannerone[0].ad_img+')'}"
+      style="height:450px;background:url(img/distribution-pc.jpg) center center;background-size: auto 100%;">
    </div>
    <ng-container ng-if="data">
       <div class="navc-wrap">
@@ -9,7 +10,8 @@
                <li ng-class="{on:selectIndex==-1}" ng-click="getPromote(-1)">
                   <div class="wrp"><a href="">全部</a></div>
                </li>
-               <li ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.data" ng-click="getPromote($index)" repeat-done="xdFn()">
+               <li ng-class="{on:selectIndex==$index}" ng-repeat="xd in category.data" ng-click="getPromote($index)"
+                  repeat-done="xdFn()">
                   <div class="wrp"><a href="">{{xd.cat_name}}</a></div>
                </li>
             </ul>
@@ -18,8 +20,8 @@
       <div class="purchase-box">
          <div class="purchase" gird>
             <ul class="cle">
-               <li ng-repeat="cleAll in data.goods">
-                  <a target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id})" target="_blank" class="wrp">
+               <li ng-repeat="cleAll in data.goods" repeat-done="render($index)" ng-class="{'more':cleAll.link_good.length}">
+                  <a target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id})" class="wrp">
                      <div class="img">
                         <img img-lazy-load={{cleAll.goods_img}} />
                      </div>
@@ -30,8 +32,28 @@
                         <div class="tt-2">
                            {{cleAll.name}}
                         </div>
+                        <div style="flex: 1;"></div>
                         <div class="tt-1">
                            <div class="cx"><em ng-if="showPrice">{{cleAll.shop_price}}</em></div>
+                           <div class="suzi"><button>立即铺货</button></div>
+                        </div>
+                     </div>
+                  </a>
+                  <a ng-repeat="link_good in cleAll.link_good" target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id+'-'+link_good.id})"
+                     class="wrp">
+                     <div class="img">
+                        <img img-lazy-load={{link_good.goods_img}} />
+                     </div>
+                     <div class="txt">
+                        <div class="tt-4">
+                           <span>铺货</span>
+                        </div>
+                        <div class="tt-2">
+                           {{link_good.name}}
+                        </div>
+                        <div style="flex: 1;"></div>
+                        <div class="tt-1">
+                           <div class="cx"><em ng-if="showPrice">{{link_good.shop_price}}</em></div>
                            <div class="suzi"><button>立即铺货</button></div>
                         </div>
                      </div>

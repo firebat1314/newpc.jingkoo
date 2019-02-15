@@ -2723,7 +2723,7 @@ $browser-default-font-size: 37.5px !default;
 
 .shopList-main {
    width: 100%;
-   background: #fff;
+   background: #fafafa;
    .shop-list {
       @extend .gird;
       .guess-you-like {
@@ -8415,16 +8415,43 @@ $browser-default-font-size: 37.5px !default;
             width: calc(50% - 10px);
             margin: 0 5px;
             margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            justify-content: space-between;
+            display: flex;
+            &.more{
+               .img {
+                  width: 140px !important;
+                  height: 140px !important;
+               }
+               .tt-1{
+                  em{
+                     font-size: 22px !important;
+                  }
+               }
+               .suzi {
+                  button{
+                     padding: 8px 10px !important;
+                  }
+               }
+            }
             .wrp {
                background: #fff;
                display: flex;
                padding: 16px;
-         
+               box-sizing: border-box;
+               border-right: 1px solid #f0f0f0;
+               max-height: 200px;
+             overflow: hidden;
+               &:last-child{
+                  border: none;
+               }
                .img {
-                  width: 200px;
-                  height: 200px;
+                  width: 160px;
+                  height: 160px;
                   margin-right: 16px;
                   background: #fafafa;
+                  flex-shrink: 0;
                }
          
                .txt {
@@ -8453,7 +8480,6 @@ $browser-default-font-size: 37.5px !default;
                      display: -webkit-box;
                      -webkit-box-orient: vertical;
                      -webkit-line-clamp: 2;
-                     flex: 1;
                   }
          
                   .tt-1 {

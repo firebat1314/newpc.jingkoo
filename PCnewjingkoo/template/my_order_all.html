@@ -372,7 +372,7 @@
                                        ng-click="buyAgain(order.order_id)">再次购买</a>
                                  </div>
                                  <!--订单失效-->
-                                 <div class="n5-opon" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)">
+                                 <div class="n5-opon" ng-if="((order.order_status==5 || order.order_status==1) && order.pay_status==2 && order.shipping_status==2)||(order.order_status==2 && order.pay_status==0 && order.shipping_status==0)">
                                     <a class="ako4" ng-click="buyAgain(order.order_id)" style="margin: 11px auto;">再次购买</a>
                                  </div>
                                  <!--待付款-->

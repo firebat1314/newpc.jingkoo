@@ -1,0 +1,33 @@
+.show-special{
+    .img-wrap{
+        overflow: hidden;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        .img{
+            margin-bottom:  1%;
+            img{
+                width: 100%;
+                display: block;
+                height: 100%;
+            }
+        }
+        .img1{
+            width: 100%;
+        }
+        .img2{
+            width: 59%;
+            margin-right: 1%;
+        }
+        .img3{
+            width: 40%;
+        }
+        .img4{
+            width: 39%;
+            margin-right: 1%;
+        }
+        .img5{
+            width: 60%;
+        }
+    }
+}

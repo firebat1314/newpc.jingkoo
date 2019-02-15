@@ -112,8 +112,8 @@ angular.module('myApp.HttServices', [])
    })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function($http, $window, $timeout, ipCookie) {
 
-      var isAccessFormalEnv = true;
-      // var isAccessFormalEnv = false;
+      // var isAccessFormalEnv = true;
+      var isAccessFormalEnv = false;
 
       if (isAccessFormalEnv) {
          var ip = 'https://www.jingku.cn'; //正式
@@ -846,11 +846,11 @@ angular.module('myApp.HttServices', [])
                data: data
             })
          },
-         /* 订单取消申请 */
-         cancelApply: function(data) {
+         /* 促销专题广告位 */
+         showSpecial: function(data) {
             return $http({
                method: 'post',
-               url: ip + '/User/cancelApply ',
+               url: ip + '/Index/newAds ',
                data: data
             })
          }

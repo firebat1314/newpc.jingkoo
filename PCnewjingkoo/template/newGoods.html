@@ -13,7 +13,7 @@
       <div class="brand_list gird">
          <div class="dh sfq">
             <ul>
-               <li ng-repeat="item in data.new_goods" repeat-done="render()">
+               <li ng-repeat="item in data.new_goods" repeat-done="render()" title="{{item.link_man}}">
                   <a href="javascript:;" ads-click="item"><img ng-src="{{item.ad_img}}" alt=""></a>
                </li>
             </ul>
@@ -26,7 +26,7 @@
          <div class="ch">精选商品</div>
       </div>
       <div class="goods-list gird">
-         <a class="goods" ng-repeat="item in data.top_tui.list" target="_blank" ui-sref="shop-detail({'goods_id':item.goods_id})">
+         <a title="{{item.name}}" class="goods" ng-repeat="item in data.top_tui.list" target="_blank" ui-sref="shop-detail({'goods_id':item.goods_id})">
             <div class="img">
                <img ng-src="{{item.original_img}}" alt="">
             </div>
@@ -45,7 +45,7 @@
          <div class="ch">新品上架</div>
       </div>
       <div class="goods-list gird">
-         <a class="goods" ng-repeat="item in data.new_tui.list" target="_blank" ui-sref="shop-detail({'goods_id':item.goods_id})">
+         <a title="{{item.name}}" class="goods" ng-repeat="item in data.new_tui.list" target="_blank" ui-sref="shop-detail({'goods_id':item.goods_id})">
             <div class="img">
                <img ng-src="{{item.original_img}}" alt="">
             </div>

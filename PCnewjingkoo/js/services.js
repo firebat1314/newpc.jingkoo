@@ -112,8 +112,8 @@ angular.module('myApp.HttServices', [])
    })
    .factory('$data', ['$http', '$window', '$timeout', 'ipCookie', function($http, $window, $timeout, ipCookie) {
 
-      // var isAccessFormalEnv = true;
-      var isAccessFormalEnv = false;
+      var isAccessFormalEnv = true;
+      // var isAccessFormalEnv = false;
 
       if (isAccessFormalEnv) {
          var ip = 'https://www.jingku.cn'; //正式

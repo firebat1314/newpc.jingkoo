@@ -8412,8 +8412,8 @@ $browser-default-font-size: 37.5px !default;
          display: flex;
          flex-wrap: wrap;
          li {
-            width: calc(50% - 10px);
-            margin: 0 5px;
+            width: calc(50% - 12px);
+            margin: 0 6px;
             margin-bottom: 10px;
             position: relative;
             overflow: hidden;
@@ -8440,9 +8440,12 @@ $browser-default-font-size: 37.5px !default;
                display: flex;
                padding: 16px;
                box-sizing: border-box;
-               border-right: 1px solid #f0f0f0;
+               border-right: 5px solid #f0f0f0;
                max-height: 200px;
-             overflow: hidden;
+               overflow: hidden;
+               &:first-child{
+               flex: 1;
+               }
                &:last-child{
                   border: none;
                }
@@ -8480,6 +8483,8 @@ $browser-default-font-size: 37.5px !default;
                      display: -webkit-box;
                      -webkit-box-orient: vertical;
                      -webkit-line-clamp: 2;
+                      min-height: 45px;
+                      max-height: 45px;
                   }
          
                   .tt-1 {

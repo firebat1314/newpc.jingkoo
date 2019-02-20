@@ -13,7 +13,7 @@
       </ul>
    </div>
 
-   <div class="brand-gg" ui-sref="show-special" ng-style="{backgroundImage:'url('+flashData.bannerone[0].ad_img+')'}"
+   <div class="brand-gg" ads-click="flashData.bannerone[0]" ng-style="{backgroundImage:'url('+flashData.bannerone[0].ad_img+')'}"
       style="height:450px;background:url(img/flashShopBigPic.jpg) center center;background-size: auto 100%;">
       <!-- <img src="img/flashShopBigPic.jpg" alt=""> -->
    </div>
@@ -23,7 +23,7 @@
          <div class="purchase" gird>
             <ul class="cle">
                <li ng-repeat="cleAll in flashAllListData.data">
-                  <a ui-sref="shop-detail({goods_id:cleAll.goods_id,isActivity:1})" target="_blank" class="wrp">
+                  <a ui-sref="shop-detail({goods_id:cleAll.goods_id,isActivity:1})" target="_blank" title="{{cleAll.name}}" class="wrp">
                      <div class="img">
                         <img img-lazy-load={{cleAll.goods_img}} />
                      </div>

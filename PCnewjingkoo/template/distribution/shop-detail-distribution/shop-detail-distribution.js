@@ -8,7 +8,8 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
       method: "POST",
       url: '' + $rootScope.ip + '/Distribution/info',
       data: {
-         id: $scope.dId
+         id: $scope.dId,
+         linkid: $scope.linkID
       },
    }).success(function (res) {
       if (res.status == 1) {
@@ -28,6 +29,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
          url: '' + $rootScope.ip + '/Distribution/get_goods_attribute',
          data: {
             goods_id: $scope.goods_id,
+            linkid: $scope.linkID,
             id: $scope.dId
          },
       }).success(function (data) {
@@ -58,6 +60,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
                   url: '' + $rootScope.ip + '/Distribution/get_attr_list',
                   data: {
                      goods_id: $scope.goods_id,
+                     linkid: $scope.linkID,
                      attr: attrId,
                      id: $scope.dId
                   },
@@ -250,7 +253,7 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
             //是否有促销价格
             $scope.is_promotion = data.data.is_promotion;
             //商品详情相册信息
-            $scope.imgUrl = data.gallery?data.gallery[0].img_url:null;
+            $scope.imgUrl = data.gallery.length ? data.gallery[0].img_url : null;
             // $scope.thumbUrl = data.gallery[0].thumb_url;
             //商品详情供货商信息
             $scope.name = data.supplier_info.name;
@@ -671,13 +674,13 @@ myApp.controller('shopDetailDistributionControl', ['$scope', '$rootScope', '$sta
          url: '' + $rootScope.ip + '/Distribution/checkout',
          data: {
             id: $scope.dId,
-            linkid:$scope.linkID
+            linkid: $scope.linkID
          },
       }).success(function (data) {
          layer.close(cool);
          if (data.status == 1) {
             $state.go('checkout-distribution', {
-               did: $scope.dId+'-'+$scope.linkID
+               did: $scope.dId + '-' + $scope.linkID
             });
          } else if (data.status == -2) {
             layer.confirm('需要医疗器械许可证，是否上传', {

@@ -50,50 +50,47 @@ myApp.controller('DistributionDivisionControl', function ($scope, $rootScope, $h
 
    $scope.render = function (index) {
       setTimeout(function () {
-         (function (e) {
-            var cle = document.querySelector(".cle");
-            for (var j = 0, items = cle.children; j < items.length; j++) {
+         var cle = document.querySelector(".cle");
+         for (var j = 0, items = cle.children; j < items.length; j++) {
 
-               var box = items[j];
-               var as = box.children;
-               if(as.length==1){
-                  as[0].style.flex = '1';
-                  return 
-               }else{
-
-               }
+            var box = items[j];
+            var as = box.children;
+            if (as.length == 1) {
+               as[0].style.flex = '1';
+            } else {
+               as[0].style.flex = 'none';
                var between = 0;
-
                var imgWidth = 400;
-
                //循环遍历 as 绑定背景图
                for (var i = 0; i < as.length; i++) {
-                  if (i == 0) {
-                     $(as[0]).animate({
-                        "width": Math.floor(imgWidth)
-                     })
-                  } else {
-                     $(as[i]).animate({
-                        "width": Math.floor((box.offsetWidth - imgWidth) / (as.length - 1)) - between
-                     })
-                  }
-                  //给每一个li注册鼠标经过事件 鼠标经过后要排他
-                  (function (list) {
-                     list[i].onmouseenter = function () {
-                        $(this).stop().css({
-                           "width": Math.floor(imgWidth)
+                  (function (i) {
+                     var minWidth = Math.floor((box.offsetWidth - imgWidth) / (as.length - 1)) - between;
+                     var maxWidth = Math.floor(imgWidth);
+                     if (minWidth > 172) {
+                        minWidth = 172;
+                        maxWidth = box.offsetWidth-172*(as.length - 1)
+                     }
+                     if (i == 0) {
+                        $(as[0]).css({
+                           "width": maxWidth
+                        })
+                     } else {
+                        $(as[i]).css({
+                           "width": minWidth
+                        })
+                     }
+                     //给每一个li注册鼠标经过事件 鼠标经过后要排他
+                     as[i].onmouseenter = function () {
+                        $(this).css({
+                           "width": maxWidth,
                         }).siblings().css({
-                           "width": Math.floor((box.offsetWidth - imgWidth) / (list.length - 1)) - between
+                           "width": minWidth,
                         });
                      };
-                  })(as)
-
+                  })(i)
                }
-
             }
-
-         })(this)
-
-      }, 1000);
+         }
+      }, 0);
    }
 })

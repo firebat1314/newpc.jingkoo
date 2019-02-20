@@ -40,7 +40,8 @@ myApp.controller('checkoutDistributionControl', ['$scope', '$rootScope', '$http'
          method: "POST",
          url: '' + $rootScope.ip + '/Distribution/checkout',
          data: {
-            id: $scope.dId
+            id: $scope.dId,
+            linkid: $scope.linkID
          },
       }).success(function (data) {
          layer.close(cool);

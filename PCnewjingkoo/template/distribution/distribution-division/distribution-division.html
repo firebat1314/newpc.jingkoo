@@ -21,7 +21,7 @@
          <div class="purchase" gird>
             <ul class="cle">
                <li ng-repeat="cleAll in data.goods" repeat-done="render($index)" ng-class="{'more':cleAll.link_good.length}">
-                  <a target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id})" class="wrp">
+                  <a target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id})" class="wrp" title="{{cleAll.name}}">
                      <div class="img">
                         <img img-lazy-load={{cleAll.goods_img}} />
                      </div>
@@ -40,7 +40,7 @@
                      </div>
                   </a>
                   <a ng-repeat="link_good in cleAll.link_good" target="_blank" ui-sref="shop-detail-distribution({did:cleAll.id+'-'+link_good.id})"
-                     class="wrp">
+                     class="wrp" title="{{link_good.name}}">
                      <div class="img">
                         <img img-lazy-load={{link_good.goods_img}} />
                      </div>

@@ -74,15 +74,10 @@
 
         </div>
         <div class="shopList-select-conditions" ng-if="shopListData.goods.length!=0">
-            <div class="more-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&moreXx" ng-click="moreXxFn()">
-                <p>更多选项</p>
-            </div>
-            <div class="more-ano-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&shouQi" ng-click="shouQiFn()">
-                <p>收起</p>
-            </div>
+           
             <div class="shopList-fashion shopList-price">
                 <div class="shopList-fashion-tit">{{fashionMonthName}}：</div>
-                <div class="shopList-fashion-content">
+                <div class="shopList-fashion-content" style="height: 30px;">
                     <div class="shopList-fashion-item" ng-repeat="fashionMonthItem in shopListData.goods_attr_arr[1].data" ng-click="getMonthValue(fashionMonthItem.cat_name,fashionMonthItem.cat_id)">{{fashionMonthItem.cat_name}}</div>
                 </div>
                 <div class="more-fashion" ng-if="shopListData.goods_attr_arr[1].data.length > 6">
@@ -91,8 +86,8 @@
                 </div>
             </div>
             <div class="shopList-fashion">
-                <div class="shopList-fashion-tit" style="top:21px;">{{fashionAllName}}：</div>
-                <div class="shopList-fashion-content brand-item">
+                <div class="shopList-fashion-tit">{{fashionAllName}}：</div>
+                <div class="shopList-fashion-content brand-item" style="height: 60px;">
                     <div class="shopList-fashion-item" ng-repeat="fashionAllItem in shopListData.goods_attr_arr[0].data" repeat-done="clickMore()">
                         <div class="fashion-item-name" ng-click="getAllValue(fashionAllItem.brand_name,fashionAllItem.brand_id)">{{fashionAllItem.brand_name}}</div>
                         <img ng-src={{fashionAllItem.brand_logo}} alt="">
@@ -107,13 +102,19 @@
                 repeat-done="clickMore()">
                 <div class="shopList-fashion-tit">{{fashionAttr.attr_name}}：</div>
                 <!--<div class="shopList-fashion-item-one">全部</div>-->
-                <div class="shopList-fashion-content">
+                <div class="shopList-fashion-content" style="height: 30px;">
                     <div class="shopList-fashion-item" ng-repeat="fashionWaterItem in fashionAttr.values" ng-click="getAttrValue(fashionWaterItem.value,fashionWaterItem.filter)">{{fashionWaterItem.value}}</div>
                 </div>
                 <div class="more-fashion" ng-show="fashionAttr.values.length > 5">
                     <p>更多</p>
                     <i>+</i>
                 </div>
+            </div>
+            <div class="more-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&moreXx" ng-click="moreXxFn()">
+                <p>更多选项</p>
+            </div>
+            <div class="more-ano-conditions" ng-if="shopListData.goods_attr_arr[3].data.length>2&&shouQi" ng-click="shouQiFn()">
+                <p>收起</p>
             </div>
         </div>
         <div ng-show="shopListData.goods.length==0" class="ns-wrap clearfix info" style="padding: 10px 0px;clear:both;">
@@ -178,14 +179,17 @@
                         </div>
                         <div class="picFocus">
                             <div class="goods-items-img">
+                                    <div ng-if="listGoods.gallery ==false" class="goods-items-notimg"></div>
                                 <ul ng-if="listGoods.gallery" style="overflow: hidden;">
                                     <li style="float:left;" ng-repeat="bigList in listGoods.gallery">
                                         <a href="javascript:;" ui-sref="shop-detail({goods_id:bigList.goods_id})" target="_blank">
                                             <img img-lazy-load={{bigList.img_url}} default-src="../img/800-800.jpg" alt="">
+                                           
                                         </a>
                                     </li>
                                 </ul>
                             </div>
+                            
                             <div class="hd">
                                 <ul>
                                     <li ng-repeat="bigs in listGoods.gallery">
@@ -225,8 +229,9 @@
         </div>
 
         <div class="hot-sale-tuijian" ng-if="YouLike">
+            <div class="hot-sale-tits">
             <div class="hot-sale-tit">
-                <p>猜你喜欢</p>
+                <p class="hot-sale-like">猜你喜欢</p>
             </div>
             <div class="hot-sale-goods">
                     <ul>
@@ -242,6 +247,7 @@
                 <a class="sNext" href="javascript:void(0)"></a>
             </div>
         </div>
+        </div>
     </div>
 </div>
 <script>
@@ -250,5 +256,8 @@
 //        boxSizing:'border-box',
 //        borderBottom:'3px solid #ff3333'
 //    });
+
+
+//$("#btn")：按钮的id是'btn'
 
 </script>

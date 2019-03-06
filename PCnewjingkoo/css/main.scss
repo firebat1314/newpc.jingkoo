@@ -2731,10 +2731,10 @@ $browser-default-font-size: 37.5px !default;
          padding-top: 25px;
          .guess-you-like-main {
             height: 130px;
-            background: #f5f5f5;
             border-left: 3px solid #ff6a00;
             padding: 8px 0;
             overflow: hidden;
+            background: #FFFFFF;
             .like-main-tit {
                width: 39px;
                height: 127px;
@@ -2787,6 +2787,7 @@ $browser-default-font-size: 37.5px !default;
                background: #fff;
                padding: 15px 0 0 10px;
                margin-right: 18px;
+               background: #FAFAFA;
                img {
                   width: 101px;
                   height: 101px;
@@ -2813,6 +2814,7 @@ $browser-default-font-size: 37.5px !default;
                   outline: none;
                   position: relative;
                   top: -10px;
+                  border-radius: 6%;
                   &:hover {
                      background: #3f69a5;
                   }
@@ -2880,7 +2882,6 @@ $browser-default-font-size: 37.5px !default;
             height: 30px;
             line-height: 27px;
             color: #0070c9;
-            border: 1px solid #e0e0e0;
             float: left;
             padding-left: 10px;
             padding-right: 10px;
@@ -2888,6 +2889,7 @@ $browser-default-font-size: 37.5px !default;
             font-size: 12px;
             margin-right: 10px;
             margin-bottom: 10px;
+            background: #fff;
             &:hover {
                border-color: #0070c9;
             }
@@ -2921,47 +2923,41 @@ $browser-default-font-size: 37.5px !default;
          border: 1px solid #e0e0e0;
          border-left: none;
          border-right: none;
-         margin-bottom: 40px;
-         position: relative;
+         margin-bottom: 20px;
+         background: #fff;
          .more-conditions {
-            border: 1px solid #e0e0e0;
-            border-top-color: #fff;
-            position: absolute;
-            bottom: -29px;
-            left: 50%;
-            margin-left: -36px;
-            height: 27px;
-            line-height: 27px;
+            height: 55px;
+            line-height: 55px;
             font-size: 12px;
-            background: #fff url(../img/dayuhao.png) no-repeat 84px;
+            background: #fff url(../img/dayuhao.png) no-repeat 53%;
             background-size: 10px;
             cursor: pointer;
-            z-index: 20;
             &:hover {
                border-bottom-color: #0070c9;
                color: #0070c9;
-               background: #fff url(../img/dayuhao_.png) no-repeat 84px;
+               background: #fff url(../img/dayuhao_.png) no-repeat 53%;
                background-size: 10px;
             }
             p {
+               text-align: center;
                padding: 0 45px 0 25px;
             }
          }
          .more-ano-conditions {
             @extend .more-conditions;
-            background: #fff url(../img/xiaoyuhao.png) no-repeat 60px;
+            background: #fff url(../img/xiaoyuhao.png) no-repeat 52%;
             background-size: 10px;
             z-index: 20;
             &:hover {
                border-bottom-color: #0070c9;
                color: #0070c9;
-               background: #fff url(../img/xiaoyuhao_.png) no-repeat 60px;
+               background: #fff url(../img/xiaoyuhao_.png) no-repeat 52%;
                background-size: 10px;
             }
          }
          .shopList-fashion {
-            width: 1167px;
-            padding: 10px 20px 10px 10px;
+            width: 1148px;
+            padding: 10px 20px 10px 30px;
             display: inline-block;
             border-bottom: 1px dashed #e0e0e0;
             position: relative;
@@ -2975,6 +2971,7 @@ $browser-default-font-size: 37.5px !default;
                position: relative;
                top: 5px;
                font-size: 13px;
+               line-height: 30px;   
             }
             .shopList-fashion-content {
                width: 965px;
@@ -2990,7 +2987,7 @@ $browser-default-font-size: 37.5px !default;
                   line-height: 60px;
                   float: left;
                   margin-right: 15px;
-                  margin-bottom: 15px;
+                  line-height: 62px;
                   position: relative;
                   cursor: pointer;
                   &:hover .fashion-item-name {
@@ -3029,8 +3026,9 @@ $browser-default-font-size: 37.5px !default;
                line-height: 25px;
                padding-left: 10px;
                position: absolute;
-               right: 10px;
+               right: 40px;
                cursor: pointer;
+               top: 5px;
                &:hover {
                   color: #0070c9;
                   border-color: #0070c9;
@@ -3046,7 +3044,7 @@ $browser-default-font-size: 37.5px !default;
             }
          }
          .shopList-price {
-            padding: 4px 20px 4px 10px !important;
+            padding: 4px 20px 4px 30px !important;
          }
          .moreAttr {
             .shopList-fashion-content {
@@ -3090,20 +3088,20 @@ $browser-default-font-size: 37.5px !default;
                top: 3.5px;
             }
             .shopList-fashion-content {
-               height: 30px;
                .shopList-fashion-item {
                   width: auto;
                   min-width: 88px;
-                  height: 26px;
                   background: #fff;
-                  color: #0070c9;
                   text-align: left;
-                  line-height: 30px;
+                  line-height: 30px !important;;
                   float: left;
                   margin-right: 45px;
-                  margin-bottom: 15px;
+                  line-height: 62px;
                   cursor: pointer;
                   padding-left: 0;
+                  text-align: center;
+                  color: #333333;
+                  font-weight: bold;
                   &:hover {
                      color: #E4393C;
                   }
@@ -3117,6 +3115,7 @@ $browser-default-font-size: 37.5px !default;
          padding: 9px 0;
          border-left: none;
          border-right: none;
+         background: #fff;
          .shopList-sort-item {
             width: 108px;
             height: 20px;
@@ -3279,13 +3278,21 @@ $browser-default-font-size: 37.5px !default;
          //justify-content: space-between;
          //flex-wrap: wrap;
          //flex-direction: row;
+         
          .big-shopList-goods-items {
             position: relative;
             display: inline-block;
-            width: 25%;
-            height: 415px;
+            width: calc(25% - 15px);
+            height: 460px;
             box-sizing: border-box;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            background: #fff;
+            margin-right: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            &:nth-child(4n){
+               margin-right: 0;
+            }
             .small_img_box {
                position: absolute;
                right: 20px;
@@ -3297,46 +3304,29 @@ $browser-default-font-size: 37.5px !default;
                }
             }
             &:hover {
-               .shopList-goods-items {
-                  position: absolute;
-                  left: 0;
-                  top: 0;
+               transition: all 0.3s;
                   box-shadow: 0 0 20px rgba(99, 99, 99, .5);
-                  z-index: 999;
-                  height: 450px;
-                  background: #fff;
-                  .small_img_box {
-                     position: absolute;
-                     right: 20px;
-                     top: 20px;
-                     z-index: 10;
-                     img {
-                        width: 54px !important;
-                        margin-bottom: 5px;
-                     }
-                  }
-                  .hd {
-                     display: block;
-                  }
-               }
+                  transform: scale(1.01);
                .shop_btn_box {
                   display: block !important;
                }
             }
             .shopList-goods-items {
-               width: 260px; //height:543px;
-               height: 400px;
                padding: 20px 20px 0 20px;
-               float: left;
                .goods-items-img {
-                  width: 260px;
-                  height: 260px;
-                  background: #f2f2f2;
+                  width: 237px;
+                  height: 237px;
                   overflow: hidden;
                   a img {
                      width: 260px !important;
                      height: 260px !important;
                   }
+               }
+               .goods-items-notimg{
+                  width: 237px;
+                  height: 237px;
+                  overflow: hidden;
+                  background: #9A9A9A;
                }
                .hd {
                   position: relative;
@@ -3466,14 +3456,21 @@ $browser-default-font-size: 37.5px !default;
             }
          }
       }
-      .hot-sale-tuijian {
-         border: 1px solid #ccc;
-         margin-bottom: 25px;
+      .hot-sale-tuijian {    
+           margin-bottom: -7px;
          position: relative;
+         padding-bottom: 50px;
+         .hot-sale-tits{
+            background: #fff;
+         }
          .hot-sale-tit {
             line-height: 35px;
-            padding-left: 10px;
             font-size: 14px; //      border-bottom: 1px solid #ccc; 
+            .hot-sale-like{
+               border-bottom: 1px solid #EBEBEB;
+               padding-left: 30px;
+               background: #fff;
+            }
          }
          .hot-sale-goods {
             margin: 7px 40px;

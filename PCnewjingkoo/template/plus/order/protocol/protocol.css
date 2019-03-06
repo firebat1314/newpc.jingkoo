@@ -1,1 +1,32 @@
-.deal-mc{width:85%;padding:60px 0;margin:auto;font-size:14px;line-height:30px}.deal-mc .tit{display:block;color:#333;font-weight:700}.deal-mc .sup-tit{display:block;font-size:16px;font-weight:700}.deal-mc p{margin-top:40px}.deal-mc p em{font-style:italic}.deal-mc p .deal-feedback{text-decoration:underline}
+.deal-mc {
+  width: 85%;
+  padding: 60px 0;
+  margin: auto;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.deal-mc .tit {
+  display: block;
+  color: #333;
+  font-weight: 700;
+}
+
+.deal-mc .sup-tit {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.deal-mc p {
+  margin-top: 40px;
+}
+
+.deal-mc p em {
+  font-style: italic;
+}
+
+.deal-mc p .deal-feedback {
+  text-decoration: underline;
+}
+/*# sourceMappingURL=protocol.css.map */

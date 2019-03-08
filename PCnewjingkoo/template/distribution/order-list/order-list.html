@@ -127,6 +127,10 @@
 	.sydd-ittem:hover .del_order {
 		display: block !important;
 	}
+	.disabled{
+		pointer-events:none;
+		opacity: 0.3;
+	}
 </style>
 
 
@@ -244,7 +248,7 @@
 									</div>
 								</div>
 								<div class="syd s-6">操作</div>
-							</div> 
+							</div>
 							<div class="sydd-body">
 								<div class="sydd-ittem" ng-repeat="order in AllOrder.list" repeat-done="renderJs()">
 									<div class="nony-bt">
@@ -252,7 +256,7 @@
 										<span class="nony-sp2">订单号：{{order.order_sn}}<span ng-if="order.is_xianxia==1" style="color: #3f69a5;">(线下已签署合同)</span></span>
 										<span class="nony-sp2">
 											<img src="img/dd-2.png" ng-click="chatClick({order_id:order.order_id})" style="margin: 0;margin-right: 10px;cursor: pointer;margin-top: -3px;"
-                                  ng-if="order.suppliers_name" />{{order.suppliers_name}}</span>
+											 ng-if="order.suppliers_name" />{{order.suppliers_name}}</span>
 										<span class="del_order" ng-click="delOrder(order.order_id)" ng-if="(order.order_status==2 && order.pay_status==0 && order.shipping_status==0) || (order.order_status==3 && order.pay_status==0 && order.shipping_status==0)"
 										 title="删除订单"></span>
 									</div>
@@ -365,6 +369,10 @@
 												</p> -->
 												<a class="ako3" style="height: 25px;line-height: 25px;cursor: pointer;" ng-click="goOverPage(order.order_id)">付款</a>
 												<a style="cursor:pointer;" class="ako2" ng-click="cancelDd(order.order_id)">取消订单</a>
+											</div>
+											<div class="n5-opon" style="margin-top: 10px;" ng-if="order.pay_status==2 && order.shipping_status==2 && order.is_stop==0 && order.isOrderCancel!=0"
+											 ng-class="{'disabled':order.isOrderCancel==2}">
+												<a class="ako4" ng-click="stopCancel(order)">{{order.isOrderCancel==1?'申请终止':'已申请'}}</a>
 											</div>
 											<!--已过期-->
 											<div class="n5-opon" style="margin-top: 10px;" ng-if="(order.order_status==1 && order.pay_status==0 && order.gq==1)||(order.order_status==0 && order.pay_status==0 && order.gq==1)">
@@ -535,5 +543,4 @@
 		var ptext1 = $(this).text();
 		$('.yxl .sgye4').text(ptext1);
 	})
-
 </script>

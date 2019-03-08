@@ -600,4 +600,22 @@ myApp.controller('orderListDistributionControl', ['$scope', '$rootScope', '$stat
          order_id: order_id
       });
    }
+   $scope.stopCancel = function(order){
+      layer.prompt({
+         title: '填写备注并申请取消',
+         value: ' ',
+         formType: 2,
+      }, function (text, index) {
+         $data.cancelApply({
+            order_id: order.order_id,
+            note: text
+         }).success(function (res) {
+            layer.close(index);
+            if (res.status == 1) {
+               order.isOrderCancel = 2;
+               layer.msg(res.info);
+            }
+         })
+      });
+   }
 }])

@@ -135,7 +135,7 @@ angular.module('myApp.directives', [])
                   }
                };
                // 初始化
-               _date = laydate(_config);
+               _date = laydate.render(_config);
 
                // 监听日期最大值
                if (attr.hasOwnProperty('maxDate')) {

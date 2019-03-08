@@ -1043,11 +1043,14 @@ transform: scale(1,1);}
 .yyong_wrp{padding:40px 0 0 0;}
 
 /* 帮助中心 */
-.help_box{width:1200px;margin:40px auto;overflow:hidden;}
+.help_box{width:1200px;margin:40px auto;}
 .help_box .help-left{    
 	width: 178px;
     border: 1px solid #e6e6e6;
 	border-bottom:none;
+}
+.help_box:after{
+	clear:both;content:'';display:block;width: 0;height: 0;visibility:hidden;
 }
 .bg-fff {
     background: #fff;
@@ -1107,9 +1110,11 @@ transform: scale(1,1);}
 .fr {
     float: right;
 }
-.help_box .help-right .help-r-bt {
-    width: 950px;
-    height: 38px; 
+.help_box .help-right {
+    width: 1000px;
+}
+.help_box .help-right .help-r-bt{
+
     line-height: 38px;
     font-size: 14px;
     color: #4c4c4c;
@@ -1117,8 +1122,11 @@ transform: scale(1,1);}
     border: 1px solid #e6e6e6;
     padding: 0 20px;
 }
+.help_box .help-right .gsjj-pic img{
+	max-width: 100%;
+}
 .c {
-    text-align: center;
+    text-align: left;
 }
 .pt30 {
     padding-top: 30px !important;

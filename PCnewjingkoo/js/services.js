@@ -853,6 +853,14 @@ angular.module('myApp.HttServices', [])
                url: ip + '/Index/newAds ',
                data: data
             })
+         },
+         /* 申请取消 */
+         cancelApply: function(data) {
+            return $http({
+               method: 'post',
+               url: ip + '/User/cancelApply ',
+               data: data
+            })
          }
          
       }

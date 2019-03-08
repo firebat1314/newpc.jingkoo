@@ -1357,45 +1357,45 @@ angular.module('myApp.controllers', [])
       })
       $scope.render = function () {
          setTimeout(function () {
-               var box = document.querySelector(".dh");
-               var ul = box.children[0];
-               var lis = ul.children;
-               var between = 12;
-               var width = box.offsetWidth / lis.length - between; //初始每个图片宽度
+            var box = document.querySelector(".dh");
+            var ul = box.children[0];
+            var lis = ul.children;
+            var between = 12;
+            var width = box.offsetWidth / lis.length - between; //初始每个图片宽度
 
-               var imgWidth = lis[0].getElementsByTagName('img')[0].width;
-               
-               //循环遍历 lis 绑定背景图
-               for (var i = 0; i < lis.length; i++) {
-                  $(lis[i]).css({
-                     transition:'width .3s',
-                     "width": Math.floor((box.offsetWidth - lis[i].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between
-                  })
-                  // lis[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+            var imgWidth = lis[0].getElementsByTagName('img')[0].width;
 
-                  //给每一个li注册鼠标经过事件 鼠标经过后要排他
-
-                  lis[i].onmouseover = function () {
-                     var img = this.getElementsByTagName('img')[0];
-                     //干掉所有人 让所有人的宽度 渐渐地 变为100
-                     if (width > img.width) {
-                        return
-                     }
-                     for (var j = 0; j < lis.length; j++) {
-                        $(lis[j]).css({
-                           "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between
-                        })
-                     }
-
-                     //留下我自己 让我的宽度 渐渐地 变为800
-                     $(this).css({
-                        "width": Math.floor(img.width)
-                     })
-                  };
-               }
-               $(lis[0]).css({
-                  "width": Math.floor(imgWidth)
+            //循环遍历 lis 绑定背景图
+            for (var i = 0; i < lis.length; i++) {
+               $(lis[i]).css({
+                  transition: 'width .3s',
+                  "width": Math.floor((box.offsetWidth - lis[i].getElementsByTagName('img')[0].width) / (lis.length - 1)) - between
                })
+               // lis[i].style.backgroundImage = "url(images/" + (i + 1) + ".jpg)";
+
+               //给每一个li注册鼠标经过事件 鼠标经过后要排他
+
+               lis[i].onmouseover = function () {
+                  var img = this.getElementsByTagName('img')[0];
+                  //干掉所有人 让所有人的宽度 渐渐地 变为100
+                  if (width > img.width) {
+                     return
+                  }
+                  for (var j = 0; j < lis.length; j++) {
+                     $(lis[j]).css({
+                        "width": Math.floor((box.offsetWidth - img.width) / (lis.length - 1)) - between
+                     })
+                  }
+
+                  //留下我自己 让我的宽度 渐渐地 变为800
+                  $(this).css({
+                     "width": Math.floor(img.width)
+                  })
+               };
+            }
+            $(lis[0]).css({
+               "width": Math.floor(imgWidth)
+            })
 
          }, 0);
       }
@@ -6380,7 +6380,7 @@ angular.module('myApp.controllers', [])
                   time: 3000
                });
             }
-         }).error(function(){
+         }).error(function () {
             e.target.disabled = false;
          })
       };
@@ -6902,7 +6902,7 @@ angular.module('myApp.controllers', [])
                   type: 'order'
                });
             }
-         }).error(function(){
+         }).error(function () {
             e.target.disabled = false;
          })
       }
@@ -10303,12 +10303,12 @@ angular.module('myApp.controllers', [])
             url: '' + $rootScope.ip + '/User/order_repair',
             data: $scope.repairList,
          }).success(function (data) {
+            layer.close(cool);
             if (data.status) {
-               layer.close(cool);
+               $scope.getGoods(data);
+               $scope.totalSize = data.pages;
+               $scope.repairData = data;
             }
-            $scope.getGoods(data);
-            $scope.totalSize = data.pages;
-            $scope.repairData = data;
 
          })
       };
